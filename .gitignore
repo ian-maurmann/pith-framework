@@ -1,0 +1,27 @@
+
+# .gitignore
+# ----------
+
+
+
+
+# Ignore OS generated files
+# -------------------------
+.DS_Store
+.DS_Store?
+
+
+
+
+# Ignore .idea files
+# ------------------
+.idea/
+
+
+# Ignore composer.phar
+# --------------------
+composer.phar
+
+
+
+
