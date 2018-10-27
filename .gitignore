@@ -13,15 +13,22 @@
 
 
 
-# Ignore .idea files
+# Ignore IDE files
 # ------------------
 .idea/
+.vscode/
 
 
-# Ignore composer.phar
-# --------------------
+# Ignore composer.phar and vendor folder
+# --------------------------------------
 composer.phar
+vendor/
 
 
+
+
+# Ignore dev-test folder
+# ----------------------
+dev-test/
 
 
