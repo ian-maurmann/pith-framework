@@ -1,26 +1,50 @@
 <?php
+# ===================================================================
+# Copyright (c) 2009-2018 Ian K Maurmann. The Pith Framework is
+# provided under the terms of the Mozilla Public License, v. 2.0
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# ===================================================================
 
-    # Pith App
-    # --------
+declare(strict_types=1);
 
-    namespace Pith\Framework;
 
-    class PithApp
+// Pith App
+// --------
+
+namespace Pith\Framework;
+
+class PithApp implements PithAppInterface
+{
+    use PithVersionTrait;
+
+    public $container      = null;
+    public $config         = null;
+    public $registry       = null;
+    public $authenticator  = null;
+    public $access_control = null;
+    public $router         = null;
+    public $dispatcher     = null;
+
+
+    function __construct(PithConfig $config)
     {
-        public $config        = null;
-        public $registry      = null;
-        public $authenticator = null;
-        public $router        = null;
-        public $dispatcher    = null;
-
-        function __construct($config, $registry, $authenticator, $router, $dispatcher)
-        {
-            $this->config        = $config;
-            $this->registry      = $registry;
-            $this->authenticator = $authenticator;
-            $this->router        = $router;
-            $this->dispatcher    = $dispatcher;
-        }
-
+        $this->container      = null;
+        $this->config         = $config;
+        $this->registry       = null;
+        $this->authenticator  = null;
+        $this->access_control = null;
+        $this->router         = null;
+        $this->dispatcher     = null;
     }
+
+
+    public function whereAmI()
+    {
+        return "Pith App";
+    }
+}
+
 
