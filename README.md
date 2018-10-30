@@ -10,8 +10,8 @@ This is a re-write of an old framework I was working on in 2009-2010. I just sta
 
 :palm_tree: | Release status | sv | rv | Can I use?
 ----------- | -------------- | -- | -- | ----------
-:seedling: | (3rd) Pre-Alpha 1 | v0.2.0 | 0.6.0.1 | :warning: *Not yet*
-:sunrise_over_mountains: | (2nd) Initial Re-write | v0.1.0 | 0.6.0.0 | :warning: *Not yet*
+:seedling: | Rewrite Pre-Alpha 1 | v0.2.0 | 0.6.0.1 | :warning: *Not yet*
+:sunrise_over_mountains: | (2nd) Initial Rewrite | v0.1.0 | 0.6.0.0 | :warning: *Not yet*
 
 See http://pith-framework.org/versions for more info.
 
