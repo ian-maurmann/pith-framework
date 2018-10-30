@@ -2,7 +2,8 @@
     "name": "pith/framework",
     "description": "Pith Framework - Another simple framework for PHP sites",
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "php-di/php-di": "^6"
     },
     "license": "MPL-2.0",
     "authors": [
@@ -16,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/objects/"]
+            "Pith\\Framework\\": ["src/objects/", "src/interfaces/", "src/traits/"]
         }
     }
 }
