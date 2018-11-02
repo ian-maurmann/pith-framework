@@ -21,4 +21,6 @@ declare(strict_types=1);
     interface PithAppInterface
     {
         public function whereAmI();
+        public function start();
+        public function runRoute($route_name);
     }

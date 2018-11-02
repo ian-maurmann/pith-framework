@@ -45,6 +45,18 @@ class PithApp implements PithAppInterface
     {
         return "Pith App";
     }
+
+
+    public function start()
+    {
+        // Run the framework normally
+    }
+
+
+    public function runRoute($route_name)
+    {
+        // Run a specific route without checking the url
+    }
 }
 
 
