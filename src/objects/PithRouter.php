@@ -7,20 +7,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
 declare(strict_types=1);
 
 
+// Pith Router
+// -----------
 
-    // Pith App Interface
-    // ------------------
+namespace Pith\Framework;
 
-
-    namespace Pith\Framework;
-
-
-    interface PithAppInterface
+class PithRouter implements PithRouterInterface
+{
+    public function whereAmI()
     {
-        public function whereAmI();
-        public function start();
-        public function runRoute($route_name);
+        return "Pith Router";
     }
+
+    public function findRoute(string $route_name)
+    {
+        // TODO: Implement findRoute() method.
+    }
+}
