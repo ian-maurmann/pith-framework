@@ -29,14 +29,14 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithConfig $config)
+    function __construct(PithConfig $config, PithRouter $router)
     {
         $this->container      = null;
         $this->config         = $config;
         $this->registry       = null;
         $this->authenticator  = null;
         $this->access_control = null;
-        $this->router         = null;
+        $this->router         = $router;
         $this->dispatcher     = null;
     }
 
@@ -44,6 +44,18 @@ class PithApp implements PithAppInterface
     public function whereAmI()
     {
         return "Pith App";
+    }
+
+
+    public function start()
+    {
+        // Run the framework normally
+    }
+
+
+    public function runRoute($route_name)
+    {
+        // Run a specific route without checking the url
     }
 }
 
