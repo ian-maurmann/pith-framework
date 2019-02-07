@@ -38,6 +38,8 @@ class PithApp implements PithAppInterface
         $this->access_control = null;
         $this->router         = $router;
         $this->dispatcher     = null;
+
+        $this->router->init($this);
     }
 
 
