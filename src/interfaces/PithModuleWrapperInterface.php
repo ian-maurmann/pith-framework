@@ -11,17 +11,14 @@ declare(strict_types=1);
 
 
 
-    // Pith Version Trait
-    // ------------------
+// Pith Module Wrapper Interface
+// -----------------------------
 
 
-    namespace Pith\Framework;
+namespace Pith\Framework;
 
 
-    trait PithVersionTrait
-    {
-        public function version()
-        {
-            return "Pith Framework: rv 0.6.0.2 sv 0.3.0";
-        }
-    }
+interface PithModuleWrapperInterface
+{
+    public function whereAmI();
+}

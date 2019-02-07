@@ -11,19 +11,19 @@
 declare(strict_types=1);
 
 
-// Pith Router
-// -----------
+// Pith Module Manager
+// -------------------
 
 namespace Pith\Framework;
 
-class PithRouter implements PithRouterInterface
+class PithModuleManager implements PithModuleManagerInterface
 {
     private $app;
-    private $routes;
+    public $modules;
 
     public function whereAmI()
     {
-        return "Pith Router";
+        return "Pith Module Manager";
     }
 
 
@@ -31,24 +31,22 @@ class PithRouter implements PithRouterInterface
         $this->app = $app;
     }
 
-    public function loadRoutes(){
-        $route_list_filename = (string) $this->app->config->profile->route_list_location;
-        $routes = [];
+    public function loadModules(){
+        $module_list_filename = (string) $this->app->config->profile->module_list_location;
+        $modules = [];
 
-        require $route_list_filename;
+        require $module_list_filename;
 
-        $this->routes = $routes;
+        $this->modules = $modules;
     }
 
-    public function findRoute(string $route_name)
+    public function findModule(string $module_name)
     {
-        return (isset($this->routes[$route_name])) ? $this->routes[$route_name] : false;
+        return (isset($this->modules[$module_name])) ? $this->modules[$module_name] : false;
     }
 
-    public function setModuleRouteList($routes){
-        $this->routes = $routes;
+    public function getBaseModuleName()
+    {
+        return (string) $this->app->config->profile->base_module;
     }
-
-
-
 }

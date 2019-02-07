@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2018 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -22,6 +22,8 @@ class PithApp implements PithAppInterface
 
     public $container      = null;
     public $config         = null;
+    public $module_manager = null;
+    public $module_wrapper = null;
     public $registry       = null;
     public $authenticator  = null;
     public $access_control = null;
@@ -29,15 +31,20 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithConfig $config, PithRouter $router)
+    function __construct(PithConfig $config, PithModuleManager $module_manager, PithModuleWrapper $module_wrapper, PithRouter $router)
     {
         $this->container      = null;
         $this->config         = $config;
+        $this->module_manager = $module_manager;
+        $this->module_wrapper = $module_wrapper;
         $this->registry       = null;
         $this->authenticator  = null;
         $this->access_control = null;
         $this->router         = $router;
         $this->dispatcher     = null;
+
+        $this->module_manager->init($this);
+        $this->router->init($this);
     }
 
 
@@ -53,9 +60,24 @@ class PithApp implements PithAppInterface
     }
 
 
-    public function runRoute($route_name)
+    public function runRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
+
+        $this->config->loadConfig();
+        $this->module_manager->loadModules();
+
+        $module = $this->module_manager->findModule($module_name);
+        $this->module_wrapper->wrapModuleInfo($module);
+
+        $module_routes = $this->module_wrapper->getRoutes();
+        $this->router->setModuleRouteList($module_routes);
+        $route = $this->router->findRoute($route_name);
+
+        echo '<pre>';
+        var_dump($route);
+        echo '</pre>';
+
     }
 }
 
