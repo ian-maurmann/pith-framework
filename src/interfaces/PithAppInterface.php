@@ -22,5 +22,5 @@ declare(strict_types=1);
     {
         public function whereAmI();
         public function start();
-        public function runRoute($route_name);
+        public function runRoute($module_name, $route_name);
     }
