@@ -18,13 +18,32 @@ namespace Pith\Framework;
 
 class PithRouter implements PithRouterInterface
 {
+    private $app;
+    private $routes;
+
     public function whereAmI()
     {
         return "Pith Router";
     }
 
+
+    public function init($app){
+        $this->app = $app;
+    }
+
+    public function loadRoutes(){
+        $route_list_filename = (string) $this->app->config->profile->route_list_location;
+        $routes = [];
+
+        require $route_list_filename;
+
+        $this->routes = $routes;
+    }
+
     public function findRoute(string $route_name)
     {
-        // TODO: Implement findRoute() method.
+        return (isset($this->routes[$route_name])) ? $this->routes[$route_name] : false;
     }
+
+
 }
