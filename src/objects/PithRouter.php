@@ -45,5 +45,10 @@ class PithRouter implements PithRouterInterface
         return (isset($this->routes[$route_name])) ? $this->routes[$route_name] : false;
     }
 
+    public function setModuleRouteList($routes){
+        $this->routes = $routes;
+    }
+
+
 
 }

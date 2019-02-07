@@ -18,6 +18,9 @@ namespace Pith\Framework;
 
 class PithModuleWrapper implements PithModuleWrapperInterface
 {
+    private $module_info = array();
+    private $routes;
+
 
     public function whereAmI()
     {
@@ -25,4 +28,39 @@ class PithModuleWrapper implements PithModuleWrapperInterface
     }
 
 
+    public function wrapModuleInfo($module_info){
+        $this->module_info = $module_info;
+        $this->loadModuleRoutes();
+    }
+
+    public function getName()
+    {
+        return $this->module_info['name'];
+    }
+
+    public function getPath()
+    {
+        return $this->module_info['path'];
+    }
+
+    public function getPathToRoutes()
+    {
+        return $this->getPath() . '/route-list.php';
+    }
+
+    public function loadModuleRoutes()
+    {
+        $path_to_route_list_filename = $this->getPathToRoutes();
+        $routes = [];
+
+        require $path_to_route_list_filename;
+
+        $this->routes = $routes;
+    }
+
+
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
 }

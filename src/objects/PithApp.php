@@ -60,9 +60,24 @@ class PithApp implements PithAppInterface
     }
 
 
-    public function runRoute($route_name)
+    public function runRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
+
+        $this->config->loadConfig();
+        $this->module_manager->loadModules();
+
+        $module = $this->module_manager->findModule($module_name);
+        $this->module_wrapper->wrapModuleInfo($module);
+
+        $module_routes = $this->module_wrapper->getRoutes();
+        $this->router->setModuleRouteList($module_routes);
+        $route = $this->router->findRoute($route_name);
+
+        echo '<pre>';
+        var_dump($route);
+        echo '</pre>';
+
     }
 }
 
