@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 
 
-// Pith Module Wrapper Interface
-// -----------------------------
+// Pith Module Info Interface
+// --------------------------
 
 
 namespace Pith\Framework;
 
 
-interface PithModuleWrapperInterface
+interface PithModuleInfoInterface
 {
     public function whereAmI();
 }

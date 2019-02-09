@@ -7,18 +7,26 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
 declare(strict_types=1);
 
 
-
-// Pith Module Manager Interface
-// -----------------------------
-
+// Pith String Utility
+// -------------------
 
 namespace Pith\Framework;
 
-
-interface PithModuleManagerInterface
+class PithStringUtility
 {
-    public function whereAmI();
+
+    /**
+     * @return string
+     */
+    public function whereAmI()
+    {
+        return "Pith String Utility";
+    }
+
+
+
 }
