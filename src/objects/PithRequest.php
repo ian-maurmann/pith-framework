@@ -19,6 +19,7 @@ namespace Pith\Framework;
 class PithRequest
 {
     private $app;
+    private $helper;
     private $string_utility;
     private $request_uri;   //   /hello/world?foo=5&bar=7
     private $request_path;  //   /hello/world
@@ -26,11 +27,13 @@ class PithRequest
 
 
     /**
-     * PithRouter constructor.
+     * PithRequest constructor.
+     * @param PithRequestHelper $request_helper
      * @param PithStringUtility $string_utility
      */
-    function __construct(PithStringUtility $string_utility)
+    function __construct(PithRequestHelper $request_helper, PithStringUtility $string_utility)
     {
+        $this->helper         = $request_helper;
         $this->string_utility = $string_utility;
     }
 
@@ -49,7 +52,7 @@ class PithRequest
     public function build()
     {
         $uri_string    = (string) $_SERVER['REQUEST_URI'];
-        $uri_parts     = $this->string_utility->breakUriIntoPathAndQuery($uri_string);
+        $uri_parts     = $this->helper->breakUriIntoPathAndQuery($uri_string);
         $request_path  = (string) $uri_parts[0];
         $request_query = (string) $uri_parts[1];
 
