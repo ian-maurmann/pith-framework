@@ -30,7 +30,6 @@ class PithRouter implements PithRouterInterface
     }
 
     private $app;
-    private $routes;
 
     public function whereAmI()
     {
@@ -42,24 +41,17 @@ class PithRouter implements PithRouterInterface
         $this->app = $app;
     }
 
-    public function loadRoutes(){
-        $route_list_filename = (string) $this->app->config->profile->route_list_location;
-        $routes = [];
 
-        require $route_list_filename;
+    public function findRouteSpaceFromUrl(){
+        $request_path = $this->app->request->getRequestPath();
+        $route_spaces = $this->app->config->profile->route_spaces;
 
-        $this->routes = $routes;
+        // debug
+        // =============
+        echo '<pre>';
+        var_dump($route_spaces);
+        echo '</pre><br />';
+        // =============
     }
-
-    public function findRoute(string $route_name)
-    {
-        return (isset($this->routes[$route_name])) ? $this->routes[$route_name] : false;
-    }
-
-    public function setModuleRouteList($routes){
-        $this->routes = $routes;
-    }
-
-
 
 }

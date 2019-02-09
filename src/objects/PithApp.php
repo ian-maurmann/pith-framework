@@ -61,10 +61,33 @@ class PithApp implements PithAppInterface
 
         echo 'START<br />';
 
+        // Request
+        echo '<hr />';
+        echo '<b>' . $this->request->whereAmI() . '</b>';
+        echo '<br />';
+        echo $this->request->getRequestUri();
+        echo '<br />';
+        echo $this->request->getRequestPath();
+        echo '<br />';
+        echo $this->request->getRequestQuery();
+        echo '<br />';
+
+
         // Config
+        echo '<hr />';
+        echo '<b>' . $this->config->whereAmI() . '</b>';
         $this->config->loadConfig();
 
+        // Router
+        echo '<hr />';
+        echo '<b>' . $this->router->whereAmI() . '</b>';
 
+        $this->router->findRouteSpaceFromUrl();
+
+
+
+
+        echo '<hr />';
         echo 'END <br />';
     }
 
