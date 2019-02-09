@@ -11,12 +11,12 @@
 declare(strict_types=1);
 
 
-// Pith String Utility
+// Pith Request Helper
 // -------------------
 
 namespace Pith\Framework;
 
-class PithStringUtility
+class PithRequestHelper
 {
 
     /**
@@ -24,9 +24,22 @@ class PithStringUtility
      */
     public function whereAmI()
     {
-        return "Pith String Utility";
+        return "Pith Request Helper";
     }
 
+
+    /**
+     * @param $uri_string
+     * @return array
+     */
+    public function breakUriIntoPathAndQuery($uri_string)
+    {
+        $uri_parts     = explode('?', (string) $uri_string, 2);
+        $request_path  = (string) $uri_parts[0];
+        $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
+
+        return array($request_path, $request_query);
+    }
 
 
 }
