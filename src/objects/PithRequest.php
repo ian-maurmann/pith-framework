@@ -19,10 +19,20 @@ namespace Pith\Framework;
 class PithRequest
 {
     private $app;
+    private $string_utility;
     private $request_uri;   //   /hello/world?foo=5&bar=7
     private $request_path;  //   /hello/world
     private $request_query; //                foo=5&bar=7
 
+
+    /**
+     * PithRouter constructor.
+     * @param PithStringUtility $string_utility
+     */
+    function __construct(PithStringUtility $string_utility)
+    {
+        $this->string_utility = $string_utility;
+    }
 
     public function whereAmI()
     {
@@ -39,9 +49,9 @@ class PithRequest
     public function build()
     {
         $uri_string    = (string) $_SERVER['REQUEST_URI'];
-        $uri_parts     = explode('?', $uri_string, 2);
+        $uri_parts     = $this->string_utility->breakUriIntoPathAndQuery($uri_string);
         $request_path  = (string) $uri_parts[0];
-        $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
+        $request_query = (string) $uri_parts[1];
 
         $this->request_uri   = $uri_string;
         $this->request_path  = $request_path;
