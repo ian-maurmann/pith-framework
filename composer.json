@@ -17,7 +17,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/objects/", "src/interfaces/", "src/traits/"]
+            "Pith\\Framework\\": ["src/objects/", "src/interfaces/", "src/traits/"],
+            "Pith\\WhiteExampleModule\\": ["bundles/white-example-module/", "bundles/white-example-module/controller/"]
         }
     }
 }
