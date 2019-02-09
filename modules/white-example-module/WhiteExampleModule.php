@@ -11,12 +11,12 @@
 declare(strict_types=1);
 
 
-// White Example Module - Module Info
-// ----------------------------------
+// White Example Module
+// --------------------
 
 namespace Pith\WhiteExampleModule;
 
-class ModuleInfo implements \Pith\Framework\PithModuleInfoInterface
+class WhiteExampleModule implements \Pith\Framework\PithModuleInterface
 {
     private $route_spaces;
 
