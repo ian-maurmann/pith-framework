@@ -23,8 +23,6 @@ class PithApp implements PithAppInterface
     public $container      = null;
     public $request        = null;
     public $config         = null;
-    public $module_manager = null;
-    public $module_wrapper = null;
     public $registry       = null;
     public $authenticator  = null;
     public $access_control = null;
@@ -32,13 +30,11 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithRequest $request, PithConfig $config, PithModuleManager $module_manager, PithModuleWrapper $module_wrapper, PithRouter $router)
+    function __construct(PithRequest $request, PithConfig $config, PithRouter $router)
     {
         $this->container      = null;
         $this->request        = $request;
         $this->config         = $config;
-        $this->module_manager = $module_manager;
-        $this->module_wrapper = $module_wrapper;
         $this->registry       = null;
         $this->authenticator  = null;
         $this->access_control = null;
@@ -47,7 +43,6 @@ class PithApp implements PithAppInterface
 
 
         $this->request->init($this);
-        $this->module_manager->init($this);
         $this->router->init($this);
 
 
