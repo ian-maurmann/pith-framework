@@ -11,38 +11,35 @@
 declare(strict_types=1);
 
 
-// Pith Config
-// -----------
+// Pith Request Helper
+// -------------------
 
 namespace Pith\Framework;
 
-class PithConfig implements PithConfigInterface
+class PithRequestHelper
 {
-    public  $profile;
-    private $config_file_path;
 
+    /**
+     * @return string
+     */
     public function whereAmI()
     {
-        return "Pith Config";
+        return "Pith Request Helper";
     }
 
-    public function setConfigFileLocation($path_to_config_file)
+
+    /**
+     * @param $uri_string
+     * @return array
+     */
+    public function breakUriIntoPathAndQuery($uri_string)
     {
-        $this->config_file_path = $path_to_config_file;
+        $uri_parts     = explode('?', (string) $uri_string, 2);
+        $request_path  = (string) $uri_parts[0];
+        $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
+
+        return array($request_path, $request_query);
     }
 
-    public function loadConfig(){
-        $this->profile = $this->executeConfigFile();
-    }
 
-    private function executeConfigFile()
-    {
-        $config_profile = (object)[];
-
-        require $this->config_file_path;
-
-        return $config_profile;
-    }
 }
-
-

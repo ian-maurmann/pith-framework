@@ -7,21 +7,26 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
 declare(strict_types=1);
 
 
+// Pith String Utility
+// -------------------
 
-    // Pith Version Trait
-    // ------------------
+namespace Pith\Framework;
 
+class PithStringUtility
+{
 
-    namespace Pith\Framework;
-
-
-    trait PithVersionTrait
+    /**
+     * @return string
+     */
+    public function whereAmI()
     {
-        public function version()
-        {
-            return "Pith Framework: rv 0.6.0.2 sv 0.3.0";
-        }
+        return "Pith String Utility";
     }
+
+
+
+}
