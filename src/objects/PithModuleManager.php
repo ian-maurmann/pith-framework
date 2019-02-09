@@ -19,7 +19,7 @@ namespace Pith\Framework;
 class PithModuleManager implements PithModuleManagerInterface
 {
     private $app;
-    private $modules;
+    public $modules;
 
     public function whereAmI()
     {

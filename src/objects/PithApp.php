@@ -21,8 +21,10 @@ class PithApp implements PithAppInterface
     use PithVersionTrait;
 
     public $container      = null;
+    public $request        = null;
     public $config         = null;
     public $module_manager = null;
+    public $module_wrapper = null;
     public $registry       = null;
     public $authenticator  = null;
     public $access_control = null;
@@ -30,19 +32,25 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithConfig $config, PithModuleManager $module_manager, PithRouter $router)
+    function __construct(PithRequest $request, PithConfig $config, PithModuleManager $module_manager, PithModuleWrapper $module_wrapper, PithRouter $router)
     {
         $this->container      = null;
+        $this->request        = $request;
         $this->config         = $config;
         $this->module_manager = $module_manager;
+        $this->module_wrapper = $module_wrapper;
         $this->registry       = null;
         $this->authenticator  = null;
         $this->access_control = null;
         $this->router         = $router;
         $this->dispatcher     = null;
 
+
+        $this->request->init($this);
         $this->module_manager->init($this);
         $this->router->init($this);
+
+
     }
 
 
@@ -55,12 +63,23 @@ class PithApp implements PithAppInterface
     public function start()
     {
         // Run the framework normally
+
+        echo 'START<br />';
+
+        // Config
+        $this->config->loadConfig();
+
+
+        echo 'END <br />';
     }
 
 
-    public function runRoute($route_name)
+    public function runRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
+
+
+
     }
 }
 

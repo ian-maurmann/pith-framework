@@ -18,6 +18,17 @@ namespace Pith\Framework;
 
 class PithRouter implements PithRouterInterface
 {
+    private $string_utility;
+
+    /**
+     * PithRouter constructor.
+     * @param PithStringUtility $string_utility
+     */
+    function __construct(PithStringUtility $string_utility)
+    {
+        $this->string_utility = $string_utility;
+    }
+
     private $app;
     private $routes;
 
@@ -44,6 +55,11 @@ class PithRouter implements PithRouterInterface
     {
         return (isset($this->routes[$route_name])) ? $this->routes[$route_name] : false;
     }
+
+    public function setModuleRouteList($routes){
+        $this->routes = $routes;
+    }
+
 
 
 }

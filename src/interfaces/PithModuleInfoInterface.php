@@ -11,16 +11,14 @@ declare(strict_types=1);
 
 
 
-    // Pith App Interface
-    // ------------------
+// Pith Module Info Interface
+// --------------------------
 
 
-    namespace Pith\Framework;
+namespace Pith\Framework;
 
 
-    interface PithAppInterface
-    {
-        public function whereAmI();
-        public function start();
-        public function runRoute($module_name, $route_name);
-    }
+interface PithModuleInfoInterface
+{
+    public function whereAmI();
+}
