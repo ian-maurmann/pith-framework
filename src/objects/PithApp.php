@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2018 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -21,6 +21,7 @@ class PithApp implements PithAppInterface
     use PithVersionTrait;
 
     public $container      = null;
+    public $request        = null;
     public $config         = null;
     public $registry       = null;
     public $authenticator  = null;
@@ -29,15 +30,22 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithConfig $config, PithRouter $router)
+    function __construct(PithRequest $request, PithConfig $config, PithRouter $router)
     {
         $this->container      = null;
+        $this->request        = $request;
         $this->config         = $config;
         $this->registry       = null;
         $this->authenticator  = null;
         $this->access_control = null;
         $this->router         = $router;
         $this->dispatcher     = null;
+
+
+        $this->request->init($this);
+        $this->router->init($this);
+
+
     }
 
 
@@ -50,12 +58,23 @@ class PithApp implements PithAppInterface
     public function start()
     {
         // Run the framework normally
+
+        echo 'START<br />';
+
+        // Config
+        $this->config->loadConfig();
+
+
+        echo 'END <br />';
     }
 
 
-    public function runRoute($route_name)
+    public function runRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
+
+
+
     }
 }
 
