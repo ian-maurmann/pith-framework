@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Pith Request Helper
 // -------------------
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 class PithRequestHelper
 {
