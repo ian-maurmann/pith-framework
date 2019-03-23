@@ -27,6 +27,12 @@ class PithStringUtility
         return "Pith String Utility";
     }
 
+    public function startsWith($full_string, $string_to_find){
+        $full_string_lower    = mb_strtolower( (string) $full_string,    'UTF-8');
+        $string_to_find_lower = mb_strtolower( (string) $string_to_find, 'UTF-8');
+        return substr($full_string_lower, 0, strlen($string_to_find_lower)) === $string_to_find_lower;
+    }
+
 
 
 }
