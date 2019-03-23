@@ -20,29 +20,29 @@ class PithApp implements PithAppInterface
 {
     use PithVersionTrait;
 
-    public $container      = null;
-    public $request        = null;
-    public $config         = null;
-    public $registry       = null;
-    public $authenticator  = null;
-    public $access_control = null;
-    public $router         = null;
-    public $dispatcher     = null;
+    public $container         = null;
+    public $request_processor = null;
+    public $config            = null;
+    public $registry          = null;
+    public $authenticator     = null;
+    public $access_control    = null;
+    public $router            = null;
+    public $dispatcher        = null;
 
 
-    function __construct(PithRequest $request, PithConfig $config, PithRouter $router)
+    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router)
     {
-        $this->container      = null;
-        $this->request        = $request;
-        $this->config         = $config;
-        $this->registry       = null;
-        $this->authenticator  = null;
-        $this->access_control = null;
-        $this->router         = $router;
-        $this->dispatcher     = null;
+        $this->container         = null;
+        $this->request_processor = $request_processor;
+        $this->config            = $config;
+        $this->registry          = null;
+        $this->authenticator     = null;
+        $this->access_control    = null;
+        $this->router            = $router;
+        $this->dispatcher        = null;
 
 
-        $this->request->init($this);
+        $this->request_processor->init($this);
         $this->router->init($this);
 
 
@@ -63,13 +63,13 @@ class PithApp implements PithAppInterface
 
         // Request
         echo '<hr />';
-        echo '<b>' . $this->request->whereAmI() . '</b>';
+        echo '<b>' . $this->request_processor->whereAmI() . '</b>';
         echo '<br />';
-        echo $this->request->getRequestUri();
+        echo $this->request_processor->getRequestUri();
         echo '<br />';
-        echo $this->request->getRequestPath();
+        echo $this->request_processor->getRequestPath();
         echo '<br />';
-        echo $this->request->getRequestQuery();
+        echo $this->request_processor->getRequestQuery();
         echo '<br />';
 
 
