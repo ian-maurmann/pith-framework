@@ -16,6 +16,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithStringUtility;
+
 class PithRouter implements PithRouterInterface
 {
     private $string_utility;
