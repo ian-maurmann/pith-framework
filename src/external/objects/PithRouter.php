@@ -45,7 +45,7 @@ class PithRouter implements PithRouterInterface
 
 
     public function findRouteSpaceFromUrl(){
-        $request_path      = (string) $this->app->request->getRequestPath();
+        $request_path      = (string) $this->app->request_processor->getRequestPath();
         $route_spaces      = $this->app->config->profile->route_spaces;
         $route_space_found = null;
 
@@ -71,7 +71,7 @@ class PithRouter implements PithRouterInterface
     }
 
     public function findRoutePathFromRouteSpaceAndUrl($route_space){
-        $request_path     = (string) $this->app->request->getRequestPath();
+        $request_path     = (string) $this->app->request_processor->getRequestPath();
         $route_space_stub = (string) $route_space['match'];
         $route_path_start = (int) strlen($route_space_stub);
         $route_space_path = substr($request_path, $route_path_start);
