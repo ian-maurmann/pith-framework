@@ -21,6 +21,7 @@ class PithApp implements PithAppInterface
     use PithVersionTrait;
 
     public $container      = null;
+    public $request        = null;
     public $config         = null;
     public $registry       = null;
     public $authenticator  = null;
@@ -29,9 +30,10 @@ class PithApp implements PithAppInterface
     public $dispatcher     = null;
 
 
-    function __construct(PithConfig $config, PithRouter $router)
+    function __construct(PithRequest $request, PithConfig $config, PithRouter $router)
     {
         $this->container      = null;
+        $this->request        = $request;
         $this->config         = $config;
         $this->registry       = null;
         $this->authenticator  = null;
@@ -39,7 +41,11 @@ class PithApp implements PithAppInterface
         $this->router         = $router;
         $this->dispatcher     = null;
 
+
+        $this->request->init($this);
         $this->router->init($this);
+
+
     }
 
 
@@ -52,12 +58,46 @@ class PithApp implements PithAppInterface
     public function start()
     {
         // Run the framework normally
+
+        echo 'START<br />';
+
+        // Request
+        echo '<hr />';
+        echo '<b>' . $this->request->whereAmI() . '</b>';
+        echo '<br />';
+        echo $this->request->getRequestUri();
+        echo '<br />';
+        echo $this->request->getRequestPath();
+        echo '<br />';
+        echo $this->request->getRequestQuery();
+        echo '<br />';
+
+
+        // Config
+        echo '<hr />';
+        echo '<b>' . $this->config->whereAmI() . '</b>';
+        $this->config->loadConfig();
+
+        // Router
+        echo '<hr />';
+        echo '<b>' . $this->router->whereAmI() . '</b>';
+
+        $this->router->findRouteSpaceFromUrl();
+
+
+
+
+        echo '<hr />';
+        echo 'END <br />';
     }
 
 
-    public function runRoute($route_name)
+    public function runRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
+
+
+
     }
 }
 

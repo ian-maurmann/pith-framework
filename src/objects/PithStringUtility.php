@@ -7,20 +7,26 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
 declare(strict_types=1);
 
 
+// Pith String Utility
+// -------------------
 
-    // Pith App Interface
-    // ------------------
+namespace Pith\Framework;
 
+class PithStringUtility
+{
 
-    namespace Pith\Framework;
-
-
-    interface PithAppInterface
+    /**
+     * @return string
+     */
+    public function whereAmI()
     {
-        public function whereAmI();
-        public function start();
-        public function runRoute($module_name, $route_name);
+        return "Pith String Utility";
     }
+
+
+
+}
