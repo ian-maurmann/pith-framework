@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Pith String Utility
 // -------------------
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 class PithStringUtility
 {
