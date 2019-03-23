@@ -82,9 +82,48 @@ class PithApp implements PithAppInterface
         echo '<hr />';
         echo '<b>' . $this->router->whereAmI() . '</b>';
 
-        $this->router->findRouteSpaceFromUrl();
+        $app_route_space = $this->router->findRouteSpaceFromUrl();
+
+        // debug
+        // =============
+        echo '<br/><u>App Route Space</u><br/>';
+        echo '<pre>';
+        var_dump($app_route_space);
+        echo '</pre><br />';
+        // =============
+
+        $module = new $app_route_space['module'];
+
+        echo '<br/><u>Module</u><br/>';
+        echo $module->whereAmI();
+        echo '<br />';
 
 
+        $route_path = $this->router->findRoutePathFromRouteSpaceAndUrl($app_route_space);
+
+        echo '<br/><u>Route Path</u><br/>';
+        echo $route_path;
+        echo '<br />';
+
+        $module_route_space_name = $app_route_space['route-space'];
+
+        // debug
+        // =============
+        echo '<br/><u>Module Route Space Name</u><br/>';
+        echo $module_route_space_name;
+        echo '<br />';
+        // =============
+
+        $module_route_space = $module->findRouteSpace($module_route_space_name);
+
+
+        // debug
+        // =============
+        echo '<br/><u>Module Route Space</u><br/>';
+        echo '<pre>';
+        var_dump($module_route_space);
+        echo '</pre><br />';
+        // =============
 
 
         echo '<hr />';

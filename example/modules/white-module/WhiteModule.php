@@ -37,8 +37,9 @@ class WhiteModule implements \Pith\Framework\PithModuleInterface
             'main-route-space' => [
 
 
-                'index-route' => [
-                    'route-name'   => 'index-route',
+                'hello-route' => [
+                    'route-name'   => 'hello-route',
+                    'path'         => 'hello/',
                     'layout'       => null,
                     'controller'   => '',
                     'access-level' => 'world',
@@ -49,8 +50,9 @@ class WhiteModule implements \Pith\Framework\PithModuleInterface
                 ],
 
 
-                'hello-route' => [
-                    'route-name'   => 'hello-route',
+                'index-route' => [
+                    'route-name'   => 'index-route',
+                    'path'         => '',
                     'layout'       => null,
                     'controller'   => '',
                     'access-level' => 'world',
@@ -67,4 +69,13 @@ class WhiteModule implements \Pith\Framework\PithModuleInterface
         $this->route_spaces = $route_spaces;
 
     }
+
+    public function findRouteSpace($route_space_name){
+        $route_space_exists = isset($this->route_spaces[$route_space_name]);
+        $route_space        = ($route_space_exists) ? $this->route_spaces[$route_space_name] : false ;
+
+        return $route_space;
+    }
+
+
 }

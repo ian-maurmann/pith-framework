@@ -11,13 +11,14 @@ $config_profile->route_spaces = [
     [
         'module'      => 'Pith\\WhiteModule\\WhiteModule',
         'route-space' => 'main-route-space',
-        'match'       => '/white',
+        'match'       => '/white/',
     ],
     
     [
         'module'      => 'Pith\\GreenModule\\GreenModule',
         'route-space' => 'main-route-space',
-        'match'       => '/green',
+        'match'       => '/',
     ],
+
 
 ];
