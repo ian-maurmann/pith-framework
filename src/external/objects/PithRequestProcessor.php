@@ -11,15 +11,15 @@
 declare(strict_types=1);
 
 
-// Pith Request
-// -----------
+// Pith Request Processor
+// ----------------------
 
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithRequestHelper;
 use Pith\Framework\Internal\PithStringUtility;
 
-class PithRequest
+class PithRequestProcessor
 {
     private $app;
     private $helper;
