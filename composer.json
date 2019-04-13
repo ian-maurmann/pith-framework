@@ -17,7 +17,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/objects/", "src/interfaces/", "src/traits/"]
+            "Pith\\Framework\\": ["src/external/objects/", "src/external/interfaces/", "src/external/traits/"],
+            "Pith\\Framework\\Internal\\": ["src/internal/objects/", "src/internal/interfaces/", "src/internal/traits/"],
+            "Pith\\WhiteModule\\": ["example/modules/white-module/"],
+            "Pith\\GreenModule\\": ["example/modules/green-module/"]
         }
     }
 }
