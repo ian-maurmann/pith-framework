@@ -44,8 +44,6 @@ class PithApp implements PithAppInterface
 
         $this->request_processor->init($this);
         $this->router->init($this);
-
-
     }
 
 
@@ -76,7 +74,13 @@ class PithApp implements PithAppInterface
         // Config
         echo '<hr />';
         echo '<b>' . $this->config->whereAmI() . '</b>';
-        $this->config->loadConfig();
+
+
+
+        //$this->config->loadConfig();
+
+
+        /*
 
         // Router
         echo '<hr />';
@@ -128,6 +132,8 @@ class PithApp implements PithAppInterface
 
         echo '<hr />';
         echo 'END <br />';
+
+        */
     }
 
 

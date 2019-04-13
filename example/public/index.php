@@ -18,9 +18,8 @@ $app = $container->get('\\Pith\\Framework\\PithApp');
 $app->container = $container;
 
 
-# Set the Config File
-$app->config->setConfigFileLocation('example/config/config.php');
-
+# Set the Config
+$app->config->setConfigByObject($app->container->get('Pith\\ExampleConfig\\ExampleConfig'));
 
 // Run App
 $app->start();
