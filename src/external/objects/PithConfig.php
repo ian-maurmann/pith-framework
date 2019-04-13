@@ -26,23 +26,13 @@ class PithConfig implements PithConfigInterface
         return "Pith Config";
     }
 
-    public function setConfigFileLocation($path_to_config_file)
+
+
+    public function setConfigByObject($config_object)
     {
-        $this->config_file_path = $path_to_config_file;
+        $this->profile = $config_object->getConfigProfile();
     }
 
-    public function loadConfig(){
-        $this->profile = $this->executeConfigFile();
-    }
-
-    private function executeConfigFile()
-    {
-        $config_profile = (object)[];
-
-        require $this->config_file_path;
-
-        return $config_profile;
-    }
 }
 
 
