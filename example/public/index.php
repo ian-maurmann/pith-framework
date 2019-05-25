@@ -1,15 +1,15 @@
 <?php
 
 
-# Switch folders
+// Switch folders
 chdir('../../');
 
 
-# Auto-Load
+// Auto-Load
 require 'vendor/autoload.php';
 
 
-# Container
+// Container
 $container = new DI\Container();
 
 
@@ -18,9 +18,11 @@ $app = $container->get('\\Pith\\Framework\\PithApp');
 $app->container = $container;
 
 
-# Set the Config File
-$app->config->setConfigFileLocation('example/config/config.php');
+// Set the Config
+$app->config->setConfigByObject($app->container->get('Pith\\ExampleConfig\\ExampleConfig'));
 
+// Set the Route List
+$app->config->setRouteListByObject($app->container->get('Pith\\ExampleConfig\\ExampleRouteList'));
 
 // Run App
 $app->start();
