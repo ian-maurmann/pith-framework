@@ -22,6 +22,6 @@ declare(strict_types=1);
     {
         public function version()
         {
-            return "Pith Framework: rv 0.6.0.2 sv 0.3.0";
+            return "Pith Framework: rv 0.6.0.3 sv 0.4.0";
         }
     }

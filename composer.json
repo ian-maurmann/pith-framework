@@ -21,6 +21,7 @@
             "Pith\\Framework\\Internal\\": ["src/internal/objects/", "src/internal/interfaces/", "src/internal/traits/"],
             "Pith\\WhiteModule\\": ["example/modules/white-module/"],
             "Pith\\GreenModule\\": ["example/modules/green-module/"],
+            "Pith\\ExampleModule\\": ["example/modules/example-module/"],
             "Pith\\ExampleConfig\\": ["example/config/"]
         }
     }

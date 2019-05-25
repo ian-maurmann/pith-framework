@@ -32,12 +32,14 @@ class ExampleConfig
 
 
     private function yourConfigSettingsGoHere(){
-        $new_config_profile = (object)[];
+        $profile = (object)[];
 
-        // Config Profile Name
-        $new_config_profile->name = 'Example Config Profile';
+        // Profile:
+        $profile->name          = 'Example Config Profile';
+        $profile->error_404_url = '/404';
+        $profile->error_501_url = '/501';
 
-        $this->config_profile = $new_config_profile;
+        $this->config_profile = $profile;
     }
 
 
