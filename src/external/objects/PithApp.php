@@ -16,6 +16,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithProblemHandler;
+
 class PithApp implements PithAppInterface
 {
     use PithVersionTrait;
@@ -28,9 +30,10 @@ class PithApp implements PithAppInterface
     public $access_control    = null;
     public $router            = null;
     public $dispatcher        = null;
+    public $problem_handler   = null;
 
 
-    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router)
+    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithProblemHandler $problem_handler)
     {
         $this->container         = null;
         $this->request_processor = $request_processor;
@@ -40,12 +43,12 @@ class PithApp implements PithAppInterface
         $this->access_control    = null;
         $this->router            = $router;
         $this->dispatcher        = null;
+        $this->problem_handler   = $problem_handler;
 
 
         $this->request_processor->init($this);
         $this->router->init($this);
-
-
+        $this->problem_handler->init($this);
     }
 
 
@@ -59,75 +62,16 @@ class PithApp implements PithAppInterface
     {
         // Run the framework normally
 
-        echo 'START<br />';
 
-        // Request
-        echo '<hr />';
-        echo '<b>' . $this->request_processor->whereAmI() . '</b>';
-        echo '<br />';
-        echo $this->request_processor->getRequestUri();
-        echo '<br />';
-        echo $this->request_processor->getRequestPath();
-        echo '<br />';
-        echo $this->request_processor->getRequestQuery();
-        echo '<br />';
+        // Start the output buffer
+        ob_start();
 
+        $route = $this->router->getRoute();
 
-        // Config
-        echo '<hr />';
-        echo '<b>' . $this->config->whereAmI() . '</b>';
-        $this->config->loadConfig();
+        
 
-        // Router
-        echo '<hr />';
-        echo '<b>' . $this->router->whereAmI() . '</b>';
-
-        $app_route_space = $this->router->findRouteSpaceFromUrl();
-
-        // debug
-        // =============
-        echo '<br/><u>App Route Space</u><br/>';
-        echo '<pre>';
-        var_dump($app_route_space);
-        echo '</pre><br />';
-        // =============
-
-        $module = new $app_route_space['module'];
-
-        echo '<br/><u>Module</u><br/>';
-        echo $module->whereAmI();
-        echo '<br />';
-
-
-        $route_path = $this->router->findRoutePathFromRouteSpaceAndUrl($app_route_space);
-
-        echo '<br/><u>Route Path</u><br/>';
-        echo $route_path;
-        echo '<br />';
-
-        $module_route_space_name = $app_route_space['route-space'];
-
-        // debug
-        // =============
-        echo '<br/><u>Module Route Space Name</u><br/>';
-        echo $module_route_space_name;
-        echo '<br />';
-        // =============
-
-        $module_route_space = $module->findRouteSpace($module_route_space_name);
-
-
-        // debug
-        // =============
-        echo '<br/><u>Module Route Space</u><br/>';
-        echo '<pre>';
-        var_dump($module_route_space);
-        echo '</pre><br />';
-        // =============
-
-
-        echo '<hr />';
-        echo 'END <br />';
+        // Flush the output buffer
+        ob_end_flush();
     }
 
 
@@ -137,6 +81,11 @@ class PithApp implements PithAppInterface
 
 
 
+    }
+
+    public function problem($problem_name, ...$info)
+    {
+        $this->problem_handler->handleProblem($problem_name, ...$info);
     }
 }
 

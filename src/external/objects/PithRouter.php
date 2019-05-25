@@ -8,30 +8,32 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-declare(strict_types=1);
-
 
 // Pith Router
 // -----------
 
+
+declare(strict_types=1);
+
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithStringUtility;
+use Pith\Framework\Internal\PithProblemHandler;
+
 
 class PithRouter implements PithRouterInterface
 {
+    private $app;
     private $string_utility;
+    private $problem_handler;
 
-    /**
-     * PithRouter constructor.
-     * @param PithStringUtility $string_utility
-     */
-    function __construct(PithStringUtility $string_utility)
+    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
     {
-        $this->string_utility = $string_utility;
+        $this->string_utility  = $string_utility;
+        $this->problem_handler = $problem_handler;
     }
 
-    private $app;
+
 
     public function whereAmI()
     {
@@ -44,39 +46,94 @@ class PithRouter implements PithRouterInterface
     }
 
 
-    public function findRouteSpaceFromUrl(){
-        $request_path      = (string) $this->app->request_processor->getRequestPath();
-        $route_spaces      = $this->app->config->profile->route_spaces;
-        $route_space_found = null;
 
-        // debug
-        // =============
-        echo '<br/><u>Route Space Stubs</u><br/>';
-        echo '<pre>';
-        var_dump($route_spaces);
-        echo '</pre><br />';
-        // =============
 
-        foreach($route_spaces as $route_space_index => $route_space){
-            $route_space_stub = (string) $route_space['match'];
-            $is_match = $this->string_utility->startsWith($request_path, $route_space_stub);
+
+    public function getRoute(){
+
+        $route = null;
+
+        // Get the app route
+        $app_route = $this->findAppRouteFromUrl();
+
+
+        // (On error, redirect to the 404 page)
+        if(!$app_route){
+            $this->problem('Pith_Provisional_Notice_B5_000', $this->app->request_processor->getRequestPath() );
+        }
+
+
+        // Get the module
+        $module = $this->app->container->get($app_route['module']);
+
+
+        // (On error, redirect to the 501 page)
+        if(!$module){
+            $this->problem('Pith_Provisional_Error_B5_001', $app_route['match'], $app_route['module']);
+        }
+
+
+        // Get the route name
+        $route_name = $app_route['route-name'];
+
+
+        // Get the route
+        $route = $this->findModuleRouteByRouteName($module, $route_name);
+
+
+        // (On error, redirect to the 501 page)
+        if(!$route){
+            $this->problem('Pith_Provisional_Error_B5_002', $app_route['route-name'], $app_route['module']);
+        }
+
+        return $route;
+    }
+
+
+
+
+
+    public function findAppRouteFromUrl()
+    {
+        $string_utility = $this->string_utility;
+        $request_path   = (string) $this->app->request_processor->getRequestPath();
+        $routes         = $this->app->config->getRouteList();
+        $matching_route = null;
+
+        foreach($routes as $route_index => $route){
+            $match    = (string) $route['match'];
+            $is_match = $string_utility->isRouteMatch($request_path, $match);
 
             if($is_match){
-                $route_space_found = $route_space;
+                $matching_route = $route;
                 break;
             }
         }
 
-        return $route_space_found;
+        return $matching_route;
     }
 
-    public function findRoutePathFromRouteSpaceAndUrl($route_space){
-        $request_path     = (string) $this->app->request_processor->getRequestPath();
-        $route_space_stub = (string) $route_space['match'];
-        $route_path_start = (int) strlen($route_space_stub);
-        $route_space_path = substr($request_path, $route_path_start);
 
-        return $route_space_path;
+    public function findModuleRouteByRouteName($module, $given_route_name)
+    {
+        $routes         = $module->listRoutes();
+        $matching_route = null;
+
+        foreach($routes as $route_name => $route){
+            if( (string) $route_name === (string) $given_route_name){
+                $matching_route = $route;
+                break;
+            }
+        }
+
+        return $matching_route;
+
+    }
+
+
+    public function problem($problem_name, ...$info)
+    {
+        $this->problem_handler->handleProblem($problem_name, ...$info);
     }
 
 }
