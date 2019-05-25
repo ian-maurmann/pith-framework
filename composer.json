@@ -3,7 +3,8 @@
     "description": "Pith Framework - Another simple framework for PHP sites",
     "require": {
         "php": "^7.1",
-        "php-di/php-di": "^6"
+        "php-di/php-di": "^6",
+        "monolog/monolog": "^1.24"
     },
     "license": "MPL-2.0",
     "authors": [
