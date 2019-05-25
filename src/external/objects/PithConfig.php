@@ -19,7 +19,8 @@ namespace Pith\Framework;
 class PithConfig implements PithConfigInterface
 {
     public  $profile;
-    private $config_file_path;
+
+    private $route_list;
 
     public function whereAmI()
     {
@@ -32,6 +33,17 @@ class PithConfig implements PithConfigInterface
     {
         $this->profile = $config_object->getConfigProfile();
     }
+
+    public function setRouteListByObject($route_list_object)
+    {
+        $this->route_list = $route_list_object->getRouteList();
+    }
+
+    public function getRouteList(){
+        return $this->route_list;
+    }
+
+
 
 }
 
