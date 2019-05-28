@@ -23,6 +23,7 @@ class PithApp implements PithAppInterface
     use PithVersionTrait;
 
     public $container         = null;
+    public $log               = null;
     public $request_processor = null;
     public $config            = null;
     public $registry          = null;
@@ -36,6 +37,7 @@ class PithApp implements PithAppInterface
     function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithProblemHandler $problem_handler)
     {
         $this->container         = null;
+        $this->log               = null;
         $this->request_processor = $request_processor;
         $this->config            = $config;
         $this->registry          = null;

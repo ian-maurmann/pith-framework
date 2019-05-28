@@ -59,7 +59,7 @@ class PithProblemList
             'Pith_Provisional_Notice_B5_000' => [
                 'code'    => 'Pith_Provisional_Notice_B5_000',
                 'message' => 'App Route not found.',
-                'detail'  => 'Pith Framework: The Router could not find any route for Url: "%s".',
+                'detail'  => 'The Router could not find any route for Url: "%s".',
                 'level'   => 'notice',
                 'status'  => '404',
             ],
@@ -67,7 +67,7 @@ class PithProblemList
             'Pith_Provisional_Error_B5_001' => [
                 'code'    => 'Pith_Provisional_Error_B5_001',
                 'message' => 'Module not found.',
-                'detail'  => 'Pith Framework: When the Router ran the Route "%s", the Container could not find the Module "%s" being autoloaded.',
+                'detail'  => 'When the Router ran the Route "%s", the Container could not find the Module "%s" being autoloaded.',
                 'level'   => 'error',
                 'status'  => '501',
             ],
@@ -75,7 +75,7 @@ class PithProblemList
             'Pith_Provisional_Error_B5_002' => [
                 'code'    => 'Pith_Provisional_Notice_B5_002',
                 'message' => 'Module Route not found.',
-                'detail'  => 'Pith Framework: The Router could not find any route named "%s" inside the Module "%s".',
+                'detail'  => 'The Router could not find any route named "%s" inside the Module "%s".',
                 'level'   => 'error',
                 'status'  => '501',
             ],
