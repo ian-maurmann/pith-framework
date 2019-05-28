@@ -50,13 +50,11 @@ class PithProblemHandler
         $error_detail_template = (string) $problem['detail'];
         $error_detail          = vsprintf($error_detail_template, $info);
 
-        $log_message =
-            $error_level . ':' . "\n"
-            . '--- ' . $error_code . "\n"
+        $log_message = $error_code . "\n"
             . '--- ' . $error_message . "\n"
             . '--- ' . $error_detail;
 
-        error_log($log_message);
+        $this->app->log->log($error_level, $log_message);
 
 
         // Redirect
