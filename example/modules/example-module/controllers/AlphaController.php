@@ -10,20 +10,39 @@
 
 
 
-// Pith Module Interface
-// ---------------------
+// "Alpha Controller"
+// ------------------
 
 
 
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+namespace Pith\ExampleModule;
 
 
-interface PithModuleInterface
+class AlphaController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
 {
-    public function whereAmI();
-    public function listRoutes();
-    public function findRoute($route_name);
+
+    function __construct()
+    {
+        // construct
+    }
+
+    public function access(){
+        echo 'Access';
+    }
+
+    public function inject($app){
+        echo 'Inject';
+    }
+
+    public function action($app)
+    {
+        echo 'Action';
+    }
+
+    public function preparer($app){
+        echo 'Preparer';
+    }
 }
