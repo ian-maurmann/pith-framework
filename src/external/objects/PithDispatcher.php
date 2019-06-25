@@ -47,7 +47,10 @@ class PithDispatcher
 
 
 
-    public function dispatch($route){
+    public function dispatch($route)
+    {
+        $controller = null;
+        $dispatch   = null;
 
         // Start the output buffer
         ob_start();
@@ -55,6 +58,22 @@ class PithDispatcher
         echo '<pre><code>';
         var_dump($route);
         echo '</code></pre>';
+
+
+
+        // Get the controller
+        try {
+            $controller = $this->app->container->get($route['controller']);
+        }
+        catch (\DI\NotFoundException $e) {
+            $this->app->problem('Pith_Provisional_Error_B6_000', $route['route-name'], $route['controller']);
+        }
+
+
+        
+        echo $controller->whereAmI();
+
+
 
         // Flush the output buffer
         ob_end_flush();

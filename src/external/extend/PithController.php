@@ -9,10 +9,8 @@
 # ===================================================================
 
 
-
-// Pith Module Interface
-// ---------------------
-
+// Pith Controller (extend)
+// ------------------------
 
 
 declare(strict_types=1);
@@ -21,9 +19,12 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-interface PithModuleInterface
+class PithController
 {
-    public function whereAmI();
-    public function listRoutes();
-    public function findRoute($route_name);
+    protected $app = null;
+
+    public function whereAmI()
+    {
+        return 'Pith Controller instance';
+    }
 }

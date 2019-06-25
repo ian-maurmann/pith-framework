@@ -18,9 +18,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/external/objects/", "src/external/interfaces/", "src/external/traits/"],
+            "Pith\\Framework\\": ["src/external/objects/", "src/external/interfaces/", "src/external/traits/",  "src/external/extend/"],
             "Pith\\Framework\\Internal\\": ["src/internal/objects/", "src/internal/interfaces/", "src/internal/traits/"],
-            "Pith\\ExampleModule\\": ["example/modules/example-module/"],
+            "Pith\\ExampleModule\\": ["example/modules/example-module/", "example/modules/example-module/controllers/"],
             "Pith\\ExampleConfig\\": ["example/config/"]
         }
     }
