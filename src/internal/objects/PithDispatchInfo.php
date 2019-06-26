@@ -9,43 +9,34 @@
 # ===================================================================
 
 
-
-// "Alpha Controller"
-// ------------------
-
+// Pith Dispatch
+// -------------
 
 
 declare(strict_types=1);
 
+namespace Pith\Framework\Internal;
 
-namespace Pith\ExampleModule;
-
-
-class AlphaController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
+class PithDispatchInfo
 {
+    private $app;
+
+    public $access_level;
 
     function __construct()
     {
-        // construct
+        $this->reset();
     }
 
-    public function access($access)
+
+    public function init($app)
     {
-        $access->setControllerAccessLevel('world');
+        $this->app = $app;
     }
 
-    public function inject($app)
-    {
-        echo 'Inject';
-    }
 
-    public function action($app)
+    public function reset()
     {
-        echo 'Action';
-    }
-
-    public function preparer($app)
-    {
-        echo 'Preparer';
+        $this->access_level = null;
     }
 }

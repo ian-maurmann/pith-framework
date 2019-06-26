@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithAccessDispatchHelper;
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
 
@@ -24,19 +25,23 @@ use Pith\Framework\Internal\PithProblemHandler;
 class PithDispatcher
 {
     private $app;
+    private $access_dispatch_helper;
     private $string_utility;
     private $problem_handler;
 
-    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
+    function __construct(PithAccessDispatchHelper $access_dispatch_helper,PithStringUtility $string_utility, PithProblemHandler $problem_handler)
     {
         $this->string_utility = $string_utility;
         $this->problem_handler = $problem_handler;
+        $this->access_dispatch_helper = $access_dispatch_helper;
     }
 
 
     public function init($app)
     {
         $this->app = $app;
+
+        $this->access_dispatch_helper->init($app);
     }
 
 
@@ -49,8 +54,9 @@ class PithDispatcher
 
     public function dispatch($route)
     {
-        $controller = null;
-        $dispatch   = null;
+        $controller             = null;
+        $dispatch               = null;
+        $access_dispatch_helper = $this->access_dispatch_helper;
 
         // Start the output buffer
         ob_start();
@@ -59,6 +65,10 @@ class PithDispatcher
         var_dump($route);
         echo '</code></pre>';
 
+
+
+        // Reset Dispatch
+        $this->app->dispatch_info->reset();
 
 
         // Get the controller
@@ -72,6 +82,21 @@ class PithDispatcher
 
         
         echo $controller->whereAmI();
+
+
+        // Run Access
+        $controller->access($access_dispatch_helper);
+
+
+        $access_level = $this->app->dispatch_info->access_level;
+
+        //echo $access_level;
+
+        // TODO: process the access here
+
+
+
+
 
 
 
