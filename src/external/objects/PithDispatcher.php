@@ -130,6 +130,37 @@ class PithDispatcher
         //-----------------------------------------------
 
 
+
+
+
+
+
+        // Run Action
+        $controller->action($this->app, $inject);
+
+
+        // Get the Actions's "prepare"
+        $prepare = $controller->getPrepare();
+
+
+        // Clear the Action's "prepare"
+        $controller->resetPrepare();
+
+
+
+        echo '<hr/>';
+        echo '<h3>Action</h3>';
+        echo '<pre><code>';
+        var_dump($prepare);
+        echo '</code></pre>';
+
+
+
+
+
+        //-----------------------------------------------
+
+
         // Flush the output buffer
         ob_end_flush();
     }

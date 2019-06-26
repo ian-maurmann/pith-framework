@@ -30,14 +30,36 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
 
     public function injector($app)
     {
+        // Load Objects
         $this->inject->obj_one   = 'test one';
         $this->inject->obj_two   = 'test two';
         $this->inject->obj_three = 'test three';
     }
 
-    public function action($app)
+    public function action($app, $object)
     {
-        echo 'Action';
+        // Set Objects
+        $obj_one   = $object->obj_one;
+        $obj_two   = $object->obj_two;
+        $obj_three = $object->obj_three;
+
+
+        // Action Variables
+        $a = $obj_one;
+        $b = $obj_two;
+        $c = $obj_three;
+
+
+        // Debug
+        // echo $a;
+        // echo $b;
+        // echo $c;
+
+
+        // Push to Preparer
+        $this->prepare->a = $a;
+        $this->prepare->b = $b;
+        $this->prepare->c = $c;
     }
 
     public function preparer($app)
