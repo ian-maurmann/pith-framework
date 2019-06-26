@@ -61,6 +61,9 @@ class PithDispatcher
         // Start the output buffer
         ob_start();
 
+
+        echo '<hr/>';
+        echo '<h3>Route</h3>';
         echo '<pre><code>';
         var_dump($route);
         echo '</code></pre>';
@@ -95,12 +98,23 @@ class PithDispatcher
         // TODO: process the access here
 
 
-        $injected_array = $controller->injector($this->app, (object) array());
+
+        // Run Injector
+        $controller->injector($this->app);
+
+        // Get the Injector's "inject"
+        $inject = $controller->getInject();
+
+        // Clear the Injector's "inject"
+        $controller->resetInject();
 
 
 
-
-
+        echo '<hr/>';
+        echo '<h3>Inject</h3>';
+        echo '<pre><code>';
+        var_dump($inject);
+        echo '</code></pre>';
 
 
         // Flush the output buffer
