@@ -95,6 +95,9 @@ class PithDispatcher
         // TODO: process the access here
 
 
+        $injected_array = $controller->injector($this->app, (object) array());
+
+
 
 
 
