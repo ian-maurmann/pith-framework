@@ -22,6 +22,7 @@ namespace Pith\Framework;
 class PithController
 {
     protected $app;
+    protected $access_level;
     protected $inject;
 
     function __construct()
@@ -31,12 +32,23 @@ class PithController
 
     public function reset()
     {
+        $this->resetAccessLevel();
         $this->resetInject();
     }
 
     public function whereAmI()
     {
         return 'Pith Controller instance';
+    }
+
+    public function getAccessLevel()
+    {
+        return $this->access_level;
+    }
+
+    public function resetAccessLevel()
+    {
+        $this->access_level = 'none';
     }
 
     public function getInject()

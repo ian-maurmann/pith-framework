@@ -23,9 +23,9 @@ namespace Pith\ExampleModule;
 
 class AlphaController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
 {
-    public function access($access)
+    public function access()
     {
-        $access->setControllerAccessLevel('world');
+        $this->access_level = 'world';
     }
 
     public function injector($app)
