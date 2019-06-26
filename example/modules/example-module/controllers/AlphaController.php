@@ -34,9 +34,13 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $access->setControllerAccessLevel('world');
     }
 
-    public function inject($app)
+    public function injector($app, $inject)
     {
-        echo 'Inject';
+        $inject->obj_one   = 'test one';
+        $inject->obj_two   = 'test two';
+        $inject->obj_three = 'test three';
+
+        return $inject;
     }
 
     public function action($app)
