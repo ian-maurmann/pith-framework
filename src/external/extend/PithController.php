@@ -21,10 +21,31 @@ namespace Pith\Framework;
 
 class PithController
 {
-    protected $app = null;
+    protected $app;
+    protected $inject;
+
+    function __construct()
+    {
+        $this->reset();
+    }
+
+    public function reset()
+    {
+        $this->resetInject();
+    }
 
     public function whereAmI()
     {
         return 'Pith Controller instance';
+    }
+
+    public function getInject()
+    {
+        return $this->inject;
+    }
+
+    public function resetInject()
+    {
+        $this->inject = (object)[];
     }
 }
