@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithProblemHandler;
-use Pith\Framework\Internal\PithDispatchInfo;
 
 class PithApp implements PithAppInterface
 {
@@ -31,12 +30,11 @@ class PithApp implements PithAppInterface
     public $authenticator;
     public $access_control;
     public $router;
-    public $dispatch_info;
     public $dispatcher;
     public $problem_handler;
 
 
-    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithDispatchInfo $dispatch_info, PithDispatcher $dispatcher, PithProblemHandler $problem_handler)
+    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithDispatcher $dispatcher, PithProblemHandler $problem_handler)
     {
         $this->container         = null;
         $this->log               = null;
@@ -46,10 +44,8 @@ class PithApp implements PithAppInterface
         $this->authenticator     = null;
         $this->access_control    = null;
         $this->router            = $router;
-        $this->dispatch_info     = $dispatch_info;
         $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
-
 
         $this->request_processor->init($this);
         $this->router->init($this);
