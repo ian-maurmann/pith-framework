@@ -10,8 +10,8 @@
 
 
 
-// Pith Module Interface
-// ---------------------
+// Pith Controller Interface
+// -------------------------
 
 
 
@@ -21,9 +21,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-interface PithModuleInterface
+interface PithControllerInterface
 {
     public function whereAmI();
-    public function listRoutes();
-    public function findRoute($route_name);
 }
