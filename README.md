@@ -1,5 +1,5 @@
 # Pith Framework
-Website: http://pith-framework.org/ 
+Website: http://pith-framework.org/
 
 Another framework for PHP
 
@@ -10,9 +10,11 @@ This is a rewrite of an old framework I was working on in 2009-2010. I just stat
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
-Rewrite Pre-Alpha 2 | v0.3.0 | 0.6.0.2 | :warning: *Not yet*
-Rewrite Pre-Alpha 1 | v0.2.0 | 0.6.0.1 | :warning: *Not yet*
-(2nd) Initial Rewrite | v0.1.0 | 0.6.0.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 3   | sv 0.4.0 | rv 0.6.0.3 | :warning: *Not yet*
+Rewrite Pre-Alpha 2   | sv 0.3.0 | rv 0.6.0.2 | :warning: *Not yet*
+Rewrite Pre-Alpha 1   | sv 0.2.0 | rv 0.6.0.1 | :warning: *Not yet*
+(2nd) Initial Rewrite | sv 0.1.0 | rv 0.6.0.0 | :warning: *Not yet*
 
 See http://pith-framework.org/versions for more info.
 
@@ -22,11 +24,12 @@ See http://pith-framework.org/versions for more info.
 
 - [x] <del>App Object</del> :wrench:
 - [x] <del>Container (Maybe use [PHP-DI](https://github.com/PHP-DI/PHP-DI)?)</del>
-- [ ] Config Object :wrench:
+- [x] <del>Logger (Use [Monolog](https://github.com/Seldaek/monolog))</del>
+- [x] <del>Config Object</del> :wrench:
 - [ ] Registry Object
 - [ ] Authenticator Object
 - [ ] Access Control Object
-- [ ] Router Object :wrench:
+- [x] Router Object :wrench:
 - [ ] Dispatcher Object
 - [ ] Modules :wrench:
 - [ ] Routes :wrench:

@@ -7,21 +7,23 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
+
+
+// Pith Module Interface
+// ---------------------
+
+
+
 declare(strict_types=1);
 
 
-
-    // Pith Version Trait
-    // ------------------
+namespace Pith\Framework;
 
 
-    namespace Pith\Framework;
-
-
-    trait PithVersionTrait
-    {
-        public function version()
-        {
-            return "Pith Framework: rv 0.6.0.2 sv 0.3.0";
-        }
-    }
+interface PithModuleInterface
+{
+    public function whereAmI();
+    public function listRoutes();
+    public function findRoute($route_name);
+}

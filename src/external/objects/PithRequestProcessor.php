@@ -11,12 +11,15 @@
 declare(strict_types=1);
 
 
-// Pith Request
-// -----------
+// Pith Request Processor
+// ----------------------
 
 namespace Pith\Framework;
 
-class PithRequest
+use Pith\Framework\Internal\PithRequestHelper;
+use Pith\Framework\Internal\PithStringUtility;
+
+class PithRequestProcessor
 {
     private $app;
     private $helper;
@@ -25,12 +28,6 @@ class PithRequest
     private $request_path;  //   /hello/world
     private $request_query; //                foo=5&bar=7
 
-
-    /**
-     * PithRequest constructor.
-     * @param PithRequestHelper $request_helper
-     * @param PithStringUtility $string_utility
-     */
     function __construct(PithRequestHelper $request_helper, PithStringUtility $string_utility)
     {
         $this->helper         = $request_helper;
