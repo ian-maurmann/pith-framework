@@ -25,6 +25,7 @@ class PithController
     protected $access_level;
     protected $inject;
     protected $prepare;
+    protected $view;
 
     function __construct()
     {
@@ -36,6 +37,7 @@ class PithController
         $this->resetAccessLevel();
         $this->resetInject();
         $this->resetPrepare();
+        $this->resetView();
     }
 
     public function whereAmI()
@@ -71,5 +73,15 @@ class PithController
     public function resetPrepare()
     {
         $this->prepare = (object)[];
+    }
+
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    public function resetView()
+    {
+        $this->view = (object)[];
     }
 }

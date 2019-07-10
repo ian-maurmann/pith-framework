@@ -54,11 +54,11 @@ class PithDispatcher
 
 
 
-        echo '<hr/>';
-        echo '<h3>Route</h3>';
-        echo '<pre><code>';
-        var_dump($route);
-        echo '</code></pre>';
+//        echo '<hr/>';
+//        echo '<h3>Route</h3>';
+//        echo '<pre><code>';
+//        var_dump($route);
+//        echo '</code></pre>';
 
 
 
@@ -73,7 +73,7 @@ class PithDispatcher
 
 
         
-        echo $controller->whereAmI();
+        //echo $controller->whereAmI();
 
 
         //-----------------------------------------------
@@ -93,11 +93,11 @@ class PithDispatcher
         // TODO: process the access here
 
 
-        echo '<hr/>';
-        echo '<h3>Access Level</h3>';
-        echo '<pre><code>';
-        var_dump($access_level);
-        echo '</code></pre>';
+//        echo '<hr/>';
+//        echo '<h3>Access Level</h3>';
+//        echo '<pre><code>';
+//        var_dump($access_level);
+//        echo '</code></pre>';
 
 
 
@@ -119,11 +119,11 @@ class PithDispatcher
 
 
 
-        echo '<hr/>';
-        echo '<h3>Inject</h3>';
-        echo '<pre><code>';
-        var_dump($inject);
-        echo '</code></pre>';
+//        echo '<hr/>';
+//        echo '<h3>Inject</h3>';
+//        echo '<pre><code>';
+//        var_dump($inject);
+//        echo '</code></pre>';
 
 
 
@@ -148,11 +148,41 @@ class PithDispatcher
 
 
 
-        echo '<hr/>';
-        echo '<h3>Action</h3>';
-        echo '<pre><code>';
-        var_dump($prepare);
-        echo '</code></pre>';
+//        echo '<hr/>';
+//        echo '<h3>Action</h3>';
+//        echo '<pre><code>';
+//        var_dump($prepare);
+//        echo '</code></pre>';
+
+
+
+
+
+        //-----------------------------------------------
+
+
+
+
+
+
+        // Run Preparer
+        $controller->preparer($this->app, $prepare);
+
+
+        // Get the Preparer's "view"
+        $view = $controller->getView();
+
+
+        // Clear the Preparer's "view"
+        $controller->resetView();
+
+
+
+//         echo '<hr/>';
+//         echo '<h3>Preparer</h3>';
+//         echo '<pre><code>';
+//         var_dump($view);
+//         echo '</code></pre>';
 
 
 

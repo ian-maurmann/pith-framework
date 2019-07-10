@@ -62,8 +62,14 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->prepare->c = $c;
     }
 
-    public function preparer($app)
+    public function preparer($app, $prepare)
     {
-        echo 'Preparer';
+        $a = $prepare->a;
+        $b = $prepare->b;
+        $c = $prepare->c;
+
+        $this->view->a = $a;
+        $this->view->b = $b;
+        $this->view->c = $c;
     }
 }
