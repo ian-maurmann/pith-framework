@@ -10,6 +10,7 @@ This is a rewrite of an old framework I was working on in 2009-2010. I just stat
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
+Rewrite Pre-Alpha 5   | sv 0.6.0 | rv 0.6.2.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 3   | sv 0.4.0 | rv 0.6.0.3 | :warning: *Not yet*
 Rewrite Pre-Alpha 2   | sv 0.3.0 | rv 0.6.0.2 | :warning: *Not yet*
@@ -30,11 +31,11 @@ See http://pith-framework.org/versions for more info.
 - [ ] Authenticator Object
 - [ ] Access Control Object
 - [x] Router Object :wrench:
-- [ ] Dispatcher Object
+- [ ] Dispatcher Object :wrench:
 - [ ] Modules :wrench:
 - [ ] Routes :wrench:
 - [ ] Access Levels
-- [ ] Injectors
-- [ ] Actions
-- [ ] Preparers
+- [ ] Injectors :wrench:
+- [ ] Actions :wrench:
+- [ ] Preparers :wrench:
 - [ ] Views
