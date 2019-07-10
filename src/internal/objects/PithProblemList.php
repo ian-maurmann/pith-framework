@@ -56,6 +56,7 @@ class PithProblemList
 
         $problems = [
 
+            // Future Error 101 ?
             'Pith_Provisional_Notice_B5_000' => [
                 'code'    => 'Pith_Provisional_Notice_B5_000',
                 'message' => 'App Route not found.',
@@ -64,6 +65,7 @@ class PithProblemList
                 'status'  => '404',
             ],
 
+            // Future Error 102 ?
             'Pith_Provisional_Error_B5_001' => [
                 'code'    => 'Pith_Provisional_Error_B5_001',
                 'message' => 'Module not found.',
@@ -72,10 +74,20 @@ class PithProblemList
                 'status'  => '501',
             ],
 
+            // Future Error 103 ?
             'Pith_Provisional_Error_B5_002' => [
                 'code'    => 'Pith_Provisional_Notice_B5_002',
                 'message' => 'Module Route not found.',
                 'detail'  => 'The Router could not find any route named "%s" inside the Module "%s".',
+                'level'   => 'error',
+                'status'  => '501',
+            ],
+
+            // Future Error 201 ?
+            'Pith_Provisional_Error_B6_000' => [
+                'code'    => 'Pith_Provisional_Error_B6_000',
+                'message' => 'Controller not found.',
+                'detail'  => 'When the Dispatcher ran the Route "%s", the Container could not find the Controller "%s" being autoloaded.',
                 'level'   => 'error',
                 'status'  => '501',
             ],

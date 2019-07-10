@@ -7,20 +7,23 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
+
+
+
+// Pith App Interface
+// ------------------
+
+
+
 declare(strict_types=1);
 
 
-
-    // Pith App Interface
-    // ------------------
+namespace Pith\Framework;
 
 
-    namespace Pith\Framework;
-
-
-    interface PithAppInterface
-    {
-        public function whereAmI();
-        public function start();
-        public function runRoute($module_name, $route_name);
-    }
+interface PithAppInterface
+{
+    public function whereAmI();
+    public function start();
+    public function runRoute($module_name, $route_name);
+}

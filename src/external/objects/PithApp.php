@@ -22,19 +22,19 @@ class PithApp implements PithAppInterface
 {
     use PithVersionTrait;
 
-    public $container         = null;
-    public $log               = null;
-    public $request_processor = null;
-    public $config            = null;
-    public $registry          = null;
-    public $authenticator     = null;
-    public $access_control    = null;
-    public $router            = null;
-    public $dispatcher        = null;
-    public $problem_handler   = null;
+    public $container;
+    public $log;
+    public $request_processor;
+    public $config;
+    public $registry;
+    public $authenticator;
+    public $access_control;
+    public $router;
+    public $dispatcher;
+    public $problem_handler;
 
 
-    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithProblemHandler $problem_handler)
+    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithDispatcher $dispatcher, PithProblemHandler $problem_handler)
     {
         $this->container         = null;
         $this->log               = null;
@@ -44,12 +44,12 @@ class PithApp implements PithAppInterface
         $this->authenticator     = null;
         $this->access_control    = null;
         $this->router            = $router;
-        $this->dispatcher        = null;
+        $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
-
 
         $this->request_processor->init($this);
         $this->router->init($this);
+        $this->dispatcher->init($this);
         $this->problem_handler->init($this);
     }
 
@@ -65,15 +65,12 @@ class PithApp implements PithAppInterface
         // Run the framework normally
 
 
-        // Start the output buffer
-        ob_start();
-
+        // Get the route
         $route = $this->router->getRoute();
 
-        
 
-        // Flush the output buffer
-        ob_end_flush();
+        // Run everything for the route.
+        $this->dispatcher->dispatch($route);
     }
 
 
