@@ -39,3 +39,18 @@ See http://pith-framework.org/versions for more info.
 - [ ] Actions :wrench:
 - [ ] Preparers :wrench:
 - [ ] Views
+
+# Install for testing:
+
+## Install from the Repo:
+
+- Pull the Git repo into desired directory.
+- Install Composer into the same directory.
+- Run `php composer.phar install`
+
+## Run:
+
+## Problems & Fixes:
+
+- Problem: `Warning: require(vendor/autoload.php): failed to open stream: No such file or directory`
+- Fix: Install or re-install composer to the directory, then run:  `php composer.phar install`
