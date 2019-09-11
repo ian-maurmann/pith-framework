@@ -73,10 +73,10 @@ See http://pith-framework.org/versions for more info.
 For the current test app:
 
 - Open the terminal and navigate to the directory the project is downloaded to.
-- Navigate to example/public: i.e. ```
-$ cd example __
-$ ls __
-$ cd public __
+- Navigate to example/public: i.e. ```bash
+$ cd example/
+$ ls/
+$ cd public/
 $ ls```
 - Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:9000`
 - Load `http://127.0.0.1:9000/` in your browser.
