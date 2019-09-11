@@ -84,7 +84,8 @@ For the current test app:
 $ cd example
 $ ls
 $ cd public
-$ ls```
+$ ls
+```
 
 - Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:9000`
 - Load `http://127.0.0.1:9000/` in your browser.
