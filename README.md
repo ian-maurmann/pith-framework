@@ -50,11 +50,16 @@ See http://pith-framework.org/versions for more info.
 - Open the terminal and navigate to the directory your project is in / will be in.
 - If Composer is not installed, Install Composer into the same directory, see links for [installing Composer normally](https://getcomposer.org/download/), or more options/info on Composer's [Getting Started](https://getcomposer.org/doc/00-intro.md) page.
 - If you do not have a composer.json file, create a new composer.json file in the same directory.
-- Add Pith to the required section of composer.json, i.e. ```{
-    "require": { __
-        "pith/framework": "^0.6" __
-    } __
-}```
+- Add Pith to the required section of composer.json, i.e.
+
+```json
+{
+    "require": {
+        "pith/framework": "^0.6"
+    }
+}
+```
+
 - Run `$ php composer.phar install`
 
 ### :warning: **(Not ready yet)** :warning:
@@ -73,11 +78,14 @@ See http://pith-framework.org/versions for more info.
 For the current test app:
 
 - Open the terminal and navigate to the directory the project is downloaded to.
-- Navigate to example/public: i.e. ```bash
-$ cd example/
-$ ls/
-$ cd public/
+- Navigate to example/public: i.e.
+
+```bash
+$ cd example
+$ ls
+$ cd public
 $ ls```
+
 - Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:9000`
 - Load `http://127.0.0.1:9000/` in your browser.
 - You can end the built-in PHP server by pressing `Control-C` on the keyboard.
