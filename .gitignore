@@ -1,6 +1,6 @@
 
 # .gitignore
-# ----------
+# ==========
 
 
 
@@ -30,5 +30,3 @@ vendor/
 # Ignore dev-test folder
 # ----------------------
 dev-test/
-
-
