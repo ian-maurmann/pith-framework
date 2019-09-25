@@ -10,6 +10,7 @@ This is a rewrite of an old framework I was working on in 2009-2010. I just stat
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
+Rewrite Pre-Alpha 6   | sv 0.6.1 | rv 0.6.2.1 | :warning: *Not yet*
 Rewrite Pre-Alpha 5   | sv 0.6.0 | rv 0.6.2.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 3   | sv 0.4.0 | rv 0.6.0.3 | :warning: *Not yet*
