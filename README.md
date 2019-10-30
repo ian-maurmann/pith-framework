@@ -10,6 +10,7 @@ This is a rewrite of an old framework I was working on in 2009-2010. I just stat
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
+Rewrite Pre-Alpha 7   | sv 0.7.0 | rv 0.6.3.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 6   | sv 0.6.1 | rv 0.6.2.1 | :warning: *Not yet*
 Rewrite Pre-Alpha 5   | sv 0.6.0 | rv 0.6.2.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
@@ -24,22 +25,24 @@ See http://pith-framework.org/versions for more info.
 
 # TODO:
 
-- [x] <del>App Object</del> :wrench:
-- [x] <del>Container (Maybe use [PHP-DI](https://github.com/PHP-DI/PHP-DI)?)</del>
-- [x] <del>Logger (Use [Monolog](https://github.com/Seldaek/monolog))</del>
+- [x] <del>App Object</del>
+- [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
+- [x] <del>Logger</del> ([Monolog](https://github.com/Seldaek/monolog))
 - [x] <del>Config Object</del> :wrench:
-- [ ] Registry Object
+- [ ] <del>Registry Object</del> (*Not needed*)
 - [ ] Authenticator Object
 - [ ] Access Control Object
-- [x] Router Object :wrench:
+- [x] <del>Router Object</del> :wrench:
 - [ ] Dispatcher Object :wrench:
-- [ ] Modules :wrench:
-- [ ] Routes :wrench:
+- [x] <del>Modules</del> (except for layouts)
+- [x] <del>Routes</del>
 - [ ] Access Levels
-- [ ] Injectors :wrench:
-- [ ] Actions :wrench:
-- [ ] Preparers :wrench:
-- [ ] Views
+- [x] <del>Injectors</del>
+- [x] <del>Actions</del>
+- [x] <del>Preparers</del>
+- [ ] Views :wrench: (Work-in-progress)
+- [ ] Layouts :wrench:
+
 
 
 ---

@@ -34,7 +34,13 @@ class PithApp implements PithAppInterface
     public $problem_handler;
 
 
-    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithDispatcher $dispatcher, PithProblemHandler $problem_handler)
+    function __construct(
+        PithRequestProcessor $request_processor,
+        PithConfig           $config,
+        PithRouter           $router,
+        PithDispatcher       $dispatcher,
+        PithProblemHandler   $problem_handler
+    )
     {
         $this->container         = null;
         $this->log               = null;
