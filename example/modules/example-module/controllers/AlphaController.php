@@ -36,12 +36,12 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->inject->obj_three = 'test three';
     }
 
-    public function action($app, $object)
+    public function action($app, $objects)
     {
         // Set Objects
-        $obj_one   = $object->obj_one;
-        $obj_two   = $object->obj_two;
-        $obj_three = $object->obj_three;
+        $obj_one   = $objects->obj_one;
+        $obj_two   = $objects->obj_two;
+        $obj_three = $objects->obj_three;
 
 
         // Action Variables
@@ -71,5 +71,8 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->view->a = $a;
         $this->view->b = $b;
         $this->view->c = $c;
+
+        $view_adapter = $app->container->get('\\Pith\\Framework\\Adapter\\Phtml\\PithAdapterForPhtml');
+        $this->view_adapter = $view_adapter;
     }
 }
