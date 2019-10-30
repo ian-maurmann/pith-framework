@@ -65,10 +65,10 @@ class PithDispatcher
         // Get the controller
         $controller = false;
         try {
-            $controller = $this->app->container->get($route['controller']);
+            $controller = $this->app->container->get($route->controller_name_with_namespace);
         }
         catch (\DI\NotFoundException $e) {
-            $this->app->problem('Pith_Provisional_Error_B6_000', $route['route-name'], $route['controller']);
+            $this->app->problem('Pith_Provisional_Error_B6_000', $route->route_name, $route->controller_name_with_namespace);
         }
 
 
@@ -173,6 +173,14 @@ class PithDispatcher
         $view = $controller->getView();
 
 
+        // - - - - - - - - - - - -
+
+        $view_adapter = $controller->getViewAdapter();
+
+
+        // - - - - - - - - - - - -
+
+
         // Clear the Preparer's "view"
         $controller->resetView();
 
@@ -189,6 +197,19 @@ class PithDispatcher
 
 
         //-----------------------------------------------
+
+
+        // - - - - - - - - - - - -
+
+        $view_full_path = $route->view_full_path;
+
+        $view_adapter->setFilePath($view_full_path);
+        $view_adapter->setVars($view);
+        $view_adapter->run();
+
+        // - - - - - - - - - - - -
+
+
 
 
         // Flush the output buffer

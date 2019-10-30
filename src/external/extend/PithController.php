@@ -26,6 +26,7 @@ class PithController
     protected $inject;
     protected $prepare;
     protected $view;
+    protected $view_adapter;
 
     function __construct()
     {
@@ -83,5 +84,10 @@ class PithController
     public function resetView()
     {
         $this->view = (object)[];
+    }
+
+    public function getViewAdapter()
+    {
+        return $this->view_adapter;
     }
 }
