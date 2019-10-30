@@ -19,6 +19,7 @@ namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
+use Pith\Framework\Internal\PithRoute;
 
 
 class PithRouter implements PithRouterInterface
@@ -26,11 +27,13 @@ class PithRouter implements PithRouterInterface
     private $app;
     private $string_utility;
     private $problem_handler;
+    private $route_object;
 
-    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
+    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler, PithRoute $route_object)
     {
         $this->string_utility  = $string_utility;
         $this->problem_handler = $problem_handler;
+        $this->route_object    = $route_object;
     }
 
 
@@ -51,7 +54,7 @@ class PithRouter implements PithRouterInterface
 
     public function getRoute(){
 
-        $route = null;
+        $route_object = null;
 
         // Get the app route
         $app_route = $this->findAppRouteFromUrl();
@@ -63,14 +66,23 @@ class PithRouter implements PithRouterInterface
         }
 
 
+        $module_name_with_namespace = $app_route['module'];
+
         // Get the module
-        $module = $this->app->container->get($app_route['module']);
+        $module = $this->app->container->get($module_name_with_namespace);
 
 
         // (On error, redirect to the 501 page)
         if(!$module){
-            $this->problem('Pith_Provisional_Error_B5_001', $app_route['match'], $app_route['module']);
+            $this->problem('Pith_Provisional_Error_B5_001', $app_route['match'], $module_name_with_namespace);
         }
+
+
+        $module_reflector_object = new \ReflectionClass($module_name_with_namespace);
+        $module_directory_full_path = dirname($module_reflector_object->getFileName());
+
+        //echo $module_directory_full_path;
+
 
 
         // Get the route name
@@ -86,7 +98,22 @@ class PithRouter implements PithRouterInterface
             $this->problem('Pith_Provisional_Error_B5_002', $app_route['route-name'], $app_route['module']);
         }
 
-        return $route;
+
+        $view_relative_path = $route['view'];
+        $view_full_path     = $module_directory_full_path . '/' . $view_relative_path;
+
+        $route_object = clone $this->route_object;
+
+        $route_object->route_name                     = $route['route-name'];
+        $route_object->use_layout                     = $route['use-layout'];
+        $route_object->controller_name_with_namespace = $route['controller'];
+        $route_object->module_name_with_namespace     = $app_route['module'];
+        $route_object->module_object                  = clone $module;
+        $route_object->module_directory_full_path     = $module_directory_full_path;
+        $route_object->view_relative_path             = $view_relative_path;
+        $route_object->view_full_path                 = $view_full_path;
+
+        return $route_object;
     }
 
 

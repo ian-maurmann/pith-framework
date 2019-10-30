@@ -19,5 +19,31 @@ namespace Pith\Framework\Adapter\Phtml;
 
 class PithAdapterForPhtml
 {
+    protected $full_path_to_phtml_view;
+    protected $object_with_variables_for_phtml_view;
 
+    function __construct()
+    {
+        // Do nothing
+    }
+
+    public function setFilePath($full_path_to_phtml_view)
+    {
+        $this->full_path_to_phtml_view = $full_path_to_phtml_view;
+    }
+
+
+    public function setVars($view_variables)
+    {
+        $this->object_with_variables_for_phtml_view = $view_variables;
+    }
+
+    public function run()
+    {
+        // Set vars:
+        extract( (array) $this->object_with_variables_for_phtml_view );
+
+        // Include the view:
+        require $this->full_path_to_phtml_view;
+    }
 }
