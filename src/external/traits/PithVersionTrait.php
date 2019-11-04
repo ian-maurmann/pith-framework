@@ -11,15 +11,17 @@ declare(strict_types=1);
 
 
 
-// Pith Config Interface
-// ---------------------
+    // Pith Version Trait
+    // ------------------
 
 
-namespace Pith\Framework;
+    namespace Pith\Framework;
 
 
-interface PithRouterInterface
-{
-    public function whereAmI();
-    public function findRoute(string $route_name);
-}
+    trait PithVersionTrait
+    {
+        public function version()
+        {
+            return "Pith Framework: rv 0.6.3.0 | sv 0.7.0 | Rewrite Pre-Alpha 7";
+        }
+    }
