@@ -41,21 +41,21 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'index',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/home.phtml',
             ],
 
             '404' => [
                 'route-name' => '404',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/404.phtml',
             ],
 
             '501' => [
                 'route-name' => '501',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/505.phtml',
             ],
 
             'alpha' => [
@@ -69,21 +69,21 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'beta',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/beta.phtml',
             ],
 
             'gamma' => [
                 'route-name' => 'gamma',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/gamma.phtml',
             ],
 
             'delta' => [
                 'route-name' => 'delta',
                 'use-layout' => true,
                 'controller' => 'Pith\\ExampleModule\\AlphaController',
-                'view'       => 'views/alpha.phtml',
+                'view'       => 'views/delta.phtml',
             ],
 
 
