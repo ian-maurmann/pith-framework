@@ -19,7 +19,9 @@ namespace Pith\Framework\Internal;
 class PithRoute
 {
     public $route_name;
+    public $route_type;
     public $use_layout;
+    public $layout_app_route_name;
     public $controller_name_with_namespace;
     public $module_object;
     public $module_name_with_namespace;
