@@ -38,6 +38,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => 'index',
                 'layout'     => '',
@@ -45,6 +46,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/404',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => '404',
                 'layout'     => '',
@@ -52,6 +54,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/501',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => '501',
                 'layout'     => '',
@@ -59,6 +62,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/alpha',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => 'alpha',
                 'layout'     => '',
@@ -66,6 +70,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/beta',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => 'beta',
                 'layout'     => '',
@@ -74,6 +79,7 @@ class ExampleRouteList
 
             [
                 'match'      => '/gamma',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => 'gamma',
                 'layout'     => '',
@@ -81,9 +87,17 @@ class ExampleRouteList
 
             [
                 'match'      => '/delta',
+                'type'       => 'page',
                 'module'     => 'Pith\\ExampleModule\\ExampleModule',
                 'route-name' => 'delta',
-                'layout'     => '',
+                'layout'     => '/layout/first',
+            ],
+
+            [
+                'match'      => '/layout/first',
+                'type'       => 'layout',
+                'module'     => 'Pith\\ExampleModule\\ExampleModule',
+                'route-name' => 'first-layout',
             ],
 
 

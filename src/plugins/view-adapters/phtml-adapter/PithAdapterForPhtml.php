@@ -19,12 +19,39 @@ namespace Pith\Framework\Adapter\Phtml;
 
 class PithAdapterForPhtml
 {
+    // Objects
+    public $app;
+    public $view_runner;
+
+    // Vars
     protected $full_path_to_phtml_view;
     protected $object_with_variables_for_phtml_view;
+    protected $is_layout;
+    protected $content_route;
 
-    function __construct()
+
+    function __construct(PithViewRunnerForPhtml $view_runner)
     {
-        // Do nothing
+        // objects
+        $this->view_runner = $view_runner;
+
+        // default
+        $this->reset();
+    }
+
+    public function reset()
+    {
+        // default
+        $this->is_layout = false;
+        $this->content_route = null;
+        $this->full_path_to_phtml_view = null;
+        $this->object_with_variables_for_phtml_view = null;
+    }
+
+
+    public function setApp($app)
+    {
+        $this->app = $app;
     }
 
     public function setFilePath($full_path_to_phtml_view)
@@ -38,12 +65,19 @@ class PithAdapterForPhtml
         $this->object_with_variables_for_phtml_view = $view_variables;
     }
 
+
+    public function setIsLayout($is_layout){
+        $this->is_layout = $is_layout;
+    }
+
+    public function setContentRoute($content_route){
+        $this->content_route = $content_route;
+    }
+
     public function run()
     {
-        // Set vars:
-        extract( (array) $this->object_with_variables_for_phtml_view );
+        $view_runner = clone $this->view_runner;
 
-        // Include the view:
-        require $this->full_path_to_phtml_view;
+        $view_runner->run($this->app, $this->is_layout, $this->full_path_to_phtml_view, $this->object_with_variables_for_phtml_view, $this->content_route);
     }
 }
