@@ -72,7 +72,7 @@ class PithApp implements PithAppInterface
 
 
         // Get the route
-        $route = $this->router->getRoute();
+        $route = $this->router->routeByUrl();
 
 
         // Run everything for the route.
@@ -80,13 +80,51 @@ class PithApp implements PithAppInterface
     }
 
 
-    public function runRoute($module_name, $route_name)
+    public function runLayout($layout_route_path, $page_route)
+    {
+        // Get the layout route
+        $layout_route = $this->router->routeByAppPath($layout_route_path);
+
+
+        // Run everything for the route.
+        $this->dispatcher->dispatch($layout_route, $page_route);
+
+    }
+
+    public function runContent($content_route)
+    {
+        // Run everything for the route.
+        $this->dispatcher->dispatch_route($content_route);
+    }
+
+
+
+    public function runAppRoute($route_path)
+    {
+        // Run route
+
+
+        // Get the route
+        $route = $this->router->routeByAppPath($route_path);
+
+
+        // Run everything for the route.
+        $this->dispatcher->dispatch($route);
+
+    }
+
+
+    public function runModuleRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
 
 
 
     }
+
+
+
+
 
     public function problem($problem_name, ...$info)
     {

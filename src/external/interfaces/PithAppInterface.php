@@ -25,5 +25,5 @@ interface PithAppInterface
 {
     public function whereAmI();
     public function start();
-    public function runRoute($module_name, $route_name);
+    public function runModuleRoute($module_name, $route_name);
 }
