@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -52,13 +52,41 @@ class PithRouter implements PithRouterInterface
 
 
 
-    public function getRoute(){
+    public function routeByUrl(){
 
         $route_object = null;
 
         // Get the app route
         $app_route = $this->findAppRouteFromUrl();
 
+        $route_object = $this->getRouteFromAppRoute($app_route);
+
+        return $route_object;
+    }
+
+
+    public function routeByAppPath($app_route_path){
+
+        $route_object = null;
+
+        // Get the app route
+        $app_route = $this->findAppRouteFromAppRoutePath($app_route_path);
+
+        $route_object = $this->getRouteFromAppRoute($app_route);
+
+        return $route_object;
+    }
+
+
+
+
+
+
+
+
+    private function getRouteFromAppRoute($app_route){
+
+        $route_object = null;
 
         // (On error, redirect to the 404 page)
         if(!$app_route){
@@ -99,13 +127,27 @@ class PithRouter implements PithRouterInterface
         }
 
 
+        $use_layout = (bool) $route['use-layout'];
+
+        $layout_app_route_name = null;
+        if($use_layout){
+            if(!empty($app_route['layout'])){
+                $layout_app_route_name = $app_route['layout'];
+            }
+        }
+
+
+
+
         $view_relative_path = $route['view'];
         $view_full_path     = $module_directory_full_path . '/' . $view_relative_path;
 
         $route_object = clone $this->route_object;
 
         $route_object->route_name                     = $route['route-name'];
-        $route_object->use_layout                     = $route['use-layout'];
+        $route_object->route_type                     = $route['route-type'];
+        $route_object->use_layout                     = $use_layout;
+        $route_object->layout_app_route_name          = $layout_app_route_name;
         $route_object->controller_name_with_namespace = $route['controller'];
         $route_object->module_name_with_namespace     = $app_route['module'];
         $route_object->module_object                  = clone $module;
@@ -115,7 +157,6 @@ class PithRouter implements PithRouterInterface
 
         return $route_object;
     }
-
 
 
 
@@ -139,6 +180,33 @@ class PithRouter implements PithRouterInterface
 
         return $matching_route;
     }
+
+
+
+    public function findAppRouteFromAppRoutePath($app_route_path)
+    {
+        $string_utility = $this->string_utility;
+        $request_path   = (string) $app_route_path;
+        $routes         = $this->app->config->getRouteList();
+        $matching_route = null;
+
+        foreach($routes as $route_index => $route){
+            $match    = (string) $route['match'];
+            $is_match = $string_utility->isRouteMatch($request_path, $match);
+
+            if($is_match){
+                $matching_route = $route;
+                break;
+            }
+        }
+
+        return $matching_route;
+    }
+
+
+
+
+
 
 
     public function findModuleRouteByRouteName($module, $given_route_name)
