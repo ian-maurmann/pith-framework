@@ -100,6 +100,13 @@ class ExampleRouteList
                 'route-name' => 'first-layout',
             ],
 
+            [
+                'match'      => '/partial/first',
+                'type'       => 'partial',
+                'module'     => 'Pith\\ExampleModule\\ExampleModule',
+                'route-name' => 'first-partial',
+            ],
+
 
 
 
