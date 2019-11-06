@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -65,6 +65,7 @@ class PithApp implements PithAppInterface
         return "Pith App";
     }
 
+    //-----------------------------------------------
 
     public function start()
     {
@@ -72,21 +73,57 @@ class PithApp implements PithAppInterface
 
 
         // Get the route
-        $route = $this->router->getRoute();
+        $route = $this->router->routeByUrl();
 
 
         // Run everything for the route.
         $this->dispatcher->dispatch($route);
     }
 
+    //-----------------------------------------------
 
-    public function runRoute($module_name, $route_name)
+    public function runLayout($layout_route_path, $page_route)
+    {
+        // Get the layout route
+        $layout_route = $this->router->routeByAppPath($layout_route_path);
+
+        // Run everything for the layout route
+        $this->dispatcher->dispatch($layout_route, $page_route);
+    }
+
+    public function runContent($content_route)
+    {
+        // Run everything for the content route
+        $this->dispatcher->dispatch_route($content_route);
+    }
+
+    public function runPartial($app_route_path)
+    {
+        $this->runAppRoute($app_route_path);
+    }
+
+    //-----------------------------------------------
+
+    public function runAppRoute($app_route_path)
+    {
+        // Get the route
+        $route = $this->router->routeByAppPath($app_route_path);
+
+        // Run everything for the route.
+        $this->dispatcher->dispatch($route);
+    }
+
+
+    public function runModuleRoute($module_name, $route_name)
     {
         // Run a specific route without checking the url
 
-
-
+        // TODO
     }
+
+
+    //-----------------------------------------------
+
 
     public function problem($problem_name, ...$info)
     {
