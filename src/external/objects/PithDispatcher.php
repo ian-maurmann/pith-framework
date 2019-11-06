@@ -58,6 +58,9 @@ class PithDispatcher
                 $this->dispatch_route($route);
             }
         }
+        elseif($route->route_type === 'partial'){
+            $this->dispatch_route($route);
+        }
 
     }
 

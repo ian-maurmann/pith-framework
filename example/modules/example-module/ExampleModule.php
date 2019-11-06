@@ -100,6 +100,13 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'view'       => 'layouts/first-layout.phtml',
             ],
 
+            'first-partial' => [
+                'route-name' => 'first-partial',
+                'route-type' => 'partial',
+                'controller' => 'Pith\\ExampleModule\\FirstPartialController',
+                'view'       => 'partial-views/first-partial-view.phtml',
+            ],
+
 
         ];
 
