@@ -10,6 +10,7 @@ This is a rewrite of an old framework I was working on in 2009-2010. I just stat
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
+Rewrite Pre-Alpha 8   | sv 0.8.0 | rv 0.6.4.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 7   | sv 0.7.0 | rv 0.6.3.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 6   | sv 0.6.1 | rv 0.6.2.1 | :warning: *Not yet*
 Rewrite Pre-Alpha 5   | sv 0.6.0 | rv 0.6.2.0 | :warning: *Not yet*
@@ -29,19 +30,18 @@ See http://pith-framework.org/versions for more info.
 - [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
 - [x] <del>Logger</del> ([Monolog](https://github.com/Seldaek/monolog))
 - [x] <del>Config Object</del> :wrench:
-- [ ] <del>Registry Object</del> (*Not needed*)
 - [ ] Authenticator Object
 - [ ] Access Control Object
 - [x] <del>Router Object</del> :wrench:
-- [ ] Dispatcher Object :wrench:
+- [x] <del>Dispatcher Object</del> :wrench:
 - [x] <del>Modules</del> (except for layouts)
 - [x] <del>Routes</del>
 - [ ] Access Levels
 - [x] <del>Injectors</del>
 - [x] <del>Actions</del>
 - [x] <del>Preparers</del>
-- [ ] Views :wrench: (Work-in-progress)
-- [ ] Layouts :wrench:
+- [x] <del>Views<del> :wrench: (Work-in-progress)
+- [x] <del>Layouts<del> :wrench:
 
 
 
