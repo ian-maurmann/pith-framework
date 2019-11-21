@@ -23,6 +23,13 @@ namespace Pith\ExampleModule;
 
 class AlphaController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
 {
+    function __construct(\Pith\PhtmlViewAdapter\PithPhtmlViewAdapter $view_adapter)
+    {
+        $this->view_adapter = $view_adapter;
+
+        parent::__construct();
+    }
+
     public function access()
     {
         $this->access_level = 'world';
@@ -71,8 +78,5 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->view->a = $a;
         $this->view->b = $b;
         $this->view->c = $c;
-
-        $view_adapter = $app->container->get('\\Pith\\Framework\\Adapter\\Phtml\\PithAdapterForPhtml');
-        $this->view_adapter = $view_adapter;
     }
 }
