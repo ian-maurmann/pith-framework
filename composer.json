@@ -29,13 +29,6 @@
                 "src/internal/interfaces/",
                 "src/internal/traits/"
             ],
-            "Pith\\ExampleModule\\": [
-                "example/modules/example-module/",
-                "example/modules/example-module/controllers/"
-            ],
-            "Pith\\ExampleConfig\\": [
-                "example/config/"
-            ],
             "Pith\\PhtmlViewAdapter\\": [
                 "src/plugins/phtml-view-adapter/src/"
             ]
