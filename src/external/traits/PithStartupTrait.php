@@ -9,7 +9,7 @@
 # ===================================================================
 
 
-// Pith Version Trait
+// Pith Startup Trait
 // ------------------
 
 
@@ -19,10 +19,11 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-trait PithVersionTrait
+trait PithStartupTrait
 {
-    public function version()
+    public function start()
     {
-        return "Pith Framework: rv 0.6.5.0 | sv 0.9.0 | Rewrite UF";
+        // Run the framework normally
+        $this->runAppRouteByUrl();
     }
 }

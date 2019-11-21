@@ -9,7 +9,7 @@
 # ===================================================================
 
 
-// Pith Version Trait
+// Pith Problem Trait
 // ------------------
 
 
@@ -19,10 +19,10 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-trait PithVersionTrait
+trait PithProblemTrait
 {
-    public function version()
+    public function problem($problem_name, ...$info)
     {
-        return "Pith Framework: rv 0.6.5.0 | sv 0.9.0 | Rewrite UF";
+        $this->problem_handler->handleProblem($problem_name, ...$info);
     }
 }
