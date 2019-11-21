@@ -14,10 +14,10 @@ declare(strict_types=1);
 // Pith View Runner for .phtml views
 // ---------------------------------
 
-namespace Pith\Framework\Adapter\Phtml;
+namespace Pith\PhtmlViewAdapter;
 
 
-class PithViewRunnerForPhtml
+class PithPhtmlViewRunner
 {
     protected $app;
     protected $is_layout;

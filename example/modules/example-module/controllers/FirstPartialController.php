@@ -23,6 +23,13 @@ namespace Pith\ExampleModule;
 
 class FirstPartialController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
 {
+    function __construct(\Pith\PhtmlViewAdapter\PithPhtmlViewAdapter $view_adapter)
+    {
+        $this->view_adapter = $view_adapter;
+
+        parent::__construct();
+    }
+
     public function access()
     {
         $this->access_level = 'world';
@@ -49,8 +56,5 @@ class FirstPartialController extends \Pith\Framework\PithController implements \
         $p = $prepare->p;
 
         $this->view->p = $p;
-
-        $view_adapter = $app->container->get('\\Pith\\Framework\\Adapter\\Phtml\\PithAdapterForPhtml');
-        $this->view_adapter = $view_adapter;
     }
 }
