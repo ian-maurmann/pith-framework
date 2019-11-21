@@ -14,10 +14,10 @@ declare(strict_types=1);
 // Pith Adapter for .phtml views
 // -----------------------------
 
-namespace Pith\Framework\Adapter\Phtml;
+namespace Pith\PhtmlViewAdapter;
 
 
-class PithAdapterForPhtml
+class PithPhtmlViewAdapter
 {
     // Objects
     public $app;
@@ -30,7 +30,7 @@ class PithAdapterForPhtml
     protected $content_route;
 
 
-    function __construct(PithViewRunnerForPhtml $view_runner)
+    function __construct(PithPhtmlViewRunner $view_runner)
     {
         // objects
         $this->view_runner = $view_runner;

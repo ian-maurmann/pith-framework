@@ -23,7 +23,13 @@ namespace Pith\Framework;
 
 interface PithAppInterface
 {
-    public function whereAmI();
     public function start();
-    public function runModuleRoute($module_name, $route_name);
+
+    public function runLayout($layout_route_path, $page_route);
+    public function runContent($content_route);
+    public function runPartial($app_route_path);
+
+    public function problem($problem_name, ...$info);
+
+    public function version();
 }

@@ -8,18 +8,25 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-declare(strict_types=1);
-
 
 // Pith App
 // --------
 
+
+declare(strict_types=1);
+
+
 namespace Pith\Framework;
+
 
 use Pith\Framework\Internal\PithProblemHandler;
 
+
 class PithApp implements PithAppInterface
 {
+    use PithStartupTrait;
+    use PithRunTrait;
+    use PithProblemTrait;
     use PithVersionTrait;
 
     public $container;
@@ -59,76 +66,6 @@ class PithApp implements PithAppInterface
         $this->problem_handler->init($this);
     }
 
-
-    public function whereAmI()
-    {
-        return "Pith App";
-    }
-
-    //-----------------------------------------------
-
-    public function start()
-    {
-        // Run the framework normally
-
-
-        // Get the route
-        $route = $this->router->routeByUrl();
-
-
-        // Run everything for the route.
-        $this->dispatcher->dispatch($route);
-    }
-
-    //-----------------------------------------------
-
-    public function runLayout($layout_route_path, $page_route)
-    {
-        // Get the layout route
-        $layout_route = $this->router->routeByAppPath($layout_route_path);
-
-        // Run everything for the layout route
-        $this->dispatcher->dispatch($layout_route, $page_route);
-    }
-
-    public function runContent($content_route)
-    {
-        // Run everything for the content route
-        $this->dispatcher->dispatch_route($content_route);
-    }
-
-    public function runPartial($app_route_path)
-    {
-        $this->runAppRoute($app_route_path);
-    }
-
-    //-----------------------------------------------
-
-    public function runAppRoute($app_route_path)
-    {
-        // Get the route
-        $route = $this->router->routeByAppPath($app_route_path);
-
-        // Run everything for the route.
-        $this->dispatcher->dispatch($route);
-    }
-
-
-    public function runModuleRoute($module_name, $route_name)
-    {
-        // Run a specific route without checking the url
-
-        // TODO
-    }
-
-
-    //-----------------------------------------------
-
-
-    public function problem($problem_name, ...$info)
-    {
-        $this->problem_handler->handleProblem($problem_name, ...$info);
-    }
 }
 
 
