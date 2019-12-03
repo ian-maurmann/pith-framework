@@ -5,11 +5,12 @@ Another framework for PHP
 
 # :warning: **(Not ready yet)** :warning:
 
-This is a rewrite of an old framework I was working on in 2009-2010. I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!
+This is a rewrite of an old framework I was working on in 2008 to 2014. I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!
 
 
 Release status | sv | rv | Can I use?
 -------------- | -- | -- | ----------
+Rewrite UF            | sv 0.9.0 | rv 0.6.5.0 | :warning: *Only use for testing and experimentation. Not for production*
 Rewrite Pre-Alpha 8   | sv 0.8.0 | rv 0.6.4.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 7   | sv 0.7.0 | rv 0.6.3.0 | :warning: *Not yet*
 Rewrite Pre-Alpha 6   | sv 0.6.1 | rv 0.6.2.1 | :warning: *Not yet*
@@ -29,19 +30,19 @@ See http://pith-framework.org/versions for more info.
 - [x] <del>App Object</del>
 - [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
 - [x] <del>Logger</del> ([Monolog](https://github.com/Seldaek/monolog))
-- [x] <del>Config Object</del> :wrench:
+- [x] <del>Config Object</del>
 - [ ] Authenticator Object
 - [ ] Access Control Object
 - [x] <del>Router Object</del> :wrench:
-- [x] <del>Dispatcher Object</del> :wrench:
-- [x] <del>Modules</del> (except for layouts)
+- [x] <del>Dispatcher Object</del>
+- [x] <del>Modules</del>
 - [x] <del>Routes</del>
 - [ ] Access Levels
 - [x] <del>Injectors</del>
 - [x] <del>Actions</del>
 - [x] <del>Preparers</del>
-- [x] <del>Views<del> :wrench: (Work-in-progress)
-- [x] <del>Layouts<del> :wrench:
+- [x] <del>Views</del> (.phtml only right now)
+- [x] <del>Layouts</del>
 
 
 
