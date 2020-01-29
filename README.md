@@ -1,31 +1,29 @@
 # Pith Framework
+
 Website: http://pith-framework.org/
 
-Another framework for PHP
 
 # :warning: **(Not ready yet)** :warning:
 
-This is a rewrite of an old framework I was working on in 2008 to 2014. I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!
+This is a rewrite of an old framework I was working on in 2008 to 2014. <del>I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!</del>
+
+The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet. 
 
 
-Release status | sv | rv | Can I use?
--------------- | -- | -- | ----------
-Rewrite UF            | sv 0.9.0 | rv 0.6.5.0 | :warning: *Only use for testing and experimentation. Not for production*
-Rewrite Pre-Alpha 8   | sv 0.8.0 | rv 0.6.4.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 7   | sv 0.7.0 | rv 0.6.3.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 6   | sv 0.6.1 | rv 0.6.2.1 | :warning: *Not yet*
-Rewrite Pre-Alpha 5   | sv 0.6.0 | rv 0.6.2.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | sv 0.4.0 | rv 0.6.0.3 | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | sv 0.3.0 | rv 0.6.0.2 | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | sv 0.2.0 | rv 0.6.0.1 | :warning: *Not yet*
-(2nd) Initial Rewrite | sv 0.1.0 | rv 0.6.0.0 | :warning: *Not yet*
+For right now you'll want to pick something full-featured instead:
 
-See http://pith-framework.org/versions for more info.
+i.e: [Symfony](https://symfony.com/), [Laravel](https://laravel.com/), [Slim](https://www.slimframework.com/), [Cake](https://cakephp.org/) or [Zend](https://framework.zend.com/) / [Laminas](https://getlaminas.org/)
 
+Check back later at the end of Alpha though!
 
+---
+
+# Pith Framework
+Website: http://pith-framework.org/
 
 # TODO:
+
+##### Rewrite TODO
 
 - [x] <del>App Object</del>
 - [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
@@ -45,8 +43,69 @@ See http://pith-framework.org/versions for more info.
 - [x] <del>Layouts</del>
 
 
+##### Alpha TODO
+
+Router:
+- [ ] Switch to FastRoute
+
+Database:
+- [ ] Database Wrapper Object using PDO
+- [ ] Database Query Objects
+
+User System:
+- [ ] User System Setup / Install / Uninstall
+- [ ] User Creation
+- [ ] User Login / Logout
+- [ ] User Info
+- [ ] User Events
+
+Event System:
+- [ ] Event System Setup / Install / Uninstall
+- [ ] Event Creation
+- [ ] Event Jobs
+
+Job Queue (& Cron) System:
+- [ ] Job Queue Setup / Install / Uninstall
+- [ ] Job Queue
+- [ ] Job Worker
+
+Notification System:
+- [ ] Email Notifications / Install / Uninstall
+- [ ] Email Notifications
+
+Panel System:
+- [ ] Webmaster Panel
+- [ ] Dev Panel
+- [ ] Admin Panel
+- [ ] Mod Panel
+- [ ] Config Settings
+- [ ] Page Route Management
+- [ ] Database Management
+- [ ] User Management
+- [ ] Event System Management
+- [ ] Job Queue / Cron Management
+- [ ] Notification System Management
+
+Content System:
+- [ ] Setup / Install / Uninstall
+- [ ] Author Panel
+- [ ] Editor Panel
+- [ ] Text Content
+- [ ] Media Content
+- [ ] Content Version Control / Branching
+- [ ] Include/Transclude Content
+
+Thread / Post System:
+- [ ] Setup / Install / Uninstall
+- [ ] Thread
+- [ ] Thread Info
+- [ ] Post
+- [ ] Post Version Control
+
+
 
 ---
+
 
 # Install to your project (NOT READY YET):
 
@@ -102,3 +161,43 @@ $ ls
 - *Problem:* `Warning: require(vendor/autoload.php): failed to open stream: No such file or directory`
 - *What's happening:* Autoloading isn't there, Composer isn't installed correctly for the project.
 - *Fix:* Install or re-install composer to the directory, then run:  `$ php composer.phar install`
+
+
+---
+
+
+Release status | sv | rv | Can I use?
+-------------- | -- | -- | ----------
+Alpha 23              | sv 0.9.1  | rv 0.7.0.0 | (MVP) Stable, but not production-ready
+Rewrite UF            | sv 0.9.0  | rv 0.6.5.0 | :warning: *Only use for testing and experimentation. Not for production*
+Rewrite Pre-Alpha 8   | sv 0.8.0  | rv 0.6.4.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 7   | sv 0.7.0  | rv 0.6.3.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 6   | sv 0.6.1  | rv 0.6.2.1 | :warning: *Not yet*
+Rewrite Pre-Alpha 5   | sv 0.6.0  | rv 0.6.2.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 4   | sv 0.5.0  | rv 0.6.1.0 | :warning: *Not yet*
+Rewrite Pre-Alpha 3   | sv 0.4.0  | rv 0.6.0.3 | :warning: *Not yet*
+Rewrite Pre-Alpha 2   | sv 0.3.0  | rv 0.6.0.2 | :warning: *Not yet*
+Rewrite Pre-Alpha 1   | sv 0.2.0  | rv 0.6.0.1 | :warning: *Not yet*
+(2nd) Initial Rewrite | sv 0.1.0  | rv 0.6.0.0 | :warning: *Not yet*
+
+See http://pith-framework.org/versions for more info.
+
+
+---
+
+### Release Notes:
+
+
+**0.7.0.0 - Alpha 23** *(Semver: 0.9.1)*
+
+
+This is a rewrite of an old framework I was working on in 2008 to 2014.
+
+The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet. 
+
+
+---
+
+Thanks for reading! -- Ian M.
+
+---
