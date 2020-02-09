@@ -23,7 +23,7 @@ Website: http://pith-framework.org/
 
 # TODO:
 
-See the [TODO list](doc/todo-0.7.0.0-alpha.md) for Alpha
+See the [TODO list](doc/todo-index.md)
 
 ---
 
