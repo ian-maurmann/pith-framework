@@ -7,7 +7,7 @@ Website: http://pith-framework.org/
 
 This is a rewrite of an old framework I was working on in 2008 to 2014. <del>I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!</del>
 
-The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet. 
+The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
 
 
 For right now you'll want to pick something full-featured instead:
@@ -23,86 +23,7 @@ Website: http://pith-framework.org/
 
 # TODO:
 
-##### Rewrite TODO
-
-- [x] <del>App Object</del>
-- [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
-- [x] <del>Logger</del> ([Monolog](https://github.com/Seldaek/monolog))
-- [x] <del>Config Object</del>
-- [ ] Authenticator Object
-- [ ] Access Control Object
-- [x] <del>Router Object</del> :wrench:
-- [x] <del>Dispatcher Object</del>
-- [x] <del>Modules</del>
-- [x] <del>Routes</del>
-- [ ] Access Levels
-- [x] <del>Injectors</del>
-- [x] <del>Actions</del>
-- [x] <del>Preparers</del>
-- [x] <del>Views</del> (.phtml only right now)
-- [x] <del>Layouts</del>
-
-
-##### Alpha TODO
-
-Router:
-- [ ] Switch to FastRoute
-
-Database:
-- [ ] Database Wrapper Object using PDO
-- [ ] Database Query Objects
-
-User System:
-- [ ] User System Setup / Install / Uninstall
-- [ ] User Creation
-- [ ] User Login / Logout
-- [ ] User Info
-- [ ] User Events
-
-Event System:
-- [ ] Event System Setup / Install / Uninstall
-- [ ] Event Creation
-- [ ] Event Jobs
-
-Job Queue (& Cron) System:
-- [ ] Job Queue Setup / Install / Uninstall
-- [ ] Job Queue
-- [ ] Job Worker
-
-Notification System:
-- [ ] Email Notifications / Install / Uninstall
-- [ ] Email Notifications
-
-Panel System:
-- [ ] Webmaster Panel
-- [ ] Dev Panel
-- [ ] Admin Panel
-- [ ] Mod Panel
-- [ ] Config Settings
-- [ ] Page Route Management
-- [ ] Database Management
-- [ ] User Management
-- [ ] Event System Management
-- [ ] Job Queue / Cron Management
-- [ ] Notification System Management
-
-Content System:
-- [ ] Setup / Install / Uninstall
-- [ ] Author Panel
-- [ ] Editor Panel
-- [ ] Text Content
-- [ ] Media Content
-- [ ] Content Version Control / Branching
-- [ ] Include/Transclude Content
-
-Thread / Post System:
-- [ ] Setup / Install / Uninstall
-- [ ] Thread
-- [ ] Thread Info
-- [ ] Post
-- [ ] Post Version Control
-
-
+See the [TODO list](doc/todo-0.7.0.0-alpha.md) for Alpha
 
 ---
 
@@ -193,7 +114,7 @@ See http://pith-framework.org/versions for more info.
 
 This is a rewrite of an old framework I was working on in 2008 to 2014.
 
-The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet. 
+The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
 
 
 ---
