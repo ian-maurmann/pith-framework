@@ -1,4 +1,9 @@
-# TODO:
+
+[All ToDo Lists](todo-index.md) | [Next >>>](todo-0.7.0.0-alpha.md)
+
+---
+
+# TODO (0.6)
 
 ##### Rewrite TODO
 
