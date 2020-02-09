@@ -11,40 +11,30 @@
 declare(strict_types=1);
 
 
-// Pith Config
-// -----------
+// Pith Route
+// ----------
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
-class PithConfig implements PithConfigInterface
+class PithRoute
 {
-    public  $profile;
-
-    private $route_list;
+    public $route_name;
+    public $route_type;
+    public $use_layout;
+    public $layout_app_route_name;
+    public $controller_name_with_namespace;
+    public $module_object;
+    public $module_name_with_namespace;
+    public $module_directory_full_path;
+    public $view_relative_path;
+    public $view_full_path;
 
     public function whereAmI()
     {
-        return "Pith Config";
+        return "Pith Route";
     }
 
-
-
-    public function setConfigByObject($config_object)
-    {
-        $this->profile = $config_object->getConfigProfile();
-    }
-
-    public function setRouteListByObject($route_list_object)
-    {
-        $this->route_list = $route_list_object->getRouteList();
-    }
-
-    public function getRouteList(){
-        return $this->route_list;
-    }
 
 
 
 }
-
-

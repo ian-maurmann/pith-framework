@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,18 +8,25 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-declare(strict_types=1);
-
 
 // Pith App
 // --------
 
+
+declare(strict_types=1);
+
+
 namespace Pith\Framework;
+
 
 use Pith\Framework\Internal\PithProblemHandler;
 
+
 class PithApp implements PithAppInterface
 {
+    use PithStartupTrait;
+    use PithRunTrait;
+    use PithProblemTrait;
     use PithVersionTrait;
 
     public $container;
@@ -34,7 +41,13 @@ class PithApp implements PithAppInterface
     public $problem_handler;
 
 
-    function __construct(PithRequestProcessor $request_processor, PithConfig $config, PithRouter $router, PithDispatcher $dispatcher, PithProblemHandler $problem_handler)
+    function __construct(
+        PithRequestProcessor $request_processor,
+        PithConfig           $config,
+        PithRouter           $router,
+        PithDispatcher       $dispatcher,
+        PithProblemHandler   $problem_handler
+    )
     {
         $this->container         = null;
         $this->log               = null;
@@ -53,39 +66,6 @@ class PithApp implements PithAppInterface
         $this->problem_handler->init($this);
     }
 
-
-    public function whereAmI()
-    {
-        return "Pith App";
-    }
-
-
-    public function start()
-    {
-        // Run the framework normally
-
-
-        // Get the route
-        $route = $this->router->getRoute();
-
-
-        // Run everything for the route.
-        $this->dispatcher->dispatch($route);
-    }
-
-
-    public function runRoute($module_name, $route_name)
-    {
-        // Run a specific route without checking the url
-
-
-
-    }
-
-    public function problem($problem_name, ...$info)
-    {
-        $this->problem_handler->handleProblem($problem_name, ...$info);
-    }
 }
 
 

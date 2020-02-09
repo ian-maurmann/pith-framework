@@ -9,10 +9,8 @@
 # ===================================================================
 
 
-
-// Pith Config Interface
-// ---------------------
-
+// Pith Startup Trait
+// ------------------
 
 
 declare(strict_types=1);
@@ -21,7 +19,11 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-interface PithConfigInterface
+trait PithStartupTrait
 {
-    public function whereAmI();
+    public function start()
+    {
+        // Run the framework normally
+        $this->runAppRouteByUrl();
+    }
 }
