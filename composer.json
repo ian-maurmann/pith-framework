@@ -33,6 +33,9 @@
             ],
             "Pith\\PhtmlViewAdapter\\": [
                 "src/plugins/phtml-view-adapter/src/"
+            ],
+            "Pith\\DatabaseWrapper\\": [
+                "src/plugins/database-wrapper/src/"
             ]
         }
     }
