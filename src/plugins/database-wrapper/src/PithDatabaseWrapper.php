@@ -19,6 +19,47 @@ namespace Pith\DatabaseWrapper;
 
 class PithDatabaseWrapper
 {
+    private $dsn;
+    private $options;
+    private $did_connect;
+    private $pdo;
+
+    function __construct()
+    {
+        // Initial vars:
+
+        $this->did_connect = false;
+
+        $this->dsn = '';
+
+        $this->options = [
+            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            \PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+    }
+
+    public function setDsn($dsn)
+    {
+        $this->dsn = $dsn;
+    }
+
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    public function getStatus()
+    {
+        $status = 'Not Connected';
+
+        if($this->did_connect){
+            $status = 'Connected to ' . $this->pdo->getAttribute(\PDO::ATTR_CONNECTION_STATUS);
+        }
+
+        return $status;
+    }
+
     public function whereAmI()
     {
         return 'Pith Database Wrapper';
