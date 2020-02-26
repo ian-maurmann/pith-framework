@@ -87,19 +87,20 @@ $ ls
 ---
 
 
-Release status | sv | rv | Can I use?
+Release status | Version | Semver | Can I use?
 -------------- | -- | -- | ----------
-Alpha 23              | sv 0.9.1  | rv 0.7.0.0 | (MVP) Stable, but not production-ready
-Rewrite UF            | sv 0.9.0  | rv 0.6.5.0 | :warning: *Only use for testing and experimentation. Not for production*
-Rewrite Pre-Alpha 8   | sv 0.8.0  | rv 0.6.4.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 7   | sv 0.7.0  | rv 0.6.3.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 6   | sv 0.6.1  | rv 0.6.2.1 | :warning: *Not yet*
-Rewrite Pre-Alpha 5   | sv 0.6.0  | rv 0.6.2.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 4   | sv 0.5.0  | rv 0.6.1.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | sv 0.4.0  | rv 0.6.0.3 | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | sv 0.3.0  | rv 0.6.0.2 | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | sv 0.2.0  | rv 0.6.0.1 | :warning: *Not yet*
-(2nd) Initial Rewrite | sv 0.1.0  | rv 0.6.0.0 | :warning: *Not yet*
+Alpha 24              | rv 0.7.0.1 | *sv 0.10.0* | Stable, but not production-ready
+Alpha 23              | rv 0.7.0.0 | *sv 0.9.1*  | (MVP) Stable, but not production-ready
+Rewrite UF            | rv 0.6.5.0 | *sv 0.9.0*  | :warning: *Only use for testing and experimentation. Not for production*
+Rewrite Pre-Alpha 8   | rv 0.6.4.0 | *sv 0.8.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 7   | rv 0.6.3.0 | *sv 0.7.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 6   | rv 0.6.2.1 | *sv 0.6.1*  | :warning: *Not yet*
+Rewrite Pre-Alpha 5   | rv 0.6.2.0 | *sv 0.6.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 4   | rv 0.6.1.0 | *sv 0.5.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 3   | rv 0.6.0.3 | *sv 0.4.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 2   | rv 0.6.0.2 | *sv 0.3.0*  | :warning: *Not yet*
+Rewrite Pre-Alpha 1   | rv 0.6.0.1 | *sv 0.2.0*  | :warning: *Not yet*
+(2nd) Initial Rewrite | rv 0.6.0.0 | *sv 0.1.0*  | :warning: *Not yet*
 
 See http://pith-framework.org/versions for more info.
 
@@ -107,6 +108,11 @@ See http://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.0.1 - Alpha 24** *(Semver: 0.10.0)*
+
+- Getting started on the Database object. 
+- Updated the copyright notices to include 2020.
 
 
 **0.7.0.0 - Alpha 23** *(Semver: 0.9.1)*
