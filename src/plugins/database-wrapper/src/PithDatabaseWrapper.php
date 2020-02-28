@@ -19,6 +19,7 @@ namespace Pith\DatabaseWrapper;
 
 class PithDatabaseWrapper
 {
+    private $helper;
     private $dsn;
     private $options;
     private $did_connect;
@@ -26,22 +27,27 @@ class PithDatabaseWrapper
     private $db_user_username;
     private $db_user_password;
     private $connection_problems;
+    private $query_problems;
+    private $results_handle;
+    private $statement_handle;
 
-    function __construct()
+    function __construct( PithDatabaseWrapperHelper $helper )
     {
+        // Objects
+        $this->helper = $helper;
+
         // Initial vars:
-
         $this->did_connect = false;
-
         $this->dsn = '';
+        $this->connection_problems = '';
+        $this->query_problems = '';
 
+        // Default options
         $this->options = [
             \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
             \PDO::ATTR_EMULATE_PREPARES   => false,
         ];
-
-        $this->connection_problems = '';
     }
 
 
@@ -105,5 +111,39 @@ class PithDatabaseWrapper
     {
         return 'Pith Database Wrapper';
     }
+
+    public function query()
+    {
+        $results        = false;
+        $number_of_args = func_num_args();
+
+        try{
+            if($number_of_args === 1) {
+                $sql = func_get_arg(0);
+                $this->results_handle = $this->pdo->query($sql);
+                $results = $this->results_handle->fetchAll(\PDO::FETCH_ASSOC);
+            }
+            elseif($number_of_args > 1){
+                $sql          = func_get_arg(0);
+                $param_args   = array_splice(func_get_args(), 1);
+                $query_params = $this->helper->flattenArgs($param_args);
+
+                $this->statement_handle = $this->pdo->prepare($sql);
+                $this->statement_handle->execute($query_params);
+                $results = $this->statement_handle->fetchAll(\PDO::FETCH_ASSOC);
+            }
+            elseif(!$number_of_args){
+                // TODO
+                $this->query_problems .= 'Query problem: No query to run. ';
+            }
+        }
+        catch(\PDOException $exception){
+            $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+        }
+
+        return $results;
+    }
+
+
 
 }
