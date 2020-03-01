@@ -16,10 +16,12 @@ declare(strict_types=1);
 
 namespace Pith\DatabaseWrapper;
 
+use Pith\InternalUtilities\PithErrorUtility;
 
 class PithDatabaseWrapper
 {
     private $helper;
+    private $error_utility;
     private $dsn;
     private $options;
     private $did_connect;
@@ -30,17 +32,20 @@ class PithDatabaseWrapper
     private $query_problems;
     private $results_handle;
     private $statement_handle;
+    private $last_query;
 
-    function __construct( PithDatabaseWrapperHelper $helper )
+    function __construct(PithDatabaseWrapperHelper $helper, PithErrorUtility $error_utility)
     {
         // Objects
-        $this->helper = $helper;
+        $this->helper        = $helper;
+        $this->error_utility = $error_utility;
 
         // Initial vars:
         $this->did_connect = false;
         $this->dsn = '';
         $this->connection_problems = '';
         $this->query_problems = '';
+        $this->last_query = '';
 
         // Default options
         $this->options = [
@@ -120,14 +125,17 @@ class PithDatabaseWrapper
         try{
             if($number_of_args === 1) {
                 $sql = func_get_arg(0);
+                $this->last_query = $sql;
                 $this->results_handle = $this->pdo->query($sql);
                 $results = $this->results_handle->fetchAll(\PDO::FETCH_ASSOC);
             }
             elseif($number_of_args > 1){
                 $sql          = func_get_arg(0);
-                $param_args   = array_splice(func_get_args(), 1);
+                $args         = func_get_args();
+                $param_args   = array_splice($args, 1);
                 $query_params = $this->helper->flattenArgs($param_args);
 
+                $this->last_query = $sql;
                 $this->statement_handle = $this->pdo->prepare($sql);
                 $this->statement_handle->execute($query_params);
                 $results = $this->statement_handle->fetchAll(\PDO::FETCH_ASSOC);
@@ -143,6 +151,49 @@ class PithDatabaseWrapper
 
         return $results;
     }
+
+
+    private function listPossibleProblems()
+    {
+        $error               = error_get_last();
+        $connection_problems = strlen($this->connection_problems) ? $this->connection_problems : 'none';
+        $query_problems      = strlen($this->query_problems) ? $this->query_problems : 'none';
+        $other_problems      = 'none';
+
+        if (is_array($error)){
+            $error_type    = $this->error_utility->getErrorTypeByValue($error['type']);
+            $error_message = $error['message'];
+            $error_file    = $error['file'];
+            $error_line    = $error['line'];
+
+            $other_problems = $error_type . ': "' . $error_message . '", in file "' . $error_file . '" on line ' . $error_line . '.';
+        }
+
+        $problems = [
+            'connection' => $connection_problems,
+            'query'      => $query_problems,
+            'other'      => $other_problems,
+        ];
+
+        return $problems;
+    }
+
+
+    public function debug()
+    {
+        $problems            = $this->listPossibleProblems();
+        $connection_problems = $problems['connection'];
+        $query_problems      = $problems['query'];
+        $other_problems      = $problems['other'];
+        $did_connect_yn      = ($this->did_connect) ? 'yes' : 'no' ;
+        $status              = $this->getStatus();
+        $last_query          = $this->last_query;
+
+        $html = $this->helper->generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query);
+
+        return $html;
+    }
+
 
 
 

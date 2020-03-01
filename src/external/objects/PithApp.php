@@ -20,6 +20,7 @@ namespace Pith\Framework;
 
 
 use Pith\Framework\Internal\PithProblemHandler;
+use Pith\DatabaseWrapper\PithDatabaseWrapper;
 
 
 class PithApp implements PithAppInterface
@@ -33,6 +34,7 @@ class PithApp implements PithAppInterface
     public $log;
     public $request_processor;
     public $config;
+    public $db;
     public $registry;
     public $authenticator;
     public $access_control;
@@ -44,6 +46,7 @@ class PithApp implements PithAppInterface
     function __construct(
         PithRequestProcessor $request_processor,
         PithConfig           $config,
+        PithDatabaseWrapper  $db,
         PithRouter           $router,
         PithDispatcher       $dispatcher,
         PithProblemHandler   $problem_handler
@@ -53,6 +56,7 @@ class PithApp implements PithAppInterface
         $this->log               = null;
         $this->request_processor = $request_processor;
         $this->config            = $config;
+        $this->db                = $db;
         $this->registry          = null;
         $this->authenticator     = null;
         $this->access_control    = null;

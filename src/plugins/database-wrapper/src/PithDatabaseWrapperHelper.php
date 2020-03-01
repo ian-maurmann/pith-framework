@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 
 // Pith Database Wrapper Helper
-// -----------------------------------------
+// ----------------------------
 
 namespace Pith\DatabaseWrapper;
 
@@ -25,7 +25,8 @@ class PithDatabaseWrapperHelper
         // Nothing for now
     }
 
-    public function flattenArgs($args){
+    public function flattenArgs($args)
+    {
         $flat_args = [];
 
         foreach($args as $arg){
@@ -40,6 +41,50 @@ class PithDatabaseWrapperHelper
         }
 
         return $flat_args;
+    }
+
+
+    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query)
+    {
+        $htmlsafe_connection_problems = htmlentities($connection_problems);
+        $htmlsafe_query_problems      = htmlentities($query_problems);
+        $htmlsafe_other_problems      = htmlentities($other_problems);
+        $htmlsafe_did_connect_yn      = htmlentities($did_connect_yn);
+        $htmlsafe_status              = htmlentities($status);
+        $htmlsafe_last_query          = htmlentities($last_query);
+
+        $html = '<table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Connection Problems</td>
+                            <td>' . $htmlsafe_connection_problems . '</td>
+                        </tr>
+                        <tr>
+                            <td>Did connect?</td>
+                            <td>' . $htmlsafe_did_connect_yn . '</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>' . $htmlsafe_status . '</td>
+                        </tr>
+                        <tr>
+                            <td>Last Query SQL</td>
+                            <td>' . $htmlsafe_last_query . '</td>
+                        </tr>
+                        <tr>
+                            <td>Query Problems</td>
+                            <td>' . $htmlsafe_query_problems . '</td>
+                        </tr>
+                        <tr>
+                            <td>Other Problems</td>
+                            <td>' . $htmlsafe_other_problems . '</td>
+                        </tr>
+                    </tbody>
+                 </table>';
+
+        return $html;
     }
 
 
