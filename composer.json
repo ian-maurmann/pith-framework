@@ -36,6 +36,9 @@
             ],
             "Pith\\DatabaseWrapper\\": [
                 "src/plugins/database-wrapper/src/"
+            ],
+            "Pith\\InternalUtilities\\": [
+                "src/plugins/internal-utilities/src/"
             ]
         }
     }
