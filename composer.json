@@ -3,7 +3,10 @@
     "description": "Pith Framework - Another simple framework for PHP sites",
     "require": {
         "php": "^7.1",
-        "php-di/php-di": "^6"
+        "php-di/php-di": "^6",
+        "monolog/monolog": "^1.24",
+        "robmorgan/phinx": "^0.11.1",
+        "fzaninotto/faker": "^1.9"
     },
     "license": "MPL-2.0",
     "authors": [
@@ -17,7 +20,26 @@
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/objects/", "src/interfaces/", "src/traits/"]
+            "Pith\\Framework\\": [
+                "src/external/objects/",
+                "src/external/interfaces/",
+                "src/external/traits/",
+                "src/external/extend/"
+            ],
+            "Pith\\Framework\\Internal\\": [
+                "src/internal/objects/",
+                "src/internal/interfaces/",
+                "src/internal/traits/"
+            ],
+            "Pith\\PhtmlViewAdapter\\": [
+                "src/plugins/phtml-view-adapter/src/"
+            ],
+            "Pith\\DatabaseWrapper\\": [
+                "src/plugins/database-wrapper/src/"
+            ],
+            "Pith\\InternalUtilities\\": [
+                "src/plugins/internal-utilities/src/"
+            ]
         }
     }
 }
