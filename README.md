@@ -88,7 +88,8 @@ $ ls
 
 
 Release status | Version | Semver | Can I use?
--------------- | -- | -- | ----------
+-------------- | ------- | ------ | ----------
+Alpha 25              | rv 0.7.0.2 | *sv 0.11.0* | Stable, but not production-ready
 Alpha 24              | rv 0.7.0.1 | *sv 0.10.0* | Stable, but not production-ready
 Alpha 23              | rv 0.7.0.0 | *sv 0.9.1*  | (MVP) Stable, but not production-ready
 Rewrite UF            | rv 0.6.5.0 | *sv 0.9.0*  | :warning: *Only use for testing and experimentation. Not for production*
@@ -108,6 +109,11 @@ See http://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.0.2 - Alpha 25** *(Semver: 0.11.0)*
+
+- Database Wrapper object using PDO.
+
 
 **0.7.0.1 - Alpha 24** *(Semver: 0.10.0)*
 
