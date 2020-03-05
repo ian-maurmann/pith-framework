@@ -21,43 +21,26 @@ namespace Pith\Framework;
 
 class PithQuery
 {
-    private $sql;
-    private $params;
+    private $app;
 
 
     function __construct()
     {
-        // initialize
-        $this->reset();
+        // Do nothing for now
     }
 
 
-    public function reset()
+    public function setApp($app)
     {
-        $this->sql    = '';
-        $this->params = [];
+        $this->app = $app;
     }
 
 
-    public function setParams()
+    public function run()
     {
-        // OVERRIDE THIS FOR PREPARED QUERIES
+        // OVERRIDE
 
-        // Do nothing for now.
-    }
-
-
-    public function getSql()
-    {
-        // OVERRIDE THIS FOR NON-PREPARED QUERIES
-
-        return $this->sql;
-    }
-
-
-    public function getParams()
-    {
-        return $this->params;
+        // Do nothing for now
     }
 
 
@@ -69,6 +52,7 @@ class PithQuery
 
         return $r;
     }
+
 
     protected function paramCount($array)
     {
