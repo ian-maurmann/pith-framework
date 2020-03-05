@@ -8,21 +8,28 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// Pith App Helper
+// ---------------
 
 
-trait PithVersionTrait
+namespace Pith\Framework\Internal;
+
+
+class PithAppHelper
 {
-    public function version()
+    function __construct()
     {
-        return "Pith Framework: rv 0.7.0.2 | sv 0.11.0 | Alpha 25";
+        // Do nothing for now
+    }
+
+    public function initializeDependencies($app)
+    {
+        $app->request_processor->init($app);
+        $app->router->init($app);
+        $app->dispatcher->init($app);
+        $app->problem_handler->init($app);
     }
 }

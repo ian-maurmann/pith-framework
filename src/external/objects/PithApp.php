@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithProblemHandler;
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
 
@@ -29,6 +30,8 @@ class PithApp implements PithAppInterface
     use PithRunTrait;
     use PithProblemTrait;
     use PithVersionTrait;
+
+    private $helper;
 
     public $container;
     public $log;
@@ -44,6 +47,7 @@ class PithApp implements PithAppInterface
 
 
     function __construct(
+        PithAppHelper        $helper,
         PithRequestProcessor $request_processor,
         PithConfig           $config,
         PithDatabaseWrapper  $db,
@@ -52,6 +56,7 @@ class PithApp implements PithAppInterface
         PithProblemHandler   $problem_handler
     )
     {
+        $this->helper            = $helper;
         $this->container         = null;
         $this->log               = null;
         $this->request_processor = $request_processor;
@@ -64,10 +69,7 @@ class PithApp implements PithAppInterface
         $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
 
-        $this->request_processor->init($this);
-        $this->router->init($this);
-        $this->dispatcher->init($this);
-        $this->problem_handler->init($this);
+        $helper->initializeDependencies($this);
     }
 
 }
