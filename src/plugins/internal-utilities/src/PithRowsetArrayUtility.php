@@ -8,20 +8,33 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-
-// Pith Controller Interface
-// -------------------------
-
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// Pith Rowset Array Utility
+// -------------------------
+
+namespace Pith\InternalUtilities;
 
 
-interface PithControllerInterface
+class PithRowsetArrayUtility
 {
-    public function whereAmI();
+
+    function __construct()
+    {
+        // Do nothing for now.
+    }
+
+
+    public function getRowByFieldValue($rows, $field_name, $field_value)
+    {
+        $r     = null;
+        $index = array_search($field_value, array_column($rows, $field_name), true );
+
+        if($index !== false){
+            $r = $rows[$index];
+        }
+
+        return $r;
+    }
 }

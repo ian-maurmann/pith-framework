@@ -11,35 +11,30 @@
 declare(strict_types=1);
 
 
-// Pith Request Helper
-// -------------------
+// Pith Route
+// ----------
 
 namespace Pith\Framework\Internal;
 
-class PithRequestHelper
+class PithRoute
 {
+    public $route_name;
+    public $route_type;
+    public $use_layout;
+    public $layout_app_route_name;
+    public $controller_name_with_namespace;
+    public $module_object;
+    public $module_name_with_namespace;
+    public $module_directory_full_path;
+    public $view_relative_path;
+    public $view_full_path;
 
-    /**
-     * @return string
-     */
     public function whereAmI()
     {
-        return "Pith Request Helper";
+        return "Pith Route";
     }
 
 
-    /**
-     * @param $uri_string
-     * @return array
-     */
-    public function breakUriIntoPathAndQuery($uri_string)
-    {
-        $uri_parts     = explode('?', (string) $uri_string, 2);
-        $request_path  = (string) $uri_parts[0];
-        $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
-
-        return array($request_path, $request_query);
-    }
 
 
 }

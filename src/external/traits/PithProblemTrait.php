@@ -9,10 +9,8 @@
 # ===================================================================
 
 
-
-// Pith Controller Interface
-// -------------------------
-
+// Pith Problem Trait
+// ------------------
 
 
 declare(strict_types=1);
@@ -21,7 +19,10 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-interface PithControllerInterface
+trait PithProblemTrait
 {
-    public function whereAmI();
+    public function problem($problem_name, ...$info)
+    {
+        $this->problem_handler->handleProblem($problem_name, ...$info);
+    }
 }
