@@ -9,7 +9,7 @@
 # ===================================================================
 
 
-// Pith Query (extend)
+// Pith Access Control
 // -------------------
 
 
@@ -19,47 +19,29 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-class PithQuery
+use Pith\Framework\Internal\PithAccessLevelFactory;
+
+
+class PithAccessControl
 {
     private $app;
+    private $access_level_factory;
+    private $access_levels;
 
-
-    function __construct()
+    function __construct(PithAccessLevelFactory $access_level_factory)
     {
-        // Do nothing for now
+        // Objects:
+        $this->access_level_factory = $access_level_factory;
+
+        // Initial vars:
+        $this->access_levels = [];
     }
 
-
-    public function setApp($app)
+    public function init($app)
     {
         $this->app = $app;
-    }
 
-
-    public function run()
-    {
-        // OVERRIDE
-
-        // Do nothing for now
-    }
-
-
-    protected function paramList($count)
-    {
-        $separator = ', ';
-        $fill      = '?';
-        $r         = implode($separator, array_fill(0, (int) $count, $fill));
-
-        return $r;
-    }
-
-
-    protected function paramCount($array)
-    {
-        $count = count($array);
-        $r     = $this->paramList($count);
-
-        return $r;
+        $this->access_level_factory->setApp($app);
     }
 
 

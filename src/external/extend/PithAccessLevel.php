@@ -8,29 +8,21 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+// Pith Access Level (extend)
+// --------------------------
+
+
 declare(strict_types=1);
 
 
-// Pith App Helper
-// ---------------
+namespace Pith\Framework;
 
 
-namespace Pith\Framework\Internal;
-
-
-class PithAppHelper
+class PithAccessLevel
 {
     function __construct()
     {
-        // Do nothing for now
-    }
-
-    public function initializeDependencies($app)
-    {
-        $app->request_processor->init($app);
-        $app->access_control->init($app);
-        $app->router->init($app);
-        $app->dispatcher->init($app);
-        $app->problem_handler->init($app);
+        // Do nothing for now.
     }
 }
