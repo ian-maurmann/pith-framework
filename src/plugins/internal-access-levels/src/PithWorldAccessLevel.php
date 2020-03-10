@@ -11,26 +11,31 @@
 declare(strict_types=1);
 
 
-// Pith App Helper
-// ---------------
+// 'world' Access Level
+// --------------------
+
+namespace Pith\InternalAccessLevels;
 
 
-namespace Pith\Framework\Internal;
-
-
-class PithAppHelper
+class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
 {
     function __construct()
     {
-        // Do nothing for now
+        // Do nothing for now.
     }
 
-    public function initializeDependencies($app)
+
+    public function getName()
     {
-        $app->request_processor->init($app);
-        $app->access_control->init($app);
-        $app->router->init($app);
-        $app->dispatcher->init($app);
-        $app->problem_handler->init($app);
+        return 'world';
+    }
+
+
+    public function isAllowedToAccess()
+    {
+        // "world" access;
+        $is_allowed = true;
+
+        return $is_allowed;
     }
 }

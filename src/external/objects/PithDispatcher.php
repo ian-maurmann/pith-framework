@@ -100,7 +100,7 @@ class PithDispatcher
 
 
         // Get the access level
-        $access_level = $controller->getAccessLevel();
+        $access_level_name = $controller->getAccessLevel();
 
 
         // Clear the access level
@@ -109,11 +109,26 @@ class PithDispatcher
 
         // TODO: process the access here
 
+        $is_allowed = $this->app->access_control->isAllowedToAccess($access_level_name);
+
+        if(!$is_allowed){
+            // If not logged in:
+            $this->app->problem('Pith_Provisional_Error_C3_000', $route->route_name, $route->controller_name_with_namespace, $access_level_name);
+
+            // If logged in: // TODO
+            // Pith_Provisional_Error_C3_001 // TODO
+        }
 
 //        echo '<hr/>';
+//
 //        echo '<h3>Access Level</h3>';
 //        echo '<pre><code>';
-//        var_dump($access_level);
+//        var_dump($access_level_name);
+//        echo '</code></pre>';
+//
+//        echo '<h3>Is Allowed</h3>';
+//        echo '<pre><code>';
+//        var_dump($is_allowed);
 //        echo '</code></pre>';
 
 

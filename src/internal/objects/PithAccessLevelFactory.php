@@ -9,58 +9,47 @@
 # ===================================================================
 
 
-// Pith Query (extend)
-// -------------------
+// Pith Access Level Factory
+// -------------------------
 
 
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 
-class PithQuery
+class PithAccessLevelFactory
 {
     private $app;
 
 
     function __construct()
     {
-        // Do nothing for now
+        // Do nothing for now.
     }
-
 
     public function setApp($app)
     {
         $this->app = $app;
     }
 
-
-    public function run()
+    public function getAccessLevel($access_level_name)
     {
-        // OVERRIDE
+        $access_level = false;
 
-        // Do nothing for now
+        if($access_level_name === 'none'){
+            // TODO
+        }
+        elseif($access_level_name === 'world'){
+            $access_level = $this->app->container->get('\\Pith\\InternalAccessLevels\\PithWorldAccessLevel');
+        }
+
+
+        if(is_object($access_level)){
+            $access_level->setApp($this->app);
+        }
+
+        return $access_level;
     }
-
-
-    protected function paramList($count)
-    {
-        $separator = ', ';
-        $fill      = '?';
-        $r         = implode($separator, array_fill(0, (int) $count, $fill));
-
-        return $r;
-    }
-
-
-    protected function paramCount($array)
-    {
-        $count = count($array);
-        $r     = $this->paramList($count);
-
-        return $r;
-    }
-
-
 }
