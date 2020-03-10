@@ -8,42 +8,34 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Access Level (extend)
-// --------------------------
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// 'world' Access Level
+// --------------------
+
+namespace Pith\InternalAccessLevels;
 
 
-class PithAccessLevel
+class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
 {
-    private $app;
-
-
     function __construct()
     {
         // Do nothing for now.
     }
 
 
-    public function setApp($app)
-    {
-        $this->app = $app;
-    }
-
-
     public function getName()
     {
-        return 'NOT NAMED';
+        return 'world';
     }
 
 
     public function isAllowedToAccess()
     {
-        return false;
+        // "world" access;
+        $is_allowed = true;
+
+        return $is_allowed;
     }
 }

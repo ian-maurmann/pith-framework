@@ -44,5 +44,15 @@ class PithAccessControl
         $this->access_level_factory->setApp($app);
     }
 
+    public function isAllowedToAccess($access_level_name)
+    {
+        $is_allowed          = false;
+        $access_level_object = $this->access_level_factory->getAccessLevel($access_level_name);
 
+        if(is_object($access_level_object)) {
+            $is_allowed = $access_level_object->isAllowedToAccess();
+        }
+
+        return $is_allowed;
+    }
 }

@@ -33,4 +33,23 @@ class PithAccessLevelFactory
     {
         $this->app = $app;
     }
+
+    public function getAccessLevel($access_level_name)
+    {
+        $access_level = false;
+
+        if($access_level_name === 'none'){
+            // TODO
+        }
+        elseif($access_level_name === 'world'){
+            $access_level = $this->app->container->get('\\Pith\\InternalAccessLevels\\PithWorldAccessLevel');
+        }
+
+
+        if(is_object($access_level)){
+            $access_level->setApp($this->app);
+        }
+
+        return $access_level;
+    }
 }
