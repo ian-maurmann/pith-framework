@@ -17,10 +17,12 @@ declare(strict_types=1);
 namespace Pith\DatabaseWrapper;
 
 use Pith\InternalUtilities\PithErrorUtility;
+use Pith\InternalUtilities\PithArrayUtility;
 
 class PithDatabaseWrapper
 {
     private $helper;
+    private $array_utility;
     private $error_utility;
     private $dsn;
     private $options;
@@ -34,10 +36,11 @@ class PithDatabaseWrapper
     private $statement_handle;
     private $last_query;
 
-    function __construct(PithDatabaseWrapperHelper $helper, PithErrorUtility $error_utility)
+    function __construct(PithDatabaseWrapperHelper $helper, PithArrayUtility $array_utility, PithErrorUtility $error_utility)
     {
         // Objects
         $this->helper        = $helper;
+        $this->array_utility = $array_utility;
         $this->error_utility = $error_utility;
 
         // Initial vars:
@@ -194,7 +197,21 @@ class PithDatabaseWrapper
         return $html;
     }
 
-
+//    public function run($query_object)
+//    {
+//        $params      = $this->array_utility->flatten( $query_object->getParams() );
+//        $sql         = $query_object->getSql();
+//        $is_prepared = (count($params) > 0) ? true : false ;
+//
+//        if($is_prepared){
+//            $results = $this->query($sql, $params);
+//        }
+//        else{
+//            $results = $this->query($sql);
+//        }
+//
+//        return $results;
+//    }
 
 
 }
