@@ -8,21 +8,34 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// 'world' Access Level
+// --------------------
+
+namespace Pith\InternalAccessLevels;
 
 
-trait PithVersionTrait
+class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
 {
-    public function version()
+    function __construct()
     {
-        return "Pith Framework: rv 0.7.1.0 | sv 0.12.0 | Alpha 26";
+        // Do nothing for now.
+    }
+
+
+    public function getName()
+    {
+        return 'world';
+    }
+
+
+    public function isAllowedToAccess()
+    {
+        // "world" access;
+        $is_allowed = true;
+
+        return $is_allowed;
     }
 }

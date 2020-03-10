@@ -8,21 +8,35 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// Pith Array Utility
+// ------------------
+
+namespace Pith\InternalUtilities;
 
 
-trait PithVersionTrait
+class PithArrayUtility
 {
-    public function version()
+
+    function __construct()
     {
-        return "Pith Framework: rv 0.7.1.0 | sv 0.12.0 | Alpha 26";
+        // Do nothing for now.
+    }
+
+
+    function flatten($array, $return = [])
+    {
+        foreach ($array as $item) {
+            if(is_array($item)){
+                $return = $this->flatten($item, $return);
+            }
+            else{
+                $return[] = $item;
+            }
+        }
+
+        return $return;
     }
 }

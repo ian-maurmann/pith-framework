@@ -9,8 +9,8 @@
 # ===================================================================
 
 
-// Pith Version Trait
-// ------------------
+// Pith Access Level (extend)
+// --------------------------
 
 
 declare(strict_types=1);
@@ -19,10 +19,31 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-trait PithVersionTrait
+class PithAccessLevel
 {
-    public function version()
+    private $app;
+
+
+    function __construct()
     {
-        return "Pith Framework: rv 0.7.1.0 | sv 0.12.0 | Alpha 26";
+        // Do nothing for now.
+    }
+
+
+    public function setApp($app)
+    {
+        $this->app = $app;
+    }
+
+
+    public function getName()
+    {
+        return 'NOT NAMED';
+    }
+
+
+    public function isAllowedToAccess()
+    {
+        return false;
     }
 }
