@@ -89,6 +89,7 @@ $ ls
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 26              | rv 0.7.1.0 | *sv 0.12.0* | Stable, but not production-ready
 Alpha 25              | rv 0.7.0.2 | *sv 0.11.0* | Stable, but not production-ready
 Alpha 24              | rv 0.7.0.1 | *sv 0.10.0* | Stable, but not production-ready
 Alpha 23              | rv 0.7.0.0 | *sv 0.9.1*  | (MVP) Stable, but not production-ready
@@ -109,6 +110,14 @@ See http://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.1.0 - Alpha 26** *(Semver: 0.12.0)*
+
+- Access Control.
+- Access Levels.
+- 'world' access level.
+- extendable Query object.
+
 
 **0.7.0.2 - Alpha 25** *(Semver: 0.11.0)*
 
