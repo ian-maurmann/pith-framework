@@ -99,7 +99,7 @@ class PithProblemList
                 'code'    => 'Pith_Provisional_Error_C3_000',
                 'message' => 'Guest request was blocked by Access Control.',
                 'detail'  => 'When the Dispatcher ran the Route "%s", the Controller "%s" has an access level of "%s" which the Access Control denied the unauthenticated guest from accessing.',
-                'level'   => 'error',
+                'level'   => 'info',
                 'status'  => '401',
             ],
 
@@ -108,7 +108,7 @@ class PithProblemList
                 'code'    => 'Pith_Provisional_Error_C3_001',
                 'message' => 'User request was blocked by Access Control.',
                 'detail'  => 'When the Dispatcher ran the Route "%s", the Controller "%s" has an access level of "%s" which the Access Control denied User "%s" from accessing.',
-                'level'   => 'error',
+                'level'   => 'info',
                 'status'  => '403',
             ],
 
