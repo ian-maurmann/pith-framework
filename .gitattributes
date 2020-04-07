@@ -1,0 +1,9 @@
+# .gitattributes
+# ==============
+
+
+
+# Make GitHub Linguist pick the right language, PHP
+# -------------------------------------------------
+* linguist-vendored
+*.php linguist-vendored=false
