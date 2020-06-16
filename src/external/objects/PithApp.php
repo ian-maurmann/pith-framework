@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -19,6 +19,8 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Pith\Framework\Internal\PithAppHelper;
+use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithProblemHandler;
 
 
@@ -29,10 +31,13 @@ class PithApp implements PithAppInterface
     use PithProblemTrait;
     use PithVersionTrait;
 
+    private $helper;
+
     public $container;
     public $log;
     public $request_processor;
     public $config;
+    public $db;
     public $registry;
     public $authenticator;
     public $access_control;
@@ -42,28 +47,30 @@ class PithApp implements PithAppInterface
 
 
     function __construct(
+        PithAppHelper        $helper,
         PithRequestProcessor $request_processor,
         PithConfig           $config,
+        PithDatabaseWrapper  $db,
+        PithAccessControl    $access_control,
         PithRouter           $router,
         PithDispatcher       $dispatcher,
         PithProblemHandler   $problem_handler
     )
     {
+        $this->helper            = $helper;
         $this->container         = null;
         $this->log               = null;
         $this->request_processor = $request_processor;
         $this->config            = $config;
+        $this->db                = $db;
         $this->registry          = null;
         $this->authenticator     = null;
-        $this->access_control    = null;
+        $this->access_control    = $access_control;
         $this->router            = $router;
         $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
 
-        $this->request_processor->init($this);
-        $this->router->init($this);
-        $this->dispatcher->init($this);
-        $this->problem_handler->init($this);
+        $helper->initializeDependencies($this);
     }
 
 }

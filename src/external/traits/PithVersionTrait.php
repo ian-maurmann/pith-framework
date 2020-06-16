@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -23,6 +23,6 @@ trait PithVersionTrait
 {
     public function version()
     {
-        return "Pith Framework: rv 0.6.5.0 | sv 0.9.0 | Rewrite UF";
+        return "Pith Framework: rv 0.7.1.0 | sv 0.12.0 | Alpha 26";
     }
 }

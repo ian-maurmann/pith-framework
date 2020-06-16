@@ -9,10 +9,8 @@
 # ===================================================================
 
 
-
-// Pith Controller Interface
-// -------------------------
-
+// Pith Access Level (extend)
+// --------------------------
 
 
 declare(strict_types=1);
@@ -21,7 +19,31 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-interface PithControllerInterface
+class PithAccessLevel
 {
-    public function whereAmI();
+    private $app;
+
+
+    function __construct()
+    {
+        // Do nothing for now.
+    }
+
+
+    public function setApp($app)
+    {
+        $this->app = $app;
+    }
+
+
+    public function getName()
+    {
+        return 'NOT NAMED';
+    }
+
+
+    public function isAllowedToAccess()
+    {
+        return false;
+    }
 }

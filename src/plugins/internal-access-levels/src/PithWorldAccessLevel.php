@@ -8,20 +8,34 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-
-// Pith Controller Interface
-// -------------------------
-
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// 'world' Access Level
+// --------------------
+
+namespace Pith\InternalAccessLevels;
 
 
-interface PithControllerInterface
+class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
 {
-    public function whereAmI();
+    function __construct()
+    {
+        // Do nothing for now.
+    }
+
+
+    public function getName()
+    {
+        return 'world';
+    }
+
+
+    public function isAllowedToAccess()
+    {
+        // "world" access;
+        $is_allowed = true;
+
+        return $is_allowed;
+    }
 }
