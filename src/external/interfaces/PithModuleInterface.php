@@ -23,7 +23,6 @@ namespace Pith\Framework;
 
 interface PithModuleInterface
 {
-    public function whereAmI();
     public function listRoutes();
     public function findRoute($route_name);
 }
