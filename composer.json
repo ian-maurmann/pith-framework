@@ -16,7 +16,6 @@
     "require-dev": {},
     "suggest": {
         "robmorgan/phinx":  "Suggested for database migrations",
-        "fzaninotto/faker": "Suggested for generating test data",
         "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
