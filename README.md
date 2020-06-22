@@ -40,7 +40,7 @@ See the [TODO list](doc/todo-index.md)
 ```json
 {
     "require": {
-        "pith/framework": "^0.6"
+        "pith/framework": "^0.13"
     }
 }
 ```
@@ -89,6 +89,7 @@ $ ls
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 27              | rv 0.7.1.1 | *sv 0.13.0* | Stable, but not production-ready
 Alpha 26              | rv 0.7.1.0 | *sv 0.12.0* | Stable, but not production-ready
 Alpha 25              | rv 0.7.0.2 | *sv 0.11.0* | Stable, but not production-ready
 Alpha 24              | rv 0.7.0.1 | *sv 0.10.0* | Stable, but not production-ready
@@ -110,6 +111,11 @@ See https://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.1.1 - Alpha 27** (`semver: 0.13.0`)
+
+- Dependency Refactor.
+- General housekeeping / code-cleanups.
 
 **0.7.1.0 - Alpha 26** *(Semver: 0.12.0)*
 
