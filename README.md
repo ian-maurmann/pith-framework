@@ -72,8 +72,8 @@ $ cd public
 $ ls
 ```
 
-- Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:9000`
-- Load `http://127.0.0.1:9000/` in your browser.
+- Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:8080`
+- Load `http://127.0.0.1:8080/` in your browser.
 - You can end the built-in PHP server by pressing `Control-C` on the keyboard.
 
 ### Problems & solutions:
