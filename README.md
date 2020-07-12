@@ -1,7 +1,9 @@
 # Pith Framework
 
-Website: https://pith-framework.org/
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
 
+---
 
 # :warning: **(Not ready yet)** :warning:
 
