@@ -132,7 +132,7 @@ See https://pith-framework.org/versions for more info.
 
 **0.7.0.1 - Alpha 24** *(Semver: 0.10.0)*
 
-- Getting started on the Database object. 
+- Getting started on the Database object.
 - Updated the copyright notices to include 2020.
 
 
@@ -147,5 +147,9 @@ The framework is basically at the "Minimum Viable Product" stage now. It works f
 ---
 
 Thanks for reading! -- Ian M.
+
+---
+
+![Packagist Downloads](https://img.shields.io/packagist/dt/pith/framework?logo=git&style=for-the-badge)
 
 ---
