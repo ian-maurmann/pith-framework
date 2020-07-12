@@ -153,7 +153,8 @@ Thanks for reading! -- Ian M.
 
 
 PHP Version Support
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?style=for-the-badge)
+
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
 
 
 Current Release:
