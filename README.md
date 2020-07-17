@@ -1,6 +1,11 @@
 # Pith Framework
 
-Website: https://pith-framework.org/
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
+
+[Website](https://pith-framework.org/) | [TODO list](doc/todo-index.md) | [Stats](doc/stats.md)
+
+---
 
 
 # :warning: **(Not ready yet)** :warning:
@@ -17,16 +22,6 @@ i.e: [Symfony](https://symfony.com/), [Laravel](https://laravel.com/), [Slim](ht
 Check back later at the end of Alpha though!
 
 ---
-
-# Pith Framework
-Website: https://pith-framework.org/
-
-# TODO:
-
-See the [TODO list](doc/todo-index.md)
-
----
-
 
 # Install to your project (NOT READY YET):
 
@@ -86,6 +81,10 @@ $ ls
 
 ---
 
+## Releases
+
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ian-maurmann/pith-framework?include_prereleases&label=Latest%20Release%20%28semver%29&logo=git&style=for-the-badge)
+![GitHub commits since latest release (by date including pre-releases)](https://img.shields.io/github/commits-since/ian-maurmann/pith-framework/latest/indev?include_prereleases&logo=git&style=for-the-badge)
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
@@ -132,7 +131,7 @@ See https://pith-framework.org/versions for more info.
 
 **0.7.0.1 - Alpha 24** *(Semver: 0.10.0)*
 
-- Getting started on the Database object. 
+- Getting started on the Database object.
 - Updated the copyright notices to include 2020.
 
 
