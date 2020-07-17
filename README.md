@@ -88,6 +88,10 @@ $ ls
 
 ---
 
+##Releases
+
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ian-maurmann/pith-framework?include_prereleases&label=Latest%20Release%20%28semver%29&logo=git&style=for-the-badge)
+![GitHub commits since latest release (by date including pre-releases)](https://img.shields.io/github/commits-since/ian-maurmann/pith-framework/latest/indev?include_prereleases&logo=git&style=for-the-badge)
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
