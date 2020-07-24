@@ -72,6 +72,7 @@ class PithCommandTool
                    . "\n║ ╔════╝ ╔═╗ ║ ╔═╝║ ╔═╗ ║"
                    . "\n║ ║      ║ ║ ║ ║  ║ ║ ║ ║"
                    . "\n╚═╝      ╚═╝ ╚═╝  ╚═╝ ╚═╝"
+                   . "\n";
         
         $signature = $green_fg . $ascii_art . $normal_fg;
         
@@ -84,17 +85,11 @@ class PithCommandTool
 
     private function initializeCommands()
     {
-        $this->conso->command("test", function($input, $output){
+        $this->conso->command("install", function($input, $output){
 
-            if($input->subCommand() == 'one')
-                exit($output->writeLn("\n hello from one \n", 'yellow'));
+            $output->writeLn("Not ready yet \n", 'red');
 
-            if($input->subCommand() == 'two')
-                $output->writeLn("hello from two \n", 'green');
-
-        })->description("This is test command description :) ^^")->sub('one', 'two');
-
-
+        })->description("Install new app (Not ready yet)");
 
 
     }
