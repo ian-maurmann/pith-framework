@@ -64,7 +64,18 @@ class PithCommandTool
 
     private function initializeSignature()
     {
-        $this->conso->setSignature("\033[32m" . "\n╔════╗\n║Test║\n╚════╝\n");
+        $green_fg  = "\033[32m";
+        $normal_fg = "\033[0m";
+        $ascii_art = "\n╔══════╗     ╔═╗  ╔═╗    "
+                   . "\n║ ╔══╗ ║ ╔═╗ ║ ║  ║ ║    "
+                   . "\n║ ╚══╝ ║ ╚═╝ ║ ╚═╗║ ╚═══╗"
+                   . "\n║ ╔════╝ ╔═╗ ║ ╔═╝║ ╔═╗ ║"
+                   . "\n║ ║      ║ ║ ║ ║  ║ ║ ║ ║"
+                   . "\n╚═╝      ╚═╝ ╚═╝  ╚═╝ ╚═╝"
+        
+        $signature = $green_fg . $ascii_art . $normal_fg;
+        
+        $this->conso->setSignature($signature);
     }
 
 
