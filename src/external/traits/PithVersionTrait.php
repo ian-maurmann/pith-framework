@@ -23,6 +23,6 @@ trait PithVersionTrait
 {
     public function version()
     {
-        return "Pith Framework: rv 0.7.1.1 | sv 0.13.0 | Alpha 27";
+        return "Pith Framework: rv 0.7.2.0 | sv 0.14.0 | Alpha 28";
     }
 }

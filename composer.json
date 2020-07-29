@@ -11,7 +11,8 @@
     "require": {
         "php": "^7.1",
         "php-di/php-di": "^6",
-        "monolog/monolog": "^1.24"
+        "monolog/monolog": "^1.24",
+        "lotfio/conso": "^1.7"
     },
     "require-dev": {},
     "suggest": {
@@ -36,6 +37,9 @@
             ],
             "Pith\\DatabaseWrapper\\": [
                 "src/plugins/database-wrapper/src/"
+            ],
+            "Pith\\CommandTool\\": [
+                "src/plugins/command-tool/src/"
             ],
             "Pith\\InternalUtilities\\": [
                 "src/plugins/internal-utilities/src/"
