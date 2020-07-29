@@ -89,6 +89,17 @@ class PithCommandTool
 
             $output->writeLn("Not ready yet \n", 'red');
 
+//            $app_name      = readline('App Name: ');
+//            $app_namespace = readline('Namespace: ');
+//
+//            $output->writeLn("\t" . '─────────────────────────────────' . "\n");
+//            $output->writeLn("\t" . "\033[32;1m" . 'App Name'  . "\033[0m" . ' = ' . "\033[31;0m" . $app_name      . "\033[0m" . "\n");
+//            $output->writeLn("\t" . "\033[32;1m" . 'Namespace' . "\033[0m" . ' = ' . "\033[31;0m" . $app_namespace . "\033[0m" . "\n");
+//            $output->writeLn("\t" . '─────────────────────────────────' . "\n");
+//
+//            $output->writeLn("Not ready yet \n", 'red');
+
+
         })->description("Install new app (Not ready yet)");
 
 
