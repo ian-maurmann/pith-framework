@@ -68,6 +68,20 @@ $ cd example/public
 - ~~Load `http://127.0.0.1:8080/` in your browser.~~
 - ~~You can end the built-in PHP server by pressing `Control-C` on the keyboard.~~
 
+# :warning: Install for for new project (Work in progress)
+
+### :warning: **(Not ready yet)** :warning:
+
+- Open the terminal and navigate to the directory your project will be in.
+- Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
+- Type `php composer.phar` to check that Composer is installed.
+- Type `php composer.phar require pith/framework` to install Pith.
+- After the composer downloads the packages, type `php composer.phar show` to make sure that `pith/framework` is in the list.
+- Type `cp vendor/pith/framework/pith .` to copy the Pith Command Tool into the current folder.
+- Type `php pith` to check that the Pith Command Tool is there.
+- Type `php pith install` **(Not ready yet)** :warning:
+
+
 ### Problems & solutions:
 
 
