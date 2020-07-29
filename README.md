@@ -73,7 +73,7 @@ $ cd example/public
 
 (Tilte) | Problem | What's happening | Fix
 ------- | ------- | ---------------- | ---
-**Autoloading not found** | `Warning: require(vendor/autoload.php): failed to open stream: No such file or directory` | Autoloading is not working. Composer isn't installed correctly for the project. | Install or re-install composer to the directory. See [installing Composer](https://getcomposer.org/download/). After composer is installed, run:  `$ php composer.phar install`
+**Autoloading not found** | `Warning: require(vendor/autoload.php): failed to open stream: No such file or directory` | Autoloading is not working. Composer isn't installed correctly for the project. | Install or re-install Composer to the directory. See [installing Composer](https://getcomposer.org/download/). After Composer is installed, run:  `$ php composer.phar install`
 
 
 ---
@@ -113,7 +113,7 @@ See https://pith-framework.org/versions for more info.
 
 - Documentation fix-ups.
 - Getting started on example setup.
-- Getting started on new CLI tool, "Pith Command Tool", using [Conso](https://github.com/lotfio/conso), that will (eventually) be able to install a empty pith framework site, verify installation, set site panel passwords, see site errors and activity, number of users per day, etc. from the command line.
+- Getting started on new CLI tool, "Pith Command Tool", using [Conso](https://github.com/lotfio/conso), that will (eventually) be able to install a empty Pith Framework site, verify installation, set site panel passwords, see site errors and activity, number of users per day, etc. from the command line.
 
 
 **0.7.1.1 - Alpha 27** `(semver: v0.13.0)`
