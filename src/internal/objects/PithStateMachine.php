@@ -9,8 +9,8 @@
 # ===================================================================
 
 
-// Pith State Enum
-// ---------------
+// Pith State Machine
+// ------------------
 
 
 declare(strict_types=1);
@@ -19,20 +19,21 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
-use MyCLabs\Enum\Enum;
-
-
-/**
- * Class PithStateEnum
- * @package Pith\Framework\Internal
- *
- * @method static PithStateEnum INITIALIZED()
- * @method static PithStateEnum ROUTING()
- * @method static PithStateEnum DISPATCHING()
- */
-class PithStateEnum extends Enum
+class PithStateMachine
 {
-    private const INITIALIZED = "initialized";
-    private const ROUTING     = "routing";
-    private const DISPATCHING = "dispatching";
+    use PithAppReferenceTrait;
+
+    private $state;
+    private $state_enum;
+
+
+    function __construct(PithStateEnum $state_enum)
+    {
+        // Add objects
+        $this->state_enum = $state_enum;
+
+        // Initial values
+        $this->state = $this->state_enum::INITIALIZED();
+    }
+
 }
