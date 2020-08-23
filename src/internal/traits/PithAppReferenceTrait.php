@@ -9,8 +9,8 @@
 # ===================================================================
 
 
-// Pith State Enum
-// ---------------
+// Pith App Reference Trait
+// ------------------------
 
 
 declare(strict_types=1);
@@ -19,20 +19,22 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
-use MyCLabs\Enum\Enum;
+use Pith\Framework\PithAppInterface;
 
 
-/**
- * Class PithStateEnum
- * @package Pith\Framework\Internal
- *
- * @method static PithStateEnum INITIALIZED()
- * @method static PithStateEnum ROUTING()
- * @method static PithStateEnum DISPATCHING()
- */
-class PithStateEnum extends Enum
+trait PithAppReferenceTrait
 {
-    private const INITIALIZED = "initialized";
-    private const ROUTING     = "routing";
-    private const DISPATCHING = "dispatching";
+    public $app;
+
+
+    public function setAppReference(PithAppInterface $app)
+    {
+        $this->app = $app;
+    }
+
+
+    public function unsetAppReference()
+    {
+        $this->app = null;
+    }
 }
