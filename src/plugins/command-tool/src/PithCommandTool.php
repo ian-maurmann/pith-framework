@@ -100,8 +100,34 @@ class PithCommandTool
 //            $output->writeLn("Not ready yet \n", 'red');
 
 
-        })->description("Install new app (Not ready yet)");
+        })->description("Install new app. (Not ready yet)");
 
+
+
+        $this->conso->command("verify", function($input, $output){
+
+            $output->writeLn("Cannot verify \n", 'red');
+
+        })->description("Verify the app's installation. (Not ready yet)");
+
+
+        $this->conso->command("assert", function($input, $output){
+
+
+            if($input->subCommand() == 'pith_json_exists') {
+                $output->writeLn("Cannot assert that pith.json exists \n", 'red');
+            }
+            elseif($input->subCommand() == 'pith_config_exists') {
+                $output->writeLn("Cannot assert that Config exists \n", 'red');
+            }
+            else {
+                $output->writeLn("Cannot assert \n", 'red');
+            }
+
+        })->description("Assert that parts of the app exist and appear to work. (Not ready yet)")->sub(
+            'pith_json_exists',
+            'pith_config_exists'
+            );
 
     }
 
