@@ -67,16 +67,16 @@
         },
         {
             "name": "lotfio/conso",
-            "version": "1.7.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lotfio/conso.git",
-                "reference": "9d542173b706c082bfbe98664badd75d37569caa"
+                "reference": "bd8b68fd59bd5e794bb089f707caa3a60007d08b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lotfio/conso/zipball/9d542173b706c082bfbe98664badd75d37569caa",
-                "reference": "9d542173b706c082bfbe98664badd75d37569caa",
+                "url": "https://api.github.com/repos/lotfio/conso/zipball/bd8b68fd59bd5e794bb089f707caa3a60007d08b",
+                "reference": "bd8b68fd59bd5e794bb089f707caa3a60007d08b",
                 "shasum": ""
             },
             "require-dev": {
@@ -99,7 +99,7 @@
                 }
             ],
             "description": "console applications for cool kids",
-            "time": "2020-07-28T15:43:08+00:00"
+            "time": "2020-08-04T20:53:59+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -226,16 +226,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.7.0",
+            "version": "v4.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300"
+                "reference": "658f1be311a230e0907f5dfe0213742aff0596de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/658f1be311a230e0907f5dfe0213742aff0596de",
+                "reference": "658f1be311a230e0907f5dfe0213742aff0596de",
                 "shasum": ""
             },
             "require": {
@@ -243,8 +243,8 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.5",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -252,7 +252,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.7-dev"
+                    "dev-master": "4.9-dev"
                 }
             },
             "autoload": {
@@ -274,7 +274,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-07-25T13:18:53+00:00"
+            "time": "2020-09-26T10:30:38+00:00"
         },
         {
             "name": "php-di/invoker",
@@ -517,7 +517,7 @@
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.18.0",
+            "version": "v1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
@@ -577,7 +577,7 @@
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.18.0",
+            "version": "v1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
