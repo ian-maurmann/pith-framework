@@ -103,6 +103,7 @@ $ cd example/public
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 29              | 0.7.3.0 | *sv 0.15.0* | Stable, but not production-ready
 Alpha 28              | 0.7.2.0 | *sv 0.14.0* | Stable, but not production-ready
 Alpha 27              | 0.7.1.1 | *sv 0.13.0* | Stable, but not production-ready
 Alpha 26              | 0.7.1.0 | *sv 0.12.0* | Stable, but not production-ready
@@ -126,6 +127,13 @@ See https://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.3.0 - Alpha 29** `(semver: v0.15.0)`
+
+- More documentation fix-ups.
+- Working on installer, with command tool: `php pith install`
+- New "pith.json" file, that will store info about the app for the installer and command tool.
+
 
 **0.7.2.0 - Alpha 28** `(semver: v0.14.0)`
 
