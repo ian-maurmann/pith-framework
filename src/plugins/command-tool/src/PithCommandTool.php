@@ -19,14 +19,33 @@ declare(strict_types=1);
 namespace Pith\CommandTool;
 
 use Conso;
+use DI\Container;
+use Pith\PithDotJson\PithDotJsonService;
 
 class PithCommandTool
 {
     private $conso;
 
+    private $php_di_container;
+    private $pith_dot_json_service;
+
     function __construct()
     {
+        // Forget what files exist / don't exist
+        clearstatcache();
 
+        // Setup new PHP-DI Container
+        $php_di_container = new \DI\Container();
+
+        // Create objects
+        $pith_dot_json_service = $php_di_container->get('\\Pith\\PithDotJson\\PithDotJsonService');
+
+        // Add objects to this
+        $this->php_di_container      = $php_di_container;
+        $this->pith_dot_json_service = $pith_dot_json_service;
+
+        // Set up defaults
+        $this->pith_dot_json_service->setLocation('.');
     }
 
     public function start()
@@ -87,7 +106,7 @@ class PithCommandTool
     {
         $this->conso->command("install", function($input, $output){
 
-            $output->writeLn("Not ready yet \n", 'red');
+//            $output->writeLn("Not ready yet \n", 'red');
 
 //            $app_name      = readline('App Name: ');
 //            $app_namespace = readline('Namespace: ');
@@ -99,9 +118,122 @@ class PithCommandTool
 //
 //            $output->writeLn("Not ready yet \n", 'red');
 
+            // Header
+            $output->writeLn('╔═══════════════════╗' . "\n");
+            $output->writeLn('║ Pith Installer    ║' . "\n");
+            $output->writeLn('║ (Not ready yet)   ║' . "\n");
+            $output->writeLn('╚═══════════════════╝' . "\n");
 
-        })->description("Install new app (Not ready yet)");
 
+            $run_yn = readline('Run the Installer? (Y/N): ');
+            $run    = (strtolower($run_yn) === 'y') ? true : false ;
+
+            if($run) {
+                // Vars
+                $php_di_container = new \DI\Container();
+                $pith_dot_json_service = $php_di_container->get('\\Pith\\PithDotJson\\PithDotJsonService');
+                $pith_dot_json_service->setLocation('.');
+                $does_pith_dot_json_exist = $pith_dot_json_service->doesPithDotJsonExist();
+
+                $output->writeLn("┯ Start install \n", 'yellow');
+                $output->writeLn("├┐ \n", 'yellow');
+                $output->writeLn("│├ Checking for pith.json\n", 'yellow');
+
+                // Show pith.json exists
+                if ($does_pith_dot_json_exist) {
+                    $output->writeLn("│└ pith.json exists \n", 'white');
+                } else {
+                    $output->writeLn("│├ pith.json does not exists \n", 'white');
+                }
+
+                // Create new pith.json
+                if (!$does_pith_dot_json_exist) {
+                    $create_new_pith_dot_json_yn = readline('│┝█ Create new pith.json file? (Y/N): ');
+                    $create_new_pith_dot_json = (strtolower($create_new_pith_dot_json_yn) === 'y') ? true : false;
+
+                    if ($create_new_pith_dot_json) {
+                        $output->writeLn("│└┐ \n", 'white');
+                        $output->writeLn("│ ├ Creating new pith.json \n", 'yellow');
+
+                        $app_name    = readline('│ ┝█ App Name (string): ');
+                        $public_path = readline('│ ┝█ Public Folder (relative path): ');
+
+//                        $output->writeLn("│ ├ Generating json... \n", 'yellow');
+//
+//                        $pith_dot_json_data = [
+//                            'app_name' => $app_name,
+//                            'public_path' => $public_path,
+//                        ];
+//
+//                        $pith_dot_json_data_json = json_encode($pith_dot_json_data);
+
+                        $output->writeLn("│ ├ Creating file... \n", 'yellow');
+
+                        $pith_dot_json_service->createNewPithDotJson($app_name, $public_path);
+
+                        $was_pith_dot_json_created = $pith_dot_json_service->doesPithDotJsonExist();
+
+                        if($was_pith_dot_json_created){
+                            $output->writeLn("│ └ Created pith.json \n", 'white');
+                        }
+                        else{
+                            $output->writeLn("│ └ Failed to create pith.json file, Cannot install \n", 'red');
+                        }
+
+
+                    } else {
+                        $output->writeLn("│└ No pith.json file, Cannot install \n", 'red');
+
+                    }
+                }
+
+                $output->writeLn("┷ End install \n", 'yellow');
+            }
+
+        })->description("Install new app. (Not ready yet)");
+
+
+
+        $this->conso->command("verify", function($input, $output){
+
+            $output->writeLn("Cannot verify \n", 'red');
+
+        })->description("Verify the app's installation. (Not ready yet)");
+
+
+        $this->conso->command("assert", function($input, $output){
+
+
+            if($input->subCommand() == 'pith_json_exists') {
+                // $output->writeLn("Cannot assert that pith.json exists \n", 'red');
+
+                $php_di_container = new \DI\Container();
+                $pith_dot_json_service = $php_di_container->get('\\Pith\\PithDotJson\\PithDotJsonService');
+                $pith_dot_json_service->setLocation('.');
+                $does_pith_dot_json_exist = $pith_dot_json_service->doesPithDotJsonExist();
+
+
+                if($does_pith_dot_json_exist){
+                    $output->writeLn("pith.json exists \n", 'green');
+                }
+                else{
+                    $output->writeLn("pith.json does not exists \n", 'red');
+                }
+
+
+
+            }
+            elseif($input->subCommand() == 'pith_config_exists') {
+                $output->writeLn("Cannot assert that Config exists \n", 'red');
+            }
+            else {
+                $output->writeLn("Cannot assert \n", 'red');
+            }
+
+        })->description("Assert that parts of the app exist and appear to work. (Not ready yet)")->sub(
+            'pith_json_exists',
+            'pith_config_exists'
+            );
 
     }
 

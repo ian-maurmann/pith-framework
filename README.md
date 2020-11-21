@@ -10,9 +10,13 @@
 
 # :warning: **(Not ready yet)** :warning:
 
-This is a rewrite of an old framework I was working on in 2008 to 2014. <del>I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!</del>
+Pith Framework is a PHP web application framework, provided under the terms of the MPL 2.0 license. Pith Framework uses a design pattern similar to MVC and ADR: (Route, Action, Model, Preparer, View).
 
-The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
+Pith Framework requires PHP 7.1 or newer, running on a LAMP environment. 
+
+Support for Windows Server and IIS is planned. The framework currently runs on MacOS without problems although it is not "officially" supported at this time. After PHP 8 GA (Nov 26 2020), Pith Framework will upgrade to PHP 8 will after the framework's dependencies ([PHP-DI](https://github.com/PHP-DI/PHP-DI), [Monolog](https://github.com/Seldaek/monolog), [My C-Labs' PHP Enum](https://github.com/myclabs/php-enum), and [Conso](https://github.com/lotfio/conso)).
+
+This is a rewrite of an old framework I was working on in 2008 to 2014. The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
 
 
 For right now you'll want to pick something full-featured instead:
