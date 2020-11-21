@@ -9,20 +9,31 @@
 # ===================================================================
 
 
-// Pith Version Trait
+// Pith State Machine
 // ------------------
 
 
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 
-trait PithVersionTrait
+class PithStateMachine
 {
-    public function version()
+    use PithAppReferenceTrait;
+
+    private $state;
+    private $state_enum;
+
+
+    function __construct(PithStateEnum $state_enum)
     {
-        return "Pith Framework: rv 0.7.3.0 | sv 0.15.0 | Alpha 29";
+        // Add objects
+        $this->state_enum = $state_enum;
+
+        // Initial values
+        $this->state = $this->state_enum::INITIALIZED();
     }
+
 }

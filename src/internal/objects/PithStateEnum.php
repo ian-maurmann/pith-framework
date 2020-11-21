@@ -9,20 +9,30 @@
 # ===================================================================
 
 
-// Pith Version Trait
-// ------------------
+// Pith State Enum
+// ---------------
 
 
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 
-trait PithVersionTrait
+use MyCLabs\Enum\Enum;
+
+
+/**
+ * Class PithStateEnum
+ * @package Pith\Framework\Internal
+ *
+ * @method static PithStateEnum INITIALIZED()
+ * @method static PithStateEnum ROUTING()
+ * @method static PithStateEnum DISPATCHING()
+ */
+class PithStateEnum extends Enum
 {
-    public function version()
-    {
-        return "Pith Framework: rv 0.7.3.0 | sv 0.15.0 | Alpha 29";
-    }
+    private const INITIALIZED = "initialized";
+    private const ROUTING     = "routing";
+    private const DISPATCHING = "dispatching";
 }

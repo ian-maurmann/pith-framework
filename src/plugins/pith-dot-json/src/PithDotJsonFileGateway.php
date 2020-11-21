@@ -8,21 +8,19 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
-
-
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+// pith.json File Gateway
+// ----------------------
+
+namespace Pith\PithDotJson;
 
 
-trait PithVersionTrait
+class PithDotJsonFileGateway
 {
-    public function version()
+    function __construct()
     {
-        return "Pith Framework: rv 0.7.3.0 | sv 0.15.0 | Alpha 29";
+
     }
 }

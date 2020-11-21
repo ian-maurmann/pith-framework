@@ -9,20 +9,32 @@
 # ===================================================================
 
 
-// Pith Version Trait
-// ------------------
+// Pith App Reference Trait
+// ------------------------
 
 
 declare(strict_types=1);
 
 
-namespace Pith\Framework;
+namespace Pith\Framework\Internal;
 
 
-trait PithVersionTrait
+use Pith\Framework\PithAppInterface;
+
+
+trait PithAppReferenceTrait
 {
-    public function version()
+    public $app;
+
+
+    public function setAppReference(PithAppInterface $app)
     {
-        return "Pith Framework: rv 0.7.3.0 | sv 0.15.0 | Alpha 29";
+        $this->app = $app;
+    }
+
+
+    public function unsetAppReference()
+    {
+        $this->app = null;
     }
 }
