@@ -10,6 +10,8 @@
     "license": "MPL-2.0",
     "require": {
         "php": "^7.1",
+        "ext-readline": "*",
+        "ext-json": "*",
         "php-di/php-di": "^6",
         "monolog/monolog": "^1.24",
         "lotfio/conso": "^1.7",
@@ -41,6 +43,9 @@
             ],
             "Pith\\CommandTool\\": [
                 "src/plugins/command-tool/src/"
+            ],
+            "Pith\\PithDotJson\\": [
+                "src/plugins/pith-dot-json/src/"
             ],
             "Pith\\InternalUtilities\\": [
                 "src/plugins/internal-utilities/src/"
