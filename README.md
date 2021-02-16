@@ -11,7 +11,7 @@
 
 ---
 
-##Install:
+## Install:
 
 - Open the terminal and navigate to the directory your project will be in.
 - Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
