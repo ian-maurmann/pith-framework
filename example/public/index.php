@@ -4,7 +4,7 @@
 // --------------------------------
 
 // Switch folders
-chdir('../'); // Switch to whatever folder you want to run the App from.
+chdir('../../'); // Switch to whatever folder you want to run the App from.
 
 
 // Auto-Load
