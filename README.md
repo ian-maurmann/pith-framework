@@ -11,7 +11,20 @@
 
 ---
 
-## Install:
+This framework is a work-in-progress proof-of-concept.
+
+If you're looking for a framework to use for your project, please check out:
+[Symfony](https://symfony.com/),
+[Laravel](https://laravel.com/),
+[Zend / Laminas](https://getlaminas.org/),
+[Slim](https://www.slimframework.com/),
+[Cake](https://cakephp.org/),
+or [CodeIgniter](https://codeigniter.com/) instead.
+
+
+
+
+## Install
 
 - Open the terminal and navigate to the directory your project will be in.
 - Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
