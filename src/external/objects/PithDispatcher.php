@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -45,9 +45,26 @@ class PithDispatcher
         return 'Pith Dispatcher';
     }
 
+    public function dispatch($route, $secondary_route=null)
+    {
+        if($route->route_type === 'layout'){
+            $this->dispatch_route($route, $secondary_route);
+        }
+        elseif($route->route_type === 'page' || $route->route_type === 'error-page'){
+            if($route->use_layout){
+                $this->app->runLayout($route->layout_app_route_name, $route);
+            }
+            else{
+                $this->dispatch_route($route);
+            }
+        }
+        elseif($route->route_type === 'partial'){
+            $this->dispatch_route($route);
+        }
 
+    }
 
-    public function dispatch($route)
+    public function dispatch_route($route, $secondary_route=null)
     {
         // Start the output buffer
         ob_start();
@@ -83,7 +100,7 @@ class PithDispatcher
 
 
         // Get the access level
-        $access_level = $controller->getAccessLevel();
+        $access_level_name = $controller->getAccessLevel();
 
 
         // Clear the access level
@@ -92,11 +109,26 @@ class PithDispatcher
 
         // TODO: process the access here
 
+        $is_allowed = $this->app->access_control->isAllowedToAccess($access_level_name);
+
+        if(!$is_allowed){
+            // If not logged in:
+            $this->app->problem('Pith_Provisional_Error_C3_000', $route->route_name, $route->controller_name_with_namespace, $access_level_name);
+
+            // If logged in: // TODO
+            // Pith_Provisional_Error_C3_001 // TODO
+        }
 
 //        echo '<hr/>';
+//
 //        echo '<h3>Access Level</h3>';
 //        echo '<pre><code>';
-//        var_dump($access_level);
+//        var_dump($access_level_name);
+//        echo '</code></pre>';
+//
+//        echo '<h3>Is Allowed</h3>';
+//        echo '<pre><code>';
+//        var_dump($is_allowed);
 //        echo '</code></pre>';
 
 
@@ -203,8 +235,15 @@ class PithDispatcher
 
         $view_full_path = $route->view_full_path;
 
+        $view_adapter->setApp($this->app);
         $view_adapter->setFilePath($view_full_path);
         $view_adapter->setVars($view);
+
+        if(!empty($secondary_route)){
+            $view_adapter->setIsLayout(true);
+            $view_adapter->setContentRoute($secondary_route);
+        }
+
         $view_adapter->run();
 
         // - - - - - - - - - - - -

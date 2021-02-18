@@ -72,7 +72,7 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->view->b = $b;
         $this->view->c = $c;
 
-        $view_adapter = $app->container->get('\\Pith\\Framework\\Adapter\\Phtml\\PithAdapterForPhtml');
+        $view_adapter = $app->container->get('\\Pith\\PhtmlViewAdapter\\PithPhtmlViewAdapter');
         $this->view_adapter = $view_adapter;
     }
 }

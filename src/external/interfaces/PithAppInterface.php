@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -23,7 +23,13 @@ namespace Pith\Framework;
 
 interface PithAppInterface
 {
-    public function whereAmI();
     public function start();
-    public function runRoute($module_name, $route_name);
+
+    public function runLayout($layout_route_path, $page_route);
+    public function runContent($content_route);
+    public function runPartial($app_route_path);
+
+    public function problem($problem_name, ...$info);
+
+    public function version();
 }

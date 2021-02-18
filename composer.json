@@ -1,20 +1,27 @@
 {
     "name": "pith/framework",
     "description": "Pith Framework - Another simple framework for PHP sites",
-    "require": {
-        "php": "^7.1",
-        "php-di/php-di": "^6",
-        "monolog/monolog": "^1.24"
-    },
-    "license": "MPL-2.0",
     "authors": [
         {
             "name": "Ian Maurmann",
             "role": "Developer"
         }
     ],
-    "require-dev": {
-        "phpunit/phpunit": "^7"
+    "license": "MPL-2.0",
+    "require": {
+        "php": "^7.1",
+        "ext-readline": "*",
+        "ext-json": "*",
+        "php-di/php-di": "^6",
+        "monolog/monolog": "^1.24",
+        "lotfio/conso": "^1.7",
+        "myclabs/php-enum": "^1.7",
+        "ikm/copyright-year-utility":"^0.1"
+    },
+    "require-dev": {},
+    "suggest": {
+        "robmorgan/phinx":  "Suggested for database migrations",
+        "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
         "psr-4": {
@@ -29,8 +36,23 @@
                 "src/internal/interfaces/",
                 "src/internal/traits/"
             ],
-            "Pith\\Framework\\Adapter\\Phtml\\": [
-                "src/plugins/view-adapters/phtml-adapter"
+            "Pith\\PhtmlViewAdapter\\": [
+                "src/plugins/phtml-view-adapter/src/"
+            ],
+            "Pith\\DatabaseWrapper\\": [
+                "src/plugins/database-wrapper/src/"
+            ],
+            "Pith\\CommandTool\\": [
+                "src/plugins/command-tool/src/"
+            ],
+            "Pith\\PithDotJson\\": [
+                "src/plugins/pith-dot-json/src/"
+            ],
+            "Pith\\InternalUtilities\\": [
+                "src/plugins/internal-utilities/src/"
+            ],
+            "Pith\\InternalAccessLevels\\": [
+                "src/plugins/internal-access-levels/src/"
             ],
             "Pith\\ExampleModule\\": [
                 "example/modules/example-module/",

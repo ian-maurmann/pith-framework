@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>
+        My Page Title
+    </title>
+</head>
+<body>
+    <h1>
+        First Layout
+    </h1>
+
+    <hr/>
+
+    <p>
+        <?php echo $this->app->runContent($this->content_route); ?>
+    </p>
+
+    <hr/>
+        <?php echo $this->app->runPartial('/partial/first'); ?>
+    <hr/>
+</body>
+</html>
