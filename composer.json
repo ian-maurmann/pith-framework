@@ -15,7 +15,8 @@
         "php-di/php-di": "^6",
         "monolog/monolog": "^1.24",
         "lotfio/conso": "^1.7",
-        "myclabs/php-enum": "^1.7"
+        "myclabs/php-enum": "^1.7",
+        "ikm/copyright-year-utility":"^0.1"
     },
     "require-dev": {},
     "suggest": {
@@ -52,6 +53,20 @@
             ],
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
+            ],
+            "Pith\\ExampleModule\\": [
+                "example/modules/example-module/",
+                "example/modules/example-module/controllers/"
+            ],
+            "Pith\\ExampleConfig\\": [
+                "example/config/"
+            ],
+            "Pith\\BlueSkyExampleModule\\": [
+                "example-2/modules/blue-sky-module/",
+                "example-2/modules/blue-sky-module/controllers/"
+            ],
+            "Pith\\BlueSkyExampleConfig\\": [
+                "example-2/config/"
             ]
         }
     }
