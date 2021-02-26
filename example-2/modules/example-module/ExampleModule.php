@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Example Module
 // --------------------
 
-namespace Pith\ExampleModule;
+namespace Pith\BlueSkyExampleModule;
 
 class ExampleModule implements \Pith\Framework\PithModuleInterface
 {

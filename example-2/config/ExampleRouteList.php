@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Example Route List
 // ------------------
 
-namespace Pith\ExampleConfig;
+namespace Pith\BlueSkyExampleConfig;
 
 
 class ExampleRouteList

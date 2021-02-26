@@ -16,9 +16,9 @@ $php_di_container = new DI\Container(); // We're using PHP-DI for default. You c
 
 
 // Pith Framework App
-$pith           = $php_di_container->get('\\Pith\\Framework\\PithApp');              // Pith Framework App. If you make a fork, put the fork's App object here.
-$config_profile = $php_di_container->get('\\Pith\\ExampleConfig\\ExampleConfig');    // <--- Replace this with your own Config Profile object.
-$route_list     = $php_di_container->get('\\Pith\\ExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object.
+$pith           = $php_di_container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
+$config_profile = $php_di_container->get('\\Pith\\BlueSkyExampleConfig\\ExampleConfig'); // <--- Replace this with your own Config Profile object.
+$route_list     = $php_di_container->get('\\Pith\\BlueSkyExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object.
 
 
 // Setup the logger

@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Example Config
 // --------------
 
-namespace Pith\ExampleConfig;
+namespace Pith\BlueSkyExampleConfig;
 
 
 class ExampleConfig
