@@ -41,7 +41,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'index',
                 'route-type' => 'page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/home.phtml',
             ],
 
@@ -49,7 +49,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => '404',
                 'route-type' => 'error-page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/404.phtml',
             ],
 
@@ -57,7 +57,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => '501',
                 'route-type' => 'error-page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/505.phtml',
             ],
 
@@ -65,7 +65,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'alpha',
                 'route-type' => 'page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/alpha.phtml',
             ],
 
@@ -73,7 +73,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'beta',
                 'route-type' => 'page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/beta.phtml',
             ],
 
@@ -81,7 +81,7 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'gamma',
                 'route-type' => 'page',
                 'use-layout' => false,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/gamma.phtml',
             ],
 
@@ -89,21 +89,21 @@ class ExampleModule implements \Pith\Framework\PithModuleInterface
                 'route-name' => 'delta',
                 'route-type' => 'page',
                 'use-layout' => true,
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'views/delta.phtml',
             ],
 
             'first-layout' => [
                 'route-name' => 'first-layout',
                 'route-type' => 'layout',
-                'controller' => 'Pith\\ExampleModule\\AlphaController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\AlphaController',
                 'view'       => 'layouts/first-layout.phtml',
             ],
 
             'first-partial' => [
                 'route-name' => 'first-partial',
                 'route-type' => 'partial',
-                'controller' => 'Pith\\ExampleModule\\FirstPartialController',
+                'controller' => 'Pith\\BlueSkyExampleModule\\FirstPartialController',
                 'view'       => 'partial-views/first-partial-view.phtml',
             ],
 

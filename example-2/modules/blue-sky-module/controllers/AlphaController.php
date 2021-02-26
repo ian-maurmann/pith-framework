@@ -18,7 +18,7 @@
 declare(strict_types=1);
 
 
-namespace Pith\ExampleModule;
+namespace Pith\BlueSkyExampleModule;
 
 
 class AlphaController extends \Pith\Framework\PithController implements \Pith\Framework\PithControllerInterface
