@@ -60,6 +60,13 @@
             ],
             "Pith\\ExampleConfig\\": [
                 "example/config/"
+            ],
+            "Pith\\BlueSkyExampleModule\\": [
+                "example-2/modules/blue-sky-module/",
+                "example-2/modules/blue-sky-module/controllers/"
+            ],
+            "Pith\\BlueSkyExampleConfig\\": [
+                "example-2/config/"
             ]
         }
     }
