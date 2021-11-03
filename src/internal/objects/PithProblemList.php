@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -50,6 +50,8 @@ class PithProblemList
 
         // status
         //=====================================
+        // 401 - Redirect to the 401 error page and then Login page
+        // 403 - Redirect to the 403 error page
         // 404 - Redirect to the 401 error page
         // 501 - Redirect to the 501 error page
         //=====================================
@@ -90,6 +92,24 @@ class PithProblemList
                 'detail'  => 'When the Dispatcher ran the Route "%s", the Container could not find the Controller "%s" being autoloaded.',
                 'level'   => 'error',
                 'status'  => '501',
+            ],
+
+            // Future Error 301 ?
+            'Pith_Provisional_Error_C3_000' => [
+                'code'    => 'Pith_Provisional_Error_C3_000',
+                'message' => 'Guest request was blocked by Access Control.',
+                'detail'  => 'When the Dispatcher ran the Route "%s", the Controller "%s" has an access level of "%s" which the Access Control denied the unauthenticated guest from accessing.',
+                'level'   => 'info',
+                'status'  => '401',
+            ],
+
+            // Future Error 302 ?
+            'Pith_Provisional_Error_C3_001' => [
+                'code'    => 'Pith_Provisional_Error_C3_001',
+                'message' => 'User request was blocked by Access Control.',
+                'detail'  => 'When the Dispatcher ran the Route "%s", the Controller "%s" has an access level of "%s" which the Access Control denied User "%s" from accessing.',
+                'level'   => 'info',
+                'status'  => '403',
             ],
 
         ];

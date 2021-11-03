@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -28,6 +28,7 @@ class PithAppHelper
     public function initializeDependencies($app)
     {
         $app->request_processor->init($app);
+        $app->access_control->init($app);
         $app->router->init($app);
         $app->dispatcher->init($app);
         $app->problem_handler->init($app);

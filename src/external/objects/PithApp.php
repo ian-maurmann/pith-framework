@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -20,8 +20,8 @@ namespace Pith\Framework;
 
 
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithProblemHandler;
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
+use Pith\Framework\Internal\PithProblemHandler;
 
 
 class PithApp implements PithAppInterface
@@ -51,6 +51,7 @@ class PithApp implements PithAppInterface
         PithRequestProcessor $request_processor,
         PithConfig           $config,
         PithDatabaseWrapper  $db,
+        PithAccessControl    $access_control,
         PithRouter           $router,
         PithDispatcher       $dispatcher,
         PithProblemHandler   $problem_handler
@@ -64,7 +65,7 @@ class PithApp implements PithAppInterface
         $this->db                = $db;
         $this->registry          = null;
         $this->authenticator     = null;
-        $this->access_control    = null;
+        $this->access_control    = $access_control;
         $this->router            = $router;
         $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
