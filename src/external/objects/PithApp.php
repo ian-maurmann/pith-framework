@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,9 +8,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith App
-// --------
+/**
+ * Pith App
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ */
 
 
 declare(strict_types=1);
@@ -18,17 +20,20 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-
-use Pith\Framework\Internal\PithAppHelper;
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
+use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithProblemHandler;
 
 
+/**
+ * Class PithApp
+ * @package Pith\Framework
+ */
 class PithApp implements PithAppInterface
 {
-    use PithStartupTrait;
-    use PithRunTrait;
     use PithProblemTrait;
+    use PithRunTrait;
+    use PithStartupTrait;
     use PithVersionTrait;
 
     private $helper;
@@ -46,7 +51,18 @@ class PithApp implements PithAppInterface
     public $problem_handler;
 
 
-    function __construct(
+    /**
+     * PithApp constructor.
+     * @param PithAppHelper        $helper
+     * @param PithRequestProcessor $request_processor
+     * @param PithConfig           $config
+     * @param PithDatabaseWrapper  $db
+     * @param PithAccessControl    $access_control
+     * @param PithRouter           $router
+     * @param PithDispatcher       $dispatcher
+     * @param PithProblemHandler   $problem_handler
+     */
+    public function __construct(
         PithAppHelper        $helper,
         PithRequestProcessor $request_processor,
         PithConfig           $config,
