@@ -103,6 +103,7 @@ $ cd example/public
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 31              | 0.7.5.0 | *sv 0.17.0* | Stable, but not production-ready
 Alpha 30              | 0.7.4.0 | *sv 0.16.0* | Stable, but not production-ready
 Alpha 29              | 0.7.3.0 | *sv 0.15.0* | Stable, but not production-ready
 Alpha 28              | 0.7.2.0 | *sv 0.14.0* | Stable, but not production-ready
@@ -128,6 +129,11 @@ See https://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.7.5.0 - Alpha 31** `(semver: v0.17.0)`
+
+- Minor changes.
+- Updated the copyright notices to include 2022.
 
 **0.7.4.0 - Alpha 30** `(semver: v0.16.0)`
 
