@@ -1,8 +1,8 @@
 
-> [All ToDo Lists](todo-index.md) | [0.8 ToDo](todo-0.8.0.0-alpha.md)
+> [All ToDo Lists](todo-index.md)
 ---
 
-# Engine Workflow Initiative Roadmap for 0.8
+# Engine Workflow Initiative Roadmap for 0.7.6+
 
 
 ---
@@ -80,7 +80,7 @@
 ---
 
 ## Appendix A
-### Objects in 0.7
+### Objects in 0.7.5
 
 External
 
@@ -131,7 +131,7 @@ Internal
 ---
 
 ## Appendix B (WIP)
-### Current Objects in 0.8 (WIP)
+### Current Objects in 0.7.6+ (WIP)
 
 
 External
@@ -186,8 +186,8 @@ Internal
 ## Appendix C (WIP)
 ### List of Additions and Cleanups (WIP)
 
-- Added 0.8 ToDo List
-- Added Engine Workflow Initiative Roadmap for 0.8 (This file)
+- Added 0.7.6+ ToDo List
+- Added Engine Workflow Initiative Roadmap for 0.7.6+ (This file)
 
 ---
 
