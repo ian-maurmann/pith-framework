@@ -161,6 +161,7 @@ External
 > - Pith App
 > - Pith Config
 > - Pith Dispatcher
+> - [x] Pith Info
 > - Pith Request Processor
 > - Pith Router
 >
@@ -192,25 +193,47 @@ Internal
 Misc. Files
 
 > - Index Front Controller
-> - Constants file
+> - [x] Constants file
 
 ---
 
 ## Appendix C (WIP)
 ### List of Additions and Cleanups (WIP)
 
-- Added 0.7.6+ ToDo List
-- Added Engine Workflow Initiative Roadmap for 0.7.6+ (This file)
+- Added 0.7.6+ ToDo List.
+- Added Engine Workflow Initiative Roadmap for 0.7.6+ (This file).
+- Added constants, Added Pith Info.
 
 ---
 
 ## Appendix D (WIP)
 ### Current Objects refactored to use the App Reference Trait (TODO)
 
+External
+
+> External Objects
+> - [x] Pith Info
+
 ---
 
 ## Appendix E (WIP)
 ### Current Objects with PhpDoc comments (TODO)
+
+External
+
+> External Objects
+> - [x] Pith Info
+
+Internal
+
+> Internal Traits
+> - [x] Pith App Reference Trait
+
+
+Misc. Files
+> Initialization
+> - [x] Index Front Controller
+> - [x] Constants file
 
 ---
 
