@@ -20,6 +20,8 @@ chdir('../../'); // Switch to whatever folder you want to run the App from.
 // Auto-Load
 require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
 
+    // Load our Constants
+    require 'experimental/constants.php'; // Enter the path to constants file.
 
     // Setup our Container
     $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
@@ -60,6 +62,14 @@ require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folde
     // ~~ $pith->start(); // TODO Remove
 
     echo $pith->version();
+
+    echo '<hr/>';
+
+    echo HELLO;
+
+    echo '<hr/>';
+
+    echo FOO;
 
 
 
