@@ -8,10 +8,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith App Reference Trait
-// ------------------------
-
+/**
+ * Pith App Reference Trait
+ * ------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ */
 
 declare(strict_types=1);
 
@@ -22,17 +26,33 @@ namespace Pith\Framework\Internal;
 use Pith\Framework\PithAppInterface;
 
 
+/**
+ * Trait PithAppReferenceTrait
+ * @package Pith\Framework\Internal
+ */
 trait PithAppReferenceTrait
 {
     public $app;
 
-
+    
+    /**
+     * Sets the reference to the App object.
+     *
+     * @param PithAppInterface $app
+     *
+     * @noinspection PhpUnused - Used by PithAppHelper::initializeDependencies( ).
+     */
     public function setAppReference(PithAppInterface $app)
     {
         $this->app = $app;
     }
 
 
+    /**
+     * Unsets the reference to the App object.
+     *
+     * @noinspection PhpUnused - Ignore.
+     */
     public function unsetAppReference()
     {
         $this->app = null;
