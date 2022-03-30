@@ -29,6 +29,14 @@
 > Cleanup / refactor at the end:
 > - [ ] Remove the Version Trait
 
+## Config
+> Add:
+> - [x] Add simple Constants file.
+> - [ ] New Config system.
+>
+> Cleanup / refactor at the end:
+> - [ ] Remove the current Config.
+> - [ ] Remove the Config Profiles.
 
 ## Engine
 
@@ -180,6 +188,11 @@ Internal
 > Internal Traits
 > - Pith App Reference Trait
 
+
+Misc. Files
+
+> - Index Front Controller
+> - Constants file
 
 ---
 
