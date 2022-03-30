@@ -12,9 +12,12 @@
  * Pith Info
  */
 
+
 declare(strict_types=1);
 
 namespace Pith\Framework;
+
+use Pith\Framework\Internal\PithAppReferenceTrait;
 
 
 /**
@@ -23,6 +26,8 @@ namespace Pith\Framework;
  */
 class PithInfo
 {
+    use PithAppReferenceTrait;
+
     public function __construct()
     {
         // Do nothing for now.

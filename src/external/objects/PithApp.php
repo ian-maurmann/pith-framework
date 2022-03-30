@@ -93,6 +93,14 @@ class PithApp implements PithAppInterface
         $helper->initializeDependencies($this);
     }
 
+
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
+    {
+        return 'Pith App object';
+    }
 }
 
 

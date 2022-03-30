@@ -72,4 +72,7 @@ require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folde
     echo '<hr/>';
     echo $pith->info->whereAmI();
 
+    echo '<hr/>';
+    echo $pith->info->app->whereAmI();
+
 
