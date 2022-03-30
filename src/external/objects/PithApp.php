@@ -49,6 +49,7 @@ class PithApp implements PithAppInterface
     public $router;
     public $dispatcher;
     public $problem_handler;
+    public $info;
 
 
     /**
@@ -61,6 +62,7 @@ class PithApp implements PithAppInterface
      * @param PithRouter           $router
      * @param PithDispatcher       $dispatcher
      * @param PithProblemHandler   $problem_handler
+     * @param PithInfo             $info
      */
     public function __construct(
         PithAppHelper        $helper,
@@ -70,7 +72,8 @@ class PithApp implements PithAppInterface
         PithAccessControl    $access_control,
         PithRouter           $router,
         PithDispatcher       $dispatcher,
-        PithProblemHandler   $problem_handler
+        PithProblemHandler   $problem_handler,
+        PithInfo             $info
     )
     {
         $this->helper            = $helper;
@@ -85,6 +88,7 @@ class PithApp implements PithAppInterface
         $this->router            = $router;
         $this->dispatcher        = $dispatcher;
         $this->problem_handler   = $problem_handler;
+        $this->info              = $info;
 
         $helper->initializeDependencies($this);
     }

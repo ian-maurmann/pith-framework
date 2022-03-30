@@ -64,13 +64,12 @@ require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folde
     echo $pith->version();
 
     echo '<hr/>';
-
     echo HELLO;
 
     echo '<hr/>';
-
     echo FOO;
 
-
+    echo '<hr/>';
+    echo $pith->info->whereAmI();
 
 
