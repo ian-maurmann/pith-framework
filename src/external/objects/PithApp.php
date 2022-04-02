@@ -38,57 +38,58 @@ class PithApp implements PithAppInterface
 
     private $helper;
 
-    public $container;
-    public $log;
-    public $request_processor;
-    public $config;
-    public $db;
-    public $registry;
-    public $authenticator;
     public $access_control;
-    public $router;
+    public $authenticator;
+    public $config;
+    public $container;
+    public $db;
     public $dispatcher;
-    public $problem_handler;
     public $info;
+    public $log;
+    public $problem_handler;
+    public $registry;
+    public $request_processor;
+    public $router;
 
 
     /**
      * PithApp constructor.
+     *
      * @param PithAppHelper        $helper
-     * @param PithRequestProcessor $request_processor
+     * @param PithAccessControl    $access_control
      * @param PithConfig           $config
      * @param PithDatabaseWrapper  $db
-     * @param PithAccessControl    $access_control
-     * @param PithRouter           $router
      * @param PithDispatcher       $dispatcher
-     * @param PithProblemHandler   $problem_handler
      * @param PithInfo             $info
+     * @param PithProblemHandler   $problem_handler
+     * @param PithRequestProcessor $request_processor
+     * @param PithRouter           $router
      */
     public function __construct(
         PithAppHelper        $helper,
-        PithRequestProcessor $request_processor,
+        PithAccessControl    $access_control,
         PithConfig           $config,
         PithDatabaseWrapper  $db,
-        PithAccessControl    $access_control,
-        PithRouter           $router,
         PithDispatcher       $dispatcher,
+        PithInfo             $info,
         PithProblemHandler   $problem_handler,
-        PithInfo             $info
+        PithRequestProcessor $request_processor,
+        PithRouter           $router
     )
     {
         $this->helper            = $helper;
-        $this->container         = null;
-        $this->log               = null;
-        $this->request_processor = $request_processor;
-        $this->config            = $config;
-        $this->db                = $db;
-        $this->registry          = null;
-        $this->authenticator     = null;
         $this->access_control    = $access_control;
-        $this->router            = $router;
+        $this->authenticator     = null;
+        $this->config            = $config;
+        $this->container         = null;
+        $this->db                = $db;
         $this->dispatcher        = $dispatcher;
-        $this->problem_handler   = $problem_handler;
         $this->info              = $info;
+        $this->log               = null;
+        $this->problem_handler   = $problem_handler;
+        $this->registry          = null;
+        $this->request_processor = $request_processor;
+        $this->router            = $router;
 
         $helper->initializeDependencies($this);
     }
@@ -102,5 +103,4 @@ class PithApp implements PithAppInterface
         return 'Pith App object';
     }
 }
-
 
