@@ -9,9 +9,11 @@
  * @noinspection PhpUnhandledExceptionInspection       - Allow unhandled exceptions to fall through the front controller.
  */
 
-
 // Turn on strict types
 declare(strict_types=1);
+
+
+use Pith\Framework\PithException;
 
 // Switch folders
 chdir('../../'); // Switch to whatever folder you want to run the App from.
@@ -20,18 +22,22 @@ chdir('../../'); // Switch to whatever folder you want to run the App from.
 // Auto-Load
 require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
 
-    // Load our Constants
-    require 'experimental/constants.php'; // Enter the path to constants file.
 
-    // Setup our Container
-    $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
+// Load our Constants
+require 'experimental/constants.php'; // Enter the path to constants file.
 
 
+// Setup our Container
+$container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
+
+
+
+try {
     // Pith Framework App
     $pith = $container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
 
     // ~~ $config_profile = $container->get('\\Pith\\ExampleConfig\\ExampleConfig');    // <--- Replace this with your own Config Profile object. // TODO Remove
-    // ~~ $route_list     = $container->get('\\Pith\\ExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object. // TODO Remove
+    // ~~ $route_list     = $container->get('\\Pith\\ExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object.     // TODO Remove
 
 
     // Setup the logger
@@ -75,4 +81,14 @@ require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folde
     echo '<hr/>';
     echo $pith->info->app->whereAmI();
 
+    echo '<hr/>';
+    echo $pith->info->app->engine->whereAmI();
 
+    echo '<hr/>';
+    echo $pith->info->app->engine->app->whereAmI();
+
+} catch (\DI\DependencyException $exception) {
+    throw $exception;
+} catch (\DI\NotFoundException $exception) {
+    throw $exception;
+}

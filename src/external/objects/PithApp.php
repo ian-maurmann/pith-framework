@@ -44,6 +44,7 @@ class PithApp implements PithAppInterface
     public $container;
     public $db;
     public $dispatcher;
+    public $engine;
     public $info;
     public $log;
     public $problem_handler;
@@ -60,6 +61,7 @@ class PithApp implements PithAppInterface
      * @param PithConfig           $config
      * @param PithDatabaseWrapper  $db
      * @param PithDispatcher       $dispatcher
+     * @param PithEngine           $engine
      * @param PithInfo             $info
      * @param PithProblemHandler   $problem_handler
      * @param PithRequestProcessor $request_processor
@@ -71,6 +73,7 @@ class PithApp implements PithAppInterface
         PithConfig           $config,
         PithDatabaseWrapper  $db,
         PithDispatcher       $dispatcher,
+        PithEngine           $engine,
         PithInfo             $info,
         PithProblemHandler   $problem_handler,
         PithRequestProcessor $request_processor,
@@ -84,6 +87,7 @@ class PithApp implements PithAppInterface
         $this->container         = null;
         $this->db                = $db;
         $this->dispatcher        = $dispatcher;
+        $this->engine            = $engine;
         $this->info              = $info;
         $this->log               = null;
         $this->problem_handler   = $problem_handler;

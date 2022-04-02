@@ -36,5 +36,6 @@ class PithAppHelper
 
         // Using the app reference trait
         $app->info->setAppReference($app);
+        $app->engine->setAppReference($app);
     }
 }
