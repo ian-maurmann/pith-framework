@@ -29,6 +29,9 @@ require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folde
 // Load our Constants
 require 'experimental/constants.php'; // Enter the path to constants file.
 
+// Load our Routes
+require 'experimental/routes.php'; // Enter the path to routes file.
+
 
 // Setup our Container
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
@@ -77,6 +80,9 @@ try {
 
     echo '<hr/>';
     echo FOO;
+
+    echo '<hr/>';
+    echo print_r( APP_ROUTES, true);
 
     echo '<hr/>';
     echo $pith->info->whereAmI();

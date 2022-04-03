@@ -67,6 +67,9 @@
             ],
             "Pith\\BlueSkyExampleConfig\\": [
                 "example-2/config/"
+            ],
+            "Pith\\ExampleAirshipPack\\": [
+                "experimental/packs/example-airship-pack/"
             ]
         }
     }

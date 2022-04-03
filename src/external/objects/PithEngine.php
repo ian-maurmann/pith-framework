@@ -57,13 +57,25 @@ class PithEngine
      */
     public function routeByUrl()
     {
+        // Example:
+        //
+        // $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+        //    $r->addRoute('GET', '/users', 'get_all_users_handler');
+        //    // {id} must be a number (\d+)
+        //    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
+        //    // The /{title} suffix is optional
+        //    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+        // });
 
-        $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-            $r->addRoute('GET', '/users', 'get_all_users_handler');
-            // {id} must be a number (\d+)
-            $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
-            // The /{title} suffix is optional
-            $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+
+        $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+            // Get Routes
+            $app_routes = APP_ROUTES;
+
+            // Loop through routes, Add each route
+            foreach ($app_routes as $app_route){
+                $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
+            }
         });
 
         // Get HTTP method
@@ -77,7 +89,7 @@ class PithEngine
         }
         $uri = rawurldecode($uri);
 
-        $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+        $routeInfo = $fast_dispatcher->dispatch($httpMethod, $uri);
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
                 // ... 404 Not Found
@@ -100,11 +112,11 @@ class PithEngine
         }
 
         // Debug
-        // error_log('══════════════════════════════════════════════════' );
-        // error_log('$httpMethod === ' . print_r($httpMethod, true));
-        // error_log('$uri        === ' . print_r($uri, true));
-        // error_log('$routeInfo  === ' . print_r($routeInfo, true));
-        // error_log('══════════════════════════════════════════════════' );
+        error_log('══════════════════════════════════════════════════' );
+        error_log('$httpMethod === ' . print_r($httpMethod, true));
+        error_log('$uri        === ' . print_r($uri, true));
+        error_log('$routeInfo  === ' . print_r($routeInfo, true));
+        error_log('══════════════════════════════════════════════════' );
     }
 
 
@@ -129,5 +141,6 @@ class PithEngine
         // ... call $handler with $vars
 
         error_log('Router: Found');
+        error_log(print_r($handler, true));
     }
 }
