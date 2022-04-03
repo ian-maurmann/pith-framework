@@ -18,6 +18,9 @@ use Pith\Framework\PithException;
 // Switch folders
 chdir('../../'); // Switch to whatever folder you want to run the App from.
 
+ini_set('log_errors', '1');
+ini_set('error_log', './php_errors.log');
+
 
 // Auto-Load
 require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
@@ -86,6 +89,9 @@ try {
 
     echo '<hr/>';
     echo $pith->info->app->engine->app->whereAmI();
+
+    echo '<hr/>';
+    echo $pith->engine->start();
 
 } catch (\DI\DependencyException $exception) {
     throw $exception;
