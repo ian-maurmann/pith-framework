@@ -30,12 +30,12 @@ class PithAppHelper
         // Using secondary initialization function
         $app->request_processor->init($app);
         $app->access_control->init($app);
-        $app->router->init($app);
         $app->dispatcher->init($app);
         $app->problem_handler->init($app);
 
         // Using the app reference trait
-        $app->info->setAppReference($app);
         $app->engine->setAppReference($app);
+        $app->info->setAppReference($app);
+        $app->router->setAppReference($app);
     }
 }

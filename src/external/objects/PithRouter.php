@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithStringUtility;
+use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithProblemHandler;
 use Pith\Framework\Internal\PithRoute;
+use Pith\Framework\Internal\PithStringUtility;
 use ReflectionClass;
 use ReflectionException;
 
@@ -37,7 +38,8 @@ use ReflectionException;
  */
 class PithRouter implements PithRouterInterface
 {
-    private $app;
+    use PithAppReferenceTrait;
+
     private $string_utility;
     private $problem_handler;
     private $route_object;
@@ -50,6 +52,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @return string
      */
@@ -59,15 +62,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
-    /**
-     * @param $app
-     */
-    public function init($app)
-    {
-        $this->app = $app;
-    }
-
-
+    // 0.6 implementation
     /**
      * @return PithRoute
      * @throws ReflectionException
@@ -87,6 +82,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @param $app_route_path
      * @return PithRoute
@@ -108,6 +104,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @param $app_route
      * @return PithRoute
@@ -186,6 +183,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @return mixed|null
      *
@@ -212,6 +210,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @param $app_route_path
      * @return mixed|null
@@ -239,6 +238,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @param $module
      * @param $given_route_name
@@ -261,6 +261,7 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    // 0.6 implementation
     /**
      * @param $problem_name
      * @param ...$info
