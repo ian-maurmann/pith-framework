@@ -15,10 +15,15 @@
  *
  * @noinspection PhpMethodNamingConventionInspection - Long method names are ok.
  */
+
+
 declare(strict_types=1);
 
 
 namespace Pith\Framework\Internal;
+
+
+use Pith\Framework\PithAppInterface;
 
 
 /**
@@ -34,9 +39,10 @@ class PithAppHelper
 
 
     /**
-     * @param $app
+     * Initialize Dependencies
+     * @param PithAppInterface $app
      */
-    public function initializeDependencies($app)
+    public function initializeDependencies(PithAppInterface $app)
     {
         // Using secondary initialization function // TODO remove 0.6 implementation
         $app->request_processor->init($app);
