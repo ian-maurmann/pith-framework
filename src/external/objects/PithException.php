@@ -12,6 +12,24 @@
 /**
  * Pith Exception
  * --------------
+ * Codes:
+ *     0xxx - N/A
+ *     1xxx - informational (TODO?)
+ *     2xxx - N/A
+ *     3xxx - redirection (TODO?)
+ *
+ *
+ *     4xxx - Routing Exceptions Recoverable
+ *     ---------------------------------
+ *     4004 - FastRoute\Dispatcher::NOT_FOUND
+ *     4005 - FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+ *
+ *
+ *     5xxx - Server Exceptions Unrecoverable
+ *     --------------------------------------
+ *     5001 - Index Front Controller --> Container: NotFoundException
+ *     5002 - Index Front Controller --> Container: DependencyException
+ *
  */
 
 

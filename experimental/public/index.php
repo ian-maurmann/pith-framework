@@ -81,8 +81,9 @@ try {
     echo '<hr/>';
     echo FOO;
 
-    echo '<hr/>';
+    echo '<hr/><pre>';
     echo print_r( APP_ROUTES, true);
+    echo '</pre>';
 
     echo '<hr/>';
     echo $pith->info->whereAmI();
@@ -100,7 +101,19 @@ try {
     echo $pith->engine->start();
 
 } catch (\DI\DependencyException $exception) {
-    throw $exception;
+    //throw $exception;
+
+    throw new PithException(
+        'Pith Framework Exception 5002: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+        5002,
+        $exception
+    );
 } catch (\DI\NotFoundException $exception) {
-    throw $exception;
+    //throw $exception;
+
+    throw new PithException(
+        'Pith Framework Exception 5001: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+        5001,
+        $exception
+    );
 }
