@@ -8,9 +8,16 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Router
-// -----------
+/**
+ * Pith Router
+ * -----------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpUnusedLocalVariableInspection      - Setting default values is ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ */
 
 
 declare(strict_types=1);
@@ -20,8 +27,14 @@ namespace Pith\Framework;
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
 use Pith\Framework\Internal\PithRoute;
+use ReflectionClass;
+use ReflectionException;
 
 
+/**
+ * Class PithRouter
+ * @package Pith\Framework
+ */
 class PithRouter implements PithRouterInterface
 {
     private $app;
@@ -29,7 +42,7 @@ class PithRouter implements PithRouterInterface
     private $problem_handler;
     private $route_object;
 
-    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler, PithRoute $route_object)
+    public function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler, PithRoute $route_object)
     {
         $this->string_utility  = $string_utility;
         $this->problem_handler = $problem_handler;
@@ -37,23 +50,32 @@ class PithRouter implements PithRouterInterface
     }
 
 
-
-    public function whereAmI()
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
     {
-        return "Pith Router";
+        return 'Pith Router';
     }
 
 
-    public function init($app){
+    /**
+     * @param $app
+     */
+    public function init($app)
+    {
         $this->app = $app;
     }
 
 
-
-
-
-    public function routeByUrl(){
-
+    /**
+     * @return PithRoute
+     * @throws ReflectionException
+     *
+     * @noinspection PhpUnused - Used by Pith Run Trait
+     */
+    public function routeByUrl(): PithRoute
+    {
         $route_object = null;
 
         // Get the app route
@@ -65,7 +87,15 @@ class PithRouter implements PithRouterInterface
     }
 
 
-    public function routeByAppPath($app_route_path){
+    /**
+     * @param $app_route_path
+     * @return PithRoute
+     * @throws ReflectionException
+     *
+     * @noinspection PhpUnused - Used by Pith Run Trait
+     */
+    public function routeByAppPath($app_route_path): PithRoute
+    {
 
         $route_object = null;
 
@@ -78,19 +108,19 @@ class PithRouter implements PithRouterInterface
     }
 
 
-
-
-
-
-
-
-    private function getRouteFromAppRoute($app_route){
+    /**
+     * @param $app_route
+     * @return PithRoute
+     * @throws ReflectionException
+     */
+    private function getRouteFromAppRoute($app_route): PithRoute
+    {
 
         $route_object = null;
 
         // (On error, redirect to the 404 page)
-        if(!$app_route){
-            $this->problem('Pith_Provisional_Notice_B5_000', $this->app->request_processor->getRequestPath() );
+        if (!$app_route) {
+            $this->problem('Pith_Provisional_Notice_B5_000', $this->app->request_processor->getRequestPath());
         }
 
 
@@ -101,16 +131,15 @@ class PithRouter implements PithRouterInterface
 
 
         // (On error, redirect to the 501 page)
-        if(!$module){
+        if (!$module) {
             $this->problem('Pith_Provisional_Error_B5_001', $app_route['match'], $module_name_with_namespace);
         }
 
 
-        $module_reflector_object = new \ReflectionClass($module_name_with_namespace);
+        $module_reflector_object    = new ReflectionClass($module_name_with_namespace);
         $module_directory_full_path = dirname($module_reflector_object->getFileName());
 
         //echo $module_directory_full_path;
-
 
 
         // Get the route name
@@ -122,25 +151,23 @@ class PithRouter implements PithRouterInterface
 
 
         // (On error, redirect to the 501 page)
-        if(!$route){
+        if (!$route) {
             $this->problem('Pith_Provisional_Error_B5_002', $app_route['route-name'], $app_route['module']);
         }
 
 
-        $use_layout = (bool) $route['use-layout'];
+        $use_layout = (bool)$route['use-layout'];
 
         $layout_app_route_name = null;
-        if($use_layout){
-            if(!empty($app_route['layout'])){
+        if ($use_layout) {
+            if (!empty($app_route['layout'])) {
                 $layout_app_route_name = $app_route['layout'];
             }
         }
 
 
-
-
         $view_relative_path = $route['view'];
-        $view_full_path     = $module_directory_full_path . '/' . $view_relative_path;
+        $view_full_path = $module_directory_full_path . '/' . $view_relative_path;
 
         $route_object = clone $this->route_object;
 
@@ -159,20 +186,23 @@ class PithRouter implements PithRouterInterface
     }
 
 
-
-
+    /**
+     * @return mixed|null
+     *
+     * @noinspection DuplicatedCode - Ignore
+     */
     public function findAppRouteFromUrl()
     {
         $string_utility = $this->string_utility;
-        $request_path   = (string) $this->app->request_processor->getRequestPath();
+        $request_path   = (string)$this->app->request_processor->getRequestPath();
         $routes         = $this->app->config->getRouteList();
         $matching_route = null;
 
-        foreach($routes as $route_index => $route){
-            $match    = (string) $route['match'];
+        foreach ($routes as $route_index => $route) {
+            $match    = (string)$route['match'];
             $is_match = $string_utility->isRouteMatch($request_path, $match);
 
-            if($is_match){
+            if ($is_match) {
                 $matching_route = $route;
                 break;
             }
@@ -182,7 +212,12 @@ class PithRouter implements PithRouterInterface
     }
 
 
-
+    /**
+     * @param $app_route_path
+     * @return mixed|null
+     *
+     * @noinspection DuplicatedCode - Ignore
+     */
     public function findAppRouteFromAppRoutePath($app_route_path)
     {
         $string_utility = $this->string_utility;
@@ -190,11 +225,11 @@ class PithRouter implements PithRouterInterface
         $routes         = $this->app->config->getRouteList();
         $matching_route = null;
 
-        foreach($routes as $route_index => $route){
+        foreach ($routes as $route_index => $route) {
             $match    = (string) $route['match'];
             $is_match = $string_utility->isRouteMatch($request_path, $match);
 
-            if($is_match){
+            if ($is_match) {
                 $matching_route = $route;
                 break;
             }
@@ -204,18 +239,18 @@ class PithRouter implements PithRouterInterface
     }
 
 
-
-
-
-
-
+    /**
+     * @param $module
+     * @param $given_route_name
+     * @return mixed|null
+     */
     public function findModuleRouteByRouteName($module, $given_route_name)
     {
         $routes         = $module->listRoutes();
         $matching_route = null;
 
-        foreach($routes as $route_name => $route){
-            if( (string) $route_name === (string) $given_route_name){
+        foreach ($routes as $route_name => $route) {
+            if ((string) $route_name === (string) $given_route_name) {
                 $matching_route = $route;
                 break;
             }
@@ -226,6 +261,10 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    /**
+     * @param $problem_name
+     * @param ...$info
+     */
     public function problem($problem_name, ...$info)
     {
         $this->problem_handler->handleProblem($problem_name, ...$info);
