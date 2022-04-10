@@ -274,6 +274,7 @@ class PithRouter implements PithRouterInterface
 
 
 
+    // 0.8 implementation
 
     /**
      * Route by URL
@@ -350,5 +351,62 @@ class PithRouter implements PithRouterInterface
         return $return_array;
     }
 
+
+
+    // 0.8 implementation
+
+    /**
+     * @param  array $routing_info
+     * @return null|Pith\Framework\PithRoute
+     * @throws PithException
+     */
+    private function getRouteObjectFromRouteInfo(array $routing_info)
+    {
+        $did_routing  = (bool) count($routing_info);
+
+        if($did_routing){
+            $route_namespace = $routing_info['handler'];
+
+            try {
+                $route = $this->app->container->get($route_namespace);
+            } catch (\DI\DependencyException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading route. Message: ' . $exception->getMessage(),
+                    5004,
+                    $exception
+                );
+            } catch (\DI\NotFoundException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 5005: The container encountered a \DI\NotFoundException exception loading route. Message: ' . $exception->getMessage(),
+                    5005,
+                    $exception
+                );
+            }
+        }
+        else{
+            throw new PithException(
+                'Pith Framework Exception 5003: Router returned empty routing array.',
+                5003
+            );
+        }
+
+        return $route;
+    }
+
+
+    // 0.8 implementation
+
+
+    /**
+     * @return Pith\Framework\PithRoute|null
+     * @throws PithException
+     */
+    public function getRoute()
+    {
+        $routing_info = $this->routeWithFastRoute();
+        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
+
+        return $route;
+    }
 
 }
