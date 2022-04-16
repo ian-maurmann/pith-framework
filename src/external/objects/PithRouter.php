@@ -357,31 +357,17 @@ class PithRouter implements PithRouterInterface
 
     /**
      * @param  array $routing_info
-     * @return null|Pith\Framework\PithRoute
+     * @return null|\Pith\Framework\PithRoute
      * @throws PithException
      */
-    private function getRouteObjectFromRouteInfo(array $routing_info)
+    private function getRouteObjectFromRouteInfo(array $routing_info): ?\Pith\Framework\PithRoute
     {
+        $route        = null;
         $did_routing  = (bool) count($routing_info);
 
         if($did_routing){
             $route_namespace = $routing_info['handler'];
-
-            try {
-                $route = $this->app->container->get($route_namespace);
-            } catch (\DI\DependencyException $exception) {
-                throw new PithException(
-                    'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading route. Message: ' . $exception->getMessage(),
-                    5004,
-                    $exception
-                );
-            } catch (\DI\NotFoundException $exception) {
-                throw new PithException(
-                    'Pith Framework Exception 5005: The container encountered a \DI\NotFoundException exception loading route. Message: ' . $exception->getMessage(),
-                    5005,
-                    $exception
-                );
-            }
+            $route           = $this->getRouteFromRouteNamespace($route_namespace);
         }
         else{
             throw new PithException(
@@ -394,14 +380,46 @@ class PithRouter implements PithRouterInterface
     }
 
 
+    /**
+     * @param  string $route_namespace
+     * @return null|\Pith\Framework\PithRoute
+     * @throws PithException
+     */
+    public function getRouteFromRouteNamespace(string $route_namespace): ?\Pith\Framework\PithRoute
+    {
+        $route = null; // Default to null
+
+        // Get the route object via the namespace
+        try {
+            $route = $this->app->container->get($route_namespace);
+        } catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading route. Message: ' . $exception->getMessage(),
+                5004,
+                $exception
+            );
+        } catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5005: The container encountered a \DI\NotFoundException exception loading route. Message: ' . $exception->getMessage(),
+                5005,
+                $exception
+            );
+        }
+
+        return $route;
+    }
+
+
     // 0.8 implementation
 
 
     /**
-     * @return Pith\Framework\PithRoute|null
+     * @return \Pith\Framework\PithRoute|null
      * @throws PithException
+     *
+     * @noinspection PhpUnused - Will be used in views.
      */
-    public function getRoute()
+    public function getRoute(): ?\Pith\Framework\PithRoute
     {
         $routing_info = $this->routeWithFastRoute();
         $route        = $this->getRouteObjectFromRouteInfo($routing_info);

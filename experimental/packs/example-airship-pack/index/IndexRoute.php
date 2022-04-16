@@ -24,6 +24,6 @@ class IndexRoute extends PithRoute
     public $access_level = 'world';
     public $action       = '\\Pith\\ExampleAirshipPack\\HelloAction';
     public $preparer     = '\\Pith\\ExampleAirshipPack\\HelloPreparer';
-    public $view         = 'experimental/packs/example-airship-pack/hello-view.phtml';
+    public $view         = 'experimental/packs/example-airship-pack/hello/hello-view.phtml';
     public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

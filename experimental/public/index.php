@@ -86,31 +86,6 @@ if($pith) {
     // Run Pith
     // ~~ $pith->start(); // TODO Remove
 
-    echo $pith->version();
-
-    echo '<hr/>';
-    echo HELLO;
-
-    echo '<hr/>';
-    echo FOO;
-
-    echo '<hr/><pre>';
-    echo print_r(APP_ROUTES, true);
-    echo '</pre>';
-
-    echo '<hr/>';
-    echo $pith->info->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->engine->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->engine->app->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->engine->start();
+    $pith->engine->start();
 }
 

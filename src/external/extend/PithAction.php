@@ -23,6 +23,20 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+// ┌──────────────────────────────────────────────────────────────────────────┐
+// │    PithAction                                                            │
+// ├──────────────────────────────────────────────────────────────────────────┤
+// │    +  access_level : string                 --- Name of access level     │
+// │    +  app          : PithApp reference      --- Access to Pith App       │
+// │    +  element_type : string 'action'        --- Name of workflow element │
+// │    #  prepare      : public property object --- Vars to give to preparer │
+// ├──────────────────────────────────────────────────────────────────────────┤
+// │    +  checkAccess( )            : void || throws exception               │
+// │    +  getAccessLevel( )         : string                                 │
+// │    +  getVariablesForPrepare( ) : public property object                 │
+// │    +  provisionAction( )        : void                                   │
+// │    +  runAction( )              : void                                   │
+// └──────────────────────────────────────────────────────────────────────────┘
 
 /**
  * Class PithAction

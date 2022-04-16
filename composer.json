@@ -72,7 +72,14 @@
                 "example-2/config/"
             ],
             "Pith\\ExampleAirshipPack\\": [
-                "experimental/packs/example-airship-pack/"
+                "experimental/packs/example-airship-pack/",
+                "experimental/packs/example-airship-pack/do-nothing",
+                "experimental/packs/example-airship-pack/hello",
+                "experimental/packs/example-airship-pack/hindenburg",
+                "experimental/packs/example-airship-pack/index",
+                "experimental/packs/example-airship-pack/jello",
+                "experimental/packs/example-airship-pack/jello-layout",
+                "experimental/packs/example-airship-pack/jello-partial"
             ]
         }
     }

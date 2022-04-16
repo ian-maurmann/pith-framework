@@ -23,6 +23,26 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+// ┌────────────────────────────────────────────────────────────────────────────┐
+// │    PithRoute                                                               │
+// ├────────────────────────────────────────────────────────────────────────────┤
+// │    +  access_level : string            --- Name of access level            │
+// │    +  action       : string            --- Namespace for action            │
+// │    +  app          : PithApp reference --- Access to Pith App              │
+// │    +  element_type : string 'route'    --- Name of workflow element        │
+// │    +  layout       : string            --- Namespace for layout route      │
+// │    +  preparer     : string            --- Namespace for preparer          │
+// │    +  route_type   : string            --- Name of route type              │
+// │    +  use_layout   : bool              --- Yes/No on adding layout to view │
+// │    +  view         : string            --- Path to view                    │
+// │    +  view_adapter : string            --- Namespace for view adapter      │
+// ├────────────────────────────────────────────────────────────────────────────┤
+// │    +  checkAccess( )    : void || throw exception                          │
+// │    +  getAccessLevel( ) : string                                           │
+// │    +  getAction( )      : PithAction                                       │
+// │    +  getPreparer( )    : PithPreparer                                     │
+// │    +  getViewAdapter( ) : object                                           │
+// └────────────────────────────────────────────────────────────────────────────┘
 
 /**
  * Class PithRoute
@@ -33,7 +53,12 @@ class PithRoute extends PithWorkflowElement
     public $access_level = null;
     public $action       = null;
     public $element_type = 'route';
+
+    /**
+     * @var string|null
+     */
     public $layout       = null;
+
     public $preparer     = null;
     public $route_type   = null;
     public $use_layout   = false;

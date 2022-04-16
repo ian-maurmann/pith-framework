@@ -81,13 +81,14 @@ class PithEngine
         }
         elseif($route->route_type === 'page' || $route->route_type === 'error-page'){
             if($route->use_layout){
-                //$this->app->runLayout($route->layout_app_route_name, $route);
+                $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                $this->engineDispatch( $layout_route, $route);
             }
             else{
                 $this->engineDispatchRoute($route);
             }
         }
-        elseif($route->route_type === 'partial'){
+        elseif($route->route_type === 'partial' || 'endpoint'){
             $this->engineDispatchRoute($route);
         }
 
@@ -100,8 +101,6 @@ class PithEngine
      */
     public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
     {
-        echo '!!!!!!!!!';
-
         // ───────────────────────────────────────────────────────────────────────
         // ROUTE
 
@@ -179,6 +178,42 @@ class PithEngine
 
         // Flush the output buffer
         //ob_end_flush();
+    }
+
+    /**
+     * @param  $route_namespace
+     * @throws PithException
+     */
+    public function insertPartial($route_namespace)
+    {
+        // Get route
+        $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
+
+        // Run route
+        $this->engineDispatchRoute($route);
+    }
+
+    /**
+     * @param  string $layout_namespace
+     * @throws PithException
+     */
+    public function runLayout(string $layout_namespace)
+    {
+        // Get route
+        $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
+
+        // Run route
+        $this->engineDispatchRoute($route);
+    }
+
+    /**
+     * @param  $content_route
+     * @throws PithException
+     */
+    public function insertPageContent($content_route)
+    {
+        // Run route
+        $this->engineDispatchRoute($content_route);
     }
 
 }

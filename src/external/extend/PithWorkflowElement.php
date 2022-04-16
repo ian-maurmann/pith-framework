@@ -25,6 +25,17 @@ namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
 
+// ┌────────────────────────────────────────────────────────────────────────┐
+// │    PithWorkflowElement                                                 │
+// ├────────────────────────────────────────────────────────────────────────┤
+// │    +  access_level : string            --- Name of access level        │
+// │    +  app          : PithApp reference --- Access to Pith App          │
+// │    +  element_type : string            --- Name of workflow element    │
+// ├────────────────────────────────────────────────────────────────────────┤
+// │    +  checkAccess( )    : void || throws exception                     │
+// │    +  getAccessLevel( ) : string                                       │
+// └────────────────────────────────────────────────────────────────────────┘
+
 /**
  * Class PithWorkflowElement
  * @package Pith\Framework
