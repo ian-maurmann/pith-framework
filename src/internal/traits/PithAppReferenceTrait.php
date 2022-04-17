@@ -23,7 +23,7 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
-use Pith\Framework\PithAppInterface;
+use Pith\Framework\PithApp;
 
 
 /**
@@ -32,17 +32,20 @@ use Pith\Framework\PithAppInterface;
  */
 trait PithAppReferenceTrait
 {
+    /**
+     * @var PithApp $app
+     */
     public $app;
 
     
     /**
      * Sets the reference to the App object.
      *
-     * @param PithAppInterface $app
+     * @param PithApp $app
      *
      * @noinspection PhpUnused - Used by PithAppHelper::initializeDependencies( ).
      */
-    public function setAppReference(PithAppInterface $app)
+    public function setAppReference(PithApp $app)
     {
         $this->app = $app;
     }

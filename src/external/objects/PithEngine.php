@@ -58,127 +58,15 @@ class PithEngine
      */
     public function start()
     {
+        // Get route
         $route = $this->app->router->getRoute();
 
-        $this->engineDispatch($route);
+        // Dispatch route
+        $this->app->dispatcher->engineDispatch($route);
     }
 
 
 
-    /**
-     * Engine Dispatch
-     *
-     * @param PithRoute $route
-     * @param PithRoute|null $secondary_route
-     *
-     * @noinspection DuplicatedCode - Ignore
-     * @throws PithException
-     */
-    public function engineDispatch(PithRoute $route, PithRoute $secondary_route=null)
-    {
-        if($route->route_type === 'layout'){
-            $this->engineDispatchRoute($route, $secondary_route);
-        }
-        elseif($route->route_type === 'page' || $route->route_type === 'error-page'){
-            if($route->use_layout){
-                $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
-                $this->engineDispatch( $layout_route, $route);
-            }
-            else{
-                $this->engineDispatchRoute($route);
-            }
-        }
-        elseif($route->route_type === 'partial' || 'endpoint'){
-            $this->engineDispatchRoute($route);
-        }
-
-    }
-
-    /**
-     * @param PithRoute $route
-     * @param PithRoute|null $secondary_route
-     * @throws PithException
-     */
-    public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
-    {
-        // ───────────────────────────────────────────────────────────────────────
-        // ROUTE
-
-        // Set app reference
-        $route->setAppReference($this->app);
-
-
-        // ───────────────────────────────────────────────────────────────────────
-        // ACCESS
-
-        // Check access
-        $route->checkAccess();
-
-
-        // ───────────────────────────────────────────────────────────────────────
-        // ACTION
-
-        // Get the action
-        $action = $route->getAction();
-
-        // Set app reference
-        $action->setAppReference($this->app);
-
-        // Provision action
-        $action->provisionAction();
-
-        // Start the output buffer
-        //ob_start();
-
-        // Run action
-        $action->runAction();
-
-        // Get variables for prepare
-        $variables_for_prepare = $action->getVariablesForPrepare();
-
-
-        // ───────────────────────────────────────────────────────────────────────
-        // PREPARER
-
-        // Get the preparer
-        $preparer = $route->getPreparer();
-
-        // Set app reference
-        $preparer->setAppReference($this->app);
-
-        // Provision preparer
-        $preparer->provisionPreparer($variables_for_prepare);
-
-        // Run preparer
-        $preparer->runPreparer();
-
-        // Get variables for prepare
-        $variables_for_view = $preparer->getVariablesForView();
-
-        // ───────────────────────────────────────────────────────────────────────
-        // VIEW
-
-        // Get the view adapter
-        $view_adapter = $route->getViewAdapter();
-
-        $view_adapter->setApp($this->app);
-        $view_adapter->setFilePath($route->view);
-        $view_adapter->setVars($variables_for_view);
-
-        if(!empty($secondary_route)){
-            $view_adapter->setIsLayout(true);
-            $view_adapter->setContentRoute($secondary_route);
-        }
-
-        $view_adapter->run();
-
-        // ───────────────────────────────────────────────────────────────────────
-
-
-
-        // Flush the output buffer
-        //ob_end_flush();
-    }
 
     /**
      * @param  $route_namespace
@@ -190,7 +78,7 @@ class PithEngine
         $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
 
         // Run route
-        $this->engineDispatchRoute($route);
+        $this->app->dispatcher->engineDispatchRoute($route);
     }
 
     /**
@@ -203,7 +91,7 @@ class PithEngine
         $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
 
         // Run route
-        $this->engineDispatchRoute($route);
+        $this->app->dispatcher->engineDispatchRoute($route);
     }
 
     /**
@@ -213,7 +101,7 @@ class PithEngine
     public function insertPageContent($content_route)
     {
         // Run route
-        $this->engineDispatchRoute($content_route);
+        $this->app->dispatcher->engineDispatchRoute($content_route);
     }
 
 }
