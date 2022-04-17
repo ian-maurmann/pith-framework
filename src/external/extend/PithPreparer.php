@@ -9,55 +9,50 @@
 # ===================================================================
 
 /**
- * Pith App Reference Trait
- * ------------------------
+ * Pith Preparer (extend)
+ * ---------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  */
 
+
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Internal;
-
-
-use Pith\Framework\PithApp;
+namespace Pith\Framework;
 
 
 /**
- * Trait PithAppReferenceTrait
- * @package Pith\Framework\Internal
+ * Class PithPreparer
+ * @package Pith\Framework
  */
-trait PithAppReferenceTrait
+class PithPreparer extends PithWorkflowElement
 {
-    /**
-     * @var PithApp $app
-     */
-    public $app;
+    public    $element_type = 'preparer';
+    protected $prepare      = null;
+    protected $view         = null;
 
-    
     /**
-     * Sets the reference to the App object.
-     *
-     * @param PithApp $app
-     *
-     * @noinspection PhpUnused - Used by PithAppHelper::initializeDependencies( ).
+     * @param $prepare_vars_object
      */
-    public function setAppReference(PithApp $app)
+    public function provisionPreparer($prepare_vars_object)
     {
-        $this->app = $app;
+        $this->prepare = $prepare_vars_object;
+        $this->view    = (object)[];
     }
 
-
     /**
-     * Unsets the reference to the App object.
-     *
-     * @noinspection PhpUnused - Ignore.
+     * @return null|object
      */
-    public function unsetAppReference()
+    public function getVariablesForView()
     {
-        $this->app = null;
+        return $this->view;
+    }
+
+    public function runPreparer()
+    {
+        // Do nothing
     }
 }

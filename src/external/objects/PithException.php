@@ -12,6 +12,34 @@
 /**
  * Pith Exception
  * --------------
+ * Codes:
+ *     0xxx - N/A
+ *     1xxx - informational (TODO?)
+ *     2xxx - N/A
+ *     3xxx - redirection (TODO?)
+ *
+ *
+ *     4xxx - Routing Exceptions Recoverable
+ *     ---------------------------------
+ *     4004 - FastRoute\Dispatcher::NOT_FOUND
+ *     4005 - FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+ *     4006 - Route access denied.
+ *     4007 - Workflow element access denied.
+ *     4008 - Route does not have an Action.
+ *     4009 - Route get Action --> Container: NotFoundException
+ *     4010 - Route get Action --> Container: DependencyException
+ *     4011 - Route does not have a Preparer.
+ *     4012 - Route get Preparer --> Container: NotFoundException
+ *     4013 - Route get Preparer --> Container: DependencyException
+ *
+ *     5xxx - Server Exceptions Unrecoverable
+ *     --------------------------------------
+ *     5001 - Index Front Controller --> Container: NotFoundException
+ *     5002 - Index Front Controller --> Container: DependencyException
+ *     5003 - Router returned empty routing array.
+ *     5004 - Loading route --> Container: NotFoundException
+ *     5005 - Loading route --> Container: DependencyException
+ *
  */
 
 

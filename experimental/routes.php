@@ -11,4 +11,5 @@ declare(strict_types=1);
 const APP_ROUTES = [
     ['GET', '/',                   '\\Pith\\ExampleAirshipPack\\IndexRoute'],
     ['GET', '/airship/hindenburg', '\\Pith\\ExampleAirshipPack\\HindenburgRoute'],
+    ['GET', '/jello',              '\\Pith\\ExampleAirshipPack\\JelloRoute'],
 ];

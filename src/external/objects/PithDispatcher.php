@@ -9,42 +9,64 @@
 # ===================================================================
 
 
-// Pith Dispatcher
-// ---------------
+/**
+ * Pith Dispatcher
+ * -----------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ */
 
 
 declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
 
 
+
+/**
+ * Class PithDispatcher
+ * @package Pith\Framework
+ */
 class PithDispatcher
 {
-    private $app;
+    use PithAppReferenceTrait;
+
     private $string_utility;
     private $problem_handler;
 
-    function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
+
+    /**
+     * @param PithStringUtility  $string_utility
+     * @param PithProblemHandler $problem_handler
+     */
+    public function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
     {
         $this->string_utility  = $string_utility;
         $this->problem_handler = $problem_handler;
     }
 
-
-    public function init($app)
-    {
-        $this->app = $app;
-    }
-
-
+    // 0.6
+    /**
+     * @return string
+     * @noinspection PhpMissingReturnTypeInspection - Ignore for now.
+     */
     public function whereAmI()
     {
         return 'Pith Dispatcher';
     }
 
+
+    // 0.6
+    /**
+     * @param $route
+     * @param null $secondary_route
+     */
     public function dispatch($route, $secondary_route=null)
     {
         if($route->route_type === 'layout'){
@@ -64,6 +86,15 @@ class PithDispatcher
 
     }
 
+    // 0.6
+    /**
+     * @param $route
+     * @param $secondary_route
+     *
+     * @noinspection PhpMethodNamingConventionInspection  - Ignore for now.
+     * @noinspection PhpUndefinedMethodInspection         - Ignore.
+     * @noinspection PhpFullyQualifiedNameUsageInspection - Ignore for now.
+     */
     public function dispatch_route($route, $secondary_route=null)
     {
         // Start the output buffer
@@ -257,7 +288,133 @@ class PithDispatcher
 
 
 
+    // 0.8
 
+
+    /**
+     * Engine Dispatch
+     *
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     *
+     * @noinspection DuplicatedCode - Ignore
+     * @throws PithException
+     */
+    public function engineDispatch(PithRoute $route, PithRoute $secondary_route=null)
+    {
+        if($route->route_type === 'layout'){
+            $this->engineDispatchRoute($route, $secondary_route);
+        }
+        elseif($route->route_type === 'page' || $route->route_type === 'error-page'){
+            if($route->use_layout){
+                $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                $this->engineDispatch( $layout_route, $route);
+            }
+            else{
+                $this->engineDispatchRoute($route);
+            }
+        }
+        elseif($route->route_type === 'partial' || 'endpoint'){
+            $this->engineDispatchRoute($route);
+        }
+
+    }
+
+
+
+    // 0.8
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @throws PithException
+     */
+    public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
+    {
+        // ───────────────────────────────────────────────────────────────────────
+        // ROUTE
+
+        // Set app reference
+        $route->setAppReference($this->app);
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // ACCESS
+
+        // Check access
+        $route->checkAccess();
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // ACTION
+
+        // Get the action
+        $action = $route->getAction();
+
+        // Set app reference
+        $action->setAppReference($this->app);
+
+        // Provision action
+        $action->provisionAction();
+
+        // Start the output buffer
+        //ob_start();
+
+        // Run action
+        $action->runAction();
+
+        // Get output buffer
+        // $action_output_buffer = ob_get_contents();
+
+        // Get variables for prepare
+        $variables_for_prepare = $action->getVariablesForPrepare();
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // PREPARER
+
+        // Get the preparer
+        $preparer = $route->getPreparer();
+
+        // Set app reference
+        $preparer->setAppReference($this->app);
+
+        // Provision preparer
+        $preparer->provisionPreparer($variables_for_prepare);
+
+        // Run preparer
+        $preparer->runPreparer();
+
+        // Get output buffer
+        // $preparer_output_buffer = ob_get_contents();
+
+        // Get variables for prepare
+        $variables_for_view = $preparer->getVariablesForView();
+
+        // ───────────────────────────────────────────────────────────────────────
+        // VIEW
+
+        // Get the view adapter
+        $view_adapter = $route->getViewAdapter();
+
+        $view_adapter->setApp($this->app);
+        $view_adapter->setFilePath($route->view);
+        $view_adapter->setVars($variables_for_view);
+
+        if(!empty($secondary_route)){
+            $view_adapter->setIsLayout(true);
+            $view_adapter->setContentRoute($secondary_route);
+        }
+
+        $view_adapter->run();
+
+        // ───────────────────────────────────────────────────────────────────────
+
+
+
+        // Flush the output buffer
+        //ob_end_flush();
+    }
 
 
 }
