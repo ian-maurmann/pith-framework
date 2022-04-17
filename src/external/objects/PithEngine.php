@@ -29,7 +29,7 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
 // │    +  app : PithApp reference                                          │
 // ├────────────────────────────────────────────────────────────────────────┤
 // │    ~  __construct( ) : void                                            │
-// │    +  whereAmI( )    : string                                          │
+// │    +  start( )       : void                                            │
 // └────────────────────────────────────────────────────────────────────────┘
 
 /**
@@ -46,14 +46,6 @@ class PithEngine
     }
 
     /**
-     * @return string
-     */
-    public function whereAmI(): string
-    {
-        return 'Pith Engine object';
-    }
-
-    /**
      * @throws PithException
      */
     public function start()
@@ -63,45 +55,6 @@ class PithEngine
 
         // Dispatch route
         $this->app->dispatcher->engineDispatch($route);
-    }
-
-
-
-
-    /**
-     * @param  $route_namespace
-     * @throws PithException
-     */
-    public function insertPartial($route_namespace)
-    {
-        // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
-
-        // Run route
-        $this->app->dispatcher->engineDispatchRoute($route);
-    }
-
-    /**
-     * @param  string $layout_namespace
-     * @throws PithException
-     */
-    public function runLayout(string $layout_namespace)
-    {
-        // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
-
-        // Run route
-        $this->app->dispatcher->engineDispatchRoute($route);
-    }
-
-    /**
-     * @param  $content_route
-     * @throws PithException
-     */
-    public function insertPageContent($content_route)
-    {
-        // Run route
-        $this->app->dispatcher->engineDispatchRoute($content_route);
     }
 
 }

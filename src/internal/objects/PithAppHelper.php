@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
+use Pith\Framework\PithApp;
 use Pith\Framework\PithAppInterface;
 
 
@@ -40,9 +41,10 @@ class PithAppHelper
 
     /**
      * Initialize Dependencies
-     * @param PithAppInterface $app
+     *
+     * @param PithApp $app
      */
-    public function initializeDependencies(PithAppInterface $app)
+    public function initializeDependencies(PithApp $app)
     {
         // Using secondary initialization function // TODO remove 0.6 implementation
         $app->request_processor->init($app);
@@ -53,6 +55,7 @@ class PithAppHelper
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
         $app->info->setAppReference($app);
+        $app->responder->setAppReference($app);
         $app->router->setAppReference($app);
     }
 }
