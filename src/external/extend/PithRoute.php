@@ -23,6 +23,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithGetObjectClassDirectoryTrait;
+
 // ┌────────────────────────────────────────────────────────────────────────────┐
 // │    PithRoute                                                               │
 // ├────────────────────────────────────────────────────────────────────────────┤
@@ -44,12 +46,15 @@ namespace Pith\Framework;
 // │    +  getViewAdapter( ) : object                                           │
 // └────────────────────────────────────────────────────────────────────────────┘
 
+
 /**
  * Class PithRoute
  * @package Pith\Framework
  */
 class PithRoute extends PithWorkflowElement
 {
+    use PithGetObjectClassDirectoryTrait;
+
     public $access_level = null;
     public $action       = null;
     public $element_type = 'route';
@@ -59,10 +64,16 @@ class PithRoute extends PithWorkflowElement
      */
     public $layout       = null;
 
+    public $pack         = null;
     public $preparer     = null;
     public $route_type   = null;
     public $use_layout   = false;
+
+    /**
+     * @var string|null
+     */
     public $view         = null;
+
     public $view_adapter = null;
 
 
@@ -178,5 +189,53 @@ class PithRoute extends PithWorkflowElement
         }
 
         return $view_adapter;
+    }
+
+
+    /**
+     * @return PithPack
+     * @throws PithException
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection - Using namespace for DI exceptions here.
+     */
+    public function getPack(): PithPack
+    {
+        $pack_namespace = (string) $this->pack;
+        $has_pack       = (bool) strlen($pack_namespace);
+
+        if($has_pack){
+            try {
+                $pack = $this->app->container->get($pack_namespace);
+            } catch (\DI\DependencyException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 4018: The container encountered a \DI\DependencyException exception loading the Pack. Message: ' . $exception->getMessage(),
+                    4018,
+                    $exception
+                );
+            } catch (\DI\NotFoundException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 4019: The container encountered a \DI\NotFoundException exception loading the Pack. Message: ' . $exception->getMessage(),
+                    4019,
+                    $exception
+                );
+            }
+        }
+        else{
+            throw new PithException(
+                'Pith Framework Exception 4017: Route does not have a Pack.',
+                4017
+            );
+        }
+
+        return $pack;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getRouteFolder(): string
+    {
+        return $this->getObjectClassDirectoryRelativePath();
     }
 }

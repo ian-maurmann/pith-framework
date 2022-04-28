@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
+use Pith\Framework\Internal\PithExpressionUtility;
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
 
@@ -37,18 +38,21 @@ class PithDispatcher
 {
     use PithAppReferenceTrait;
 
+    private $expression_utility;
     private $string_utility;
     private $problem_handler;
 
 
     /**
-     * @param PithStringUtility  $string_utility
-     * @param PithProblemHandler $problem_handler
+     * @param PithExpressionUtility $expression_utility
+     * @param PithStringUtility     $string_utility
+     * @param PithProblemHandler    $problem_handler
      */
-    public function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler)
+    public function __construct(PithExpressionUtility $expression_utility, PithStringUtility $string_utility, PithProblemHandler $problem_handler)
     {
-        $this->string_utility  = $string_utility;
-        $this->problem_handler = $problem_handler;
+        $this->expression_utility = $expression_utility;
+        $this->string_utility     = $string_utility;
+        $this->problem_handler    = $problem_handler;
     }
 
     // 0.6
@@ -337,6 +341,21 @@ class PithDispatcher
         // Set app reference
         $route->setAppReference($this->app);
 
+        // Get route folder
+        $route_folder = $route->getRouteFolder();
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // PACK
+
+        // Get the pack
+        $pack = $route->getPack();
+
+        // Set app reference
+        $pack->setAppReference($this->app);
+
+        // Get pack folder
+        $pack_folder = $pack->getPackFolder();
 
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
@@ -394,11 +413,20 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // VIEW
 
+
+
+        // Get the view expression
+        $view_expression = $route->view;
+
+        // Get the view filepath
+        $view_path = $this->expression_utility->getViewPathFromExpression($view_expression, $pack_folder, $route_folder);
+
         // Get the view adapter
         $view_adapter = $route->getViewAdapter();
 
+        // Provision the view adapter
         $view_adapter->setApp($this->app);
-        $view_adapter->setFilePath($route->view);
+        $view_adapter->setFilePath($view_path);
         $view_adapter->setVars($variables_for_view);
 
         if(!empty($secondary_route)){
@@ -406,6 +434,7 @@ class PithDispatcher
             $view_adapter->setContentRoute($secondary_route);
         }
 
+        // Tell the view adapter to run the view
         $view_adapter->run();
 
         // ───────────────────────────────────────────────────────────────────────

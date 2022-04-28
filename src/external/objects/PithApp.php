@@ -40,6 +40,7 @@ class PithApp implements PithAppInterface
 
     public $access_control;
     public $authenticator;
+    public $autoloader;
     public $config;
     public $container;
     public $db;

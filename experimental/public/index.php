@@ -23,7 +23,7 @@ ini_set('error_log', './php_errors.log');
 
 
 // Auto-Load
-require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
+$autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
 
 
 // Load our Constants
@@ -74,6 +74,7 @@ if($pith) {
 
 
     // Add objects to Pith
+    $pith->autoloader = $autoloader; // Give the autoloader to our App.
     $pith->container = $container; // Give the container (PHP-DI) to our App
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
 

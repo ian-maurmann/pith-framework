@@ -12,7 +12,7 @@
  * Pith App Reference Trait
  * ------------------------
  *
- * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpClassNamingConventionInspection    - Long trait names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  */

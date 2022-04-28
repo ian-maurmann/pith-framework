@@ -21,6 +21,7 @@ use Pith\Framework\PithRoute;
  */
 class JelloPartialRoute extends PithRoute
 {
+    public $pack         = '\\Pith\\ExampleAirshipPack\\ExampleAirshipPack';
     public $route_type   = 'partial';
     public $access_level = 'world';
     public $action       = '\\Pith\\ExampleAirshipPack\\DoNothingAction';

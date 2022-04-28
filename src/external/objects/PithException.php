@@ -31,6 +31,12 @@
  *     4011 - Route does not have a Preparer.
  *     4012 - Route get Preparer --> Container: NotFoundException
  *     4013 - Route get Preparer --> Container: DependencyException
+ *     4014 - Route does not have a View Adapter.
+ *     4015 - Route get View Adapter --> Container: NotFoundException
+ *     4016 - Route get View Adapter --> Container: DependencyException
+ *     4017 - Route does not have a Pack.
+ *     4018 - Route get Pack --> Container: NotFoundException
+ *     4019 - Route get Pack --> Container: DependencyException
  *
  *     5xxx - Server Exceptions Unrecoverable
  *     --------------------------------------
