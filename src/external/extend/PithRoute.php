@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithGetObjectClassDirectoryTrait;
+use ReflectionException;
 
 // ┌────────────────────────────────────────────────────────────────────────────┐
 // │    PithRoute                                                               │
@@ -55,26 +56,27 @@ class PithRoute extends PithWorkflowElement
 {
     use PithGetObjectClassDirectoryTrait;
 
-    public $access_level = null;
-    public $action       = null;
-    public $element_type = 'route';
+    public $access_level    = null;
+    public $action          = null;
+    public $element_type    = 'route';
 
     /**
      * @var string|null
      */
-    public $layout       = null;
+    public $layout          = null;
 
-    public $pack         = null;
-    public $preparer     = null;
-    public $route_type   = null;
-    public $use_layout   = false;
+    public $pack            = null;
+    public $preparer        = null;
+    public $resource_folder = null;
+    public $route_type      = null;
+    public $use_layout      = false;
 
     /**
      * @var string|null
      */
-    public $view         = null;
+    public $view            = null;
 
-    public $view_adapter = null;
+    public $view_adapter    = null;
 
 
     /**
@@ -158,6 +160,8 @@ class PithRoute extends PithWorkflowElement
     /**
      * @return object
      * @throws PithException
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection
      */
     public function getViewAdapter()
     {
@@ -233,6 +237,7 @@ class PithRoute extends PithWorkflowElement
 
     /**
      * @return string
+     * @throws ReflectionException
      */
     public function getRouteFolder(): string
     {

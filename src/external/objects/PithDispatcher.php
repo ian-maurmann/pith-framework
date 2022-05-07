@@ -27,7 +27,7 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithExpressionUtility;
 use Pith\Framework\Internal\PithStringUtility;
 use Pith\Framework\Internal\PithProblemHandler;
-
+use ReflectionException;
 
 
 /**
@@ -206,7 +206,7 @@ class PithDispatcher
         $controller->action($this->app, $inject);
 
 
-        // Get the Actions's "prepare"
+        // Get the Action's "prepare"
         $prepare = $controller->getPrepare();
 
 
@@ -300,28 +300,45 @@ class PithDispatcher
      *
      * @param PithRoute $route
      * @param PithRoute|null $secondary_route
+     * @throws PithException
+     * @throws ReflectionException
      *
      * @noinspection DuplicatedCode - Ignore
-     * @throws PithException
      */
     public function engineDispatch(PithRoute $route, PithRoute $secondary_route=null)
     {
-        if($route->route_type === 'layout'){
-            $this->engineDispatchRoute($route, $secondary_route);
-        }
-        elseif($route->route_type === 'page' || $route->route_type === 'error-page'){
-            if($route->use_layout){
-                $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
-                $this->engineDispatch( $layout_route, $route);
-            }
-            else{
-                $this->engineDispatchRoute($route);
-            }
-        }
-        elseif($route->route_type === 'partial' || 'endpoint'){
-            $this->engineDispatchRoute($route);
-        }
+        switch ($route->route_type) {
 
+            // Layout
+            case 'layout':
+                $this->engineDispatchRoute($route, $secondary_route);
+                break;
+
+            // Pages
+            case 'error-page':
+                // fall through
+            case 'page':
+                if($route->use_layout){
+                    $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                    $this->engineDispatch( $layout_route, $route);
+                }
+                else{
+                    $this->engineDispatchRoute($route);
+                }
+                break;
+
+            // Partials and Endpoints
+            case 'endpoint':
+                // fall through
+            case 'partial':
+                $this->engineDispatchRoute($route);
+                break;
+
+            // Resources
+            case 'resource':
+                $this->engineServeResource($route);
+                break;
+        }
     }
 
 
@@ -332,6 +349,7 @@ class PithDispatcher
      * @param PithRoute $route
      * @param PithRoute|null $secondary_route
      * @throws PithException
+     * @throws ReflectionException
      */
     public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
     {
@@ -445,6 +463,116 @@ class PithDispatcher
         //ob_end_flush();
     }
 
+    /**
+     * @param PithRoute $route
+     * @throws PithException
+     * @throws ReflectionException
+     *
+     * @noinspection PhpIncludeInspection
+     */
+    public function engineServeResource(PithRoute $route)
+    {
+        // START - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
+        //------------
+
+        // ───────────────────────────────────────────────────────────────────────
+        // ROUTE
+
+        // Set app reference
+        $route->setAppReference($this->app);
+
+        // Get route folder
+        $route_folder = $route->getRouteFolder();
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // PACK
+
+        // Get the pack
+        $pack = $route->getPack();
+
+        // Set app reference
+        $pack->setAppReference($this->app);
+
+        // Get pack folder
+        $pack_folder = $pack->getPackFolder();
+
+        // ───────────────────────────────────────────────────────────────────────
+        // ACCESS
+
+        // Check access
+        $route->checkAccess();
+
+
+        // ───────────────────────────────────────────────────────────────────────
+
+
+        //------------
+        // END - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
+
+
+        // Get the relative Resource Folder path
+        $resource_folder_expression = (string) $route->resource_folder;
+        $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
+
+        // Get the relative Filepath
+        $route_parameters = $this->app->request->attributes->get('route_parameters');
+        $request_filepath = (string) $route_parameters['filepath'];
+
+
+        // Get the Real Resource Folder path
+        $real_resource_folder_path = realpath(ltrim($resource_folder_path, '/'));
+
+
+        // Check that the Real Resource Folder is a directory
+        $is_real_resource_folder_path_a_folder = ($real_resource_folder_path && is_dir($real_resource_folder_path));
+        if(!$is_real_resource_folder_path_a_folder){
+            throw new PithException(
+                'Pith Framework Exception 4021: Resource folder must be a folder.',
+                4021
+            );
+        }
+
+
+        // Get the Real Filepath
+        $real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
+
+
+        // Check that the Real Filepath is a file
+        $is_real_filepath_a_file = ($real_filepath && is_file($real_filepath));
+        if(!$is_real_filepath_a_file){
+            throw new PithException(
+                'Pith Framework Exception 4022: Resource file must be a file.',
+                4022
+            );
+        }
+
+
+        // Check that the Real Filepath is really inside the Real Resource Folder
+        $is_real_filepath_inside_resource_folder = (strpos($real_filepath, $real_resource_folder_path . DIRECTORY_SEPARATOR) === 0);
+        if(!$is_real_filepath_inside_resource_folder){
+            throw new PithException(
+                'Pith Framework Exception 4020: Requested Resource outside of Resource folder.',
+                4020
+            );
+        }
+
+
+        // Don't serve dot files
+        $starts_with_dot_file = (substr(basename($real_filepath), 0, 1) === '.');
+        $has_sub_dot_file     = (strpos($real_filepath, DIRECTORY_SEPARATOR . '.') !== false);
+        $has_dot_file         = $starts_with_dot_file || $has_sub_dot_file;
+        if($has_dot_file){
+            throw new PithException(
+                'Pith Framework Exception 4023: Requested Resource path includes a dot file.',
+                4023
+            );
+        }
+
+
+        // Serve file
+        require $real_filepath;
+    }
 
 }
 
