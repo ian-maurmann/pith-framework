@@ -17,7 +17,8 @@
         "lotfio/conso": "^1.7",
         "myclabs/php-enum": "^1.7",
         "ikm/copyright-year-utility":"^0.1",
-        "nikic/fast-route": "^1.3"
+        "nikic/fast-route": "^1.3",
+        "symfony/http-foundation": "^6.0"
     },
     "suggest": {
         "robmorgan/phinx":  "Suggested for database migrations",
@@ -80,6 +81,10 @@
                 "experimental/packs/example-airship-pack/jello",
                 "experimental/packs/example-airship-pack/jello-layout",
                 "experimental/packs/example-airship-pack/jello-partial"
+            ],
+            "Pith\\ExampleResourcePack\\": [
+                "experimental/packs/example-resource-pack/",
+                "experimental/packs/example-resource-pack/resources"
             ]
         }
     }

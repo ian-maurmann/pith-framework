@@ -23,7 +23,7 @@ namespace Pith\Framework;
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithProblemHandler;
-
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PithApp
@@ -40,6 +40,7 @@ class PithApp implements PithAppInterface
 
     public $access_control;
     public $authenticator;
+    public $autoloader;
     public $config;
     public $container;
     public $db;
@@ -49,6 +50,7 @@ class PithApp implements PithAppInterface
     public $log;
     public $problem_handler;
     public $registry;
+    public $request;
     public $request_processor;
     public $responder;
     public $router;
@@ -95,9 +97,11 @@ class PithApp implements PithAppInterface
         $this->log               = null;
         $this->problem_handler   = $problem_handler;
         $this->registry          = null;
+        $this->request           = Request::createFromGlobals();
         $this->request_processor = $request_processor;
         $this->responder         = $responder;
         $this->router            = $router;
+
 
         $helper->initializeDependencies($this);
     }

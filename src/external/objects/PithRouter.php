@@ -280,6 +280,7 @@ class PithRouter implements PithRouterInterface
      * Route by URL
      *
      * @noinspection PhpVariableNamingConventionInspection - Ignore here.
+     * @throws PithException
      */
     public function routeWithFastRoute(): array
     {
@@ -384,6 +385,8 @@ class PithRouter implements PithRouterInterface
      * @param  string $route_namespace
      * @return null|\Pith\Framework\PithRoute
      * @throws PithException
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection
      */
     public function getRouteFromRouteNamespace(string $route_namespace): ?\Pith\Framework\PithRoute
     {
@@ -416,14 +419,18 @@ class PithRouter implements PithRouterInterface
     /**
      * @return \Pith\Framework\PithRoute|null
      * @throws PithException
-     *
-     * @noinspection PhpUnused - Will be used in views.
      */
     public function getRoute(): ?\Pith\Framework\PithRoute
     {
+        // Get the route info
         $routing_info = $this->routeWithFastRoute();
         $route        = $this->getRouteObjectFromRouteInfo($routing_info);
+        $route_params = $routing_info['vars'];
 
+        // Save route params
+        $this->app->request->attributes->add(['route_parameters' => $route_params]);
+
+        // Return the route object
         return $route;
     }
 

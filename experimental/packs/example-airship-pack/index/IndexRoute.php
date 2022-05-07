@@ -21,6 +21,7 @@ use Pith\Framework\PithRoute;
 class IndexRoute extends PithRoute
 {
     public $route_type   = 'page';
+    public $pack         = '\\Pith\\ExampleAirshipPack\\ExampleAirshipPack';
     public $access_level = 'world';
     public $action       = '\\Pith\\ExampleAirshipPack\\HelloAction';
     public $preparer     = '\\Pith\\ExampleAirshipPack\\HelloPreparer';

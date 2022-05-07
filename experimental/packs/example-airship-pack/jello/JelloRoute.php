@@ -20,12 +20,13 @@ use Pith\Framework\PithRoute;
  */
 class JelloRoute extends PithRoute
 {
+    public $pack         = '\\Pith\\ExampleAirshipPack\\ExampleAirshipPack';
     public $route_type   = 'page';
     public $access_level = 'world';
     public $action       = '\\Pith\\ExampleAirshipPack\\JelloAction';
     public $layout       = '\\Pith\\ExampleAirshipPack\\JelloLayoutRoute';
     public $preparer     = '\\Pith\\ExampleAirshipPack\\JelloPreparer';
     public $use_layout   = true;
-    public $view         = 'experimental/packs/example-airship-pack/jello/jello-view.phtml';
+    public $view         = '[^route_folder]/jello-view.phtml';
     public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }
