@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
+use ReflectionException;
 
 // ┌────────────────────────────────────────────────────────────────────────┐
 // │    PithEngine                                                          │
@@ -46,7 +47,7 @@ class PithEngine
     }
 
     /**
-     * @throws PithException
+     * @throws PithException|ReflectionException
      */
     public function start()
     {

@@ -41,6 +41,9 @@
  *     4021 - Resource folder must be a folder.
  *     4022 - Resource file must be a file.
  *     4023 - Requested Resource path includes a dot file.
+ *     4024 - Route does not have a View Requisition.
+ *     4025 - Route get View Requisition --> Container: NotFoundException.
+ *     4026 - Route get View Requisition --> Container: DependencyException.
  *
  *     5xxx - Server Exceptions Unrecoverable
  *     --------------------------------------
