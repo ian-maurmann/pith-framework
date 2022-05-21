@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -72,7 +72,7 @@ class AlphaController extends \Pith\Framework\PithController implements \Pith\Fr
         $this->view->b = $b;
         $this->view->c = $c;
 
-        $view_adapter = $app->container->get('\\Pith\\Framework\\Adapter\\Phtml\\PithAdapterForPhtml');
+        $view_adapter = $app->container->get('\\Pith\\PhtmlViewAdapter\\PithPhtmlViewAdapter');
         $this->view_adapter = $view_adapter;
     }
 }
