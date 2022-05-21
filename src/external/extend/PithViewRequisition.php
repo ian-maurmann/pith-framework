@@ -30,9 +30,10 @@ namespace Pith\Framework;
  */
 class PithViewRequisition extends PithWorkflowElement
 {
-    public    $element_type = 'view-requisition';
-    protected $headers      = [];
-    protected $resources    = [];
+    public    $element_type     = 'view-requisition';
+    public    $requisition_type = 'view-requisition';
+    protected $headers          = [];
+    protected $resources        = [];
 
 
     public function provisionViewRequisition()
@@ -64,13 +65,24 @@ class PithViewRequisition extends PithWorkflowElement
      * @param string $filepath
      * @param string $role
      */
-    public function addScript(string $human_readable_name, string $filepath, string $role = 'app'){
+    public function addScript(string $human_readable_name, string $filepath, string $role = 'application-for-page')
+    {
+        // Roles:
+        //     'reset'
+        //     'library-for-layout'
+        //     'application-for-layout'
+        //     'library-for-page'
+        //     'application-for-page'
+        //     'library-for-partial'
+        //     'application-for-partial'
+
         $this->resources[] = [
             'name'          => $human_readable_name,
             'resource_type' => 'script',
             'filepath'      => $filepath,
-            'role'          => $role, // 'reset' | 'library' | 'app'
+            'role'          => $role,
         ];
+
     }
 
     /**
@@ -78,12 +90,22 @@ class PithViewRequisition extends PithWorkflowElement
      * @param string $filepath
      * @param string $role
      */
-    public function addStylesheet(string $human_readable_name, string $filepath, string $role = 'app'){
+    public function addStylesheet(string $human_readable_name, string $filepath, string $role = 'application-for-page')
+    {
+        // Roles:
+        //     'reset'
+        //     'library-for-layout'
+        //     'application-for-layout'
+        //     'library-for-page'
+        //     'application-for-page'
+        //     'library-for-partial'
+        //     'application-for-partial'
+
         $this->resources[] = [
             'name'          => $human_readable_name,
-            'resource_type' => 'script',
+            'resource_type' => 'stylesheet',
             'filepath'      => $filepath,
-            'role'          => $role, // 'reset' | 'library' | 'app'
+            'role'          => $role,
         ];
     }
 
@@ -92,7 +114,7 @@ class PithViewRequisition extends PithWorkflowElement
      */
     public function getHeaders(): array
     {
-        return $this->resources;
+        return $this->headers;
     }
 
     /**

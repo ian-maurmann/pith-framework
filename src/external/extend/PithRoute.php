@@ -15,6 +15,7 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  */
 
 
@@ -56,27 +57,34 @@ class PithRoute extends PithWorkflowElement
 {
     use PithGetObjectClassDirectoryTrait;
 
-    public $access_level    = null;
-    public $action          = null;
-    public $element_type    = 'route';
+    public $access_level     = null;
+    public $action           = null;
+    public $element_type     = 'route';
 
     /**
      * @var string|null
      */
-    public $layout          = null;
+    public $layout           = null;
 
-    public $pack            = null;
-    public $preparer        = null;
-    public $resource_folder = null;
-    public $route_type      = null;
-    public $use_layout      = false;
+    public $pack             = null;
+    public $preparer         = null;
+    public $resource_folder  = null;
+    public $route_type       = null;
+    public $use_layout       = false;
 
     /**
      * @var string|null
      */
-    public $view            = null;
+    public $view             = null;
 
-    public $view_adapter    = null;
+    public $view_adapter     = null;
+
+    /**
+     * Holds the namespace for the View Requisition object
+     * @var string|null
+     */
+    public $view_requisition = '\\Pith\\Framework\\Internal\\EmptyViewRequisition';
+
 
 
     /**
@@ -232,6 +240,46 @@ class PithRoute extends PithWorkflowElement
         }
 
         return $pack;
+    }
+
+
+
+    /**
+     * @return PithViewRequisition
+     * @throws PithException
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection - Using namespace for DI exceptions here.
+     */
+    public function getViewRequisition(): PithViewRequisition
+    {
+        $view_requisition_namespace = (string) $this->view_requisition;
+        $has_view_requisition       = (bool) strlen($view_requisition_namespace);
+
+        if($has_view_requisition){
+            try {
+                $view_requisition = $this->app->container->get($view_requisition_namespace);
+            } catch (\DI\DependencyException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 4025: The container encountered a \DI\DependencyException exception loading the View Requisition. Message: ' . $exception->getMessage(),
+                    4025,
+                    $exception
+                );
+            } catch (\DI\NotFoundException $exception) {
+                throw new PithException(
+                    'Pith Framework Exception 4026: The container encountered a \DI\NotFoundException exception loading the View Requisition. Message: ' . $exception->getMessage(),
+                    4026,
+                    $exception
+                );
+            }
+        }
+        else{
+            throw new PithException(
+                'Pith Framework Exception 4024: Route does not have a View Requisition.',
+                4024
+            );
+        }
+
+        return $view_requisition;
     }
 
 

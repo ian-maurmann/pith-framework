@@ -8,15 +8,26 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+/**
+ * Pith Adapter for .phtml views
+ * -----------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
+ * @noinspection PhpUnused                             - Will be used by workflow elements.
+ */
+
 declare(strict_types=1);
-
-
-// Pith Adapter for .phtml views
-// -----------------------------
 
 namespace Pith\PhtmlViewAdapter2;
 
+use Pith\Framework\PithApp;
 
+/**
+ * Class PithPhtmlViewAdapter2
+ * @package Pith\PhtmlViewAdapter2
+ */
 class PithPhtmlViewAdapter2
 {
     // Objects
@@ -28,9 +39,10 @@ class PithPhtmlViewAdapter2
     protected $object_with_variables_for_phtml_view;
     protected $is_layout;
     protected $content_route;
+    protected $resources;
 
 
-    function __construct(PithPhtmlViewRunner2 $view_runner)
+    public function __construct(PithPhtmlViewRunner2 $view_runner)
     {
         // objects
         $this->view_runner = $view_runner;
@@ -46,32 +58,56 @@ class PithPhtmlViewAdapter2
         $this->content_route = null;
         $this->full_path_to_phtml_view = null;
         $this->object_with_variables_for_phtml_view = null;
+        $this->resources = [];
     }
 
 
-    public function setApp($app)
+    /**
+     * @param PithApp $app
+     */
+    public function setApp(PithApp $app)
     {
         $this->app = $app;
     }
 
-    public function setFilePath($full_path_to_phtml_view)
+    /**
+     * @param string $full_path_to_phtml_view
+     */
+    public function setFilePath(string $full_path_to_phtml_view)
     {
         $this->full_path_to_phtml_view = $full_path_to_phtml_view;
     }
 
 
+    /**
+     * @param $view_variables
+     */
     public function setVars($view_variables)
     {
         $this->object_with_variables_for_phtml_view = $view_variables;
     }
 
 
-    public function setIsLayout($is_layout){
+    /**
+     * @param bool $is_layout
+     */
+    public function setIsLayout(bool $is_layout){
         $this->is_layout = $is_layout;
     }
 
+    /**
+     * @param $content_route
+     */
     public function setContentRoute($content_route){
         $this->content_route = $content_route;
+    }
+
+    /**
+     * @param array $resources
+     */
+    public function setResources(array $resources)
+    {
+        $this->resources = $resources;
     }
 
     public function run()
