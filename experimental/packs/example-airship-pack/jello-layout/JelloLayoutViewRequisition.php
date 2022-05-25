@@ -28,8 +28,9 @@ class JelloLayoutViewRequisition extends PithViewRequisition
     {
         // Headers
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
+        $this->addHeader('Show site runs PHP 8', 'X-Powered-By: PHP/8');
 
         // Resources
-        $this->addScript('Foo Library', '/library/foo/foo.js', 'library');
+        $this->addScript('Foo Library', '/library/foo/foo.js', 'library-for-layout');
     }
 }

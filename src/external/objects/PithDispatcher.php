@@ -454,6 +454,14 @@ class PithDispatcher
             $resources = array_merge($resources, $secondary_resources);
         }
 
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // RESPONDER
+
+        // Add resource files to responder
+        $this->app->responder->addResourceFiles($resources);
+
         // ───────────────────────────────────────────────────────────────────────
         // VIEW
 
