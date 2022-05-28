@@ -24,12 +24,7 @@ class JelloLayoutRoute extends PithRoute
     public $pack             = '\\Pith\\ExampleAirshipPack\\ExampleAirshipPack';
     public $route_type       = 'layout';
     public $access_level     = 'world';
-    public $action           = '\\Pith\\ExampleAirshipPack\\DoNothingAction';
-    public $preparer         = '\\Pith\\ExampleAirshipPack\\DoNothingPreparer';
     public $view_requisition = '\\Pith\\ExampleAirshipPack\\JelloLayoutViewRequisition';
     public $view             = '[^pack_folder]/jello-layout/jello-layout-view.phtml';
     public $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
-
-
-
 }

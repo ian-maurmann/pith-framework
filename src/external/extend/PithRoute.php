@@ -57,17 +57,37 @@ class PithRoute extends PithWorkflowElement
 {
     use PithGetObjectClassDirectoryTrait;
 
-    public $access_level     = null;
-    public $action           = null;
-    public $element_type     = 'route';
-
     /**
+     * Holds the name of the access level
      * @var string|null
      */
-    public $layout           = null;
+    public $access_level = null; // Default to null
 
-    public $pack             = null;
-    public $preparer         = null;
+    /**
+     * Holds the namespace for the Action object
+     * @var string|null
+     */
+    public $action = '\\Pith\\Framework\\Internal\\EmptyAction'; // Use empty action as default
+
+    /**
+     * Holds the workflow element type as string
+     * @var string
+     */
+    public $element_type = 'route'; // Use string 'route'
+
+    /**
+     * Holds the namespace for the layout's route object, if has layout
+     * @var string|null
+     */
+    public $layout = null; // Default to null
+
+    /**
+     * Holds the namespace for the Pack object
+     * @var string|null
+     */
+    public $pack = null; // Default to null
+
+    public $preparer         = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
     public $resource_folder  = null;
     public $route_type       = null;
     public $use_layout       = false;
@@ -83,7 +103,7 @@ class PithRoute extends PithWorkflowElement
      * Holds the namespace for the View Requisition object
      * @var string|null
      */
-    public $view_requisition = '\\Pith\\Framework\\Internal\\EmptyViewRequisition';
+    public $view_requisition = '\\Pith\\Framework\\Internal\\EmptyViewRequisition'; // Use empty view requisition as default
 
 
 
