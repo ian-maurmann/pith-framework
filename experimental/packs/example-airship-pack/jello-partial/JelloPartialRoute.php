@@ -24,8 +24,6 @@ class JelloPartialRoute extends PithRoute
     public $pack             = '\\Pith\\ExampleAirshipPack\\ExampleAirshipPack';
     public $route_type       = 'partial';
     public $access_level     = 'world';
-    public $action           = '\\Pith\\ExampleAirshipPack\\DoNothingAction';
-    public $preparer         = '\\Pith\\ExampleAirshipPack\\DoNothingPreparer';
     public $view_requisition = '\\Pith\\ExampleAirshipPack\\JelloPartialViewRequisition';
     public $view             = 'experimental/packs/example-airship-pack/jello-partial/jello-partial-view.phtml';
     public $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
