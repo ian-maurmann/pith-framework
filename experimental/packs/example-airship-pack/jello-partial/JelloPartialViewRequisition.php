@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Jello Layout View Requisition
+ * Jello Partial View Requisition
  * -----------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
@@ -17,12 +17,12 @@ namespace Pith\ExampleAirshipPack;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class JelloLayoutViewRequisition
+ * Class JelloPartialViewRequisition
  * @package Pith\ExampleAirshipPack
  */
-class JelloLayoutViewRequisition extends PithViewRequisition
+class JelloPartialViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'view-requisition';
+    public $requisition_type = 'partial-view-requisition';
 
     public function runRequisition()
     {

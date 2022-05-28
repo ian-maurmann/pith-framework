@@ -8,15 +8,26 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+/**
+ * Pith View Runner for .phtml views
+ * ---------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
+ */
+
+
 declare(strict_types=1);
 
-
-// Pith View Runner for .phtml views
-// ---------------------------------
 
 namespace Pith\PhtmlViewAdapter2;
 
 
+/**
+ * Class PithPhtmlViewRunner2
+ * @package Pith\PhtmlViewAdapter2
+ */
 class PithPhtmlViewRunner2
 {
     protected $app;
@@ -25,10 +36,12 @@ class PithPhtmlViewRunner2
     protected $variables;
     protected $content_route;
 
-    function __construct()
+
+    public function __construct()
     {
         $this->reset();
     }
+
 
     protected function reset()
     {
@@ -40,7 +53,14 @@ class PithPhtmlViewRunner2
     }
 
 
-    public function run($app, $is_layout, $path, $variables, $content_route=null)
+    /**
+     * @param $app
+     * @param $is_layout
+     * @param $path
+     * @param $variables
+     * @param $content_route
+     */
+    public function run($app, $is_layout, $path, $variables, $content_route)
     {
         $this->app           = $app;
         $this->is_layout     = (bool) $is_layout;
@@ -51,6 +71,8 @@ class PithPhtmlViewRunner2
         $this->dispatchView();
     }
 
+
+    /** @noinspection PhpIncludeInspection - Needed to run. */
     protected function dispatchView(){
 
         // Set vars:
@@ -59,4 +81,6 @@ class PithPhtmlViewRunner2
         // Include the view:
         require $this->path;
     }
+
+
 }

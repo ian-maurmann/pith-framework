@@ -7,7 +7,7 @@
 
     declare(strict_types=1);
 
-    header('Content-Type: text/html; charset=utf-8');
+    //header('Content-Type: text/html; charset=utf-8');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@
     <meta name="MobileOptimized"  content="width">
     <meta name="viewport"         content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scale=no">
 
-    <script src="/library/foo/foo.js"></script>
+    <?php $this->app->responder->insertResourceFiles(1); ?>
 </head>
 <body>
     <div>

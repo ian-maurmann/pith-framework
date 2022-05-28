@@ -368,6 +368,8 @@ class PithDispatcher
         $route_folder = $route->getRouteFolder();
 
 
+
+
         // ───────────────────────────────────────────────────────────────────────
         // PACK
 
@@ -454,6 +456,20 @@ class PithDispatcher
             $resources = array_merge($resources, $secondary_resources);
         }
 
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // RESPONDER
+
+        // Add resource files to responder
+        $this->app->responder->addResourceFiles($resources);
+
+        // If partial, insert resource files
+        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
+        if($is_partial){
+            $this->app->responder->insertResourceFiles();
+        }
+
         // ───────────────────────────────────────────────────────────────────────
         // VIEW
 
@@ -522,6 +538,8 @@ class PithDispatcher
      */
     public function dispatchHeaders(array $headers)
     {
+        // Only if headers are not sent, so layouts and pages.
+        // Partials never send headers when called inside a page or layout.
         if (!headers_sent()) {
             foreach ($headers as $header) {
                 // Unpack header info
