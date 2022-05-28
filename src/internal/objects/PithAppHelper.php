@@ -8,34 +8,54 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * Pith App Helper
+ * ---------------
+ *
+ * @noinspection PhpMethodNamingConventionInspection - Long method names are ok.
+ */
+
+
 declare(strict_types=1);
-
-
-// Pith App Helper
-// ---------------
 
 
 namespace Pith\Framework\Internal;
 
 
+use Pith\Framework\PithApp;
+use Pith\Framework\PithAppInterface;
+
+
+/**
+ * Class PithAppHelper
+ * @package Pith\Framework\Internal
+ */
 class PithAppHelper
 {
-    function __construct()
+    public function __construct()
     {
         // Do nothing for now
     }
 
-    public function initializeDependencies($app)
+
+    /**
+     * Initialize Dependencies
+     *
+     * @param PithApp $app
+     */
+    public function initializeDependencies(PithApp $app)
     {
-        // Using secondary initialization function
+        // Using secondary initialization function // TODO remove 0.6 implementation
         $app->request_processor->init($app);
         $app->access_control->init($app);
-        $app->router->init($app);
-        $app->dispatcher->init($app);
         $app->problem_handler->init($app);
-
+        
         // Using the app reference trait
-        $app->info->setAppReference($app);
+        $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
+        $app->info->setAppReference($app);
+        $app->responder->setAppReference($app);
+        $app->router->setAppReference($app);
     }
 }

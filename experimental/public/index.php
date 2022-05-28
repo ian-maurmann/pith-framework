@@ -23,7 +23,7 @@ ini_set('error_log', './php_errors.log');
 
 
 // Auto-Load
-require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
+$autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
 
 
 // Load our Constants
@@ -37,18 +37,31 @@ require 'experimental/routes.php'; // Enter the path to routes file.
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
 
 
-
+// Load Pith
+$pith = null;
 try {
     // Pith Framework App
     $pith = $container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
-
+} catch (\DI\DependencyException $exception) {
+    throw new PithException(
+        'Pith Framework Exception 5002: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+        5002,
+        $exception
+    );
+} catch (\DI\NotFoundException $exception) {
+    throw new PithException(
+        'Pith Framework Exception 5001: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+        5001,
+        $exception
+    );
+}
     // ~~ $config_profile = $container->get('\\Pith\\ExampleConfig\\ExampleConfig');    // <--- Replace this with your own Config Profile object. // TODO Remove
     // ~~ $route_list     = $container->get('\\Pith\\ExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object.     // TODO Remove
 
-
+if($pith) {
     // Setup the logger
     // We're using Monolog here. You can use your own logger here instead of Monolog if you want. (Needs to be PSR-3 compatible)
-    $monolog        = new \Monolog\Logger('Pith');
+    $monolog = new \Monolog\Logger('Pith');
     $monolog_stream = new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Logger::DEBUG);
     $monolog_format = new \Monolog\Formatter\LineFormatter(
         null, // Format of message in log, default [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n
@@ -61,8 +74,9 @@ try {
 
 
     // Add objects to Pith
+    $pith->autoloader = $autoloader; // Give the autoloader to our App.
     $pith->container = $container; // Give the container (PHP-DI) to our App
-    $pith->log       = $monolog; // Give the logger (Monolog) to our App.
+    $pith->log = $monolog; // Give the logger (Monolog) to our App.
 
 
     // Set the Config
@@ -73,34 +87,6 @@ try {
     // Run Pith
     // ~~ $pith->start(); // TODO Remove
 
-    echo $pith->version();
-
-    echo '<hr/>';
-    echo HELLO;
-
-    echo '<hr/>';
-    echo FOO;
-
-    echo '<hr/>';
-    echo print_r( APP_ROUTES, true);
-
-    echo '<hr/>';
-    echo $pith->info->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->engine->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->info->app->engine->app->whereAmI();
-
-    echo '<hr/>';
-    echo $pith->engine->start();
-
-} catch (\DI\DependencyException $exception) {
-    throw $exception;
-} catch (\DI\NotFoundException $exception) {
-    throw $exception;
+    $pith->engine->start();
 }
+

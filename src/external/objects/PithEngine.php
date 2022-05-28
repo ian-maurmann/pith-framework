@@ -12,7 +12,8 @@
  * Pith Engine
  * -----------
  *
- * @noinspection PhpMethodNamingConventionInspection - Long method names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  */
 
 
@@ -21,8 +22,16 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
-use FastRoute;
+use ReflectionException;
 
+// ┌────────────────────────────────────────────────────────────────────────┐
+// │    PithEngine                                                          │
+// ├────────────────────────────────────────────────────────────────────────┤
+// │    +  app : PithApp reference                                          │
+// ├────────────────────────────────────────────────────────────────────────┤
+// │    ~  __construct( ) : void                                            │
+// │    +  start( )       : void                                            │
+// └────────────────────────────────────────────────────────────────────────┘
 
 /**
  * Class PithEngine
@@ -38,109 +47,15 @@ class PithEngine
     }
 
     /**
-     * @return string
+     * @throws PithException|ReflectionException
      */
-    public function whereAmI(): string
-    {
-        return 'Pith Engine object';
-    }
-
     public function start()
     {
-        $this->routeByUrl();
+        // Get route
+        $route = $this->app->router->getRoute();
+
+        // Dispatch route
+        $this->app->dispatcher->engineDispatch($route);
     }
 
-    /**
-     * Route by URL
-     *
-     * @noinspection PhpVariableNamingConventionInspection - Ignore here.
-     */
-    public function routeByUrl()
-    {
-        // Example:
-        //
-        // $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-        //    $r->addRoute('GET', '/users', 'get_all_users_handler');
-        //    // {id} must be a number (\d+)
-        //    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
-        //    // The /{title} suffix is optional
-        //    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
-        // });
-
-
-        $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-            // Get Routes
-            $app_routes = APP_ROUTES;
-
-            // Loop through routes, Add each route
-            foreach ($app_routes as $app_route){
-                $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
-            }
-        });
-
-        // Get HTTP method
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-
-        // Get URI
-        $uri = $_SERVER['REQUEST_URI'];
-        // Strip query string (?foo=bar) and decode URI
-        if (false !== $pos = strpos($uri, '?')) {
-            $uri = substr($uri, 0, $pos);
-        }
-        $uri = rawurldecode($uri);
-
-        $routeInfo = $fast_dispatcher->dispatch($httpMethod, $uri);
-        switch ($routeInfo[0]) {
-            case FastRoute\Dispatcher::NOT_FOUND:
-                // ... 404 Not Found
-
-                $this->handleFastRouteNotFound();
-                break;
-            case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                $allowedMethods = $routeInfo[1];
-                // ... 405 Method Not Allowed
-
-                $this->handleFastRouteMethodNotAllowed($allowedMethods);
-                break;
-            case FastRoute\Dispatcher::FOUND:
-                $handler = $routeInfo[1];
-                $vars = $routeInfo[2];
-                // ... call $handler with $vars
-
-                $this->handleFastRouteFound($handler, $vars);
-                break;
-        }
-
-        // Debug
-        error_log('══════════════════════════════════════════════════' );
-        error_log('$httpMethod === ' . print_r($httpMethod, true));
-        error_log('$uri        === ' . print_r($uri, true));
-        error_log('$routeInfo  === ' . print_r($routeInfo, true));
-        error_log('══════════════════════════════════════════════════' );
-    }
-
-
-
-
-    public function handleFastRouteNotFound()
-    {
-        // ... 404 Not Found
-
-        error_log('Router: 404 Not Found');
-    }
-
-    public function handleFastRouteMethodNotAllowed($allowedMethods)
-    {
-        // ... 405 Method Not Allowed
-
-        error_log('Router: 405 Method Not Allowed');
-    }
-
-    public function handleFastRouteFound($handler, $vars)
-    {
-        // ... call $handler with $vars
-
-        error_log('Router: Found');
-        error_log(print_r($handler, true));
-    }
 }
