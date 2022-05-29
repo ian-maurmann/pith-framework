@@ -9,16 +9,17 @@
     ],
     "license": "MPL-2.0",
     "require": {
-        "php": "^7.1",
+        "php": "^8.1",
         "ext-readline": "*",
         "ext-json": "*",
         "php-di/php-di": "^6",
         "monolog/monolog": "^1.24",
         "lotfio/conso": "^1.7",
         "myclabs/php-enum": "^1.7",
-        "ikm/copyright-year-utility":"^0.1"
+        "ikm/copyright-year-utility":"^0.1",
+        "nikic/fast-route": "^1.3",
+        "symfony/http-foundation": "^6.0"
     },
-    "require-dev": {},
     "suggest": {
         "robmorgan/phinx":  "Suggested for database migrations",
         "phpunit/phpunit":  "Suggested for unit-testing"
@@ -34,10 +35,14 @@
             "Pith\\Framework\\Internal\\": [
                 "src/internal/objects/",
                 "src/internal/interfaces/",
-                "src/internal/traits/"
+                "src/internal/traits/",
+                "src/internal/workflow/"
             ],
             "Pith\\PhtmlViewAdapter\\": [
                 "src/plugins/phtml-view-adapter/src/"
+            ],
+            "Pith\\PhtmlViewAdapter2\\": [
+                "src/plugins/phtml-view-adapter-2/src/"
             ],
             "Pith\\DatabaseWrapper\\": [
                 "src/plugins/database-wrapper/src/"
@@ -54,19 +59,19 @@
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
             ],
-            "Pith\\ExampleModule\\": [
-                "example/modules/example-module/",
-                "example/modules/example-module/controllers/"
+            "Pith\\ExampleAirshipPack\\": [
+                "experimental/packs/example-airship-pack/",
+                "experimental/packs/example-airship-pack/do-nothing",
+                "experimental/packs/example-airship-pack/hello",
+                "experimental/packs/example-airship-pack/hindenburg",
+                "experimental/packs/example-airship-pack/index",
+                "experimental/packs/example-airship-pack/jello",
+                "experimental/packs/example-airship-pack/jello-layout",
+                "experimental/packs/example-airship-pack/jello-partial"
             ],
-            "Pith\\ExampleConfig\\": [
-                "example/config/"
-            ],
-            "Pith\\BlueSkyExampleModule\\": [
-                "example-2/modules/blue-sky-module/",
-                "example-2/modules/blue-sky-module/controllers/"
-            ],
-            "Pith\\BlueSkyExampleConfig\\": [
-                "example-2/config/"
+            "Pith\\ExampleResourcePack\\": [
+                "experimental/packs/example-resource-pack/",
+                "experimental/packs/example-resource-pack/resources"
             ]
         }
     }

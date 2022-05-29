@@ -8,9 +8,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
+/**
+ * Pith Pack (extend)
+ * ---------------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
+ */
 
 
 declare(strict_types=1);
@@ -18,11 +21,23 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithGetObjectClassDirectoryTrait;
 
-trait PithVersionTrait
+/**
+ * Class PithPack
+ * @package Pith\Framework
+ */
+class PithPack extends PithWorkflowElement
 {
-    public function version()
+    use PithGetObjectClassDirectoryTrait;
+
+    public $element_type = 'pack';
+
+    /**
+     * @return string
+     */
+    public function getPackFolder(): string
     {
-        return 'Pith Framework: rv 0.8.0.0 | sv 0.18.0 | Alpha 32';
+        return $this->getObjectClassDirectoryRelativePath();
     }
 }

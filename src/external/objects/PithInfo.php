@@ -8,21 +8,37 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
+/**
+ * Pith Info
+ * ---------
+ */
 
 
 declare(strict_types=1);
 
-
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithAppReferenceTrait;
 
-trait PithVersionTrait
+
+/**
+ * Class PithInfo
+ * @package Pith\Framework
+ */
+class PithInfo
 {
-    public function version()
+    use PithAppReferenceTrait;
+
+    public function __construct()
     {
-        return 'Pith Framework: rv 0.8.0.0 | sv 0.18.0 | Alpha 32';
+        // Do nothing for now.
+    }
+
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
+    {
+        return 'Pith Info object';
     }
 }

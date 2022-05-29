@@ -8,21 +8,28 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
+/**
+ * Empty Action
+ * ------------
+ *
+ * @noinspection PhpMissingParentCallCommonInspection  - Action parent methods exist as fallback.
+ */
 
 
 declare(strict_types=1);
 
+namespace Pith\Framework\Internal;
 
-namespace Pith\Framework;
+use Pith\Framework\PithAction;
 
-
-trait PithVersionTrait
+/**
+ * Class EmptyAction
+ * @package Pith\Framework\Internal
+ */
+class EmptyAction extends PithAction
 {
-    public function version()
+    public function runAction()
     {
-        return 'Pith Framework: rv 0.8.0.0 | sv 0.18.0 | Alpha 32';
+        // Do nothing.
     }
 }
