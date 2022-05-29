@@ -12,7 +12,7 @@
 
 Pith Framework is a PHP web application framework, provided under the terms of the MPL 2.0 license. Pith Framework uses a design pattern similar to MVC and ADR: (Route, Action, Model, Preparer, View).
 
-Pith Framework requires PHP 7.1 or newer, running on a LAMP environment. 
+Pith Framework requires PHP 8.1 or newer, running on a LAMP environment. 
 
 Support for Windows Server and IIS is planned. The framework currently runs on MacOS without problems although it is not "officially" supported at this time. After PHP 8 GA (Nov 26 2020), Pith Framework will upgrade to PHP 8 will after the framework's dependencies ([PHP-DI](https://github.com/PHP-DI/PHP-DI), [Monolog](https://github.com/Seldaek/monolog), [My C-Labs' PHP Enum](https://github.com/myclabs/php-enum), and [Conso](https://github.com/lotfio/conso)).
 
