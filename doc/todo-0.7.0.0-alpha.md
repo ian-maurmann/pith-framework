@@ -1,5 +1,5 @@
 
-[<<< Previous](todo-0.6.0.0-rewrite-pre-alpha.md) | [All ToDo Lists](todo-index.md)
+[<<< Previous](todo-0.6.0.0-rewrite-pre-alpha.md) | [All ToDo Lists](todo-index.md) | [Next >>>](todo-0.7.6.0-alpha.md)
 
 ---
 

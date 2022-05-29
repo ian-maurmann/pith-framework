@@ -23,7 +23,7 @@ namespace Pith\Framework;
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithProblemHandler;
-
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PithApp
@@ -38,57 +38,81 @@ class PithApp implements PithAppInterface
 
     private $helper;
 
-    public $container;
-    public $log;
-    public $request_processor;
-    public $config;
-    public $db;
-    public $registry;
-    public $authenticator;
     public $access_control;
-    public $router;
+    public $authenticator;
+    public $autoloader;
+    public $config;
+    public $container;
+    public $db;
     public $dispatcher;
+    public $engine;
+    public $info;
+    public $log;
     public $problem_handler;
+    public $registry;
+    public $request;
+    public $request_processor;
+    public $responder;
+    public $router;
 
 
     /**
      * PithApp constructor.
+     *
      * @param PithAppHelper        $helper
-     * @param PithRequestProcessor $request_processor
+     * @param PithAccessControl    $access_control
      * @param PithConfig           $config
      * @param PithDatabaseWrapper  $db
-     * @param PithAccessControl    $access_control
-     * @param PithRouter           $router
      * @param PithDispatcher       $dispatcher
+     * @param PithEngine           $engine
+     * @param PithInfo             $info
      * @param PithProblemHandler   $problem_handler
+     * @param PithRequestProcessor $request_processor
+     * @param PithResponder        $responder
+     * @param PithRouter           $router
      */
     public function __construct(
         PithAppHelper        $helper,
-        PithRequestProcessor $request_processor,
+        PithAccessControl    $access_control,
         PithConfig           $config,
         PithDatabaseWrapper  $db,
-        PithAccessControl    $access_control,
-        PithRouter           $router,
         PithDispatcher       $dispatcher,
-        PithProblemHandler   $problem_handler
+        PithEngine           $engine,
+        PithInfo             $info,
+        PithProblemHandler   $problem_handler,
+        PithRequestProcessor $request_processor,
+        PithResponder        $responder,
+        PithRouter           $router
     )
     {
         $this->helper            = $helper;
-        $this->container         = null;
-        $this->log               = null;
-        $this->request_processor = $request_processor;
-        $this->config            = $config;
-        $this->db                = $db;
-        $this->registry          = null;
-        $this->authenticator     = null;
         $this->access_control    = $access_control;
-        $this->router            = $router;
+        $this->authenticator     = null;
+        $this->config            = $config;
+        $this->container         = null;
+        $this->db                = $db;
         $this->dispatcher        = $dispatcher;
+        $this->engine            = $engine;
+        $this->info              = $info;
+        $this->log               = null;
         $this->problem_handler   = $problem_handler;
+        $this->registry          = null;
+        $this->request           = Request::createFromGlobals();
+        $this->request_processor = $request_processor;
+        $this->responder         = $responder;
+        $this->router            = $router;
+
 
         $helper->initializeDependencies($this);
     }
 
-}
 
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
+    {
+        return 'Pith App object';
+    }
+}
 
