@@ -103,6 +103,7 @@ $ cd example/public
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 32              | 0.8.0.0 | *sv 0.18.0* | Stable, limited features
 Alpha 31              | 0.7.5.0 | *sv 0.17.0* | Stable, but not production-ready
 Alpha 30              | 0.7.4.0 | *sv 0.16.0* | Stable, but not production-ready
 Alpha 29              | 0.7.3.0 | *sv 0.15.0* | Stable, but not production-ready
@@ -129,6 +130,12 @@ See https://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.8.0.0 - Alpha 32** `(semver: v0.18.0)`
+
+- Simplified the configuration.
+- Updated routing to use FastRoute now.
+- Updated dispatching to use separate Action objects and Preparer objects.
 
 **0.7.5.0 - Alpha 31** `(semver: v0.17.0)`
 

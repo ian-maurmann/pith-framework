@@ -59,20 +59,6 @@
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
             ],
-            "Pith\\ExampleModule\\": [
-                "example/modules/example-module/",
-                "example/modules/example-module/controllers/"
-            ],
-            "Pith\\ExampleConfig\\": [
-                "example/config/"
-            ],
-            "Pith\\BlueSkyExampleModule\\": [
-                "example-2/modules/blue-sky-module/",
-                "example-2/modules/blue-sky-module/controllers/"
-            ],
-            "Pith\\BlueSkyExampleConfig\\": [
-                "example-2/config/"
-            ],
             "Pith\\ExampleAirshipPack\\": [
                 "experimental/packs/example-airship-pack/",
                 "experimental/packs/example-airship-pack/do-nothing",
