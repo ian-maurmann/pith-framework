@@ -23,5 +23,5 @@ class FooResourceRoute extends PithRoute
     public $pack            = '\\Pith\\ExampleResourcePack\\ExampleResourcePack';
     public $route_type      = 'resource';
     public $access_level    = 'world';
-    public $resource_folder = '[^route_folder]/vendor/foo-v0.0.0/';
+    public $resource_folder = '[^route_folder]/3rd-party-libraries/foo-v0.0.0/';
 }
