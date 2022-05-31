@@ -30,12 +30,24 @@ namespace Pith\Framework;
  */
 class PithPreparer extends PithWorkflowElement
 {
-    public    $element_type = 'preparer';
-    protected $prepare      = null;
-    protected $view         = null;
+    /**
+     * @var string
+     */
+    public $element_type = 'preparer';
 
     /**
-     * @param $prepare_vars_object
+     * @var object|null
+     */
+    protected $prepare = null;
+
+    /**
+     * @var object|null
+     */
+    protected $view = null;
+
+
+    /**
+     * @param object $prepare_vars_object
      */
     public function provisionPreparer($prepare_vars_object)
     {

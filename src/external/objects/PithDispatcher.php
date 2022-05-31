@@ -359,8 +359,15 @@ class PithDispatcher
         // Set app reference
         $route->setAppReference($this->app);
 
+        // Set app reference for secondary route
+        if($secondary_route){
+            $secondary_route->setAppReference($this->app);
+        }
+
         // Get route folder
         $route_folder = $route->getRouteFolder();
+
+
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -429,6 +436,41 @@ class PithDispatcher
         $variables_for_view = $preparer->getVariablesForView();
 
         // ───────────────────────────────────────────────────────────────────────
+        // VIEW REQUISITION
+
+        // Get the view requisition
+        $requisition = $route->getViewRequisition();
+
+        // Dispatch requisition, set headers, get resources
+        $resources = $this->dispatchViewRequisition($requisition);
+
+        // If this is a layout
+        if($secondary_route){
+            // Get page requisition
+            $secondary_requisition = $secondary_route->getViewRequisition();
+
+            // Dispatch page requisition, set headers for page, get resources for page
+            $secondary_resources = $this->dispatchViewRequisition($secondary_requisition);
+
+            // Add new resources to resources array
+            $resources = array_merge($resources, $secondary_resources);
+        }
+
+
+
+        // ───────────────────────────────────────────────────────────────────────
+        // RESPONDER
+
+        // Add resource files to responder
+        $this->app->responder->addResourceFiles($resources);
+
+        // If partial, insert resource files
+        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
+        if($is_partial){
+            $this->app->responder->insertResourceFiles();
+        }
+
+        // ───────────────────────────────────────────────────────────────────────
         // VIEW
 
 
@@ -445,8 +487,8 @@ class PithDispatcher
         // Provision the view adapter
         $view_adapter->setApp($this->app);
         $view_adapter->setFilePath($view_path);
+        $view_adapter->setResources($resources);
         $view_adapter->setVars($variables_for_view);
-
         if(!empty($secondary_route)){
             $view_adapter->setIsLayout(true);
             $view_adapter->setContentRoute($secondary_route);
@@ -462,6 +504,55 @@ class PithDispatcher
         // Flush the output buffer
         //ob_end_flush();
     }
+
+
+    /**
+     * @param  PithViewRequisition $requisition
+     * @return array
+     */
+    public function dispatchViewRequisition(PithViewRequisition $requisition): array
+    {
+        // Set app reference
+        $requisition->setAppReference($this->app);
+
+        // Provision the requisition
+        $requisition->provisionViewRequisition();
+
+        // Run the requisition
+        $requisition->runRequisition();
+
+        // Get info from requisition
+        $requisition_headers   = $requisition->getHeaders();
+        $requisition_resources = $requisition->getResources();
+
+        // Dispatch the headers
+        $this->dispatchHeaders($requisition_headers);
+
+        return $requisition_resources;
+    }
+
+    /**
+     * @param array $headers
+     *
+     * @noinspection PhpSingleStatementWithBracesInspection - For readability.
+     */
+    public function dispatchHeaders(array $headers)
+    {
+        // Only if headers are not sent, so layouts and pages.
+        // Partials never send headers when called inside a page or layout.
+        if (!headers_sent()) {
+            foreach ($headers as $header) {
+                // Unpack header info
+                $http_header   = $header['http_header'];
+                $replace       = $header['replace'];
+                $response_code = $header['response_code'];
+
+                // Add header
+                header($http_header, $replace, $response_code);
+            }
+        }
+    }
+
 
     /**
      * @param PithRoute $route

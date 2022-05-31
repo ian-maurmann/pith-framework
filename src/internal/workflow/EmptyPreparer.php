@@ -8,21 +8,28 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith Version Trait
-// ------------------
+/**
+ * Empty Preparer
+ * --------------
+ *
+ * @noinspection PhpMissingParentCallCommonInspection - Preparer parent methods exist as fallback.
+ */
 
 
 declare(strict_types=1);
 
+namespace Pith\Framework\Internal;
 
-namespace Pith\Framework;
+use Pith\Framework\PithPreparer;
 
-
-trait PithVersionTrait
+/**
+ * Class EmptyPreparer
+ * @package Pith\Framework\Internal
+ */
+class EmptyPreparer extends PithPreparer
 {
-    public function version()
+    public function runPreparer()
     {
-        return 'Pith Framework: rv 0.8.0.0 | sv 0.18.0 | Alpha 32';
+        // Do nothing for now.
     }
 }
