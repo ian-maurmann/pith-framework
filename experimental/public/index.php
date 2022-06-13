@@ -30,7 +30,7 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 require 'experimental/constants.php'; // Enter the path to constants file.
 
 // Load our Routes
-require 'experimental/routes.php'; // Enter the path to routes file.
+// require 'experimental/routes.php'; // Enter the path to routes file.
 
 
 // Setup our Container
@@ -82,6 +82,7 @@ if($pith) {
     // Set the Config
     // ~~ $pith->config->setConfigByObject($config_profile); // TODO Remove
     // ~~ $pith->config->setRouteListByObject($route_list); // TODO Remove
+    $pith->config->route_list = $container->get('\\Pith\\ExampleAirshipPack\\ExampleAirshipRouteList');
 
 
     // Run Pith
