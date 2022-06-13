@@ -8,26 +8,26 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
-Alpha 32              | 0.8.0.0 | *sv 0.18.0* |  | Stable, limited features
-Alpha 31              | 0.7.5.0 | *sv 0.17.0* |  | Stable, but not production-ready
-Alpha 30              | 0.7.4.0 | *sv 0.16.0* |  | Stable, but not production-ready
-Alpha 29              | 0.7.3.0 | *sv 0.15.0* |  | Stable, but not production-ready
-Alpha 28              | 0.7.2.0 | *sv 0.14.0* |  | Stable, but not production-ready
-Alpha 27              | 0.7.1.1 | *sv 0.13.0* |  | Stable, but not production-ready
-Alpha 26              | 0.7.1.0 | *sv 0.12.0* |  | Stable, but not production-ready
-Alpha 25              | 0.7.0.2 | *sv 0.11.0* |  | Stable, but not production-ready
-Alpha 24              | 0.7.0.1 | *sv 0.10.0* |  | Stable, but not production-ready
-Alpha 23              | 0.7.0.0 | *sv 0.9.1*  |  | (MVP) Stable, but not production-ready
-Rewrite UF            | 0.6.5.0 | *sv 0.9.0*  |  | :warning: *Testing and experimentation.*
-Rewrite Pre-Alpha 8   | 0.6.4.0 | *sv 0.8.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 7   | 0.6.3.0 | *sv 0.7.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 6   | 0.6.2.1 | *sv 0.6.1*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 5   | 0.6.2.0 | *sv 0.6.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 4   | 0.6.1.0 | *sv 0.5.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | 0.6.0.3 | *sv 0.4.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | 0.6.0.2 | *sv 0.3.0*  |  | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | 0.6.0.1 | *sv 0.2.0*  |  | :warning: *Not yet*
-(2nd) Initial Rewrite | 0.6.0.0 | *sv 0.1.0*  |  | :warning: *Not yet*
+Alpha 32              | 0.8.0.0 | *sv 0.18.0* | 2022-05-28 | Stable, limited features
+Alpha 31              | 0.7.5.0 | *sv 0.17.0* | 2022-01-25 | Stable, but not production-ready
+Alpha 30              | 0.7.4.0 | *sv 0.16.0* | 2021-02-16 | Stable, but not production-ready
+Alpha 29              | 0.7.3.0 | *sv 0.15.0* | 2020-11-21 | Stable, but not production-ready
+Alpha 28              | 0.7.2.0 | *sv 0.14.0* | 2020-07-28 | Stable, but not production-ready
+Alpha 27              | 0.7.1.1 | *sv 0.13.0* | 2020-06-20 | Stable, but not production-ready
+Alpha 26              | 0.7.1.0 | *sv 0.12.0* | 2020-03-10 | Stable, but not production-ready
+Alpha 25              | 0.7.0.2 | *sv 0.11.0* | 2020-03-03 | Stable, but not production-ready
+Alpha 24              | 0.7.0.1 | *sv 0.10.0* | 2020-02-25 | Stable, but not production-ready
+Alpha 23              | 0.7.0.0 | *sv 0.9.1*  | 2020-01-28 | (MVP) Stable, but not production-ready
+Rewrite UF            | 0.6.5.0 | *sv 0.9.0*  | 2019-11-20 | :warning: *Testing and experimentation.*
+Rewrite Pre-Alpha 8   | 0.6.4.0 | *sv 0.8.0*  | 2019-11-05 | :warning: *Not yet*
+Rewrite Pre-Alpha 7   | 0.6.3.0 | *sv 0.7.0*  | 2019-10-29 | :warning: *Not yet*
+Rewrite Pre-Alpha 6   | 0.6.2.1 | *sv 0.6.1*  | 2019-09-24 | :warning: *Not yet*
+Rewrite Pre-Alpha 5   | 0.6.2.0 | *sv 0.6.0*  | 2019-07-09 | :warning: *Not yet*
+Rewrite Pre-Alpha 4   | 0.6.1.0 | *sv 0.5.0*  | 2019-05-27 | :warning: *Not yet*
+Rewrite Pre-Alpha 3   | 0.6.0.3 | *sv 0.4.0*  | 2019-03-23 | :warning: *Not yet*
+Rewrite Pre-Alpha 2   | 0.6.0.2 | *sv 0.3.0*  | 2018-11-20 | :warning: *Not yet*
+Rewrite Pre-Alpha 1   | 0.6.0.1 | *sv 0.2.0*  | 2018-10-30 | :warning: *Not yet*
+(2nd) Initial Rewrite | 0.6.0.0 | *sv 0.1.0*  | 2018-10-23 | :warning: *Not yet*
 
 See https://pith-framework.org/versions for more info.
 
