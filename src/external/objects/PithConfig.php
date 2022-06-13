@@ -38,6 +38,7 @@ class PithConfig
     public $route_list = null;
 
     /**
+     * Get array of routes for FastRoute.
      * @return array
      */
     public function getRoutes(): array
