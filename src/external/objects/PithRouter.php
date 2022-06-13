@@ -288,7 +288,7 @@ class PithRouter implements PithRouterInterface
 
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
-            $app_routes = APP_ROUTES;
+            $app_routes = $this->app->config->getRoutes();
 
             // Loop through routes, Add each route
             foreach ($app_routes as $app_route){

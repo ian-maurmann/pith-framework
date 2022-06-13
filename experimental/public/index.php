@@ -18,6 +18,7 @@ use Pith\Framework\PithException;
 // Switch folders
 chdir('../../'); // Switch to whatever folder you want to run the App from.
 
+// Error logging
 ini_set('log_errors', '1');
 ini_set('error_log', './php_errors.log');
 
@@ -28,10 +29,6 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 
 // Load our Constants
 require 'experimental/constants.php'; // Enter the path to constants file.
-
-// Load our Routes
-require 'experimental/routes.php'; // Enter the path to routes file.
-
 
 // Setup our Container
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
@@ -55,8 +52,6 @@ try {
         $exception
     );
 }
-    // ~~ $config_profile = $container->get('\\Pith\\ExampleConfig\\ExampleConfig');    // <--- Replace this with your own Config Profile object. // TODO Remove
-    // ~~ $route_list     = $container->get('\\Pith\\ExampleConfig\\ExampleRouteList'); // <--- Replace this with your own Route List object.     // TODO Remove
 
 if($pith) {
     // Setup the logger
@@ -78,15 +73,10 @@ if($pith) {
     $pith->container = $container; // Give the container (PHP-DI) to our App
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
 
+    // Add route list to config
+    $pith->config->route_list = $container->get('\\Pith\\ExampleAirshipPack\\ExampleAirshipRouteList');
 
-    // Set the Config
-    // ~~ $pith->config->setConfigByObject($config_profile); // TODO Remove
-    // ~~ $pith->config->setRouteListByObject($route_list); // TODO Remove
-
-
-    // Run Pith
-    // ~~ $pith->start(); // TODO Remove
-
+    // Start
     $pith->engine->start();
 }
 
