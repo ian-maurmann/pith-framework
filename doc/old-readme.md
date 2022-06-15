@@ -103,6 +103,7 @@ $ cd example/public
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 33              | 0.8.0.1 | *sv 0.19.0* | Stable, limited features
 Alpha 32              | 0.8.0.0 | *sv 0.18.0* | Stable, limited features
 Alpha 31              | 0.7.5.0 | *sv 0.17.0* | Stable, but not production-ready
 Alpha 30              | 0.7.4.0 | *sv 0.16.0* | Stable, but not production-ready
@@ -131,8 +132,14 @@ See https://pith-framework.org/versions for more info.
 
 ### Release Notes:
 
-**0.8.0.0 - Alpha 32** `(semver: v0.18.0)`
+**0.8.0.1 - Alpha 33** `(semver: v0.19.0)`
+- Remove experimental folder, since everything works fine now. 
+- Refactored the Config object.
+- Added new Route List objects for Config.
+- Cleanup.
 
+**0.8.0.0 - Alpha 32** `(semver: v0.18.0)`
+- Upgrade to PHP 8.1
 - Simplified the configuration.
 - Updated routing to use FastRoute now.
 - Updated dispatching to use separate Action objects and Preparer objects.
