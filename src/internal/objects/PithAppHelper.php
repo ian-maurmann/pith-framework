@@ -24,7 +24,6 @@ namespace Pith\Framework\Internal;
 
 
 use Pith\Framework\PithApp;
-use Pith\Framework\PithAppInterface;
 
 
 /**
@@ -52,6 +51,7 @@ class PithAppHelper
         $app->problem_handler->init($app);
         
         // Using the app reference trait
+        $app->config->setAppReference($app);
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
         $app->info->setAppReference($app);

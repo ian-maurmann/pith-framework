@@ -8,11 +8,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-
-// Pith Config Interface
-// ---------------------
-
+/**
+ * Pith Route List (extend)
+ * ------------------------
+ */
 
 
 declare(strict_types=1);
@@ -20,8 +19,11 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-
-interface PithConfigInterface
+/**
+ * Class PithRouteList
+ * @package Pith\Framework
+ */
+class PithRouteList
 {
-    public function whereAmI();
+    public $routes = [];
 }
