@@ -10,6 +10,7 @@
 
 /**
  * Pith App
+ * --------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  */
@@ -29,7 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class PithApp
  * @package Pith\Framework
  */
-class PithApp implements PithAppInterface
+class PithApp
 {
     use PithProblemTrait;
     use PithRunTrait;
