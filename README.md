@@ -46,5 +46,12 @@ php pith install
 ### :warning: **(Not ready yet)** :warning:
 
 ---
+Workflow:
 
-(For more info, see the [Old README](doc/old-readme.md) instead)
+![Pith workflow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-workflow-diagram.png?raw=true)
+
+.
+
+(Actual flow)
+
+![Pith Framework flow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-framework-flow-diagram.png?raw=true)
