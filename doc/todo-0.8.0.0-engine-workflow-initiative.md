@@ -157,8 +157,8 @@ External
 > - [x] **Pith Workflow Element**
 >
 > External Interfaces
-> - Pith App Interface
-> - Pith Config Interface
+> - ~~Pith App Interface~~
+> - ~~Pith Config Interface~~
 > - Pith Controller Interface
 > - Pith Module Interface
 > - Pith Router Interface
