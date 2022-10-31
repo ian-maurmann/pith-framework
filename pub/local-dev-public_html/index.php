@@ -20,7 +20,7 @@ chdir('../../../'); // Switch to whatever folder you want to run the App from.
 
 // Error logging
 ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log');
+ini_set('error_log', './php_errors.log'); // Add location of where you want the error log to be
 
 
 // Auto-Load
@@ -74,7 +74,21 @@ if($pith) {
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
 
     // Add route list to config
-    $pith->config->route_list = $container->get('\\Pith\\ExampleAirshipPack\\ExampleAirshipRouteList');
+    try {
+        $pith->config->route_list = $container->get('\\Pith\\ExamplePack\\ExampleRouteList'); // Add your route list object here
+    } catch (\DI\DependencyException $exception) {
+        throw new PithException(
+            'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+            5006,
+            $exception
+        );
+    } catch (\DI\NotFoundException $exception) {
+        throw new PithException(
+            'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+            5007,
+            $exception
+        );
+    }
 
     // Start
     $pith->engine->start();
