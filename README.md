@@ -33,7 +33,7 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 ```
 php composer.phar require pith/framework
 ```
-(Not ready yet:)
+(Not ready yet)
 - Use the installer to set up a new project:
 
 ```
