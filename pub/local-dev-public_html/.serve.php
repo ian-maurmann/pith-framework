@@ -163,21 +163,31 @@ if ($file_path && is_file($file_path)) {
         ServerLogger::log($message);
     }
     catch (PithException $exception) {
-        $exception_number = $exception->getCode();
+        $exception_number  = $exception->getCode();
+        $exception_message = $exception->getMessage();
 
         /** @noinspection PhpIfWithCommonPartsInspection */
-        if($exception_number === 4004 || 4022){
+        if($exception_number === 4004 || $exception_number === 4022){
             $message = $red_console_text . $uri . $normal_console_text;
             ServerLogger::log($message);
         }
         else{
             $message = $magenta_console_text . $uri . $normal_console_text;
             ServerLogger::log($message);
+
+            $message = $red_console_text . '-- Exception ' . $exception_number . ' ---- Exception Message: ' . $exception_message . $normal_console_text;
+            ServerLogger::log($message);
         }
 
         throw $exception;
     } catch (Exception $exception) {
+        $exception_number = $exception->getCode();
+        $exception_message = $exception->getMessage();
+
         $message = $purple_console_text . $uri . $normal_console_text;
+        ServerLogger::log($message);
+
+        $message = $red_console_text . '-- Exception ' . $exception_number . ' ---- Exception Message: ' . $exception_message . $normal_console_text;
         ServerLogger::log($message);
 
         throw $exception;
