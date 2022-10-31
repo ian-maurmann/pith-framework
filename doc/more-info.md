@@ -1,7 +1,9 @@
-[Readme](../README.md) > [More Info](../doc/more-info.md)
+[Readme](../README.md) > [More Info](more-info.md)
 
 ---
 
 # More Info
 
-[Testing](../test/test.md)
+- [Public Folder Examples](../pub/public-folder.md)
+
+- [Testing](../test/test.md)
