@@ -27,10 +27,11 @@
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
-                "src/external/objects/",
+                "src/external/about/",
+                "src/external/extend/",
                 "src/external/interfaces/",
-                "src/external/traits/",
-                "src/external/extend/"
+                "src/external/objects/",
+                "src/external/traits/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/internal/objects/",
