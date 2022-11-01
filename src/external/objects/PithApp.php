@@ -31,8 +31,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PithApp
 {
-    use PithVersionTrait;
-
     private $helper;
 
     public $access_control;
@@ -91,8 +89,8 @@ class PithApp
         $this->responder         = $responder;
         $this->router            = $router;
 
-
-        $helper->initializeDependencies($this);
+        // Initialize Dependencies
+        $this->helper->initializeDependencies($this);
     }
 
 
