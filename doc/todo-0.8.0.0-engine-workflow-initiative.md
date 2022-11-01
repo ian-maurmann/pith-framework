@@ -177,8 +177,8 @@ External
 >
 > External Traits
 > - ~~Pith Problem Trait~~
-> - Pith Run Trait
-> - Pith Startup Trait
+> - ~~Pith Run Trait~~
+> - ~~Pith Startup Trait~~
 > - Pith Version Trait
 
 
