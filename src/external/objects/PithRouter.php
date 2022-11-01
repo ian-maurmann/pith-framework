@@ -37,7 +37,7 @@ use ReflectionException;
  * Class PithRouter
  * @package Pith\Framework
  */
-class PithRouter implements PithRouterInterface
+class PithRouter
 {
     use PithAppReferenceTrait;
 
