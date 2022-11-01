@@ -46,7 +46,6 @@ class PithAppHelper
     public function initializeDependencies(PithApp $app)
     {
         // Using secondary initialization function // TODO remove 0.6 implementation
-        $app->request_processor->init($app);
         $app->access_control->init($app);
         $app->problem_handler->init($app);
         

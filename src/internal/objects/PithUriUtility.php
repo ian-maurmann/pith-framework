@@ -8,37 +8,44 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+
+/**
+ * Pith URI Utility
+ * ----------------
+ *
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For Readability
+ */
+
+
 declare(strict_types=1);
-
-
-// Pith Request Helper
-// -------------------
 
 namespace Pith\Framework\Internal;
 
-class PithRequestHelper
+/**
+ * Class PithUriUtility
+ * @package Pith\Framework\Internal
+ */
+class PithUriUtility
 {
-
-    /**
-     * @return string
-     */
-    public function whereAmI()
+    public function __construct()
     {
-        return "Pith Request Helper";
+        // Do nothing for now.
     }
-
 
     /**
      * @param $uri_string
      * @return array
      */
-    public function breakUriIntoPathAndQuery($uri_string)
+    public function breakUriIntoPathAndQuery($uri_string): array
     {
         $uri_parts     = explode('?', (string) $uri_string, 2);
         $request_path  = (string) $uri_parts[0];
         $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
+        $parts_array   = [$request_path, $request_query];
 
-        return array($request_path, $request_query);
+        return $parts_array;
     }
 
 
