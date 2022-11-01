@@ -59,6 +59,12 @@
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
             ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/index-page/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/item/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/article/"
+            ],
             "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\": [
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/",
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/hello/",
