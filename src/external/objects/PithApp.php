@@ -52,7 +52,6 @@ class PithApp
     public $problem_handler;
     public $registry;
     public $request;
-    public $request_processor;
     public $responder;
     public $router;
 
@@ -68,7 +67,6 @@ class PithApp
      * @param PithEngine           $engine
      * @param PithInfo             $info
      * @param PithProblemHandler   $problem_handler
-     * @param PithRequestProcessor $request_processor
      * @param PithResponder        $responder
      * @param PithRouter           $router
      */
@@ -81,7 +79,6 @@ class PithApp
         PithEngine           $engine,
         PithInfo             $info,
         PithProblemHandler   $problem_handler,
-        PithRequestProcessor $request_processor,
         PithResponder        $responder,
         PithRouter           $router
     )
@@ -99,7 +96,6 @@ class PithApp
         $this->problem_handler   = $problem_handler;
         $this->registry          = null;
         $this->request           = Request::createFromGlobals();
-        $this->request_processor = $request_processor;
         $this->responder         = $responder;
         $this->router            = $router;
 
