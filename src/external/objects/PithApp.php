@@ -23,7 +23,6 @@ namespace Pith\Framework;
 
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithProblemHandler;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -48,7 +47,6 @@ class PithApp
     public $engine;
     public $info;
     public $log;
-    public $problem_handler;
     public $registry;
     public $request;
     public $responder;
@@ -65,7 +63,6 @@ class PithApp
      * @param PithDispatcher       $dispatcher
      * @param PithEngine           $engine
      * @param PithInfo             $info
-     * @param PithProblemHandler   $problem_handler
      * @param PithResponder        $responder
      * @param PithRouter           $router
      */
@@ -77,7 +74,6 @@ class PithApp
         PithDispatcher       $dispatcher,
         PithEngine           $engine,
         PithInfo             $info,
-        PithProblemHandler   $problem_handler,
         PithResponder        $responder,
         PithRouter           $router
     )
@@ -92,7 +88,6 @@ class PithApp
         $this->engine            = $engine;
         $this->info              = $info;
         $this->log               = null;
-        $this->problem_handler   = $problem_handler;
         $this->registry          = null;
         $this->request           = Request::createFromGlobals();
         $this->responder         = $responder;

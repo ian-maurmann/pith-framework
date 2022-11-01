@@ -47,7 +47,6 @@ class PithAppHelper
     {
         // Using secondary initialization function // TODO remove 0.6 implementation
         $app->access_control->init($app);
-        $app->problem_handler->init($app);
         
         // Using the app reference trait
         $app->config->setAppReference($app);
