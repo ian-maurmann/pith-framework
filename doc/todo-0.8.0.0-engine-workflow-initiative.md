@@ -61,7 +61,7 @@
 > - [x] Do routing with FastRoute (Figure out how to keep our 2-level routing, and how to dynamically add/remove routes. Cache routes, to array?)
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the current Router.
+> - [x] Remove the current Router. *--- (Router is all the new Routing implementation with FastRoute now)*
 
 
 
@@ -161,7 +161,7 @@ External
 > - ~~Pith Config Interface~~
 > - Pith Controller Interface
 > - Pith Module Interface
-> - Pith Router Interface
+> - ~~Pith Router Interface~~
 >
 > External Objects
 > - Pith Access Control
@@ -171,7 +171,7 @@ External
 > - [x] **Pith Engine**
 > - [x] **Pith Exception**
 > - [x] **Pith Info**
-> - Pith Request Processor
+> - ~~Pith Request Processor~~
 > - [x] **Pith Responder**
 > - Pith Router
 >
@@ -191,11 +191,12 @@ Internal
 > - [x] **Pith Expression Utility**
 > - Pith Problem Handler
 > - Pith Problem List
-> - Pith Request Helper
+> - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - Pith Route
 > - Pith State Enum
 > - Pith State Machine
 > - Pith String Utility
+> - [x] **Pith URI Utility** *(From old Pith Request Helper)*
 >
 > Internal Traits
 > - Pith App Reference Trait
