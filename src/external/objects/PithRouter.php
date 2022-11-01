@@ -22,15 +22,12 @@
 
 declare(strict_types=1);
 
+
 namespace Pith\Framework;
+
 
 use FastRoute;
 use Pith\Framework\Internal\PithAppReferenceTrait;
-use Pith\Framework\Internal\PithProblemHandler;
-use Pith\Framework\Internal\PithRoute;
-use Pith\Framework\Internal\PithStringUtility;
-use ReflectionClass;
-use ReflectionException;
 
 
 /**
@@ -49,8 +46,29 @@ class PithRouter
     }
 
 
-    // 0.8 implementation
 
+
+    /**
+     * @return PithRoute|null
+     * @throws PithException
+     */
+    public function getRoute(): ?PithRoute
+    {
+        // Get the route info
+        $routing_info = $this->routeWithFastRoute();
+        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
+        $route_params = $routing_info['vars'];
+
+        // Save route params
+        $this->app->request->attributes->add(['route_parameters' => $route_params]);
+
+        // Return the route object
+        return $route;
+    }
+
+
+
+    
     /**
      * Route by URL
      *
@@ -117,26 +135,17 @@ class PithRouter
                 break;
         }
 
-        // Debug
-        // error_log('══════════════════════════════════════════════════' );
-        // error_log('$httpMethod === ' . print_r($httpMethod, true));
-        // error_log('$uri        === ' . print_r($uri, true));
-        // error_log('$routeInfo  === ' . print_r($routeInfo, true));
-        // error_log('══════════════════════════════════════════════════' );
-
         return $return_array;
     }
 
 
 
-    // 0.8 implementation
-
     /**
      * @param  array $routing_info
-     * @return null|\Pith\Framework\PithRoute
+     * @return null|PithRoute
      * @throws PithException
      */
-    private function getRouteObjectFromRouteInfo(array $routing_info): ?\Pith\Framework\PithRoute
+    private function getRouteObjectFromRouteInfo(array $routing_info): ?PithRoute
     {
         $route        = null;
         $did_routing  = (bool) count($routing_info);
@@ -156,14 +165,15 @@ class PithRouter
     }
 
 
+
     /**
      * @param  string $route_namespace
-     * @return null|\Pith\Framework\PithRoute
+     * @return null|PithRoute
      * @throws PithException
      *
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function getRouteFromRouteNamespace(string $route_namespace): ?\Pith\Framework\PithRoute
+    public function getRouteFromRouteNamespace(string $route_namespace): ?PithRoute
     {
         $route = null; // Default to null
 
@@ -187,26 +197,5 @@ class PithRouter
         return $route;
     }
 
-
-    // 0.8 implementation
-
-
-    /**
-     * @return \Pith\Framework\PithRoute|null
-     * @throws PithException
-     */
-    public function getRoute(): ?\Pith\Framework\PithRoute
-    {
-        // Get the route info
-        $routing_info = $this->routeWithFastRoute();
-        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
-        $route_params = $routing_info['vars'];
-
-        // Save route params
-        $this->app->request->attributes->add(['route_parameters' => $route_params]);
-
-        // Return the route object
-        return $route;
-    }
 
 }
