@@ -83,8 +83,8 @@
 > 
 > Cleanup / refactor at the end:
 > - [ ] Remove the current Problem calls.
-> - [ ] Remove the Problem trait.
-> - [ ] Remove the Problem Handler
+> - [x] Remove the Problem trait.
+> - [x] Remove the Problem Handler
 
 ---
 
@@ -176,7 +176,7 @@ External
 > - Pith Router
 >
 > External Traits
-> - Pith Problem Trait
+> - ~~Pith Problem Trait~~
 > - Pith Run Trait
 > - Pith Startup Trait
 > - Pith Version Trait
@@ -188,9 +188,10 @@ Internal
 > Internal Objects
 > - Pith Access Level Factory
 > - Pith App Helper
+> - [x] **Pith Escape Utility**
 > - [x] **Pith Expression Utility**
-> - Pith Problem Handler
-> - Pith Problem List
+> - ~~Pith Problem Handler~~
+> - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - Pith Route
 > - Pith State Enum
