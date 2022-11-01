@@ -41,15 +41,11 @@ class PithRouter
 {
     use PithAppReferenceTrait;
 
-    private $string_utility;
-    private $problem_handler;
-    private $route_object;
 
-    public function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler, PithRoute $route_object)
+
+    public function __construct()
     {
-        $this->string_utility  = $string_utility;
-        $this->problem_handler = $problem_handler;
-        $this->route_object    = $route_object;
+        // Do nothing for now
     }
 
 
