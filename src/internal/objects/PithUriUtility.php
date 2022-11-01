@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Internal;
 
-class PithRequestHelper
+class PithUriUtility
 {
 
     /**
