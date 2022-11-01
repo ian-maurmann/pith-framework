@@ -29,17 +29,19 @@ class JelloPreparer extends PithPreparer
 
     public function runPreparer()
     {
-        $a = $this->prepare->a;
-        $b = $this->prepare->b;
-        $c = $this->prepare->c;
+        $a            = $this->prepare->a;
+        $b            = $this->prepare->b;
+        $c            = $this->prepare->c;
+        $version_text = $this->prepare->version_text;
 
         // Debug
         // echo $a;
         // echo $b;
         // echo $c;
 
-        $this->view->a = $a;
-        $this->view->b = $b;
-        $this->view->c = $c;
+        $this->view->a            = $a;
+        $this->view->b            = $b;
+        $this->view->c            = $c;
+        $this->view->version_text = $version_text;
     }
 }

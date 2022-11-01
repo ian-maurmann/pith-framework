@@ -30,10 +30,10 @@ class JelloAction extends PithAction
     public function runAction()
     {
         // Variables
-        $a = 'Aaa';
-        $b = 'Bbb';
-        $c = 'Ccc';
-
+        $a            = 'Aaa';
+        $b            = 'Bbb';
+        $c            = 'Ccc';
+        $version_text = $this->app->info->getVersionSlug();
 
         // Debug
         // echo $a;
@@ -42,8 +42,9 @@ class JelloAction extends PithAction
 
 
         // Push to Preparer
-        $this->prepare->a = $a;
-        $this->prepare->b = $b;
-        $this->prepare->c = $c;
+        $this->prepare->a            = $a;
+        $this->prepare->b            = $b;
+        $this->prepare->c            = $c;
+        $this->prepare->version_text = $version_text;
     }
 }

@@ -29,16 +29,18 @@ class PithInfo
 {
     use PithAppReferenceTrait;
 
-    public function __construct()
+    private $meta;
+
+    public function __construct(PithMeta $meta)
     {
-        // Do nothing for now.
+        $this->meta = $meta;
     }
 
     /**
      * @return string
      */
-    public function whereAmI(): string
+    public function getVersionSlug(): string
     {
-        return 'Pith Info object';
+        return $this->meta->framework_name . ' ' . $this->meta->real_version . ' (semver ' . $this->meta->semver_version . ') - ' . $this->meta->release_name;
     }
 }

@@ -12,13 +12,17 @@ declare(strict_types=1);
 
     <h2>Jello View</h2>
     <p>
-        <?php echo $a; ?>,
+        <?php echo $a; ?>
     </p>
 
     <?php $this->app->responder->insertPartial('\Pith\Framework\Test\TestPage\TestPageOne\YellowJelloPack\JelloPartialRoute'); ?>
 
     <p>
         <?php echo FOO; ?>
+    </p>
+
+    <p>
+        <?php echo $version_text; ?>
     </p>
 
 </div>
