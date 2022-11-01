@@ -31,7 +31,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PithApp
 {
-    use PithRunTrait;
     use PithVersionTrait;
 
     private $helper;
