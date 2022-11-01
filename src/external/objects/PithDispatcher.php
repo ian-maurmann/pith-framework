@@ -25,8 +25,6 @@ namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithExpressionUtility;
-use Pith\Framework\Internal\PithStringUtility;
-use Pith\Framework\Internal\PithProblemHandler;
 use ReflectionException;
 
 
@@ -39,22 +37,15 @@ class PithDispatcher
     use PithAppReferenceTrait;
 
     private $expression_utility;
-    private $string_utility;
-    private $problem_handler;
-
 
     /**
      * @param PithExpressionUtility $expression_utility
-     * @param PithStringUtility     $string_utility
-     * @param PithProblemHandler    $problem_handler
      */
-    public function __construct(PithExpressionUtility $expression_utility, PithStringUtility $string_utility, PithProblemHandler $problem_handler)
+    public function __construct(PithExpressionUtility $expression_utility)
     {
         $this->expression_utility = $expression_utility;
-        $this->string_utility     = $string_utility;
-        $this->problem_handler    = $problem_handler;
     }
-    
+
 
     // 0.8
 
