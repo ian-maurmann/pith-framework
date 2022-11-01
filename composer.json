@@ -59,19 +59,17 @@
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
             ],
-            "Pith\\ExampleAirshipPack\\": [
-                "experimental/packs/example-airship-pack/",
-                "experimental/packs/example-airship-pack/do-nothing",
-                "experimental/packs/example-airship-pack/hello",
-                "experimental/packs/example-airship-pack/hindenburg",
-                "experimental/packs/example-airship-pack/index",
-                "experimental/packs/example-airship-pack/jello",
-                "experimental/packs/example-airship-pack/jello-layout",
-                "experimental/packs/example-airship-pack/jello-partial"
+            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\": [
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/hello/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/index/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-layout/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-partial/"
             ],
-            "Pith\\ExampleResourcePack\\": [
-                "experimental/packs/example-resource-pack/",
-                "experimental/packs/example-resource-pack/resources"
+            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\": [
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/resources/"
             ]
         }
     }
