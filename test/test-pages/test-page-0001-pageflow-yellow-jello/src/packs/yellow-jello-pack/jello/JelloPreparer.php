@@ -42,6 +42,6 @@ class JelloPreparer extends PithPreparer
         $this->view->a            = $a;
         $this->view->b            = $b;
         $this->view->c            = $c;
-        $this->view->version_text = $version_text;
+        $this->view->version_text = $this->app->escape->html($version_text);
     }
 }
