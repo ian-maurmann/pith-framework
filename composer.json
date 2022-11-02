@@ -34,7 +34,8 @@
                 "src/internal/objects/",
                 "src/internal/interfaces/",
                 "src/internal/traits/",
-                "src/internal/workflow/"
+                "src/internal/workflow-access-levels/",
+                "src/internal/workflow-elements/"
             ],
             "Pith\\PhtmlViewAdapter\\": [
                 "src/plugins/phtml-view-adapter/src/"
@@ -53,9 +54,6 @@
             ],
             "Pith\\InternalUtilities\\": [
                 "src/plugins/internal-utilities/src/"
-            ],
-            "Pith\\InternalAccessLevels\\": [
-                "src/plugins/internal-access-levels/src/"
             ],
             "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
                 "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
