@@ -9,38 +9,35 @@
 # ===================================================================
 
 /**
- * Pith Info
- * ---------
+ * Pith Escape Utility
+ * -------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection - Long class names are ok.
  */
 
 
 declare(strict_types=1);
 
-namespace Pith\Framework;
-
-use Pith\Framework\Internal\PithAppReferenceTrait;
+namespace Pith\Framework\Internal;
 
 
 /**
- * Class PithInfo
- * @package Pith\Framework
+ * Class PithEscapeUtility
+ * @package Pith\Framework\Internal
  */
-class PithInfo
+class PithEscapeUtility
 {
-    use PithAppReferenceTrait;
-
-    private $meta;
-
-    public function __construct(PithMeta $meta)
+    public function __construct()
     {
-        $this->meta = $meta;
+        // Do nothing for now.
     }
 
     /**
+     * @param  $unclean_string
      * @return string
      */
-    public function getVersionSlug(): string
+    public function html($unclean_string): string
     {
-        return $this->meta->framework_name . ' ' . $this->meta->real_version . ' (semver ' . $this->meta->semver_version . ') - ' . $this->meta->release_name;
+        return htmlspecialchars($unclean_string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
     }
 }
