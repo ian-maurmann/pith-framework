@@ -98,14 +98,6 @@ class PithApp
         // Initialize Dependencies
         $this->helper->initializeDependencies($this);
     }
-
-
-    /**
-     * @return string
-     */
-    public function whereAmI(): string
-    {
-        return 'Pith App object';
-    }
+    
 }
 
