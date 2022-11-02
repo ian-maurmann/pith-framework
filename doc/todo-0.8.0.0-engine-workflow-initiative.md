@@ -20,14 +20,14 @@
 ## Pith Info
 
 > Add:
-> - [ ] Meta Object (Internal, with framework version info, legal info.)
-> - [ ] Info Object `$this->app->info` (External, with methods that talk to Meta Object, but also app info, and info from the pith.json file.)
+> - [x] Meta Object (Internal, with framework version info, legal info.)
+> - [x] Info Object `$this->app->info` (External, with methods that talk to Meta Object, but also app info, and info from the pith.json file.)
 > 
 > Edit:
-> - [ ] The Info Object should be accesssible from `$this->app->info`
+> - [x] The Info Object should be accessible from `$this->app->info`
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the Version Trait
+> - [x] Remove the Version Trait
 
 ## Config
 > Add:
@@ -52,8 +52,8 @@
 > - ~~State Machine should have methods like~~ `enterRouting( )`, ~~and~~ `enterDispatching( )` (n/a)
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the Startup Trait
-> - [ ] Remove the Run Trait
+> - [x] Remove the Startup Trait
+> - [x] Remove the Run Trait
 
 ## Routing
 
@@ -61,7 +61,7 @@
 > - [x] Do routing with FastRoute (Figure out how to keep our 2-level routing, and how to dynamically add/remove routes. Cache routes, to array?)
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the current Router.
+> - [x] Remove the current Router. *--- (Router is all the new Routing implementation with FastRoute now)*
 
 
 
@@ -83,8 +83,8 @@
 > 
 > Cleanup / refactor at the end:
 > - [ ] Remove the current Problem calls.
-> - [ ] Remove the Problem trait.
-> - [ ] Remove the Problem Handler
+> - [x] Remove the Problem trait.
+> - [x] Remove the Problem Handler
 
 ---
 
@@ -145,10 +145,13 @@ Internal
 
 External
 
+> About:
+> - [x] **Pith Meta**
+> 
 > External Extendable:
 > - Pith Access Level
 > - [x] **Pith Action**
-> - Pith Controller
+> - ~~Pith Controller~~
 > - [x] **Pith Pack**
 > - [x] **Pith Preparer**
 > - Pith Query
@@ -157,11 +160,11 @@ External
 > - [x] **Pith Workflow Element**
 >
 > External Interfaces
-> - Pith App Interface
-> - Pith Config Interface
-> - Pith Controller Interface
-> - Pith Module Interface
-> - Pith Router Interface
+> - ~~Pith App Interface~~
+> - ~~Pith Config Interface~~
+> - ~~Pith Controller Interface~~
+> - ~~Pith Module Interface~~
+> - ~~Pith Router Interface~~
 >
 > External Objects
 > - Pith Access Control
@@ -171,31 +174,33 @@ External
 > - [x] **Pith Engine**
 > - [x] **Pith Exception**
 > - [x] **Pith Info**
-> - Pith Request Processor
+> - ~~Pith Request Processor~~
 > - [x] **Pith Responder**
 > - Pith Router
 >
 > External Traits
-> - Pith Problem Trait
-> - Pith Run Trait
-> - Pith Startup Trait
-> - Pith Version Trait
+> - ~~Pith Problem Trait~~
+> - ~~Pith Run Trait~~
+> - ~~Pith Startup Trait~~
+> - ~~Pith Version Trait~~
 
 
 
 Internal
 
 > Internal Objects
-> - Pith Access Level Factory
+> - ~~Pith Access Level Factory~~
 > - Pith App Helper
+> - [x] **Pith Escape Utility**
 > - [x] **Pith Expression Utility**
-> - Pith Problem Handler
-> - Pith Problem List
-> - Pith Request Helper
+> - ~~Pith Problem Handler~~
+> - ~~Pith Problem List~~
+> - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - Pith Route
-> - Pith State Enum
-> - Pith State Machine
+> - ~~Pith State Enum~~
+> - ~~Pith State Machine~~
 > - Pith String Utility
+> - [x] **Pith URI Utility** *(From old Pith Request Helper)*
 >
 > Internal Traits
 > - Pith App Reference Trait
