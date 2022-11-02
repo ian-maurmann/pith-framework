@@ -20,14 +20,14 @@
 ## Pith Info
 
 > Add:
-> - [ ] Meta Object (Internal, with framework version info, legal info.)
-> - [ ] Info Object `$this->app->info` (External, with methods that talk to Meta Object, but also app info, and info from the pith.json file.)
+> - [x] Meta Object (Internal, with framework version info, legal info.)
+> - [x] Info Object `$this->app->info` (External, with methods that talk to Meta Object, but also app info, and info from the pith.json file.)
 > 
 > Edit:
-> - [ ] The Info Object should be accesssible from `$this->app->info`
+> - [x] The Info Object should be accessible from `$this->app->info`
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the Version Trait
+> - [x] Remove the Version Trait
 
 ## Config
 > Add:
@@ -52,8 +52,8 @@
 > - ~~State Machine should have methods like~~ `enterRouting( )`, ~~and~~ `enterDispatching( )` (n/a)
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the Startup Trait
-> - [ ] Remove the Run Trait
+> - [x] Remove the Startup Trait
+> - [x] Remove the Run Trait
 
 ## Routing
 
@@ -145,6 +145,9 @@ Internal
 
 External
 
+> About:
+> - [x] **Pith Meta**
+> 
 > External Extendable:
 > - Pith Access Level
 > - [x] **Pith Action**
@@ -179,7 +182,7 @@ External
 > - ~~Pith Problem Trait~~
 > - ~~Pith Run Trait~~
 > - ~~Pith Startup Trait~~
-> - Pith Version Trait
+> - ~~Pith Version Trait~~
 
 
 
