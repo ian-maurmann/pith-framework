@@ -34,6 +34,7 @@
                 "src/internal/objects/",
                 "src/internal/interfaces/",
                 "src/internal/traits/",
+                "src/internal/workflow-access-levels/",
                 "src/internal/workflow-elements/"
             ],
             "Pith\\PhtmlViewAdapter\\": [
