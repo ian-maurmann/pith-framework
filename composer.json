@@ -34,7 +34,7 @@
                 "src/internal/objects/",
                 "src/internal/interfaces/",
                 "src/internal/traits/",
-                "src/internal/workflow/"
+                "src/internal/workflow-elements/"
             ],
             "Pith\\PhtmlViewAdapter\\": [
                 "src/plugins/phtml-view-adapter/src/"
