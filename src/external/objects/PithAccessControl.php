@@ -75,46 +75,53 @@ class PithAccessControl
         $access_level = false;
 
 
-        // 'none' --- No access
-        if ($access_level_string === 'none') {
-            $access_level = false;
-        }
-
-
-        // 'world' --- Full access for anyone
-        elseif ($access_level_string === 'world') {
-            $access_level = $this->app->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
-        }
-
-
-        // Else treat the string as an object namespace, try to load
-        else{
-            try {
-                $access_level = $this->app->container->get($access_level_string);
-            } catch (\DI\DependencyException $exception) {
-                throw new PithException(
-                    'Pith Framework Exception 4028: The Access Control could not load the Access Level due to a Dependency Exception. The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
-                    4028,
-                    $exception
-                );
-            } catch (\DI\NotFoundException $exception) {
-                throw new PithException(
-                    'Pith Framework Exception 4027: The Access Control could not find the Access Level. The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
-                    4027,
-                    $exception
-                );
+        // Try to load the access level
+        try {
+            // 'none' --- No access
+            if ($access_level_string === 'none') {
+                $access_level = false;
             }
+
+            // 'world' --- Full access for anyone
+            elseif ($access_level_string === 'world') {
+                $access_level = $this->app->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
+            }
+
+            // Else treat the string as an object namespace
+            else{
+                $access_level = $this->app->container->get($access_level_string);
+            }
+
+        }
+
+        
+        // On failure to load Access Level object
+        catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 4028: The Access Control could not load the Access Level due to a Dependency Exception. The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+                4028,
+                $exception
+            );
+        }
+        catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 4027: The Access Control could not find the Access Level. The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+                4027,
+                $exception
+            );
         }
 
 
-
+        // After load
         if (is_object($access_level)) {
+            // Set app reference
             $access_level->setAppReference($this->app);
         }
         else{
             $access_level = false;
         }
 
+        // Return the Access Level Object, else return false
         return $access_level;
     }
 }
