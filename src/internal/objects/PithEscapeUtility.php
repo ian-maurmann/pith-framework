@@ -8,38 +8,36 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+/**
+ * Pith Escape Utility
+ * -------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection - Long class names are ok.
+ */
+
+
 declare(strict_types=1);
-
-
-// Pith Request Helper
-// -------------------
 
 namespace Pith\Framework\Internal;
 
-class PithRequestHelper
+
+/**
+ * Class PithEscapeUtility
+ * @package Pith\Framework\Internal
+ */
+class PithEscapeUtility
 {
+    public function __construct()
+    {
+        // Do nothing for now.
+    }
 
     /**
+     * @param  $unclean_string
      * @return string
      */
-    public function whereAmI()
+    public function html($unclean_string): string
     {
-        return "Pith Request Helper";
+        return htmlspecialchars($unclean_string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8');
     }
-
-
-    /**
-     * @param $uri_string
-     * @return array
-     */
-    public function breakUriIntoPathAndQuery($uri_string)
-    {
-        $uri_parts     = explode('?', (string) $uri_string, 2);
-        $request_path  = (string) $uri_parts[0];
-        $request_query = (isset($uri_parts[1])) ? (string) $uri_parts[1] : '' ;
-
-        return array($request_path, $request_query);
-    }
-
-
 }

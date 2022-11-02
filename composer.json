@@ -15,7 +15,6 @@
         "php-di/php-di": "^6",
         "monolog/monolog": "^1.24",
         "lotfio/conso": "^1.7",
-        "myclabs/php-enum": "^1.7",
         "ikm/copyright-year-utility":"^0.1",
         "nikic/fast-route": "^1.3",
         "symfony/http-foundation": "^6.0"
@@ -27,10 +26,9 @@
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
-                "src/external/objects/",
-                "src/external/interfaces/",
-                "src/external/traits/",
-                "src/external/extend/"
+                "src/external/about/",
+                "src/external/extend/",
+                "src/external/objects/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/internal/objects/",
@@ -58,6 +56,12 @@
             ],
             "Pith\\InternalAccessLevels\\": [
                 "src/plugins/internal-access-levels/src/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/index-page/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/item/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/article/"
             ],
             "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\": [
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/",

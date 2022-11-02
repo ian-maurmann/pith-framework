@@ -22,260 +22,53 @@
 
 declare(strict_types=1);
 
+
 namespace Pith\Framework;
+
 
 use FastRoute;
 use Pith\Framework\Internal\PithAppReferenceTrait;
-use Pith\Framework\Internal\PithProblemHandler;
-use Pith\Framework\Internal\PithRoute;
-use Pith\Framework\Internal\PithStringUtility;
-use ReflectionClass;
-use ReflectionException;
 
 
 /**
  * Class PithRouter
  * @package Pith\Framework
  */
-class PithRouter implements PithRouterInterface
+class PithRouter
 {
     use PithAppReferenceTrait;
 
-    private $string_utility;
-    private $problem_handler;
-    private $route_object;
 
-    public function __construct(PithStringUtility $string_utility, PithProblemHandler $problem_handler, PithRoute $route_object)
+
+    public function __construct()
     {
-        $this->string_utility  = $string_utility;
-        $this->problem_handler = $problem_handler;
-        $this->route_object    = $route_object;
+        // Do nothing for now
     }
 
 
-    // 0.6 implementation
+
+
     /**
-     * @return string
+     * @return PithRoute|null
+     * @throws PithException
      */
-    public function whereAmI(): string
+    public function getRoute(): ?PithRoute
     {
-        return 'Pith Router';
-    }
+        // Get the route info
+        $routing_info = $this->routeWithFastRoute();
+        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
+        $route_params = $routing_info['vars'];
 
+        // Save route params
+        $this->app->request->attributes->add(['route_parameters' => $route_params]);
 
-    // 0.6 implementation
-    /**
-     * @return PithRoute
-     * @throws ReflectionException
-     *
-     * @noinspection PhpUnused - Used by Pith Run Trait
-     */
-    public function routeByUrl(): PithRoute
-    {
-        $route_object = null;
-
-        // Get the app route
-        $app_route = $this->findAppRouteFromUrl();
-
-        $route_object = $this->getRouteFromAppRoute($app_route);
-
-        return $route_object;
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @param $app_route_path
-     * @return PithRoute
-     * @throws ReflectionException
-     *
-     * @noinspection PhpUnused - Used by Pith Run Trait
-     */
-    public function routeByAppPath($app_route_path): PithRoute
-    {
-
-        $route_object = null;
-
-        // Get the app route
-        $app_route = $this->findAppRouteFromAppRoutePath($app_route_path);
-
-        $route_object = $this->getRouteFromAppRoute($app_route);
-
-        return $route_object;
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @param $app_route
-     * @return PithRoute
-     * @throws ReflectionException
-     */
-    private function getRouteFromAppRoute($app_route): PithRoute
-    {
-
-        $route_object = null;
-
-        // (On error, redirect to the 404 page)
-        if (!$app_route) {
-            $this->problem('Pith_Provisional_Notice_B5_000', $this->app->request_processor->getRequestPath());
-        }
-
-
-        $module_name_with_namespace = $app_route['module'];
-
-        // Get the module
-        $module = $this->app->container->get($module_name_with_namespace);
-
-
-        // (On error, redirect to the 501 page)
-        if (!$module) {
-            $this->problem('Pith_Provisional_Error_B5_001', $app_route['match'], $module_name_with_namespace);
-        }
-
-
-        $module_reflector_object    = new ReflectionClass($module_name_with_namespace);
-        $module_directory_full_path = dirname($module_reflector_object->getFileName());
-
-        //echo $module_directory_full_path;
-
-
-        // Get the route name
-        $route_name = $app_route['route-name'];
-
-
-        // Get the route
-        $route = $this->findModuleRouteByRouteName($module, $route_name);
-
-
-        // (On error, redirect to the 501 page)
-        if (!$route) {
-            $this->problem('Pith_Provisional_Error_B5_002', $app_route['route-name'], $app_route['module']);
-        }
-
-
-        $use_layout = (bool)$route['use-layout'];
-
-        $layout_app_route_name = null;
-        if ($use_layout) {
-            if (!empty($app_route['layout'])) {
-                $layout_app_route_name = $app_route['layout'];
-            }
-        }
-
-
-        $view_relative_path = $route['view'];
-        $view_full_path = $module_directory_full_path . '/' . $view_relative_path;
-
-        $route_object = clone $this->route_object;
-
-        $route_object->route_name                     = $route['route-name'];
-        $route_object->route_type                     = $route['route-type'];
-        $route_object->use_layout                     = $use_layout;
-        $route_object->layout_app_route_name          = $layout_app_route_name;
-        $route_object->controller_name_with_namespace = $route['controller'];
-        $route_object->module_name_with_namespace     = $app_route['module'];
-        $route_object->module_object                  = clone $module;
-        $route_object->module_directory_full_path     = $module_directory_full_path;
-        $route_object->view_relative_path             = $view_relative_path;
-        $route_object->view_full_path                 = $view_full_path;
-
-        return $route_object;
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @return mixed|null
-     *
-     * @noinspection DuplicatedCode - Ignore
-     */
-    public function findAppRouteFromUrl()
-    {
-        $string_utility = $this->string_utility;
-        $request_path   = (string)$this->app->request_processor->getRequestPath();
-        $routes         = $this->app->config->getRouteList();
-        $matching_route = null;
-
-        foreach ($routes as $route_index => $route) {
-            $match    = (string)$route['match'];
-            $is_match = $string_utility->isRouteMatch($request_path, $match);
-
-            if ($is_match) {
-                $matching_route = $route;
-                break;
-            }
-        }
-
-        return $matching_route;
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @param $app_route_path
-     * @return mixed|null
-     *
-     * @noinspection DuplicatedCode - Ignore
-     */
-    public function findAppRouteFromAppRoutePath($app_route_path)
-    {
-        $string_utility = $this->string_utility;
-        $request_path   = (string) $app_route_path;
-        $routes         = $this->app->config->getRouteList();
-        $matching_route = null;
-
-        foreach ($routes as $route_index => $route) {
-            $match    = (string) $route['match'];
-            $is_match = $string_utility->isRouteMatch($request_path, $match);
-
-            if ($is_match) {
-                $matching_route = $route;
-                break;
-            }
-        }
-
-        return $matching_route;
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @param $module
-     * @param $given_route_name
-     * @return mixed|null
-     */
-    public function findModuleRouteByRouteName($module, $given_route_name)
-    {
-        $routes         = $module->listRoutes();
-        $matching_route = null;
-
-        foreach ($routes as $route_name => $route) {
-            if ((string) $route_name === (string) $given_route_name) {
-                $matching_route = $route;
-                break;
-            }
-        }
-
-        return $matching_route;
-
-    }
-
-
-    // 0.6 implementation
-    /**
-     * @param $problem_name
-     * @param ...$info
-     */
-    public function problem($problem_name, ...$info)
-    {
-        $this->problem_handler->handleProblem($problem_name, ...$info);
+        // Return the route object
+        return $route;
     }
 
 
 
-    // 0.8 implementation
-
+    
     /**
      * Route by URL
      *
@@ -342,26 +135,17 @@ class PithRouter implements PithRouterInterface
                 break;
         }
 
-        // Debug
-        // error_log('══════════════════════════════════════════════════' );
-        // error_log('$httpMethod === ' . print_r($httpMethod, true));
-        // error_log('$uri        === ' . print_r($uri, true));
-        // error_log('$routeInfo  === ' . print_r($routeInfo, true));
-        // error_log('══════════════════════════════════════════════════' );
-
         return $return_array;
     }
 
 
 
-    // 0.8 implementation
-
     /**
      * @param  array $routing_info
-     * @return null|\Pith\Framework\PithRoute
+     * @return null|PithRoute
      * @throws PithException
      */
-    private function getRouteObjectFromRouteInfo(array $routing_info): ?\Pith\Framework\PithRoute
+    private function getRouteObjectFromRouteInfo(array $routing_info): ?PithRoute
     {
         $route        = null;
         $did_routing  = (bool) count($routing_info);
@@ -381,14 +165,15 @@ class PithRouter implements PithRouterInterface
     }
 
 
+
     /**
      * @param  string $route_namespace
-     * @return null|\Pith\Framework\PithRoute
+     * @return null|PithRoute
      * @throws PithException
      *
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function getRouteFromRouteNamespace(string $route_namespace): ?\Pith\Framework\PithRoute
+    public function getRouteFromRouteNamespace(string $route_namespace): ?PithRoute
     {
         $route = null; // Default to null
 
@@ -412,26 +197,5 @@ class PithRouter implements PithRouterInterface
         return $route;
     }
 
-
-    // 0.8 implementation
-
-
-    /**
-     * @return \Pith\Framework\PithRoute|null
-     * @throws PithException
-     */
-    public function getRoute(): ?\Pith\Framework\PithRoute
-    {
-        // Get the route info
-        $routing_info = $this->routeWithFastRoute();
-        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
-        $route_params = $routing_info['vars'];
-
-        // Save route params
-        $this->app->request->attributes->add(['route_parameters' => $route_params]);
-
-        // Return the route object
-        return $route;
-    }
 
 }

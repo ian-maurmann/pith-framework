@@ -1,4 +1,5 @@
 <?php
+
 # ===================================================================
 # Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -9,8 +10,10 @@
 # ===================================================================
 
 /**
- * Pith Info
+ * Pith Meta
  * ---------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
  */
 
 
@@ -18,29 +21,17 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
-
-
 /**
- * Class PithInfo
+ * Class PithMeta
  * @package Pith\Framework
  */
-class PithInfo
+class PithMeta
 {
-    use PithAppReferenceTrait;
-
-    private $meta;
-
-    public function __construct(PithMeta $meta)
-    {
-        $this->meta = $meta;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVersionSlug(): string
-    {
-        return $this->meta->framework_name . ' ' . $this->meta->real_version . ' (semver ' . $this->meta->semver_version . ') - ' . $this->meta->release_name;
-    }
+    public $framework_name = 'Pith Framework';
+    public $copyright      = 'Copyright (c) 2008-2022 Ian K Maurmann';
+    public $license        = 'Mozilla Public License, v. 2.0';
+    public $release_status = 'Alpha';
+    public $release_name   = 'Alpha 33';
+    public $real_version   = '0.8.0.1';
+    public $semver_version = '0.19.0';
 }

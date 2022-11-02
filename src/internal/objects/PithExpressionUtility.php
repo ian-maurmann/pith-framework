@@ -9,8 +9,8 @@
 # ===================================================================
 
 /**
- * Pith Pith Expression Utility
- * ----------------------------
+ * Pith Expression Utility
+ * -----------------------
  *
  * @noinspection PhpClassNamingConventionInspection  - Long class names are ok.
  * @noinspection PhpMethodNamingConventionInspection - Long method names are ok.

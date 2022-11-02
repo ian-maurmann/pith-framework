@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Jello Action
+ * Item Action
  * ------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -12,15 +12,15 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\Test\TestPage\TestPageOne\YellowJelloPack;
+namespace Pith\Framework\Test\TestPage\TestPageZero\RoutingSamplePack;
 
 use Pith\Framework\PithAction;
 
 /**
- * Class JelloAction
- * @package Pith\Framework\Test\TestPage\TestPageOne\YellowJelloPack
+ * Class ItemAction
+ * @package Pith\Framework\Test\TestPage\TestPageZero\RoutingSamplePack
  */
-class JelloAction extends PithAction
+class ItemAction extends PithAction
 {
     public function __construct()
     {
@@ -30,10 +30,10 @@ class JelloAction extends PithAction
     public function runAction()
     {
         // Variables
-        $a            = 'Aaa';
-        $b            = 'Bbb';
-        $c            = 'Ccc';
-        $version_text = $this->app->info->getVersionSlug();
+        $a = 'Aaa';
+        $b = 'Bbb';
+        $c = 'Ccc';
+
 
         // Debug
         // echo $a;
@@ -41,10 +41,15 @@ class JelloAction extends PithAction
         // echo $c;
 
 
+
+        $route_parameters = $this->app->request->attributes->get('route_parameters');
+        $item_id = (string) $route_parameters['item_id'];
+
+
         // Push to Preparer
-        $this->prepare->a            = $a;
-        $this->prepare->b            = $b;
-        $this->prepare->c            = $c;
-        $this->prepare->version_text = $version_text;
+        $this->prepare->a = $a;
+        $this->prepare->b = $b;
+        $this->prepare->c = $c;
+        $this->prepare->item_id = $item_id;
     }
 }
