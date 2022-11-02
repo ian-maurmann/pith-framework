@@ -28,7 +28,6 @@
             "Pith\\Framework\\": [
                 "src/external/about/",
                 "src/external/extend/",
-                "src/external/interfaces/",
                 "src/external/objects/"
             ],
             "Pith\\Framework\\Internal\\": [
