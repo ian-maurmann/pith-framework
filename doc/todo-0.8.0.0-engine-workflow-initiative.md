@@ -151,7 +151,7 @@ External
 > External Extendable:
 > - Pith Access Level
 > - [x] **Pith Action**
-> - Pith Controller
+> - ~~Pith Controller~~
 > - [x] **Pith Pack**
 > - [x] **Pith Preparer**
 > - Pith Query
@@ -162,8 +162,8 @@ External
 > External Interfaces
 > - ~~Pith App Interface~~
 > - ~~Pith Config Interface~~
-> - Pith Controller Interface
-> - Pith Module Interface
+> - ~~Pith Controller Interface~~
+> - ~~Pith Module Interface~~
 > - ~~Pith Router Interface~~
 >
 > External Objects
@@ -189,7 +189,7 @@ External
 Internal
 
 > Internal Objects
-> - Pith Access Level Factory
+> - ~~Pith Access Level Factory~~
 > - Pith App Helper
 > - [x] **Pith Escape Utility**
 > - [x] **Pith Expression Utility**
@@ -197,8 +197,8 @@ Internal
 > - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - Pith Route
-> - Pith State Enum
-> - Pith State Machine
+> - ~~Pith State Enum~~
+> - ~~Pith State Machine~~
 > - Pith String Utility
 > - [x] **Pith URI Utility** *(From old Pith Request Helper)*
 >
