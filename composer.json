@@ -30,8 +30,7 @@
                 "src/external/about/",
                 "src/external/extend/",
                 "src/external/interfaces/",
-                "src/external/objects/",
-                "src/external/traits/"
+                "src/external/objects/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/internal/objects/",
