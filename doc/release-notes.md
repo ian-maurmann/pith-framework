@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 2022-11-01 | Stable, limited features
 Alpha 33              | 0.8.0.1   | *sv 0.19.0* | 2022-06-14 | Stable, limited features
 Alpha 32              | 0.8.0.0   | *sv 0.18.0* | 2022-05-28 | Stable, limited features
 Alpha 31              | 0.7.5.0   | *sv 0.17.0* | 2022-01-25 | Stable, but not production-ready
@@ -68,6 +69,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
 
 
 ### Release Notes:
+
+**0.8.1.0 - Alpha 34** `(semver: v0.20.0)`
+- Added test pages.
+- Big Cleanup of old / unnecessary objects from 0.6 and 0.7 implication.
 
 **0.8.0.1 - Alpha 33** `(semver: v0.19.0)`
 - Remove experimental folder, since everything works fine now.

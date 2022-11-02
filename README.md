@@ -3,7 +3,7 @@
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
 
-[Website](https://pith-framework.org/) | [Old README](doc/old-readme.md)
+[Website](https://pith-framework.org/) | [Release Notes](doc/release-notes.md)
 
 ---
 
