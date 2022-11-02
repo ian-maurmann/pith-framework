@@ -31,7 +31,10 @@ class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
     }
 
 
-    public function isAllowedToAccess()
+    /**
+     * @return bool
+     */
+    public function isAllowedToAccess(): bool
     {
         // "world" access;
         $is_allowed = true;
