@@ -9,8 +9,16 @@
 # ===================================================================
 
 
-// Pith Access Control
-// -------------------
+/**
+ * Pith Access Control
+ * --------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpPropertyOnlyWrittenInspection      - Ignore.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Variable names with underscores are ok.
+ */
 
 
 declare(strict_types=1);
@@ -20,11 +28,16 @@ namespace Pith\Framework;
 
 
 use Pith\Framework\Internal\PithAccessLevelFactory;
+use Pith\Framework\Internal\PithAppReferenceTrait;
 
-
+/**
+ * Class PithAccessControl
+ * @package Pith\Framework
+ */
 class PithAccessControl
 {
-    private $app;
+    use PithAppReferenceTrait;
+
     private $access_level_factory;
     private $access_levels;
 
@@ -35,13 +48,6 @@ class PithAccessControl
 
         // Initial vars:
         $this->access_levels = [];
-    }
-
-    public function init($app)
-    {
-        $this->app = $app;
-
-        $this->access_level_factory->setApp($app);
     }
 
     public function isAllowedToAccess($access_level_name)
