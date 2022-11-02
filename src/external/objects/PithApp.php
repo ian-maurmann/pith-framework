@@ -23,7 +23,7 @@ namespace Pith\Framework;
 
 use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithProblemHandler;
+use Pith\Framework\Internal\PithEscapeUtility;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -32,11 +32,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PithApp
 {
-    use PithProblemTrait;
-    use PithRunTrait;
-    use PithStartupTrait;
-    use PithVersionTrait;
-
     private $helper;
 
     public $access_control;
@@ -47,9 +42,9 @@ class PithApp
     public $db;
     public $dispatcher;
     public $engine;
+    public $escape;
     public $info;
     public $log;
-    public $problem_handler;
     public $registry;
     public $request;
     public $responder;
@@ -59,57 +54,50 @@ class PithApp
     /**
      * PithApp constructor.
      *
-     * @param PithAppHelper        $helper
-     * @param PithAccessControl    $access_control
-     * @param PithConfig           $config
-     * @param PithDatabaseWrapper  $db
-     * @param PithDispatcher       $dispatcher
-     * @param PithEngine           $engine
-     * @param PithInfo             $info
-     * @param PithProblemHandler   $problem_handler
-     * @param PithResponder        $responder
-     * @param PithRouter           $router
+     * @param PithAppHelper       $helper
+     * @param PithAccessControl   $access_control
+     * @param PithConfig          $config
+     * @param PithDatabaseWrapper $db
+     * @param PithDispatcher      $dispatcher
+     * @param PithEngine          $engine
+     * @param PithEscapeUtility   $escape
+     * @param PithInfo            $info
+     * @param PithResponder       $responder
+     * @param PithRouter          $router
      */
     public function __construct(
-        PithAppHelper        $helper,
-        PithAccessControl    $access_control,
-        PithConfig           $config,
-        PithDatabaseWrapper  $db,
-        PithDispatcher       $dispatcher,
-        PithEngine           $engine,
-        PithInfo             $info,
-        PithProblemHandler   $problem_handler,
-        PithResponder        $responder,
-        PithRouter           $router
+        PithAppHelper       $helper,
+        PithAccessControl   $access_control,
+        PithConfig          $config,
+        PithDatabaseWrapper $db,
+        PithDispatcher      $dispatcher,
+        PithEngine          $engine,
+        PithEscapeUtility   $escape,
+        PithInfo            $info,
+        PithResponder       $responder,
+        PithRouter          $router
     )
     {
-        $this->helper            = $helper;
-        $this->access_control    = $access_control;
-        $this->authenticator     = null;
-        $this->config            = $config;
-        $this->container         = null;
-        $this->db                = $db;
-        $this->dispatcher        = $dispatcher;
-        $this->engine            = $engine;
-        $this->info              = $info;
-        $this->log               = null;
-        $this->problem_handler   = $problem_handler;
-        $this->registry          = null;
-        $this->request           = Request::createFromGlobals();
-        $this->responder         = $responder;
-        $this->router            = $router;
+        $this->helper         = $helper;
+        $this->access_control = $access_control;
+        $this->authenticator  = null; // TODO
+        $this->autoloader     = null; // The Autoloader should be added after construct
+        $this->config         = $config;
+        $this->container      = null; // The Container should be added after construct
+        $this->db             = $db;
+        $this->dispatcher     = $dispatcher;
+        $this->engine         = $engine;
+        $this->escape         = $escape;
+        $this->info           = $info;
+        $this->log            = null; // The Log should be added after construct
+        $this->registry       = null; // TODO
+        $this->request        = Request::createFromGlobals();
+        $this->responder      = $responder;
+        $this->router         = $router;
 
-
-        $helper->initializeDependencies($this);
+        // Initialize Dependencies
+        $this->helper->initializeDependencies($this);
     }
-
-
-    /**
-     * @return string
-     */
-    public function whereAmI(): string
-    {
-        return 'Pith App object';
-    }
+    
 }
 

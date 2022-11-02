@@ -45,11 +45,8 @@ class PithAppHelper
      */
     public function initializeDependencies(PithApp $app)
     {
-        // Using secondary initialization function // TODO remove 0.6 implementation
-        $app->access_control->init($app);
-        $app->problem_handler->init($app);
-        
         // Using the app reference trait
+        $app->access_control->setAppReference($app);
         $app->config->setAppReference($app);
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
