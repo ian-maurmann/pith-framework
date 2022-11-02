@@ -196,7 +196,7 @@ Internal
 > - ~~Pith Problem Handler~~
 > - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
-> - Pith Route
+> - ~~Pith Route~~
 > - ~~Pith State Enum~~
 > - ~~Pith State Machine~~
 > - Pith String Utility
