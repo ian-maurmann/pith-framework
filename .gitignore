@@ -30,3 +30,9 @@ vendor/
 # Ignore dev-test folder
 # ----------------------
 dev-test/
+
+
+# Ignore sensitive info
+# ---------------------
+.env
+.env.php
