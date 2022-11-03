@@ -36,3 +36,4 @@ dev-test/
 # ---------------------
 .env
 .env.php
+env.php
