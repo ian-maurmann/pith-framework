@@ -16,11 +16,11 @@ declare(strict_types=1);
 use Pith\Framework\PithException;
 
 // Switch folders
-chdir('../../../'); // Switch to whatever folder you want to run the App from.
+chdir('../../../../'); // Switch to whatever folder you want to run the App from.
 
 // Error logging
 ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log'); // Add location of where you want the error log to be
+ini_set('error_log', './php_errors.log');
 
 
 // Auto-Load
@@ -28,7 +28,7 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 
 
 // Load our Constants
-require 'dev-test/experimental/constants.php'; // Enter the path to constants file.
+require 'test/test-pages/test-page-0003-layout-green/env.php'; // Enter the path to constants file.
 
 // Setup our Container
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
@@ -75,20 +75,21 @@ if($pith) {
 
     // Add route list to config
     try {
-        $pith->config->route_list = $container->get('\\Pith\\ExamplePack\\ExampleRouteList'); // Add your route list object here
+        $pith->config->route_list = $container->get('\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExampleRouteList');
     } catch (\DI\DependencyException $exception) {
         throw new PithException(
-            'Pith Framework Exception 5006: Unable to load the Route List. The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+            'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
             5006,
             $exception
         );
     } catch (\DI\NotFoundException $exception) {
         throw new PithException(
-            'Pith Framework Exception 5007: Unable to find the Route List. The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+            'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
             5007,
             $exception
         );
     }
+
 
     // Start
     $pith->engine->start();

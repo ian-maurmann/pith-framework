@@ -73,7 +73,7 @@ class PithDispatcher
             case 'error-page':
                 // fall through
             case 'page':
-                if($route->use_layout){
+                if($route->hasLayout()){
                     $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
                     $this->engineDispatch( $layout_route, $route);
                 }
