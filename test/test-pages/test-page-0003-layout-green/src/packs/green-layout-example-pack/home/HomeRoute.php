@@ -2,7 +2,7 @@
 
 /**
  * Home Route
- * -----------
+ * ----------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  */
@@ -24,6 +24,5 @@ class HomeRoute extends PithRoute
     public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
     public $access_level = 'world';
     public $view         = '[^route_folder]/home-view.phtml';
-    public $use_layout   = true;
     public $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutRoute';
 }

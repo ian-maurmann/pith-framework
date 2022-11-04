@@ -77,9 +77,9 @@ class PithRoute extends PithWorkflowElement
 
     /**
      * Holds the namespace for the layout's route object, if has layout
-     * @var string|null
+     * @var string
      */
-    public $layout = null; // Default to null
+    public $layout = ''; // Default to empty string
 
     /**
      * Holds the namespace for the Pack object
@@ -90,7 +90,7 @@ class PithRoute extends PithWorkflowElement
     public $preparer         = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
     public $resource_folder  = null;
     public $route_type       = null;
-    public $use_layout       = false;
+    public $use_layout       = null; // TODO: Remove - Now use $layout length
 
     /**
      * Holds the filepath expression for the view file.
@@ -321,5 +321,13 @@ class PithRoute extends PithWorkflowElement
     public function getRouteFolder(): string
     {
         return $this->getObjectClassDirectoryRelativePath();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLayout(): bool
+    {
+        return strlen($this->layout) > 0;
     }
 }
