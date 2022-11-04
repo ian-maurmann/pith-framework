@@ -93,11 +93,22 @@ class PithRoute extends PithWorkflowElement
     public $use_layout       = false;
 
     /**
+     * Holds the filepath expression for the view file.
+     *
+     * ```
+     * Start with [^pack_folder] to write the file path from folder the pack object is inside of.
+     * Start with [^route_folder] to write the file path from the folder the route object is inside of.
+     * ```
+     *
      * @var string|null
      */
-    public $view             = null;
+    public $view = null;
 
-    public $view_adapter     = null;
+    /**
+     * Holds the namespace for the View Adapter object
+     * @var string|null
+     */
+    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
 
     /**
      * Holds the namespace for the View Requisition object
