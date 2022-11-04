@@ -37,7 +37,6 @@ use ReflectionException;
 // │    +  layout       : string            --- Namespace for layout route      │
 // │    +  preparer     : string            --- Namespace for preparer          │
 // │    +  route_type   : string            --- Name of route type              │
-// │    +  use_layout   : bool              --- Yes/No on adding layout to view │
 // │    +  view         : string            --- Path to view                    │
 // │    +  view_adapter : string            --- Namespace for view adapter      │
 // ├────────────────────────────────────────────────────────────────────────────┤
@@ -90,7 +89,6 @@ class PithRoute extends PithWorkflowElement
     public $preparer         = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
     public $resource_folder  = null;
     public $route_type       = null;
-    public $use_layout       = null; // TODO: Remove - Now use $layout length
 
     /**
      * Holds the filepath expression for the view file.
