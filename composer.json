@@ -72,6 +72,13 @@
             "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\": [
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/",
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home"
             ]
         }
     }

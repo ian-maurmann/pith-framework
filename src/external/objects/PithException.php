@@ -54,8 +54,8 @@
  *     5003 - Router returned empty routing array.
  *     5004 - Loading route --> Container: NotFoundException.
  *     5005 - Loading route --> Container: DependencyException.
- *     5006 - Loading route list --> Container: NotFoundException.
- *     5007 - Loading route list --> Container: DependencyException.
+ *     5006 - Loading route list --> Container: DependencyException.
+ *     5007 - Loading route list --> Container: NotFoundException.
  *
  */
 
