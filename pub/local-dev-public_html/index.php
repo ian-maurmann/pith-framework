@@ -78,13 +78,13 @@ if($pith) {
         $pith->config->route_list = $container->get('\\Pith\\ExamplePack\\ExampleRouteList'); // Add your route list object here
     } catch (\DI\DependencyException $exception) {
         throw new PithException(
-            'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+            'Pith Framework Exception 5006: Unable to load the Route List. The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
             5006,
             $exception
         );
     } catch (\DI\NotFoundException $exception) {
         throw new PithException(
-            'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+            'Pith Framework Exception 5007: Unable to find the Route List. The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
             5007,
             $exception
         );
