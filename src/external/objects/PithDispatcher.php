@@ -426,6 +426,7 @@ class PithDispatcher
         // Content types
         $extensions_to_content_types = [
             'apng' => 'Content-Type: image/apng',
+            'atom' => 'Content-Type: application/atom+xml',
             'avif' => 'Content-Type: image/avif',
             'css'  => 'Content-type: text/css; charset=utf-8',
             'csv'  => 'Content-type: text/csv; charset=utf-8',
@@ -443,6 +444,7 @@ class PithDispatcher
             'otf'  => 'Content-Type: font/otf',
             'pdf'  => 'Content-Type: application/pdf',
             'png'  => 'Content-Type: image/png',
+            'rss'  => 'Content-Type: application/rss+xml; charset=utf-8',
             'svg'  => 'Content-Type: image/svg+xml',
             'ttf'  => 'Content-Type: font/ttf',
             'txt'  => 'Content-type: text/plain; charset=utf-8',
