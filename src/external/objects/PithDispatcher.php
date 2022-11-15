@@ -42,8 +42,8 @@ class PithDispatcher
     private $expression_utility;
 
 
-
     /**
+     * @param PithDispatcherHelper  $helper
      * @param PithExpressionUtility $expression_utility
      */
     public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility)
