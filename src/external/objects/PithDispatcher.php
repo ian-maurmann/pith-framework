@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
+use Pith\Framework\Internal\PithDispatcherHelper;
 use Pith\Framework\Internal\PithExpressionUtility;
 use ReflectionException;
 
@@ -36,6 +37,8 @@ class PithDispatcher
 {
     use PithAppReferenceTrait;
 
+    private $helper;
+
     private $expression_utility;
 
 
@@ -43,8 +46,9 @@ class PithDispatcher
     /**
      * @param PithExpressionUtility $expression_utility
      */
-    public function __construct(PithExpressionUtility $expression_utility)
+    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility)
     {
+        $this->helper             = $helper;
         $this->expression_utility = $expression_utility;
     }
 
@@ -422,80 +426,8 @@ class PithDispatcher
         // Get extension
         $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
 
-
-        // Content types
-        $extensions_to_content_types = [
-            'apng' => 'Content-Type: image/apng',
-            'atom' => 'Content-Type: application/atom+xml',
-            'avif' => 'Content-Type: image/avif',
-            'css'  => 'Content-type: text/css; charset=utf-8',
-            'csv'  => 'Content-type: text/csv; charset=utf-8',
-            'gif'  => 'Content-Type: image/gif',
-            'html' => 'Content-type: text/html; charset=utf-8',
-            'ico'  => 'Content-Type: image/x-icon',
-            'jpeg' => 'Content-Type: image/jpeg',
-            'jpg'  => 'Content-Type: image/jpeg',
-            'js'   => 'Content-type: text/javascript; charset=utf-8',
-            'json' => 'Content-type: application/json; charset=utf-8',
-            'md'   => 'Content-type: text/markdown; charset=utf-8',
-            'mpeg' => 'Content-Type: audio/mpeg',
-            'mp4'  => 'Content-Type: video/mp4',
-            'ogg'  => 'Content-Type: application/ogg',
-            'otf'  => 'Content-Type: font/otf',
-            'pdf'  => 'Content-Type: application/pdf',
-            'png'  => 'Content-Type: image/png',
-            'rss'  => 'Content-Type: application/rss+xml; charset=utf-8',
-            'svg'  => 'Content-Type: image/svg+xml',
-            'ttf'  => 'Content-Type: font/ttf',
-            'txt'  => 'Content-type: text/plain; charset=utf-8',
-            'wav'  => 'Content-Type: audio/wav',
-            'webp' => 'Content-Type: image/webp',
-            'woff' => 'Content-Type: font/woff',
-            'xml'  => 'Content-type: text/xml',
-            'zip'  => 'Content-Type: application/zip',
-        ];
-
-
-        // Set content-type headers by extension
-        if (isset($extensions_to_content_types[$file_extension])) {
-            header($extensions_to_content_types[$file_extension], true);
-        } else {
-            // Apache > 2.2.7 reported 'text/plain' or 'application/octet-stream' for unknown content types.
-            // Apache reports 'none' for files with unknown content types.
-            // Nginx reports 'text/plain' for unknown content types.
-
-            // We're going to go with 'none' here
-            header('Content-type: none; charset=utf-8', true);
-        }
-
-
-        // Extensions that need size check
-        $extensions_that_require_size = [
-            'apng',
-            'avif',
-            'gif',
-            'ico',
-            'jpeg',
-            'jpg',
-            'mpeg',
-            'mp4',
-            'ogg',
-            'otf',
-            'pdf',
-            'png',
-            'ttf',
-            'wav',
-            'webp',
-            'woff',
-            'zip',
-        ];
-
-        // Set file size headers
-        if (isset($extensions_that_require_size[$file_extension])) {
-            $file_byte_size = filesize($real_filepath);
-
-            header("Content-length: $file_byte_size");
-        }
+        // Set resource headers
+        $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
 
 
         // Serve file
