@@ -424,7 +424,7 @@ class PithDispatcher
         }
 
         // Get extension
-        $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
+        $file_extension = $this->helper->getResourceFileExtension($basename);
 
         // Set resource headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);

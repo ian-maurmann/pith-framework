@@ -25,6 +25,8 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
+use Pith\Framework\PithException;
+
 /**
  * Class PithDispatcherHelper
  * @package Pith\Framework\Internal
@@ -34,6 +36,55 @@ class PithDispatcherHelper
     public function __construct()
     {
         // Do nothing for now
+    }
+
+    /**
+     * @param  string $basename
+     * @throws PithException
+     */
+    public function getResourceFileExtension(string $basename)
+    {
+        // Get extension
+        $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
+
+        // Extensions to just block outright
+        $extensions_to_block = [
+            'cgi',
+            'inc',
+            'ini',
+            'log',
+            'perl',
+            'php',
+            'php3',
+            'php4',
+            'php5',
+            'phtml',
+            'pl',
+            'PL',
+            'pm',
+            'py',
+            'pyc',
+            'pyo',
+            'pyw',
+            'pyz',
+            's',
+            'S',
+            'sh',
+            'so',
+        ];
+
+        // Check if we should complain here
+        $is_extension_to_block = isset($extensions_to_block[$file_extension]);
+
+        // Throw exception for putting an executable file type in the resource folder
+        if($is_extension_to_block){
+            throw new PithException(
+                'Pith Framework Exception 4029: Requested Resource is a file type that should not be inside the resource folder.',
+                4029
+            );
+        }
+
+        return $file_extension;
     }
 
     /**
@@ -47,9 +98,11 @@ class PithDispatcherHelper
             'apng' => 'Content-Type: image/apng',
             'atom' => 'Content-Type: application/atom+xml',
             'avif' => 'Content-Type: image/avif',
+            'bmp'  => 'Content-Type: image/bmp',
             'css'  => 'Content-type: text/css; charset=utf-8',
             'csv'  => 'Content-type: text/csv; charset=utf-8',
             'gif'  => 'Content-Type: image/gif',
+            'gz'   => 'Content-Type: application/gzip',
             'html' => 'Content-type: text/html; charset=utf-8',
             'ico'  => 'Content-Type: image/x-icon',
             'jpeg' => 'Content-Type: image/jpeg',
@@ -63,9 +116,14 @@ class PithDispatcherHelper
             'otf'  => 'Content-Type: font/otf',
             'pdf'  => 'Content-Type: application/pdf',
             'png'  => 'Content-Type: image/png',
+            'rar'  => 'Content-Type: application/vnd.rar, application/x-rar-compressed, application/octet-stream',
             'rss'  => 'Content-Type: application/rss+xml; charset=utf-8',
             'svg'  => 'Content-Type: image/svg+xml',
+            'tar'  => 'Content-Type: application/x-tar',
+            'tif'  => 'Content-Type: image/tiff',
+            'tiff' => 'Content-Type: image/tiff',
             'ttf'  => 'Content-Type: font/ttf',
+            'TTF'  => 'Content-Type: font/ttf',
             'txt'  => 'Content-type: text/plain; charset=utf-8',
             'wav'  => 'Content-Type: audio/wav',
             'webp' => 'Content-Type: image/webp',
@@ -92,7 +150,9 @@ class PithDispatcherHelper
         $extensions_that_require_size = [
             'apng',
             'avif',
+            'bmp',
             'gif',
+            'gz',
             'ico',
             'jpeg',
             'jpg',
@@ -102,7 +162,12 @@ class PithDispatcherHelper
             'otf',
             'pdf',
             'png',
+            'rar',
+            'tar',
+            'tif',
+            'tiff',
             'ttf',
+            'TTF',
             'wav',
             'webp',
             'woff',
