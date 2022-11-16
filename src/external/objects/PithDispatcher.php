@@ -412,18 +412,10 @@ class PithDispatcher
         // Get the base name
         $basename = basename($real_filepath);
 
-        // Don't serve dot files
-        $starts_with_dot_file = (substr($basename, 0, 1) === '.');
-        $has_sub_dot_file     = (strpos($real_filepath, DIRECTORY_SEPARATOR . '.') !== false);
-        $has_dot_file         = $starts_with_dot_file || $has_sub_dot_file;
-        if($has_dot_file){
-            throw new PithException(
-                'Pith Framework Exception 4023: Requested Resource path includes a dot file.',
-                4023
-            );
-        }
+        // Don't serve dot files. Throw if dot file.
+        $this->helper->ensureFilenameIsNotDotFile($basename, $real_filepath);
 
-        // Get extension
+        // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
         $file_extension = $this->helper->getResourceFileExtension($basename);
 
         // Set resource headers

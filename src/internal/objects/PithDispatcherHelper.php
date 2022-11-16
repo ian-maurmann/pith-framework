@@ -38,11 +38,34 @@ class PithDispatcherHelper
         // Do nothing for now
     }
 
+
+    
     /**
      * @param  string $basename
+     * @param  string $real_filepath
      * @throws PithException
      */
-    public function getResourceFileExtension(string $basename)
+    public function ensureFilenameIsNotDotFile(string $basename, string $real_filepath){
+        // Don't serve dot files
+        $starts_with_dot_file = (substr($basename, 0, 1) === '.');
+        $has_sub_dot_file     = (strpos($real_filepath, DIRECTORY_SEPARATOR . '.') !== false);
+        $has_dot_file         = $starts_with_dot_file || $has_sub_dot_file;
+        if($has_dot_file){
+            throw new PithException(
+                'Pith Framework Exception 4023: Requested Resource path includes a dot file.',
+                4023
+            );
+        }
+    }
+
+
+
+    /**
+     * @param  string $basename
+     * @return string
+     * @throws PithException
+     */
+    public function getResourceFileExtension(string $basename): string
     {
         // Get extension
         $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
@@ -86,6 +109,8 @@ class PithDispatcherHelper
 
         return $file_extension;
     }
+
+
 
     /**
      * @param string $real_filepath
