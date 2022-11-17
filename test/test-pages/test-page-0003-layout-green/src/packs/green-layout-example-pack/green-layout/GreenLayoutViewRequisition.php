@@ -22,7 +22,7 @@ use Pith\Framework\PithViewRequisition;
  */
 class GreenLayoutViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'view-requisition';
+    public $requisition_type = 'layout-view-requisition';
 
     public function runRequisition()
     {
@@ -31,6 +31,6 @@ class GreenLayoutViewRequisition extends PithViewRequisition
         $this->addHeader('Show site runs PHP 8', 'X-Powered-By: PHP/8');
 
         // Resources
-        $this->addScript('Foo Library', '/front-end-application/green-layout/green-layout.css', 'library-for-layout');
+        $this->addStylesheet('Green Layout Stylesheet', '/front-end-application/green-layout/green-layout.css', 'application-for-layout');
     }
 }
