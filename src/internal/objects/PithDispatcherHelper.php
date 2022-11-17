@@ -39,7 +39,24 @@ class PithDispatcherHelper
     }
 
 
-    
+    /**
+     * @param  string $real_filepath
+     * @param  string $real_resource_folder_path
+     * @throws PithException
+     */
+    public function ensureRealFilepathIsInsideRealResourceFolder(string $real_filepath, string $real_resource_folder_path){
+        // Check that the Real Filepath is really inside the Real Resource Folder
+        $is_real_filepath_inside_resource_folder = (strpos($real_filepath, $real_resource_folder_path . DIRECTORY_SEPARATOR) === 0);
+        if(!$is_real_filepath_inside_resource_folder){
+            throw new PithException(
+                'Pith Framework Exception 4020: Requested Resource outside of Resource folder.',
+                4020
+            );
+        }
+    }
+
+
+
     /**
      * @param  string $basename
      * @param  string $real_filepath

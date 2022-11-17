@@ -401,13 +401,7 @@ class PithDispatcher
 
 
         // Check that the Real Filepath is really inside the Real Resource Folder
-        $is_real_filepath_inside_resource_folder = (strpos($real_filepath, $real_resource_folder_path . DIRECTORY_SEPARATOR) === 0);
-        if(!$is_real_filepath_inside_resource_folder){
-            throw new PithException(
-                'Pith Framework Exception 4020: Requested Resource outside of Resource folder.',
-                4020
-            );
-        }
+        $this->helper->ensureRealFilepathIsInsideRealResourceFolder($real_filepath, $real_resource_folder_path);
 
         // Get the base name
         $basename = basename($real_filepath);
