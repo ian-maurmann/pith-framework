@@ -1,6 +1,6 @@
 
 # .gitignore
-# ----------
+# ==========
 
 
 
@@ -32,3 +32,8 @@ vendor/
 dev-test/
 
 
+# Ignore sensitive info
+# ---------------------
+.env
+.env.php
+env.php

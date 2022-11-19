@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2009-2019 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,75 +8,194 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+/**
+ * Pith Router
+ * -----------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpUnusedLocalVariableInspection      - Setting default values is ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ */
+
+
 declare(strict_types=1);
 
 
-// Pith Router
-// -----------
-
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithStringUtility;
 
-class PithRouter implements PithRouterInterface
+use FastRoute;
+use Pith\Framework\Internal\PithAppReferenceTrait;
+
+
+/**
+ * Class PithRouter
+ * @package Pith\Framework
+ */
+class PithRouter
 {
-    private $string_utility;
+    use PithAppReferenceTrait;
+
+
+
+    public function __construct()
+    {
+        // Do nothing for now
+    }
+
+
+
 
     /**
-     * PithRouter constructor.
-     * @param PithStringUtility $string_utility
+     * @return PithRoute|null
+     * @throws PithException
      */
-    function __construct(PithStringUtility $string_utility)
+    public function getRoute(): ?PithRoute
     {
-        $this->string_utility = $string_utility;
+        // Get the route info
+        $routing_info = $this->routeWithFastRoute();
+        $route        = $this->getRouteObjectFromRouteInfo($routing_info);
+        $route_params = $routing_info['vars'];
+
+        // Save route params
+        $this->app->request->attributes->add(['route_parameters' => $route_params]);
+
+        // Return the route object
+        return $route;
     }
 
-    private $app;
 
-    public function whereAmI()
+
+    
+    /**
+     * Route by URL
+     *
+     * @noinspection PhpVariableNamingConventionInspection - Ignore here.
+     * @throws PithException
+     */
+    public function routeWithFastRoute(): array
     {
-        return "Pith Router";
-    }
+        $return_array = [];
 
+        $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+            // Get Routes
+            $app_routes = $this->app->config->getRoutes();
 
-    public function init($app){
-        $this->app = $app;
-    }
-
-
-    public function findRouteSpaceFromUrl(){
-        $request_path      = (string) $this->app->request_processor->getRequestPath();
-        $route_spaces      = $this->app->config->profile->route_spaces;
-        $route_space_found = null;
-
-        // debug
-        // =============
-        echo '<br/><u>Route Space Stubs</u><br/>';
-        echo '<pre>';
-        var_dump($route_spaces);
-        echo '</pre><br />';
-        // =============
-
-        foreach($route_spaces as $route_space_index => $route_space){
-            $route_space_stub = (string) $route_space['match'];
-            $is_match = $this->string_utility->startsWith($request_path, $route_space_stub);
-
-            if($is_match){
-                $route_space_found = $route_space;
-                break;
+            // Loop through routes, Add each route
+            foreach ($app_routes as $app_route){
+                $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
             }
+        });
+
+        // Get HTTP method
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
+
+        // Get URI
+        $uri = $_SERVER['REQUEST_URI'];
+        // Strip query string (?foo=bar) and decode URI
+        if (false !== $pos = strpos($uri, '?')) {
+            $uri = substr($uri, 0, $pos);
+        }
+        $uri = rawurldecode($uri);
+
+        $routeInfo = $fast_dispatcher->dispatch($httpMethod, $uri);
+        switch ($routeInfo[0]) {
+            case FastRoute\Dispatcher::NOT_FOUND:
+                // ... 404 Not Found
+                // error_log('Router: 404 Not Found');
+
+                throw new PithException(
+                    'Pith Framework Exception 4004: Route not found. FastRoute\Dispatcher::NOT_FOUND',
+                    4004
+                );
+            case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                $allowedMethods = $routeInfo[1];
+                // ... 405 Method Not Allowed
+                // error_log('Router: 405 Method Not Allowed');
+
+                throw new PithException(
+                    'Pith Framework Exception 4005: Route not found. FastRoute\Dispatcher::NOT_FOUND. Allowed Methods: ' . $allowedMethods,
+                    4005
+                );
+            case FastRoute\Dispatcher::FOUND:
+                // error_log('Router: Found');
+
+                $handler = $routeInfo[1];
+                $vars    = $routeInfo[2];
+
+                $return_array = [
+                    'http_method' => $httpMethod,
+                    'uri'         => $uri,
+                    'handler'     => $handler,
+                    'vars'        => $vars,
+                ];
+
+                break;
         }
 
-        return $route_space_found;
+        return $return_array;
     }
 
-    public function findRoutePathFromRouteSpaceAndUrl($route_space){
-        $request_path     = (string) $this->app->request_processor->getRequestPath();
-        $route_space_stub = (string) $route_space['match'];
-        $route_path_start = (int) strlen($route_space_stub);
-        $route_space_path = substr($request_path, $route_path_start);
 
-        return $route_space_path;
+
+    /**
+     * @param  array $routing_info
+     * @return null|PithRoute
+     * @throws PithException
+     */
+    private function getRouteObjectFromRouteInfo(array $routing_info): ?PithRoute
+    {
+        $route        = null;
+        $did_routing  = (bool) count($routing_info);
+
+        if($did_routing){
+            $route_namespace = $routing_info['handler'];
+            $route           = $this->getRouteFromRouteNamespace($route_namespace);
+        }
+        else{
+            throw new PithException(
+                'Pith Framework Exception 5003: Router returned empty routing array.',
+                5003
+            );
+        }
+
+        return $route;
     }
+
+
+
+    /**
+     * @param  string $route_namespace
+     * @return null|PithRoute
+     * @throws PithException
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection
+     */
+    public function getRouteFromRouteNamespace(string $route_namespace): ?PithRoute
+    {
+        $route = null; // Default to null
+
+        // Get the route object via the namespace
+        try {
+            $route = $this->app->container->get($route_namespace);
+        } catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading route. Message: ' . $exception->getMessage(),
+                5004,
+                $exception
+            );
+        } catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5005: The container encountered a \DI\NotFoundException exception loading route. Message: ' . $exception->getMessage(),
+                5005,
+                $exception
+            );
+        }
+
+        return $route;
+    }
+
 
 }
