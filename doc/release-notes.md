@@ -71,7 +71,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
 ### Release Notes:
 
 WIP
-- Updates to the Access Control.
+- Updates to the Access Control. Now able to specify access level by namespace.
+- Added new base Access Level that can be extended.
+- Updates to Config. Load config on Engine start. 
+- Simplified the index front controller by moving logic to Config.
 
 **0.8.1.0 - Alpha 34** `(semver: v0.20.0)`
 - Added test pages.

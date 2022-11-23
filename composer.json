@@ -78,7 +78,10 @@
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home"
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home",
+                
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/resources"
             ]
         }
     }
