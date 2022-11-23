@@ -80,21 +80,7 @@ if($pith) {
     $pith->config->tracked_constants_file = 'test/test-pages/test-page-0001-pageflow-yellow-jello/src/constants.php';
 
     // Add route list to config
-    try {
-        $pith->config->route_list = $container->get('\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloRouteList');
-    } catch (\DI\DependencyException $exception) {
-        throw new PithException(
-            'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
-            5006,
-            $exception
-        );
-    } catch (\DI\NotFoundException $exception) {
-        throw new PithException(
-            'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
-            5007,
-            $exception
-        );
-    }
+    $pith->config->route_list_namespace = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloRouteList';
 
 
     // Start

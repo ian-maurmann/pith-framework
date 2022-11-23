@@ -44,6 +44,12 @@ class PithConfig
     public $tracked_constants_file;
 
     /**
+     * Holds the namespace of the Route List object
+     * @var string | null
+     */
+    public $route_list_namespace;
+
+    /**
      * Holds route list object
      * @var PithRouteList | null
     */
@@ -67,7 +73,11 @@ class PithConfig
         return $routes;
     }
 
-    /** @noinspection PhpIncludeInspection */
+    /**
+     * @throws PithException
+     *
+     * @noinspection PhpIncludeInspection - The requires are ok here.
+     */
     public function load()
     {
         // Load env constants
@@ -75,6 +85,23 @@ class PithConfig
 
         // Load tracked constants
         require $this->tracked_constants_file;
+
+        // Add route list to config
+        try {
+            $this->route_list = $this->app->container->get($this->route_list_namespace);
+        } catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+                5006,
+                $exception
+            );
+        } catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+                5007,
+                $exception
+            );
+        }
     }
 }
 
