@@ -51,6 +51,9 @@ class PithEngine
      */
     public function start()
     {
+        // Load config
+        $this->app->config->load();
+
         // Get route
         $route = $this->app->router->getRoute();
 
