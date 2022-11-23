@@ -28,7 +28,7 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 
 
 // Load our Constants
-require 'test/test-pages/test-page-0000-routing/src/constants.php'; // Enter the path to constants file.
+// require 'test/test-pages/test-page-0000-routing/src/constants.php'; // Enter the path to constants file.
 
 // Setup our Container
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
@@ -72,6 +72,12 @@ if($pith) {
     $pith->autoloader = $autoloader; // Give the autoloader to our App.
     $pith->container = $container; // Give the container (PHP-DI) to our App
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
+
+    // Add env constants to config
+    $pith->config->env_constants_file = 'test/test-pages/test-page-0000-routing/env.php';
+
+    // Add other constants to config
+    $pith->config->tracked_constants_file = 'test/test-pages/test-page-0000-routing/src/constants.php';
 
     // Add route list to config
     try {

@@ -32,10 +32,22 @@ class PithConfig
     use PithAppReferenceTrait;
 
     /**
+     * Holds path to the env constants file
+     * @var string | null
+     */
+    public $env_constants_file;
+
+    /**
+     * Holds path to the tracked constants file
+     * @var string | null
+     */
+    public $tracked_constants_file;
+
+    /**
      * Holds route list object
      * @var PithRouteList | null
     */
-    public $route_list = null;
+    public $route_list;
 
     /**
      * Get array of routes for FastRoute.
@@ -53,6 +65,16 @@ class PithConfig
 
         // Return array of routes, or empty array on failure
         return $routes;
+    }
+
+    /** @noinspection PhpIncludeInspection */
+    public function load()
+    {
+        // Load env constants
+        require $this->env_constants_file;
+
+        // Load tracked constants
+        require $this->tracked_constants_file;
     }
 }
 
