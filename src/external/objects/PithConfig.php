@@ -32,10 +32,28 @@ class PithConfig
     use PithAppReferenceTrait;
 
     /**
+     * Holds path to the env constants file
+     * @var string | null
+     */
+    public $env_constants_file;
+
+    /**
+     * Holds path to the tracked constants file
+     * @var string | null
+     */
+    public $tracked_constants_file;
+
+    /**
+     * Holds the namespace of the Route List object
+     * @var string | null
+     */
+    public $route_list_namespace;
+
+    /**
      * Holds route list object
      * @var PithRouteList | null
     */
-    public $route_list = null;
+    public $route_list;
 
     /**
      * Get array of routes for FastRoute.
@@ -53,6 +71,37 @@ class PithConfig
 
         // Return array of routes, or empty array on failure
         return $routes;
+    }
+
+    /**
+     * @throws PithException
+     *
+     * @noinspection PhpIncludeInspection - The requires are ok here.
+     */
+    public function load()
+    {
+        // Load env constants
+        require $this->env_constants_file;
+
+        // Load tracked constants
+        require $this->tracked_constants_file;
+
+        // Add route list to config
+        try {
+            $this->route_list = $this->app->container->get($this->route_list_namespace);
+        } catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+                5006,
+                $exception
+            );
+        } catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+                5007,
+                $exception
+            );
+        }
     }
 }
 

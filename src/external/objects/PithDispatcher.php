@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
+use Pith\Framework\Internal\PithDispatcherHelper;
 use Pith\Framework\Internal\PithExpressionUtility;
 use ReflectionException;
 
@@ -36,15 +37,18 @@ class PithDispatcher
 {
     use PithAppReferenceTrait;
 
+    private $helper;
+
     private $expression_utility;
 
 
-
     /**
+     * @param PithDispatcherHelper  $helper
      * @param PithExpressionUtility $expression_utility
      */
-    public function __construct(PithExpressionUtility $expression_utility)
+    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility)
     {
+        $this->helper             = $helper;
         $this->expression_utility = $expression_utility;
     }
 
@@ -73,7 +77,7 @@ class PithDispatcher
             case 'error-page':
                 // fall through
             case 'page':
-                if($route->use_layout){
+                if($route->hasLayout()){
                     $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
                     $this->engineDispatch( $layout_route, $route);
                 }
@@ -397,25 +401,19 @@ class PithDispatcher
 
 
         // Check that the Real Filepath is really inside the Real Resource Folder
-        $is_real_filepath_inside_resource_folder = (strpos($real_filepath, $real_resource_folder_path . DIRECTORY_SEPARATOR) === 0);
-        if(!$is_real_filepath_inside_resource_folder){
-            throw new PithException(
-                'Pith Framework Exception 4020: Requested Resource outside of Resource folder.',
-                4020
-            );
-        }
+        $this->helper->ensureRealFilepathIsInsideRealResourceFolder($real_filepath, $real_resource_folder_path);
 
+        // Get the base name
+        $basename = basename($real_filepath);
 
-        // Don't serve dot files
-        $starts_with_dot_file = (substr(basename($real_filepath), 0, 1) === '.');
-        $has_sub_dot_file     = (strpos($real_filepath, DIRECTORY_SEPARATOR . '.') !== false);
-        $has_dot_file         = $starts_with_dot_file || $has_sub_dot_file;
-        if($has_dot_file){
-            throw new PithException(
-                'Pith Framework Exception 4023: Requested Resource path includes a dot file.',
-                4023
-            );
-        }
+        // Don't serve dot files. Throw if dot file.
+        $this->helper->ensureFilenameIsNotDotFile($basename, $real_filepath);
+
+        // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
+        $file_extension = $this->helper->getResourceFileExtension($basename);
+
+        // Set resource headers
+        $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
 
 
         // Serve file
