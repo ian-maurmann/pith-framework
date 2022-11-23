@@ -8,30 +8,29 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * 'world' Access Level
+ * ---------------
+ *
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ * @noinspection PhpMissingParentCallCommonInspection  - Access level parent methods exist as fallback.
+ */
 declare(strict_types=1);
 
 
-// 'world' Access Level
-// --------------------
+namespace Pith\Framework\Internal;
 
-namespace Pith\InternalAccessLevels;
+use Pith\Framework\PithAccessLevel;
 
-
-class PithWorldAccessLevel extends \Pith\Framework\PithAccessLevel
+/**
+ * Class WorldAccessLevel
+ * @package Pith\Framework\Internal
+ */
+class WorldAccessLevel extends PithAccessLevel
 {
-    function __construct()
-    {
-        // Do nothing for now.
-    }
-
-
-    public function getName()
-    {
-        return 'world';
-    }
-
-
-    public function isAllowedToAccess()
+    public function isAllowedToAccess(): bool
     {
         // "world" access;
         $is_allowed = true;

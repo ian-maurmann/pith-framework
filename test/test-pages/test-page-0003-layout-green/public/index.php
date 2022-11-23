@@ -16,11 +16,11 @@ declare(strict_types=1);
 use Pith\Framework\PithException;
 
 // Switch folders
-chdir('../../../'); // Switch to whatever folder you want to run the App from.
+chdir('../../../../'); // Switch to whatever folder you want to run the App from.
 
 // Error logging
 ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log'); // Add location of where you want the error log to be
+ini_set('error_log', './php_errors.log');
 
 
 // Auto-Load
@@ -28,14 +28,19 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 
 
 // Load our Constants
-require 'dev-test/experimental/constants.php'; // Enter the path to constants file.
+// require 'test/test-pages/test-page-0003-layout-green/env.php'; // Enter the path to constants file.
 
 // Setup our Container
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
 
 
 // Load Pith
+/**
+ * @var \Pith\Framework\PithApp
+*/
 $pith = null;
+
+
 try {
     // Pith Framework App
     $pith = $container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
@@ -73,22 +78,15 @@ if($pith) {
     $pith->container = $container; // Give the container (PHP-DI) to our App
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
 
+
+    // Add env constants to config
+    $pith->config->env_constants_file = 'test/test-pages/test-page-0003-layout-green/env.php';
+
+    // Add other constants to config
+    $pith->config->tracked_constants_file = 'test/test-pages/test-page-0003-layout-green/tracked-constants.php';
+
     // Add route list to config
-    try {
-        $pith->config->route_list = $container->get('\\Pith\\ExamplePack\\ExampleRouteList'); // Add your route list object here
-    } catch (\DI\DependencyException $exception) {
-        throw new PithException(
-            'Pith Framework Exception 5006: Unable to load the Route List. The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
-            5006,
-            $exception
-        );
-    } catch (\DI\NotFoundException $exception) {
-        throw new PithException(
-            'Pith Framework Exception 5007: Unable to find the Route List. The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
-            5007,
-            $exception
-        );
-    }
+    $pith->config->route_list_namespace = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExampleRouteList';
 
     // Start
     $pith->engine->start();
