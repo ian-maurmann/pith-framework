@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 2022-11-22 | Stable, limited features
 Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 2022-11-01 | Stable, limited features
 Alpha 33              | 0.8.0.1   | *sv 0.19.0* | 2022-06-14 | Stable, limited features
 Alpha 32              | 0.8.0.0   | *sv 0.18.0* | 2022-05-28 | Stable, limited features
@@ -70,7 +71,7 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
 
 ### Release Notes:
 
-WIP
+**0.8.1.1 - Alpha 35** `(semver: v0.21.0)`
 - Updates to the Access Control. Now able to specify access level by namespace.
 - Added new base Access Level that can be extended.
 - Updates to Config. Load config on Engine start. 
