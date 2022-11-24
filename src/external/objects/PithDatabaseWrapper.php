@@ -8,18 +8,33 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+
+/**
+ * Pith Database Wrapper for MySQL using PDO
+ * -----------------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection          - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection       - Property names with underscores are ok.
+ * @noinspection PhpMethodNamingConventionInspection         - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection       - Short variable names are ok.
+ * @noinspection PhpPrivateFieldCanBeLocalVariableInspection - Keep the results handle and  statement handle as properties.
+ */
+
 declare(strict_types=1);
-
-
-// Pith Database Wrapper for MySQL using PDO
-// -----------------------------------------
 
 namespace Pith\Framework;
 
+use PDO;
+use PDOException;
 use Pith\Framework\Internal\PithDatabaseWrapperHelper;
 use Pith\InternalUtilities\PithErrorUtility;
 use Pith\InternalUtilities\PithArrayUtility;
 
+/**
+ * Class PithDatabaseWrapper
+ * @package Pith\Framework
+ */
 class PithDatabaseWrapper
 {
     private $helper;
@@ -37,7 +52,15 @@ class PithDatabaseWrapper
     private $statement_handle;
     private $last_query;
 
-    function __construct(PithDatabaseWrapperHelper $helper, PithArrayUtility $array_utility, PithErrorUtility $error_utility)
+
+
+    /**
+     * PithDatabaseWrapper constructor.
+     * @param PithDatabaseWrapperHelper $helper
+     * @param PithArrayUtility          $array_utility
+     * @param PithErrorUtility          $error_utility
+     */
+    public function __construct(PithDatabaseWrapperHelper $helper, PithArrayUtility $array_utility, PithErrorUtility $error_utility)
     {
         // Objects
         $this->helper        = $helper;
@@ -45,33 +68,46 @@ class PithDatabaseWrapper
         $this->error_utility = $error_utility;
 
         // Initial vars:
-        $this->did_connect = false;
-        $this->dsn = '';
+        $this->did_connect         = false;
+        $this->dsn                 = '';
         $this->connection_problems = '';
-        $this->query_problems = '';
-        $this->last_query = '';
+        $this->query_problems      = '';
+        $this->last_query          = '';
 
         // Default options
         $this->options = [
-            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-            \PDO::ATTR_EMULATE_PREPARES   => false,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
         ];
     }
 
 
+
+    /**
+     * @param $dsn
+     */
     public function setDsn($dsn)
     {
         $this->dsn = $dsn;
     }
 
 
+
+    /**
+     * @param $options
+     */
     public function setOptions($options)
     {
         $this->options = $options;
     }
 
 
+
+    /**
+     * @param $db_user_username
+     * @param $db_user_password
+     */
     public function setDbUserAndPassword($db_user_username, $db_user_password)
     {
         $this->db_user_username = $db_user_username;
@@ -79,25 +115,32 @@ class PithDatabaseWrapper
     }
 
 
-    public function getStatus()
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
     {
         $status = 'Not Connected';
 
-        if($this->did_connect){
-            $status = 'Connected to ' . $this->pdo->getAttribute(\PDO::ATTR_CONNECTION_STATUS);
+        if ($this->did_connect) {
+            $status = 'Connected to ' . $this->pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS);
         }
 
         return $status;
     }
 
 
-    public function connect()
+
+    /**
+     * @return bool
+     */
+    public function connect(): bool
     {
         $did_connect = true;
-        try{
-            $this->pdo = new \PDO($this->dsn, $this->db_user_username, $this->db_user_password, $this->options);
-        }
-        catch(\PDOException $exception){
+        try {
+            $this->pdo = new PDO($this->dsn, $this->db_user_username, $this->db_user_password, $this->options);
+        } catch (PDOException $exception) {
             $did_connect = false;
             $this->connection_problems .= 'Connection failed: ' . $exception->getMessage() . '. ';
         }
@@ -107,49 +150,58 @@ class PithDatabaseWrapper
     }
 
 
-    public function connectOnce()
+    /**
+     * @return false
+     */
+    public function connectOnce(): bool
     {
-        if(!$this->did_connect){
+        if (!$this->did_connect) {
             $this->connect();
         }
         return $this->did_connect;
     }
 
 
-    public function whereAmI()
+
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
     {
         return 'Pith Database Wrapper';
     }
 
+
+
+    /**
+     * @return array|false
+     */
     public function query()
     {
-        $results        = false;
+        $results = false;
         $number_of_args = func_num_args();
 
-        try{
-            if($number_of_args === 1) {
+        try {
+            if ($number_of_args === 1) {
                 $sql = func_get_arg(0);
                 $this->last_query = $sql;
                 $this->results_handle = $this->pdo->query($sql);
-                $results = $this->results_handle->fetchAll(\PDO::FETCH_ASSOC);
-            }
-            elseif($number_of_args > 1){
-                $sql          = func_get_arg(0);
-                $args         = func_get_args();
-                $param_args   = array_splice($args, 1);
+                $results = $this->results_handle->fetchAll(PDO::FETCH_ASSOC);
+            } elseif ($number_of_args > 1) {
+                $sql = func_get_arg(0);
+                $args = func_get_args();
+                $param_args = array_splice($args, 1);
                 $query_params = $this->helper->flattenArgs($param_args);
 
                 $this->last_query = $sql;
                 $this->statement_handle = $this->pdo->prepare($sql);
                 $this->statement_handle->execute($query_params);
-                $results = $this->statement_handle->fetchAll(\PDO::FETCH_ASSOC);
-            }
-            elseif(!$number_of_args){
+                $results = $this->statement_handle->fetchAll(PDO::FETCH_ASSOC);
+            } elseif (!$number_of_args) {
                 // TODO
                 $this->query_problems .= 'Query problem: No query to run. ';
             }
-        }
-        catch(\PDOException $exception){
+        } catch (PDOException $exception) {
             $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
         }
 
@@ -157,14 +209,20 @@ class PithDatabaseWrapper
     }
 
 
-    private function listPossibleProblems()
+
+    /**
+     * @return array
+     *
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    private function listPossibleProblems(): array
     {
         $error               = error_get_last();
         $connection_problems = strlen($this->connection_problems) ? $this->connection_problems : 'none';
         $query_problems      = strlen($this->query_problems) ? $this->query_problems : 'none';
         $other_problems      = 'none';
 
-        if (is_array($error)){
+        if (is_array($error)) {
             $error_type    = $this->error_utility->getErrorTypeByValue($error['type']);
             $error_message = $error['message'];
             $error_file    = $error['file'];
@@ -183,13 +241,19 @@ class PithDatabaseWrapper
     }
 
 
-    public function debug()
+
+    /**
+     * @return string
+     *
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    public function debug(): string
     {
         $problems            = $this->listPossibleProblems();
         $connection_problems = $problems['connection'];
         $query_problems      = $problems['query'];
         $other_problems      = $problems['other'];
-        $did_connect_yn      = ($this->did_connect) ? 'yes' : 'no' ;
+        $did_connect_yn      = ($this->did_connect) ? 'yes' : 'no';
         $status              = $this->getStatus();
         $last_query          = $this->last_query;
 
@@ -197,6 +261,8 @@ class PithDatabaseWrapper
 
         return $html;
     }
+
+
 
 //    public function run($query_object)
 //    {

@@ -8,34 +8,50 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * Pith Database Wrapper Helper
+ * ----------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection PhpTooManyParametersInspection        - Methods having a large number of parameters are ok.
+ */
+
 declare(strict_types=1);
 
-
-// Pith Database Wrapper Helper
-// ----------------------------
 
 namespace Pith\Framework\Internal;
 
 
+/**
+ * Class PithDatabaseWrapperHelper
+ * @package Pith\Framework\Internal
+ */
 class PithDatabaseWrapperHelper
 {
-
-    function __construct()
+    public function __construct()
     {
         // Nothing for now
     }
 
-    public function flattenArgs($args)
+
+
+    /**
+     * @param $args
+     * @return array
+     */
+    public function flattenArgs($args): array
     {
         $flat_args = [];
 
-        foreach($args as $arg){
-            if(is_array($arg)){
-                foreach($arg as $arg_item){
+        foreach ($args as $arg) {
+            if (is_array($arg)) {
+                foreach ($arg as $arg_item) {
                     $flat_args[] = $arg_item;
                 }
-            }
-            else{
+            } else {
                 $flat_args[] = $arg;
             }
         }
@@ -44,7 +60,19 @@ class PithDatabaseWrapperHelper
     }
 
 
-    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query)
+
+    /**
+     * @param $connection_problems
+     * @param $query_problems
+     * @param $other_problems
+     * @param $did_connect_yn
+     * @param $status
+     * @param $last_query
+     * @return string
+     *
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query): string
     {
         $htmlsafe_connection_problems = htmlentities($connection_problems);
         $htmlsafe_query_problems      = htmlentities($query_problems);
