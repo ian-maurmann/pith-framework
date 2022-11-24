@@ -8,31 +8,49 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * PithRowsetArrayUtility
+ * ----------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok here.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok here.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok here.
+ */
+
+
 declare(strict_types=1);
 
-
-// Pith Rowset Array Utility
-// -------------------------
 
 namespace Pith\Framework\Internal;
 
 
+/**
+ * Class PithRowsetArrayUtility
+ * @package Pith\Framework\Internal
+ */
 class PithRowsetArrayUtility
 {
 
-    function __construct()
+    public function __construct()
     {
         // Do nothing for now.
     }
 
 
-    public function getRowByFieldValue($rows, $field_name, $field_value)
+    /**
+     * @param  $rows
+     * @param  $field_name
+     * @param  $field_value
+     * @return array|null
+     */
+    public function getRowByFieldValue($rows, $field_name, $field_value): ?array
     {
-        $r     = null;
-        $index = array_search($field_value, array_column($rows, $field_name), true );
+        $r = null;
+        $first_index_found = array_search($field_value, array_column($rows, $field_name), true);
 
-        if($index !== false){
-            $r = $rows[$index];
+        if ($first_index_found !== false) {
+            $r = $rows[$first_index_found];
         }
 
         return $r;

@@ -8,32 +8,47 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * Pith Array Utility
+ * ------------------
+ *
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok here.
+ */
+
+
 declare(strict_types=1);
 
-
-// Pith Array Utility
-// ------------------
 
 namespace Pith\Framework\Internal;
 
 
+/**
+ * Class PithArrayUtility
+ * @package Pith\Framework\Internal
+ */
 class PithArrayUtility
 {
-
-    function __construct()
+    public function __construct()
     {
         // Do nothing for now.
     }
 
 
-    function flatten($array, $return = [])
+    /**
+     * @param $array
+     * @param array $return
+     * @return array
+     *
+     * TODO - We should add a max here, just in-case the array contains a reference to itself / parent and then loops forever
+     */
+    public function flatten($array, array $return = []): array
     {
         foreach ($array as $item) {
-            if(is_array($item)){
+            if (is_array($item)) {
                 // TODO - We should add a max here, just in-case the array contains a reference to itself / parent and then loops forever
                 $return = $this->flatten($item, $return);
-            }
-            else{
+            } else {
                 $return[] = $item;
             }
         }
