@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Pith Rowset Array Utility
 // -------------------------
 
-namespace Pith\InternalUtilities;
+namespace Pith\Framework\Internal;
 
 
 class PithRowsetArrayUtility

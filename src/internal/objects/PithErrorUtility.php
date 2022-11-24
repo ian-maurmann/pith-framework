@@ -15,7 +15,7 @@ declare(strict_types=1);
 // ------------------
 
 
-namespace Pith\InternalUtilities;
+namespace Pith\Framework\Internal;
 
 
 class PithErrorUtility

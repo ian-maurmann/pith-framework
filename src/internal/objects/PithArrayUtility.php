@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Pith Array Utility
 // ------------------
 
-namespace Pith\InternalUtilities;
+namespace Pith\Framework\Internal;
 
 
 class PithArrayUtility
@@ -30,6 +30,7 @@ class PithArrayUtility
     {
         foreach ($array as $item) {
             if(is_array($item)){
+                // TODO - We should add a max here, just in-case the array contains a reference to itself / parent and then loops forever
                 $return = $this->flatten($item, $return);
             }
             else{

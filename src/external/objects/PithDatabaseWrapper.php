@@ -28,7 +28,7 @@ namespace Pith\Framework;
 use PDO;
 use PDOException;
 use Pith\Framework\Internal\PithDatabaseWrapperHelper;
-use Pith\InternalUtilities\PithErrorUtility;
+use Pith\Framework\Internal\PithErrorUtility;
 
 /**
  * Class PithDatabaseWrapper
