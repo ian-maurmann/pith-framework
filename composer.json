@@ -38,23 +38,14 @@
                 "src/internal/workflow-access-levels/",
                 "src/internal/workflow-elements/"
             ],
-            "Pith\\PhtmlViewAdapter\\": [
-                "src/plugins/phtml-view-adapter/src/"
-            ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/plugins/phtml-view-adapter-2/src/"
-            ],
-            "Pith\\DatabaseWrapper\\": [
-                "src/plugins/database-wrapper/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/plugins/command-tool/src/"
             ],
             "Pith\\PithDotJson\\": [
                 "src/plugins/pith-dot-json/src/"
-            ],
-            "Pith\\InternalUtilities\\": [
-                "src/plugins/internal-utilities/src/"
             ],
             "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
                 "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
