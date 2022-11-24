@@ -14,7 +14,7 @@ declare(strict_types=1);
 // Pith Database Wrapper Helper
 // ----------------------------
 
-namespace Pith\DatabaseWrapper;
+namespace Pith\Framework\Internal;
 
 
 class PithDatabaseWrapperHelper

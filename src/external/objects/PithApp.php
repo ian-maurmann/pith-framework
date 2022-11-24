@@ -21,7 +21,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Symfony\Component\HttpFoundation\Request;

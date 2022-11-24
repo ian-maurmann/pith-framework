@@ -14,8 +14,9 @@ declare(strict_types=1);
 // Pith Database Wrapper for MySQL using PDO
 // -----------------------------------------
 
-namespace Pith\DatabaseWrapper;
+namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithDatabaseWrapperHelper;
 use Pith\InternalUtilities\PithErrorUtility;
 use Pith\InternalUtilities\PithArrayUtility;
 
