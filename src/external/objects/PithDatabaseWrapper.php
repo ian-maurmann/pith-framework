@@ -29,7 +29,6 @@ use PDO;
 use PDOException;
 use Pith\Framework\Internal\PithDatabaseWrapperHelper;
 use Pith\InternalUtilities\PithErrorUtility;
-use Pith\InternalUtilities\PithArrayUtility;
 
 /**
  * Class PithDatabaseWrapper
@@ -38,7 +37,6 @@ use Pith\InternalUtilities\PithArrayUtility;
 class PithDatabaseWrapper
 {
     private $helper;
-    private $array_utility;
     private $error_utility;
     private $dsn;
     private $options;
@@ -57,14 +55,12 @@ class PithDatabaseWrapper
     /**
      * PithDatabaseWrapper constructor.
      * @param PithDatabaseWrapperHelper $helper
-     * @param PithArrayUtility          $array_utility
      * @param PithErrorUtility          $error_utility
      */
-    public function __construct(PithDatabaseWrapperHelper $helper, PithArrayUtility $array_utility, PithErrorUtility $error_utility)
+    public function __construct(PithDatabaseWrapperHelper $helper, PithErrorUtility $error_utility)
     {
         // Objects
         $this->helper        = $helper;
-        $this->array_utility = $array_utility;
         $this->error_utility = $error_utility;
 
         // Initial vars:
@@ -151,24 +147,15 @@ class PithDatabaseWrapper
 
 
     /**
-     * @return false
+     * @return bool
      */
     public function connectOnce(): bool
     {
         if (!$this->did_connect) {
             $this->connect();
         }
+
         return $this->did_connect;
-    }
-
-
-
-    /**
-     * @return string
-     */
-    public function whereAmI(): string
-    {
-        return 'Pith Database Wrapper';
     }
 
 
