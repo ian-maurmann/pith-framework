@@ -27,8 +27,10 @@ class BottomQuotePreparer extends PithPreparer
     {
         // Variables from Action
         $version_text = $this->prepare->version_text;
+        $quote        = $this->prepare->quote;
 
         // Push to View
         $this->view->version_text = $this->app->escape->html($version_text);
+        $this->view->quote        = $this->app->escape->html($quote);
     }
 }
