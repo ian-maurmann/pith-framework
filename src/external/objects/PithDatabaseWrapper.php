@@ -72,9 +72,9 @@ class PithDatabaseWrapper
 
         // Default options
         $this->options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_EMULATE_PREPARES   => false,
         ];
     }
 
@@ -165,6 +165,8 @@ class PithDatabaseWrapper
      */
     public function query()
     {
+        $this->connectOnce();
+
         $results = false;
         $number_of_args = func_num_args();
 
