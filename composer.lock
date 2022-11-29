@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8da3d90245f9eb4cada75ff499647fcf",
+    "content-hash": "87dd2b40cbc2cb690d9a57cc082ace63",
     "packages": [
         {
             "name": "ikm/copyright-year-utility",
@@ -789,7 +789,8 @@
     "platform": {
         "php": "^8.1",
         "ext-readline": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-pdo": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

@@ -37,9 +37,11 @@ class PithDispatcher
 {
     use PithAppReferenceTrait;
 
-    private $helper;
+    // Helper
+    private PithDispatcherHelper $helper;
 
-    private $expression_utility;
+    // Objects
+    private PithExpressionUtility $expression_utility;
 
 
     /**
