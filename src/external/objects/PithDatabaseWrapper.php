@@ -19,6 +19,7 @@
  * @noinspection PhpMethodNamingConventionInspection         - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection       - Short variable names are ok.
  * @noinspection PhpPrivateFieldCanBeLocalVariableInspection - Keep the results handle and  statement handle as properties.
+ * @noinspection PhpArrayShapeAttributeCanBeAddedInspection  - Array shapes aren't set in stone yet.
  */
 
 declare(strict_types=1);
@@ -27,6 +28,7 @@ namespace Pith\Framework;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 use Pith\Framework\Internal\PithDatabaseWrapperHelper;
 use Pith\Framework\Internal\PithErrorUtility;
 
@@ -36,19 +38,25 @@ use Pith\Framework\Internal\PithErrorUtility;
  */
 class PithDatabaseWrapper
 {
-    private $helper;
-    private $error_utility;
-    private $dsn;
-    private $options;
-    private $did_connect;
-    private $pdo;
-    private $db_user_username;
-    private $db_user_password;
-    private $connection_problems;
-    private $query_problems;
-    private $results_handle;
-    private $statement_handle;
-    private $last_query;
+    // Helper
+    private PithDatabaseWrapperHelper $helper;
+
+    // Objects
+    private PDO              $pdo;
+    private PDOStatement     $results_handle;
+    private PDOStatement     $statement_handle;
+    private PithErrorUtility $error_utility;
+
+    // Properties
+    private string $connection_problems;
+    private string $db_user_username;
+    private string $db_user_password;
+    private bool   $did_connect;
+    private string $dsn;
+    private string $last_query;
+    private array  $options;
+    private string $query_problems;
+
 
 
 
@@ -163,7 +171,7 @@ class PithDatabaseWrapper
     /**
      * @return array|false
      */
-    public function query()
+    public function query(): bool|array
     {
         $this->connectOnce();
 

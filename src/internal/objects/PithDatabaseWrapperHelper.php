@@ -81,32 +81,30 @@ class PithDatabaseWrapperHelper
         $htmlsafe_status              = htmlentities($status);
         $htmlsafe_last_query          = htmlentities($last_query);
 
-        $html = '<table>
-                    <thead>
-                    </thead>
+        $html = '<table data-table-type="database-debug">
                     <tbody>
                         <tr>
-                            <td>Connection Problems</td>
+                            <th>Connection Problems</th>
                             <td>' . $htmlsafe_connection_problems . '</td>
                         </tr>
                         <tr>
-                            <td>Did connect?</td>
+                            <th>Did connect?</th>
                             <td>' . $htmlsafe_did_connect_yn . '</td>
                         </tr>
                         <tr>
-                            <td>Status</td>
+                            <th>Status</th>
                             <td>' . $htmlsafe_status . '</td>
                         </tr>
                         <tr>
-                            <td>Last Query SQL</td>
+                            <th>Last Query SQL</th>
                             <td>' . $htmlsafe_last_query . '</td>
                         </tr>
                         <tr>
-                            <td>Query Problems</td>
+                            <th>Query Problems</th>
                             <td>' . $htmlsafe_query_problems . '</td>
                         </tr>
                         <tr>
-                            <td>Other Problems</td>
+                            <th>Other Problems</th>
                             <td>' . $htmlsafe_other_problems . '</td>
                         </tr>
                     </tbody>
