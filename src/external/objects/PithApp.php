@@ -31,23 +31,25 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PithApp
 {
-    private $helper;
+    // Helper
+    private PithAppHelper $helper;
 
-    public $access_control;
-    public $authenticator;
-    public $autoloader;
-    public $config;
-    public $container;
-    public $db;
-    public $dispatcher;
-    public $engine;
-    public $escape;
-    public $info;
-    public $log;
-    public $registry;
-    public $request;
-    public $responder;
-    public $router;
+    // Objects
+    public PithAccessControl   $access_control;
+    public                     $authenticator; // TODO
+    public                     $autoloader;    // Composer Autoloader
+    public PithConfig          $config;
+    public                     $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
+    public PithDatabaseWrapper $db;
+    public PithDispatcher      $dispatcher;
+    public PithEngine          $engine;
+    public PithEscapeUtility   $escape;
+    public PithInfo            $info;
+    public                     $log; // Enforce using Monolog here? Currently any PSR-3 logger.
+    public                     $registry; // TODO
+    public Request             $request;
+    public PithResponder       $responder;
+    public PithRouter          $router;
 
 
     /**

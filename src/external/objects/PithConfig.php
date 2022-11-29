@@ -37,25 +37,25 @@ class PithConfig
      * Holds path to the env constants file
      * @var string | null
      */
-    public $env_constants_file;
+    public ?string $env_constants_file;
 
     /**
      * Holds path to the tracked constants file
      * @var string | null
      */
-    public $tracked_constants_file;
+    public ?string $tracked_constants_file;
 
     /**
      * Holds the namespace of the Route List object
      * @var string | null
      */
-    public $route_list_namespace;
+    public ?string $route_list_namespace;
 
     /**
      * Holds route list object
      * @var PithRouteList | null
     */
-    public $route_list;
+    public ?PithRouteList $route_list;
 
     /**
      * Get array of routes for FastRoute.
