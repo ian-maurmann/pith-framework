@@ -2,12 +2,27 @@
 
 ---
 
-- database `MariaDB 10.7.3`
-- characterset `utf8mb4`
-- collation `utf8mb4_unicode_ci`
+- Database version `MariaDB 10.7.3`
+- Set default character-set to `utf8mb4`
+- Set default collation to `utf8mb4_unicode_ci`
+
+### Setup side-notes
+
+* Since we're using `utf8mb4`, the max varchar length is going to be 191 instead of 255.
 
 ---
 
+# Env Constants
+
+Env Constants required:
+
+```
+DATABASE_DSN
+DATABASE_USER_USERNAME
+DATABASE_USER_PASSWORD
+```
+
+---
 # Conventions
 
 ### Table names
