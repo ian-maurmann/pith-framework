@@ -50,7 +50,7 @@ class PithDatabaseWrapper
     // Properties
     private string $connection_problems;
     private string $database_user_username;
-    private string $db_user_password;
+    private string $database_user_password;
     private bool   $did_connect;
     private string $dsn;
     private string $last_query;
@@ -110,12 +110,12 @@ class PithDatabaseWrapper
 
     /**
      * @param $database_user_username
-     * @param $db_user_password
+     * @param $database_user_password
      */
-    public function setDbUserAndPassword($database_user_username, $db_user_password)
+    public function setDbUserAndPassword($database_user_username, $database_user_password)
     {
         $this->database_user_username = $database_user_username;
-        $this->db_user_password = $db_user_password;
+        $this->database_user_password = $database_user_password;
     }
 
 
@@ -143,7 +143,7 @@ class PithDatabaseWrapper
     {
         $did_connect = true;
         try {
-            $this->pdo = new PDO($this->dsn, $this->database_user_username, $this->db_user_password, $this->options);
+            $this->pdo = new PDO($this->dsn, $this->database_user_username, $this->database_user_password, $this->options);
         } catch (PDOException $exception) {
             $did_connect = false;
             $this->connection_problems .= 'Connection failed: ' . $exception->getMessage() . '. ';
