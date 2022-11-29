@@ -40,7 +40,7 @@ class PithApp
     public                     $autoloader;    // Composer Autoloader
     public PithConfig          $config;
     public                     $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
-    public PithDatabaseWrapper $db;
+    public PithDatabaseWrapper $database;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public PithEscapeUtility   $escape;
@@ -58,7 +58,7 @@ class PithApp
      * @param PithAppHelper       $helper
      * @param PithAccessControl   $access_control
      * @param PithConfig          $config
-     * @param PithDatabaseWrapper $db
+     * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
      * @param PithEscapeUtility   $escape
@@ -70,7 +70,7 @@ class PithApp
         PithAppHelper       $helper,
         PithAccessControl   $access_control,
         PithConfig          $config,
-        PithDatabaseWrapper $db,
+        PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
         PithEscapeUtility   $escape,
@@ -85,7 +85,7 @@ class PithApp
         $this->autoloader     = null; // The Autoloader should be added after construct
         $this->config         = $config;
         $this->container      = null; // The Container should be added after construct
-        $this->db             = $db;
+        $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->escape         = $escape;
