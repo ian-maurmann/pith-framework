@@ -31,7 +31,7 @@ class PithMeta
     public $copyright      = 'Copyright (c) 2008-2022 Ian K Maurmann';
     public $license        = 'Mozilla Public License, v. 2.0';
     public $release_status = 'Alpha';
-    public $release_name   = 'Alpha 34';
-    public $real_version   = '0.8.1.0';
-    public $semver_version = '0.20.0';
+    public $release_name   = 'Alpha 35';
+    public $real_version   = '0.8.1.1';
+    public $semver_version = '0.21.0';
 }

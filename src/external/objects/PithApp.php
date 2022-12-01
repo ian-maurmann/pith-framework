@@ -21,7 +21,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\DatabaseWrapper\PithDatabaseWrapper;
 use Pith\Framework\Internal\PithAppHelper;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,23 +31,25 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PithApp
 {
-    private $helper;
+    // Helper
+    private PithAppHelper $helper;
 
-    public $access_control;
-    public $authenticator;
-    public $autoloader;
-    public $config;
-    public $container;
-    public $db;
-    public $dispatcher;
-    public $engine;
-    public $escape;
-    public $info;
-    public $log;
-    public $registry;
-    public $request;
-    public $responder;
-    public $router;
+    // Objects
+    public PithAccessControl   $access_control;
+    public                     $authenticator; // TODO
+    public                     $autoloader;    // Composer Autoloader
+    public PithConfig          $config;
+    public                     $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
+    public PithDatabaseWrapper $database;
+    public PithDispatcher      $dispatcher;
+    public PithEngine          $engine;
+    public PithEscapeUtility   $escape;
+    public PithInfo            $info;
+    public                     $log; // Enforce using Monolog here? Currently any PSR-3 logger.
+    public                     $registry; // TODO
+    public Request             $request;
+    public PithResponder       $responder;
+    public PithRouter          $router;
 
 
     /**
@@ -57,7 +58,7 @@ class PithApp
      * @param PithAppHelper       $helper
      * @param PithAccessControl   $access_control
      * @param PithConfig          $config
-     * @param PithDatabaseWrapper $db
+     * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
      * @param PithEscapeUtility   $escape
@@ -69,7 +70,7 @@ class PithApp
         PithAppHelper       $helper,
         PithAccessControl   $access_control,
         PithConfig          $config,
-        PithDatabaseWrapper $db,
+        PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
         PithEscapeUtility   $escape,
@@ -84,7 +85,7 @@ class PithApp
         $this->autoloader     = null; // The Autoloader should be added after construct
         $this->config         = $config;
         $this->container      = null; // The Container should be added after construct
-        $this->db             = $db;
+        $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->escape         = $escape;

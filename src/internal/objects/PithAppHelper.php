@@ -38,6 +38,8 @@ class PithAppHelper
     }
 
 
+
+
     /**
      * Initialize Dependencies
      *
@@ -45,7 +47,7 @@ class PithAppHelper
      */
     public function initializeDependencies(PithApp $app)
     {
-        // Using the app reference trait
+        // Set app reference
         $app->access_control->setAppReference($app);
         $app->config->setAppReference($app);
         $app->dispatcher->setAppReference($app);
@@ -53,5 +55,8 @@ class PithAppHelper
         $app->info->setAppReference($app);
         $app->responder->setAppReference($app);
         $app->router->setAppReference($app);
+
+        // TODO:
+        // Maybe add function to prime the database - set configs without connecting yet.  ...?
     }
 }

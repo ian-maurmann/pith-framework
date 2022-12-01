@@ -37,7 +37,6 @@ use ReflectionException;
 // │    +  layout       : string            --- Namespace for layout route      │
 // │    +  preparer     : string            --- Namespace for preparer          │
 // │    +  route_type   : string            --- Name of route type              │
-// │    +  use_layout   : bool              --- Yes/No on adding layout to view │
 // │    +  view         : string            --- Path to view                    │
 // │    +  view_adapter : string            --- Namespace for view adapter      │
 // ├────────────────────────────────────────────────────────────────────────────┤
@@ -77,9 +76,9 @@ class PithRoute extends PithWorkflowElement
 
     /**
      * Holds the namespace for the layout's route object, if has layout
-     * @var string|null
+     * @var string
      */
-    public $layout = null; // Default to null
+    public $layout = ''; // Default to empty string
 
     /**
      * Holds the namespace for the Pack object
@@ -90,14 +89,24 @@ class PithRoute extends PithWorkflowElement
     public $preparer         = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
     public $resource_folder  = null;
     public $route_type       = null;
-    public $use_layout       = false;
 
     /**
+     * Holds the filepath expression for the view file.
+     *
+     * ```
+     * Start with [^pack_folder] to write the file path from folder the pack object is inside of.
+     * Start with [^route_folder] to write the file path from the folder the route object is inside of.
+     * ```
+     *
      * @var string|null
      */
-    public $view             = null;
+    public $view = null;
 
-    public $view_adapter     = null;
+    /**
+     * Holds the namespace for the View Adapter object
+     * @var string|null
+     */
+    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
 
     /**
      * Holds the namespace for the View Requisition object
@@ -310,5 +319,13 @@ class PithRoute extends PithWorkflowElement
     public function getRouteFolder(): string
     {
         return $this->getObjectClassDirectoryRelativePath();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLayout(): bool
+    {
+        return strlen($this->layout) > 0;
     }
 }
