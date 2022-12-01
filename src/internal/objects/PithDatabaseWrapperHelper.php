@@ -8,34 +8,50 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * Pith Database Wrapper Helper
+ * ----------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection PhpTooManyParametersInspection        - Methods having a large number of parameters are ok.
+ */
+
 declare(strict_types=1);
 
 
-// Pith Database Wrapper Helper
-// ----------------------------
-
-namespace Pith\DatabaseWrapper;
+namespace Pith\Framework\Internal;
 
 
+/**
+ * Class PithDatabaseWrapperHelper
+ * @package Pith\Framework\Internal
+ */
 class PithDatabaseWrapperHelper
 {
-
-    function __construct()
+    public function __construct()
     {
         // Nothing for now
     }
 
-    public function flattenArgs($args)
+
+
+    /**
+     * @param $args
+     * @return array
+     */
+    public function flattenArgs($args): array
     {
         $flat_args = [];
 
-        foreach($args as $arg){
-            if(is_array($arg)){
-                foreach($arg as $arg_item){
+        foreach ($args as $arg) {
+            if (is_array($arg)) {
+                foreach ($arg as $arg_item) {
                     $flat_args[] = $arg_item;
                 }
-            }
-            else{
+            } else {
                 $flat_args[] = $arg;
             }
         }
@@ -44,7 +60,19 @@ class PithDatabaseWrapperHelper
     }
 
 
-    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query)
+
+    /**
+     * @param $connection_problems
+     * @param $query_problems
+     * @param $other_problems
+     * @param $did_connect_yn
+     * @param $status
+     * @param $last_query
+     * @return string
+     *
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query): string
     {
         $htmlsafe_connection_problems = htmlentities($connection_problems);
         $htmlsafe_query_problems      = htmlentities($query_problems);
@@ -53,32 +81,30 @@ class PithDatabaseWrapperHelper
         $htmlsafe_status              = htmlentities($status);
         $htmlsafe_last_query          = htmlentities($last_query);
 
-        $html = '<table>
-                    <thead>
-                    </thead>
+        $html = '<table data-table-type="database-debug">
                     <tbody>
                         <tr>
-                            <td>Connection Problems</td>
+                            <th>Connection Problems</th>
                             <td>' . $htmlsafe_connection_problems . '</td>
                         </tr>
                         <tr>
-                            <td>Did connect?</td>
+                            <th>Did connect?</th>
                             <td>' . $htmlsafe_did_connect_yn . '</td>
                         </tr>
                         <tr>
-                            <td>Status</td>
+                            <th>Status</th>
                             <td>' . $htmlsafe_status . '</td>
                         </tr>
                         <tr>
-                            <td>Last Query SQL</td>
+                            <th>Last Query SQL</th>
                             <td>' . $htmlsafe_last_query . '</td>
                         </tr>
                         <tr>
-                            <td>Query Problems</td>
+                            <th>Query Problems</th>
                             <td>' . $htmlsafe_query_problems . '</td>
                         </tr>
                         <tr>
-                            <td>Other Problems</td>
+                            <th>Other Problems</th>
                             <td>' . $htmlsafe_other_problems . '</td>
                         </tr>
                     </tbody>

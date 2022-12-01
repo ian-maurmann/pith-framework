@@ -26,7 +26,6 @@ class JelloRoute extends PithRoute
     public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloAction';
     public $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloLayoutRoute';
     public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloPreparer';
-    public $use_layout   = true;
     public $view         = '[^route_folder]/jello-view.phtml';
     public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

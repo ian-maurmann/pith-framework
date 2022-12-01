@@ -17,7 +17,8 @@
         "lotfio/conso": "^1.7",
         "ikm/copyright-year-utility":"^0.1",
         "nikic/fast-route": "^1.3",
-        "symfony/http-foundation": "^6.0"
+        "symfony/http-foundation": "^6.0",
+        "ext-pdo": "*"
     },
     "suggest": {
         "robmorgan/phinx":  "Suggested for database migrations",
@@ -34,28 +35,17 @@
                 "src/internal/objects/",
                 "src/internal/interfaces/",
                 "src/internal/traits/",
-                "src/internal/workflow/"
-            ],
-            "Pith\\PhtmlViewAdapter\\": [
-                "src/plugins/phtml-view-adapter/src/"
+                "src/internal/workflow-access-levels/",
+                "src/internal/workflow-elements/"
             ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/plugins/phtml-view-adapter-2/src/"
-            ],
-            "Pith\\DatabaseWrapper\\": [
-                "src/plugins/database-wrapper/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/plugins/command-tool/src/"
             ],
             "Pith\\PithDotJson\\": [
                 "src/plugins/pith-dot-json/src/"
-            ],
-            "Pith\\InternalUtilities\\": [
-                "src/plugins/internal-utilities/src/"
-            ],
-            "Pith\\InternalAccessLevels\\": [
-                "src/plugins/internal-access-levels/src/"
             ],
             "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
                 "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
@@ -74,6 +64,17 @@
             "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\": [
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/",
                 "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/bottom-quote",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home",
+                
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/resources"
             ]
         }
     }

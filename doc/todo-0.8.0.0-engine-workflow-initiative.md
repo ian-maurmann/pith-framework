@@ -196,7 +196,7 @@ Internal
 > - ~~Pith Problem Handler~~
 > - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
-> - Pith Route
+> - ~~Pith Route~~
 > - ~~Pith State Enum~~
 > - ~~Pith State Machine~~
 > - Pith String Utility
@@ -223,7 +223,7 @@ Misc. Files
 Misc. Plugins
 > - Command Tool
 > - Database Wrapper
-> - Internal Access Levels
+> - ~~Internal Access Levels~~
 > - Internal Utilities
 > - PHTML View Adapter
 > - [x] **PHTML View Adapter 2**

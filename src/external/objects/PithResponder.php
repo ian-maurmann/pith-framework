@@ -113,13 +113,13 @@ class PithResponder
 
         $resource_files = $this->resource_files;
 
-        $this->insertResourceFilesByRole('Reset',                         $resource_files, 'reset',                   $indent);
-        $this->insertResourceFilesByRole('Layout Library Files',          $resource_files, 'library-for-layout',      $indent);
-        $this->insertResourceFilesByRole('Page Library Files',            $resource_files, 'library-for-page',        $indent);
-        $this->insertResourceFilesByRole('Library Files for Partial',     $resource_files, 'library-for-partial',     $indent);
-        $this->insertResourceFilesByRole('Layout Application Files',      $resource_files, 'application-for-layout',  $indent);
-        $this->insertResourceFilesByRole('Page Application Files',        $resource_files, 'application-for-page',    $indent);
-        $this->insertResourceFilesByRole('Application Files for Partial', $resource_files, 'application-for-partial', $indent);
+        $this->insertResourceFilesByRole('Reset',                             $resource_files, 'reset',                   $indent);
+        $this->insertResourceFilesByRole('Library Resources for Layout',      $resource_files, 'library-for-layout',      $indent);
+        $this->insertResourceFilesByRole('Library Resources for Page',        $resource_files, 'library-for-page',        $indent);
+        $this->insertResourceFilesByRole('Library Resources for Partial',     $resource_files, 'library-for-partial',     $indent);
+        $this->insertResourceFilesByRole('Application Resources for Layout',  $resource_files, 'application-for-layout',  $indent);
+        $this->insertResourceFilesByRole('Application Resources for Page',    $resource_files, 'application-for-page',    $indent);
+        $this->insertResourceFilesByRole('Application Resources for Partial', $resource_files, 'application-for-partial', $indent);
     }
 
     /**
