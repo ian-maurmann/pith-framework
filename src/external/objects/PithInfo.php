@@ -29,7 +29,7 @@ class PithInfo
 {
     use PithAppReferenceTrait;
 
-    private $meta;
+    private PithMeta $meta;
 
     public function __construct(PithMeta $meta)
     {
