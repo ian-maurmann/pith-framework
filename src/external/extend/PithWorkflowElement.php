@@ -44,8 +44,8 @@ class PithWorkflowElement
 {
     use PithAppReferenceTrait;
 
-    public $access_level = null;
-    public $element_type = null;
+    public string $access_level;
+    public string $element_type;
 
 
     /**

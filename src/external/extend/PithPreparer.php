@@ -33,7 +33,7 @@ class PithPreparer extends PithWorkflowElement
     /**
      * @var string
      */
-    public $element_type = 'preparer';
+    public string $element_type = 'preparer';
 
     /**
      * @var object|null

@@ -20,9 +20,9 @@ use Pith\Framework\PithRoute;
  */
 class HomeRoute extends PithRoute
 {
-    public $route_type   = 'page';
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
-    public $access_level = 'world';
-    public $view         = '[^route_folder]/home-view.phtml';
-    public $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutRoute';
+    public string $route_type   = 'page';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
+    public string $access_level = 'world';
+    public string $view         = '[^route_folder]/home-view.phtml';
+    public string $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutRoute';
 }

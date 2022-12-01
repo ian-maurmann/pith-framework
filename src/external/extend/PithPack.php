@@ -31,7 +31,7 @@ class PithPack extends PithWorkflowElement
 {
     use PithGetObjectClassDirectoryTrait;
 
-    public $element_type = 'pack';
+    public string $element_type = 'pack';
 
     /**
      * @return string

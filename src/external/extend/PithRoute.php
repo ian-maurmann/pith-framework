@@ -58,37 +58,37 @@ class PithRoute extends PithWorkflowElement
 
     /**
      * Holds the name of the access level
-     * @var string|null
+     * @var string
      */
-    public $access_level = null; // Default to null
+    public string $access_level; // Default to null
 
     /**
      * Holds the namespace for the Action object
-     * @var string|null
+     * @var string
      */
-    public $action = '\\Pith\\Framework\\Internal\\EmptyAction'; // Use empty action as default
+    public string $action = '\\Pith\\Framework\\Internal\\EmptyAction'; // Use empty action as default
 
     /**
      * Holds the workflow element type as string
      * @var string
      */
-    public $element_type = 'route'; // Use string 'route'
+    public string $element_type = 'route'; // Use string 'route'
 
     /**
      * Holds the namespace for the layout's route object, if has layout
      * @var string
      */
-    public $layout = ''; // Default to empty string
+    public string $layout = ''; // Default to empty string
 
     /**
      * Holds the namespace for the Pack object
-     * @var string|null
+     * @var string
      */
-    public $pack = null; // Default to null
+    public string $pack;
 
-    public $preparer         = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
-    public $resource_folder  = null;
-    public $route_type       = null;
+    public string $preparer = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
+    public string $resource_folder;
+    public string $route_type;
 
     /**
      * Holds the filepath expression for the view file.
@@ -98,21 +98,21 @@ class PithRoute extends PithWorkflowElement
      * Start with [^route_folder] to write the file path from the folder the route object is inside of.
      * ```
      *
-     * @var string|null
+     * @var string
      */
-    public $view = null;
+    public string $view;
 
     /**
      * Holds the namespace for the View Adapter object
-     * @var string|null
+     * @var string
      */
-    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
 
     /**
      * Holds the namespace for the View Requisition object
-     * @var string|null
+     * @var string
      */
-    public $view_requisition = '\\Pith\\Framework\\Internal\\EmptyViewRequisition'; // Use empty view requisition as default
+    public string $view_requisition = '\\Pith\\Framework\\Internal\\EmptyViewRequisition'; // Use empty view requisition as default
 
 
 
@@ -200,7 +200,7 @@ class PithRoute extends PithWorkflowElement
      *
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function getViewAdapter()
+    public function getViewAdapter(): object
     {
         $view_adapter_namespace = (string) $this->view_adapter;
         $has_view_adapter       = (bool) strlen($view_adapter_namespace);

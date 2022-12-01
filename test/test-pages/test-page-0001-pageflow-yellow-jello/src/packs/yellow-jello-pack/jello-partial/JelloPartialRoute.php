@@ -21,10 +21,10 @@ use Pith\Framework\PithRoute;
  */
 class JelloPartialRoute extends PithRoute
 {
-    public $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloPack';
-    public $route_type       = 'partial';
-    public $access_level     = 'world';
-    public $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloPartialViewRequisition';
-    public $view             = '[^route_folder]/jello-partial-view.phtml';
-    public $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloPack';
+    public string $route_type       = 'partial';
+    public string $access_level     = 'world';
+    public string $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloPartialViewRequisition';
+    public string $view             = '[^route_folder]/jello-partial-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }
