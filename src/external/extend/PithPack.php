@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithGetObjectClassDirectoryTrait;
+use ReflectionException;
 
 /**
  * Class PithPack
@@ -35,6 +36,7 @@ class PithPack extends PithWorkflowElement
 
     /**
      * @return string
+     * @throws ReflectionException
      */
     public function getPackFolder(): string
     {
