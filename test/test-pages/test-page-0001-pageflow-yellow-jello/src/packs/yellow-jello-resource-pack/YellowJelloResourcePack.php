@@ -21,6 +21,6 @@ use Pith\Framework\PithPack;
  */
 class YellowJelloResourcePack extends PithPack
 {
-    public $access_level = 'world';
-    public $pack_type    = 'resource-pack';
+    public string $access_level = 'world';
+    public string $pack_type    = 'resource-pack';
 }

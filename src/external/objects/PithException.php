@@ -12,6 +12,11 @@
 /**
  * Pith Exception
  * --------------
+ *
+ * @noinspection PhpPureAttributeCanBeAddedInspection - Ignore Pure for now, functions are still being modified, and might not stay pure.
+ *
+ *
+ *
  * Codes:
  *     0xxx - N/A
  *     1xxx - informational (TODO?)
@@ -102,9 +107,6 @@ class PithException extends Exception
         return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
     }
 
-    public function customFunction() {
-        echo "A custom function for this type of exception\n";
-    }
 }
 
 

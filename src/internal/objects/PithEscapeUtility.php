@@ -35,6 +35,8 @@ class PithEscapeUtility
     /**
      * @param  $unclean_string
      * @return string
+     *
+     * @noinspection PhpRedundantOptionalArgumentInspection - Specify UTF-8, even if it is (Thankfully) the default now.
      */
     public function html($unclean_string): string
     {

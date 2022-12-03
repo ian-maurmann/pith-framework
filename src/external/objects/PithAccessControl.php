@@ -63,14 +63,14 @@ class PithAccessControl
 
 
     /**
-     * @param $access_level_string
+     * @param  string $access_level_string - Either a pre-defined access level name, or else an object namespace.
      * @return object|bool
      * @throws PithException
      *
      * @noinspection PhpUnusedLocalVariableInspection     - For readability.
      * @noinspection PhpFullyQualifiedNameUsageInspection - Ignore here.
      */
-    public function getAccessLevel($access_level_string)
+    public function getAccessLevel(string $access_level_string): object|false
     {
         $access_level = false;
 

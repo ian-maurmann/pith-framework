@@ -22,7 +22,7 @@ use Pith\Framework\PithViewRequisition;
  */
 class JelloLayoutViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'view-requisition';
+    public string $requisition_type = 'view-requisition';
 
     public function runRequisition()
     {

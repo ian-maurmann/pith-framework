@@ -8,6 +8,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
 /**
  * Pith Info
  * ---------
@@ -16,9 +17,8 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
+namespace Pith\Framework;
 
 
 /**
@@ -27,9 +27,7 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithInfo
 {
-    use PithAppReferenceTrait;
-
-    private $meta;
+    private PithMeta $meta;
 
     public function __construct(PithMeta $meta)
     {

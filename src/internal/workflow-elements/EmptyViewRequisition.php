@@ -30,7 +30,7 @@ use Pith\Framework\PithViewRequisition;
  */
 class EmptyViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'view-requisition';
+    public string $requisition_type = 'view-requisition';
 
     public function runRequisition()
     {

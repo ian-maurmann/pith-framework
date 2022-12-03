@@ -20,11 +20,11 @@ use Pith\Framework\PithRoute;
  */
 class HelloRoute extends PithRoute
 {
-    public $route_type   = 'page';
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
-    public $access_level = 'world';
-    public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloAction';
-    public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloPreparer';
-    public $view         = '[^pack_folder]/hello/hello-view.phtml';
-    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $route_type   = 'page';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
+    public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloPreparer';
+    public string $view         = '[^pack_folder]/hello/hello-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }
