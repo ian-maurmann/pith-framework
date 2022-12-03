@@ -36,17 +36,17 @@ class PithApp
 
     // Objects
     public PithAccessControl   $access_control;
-    public                     $authenticator; // TODO
-    public                     $autoloader;    // Composer Autoloader
+    public object              $authenticator; // TODO
+    public object              $autoloader; // Composer Autoloader
     public PithConfig          $config;
-    public                     $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
+    public object              $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
     public PithDatabaseWrapper $database;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public PithEscapeUtility   $escape;
     public PithInfo            $info;
-    public                     $log; // Enforce using Monolog here? Currently any PSR-3 logger.
-    public                     $registry; // TODO
+    public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
+    public object              $registry; // TODO
     public Request             $request;
     public PithResponder       $responder;
     public PithRouter          $router;
@@ -81,20 +81,23 @@ class PithApp
     {
         $this->helper         = $helper;
         $this->access_control = $access_control;
-        $this->authenticator  = null; // TODO
-        $this->autoloader     = null; // The Autoloader should be added after construct
+     // $this->authenticator  = null; // TODO
         $this->config         = $config;
-        $this->container      = null; // The Container should be added after construct
         $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->escape         = $escape;
         $this->info           = $info;
-        $this->log            = null; // The Log should be added after construct
-        $this->registry       = null; // TODO
+     // $this->registry       = null; // TODO
         $this->request        = Request::createFromGlobals();
         $this->responder      = $responder;
         $this->router         = $router;
+
+        // Other objects:
+        // --------------
+        // The Autoloader should be added after construct
+        // The Container should be added after construct
+        // The Log should be added after construct
 
         // Initialize Dependencies
         $this->helper->initializeDependencies($this);
