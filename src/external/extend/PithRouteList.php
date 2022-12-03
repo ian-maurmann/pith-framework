@@ -25,5 +25,5 @@ namespace Pith\Framework;
  */
 class PithRouteList
 {
-    public $routes = [];
+    public array $routes = [];
 }

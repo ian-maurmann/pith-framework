@@ -44,21 +44,26 @@ namespace Pith\Framework;
  */
 class PithAction extends PithWorkflowElement
 {
-    public    $element_type = 'action';
-    protected $prepare      = null;
+    public string $element_type = 'action';
+
+
+    protected object $prepare;
+
 
     public function provisionAction()
     {
         $this->prepare = (object)[];
     }
 
+
     /**
-     * @return null|object
+     * @return object
      */
-    public function getVariablesForPrepare()
+    public function getVariablesForPrepare(): object
     {
         return $this->prepare;
     }
+
 
     public function runAction()
     {

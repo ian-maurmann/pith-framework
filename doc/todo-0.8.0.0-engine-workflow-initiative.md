@@ -11,11 +11,11 @@
 ## General
 
 > Fixup:
-> - [ ] Add PhpDoc comments
+> - [x] Add PhpDoc comments
 > - [ ] PhpDoc comments in PhpStorm can display pictures now. Add documentation pictures.
 > 
 > Refactor:
-> - [ ] Refactor objects to use the App Reference Trait.
+> - [x] Refactor objects to use the App Reference Trait.
 
 ## Pith Info
 
@@ -32,11 +32,11 @@
 ## Config
 > Add:
 > - [x] Add simple Constants file.
-> - [ ] New Config system.
+> - [x] New Config system.
 >
 > Cleanup / refactor at the end:
-> - [ ] Remove the current Config.
-> - [ ] Remove the Config Profiles.
+> - [x] Remove the current Config.
+> - [x] Remove the Config Profiles.
 
 ## Engine
 
@@ -82,7 +82,7 @@
 > - [ ] Add special Monolog logging for Pith Exceptions, ex: `$e->logMysqlConnectionFailure`, for when services catch exceptions for well-known problems.
 > 
 > Cleanup / refactor at the end:
-> - [ ] Remove the current Problem calls.
+> - [x] Remove the current Problem calls.
 > - [x] Remove the Problem trait.
 > - [x] Remove the Problem Handler
 
@@ -152,10 +152,12 @@ External
 > - Pith Access Level
 > - [x] **Pith Action**
 > - ~~Pith Controller~~
+> - [x] **Pith Conversion**
 > - [x] **Pith Pack**
 > - [x] **Pith Preparer**
 > - Pith Query
 > - [x] **Pith Route**
+> - [x] **Pith Route List**
 > - [x] **Pith View Requisition**
 > - [x] **Pith Workflow Element**
 >
@@ -170,6 +172,8 @@ External
 > - Pith Access Control
 > - Pith App
 > - Pith Config
+> - [x] **Pith Converter**
+> - [x] *Pith Database Wrapper* (Moved)
 > - Pith Dispatcher
 > - [x] **Pith Engine**
 > - [x] **Pith Exception**
@@ -191,12 +195,16 @@ Internal
 > Internal Objects
 > - ~~Pith Access Level Factory~~
 > - Pith App Helper
+> - [x] *Pith Array Utility* (Moved)
+> - [x] *Pith Database Wrapper Helper* (Moved)
+> - [x] *Error Utility* (Moved)
 > - [x] **Pith Escape Utility**
 > - [x] **Pith Expression Utility**
 > - ~~Pith Problem Handler~~
 > - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - ~~Pith Route~~
+> - [x] *Pith Rowset Array Utility* (Moved)
 > - ~~Pith State Enum~~
 > - ~~Pith State Machine~~
 > - Pith String Utility
@@ -205,6 +213,9 @@ Internal
 > Internal Traits
 > - Pith App Reference Trait
 > - [x] **Pith Get Object Class Directory Trait**
+> 
+> Internal Workflow Access Levels
+> - [x] **World Access Level**
 > 
 > Internal Workflow Elements
 > - [x] **Empty Action**
@@ -222,10 +233,10 @@ Misc. Files
 
 Misc. Plugins
 > - Command Tool
-> - Database Wrapper
+> - ~~*Database Wrapper*~~ (Moved)
 > - ~~Internal Access Levels~~
-> - Internal Utilities
-> - PHTML View Adapter
+> - ~~*Internal Utilities*~~ (Moved)
+> - ~~PHTML View Adapter~~
 > - [x] **PHTML View Adapter 2**
 > - Pith-dot-json
 
@@ -247,42 +258,23 @@ Misc. Plugins
 ---
 
 ## Appendix D (WIP)
-### Current Objects refactored to use the App Reference Trait (TODO)
+### Current Objects refactored to use the App Reference Trait
 
-External
-
-> External Objects
-> - [x] Pith Info
-> - [x] Pith Engine
-> - [x] Pith Router
-> - [x] Pith Dispatcher
-> - [x] Pith Responder
+(All Done)
 
 ---
 
 ## Appendix E (WIP)
-### Current Objects with PhpDoc comments (TODO)
+### Current Objects with PhpDoc comments
 
-External
-
-> External Objects
-> - [x] Pith Info
-
-Internal
-
-> Internal Traits
-> - [x] Pith App Reference Trait
-
-
-Misc. Files
-> Initialization
-> - [x] Index Front Controller
-> - [x] Constants file
+(All Done)
 
 ---
 
 ## Appendix F (WIP)
 ### Current Objects with images for PhpDoc comments (TODO)
+
+(TODO)
 
 ---
 

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Home Route
- * ----------
+ * Footer Route
+ * ------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  */
@@ -15,14 +15,15 @@ namespace Pith\Framework\Test\TestPage\TestPageThree\GreenLayoutExample;
 use Pith\Framework\PithRoute;
 
 /**
- * Class HomeRoute
+ * Class FooterRoute
  * @package Pith\Framework\Test\TestPage\TestPageThree\GreenLayoutExample;
  */
-class HomeRoute extends PithRoute
+class FooterRoute extends PithRoute
 {
-    public string $route_type   = 'page';
+    public string $route_type   = 'partial';
     public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
     public string $access_level = 'world';
-    public string $view         = '[^route_folder]/home-view.phtml';
-    public string $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutRoute';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterPreparer';
+    public string $view         = '[^route_folder]/footer-view.phtml';
 }

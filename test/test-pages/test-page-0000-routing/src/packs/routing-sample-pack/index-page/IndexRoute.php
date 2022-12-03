@@ -20,11 +20,11 @@ use Pith\Framework\PithRoute;
  */
 class IndexRoute extends PithRoute
 {
-    public $route_type   = 'page';
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\RoutingSamplePack';
-    public $access_level = 'world';
-    public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\HelloAction';
-    public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\HelloPreparer';
-    public $view         = '[^pack_folder]/hello/hello-view.phtml';
-    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $route_type   = 'page';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\RoutingSamplePack';
+    public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\HelloAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\HelloPreparer';
+    public string $view         = '[^pack_folder]/hello/hello-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

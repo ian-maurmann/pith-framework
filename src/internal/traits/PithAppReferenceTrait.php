@@ -35,7 +35,7 @@ trait PithAppReferenceTrait
     /**
      * @var PithApp $app
      */
-    public $app;
+    public PithApp $app;
 
     
     /**
@@ -48,16 +48,5 @@ trait PithAppReferenceTrait
     public function setAppReference(PithApp $app)
     {
         $this->app = $app;
-    }
-
-
-    /**
-     * Unsets the reference to the App object.
-     *
-     * @noinspection PhpUnused - Ignore.
-     */
-    public function unsetAppReference()
-    {
-        $this->app = null;
     }
 }

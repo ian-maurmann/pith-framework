@@ -34,8 +34,8 @@ class PithResponder
 {
     use PithAppReferenceTrait;
 
-    private $resource_files = [];
-    private $resource_files_inserted = [];
+    private array $resource_files = [];
+    private array $resource_files_inserted = [];
 
     public function __construct()
     {
@@ -51,13 +51,13 @@ class PithResponder
 
 
     /**
-     * @param  $route_namespace
+     * @param  string $route_namespace
      * @throws PithException
      * @throws ReflectionException
      *
      * @noinspection PhpUnused - Method will be used by views.
      */
-    public function insertPartial($route_namespace)
+    public function insertPartial(string $route_namespace)
     {
         // Get route
         $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
@@ -84,12 +84,12 @@ class PithResponder
 
 
     /**
-     * @param  $content_route
+     * @param  PithRoute $content_route
      * @throws PithException|ReflectionException
      *
      * @noinspection PhpUnused - Method will be used by views.
      */
-    public function insertPageContent($content_route)
+    public function insertPageContent(PithRoute $content_route)
     {
         // Run route
         $this->app->dispatcher->engineDispatchRoute($content_route);
@@ -161,7 +161,7 @@ class PithResponder
 
 
     /**
-     * @param int $indent
+     * @param  int $indent
      * @return string
      */
     private function indent(int $indent = 0): string
@@ -203,9 +203,9 @@ class PithResponder
     }
 
     /**
-     * @param $resource_files_array
+     * @param array $resource_files_array
      */
-    public function addResourceFiles($resource_files_array)
+    public function addResourceFiles(array $resource_files_array)
     {
         $old_resource_files   = $this->resource_files;
         $this->resource_files = array_merge($old_resource_files, $resource_files_array);

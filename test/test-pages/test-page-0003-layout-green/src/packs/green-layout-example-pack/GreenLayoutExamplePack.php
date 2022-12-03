@@ -21,5 +21,5 @@ use Pith\Framework\PithPack;
  */
 class GreenLayoutExamplePack extends PithPack
 {
-    public $access_level = 'world';
+    public string $access_level = 'world';
 }

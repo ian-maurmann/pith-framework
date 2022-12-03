@@ -82,4 +82,12 @@
     #content{
         padding: 2ex 5em;
     }
+
+    #footer{
+        text-align: center;
+    }
+
+    #bottom-quote{
+        text-align: center;
+    }
 }
