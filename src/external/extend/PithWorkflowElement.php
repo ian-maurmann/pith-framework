@@ -15,6 +15,7 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Variables with underscores are ok.
+ * @noinspection PhpCastIsUnnecessaryInspection        - Keep type casts for now. TODO
  */
 
 
@@ -70,10 +71,10 @@ class PithWorkflowElement
 
         if(!$is_allowed){
             // If not logged in:
-            // TODO - Deny & show the login page
+            // TODO - Throw exception - Handle it and then - Deny & show the login page
 
             // If logged in:
-            // TODO - Deny & show the access denied page
+            // TODO - Throw exception - Handle it and then - Deny & show the access denied page
 
             throw new PithException(
                 'Pith Framework Exception 4007: Workflow element access denied.',

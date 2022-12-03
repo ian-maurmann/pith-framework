@@ -16,6 +16,7 @@
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpCastIsUnnecessaryInspection        - Ignore for now. TODO
  */
 
 
