@@ -31,9 +31,9 @@ namespace Pith\Framework;
 class PithViewRequisition extends PithWorkflowElement
 {
     public    string $element_type     = 'view-requisition';
-    public    $requisition_type = 'view-requisition';
-    protected $headers          = [];
-    protected $resources        = [];
+    public    string $requisition_type = 'view-requisition';
+    protected array  $headers          = [];
+    protected array  $resources        = [];
 
 
     public function provisionViewRequisition()
