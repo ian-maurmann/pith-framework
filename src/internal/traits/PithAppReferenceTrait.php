@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,10 +8,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith App Reference Trait
-// ------------------------
-
+/**
+ * Pith App Reference Trait
+ * ------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long trait names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ */
 
 declare(strict_types=1);
 
@@ -19,22 +23,30 @@ declare(strict_types=1);
 namespace Pith\Framework\Internal;
 
 
-use Pith\Framework\PithAppInterface;
+use Pith\Framework\PithApp;
 
 
+/**
+ * Trait PithAppReferenceTrait
+ * @package Pith\Framework\Internal
+ */
 trait PithAppReferenceTrait
 {
-    public $app;
+    /**
+     * @var PithApp $app
+     */
+    public PithApp $app;
 
-
-    public function setAppReference(PithAppInterface $app)
+    
+    /**
+     * Sets the reference to the App object.
+     *
+     * @param PithApp $app
+     *
+     * @noinspection PhpUnused - Used by PithAppHelper::initializeDependencies( ).
+     */
+    public function setAppReference(PithApp $app)
     {
         $this->app = $app;
-    }
-
-
-    public function unsetAppReference()
-    {
-        $this->app = null;
     }
 }

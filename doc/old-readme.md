@@ -12,7 +12,7 @@
 
 Pith Framework is a PHP web application framework, provided under the terms of the MPL 2.0 license. Pith Framework uses a design pattern similar to MVC and ADR: (Route, Action, Model, Preparer, View).
 
-Pith Framework requires PHP 7.1 or newer, running on a LAMP environment. 
+Pith Framework requires PHP 8.1 or newer, running on a LAMP environment. 
 
 Support for Windows Server and IIS is planned. The framework currently runs on MacOS without problems although it is not "officially" supported at this time. After PHP 8 GA (Nov 26 2020), Pith Framework will upgrade to PHP 8 will after the framework's dependencies ([PHP-DI](https://github.com/PHP-DI/PHP-DI), [Monolog](https://github.com/Seldaek/monolog), [My C-Labs' PHP Enum](https://github.com/myclabs/php-enum), and [Conso](https://github.com/lotfio/conso)).
 
@@ -103,6 +103,9 @@ $ cd example/public
 
 Release status | Version | Semver | Can I use?
 -------------- | ------- | ------ | ----------
+Alpha 33              | 0.8.0.1 | *sv 0.19.0* | Stable, limited features
+Alpha 32              | 0.8.0.0 | *sv 0.18.0* | Stable, limited features
+Alpha 31              | 0.7.5.0 | *sv 0.17.0* | Stable, but not production-ready
 Alpha 30              | 0.7.4.0 | *sv 0.16.0* | Stable, but not production-ready
 Alpha 29              | 0.7.3.0 | *sv 0.15.0* | Stable, but not production-ready
 Alpha 28              | 0.7.2.0 | *sv 0.14.0* | Stable, but not production-ready
@@ -128,6 +131,23 @@ See https://pith-framework.org/versions for more info.
 ---
 
 ### Release Notes:
+
+**0.8.0.1 - Alpha 33** `(semver: v0.19.0)`
+- Remove experimental folder, since everything works fine now. 
+- Refactored the Config object.
+- Added new Route List objects for Config.
+- Cleanup.
+
+**0.8.0.0 - Alpha 32** `(semver: v0.18.0)`
+- Upgrade to PHP 8.1
+- Simplified the configuration.
+- Updated routing to use FastRoute now.
+- Updated dispatching to use separate Action objects and Preparer objects.
+
+**0.7.5.0 - Alpha 31** `(semver: v0.17.0)`
+
+- Minor changes.
+- Updated the copyright notices to include 2022.
 
 **0.7.4.0 - Alpha 30** `(semver: v0.16.0)`
 

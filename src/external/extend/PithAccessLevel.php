@@ -1,6 +1,7 @@
 <?php
+
 # ===================================================================
-# Copyright (c) 2008-2021 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,9 +9,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+/**
+ * Pith Access Level (extend)
+ * ---------------------------
+ *
+ * @noinspection PhpMethodNamingConventionInspection - Long method names are ok here.
+ */
 
-// Pith Access Level (extend)
-// --------------------------
 
 
 declare(strict_types=1);
@@ -18,32 +23,32 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Framework\Internal\PithAppReferenceTrait;
 
+/**
+ * Class PithAccessLevel
+ * @package Pith\Framework
+ */
 class PithAccessLevel
 {
-    private $app;
+    use PithAppReferenceTrait;
 
-
-    function __construct()
-    {
-        // Do nothing for now.
-    }
-
-
-    public function setApp($app)
-    {
-        $this->app = $app;
-    }
-
-
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return 'NOT NAMED';
     }
 
 
-    public function isAllowedToAccess()
+    /**
+     * @return bool
+     */
+    public function isAllowedToAccess(): bool
     {
+        // Placeholder
+
         return false;
     }
 }
