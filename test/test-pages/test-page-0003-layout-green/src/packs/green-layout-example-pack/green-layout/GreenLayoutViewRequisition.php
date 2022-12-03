@@ -22,7 +22,7 @@ use Pith\Framework\PithViewRequisition;
  */
 class GreenLayoutViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'layout-view-requisition';
+    public string $requisition_type = 'layout-view-requisition';
 
     public function runRequisition()
     {

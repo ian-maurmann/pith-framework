@@ -20,11 +20,11 @@ use Pith\Framework\PithRoute;
  */
 class ItemRoute extends PithRoute
 {
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\RoutingSamplePack';
-    public $route_type   = 'page';
-    public $access_level = 'world';
-    public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\ItemAction';
-    public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\ItemPreparer';
-    public $view         = '[^route_folder]/item-view.phtml';
-    public $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\RoutingSamplePack';
+    public string $route_type   = 'page';
+    public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\ItemAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\ItemPreparer';
+    public string $view         = '[^route_folder]/item-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

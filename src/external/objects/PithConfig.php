@@ -21,6 +21,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use DI\DependencyException;
+use DI\NotFoundException;
 use Pith\Framework\Internal\PithAppReferenceTrait;
 
 /**
@@ -35,25 +37,25 @@ class PithConfig
      * Holds path to the env constants file
      * @var string | null
      */
-    public $env_constants_file;
+    public ?string $env_constants_file;
 
     /**
      * Holds path to the tracked constants file
      * @var string | null
      */
-    public $tracked_constants_file;
+    public ?string $tracked_constants_file;
 
     /**
      * Holds the namespace of the Route List object
      * @var string | null
      */
-    public $route_list_namespace;
+    public ?string $route_list_namespace;
 
     /**
      * Holds route list object
      * @var PithRouteList | null
     */
-    public $route_list;
+    public ?PithRouteList $route_list;
 
     /**
      * Get array of routes for FastRoute.
@@ -89,19 +91,31 @@ class PithConfig
         // Add route list to config
         try {
             $this->route_list = $this->app->container->get($this->route_list_namespace);
-        } catch (\DI\DependencyException $exception) {
+        } catch (DependencyException $exception) {
             throw new PithException(
                 'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
                 5006,
                 $exception
             );
-        } catch (\DI\NotFoundException $exception) {
+        } catch (NotFoundException $exception) {
             throw new PithException(
                 'Pith Framework Exception 5007: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
                 5007,
                 $exception
             );
         }
+
+        // Initialize the database's Username/Password/DSN from env constants
+        $this->primeDatabase();
+    }
+
+    /**
+     * Set Database Settings
+     */
+    public function primeDatabase()
+    {
+        $this->app->database->setDsn(DATABASE_DSN);
+        $this->app->database->setDbUserAndPassword(DATABASE_USER_USERNAME, DATABASE_USER_PASSWORD);
     }
 }
 

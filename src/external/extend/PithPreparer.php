@@ -33,32 +33,32 @@ class PithPreparer extends PithWorkflowElement
     /**
      * @var string
      */
-    public $element_type = 'preparer';
+    public string $element_type = 'preparer';
 
     /**
-     * @var object|null
+     * @var object
      */
-    protected $prepare = null;
+    protected object $prepare;
 
     /**
-     * @var object|null
+     * @var object
      */
-    protected $view = null;
+    protected object $view;
 
 
     /**
      * @param object $prepare_vars_object
      */
-    public function provisionPreparer($prepare_vars_object)
+    public function provisionPreparer(object $prepare_vars_object)
     {
         $this->prepare = $prepare_vars_object;
         $this->view    = (object)[];
     }
 
     /**
-     * @return null|object
+     * @return object
      */
-    public function getVariablesForView()
+    public function getVariablesForView(): object
     {
         return $this->view;
     }

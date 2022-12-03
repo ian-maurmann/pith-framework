@@ -21,9 +21,9 @@ use Pith\Framework\PithRoute;
  */
 class GreenLayoutRoute extends PithRoute
 {
-    public $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
-    public $route_type       = 'layout';
-    public $access_level     = 'world';
-    public $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutViewRequisition';
-    public $view             = '[^route_folder]/green-layout-view.phtml';
+    public string $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
+    public string $route_type       = 'layout';
+    public string $access_level     = 'world';
+    public string $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutViewRequisition';
+    public string $view             = '[^route_folder]/green-layout-view.phtml';
 }

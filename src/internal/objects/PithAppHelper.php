@@ -55,8 +55,5 @@ class PithAppHelper
         $app->info->setAppReference($app);
         $app->responder->setAppReference($app);
         $app->router->setAppReference($app);
-
-        // TODO:
-        // Maybe add function to prime the database - set configs without connecting yet.  ...?
     }
 }
