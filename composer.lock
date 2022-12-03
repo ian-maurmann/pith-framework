@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87dd2b40cbc2cb690d9a57cc082ace63",
+    "content-hash": "6f775a078eaf3128cbf382723ee24f59",
     "packages": [
         {
             "name": "ikm/copyright-year-utility",
@@ -109,16 +109,16 @@
         },
         {
             "name": "lotfio/conso",
-            "version": "1.9.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lotfio/conso.git",
-                "reference": "bd8b68fd59bd5e794bb089f707caa3a60007d08b"
+                "reference": "842af324c8fcabe7a8366d4f659aa9d315dea89a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lotfio/conso/zipball/bd8b68fd59bd5e794bb089f707caa3a60007d08b",
-                "reference": "bd8b68fd59bd5e794bb089f707caa3a60007d08b",
+                "url": "https://api.github.com/repos/lotfio/conso/zipball/842af324c8fcabe7a8366d4f659aa9d315dea89a",
+                "reference": "842af324c8fcabe7a8366d4f659aa9d315dea89a",
                 "shasum": ""
             },
             "require-dev": {
@@ -143,9 +143,9 @@
             "description": "console applications for cool kids",
             "support": {
                 "issues": "https://github.com/lotfio/conso/issues",
-                "source": "https://github.com/lotfio/conso/tree/1.9.0"
+                "source": "https://github.com/lotfio/conso/tree/2.0.0"
             },
-            "time": "2020-08-04T20:53:59+00:00"
+            "time": "2020-08-26T21:27:12+00:00"
         },
         {
             "name": "monolog/monolog",
