@@ -21,7 +21,7 @@ use Pith\Framework\PithRouteList;
  */
 class GreenLayoutExampleRouteList extends PithRouteList
 {
-    public $routes = [
+    public array $routes = [
         ['GET', '/',                                    '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HomeRoute'],
         ['GET', '/hello',                               '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloRoute'],
         ['GET', '/front-end-application/{filepath:.+}', '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutApplicationResourceRoute'],

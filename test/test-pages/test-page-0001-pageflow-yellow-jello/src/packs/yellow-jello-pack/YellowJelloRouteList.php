@@ -21,7 +21,7 @@ use Pith\Framework\PithRouteList;
  */
 class YellowJelloRouteList extends PithRouteList
 {
-    public $routes = [
+    public array $routes = [
         ['GET', '/',                          '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\IndexRoute'],
         ['GET', '/hello',                     '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\HelloRoute'],
         ['GET', '/jello',                     '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloRoute'],
