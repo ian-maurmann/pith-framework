@@ -41,10 +41,27 @@ class PithDispatcherHelper
 
     /**
      * @param  string $real_filepath
+     * @throws PithException
+     */
+    public function ensureRealFilepathIsAFile(string $real_filepath)
+    {
+        $is_real_filepath_a_file = ($real_filepath && is_file($real_filepath));
+        if(!$is_real_filepath_a_file){
+            throw new PithException(
+                'Pith Framework Exception 4022: Resource file must be a file.',
+                4022
+            );
+        }
+    }
+    
+
+    /**
+     * @param  string $real_filepath
      * @param  string $real_resource_folder_path
      * @throws PithException
      */
-    public function ensureRealFilepathIsInsideRealResourceFolder(string $real_filepath, string $real_resource_folder_path){
+    public function ensureRealFilepathIsInsideRealResourceFolder(string $real_filepath, string $real_resource_folder_path)
+    {
         // Check that the Real Filepath is really inside the Real Resource Folder
         $is_real_filepath_inside_resource_folder = str_starts_with($real_filepath, $real_resource_folder_path . DIRECTORY_SEPARATOR);
         if(!$is_real_filepath_inside_resource_folder){
@@ -62,7 +79,8 @@ class PithDispatcherHelper
      * @param  string $real_filepath
      * @throws PithException
      */
-    public function ensureFilenameIsNotDotFile(string $basename, string $real_filepath){
+    public function ensureFilenameIsNotDotFile(string $basename, string $real_filepath)
+    {
         // Don't serve dot files
         $starts_with_dot_file = (substr($basename, 0, 1) === '.');
         $has_sub_dot_file     = str_contains($real_filepath, DIRECTORY_SEPARATOR . '.');
