@@ -13,6 +13,7 @@
  * Pith Access Level (extend)
  * ---------------------------
  *
+ * @noinspection PhpMethodNamingConventionInspection - Long method names are ok here.
  */
 
 
@@ -32,7 +33,10 @@ class PithAccessLevel
 {
     use PithAppReferenceTrait;
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return 'NOT NAMED';
     }

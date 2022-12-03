@@ -20,10 +20,10 @@ use Pith\Framework\PithRoute;
  */
 class FooterRoute extends PithRoute
 {
-    public $route_type   = 'partial';
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
-    public $access_level = 'world';
-    public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterAction';
-    public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterPreparer';
-    public $view         = '[^route_folder]/footer-view.phtml';
+    public string $route_type   = 'partial';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
+    public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\FooterPreparer';
+    public string $view         = '[^route_folder]/footer-view.phtml';
 }

@@ -9,8 +9,13 @@
 # ===================================================================
 
 
-// Pith Query (extend)
-// -------------------
+/**
+ * Pith Query (extend)
+ * -------------------
+ *
+ *
+ * @noinspection PhpUnused - Ignore for now. TODO
+ */
 
 
 declare(strict_types=1);
@@ -19,48 +24,11 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+/**
+ * Class PithQuery
+ * @package Pith\Framework
+ */
 class PithQuery
 {
-    private $app;
-
-
-    function __construct()
-    {
-        // Do nothing for now
-    }
-
-
-    public function setApp($app)
-    {
-        $this->app = $app;
-    }
-
-
-    public function run()
-    {
-        // OVERRIDE
-
-        // Do nothing for now
-    }
-
-
-    protected function paramList($count)
-    {
-        $separator = ', ';
-        $fill      = '?';
-        $r         = implode($separator, array_fill(0, (int) $count, $fill));
-
-        return $r;
-    }
-
-
-    protected function paramCount($array)
-    {
-        $count = count($array);
-        $r     = $this->paramList($count);
-
-        return $r;
-    }
-
-
+    // Do nothing for now
 }

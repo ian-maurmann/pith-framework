@@ -14,6 +14,7 @@
  * ---------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
+ * @noinspection PhpUnused                             - Ignore used properties for now.
  */
 
 
@@ -27,11 +28,11 @@ namespace Pith\Framework;
  */
 class PithMeta
 {
-    public $framework_name = 'Pith Framework';
-    public $copyright      = 'Copyright (c) 2008-2022 Ian K Maurmann';
-    public $license        = 'Mozilla Public License, v. 2.0';
-    public $release_status = 'Alpha';
-    public $release_name   = 'Alpha 35';
-    public $real_version   = '0.8.1.1';
-    public $semver_version = '0.21.0';
+    public string $framework_name = 'Pith Framework';
+    public string $copyright      = 'Copyright (c) 2008-2022 Ian K Maurmann';
+    public string $license        = 'Mozilla Public License, v. 2.0';
+    public string $release_status = 'Alpha';
+    public string $release_name   = 'Alpha 35';
+    public string $real_version   = '0.8.1.1';
+    public string $semver_version = '0.21.0';
 }

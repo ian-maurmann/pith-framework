@@ -20,10 +20,10 @@ use Pith\Framework\PithRoute;
  */
 class BottomQuoteRoute extends PithRoute
 {
-    public $route_type   = 'partial';
-    public $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
-    public $access_level = 'world';
-    public $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\BottomQuoteAction';
-    public $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\BottomQuotePreparer';
-    public $view         = '[^route_folder]/bottom-quote-view.phtml';
+    public string $route_type   = 'partial';
+    public string $pack         = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutExamplePack';
+    public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\BottomQuoteAction';
+    public string $preparer     = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\BottomQuotePreparer';
+    public string $view         = '[^route_folder]/bottom-quote-view.phtml';
 }

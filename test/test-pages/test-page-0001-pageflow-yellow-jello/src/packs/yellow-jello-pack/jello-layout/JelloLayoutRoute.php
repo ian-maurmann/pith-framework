@@ -21,10 +21,10 @@ use Pith\Framework\PithRoute;
  */
 class JelloLayoutRoute extends PithRoute
 {
-    public $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloPack';
-    public $route_type       = 'layout';
-    public $access_level     = 'world';
-    public $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloLayoutViewRequisition';
-    public $view             = '[^pack_folder]/jello-layout/jello-layout-view.phtml';
-    public $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $pack             = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\YellowJelloPack';
+    public string $route_type       = 'layout';
+    public string $access_level     = 'world';
+    public string $view_requisition = '\\Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\JelloLayoutViewRequisition';
+    public string $view             = '[^pack_folder]/jello-layout/jello-layout-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

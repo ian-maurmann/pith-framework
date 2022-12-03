@@ -22,7 +22,7 @@ use Pith\Framework\PithViewRequisition;
  */
 class JelloPartialViewRequisition extends PithViewRequisition
 {
-    public $requisition_type = 'partial-view-requisition';
+    public string $requisition_type = 'partial-view-requisition';
 
     public function runRequisition()
     {
