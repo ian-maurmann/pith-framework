@@ -37,6 +37,8 @@ class PithUriUtility
     /**
      * @param $uri_string
      * @return array
+     *
+     * @noinspection PhpCastIsUnnecessaryInspection - Ignore
      */
     public function breakUriIntoPathAndQuery($uri_string): array
     {
