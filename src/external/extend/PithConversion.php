@@ -11,7 +11,16 @@
 
 /**
  * Pith Conversion (extend)
- * -------------------
+ * ------------------------
+ *
+ * Concept:
+ * - Based on old 2010s code styles that used Strategy Pattern for data mapping database results to object hydration.
+ * - That was a bit hard to picture.
+ * - This is simpler.
+ *
+ * What this does:
+ * - Conversion has one function - convert( ).
+ * - convert( ) is given an array or object, and creates a new array or object.
  *
  * @noinspection PhpUnused                             - Ignore for now. TODO
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok here.
@@ -26,7 +35,7 @@ namespace Pith\Framework;
 
 
 /**
- * Class PithQuery
+ * Class PithConversion
  * @package Pith\Framework
  */
 class PithConversion
