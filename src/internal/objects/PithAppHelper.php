@@ -52,7 +52,6 @@ class PithAppHelper
         $app->config->setAppReference($app);
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
-        $app->info->setAppReference($app);
         $app->responder->setAppReference($app);
         $app->router->setAppReference($app);
     }
