@@ -391,16 +391,8 @@ class PithDispatcher
         // Get the Real Filepath
         $real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
 
-
         // Check that the Real Filepath is a file
-        $is_real_filepath_a_file = ($real_filepath && is_file($real_filepath));
-        if(!$is_real_filepath_a_file){
-            throw new PithException(
-                'Pith Framework Exception 4022: Resource file must be a file.',
-                4022
-            );
-        }
-
+        $this->helper->ensureRealFilepathIsAFile($real_filepath);
 
         // Check that the Real Filepath is really inside the Real Resource Folder
         $this->helper->ensureRealFilepathIsInsideRealResourceFolder($real_filepath, $real_resource_folder_path);
