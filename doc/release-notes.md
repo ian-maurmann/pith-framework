@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 2022-12-03 | Stable, limited features
 Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 2022-11-22 | Stable, limited features
 Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 2022-11-01 | Stable, limited features
 Alpha 33              | 0.8.0.1   | *sv 0.19.0* | 2022-06-14 | Stable, limited features
@@ -70,6 +71,13 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
 
 
 ### Release Notes:
+
+**0.8.2.0 - Alpha 36** `(semver: v0.22.0)`
+- Updates to the Database Wrapper. Now connects on first query called.
+- Removed more now-unneeded objects.
+- Defined property types, return types, parameter types since we're in PHP 8.1 now.
+- Added Converter object for converting objects and arrays, especially database results.
+- Upgraded all dependencies.
 
 **0.8.1.1 - Alpha 35** `(semver: v0.21.0)`
 - Updates to the Access Control. Now able to specify access level by namespace.
