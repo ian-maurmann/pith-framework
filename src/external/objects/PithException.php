@@ -53,6 +53,7 @@
  *     4028 - Access Control could not load the Access Level --> Container: DependencyException.
  *     4029 - Requested Resource is a file type that should not be inside the resource folder.
  *
+ *
  *     5xxx - Server Exceptions Unrecoverable
  *     --------------------------------------
  *     5001 - Index Front Controller --> Container: NotFoundException.
@@ -62,6 +63,10 @@
  *     5005 - Loading route --> Container: DependencyException.
  *     5006 - Loading route list --> Container: DependencyException.
  *     5007 - Loading route list --> Container: NotFoundException.
+ *
+ *     6xxx - Database Exceptions Recoverable
+ *     ---------------------------------
+ *     6001 - Database Connection Problem. PDOException on connect.
  *
  */
 
