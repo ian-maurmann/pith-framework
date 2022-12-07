@@ -153,7 +153,7 @@ class PithDatabaseWrapper
             $this->connection_problems .= 'Connection failed: ' . $exception->getMessage() . '. ';
 
             throw new PithException(
-                'Pith Framework Exception 6001: The database wrapper encountered a PDOException exception. ' . $this->connection_problems,
+                'Pith Framework Exception 6001: The database wrapper encountered a PDOException exception when connecting to the database. ' . $this->connection_problems,
                 6001,
                 $exception
             );
@@ -166,6 +166,7 @@ class PithDatabaseWrapper
 
     /**
      * @return bool
+     * @throws PithException
      */
     public function connectOnce(): bool
     {
@@ -177,9 +178,9 @@ class PithDatabaseWrapper
     }
 
 
-
     /**
      * @return array|false
+     * @throws PithException
      */
     public function query(): bool|array
     {
@@ -210,6 +211,12 @@ class PithDatabaseWrapper
             }
         } catch (PDOException $exception) {
             $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6002: The database wrapper encountered a PDOException exception while running query. ' . $this->query_problems,
+                6002,
+                $exception
+            );
         }
 
         return $results;
