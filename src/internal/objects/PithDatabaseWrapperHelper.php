@@ -60,9 +60,9 @@ class PithDatabaseWrapperHelper
     }
 
 
-
     /**
      * @param $connection_problems
+     * @param $transaction_problems
      * @param $query_problems
      * @param $other_problems
      * @param $did_connect_yn
@@ -72,14 +72,15 @@ class PithDatabaseWrapperHelper
      *
      * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
      */
-    public function generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query): string
+    public function generateHtmlTableForDebugging($connection_problems, $transaction_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query): string
     {
-        $htmlsafe_connection_problems = htmlentities($connection_problems);
-        $htmlsafe_query_problems      = htmlentities($query_problems);
-        $htmlsafe_other_problems      = htmlentities($other_problems);
-        $htmlsafe_did_connect_yn      = htmlentities($did_connect_yn);
-        $htmlsafe_status              = htmlentities($status);
-        $htmlsafe_last_query          = htmlentities($last_query);
+        $htmlsafe_connection_problems  = htmlentities($connection_problems);
+        $htmlsafe_transaction_problems = htmlentities($transaction_problems);
+        $htmlsafe_query_problems       = htmlentities($query_problems);
+        $htmlsafe_other_problems       = htmlentities($other_problems);
+        $htmlsafe_did_connect_yn       = htmlentities($did_connect_yn);
+        $htmlsafe_status               = htmlentities($status);
+        $htmlsafe_last_query           = htmlentities($last_query);
 
         $html = '<table data-table-type="database-debug">
                     <tbody>
@@ -94,6 +95,10 @@ class PithDatabaseWrapperHelper
                         <tr>
                             <th>Status</th>
                             <td>' . $htmlsafe_status . '</td>
+                        </tr>
+                        <tr>
+                            <th>Transaction Problems</th>
+                            <td>' . $htmlsafe_transaction_problems . '</td>
                         </tr>
                         <tr>
                             <th>Last Query SQL</th>

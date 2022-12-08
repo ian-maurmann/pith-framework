@@ -56,6 +56,7 @@ class PithDatabaseWrapper
     private string $last_query;
     private array  $options;
     private string $query_problems;
+    private string $transaction_problems;
 
 
 
@@ -72,11 +73,12 @@ class PithDatabaseWrapper
         $this->error_utility = $error_utility;
 
         // Initial vars:
-        $this->did_connect         = false;
-        $this->dsn                 = '';
-        $this->connection_problems = '';
-        $this->query_problems      = '';
-        $this->last_query          = '';
+        $this->did_connect          = false;
+        $this->dsn                  = '';
+        $this->connection_problems  = '';
+        $this->query_problems       = '';
+        $this->last_query           = '';
+        $this->transaction_problems = '';
 
         // Default options
         $this->options = [
@@ -135,18 +137,28 @@ class PithDatabaseWrapper
     }
 
 
-
     /**
      * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore, exception breaks flow.
      */
     public function connect(): bool
     {
-        $did_connect = true;
+
         try {
-            $this->pdo = new PDO($this->dsn, $this->database_user_username, $this->database_user_password, $this->options);
-        } catch (PDOException $exception) {
             $did_connect = false;
+            $this->pdo   = new PDO($this->dsn, $this->database_user_username, $this->database_user_password, $this->options);
+            $did_connect = true;
+        } catch (PDOException $exception) {
+
             $this->connection_problems .= 'Connection failed: ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6001: The database wrapper encountered a PDOException exception when connecting to the database. ' . $this->connection_problems,
+                6001,
+                $exception
+            );
         }
         $this->did_connect = $did_connect;
 
@@ -156,6 +168,7 @@ class PithDatabaseWrapper
 
     /**
      * @return bool
+     * @throws PithException
      */
     public function connectOnce(): bool
     {
@@ -167,24 +180,39 @@ class PithDatabaseWrapper
     }
 
 
-
     /**
      * @return array|false
+     * @throws PithException
      */
     public function query(): bool|array
     {
+        // Connect if not connected
         $this->connectOnce();
 
         $results = false;
         $number_of_args = func_num_args();
 
-        try {
-            if ($number_of_args === 1) {
+        // Query without parameters
+        if ($number_of_args === 1) {
+            try {
                 $sql = func_get_arg(0);
                 $this->last_query = $sql;
                 $this->results_handle = $this->pdo->query($sql);
                 $results = $this->results_handle->fetchAll(PDO::FETCH_ASSOC);
-            } elseif ($number_of_args > 1) {
+            } catch (PDOException $exception) {
+                $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+                throw new PithException(
+                    'Pith Framework Exception 6002: The database wrapper encountered a PDOException exception while running query. ' . $this->query_problems,
+                    6002,
+                    $exception
+                );
+            }
+        }
+
+        // Query with bound parameters
+        elseif ($number_of_args > 1) {
+            try {
                 $sql = func_get_arg(0);
                 $args = func_get_args();
                 $param_args = array_splice($args, 1);
@@ -194,13 +222,29 @@ class PithDatabaseWrapper
                 $this->statement_handle = $this->pdo->prepare($sql);
                 $this->statement_handle->execute($query_params);
                 $results = $this->statement_handle->fetchAll(PDO::FETCH_ASSOC);
-            } elseif (!$number_of_args) {
-                // TODO
-                $this->query_problems .= 'Query problem: No query to run. ';
+            } catch (PDOException $exception) {
+                $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+                throw new PithException(
+                    'Pith Framework Exception 6003: The database wrapper encountered a PDOException exception while running prepared query. ' . $this->query_problems,
+                    6003,
+                    $exception
+                );
             }
-        } catch (PDOException $exception) {
-            $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
         }
+
+        // Query with no args
+        elseif (!$number_of_args) {
+            // TODO - Maybe something to run queries from query object ?
+
+            $this->query_problems .= 'Query problem: No query to run. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6004: The database wrapper has no arguments for query. ' . $this->query_problems,
+                6004
+            );
+        }
+
 
         return $results;
     }
@@ -214,10 +258,11 @@ class PithDatabaseWrapper
      */
     private function listPossibleProblems(): array
     {
-        $error               = error_get_last();
-        $connection_problems = strlen($this->connection_problems) ? $this->connection_problems : 'none';
-        $query_problems      = strlen($this->query_problems) ? $this->query_problems : 'none';
-        $other_problems      = 'none';
+        $error                = error_get_last();
+        $connection_problems  = strlen($this->connection_problems) ? $this->connection_problems : 'none';
+        $transaction_problems = strlen($this->transaction_problems) ? $this->transaction_problems : 'none';
+        $query_problems       = strlen($this->query_problems) ? $this->query_problems : 'none';
+        $other_problems       = 'none';
 
         if (is_array($error)) {
             $error_type    = $this->error_utility->getErrorTypeByValue($error['type']);
@@ -229,9 +274,10 @@ class PithDatabaseWrapper
         }
 
         $problems = [
-            'connection' => $connection_problems,
-            'query'      => $query_problems,
-            'other'      => $other_problems,
+            'connection'  => $connection_problems,
+            'transaction' => $transaction_problems,
+            'query'       => $query_problems,
+            'other'       => $other_problems,
         ];
 
         return $problems;
@@ -246,17 +292,136 @@ class PithDatabaseWrapper
      */
     public function debug(): string
     {
-        $problems            = $this->listPossibleProblems();
-        $connection_problems = $problems['connection'];
-        $query_problems      = $problems['query'];
-        $other_problems      = $problems['other'];
-        $did_connect_yn      = ($this->did_connect) ? 'yes' : 'no';
-        $status              = $this->getStatus();
-        $last_query          = $this->last_query;
+        $problems             = $this->listPossibleProblems();
+        $connection_problems  = $problems['connection'];
+        $transaction_problems = $problems['transaction'];
+        $query_problems       = $problems['query'];
+        $other_problems       = $problems['other'];
+        $did_connect_yn       = ($this->did_connect) ? 'yes' : 'no';
+        $status               = $this->getStatus();
+        $last_query           = $this->last_query;
 
-        $html = $this->helper->generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query);
+
+        $html = $this->helper->generateHtmlTableForDebugging($connection_problems, $transaction_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query);
 
         return $html;
+    }
+
+
+
+    /**
+     * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
+     */
+    public function startTransaction(): bool
+    {
+        // Connect if not connected
+        $this->connectOnce();
+
+        // Try to start transaction
+        try {
+            $did_transaction_start = $this->pdo->beginTransaction();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception on start Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning a new transaction. (This usually happens when there is already a transaction started or if the driver does not support transactions) ' . $this->transaction_problems,
+                6005,
+                $exception
+            );
+        }
+
+        // Handle when transaction failed to start, but didn't encounter any PDO Exceptions
+        if(!$did_transaction_start){
+            $this->transaction_problems .= 'Transaction failed to start.';
+
+            throw new PithException(
+                'Pith Framework Exception 6006: The database wrapper was unable to start a transaction.' . $this->transaction_problems,
+                6006,
+            );
+        }
+
+        // Return true if the transaction started
+        return $did_transaction_start;
+    }
+
+
+
+    /**
+     * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
+     */
+    public function commitTransaction(): bool
+    {
+        // Try to commit transaction
+        try {
+            $did_commit = $this->pdo->commit();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception on commit Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6007: The database wrapper encountered a PDOException exception during a transaction commit. (This usually happens when there is no active transactions for some reason, such as an earlier database definition language (DDL) statement happening in the same transaction, or because of an earlier Rollback) ' . $this->transaction_problems,
+                6007,
+                $exception
+            );
+        }
+
+        // Handle when transaction failed to commit, but didn't encounter any PDO Exceptions
+        if(!$did_commit){
+            $this->transaction_problems .= 'Transaction failed to commit.';
+
+            throw new PithException(
+                'Pith Framework Exception 6008: The database wrapper was unable to commit a transaction.' . $this->transaction_problems,
+                6008,
+            );
+        }
+
+        // Return true if did commit
+        return $did_commit;
+    }
+
+
+
+    /**
+     * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
+     */
+    public function rollbackTransaction(): bool
+    {
+        // Try to roll back transaction
+        try {
+            $did_rollback = $this->pdo->rollBack();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception on rollback Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6009: The database wrapper encountered a PDOException exception during a transaction rollback. (This usually happens when there is no active transactions for some reason, such as an earlier database definition language (DDL) statement happening in the same transaction, or because of an earlier Commit to the Transaction) ' . $this->transaction_problems,
+                6009,
+                $exception
+            );
+        }
+
+        // Handle when transaction failed to rollback, but didn't encounter any PDO Exceptions
+        if(!$did_rollback){
+            $this->transaction_problems .= 'Transaction failed to roll back.';
+
+            throw new PithException(
+                'Pith Framework Exception 6010: The database wrapper was unable to roll back a transaction.' . $this->transaction_problems,
+                6010,
+            );
+        }
+
+        // Return true if did rollback
+        return $did_rollback;
     }
 
 
