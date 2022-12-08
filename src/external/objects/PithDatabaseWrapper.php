@@ -309,37 +309,75 @@ class PithDatabaseWrapper
 
 
     /**
+     * @return bool
      * @throws PithException
      *
      * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
      */
-    public function beginTransaction(): bool
+    public function startTransaction(): bool
     {
         // Try to start transaction
         try {
             $did_transaction_start = $this->pdo->beginTransaction();
         } catch (PDOException $exception) {
-            $this->transaction_problems .= 'Transaction exception: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+            $this->transaction_problems .= 'Transaction exception on start Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
 
             throw new PithException(
-                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning transaction. This usually happens when there is already a transaction started or if the driver does not support transactions. ' . $this->transaction_problems,
+                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning a new transaction. This usually happens when there is already a transaction started or if the driver does not support transactions. ' . $this->transaction_problems,
                 6005,
                 $exception
             );
         }
 
-        // Handle when exception failed to start, but didn't encounter any PDO Exceptions
+        // Handle when transaction failed to start, but didn't encounter any PDO Exceptions
         if(!$did_transaction_start){
-            $this->transaction_problems .= 'Transaction failed to start: ';
+            $this->transaction_problems .= 'Transaction failed to start.';
 
             throw new PithException(
-                'Pith Framework Exception 6006: The database wrapper was unable to start transaction.' . $this->transaction_problems,
+                'Pith Framework Exception 6006: The database wrapper was unable to start a transaction.' . $this->transaction_problems,
                 6006,
             );
         }
 
         // Return true if the transaction started
         return $did_transaction_start;
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
+     */
+    public function commitTransaction(): bool
+    {
+        // Try to commit transaction
+        try {
+            $did_commit = $this->pdo->commit();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception on commit Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6007: The database wrapper encountered a PDOException exception during a transaction commit. This usually happens when there is no active transaction. ' . $this->transaction_problems,
+                6007,
+                $exception
+            );
+        }
+
+        // Handle when transaction failed to commit, but didn't encounter any PDO Exceptions
+        if(!$did_commit){
+            $this->transaction_problems .= 'Transaction failed to commit.';
+
+            throw new PithException(
+                'Pith Framework Exception 6008: The database wrapper was unable to commit a transaction.' . $this->transaction_problems,
+                6008,
+            );
+        }
+
+        // Return true if did commit
+        return $did_commit;
     }
 
 

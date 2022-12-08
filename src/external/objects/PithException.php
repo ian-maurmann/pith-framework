@@ -72,6 +72,8 @@
  *     6004 - The database wrapper has no arguments for query. Query problem: No query to run.
  *     6005 - The database wrapper encountered a PDOException exception while beginning transaction.
  *     6006 - The database wrapper was unable to start transaction.
+ *     6007 - The database wrapper encountered a PDOException exception during a transaction commit.
+ *     6008 - The database wrapper was unable to commit a transaction.
  *
  *     7xxx - ?
  *     8xxx - ?
