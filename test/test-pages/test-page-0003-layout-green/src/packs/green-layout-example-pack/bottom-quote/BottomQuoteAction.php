@@ -31,10 +31,11 @@ class BottomQuoteAction extends PithAction
         // ------------------------------------------------
         // This normally shouldn't be inside the action
 
-        $sql = 'SELECT * FROM dev_quotes WHERE quote_id = 1';
+        $sql = 'SELECT * FROM dev_quotes2 WHERE quote_id = 1';
 
         $results = $this->app->database->query($sql);
-        $has_results = count($results) > 0;
+        
+        $has_results = is_array($results) && (count($results) > 0);
 
         $quote = 'No quote found';
         if($has_results){

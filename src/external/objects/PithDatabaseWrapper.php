@@ -135,18 +135,28 @@ class PithDatabaseWrapper
     }
 
 
-
     /**
      * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore, exception breaks flow.
      */
     public function connect(): bool
     {
-        $did_connect = true;
+
         try {
-            $this->pdo = new PDO($this->dsn, $this->database_user_username, $this->database_user_password, $this->options);
-        } catch (PDOException $exception) {
             $did_connect = false;
+            $this->pdo   = new PDO($this->dsn, $this->database_user_username, $this->database_user_password, $this->options);
+            $did_connect = true;
+        } catch (PDOException $exception) {
+
             $this->connection_problems .= 'Connection failed: ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6001: The database wrapper encountered a PDOException exception when connecting to the database. ' . $this->connection_problems,
+                6001,
+                $exception
+            );
         }
         $this->did_connect = $did_connect;
 
@@ -156,6 +166,7 @@ class PithDatabaseWrapper
 
     /**
      * @return bool
+     * @throws PithException
      */
     public function connectOnce(): bool
     {
@@ -167,9 +178,9 @@ class PithDatabaseWrapper
     }
 
 
-
     /**
      * @return array|false
+     * @throws PithException
      */
     public function query(): bool|array
     {
@@ -200,6 +211,12 @@ class PithDatabaseWrapper
             }
         } catch (PDOException $exception) {
             $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6002: The database wrapper encountered a PDOException exception while running query. ' . $this->query_problems,
+                6002,
+                $exception
+            );
         }
 
         return $results;
