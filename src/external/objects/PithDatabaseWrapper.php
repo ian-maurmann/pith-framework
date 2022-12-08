@@ -56,6 +56,7 @@ class PithDatabaseWrapper
     private string $last_query;
     private array  $options;
     private string $query_problems;
+    private string $transaction_problems;
 
 
 
@@ -72,11 +73,12 @@ class PithDatabaseWrapper
         $this->error_utility = $error_utility;
 
         // Initial vars:
-        $this->did_connect         = false;
-        $this->dsn                 = '';
-        $this->connection_problems = '';
-        $this->query_problems      = '';
-        $this->last_query          = '';
+        $this->did_connect          = false;
+        $this->dsn                  = '';
+        $this->connection_problems  = '';
+        $this->query_problems       = '';
+        $this->last_query           = '';
+        $this->transaction_problems = '';
 
         // Default options
         $this->options = [
@@ -256,10 +258,11 @@ class PithDatabaseWrapper
      */
     private function listPossibleProblems(): array
     {
-        $error               = error_get_last();
-        $connection_problems = strlen($this->connection_problems) ? $this->connection_problems : 'none';
-        $query_problems      = strlen($this->query_problems) ? $this->query_problems : 'none';
-        $other_problems      = 'none';
+        $error                = error_get_last();
+        $connection_problems  = strlen($this->connection_problems) ? $this->connection_problems : 'none';
+        $transaction_problems = strlen($this->transaction_problems) ? $this->transaction_problems : 'none';
+        $query_problems       = strlen($this->query_problems) ? $this->query_problems : 'none';
+        $other_problems       = 'none';
 
         if (is_array($error)) {
             $error_type    = $this->error_utility->getErrorTypeByValue($error['type']);
@@ -271,9 +274,10 @@ class PithDatabaseWrapper
         }
 
         $problems = [
-            'connection' => $connection_problems,
-            'query'      => $query_problems,
-            'other'      => $other_problems,
+            'connection'  => $connection_problems,
+            'transaction' => $transaction_problems,
+            'query'       => $query_problems,
+            'other'       => $other_problems,
         ];
 
         return $problems;
@@ -288,17 +292,54 @@ class PithDatabaseWrapper
      */
     public function debug(): string
     {
-        $problems            = $this->listPossibleProblems();
-        $connection_problems = $problems['connection'];
-        $query_problems      = $problems['query'];
-        $other_problems      = $problems['other'];
-        $did_connect_yn      = ($this->did_connect) ? 'yes' : 'no';
-        $status              = $this->getStatus();
-        $last_query          = $this->last_query;
+        $problems             = $this->listPossibleProblems();
+        $connection_problems  = $problems['connection'];
+        $transaction_problems = $problems['transaction'];
+        $query_problems       = $problems['query'];
+        $other_problems       = $problems['other'];
+        $did_connect_yn       = ($this->did_connect) ? 'yes' : 'no';
+        $status               = $this->getStatus();
+        $last_query           = $this->last_query;
 
-        $html = $this->helper->generateHtmlTableForDebugging($connection_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query);
+
+        $html = $this->helper->generateHtmlTableForDebugging($connection_problems, $transaction_problems, $query_problems, $other_problems, $did_connect_yn, $status, $last_query);
 
         return $html;
+    }
+
+
+    /**
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     */
+    public function beginTransaction(): bool
+    {
+        // Try to start transaction
+        try {
+            $did_transaction_start = $this->pdo->beginTransaction();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning transaction. This usually happens when there is already a transaction started or if the driver does not support transactions. ' . $this->transaction_problems,
+                6005,
+                $exception
+            );
+        }
+
+        // Handle when exception failed to start, but didn't encounter any PDO Exceptions
+        if(!$did_transaction_start){
+            $this->transaction_problems .= 'Transaction failed to start: ';
+
+            throw new PithException(
+                'Pith Framework Exception 6006: The database wrapper was unable to start transaction.' . $this->transaction_problems,
+                6006,
+            );
+        }
+
+        // Return true if the transaction started
+        return $did_transaction_start;
     }
 
 
