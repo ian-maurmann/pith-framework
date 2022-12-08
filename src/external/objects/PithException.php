@@ -68,6 +68,7 @@
  *     ---------------------------------
  *     6001 - Database Connection Problem. PDOException on connect.
  *     6002 - The database wrapper encountered a PDOException exception while running query
+ *     6003 - The database wrapper encountered a PDOException exception while running prepared query.
  *
  */
 

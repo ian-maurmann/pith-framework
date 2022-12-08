@@ -204,17 +204,26 @@ class PithDatabaseWrapper
                     $exception
                 );
             }
-
         } elseif ($number_of_args > 1) {
-            $sql = func_get_arg(0);
-            $args = func_get_args();
-            $param_args = array_splice($args, 1);
-            $query_params = $this->helper->flattenArgs($param_args);
+            try {
+                $sql = func_get_arg(0);
+                $args = func_get_args();
+                $param_args = array_splice($args, 1);
+                $query_params = $this->helper->flattenArgs($param_args);
 
-            $this->last_query = $sql;
-            $this->statement_handle = $this->pdo->prepare($sql);
-            $this->statement_handle->execute($query_params);
-            $results = $this->statement_handle->fetchAll(PDO::FETCH_ASSOC);
+                $this->last_query = $sql;
+                $this->statement_handle = $this->pdo->prepare($sql);
+                $this->statement_handle->execute($query_params);
+                $results = $this->statement_handle->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $exception) {
+                $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+                
+                throw new PithException(
+                    'Pith Framework Exception 6003: The database wrapper encountered a PDOException exception while running prepared query. ' . $this->query_problems,
+                    6003,
+                    $exception
+                );
+            }
         } elseif (!$number_of_args) {
             // TODO
             $this->query_problems .= 'Query problem: No query to run. ';
