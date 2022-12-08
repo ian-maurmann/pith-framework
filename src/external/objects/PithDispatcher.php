@@ -379,14 +379,7 @@ class PithDispatcher
 
 
         // Check that the Real Resource Folder is a directory
-        $is_real_resource_folder_path_a_folder = ($real_resource_folder_path && is_dir($real_resource_folder_path));
-        if(!$is_real_resource_folder_path_a_folder){
-            throw new PithException(
-                'Pith Framework Exception 4021: Resource folder must be a folder.',
-                4021
-            );
-        }
-
+        $this->helper->ensureRealResourceFolderIsADirectory($real_resource_folder_path);
 
         // Get the Real Filepath
         $real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
