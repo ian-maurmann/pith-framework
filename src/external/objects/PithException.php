@@ -65,10 +65,15 @@
  *     5007 - Loading route list --> Container: NotFoundException.
  *
  *     6xxx - Database Exceptions Recoverable
- *     ---------------------------------
+ *     --------------------------------------
  *     6001 - Database Connection Problem. PDOException on connect.
  *     6002 - The database wrapper encountered a PDOException exception while running query
  *     6003 - The database wrapper encountered a PDOException exception while running prepared query.
+ *     6004 - The database wrapper has no arguments for query. Query problem: No query to run.
+ *
+ *     7xxx - ?
+ *     8xxx - ?
+ *     9xxx - ?
  *
  */
 

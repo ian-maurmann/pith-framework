@@ -184,11 +184,13 @@ class PithDatabaseWrapper
      */
     public function query(): bool|array
     {
+        // Connect if not connected
         $this->connectOnce();
 
         $results = false;
         $number_of_args = func_num_args();
 
+        // Query without parameters
         if ($number_of_args === 1) {
             try {
                 $sql = func_get_arg(0);
@@ -204,7 +206,10 @@ class PithDatabaseWrapper
                     $exception
                 );
             }
-        } elseif ($number_of_args > 1) {
+        }
+
+        // Query with bound parameters
+        elseif ($number_of_args > 1) {
             try {
                 $sql = func_get_arg(0);
                 $args = func_get_args();
@@ -217,16 +222,25 @@ class PithDatabaseWrapper
                 $results = $this->statement_handle->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $exception) {
                 $this->query_problems .= 'Query error: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
-                
+
                 throw new PithException(
                     'Pith Framework Exception 6003: The database wrapper encountered a PDOException exception while running prepared query. ' . $this->query_problems,
                     6003,
                     $exception
                 );
             }
-        } elseif (!$number_of_args) {
-            // TODO
+        }
+
+        // Query with no args
+        elseif (!$number_of_args) {
+            // TODO - Maybe something to run queries from query object ?
+
             $this->query_problems .= 'Query problem: No query to run. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6004: The database wrapper has no arguments for query. ' . $this->query_problems,
+                6004
+            );
         }
 
 
