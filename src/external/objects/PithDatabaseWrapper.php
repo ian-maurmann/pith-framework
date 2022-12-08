@@ -308,6 +308,7 @@ class PithDatabaseWrapper
     }
 
 
+
     /**
      * @return bool
      * @throws PithException
@@ -317,6 +318,9 @@ class PithDatabaseWrapper
      */
     public function startTransaction(): bool
     {
+        // Connect if not connected
+        $this->connectOnce();
+
         // Try to start transaction
         try {
             $did_transaction_start = $this->pdo->beginTransaction();
@@ -324,7 +328,7 @@ class PithDatabaseWrapper
             $this->transaction_problems .= 'Transaction exception on start Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
 
             throw new PithException(
-                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning a new transaction. This usually happens when there is already a transaction started or if the driver does not support transactions. ' . $this->transaction_problems,
+                'Pith Framework Exception 6005: The database wrapper encountered a PDOException exception while beginning a new transaction. (This usually happens when there is already a transaction started or if the driver does not support transactions) ' . $this->transaction_problems,
                 6005,
                 $exception
             );
@@ -344,6 +348,8 @@ class PithDatabaseWrapper
         return $did_transaction_start;
     }
 
+
+
     /**
      * @return bool
      * @throws PithException
@@ -360,7 +366,7 @@ class PithDatabaseWrapper
             $this->transaction_problems .= 'Transaction exception on commit Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
 
             throw new PithException(
-                'Pith Framework Exception 6007: The database wrapper encountered a PDOException exception during a transaction commit. This usually happens when there is no active transaction. ' . $this->transaction_problems,
+                'Pith Framework Exception 6007: The database wrapper encountered a PDOException exception during a transaction commit. (This usually happens when there is no active transactions for some reason, such as an earlier database definition language (DDL) statement happening in the same transaction, or because of an earlier Rollback) ' . $this->transaction_problems,
                 6007,
                 $exception
             );
@@ -378,6 +384,44 @@ class PithDatabaseWrapper
 
         // Return true if did commit
         return $did_commit;
+    }
+
+
+
+    /**
+     * @return bool
+     * @throws PithException
+     *
+     * @noinspection PhpExpressionAlwaysConstantInspection - Ignore for now, Function should return true if no exceptions.
+     * @noinspection PhpUnused                             - Ignore unused for now.
+     */
+    public function rollbackTransaction(): bool
+    {
+        // Try to roll back transaction
+        try {
+            $did_rollback = $this->pdo->rollBack();
+        } catch (PDOException $exception) {
+            $this->transaction_problems .= 'Transaction exception on rollback Transaction: ' . $exception->getCode() . ' - ' . $exception->getMessage() . '. ';
+
+            throw new PithException(
+                'Pith Framework Exception 6009: The database wrapper encountered a PDOException exception during a transaction rollback. (This usually happens when there is no active transactions for some reason, such as an earlier database definition language (DDL) statement happening in the same transaction, or because of an earlier Commit to the Transaction) ' . $this->transaction_problems,
+                6009,
+                $exception
+            );
+        }
+
+        // Handle when transaction failed to rollback, but didn't encounter any PDO Exceptions
+        if(!$did_rollback){
+            $this->transaction_problems .= 'Transaction failed to roll back.';
+
+            throw new PithException(
+                'Pith Framework Exception 6010: The database wrapper was unable to roll back a transaction.' . $this->transaction_problems,
+                6010,
+            );
+        }
+
+        // Return true if did rollback
+        return $did_rollback;
     }
 
 

@@ -33,7 +33,13 @@ class BottomQuoteAction extends PithAction
 
         $sql = 'SELECT * FROM dev_quotes2 WHERE quote_id = 1';
 
+        // $this->app->database->startTransaction();
+
         $results = $this->app->database->query($sql);
+
+        // $this->app->database->rollbackTransaction();
+
+        // $this->app->database->commitTransaction();
         
         $has_results = is_array($results) && (count($results) > 0);
 
