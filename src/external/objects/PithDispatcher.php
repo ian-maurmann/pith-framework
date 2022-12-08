@@ -13,9 +13,10 @@
  * Pith Dispatcher
  * -----------
  *
- * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
- * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
- * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection      - Short property names are ok.
+ * @noinspection PhpVariableNamingConventionInspection      - Short variable names are ok.
+ * @noinspection PhpMethodNamingConventionInspection        - Long method names are ok.
+ * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore, array shapes are not set in stone yet.
  */
 
 
@@ -132,14 +133,9 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // PACK
 
-        // Get the pack
-        $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
-
-        // Get pack folder
-        $pack_folder = $pack->getPackFolder();
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
 
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
@@ -342,14 +338,9 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // PACK
 
-        // Get the pack
-        $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
-
-        // Get pack folder
-        $pack_folder = $pack->getPackFolder();
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
 
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
@@ -405,6 +396,35 @@ class PithDispatcher
 
         // Serve file
         require $real_filepath;
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     * @throws ReflectionException
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    protected function tapPack(PithRoute $route): array
+    {
+        // PACK
+        // ────
+        
+        // Get the pack
+        $pack = $route->getPack();
+
+        // Set app reference
+        $pack->setAppReference($this->app);
+
+        // Get pack folder
+        $pack_folder = $pack->getPackFolder();
+
+        $pack_info = [
+            'pack_folder' => $pack_folder
+        ];
+
+        return $pack_info;
     }
 
 }
