@@ -22,6 +22,7 @@
  *     1xxx - informational (TODO?)
  *     2xxx - N/A
  *     3xxx - redirection (TODO?)
+ *     --------------------------
  *
  *
  *     4xxx - Routing Exceptions Recoverable
@@ -64,10 +65,24 @@
  *     5006 - Loading route list --> Container: DependencyException.
  *     5007 - Loading route list --> Container: NotFoundException.
  *
+ *
  *     6xxx - Database Exceptions Recoverable
- *     ---------------------------------
+ *     --------------------------------------
  *     6001 - Database Connection Problem. PDOException on connect.
  *     6002 - The database wrapper encountered a PDOException exception while running query
+ *     6003 - The database wrapper encountered a PDOException exception while running prepared query.
+ *     6004 - The database wrapper has no arguments for query. Query problem: No query to run.
+ *     6005 - The database wrapper encountered a PDOException exception while beginning transaction.
+ *     6006 - The database wrapper was unable to start transaction.
+ *     6007 - The database wrapper encountered a PDOException exception during a transaction commit.
+ *     6008 - The database wrapper was unable to commit a transaction.
+ *     6009: The database wrapper encountered a PDOException exception during a transaction rollback.
+ *     6010: The database wrapper was unable to roll back a transaction.
+ *
+ *
+ *     7xxx - ?
+ *     8xxx - ?
+ *     9xxx - ?
  *
  */
 
