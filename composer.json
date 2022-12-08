@@ -1,44 +1,80 @@
 {
     "name": "pith/framework",
     "description": "Pith Framework - Another simple framework for PHP sites",
-    "require": {
-        "php": "^7.1",
-        "php-di/php-di": "^6",
-        "monolog/monolog": "^1.24",
-        "robmorgan/phinx": "^0.11.1",
-        "fzaninotto/faker": "^1.9"
-    },
-    "license": "MPL-2.0",
     "authors": [
         {
             "name": "Ian Maurmann",
             "role": "Developer"
         }
     ],
-    "require-dev": {
-        "phpunit/phpunit": "^7"
+    "license": "MPL-2.0",
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-readline": "*",
+        "ikm/copyright-year-utility":"^0.1",
+        "lotfio/conso": "^2",
+        "monolog/monolog": "^3.2",
+        "nikic/fast-route": "^1.3",
+        "php-di/php-di": "^6.4",
+        "symfony/http-foundation": "^6.2"
+    },
+    "suggest": {
+        "robmorgan/phinx":  "Suggested for database migrations",
+        "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
-                "src/external/objects/",
-                "src/external/interfaces/",
-                "src/external/traits/",
-                "src/external/extend/"
+                "src/external/about/",
+                "src/external/extend/",
+                "src/external/objects/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/internal/objects/",
                 "src/internal/interfaces/",
-                "src/internal/traits/"
+                "src/internal/traits/",
+                "src/internal/workflow-access-levels/",
+                "src/internal/workflow-elements/"
             ],
-            "Pith\\PhtmlViewAdapter\\": [
-                "src/plugins/phtml-view-adapter/src/"
+            "Pith\\PhtmlViewAdapter2\\": [
+                "src/plugins/phtml-view-adapter-2/src/"
             ],
-            "Pith\\DatabaseWrapper\\": [
-                "src/plugins/database-wrapper/src/"
+            "Pith\\CommandTool\\": [
+                "src/plugins/command-tool/src/"
             ],
-            "Pith\\InternalUtilities\\": [
-                "src/plugins/internal-utilities/src/"
+            "Pith\\PithDotJson\\": [
+                "src/plugins/pith-dot-json/src/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/index-page/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/item/",
+                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/article/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\": [
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/hello/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/index/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-layout/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-partial/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\": [
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/",
+                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/bottom-quote",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home",
+                
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/resources"
             ]
         }
     }

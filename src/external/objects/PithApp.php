@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2020 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,9 +8,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
-// Pith App
-// --------
+/**
+ * Pith App
+ * --------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ */
 
 
 declare(strict_types=1);
@@ -18,60 +21,87 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithProblemHandler;
-use Pith\DatabaseWrapper\PithDatabaseWrapper;
+use Pith\Framework\Internal\PithEscapeUtility;
+use Symfony\Component\HttpFoundation\Request;
 
-
-class PithApp implements PithAppInterface
+/**
+ * Class PithApp
+ * @package Pith\Framework
+ */
+class PithApp
 {
-    use PithStartupTrait;
-    use PithRunTrait;
-    use PithProblemTrait;
-    use PithVersionTrait;
+    // Helper
+    private PithAppHelper $helper;
 
-    private $helper;
+    // Objects
+    public PithAccessControl   $access_control;
+    public object              $authenticator; // TODO
+    public object              $autoloader; // Composer Autoloader
+    public PithConfig          $config;
+    public object              $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
+    public PithDatabaseWrapper $database;
+    public PithDispatcher      $dispatcher;
+    public PithEngine          $engine;
+    public PithEscapeUtility   $escape;
+    public PithInfo            $info;
+    public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
+    public object              $registry; // TODO
+    public Request             $request;
+    public PithResponder       $responder;
+    public PithRouter          $router;
 
-    public $container;
-    public $log;
-    public $request_processor;
-    public $config;
-    public $db;
-    public $registry;
-    public $authenticator;
-    public $access_control;
-    public $router;
-    public $dispatcher;
-    public $problem_handler;
 
-
-    function __construct(
-        PithAppHelper        $helper,
-        PithRequestProcessor $request_processor,
-        PithConfig           $config,
-        PithDatabaseWrapper  $db,
-        PithRouter           $router,
-        PithDispatcher       $dispatcher,
-        PithProblemHandler   $problem_handler
+    /**
+     * PithApp constructor.
+     *
+     * @param PithAppHelper       $helper
+     * @param PithAccessControl   $access_control
+     * @param PithConfig          $config
+     * @param PithDatabaseWrapper $database
+     * @param PithDispatcher      $dispatcher
+     * @param PithEngine          $engine
+     * @param PithEscapeUtility   $escape
+     * @param PithInfo            $info
+     * @param PithResponder       $responder
+     * @param PithRouter          $router
+     */
+    public function __construct(
+        PithAppHelper       $helper,
+        PithAccessControl   $access_control,
+        PithConfig          $config,
+        PithDatabaseWrapper $database,
+        PithDispatcher      $dispatcher,
+        PithEngine          $engine,
+        PithEscapeUtility   $escape,
+        PithInfo            $info,
+        PithResponder       $responder,
+        PithRouter          $router
     )
     {
-        $this->helper            = $helper;
-        $this->container         = null;
-        $this->log               = null;
-        $this->request_processor = $request_processor;
-        $this->config            = $config;
-        $this->db                = $db;
-        $this->registry          = null;
-        $this->authenticator     = null;
-        $this->access_control    = null;
-        $this->router            = $router;
-        $this->dispatcher        = $dispatcher;
-        $this->problem_handler   = $problem_handler;
+        $this->helper         = $helper;
+        $this->access_control = $access_control;
+     // $this->authenticator  = null; // TODO
+        $this->config         = $config;
+        $this->database       = $database;
+        $this->dispatcher     = $dispatcher;
+        $this->engine         = $engine;
+        $this->escape         = $escape;
+        $this->info           = $info;
+     // $this->registry       = null; // TODO
+        $this->request        = Request::createFromGlobals();
+        $this->responder      = $responder;
+        $this->router         = $router;
 
-        $helper->initializeDependencies($this);
+        // Other objects:
+        // --------------
+        // The Autoloader should be added after construct
+        // The Container should be added after construct
+        // The Log should be added after construct
+
+        // Initialize Dependencies
+        $this->helper->initializeDependencies($this);
     }
-
+    
 }
-
 
