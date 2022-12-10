@@ -116,7 +116,7 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ROUTE
 
-        // Tap on the Route
+        // Tap on the Route (and secondary Route)
         $route_info   = $this->tapRoute($route, $secondary_route);
         $route_folder = $route_info['route_folder'];
 
@@ -131,8 +131,7 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
 
-        // Check access
-        $route->checkAccess();
+        $this->tapAccess($route);
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -334,8 +333,7 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
 
-        // Check access
-        $route->checkAccess();
+        $this->tapAccess($route);
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -411,11 +409,11 @@ class PithDispatcher
         // Get route folder
         $route_folder = $route->getRouteFolder();
 
-        $route_info = [
+        $info = [
             'route_folder' => $route_folder
         ];
 
-        return $route_info;
+        return $info;
     }
 
 
@@ -440,11 +438,30 @@ class PithDispatcher
         // Get pack folder
         $pack_folder = $pack->getPackFolder();
 
-        $pack_info = [
+        $info = [
             'pack_folder' => $pack_folder
         ];
 
-        return $pack_info;
+        return $info;
+    }
+
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    protected function tapAccess(PithRoute $route): array
+    {
+        // ACCESS
+        // ──────
+
+        // Check access
+        $route->checkAccess();
+
+        $info = [];
+
+        return $info;
     }
 
 }
