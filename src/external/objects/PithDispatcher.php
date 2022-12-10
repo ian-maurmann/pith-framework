@@ -116,18 +116,9 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ROUTE
 
-        // Set app reference
-        $route->setAppReference($this->app);
-
-        // Set app reference for secondary route
-        if($secondary_route){
-            $secondary_route->setAppReference($this->app);
-        }
-
-        // Get route folder
-        $route_folder = $route->getRouteFolder();
-
-
+        // Tap on the Route
+        $route_info   = $this->tapRoute($route, $secondary_route);
+        $route_folder = $route_info['route_folder'];
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -328,11 +319,9 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ROUTE
 
-        // Set app reference
-        $route->setAppReference($this->app);
-
-        // Get route folder
-        $route_folder = $route->getRouteFolder();
+        // Tap on the Route
+        $route_info   = $this->tapRoute($route);
+        $route_folder = $route_info['route_folder'];
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -401,6 +390,37 @@ class PithDispatcher
 
     /**
      * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @return array
+     * @throws ReflectionException
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     */
+    protected function tapRoute(PithRoute $route, PithRoute $secondary_route=null): array
+    {
+        // ROUTE
+        // ─────
+
+        // Set app reference
+        $route->setAppReference($this->app);
+
+        // Set app reference for secondary route
+        if($secondary_route){
+            $secondary_route->setAppReference($this->app);
+        }
+
+        // Get route folder
+        $route_folder = $route->getRouteFolder();
+
+        $route_info = [
+            'route_folder' => $route_folder
+        ];
+
+        return $route_info;
+    }
+
+
+    /**
+     * @param PithRoute $route
      * @return array
      * @throws PithException
      * @throws ReflectionException
@@ -410,7 +430,7 @@ class PithDispatcher
     {
         // PACK
         // ────
-        
+
         // Get the pack
         $pack = $route->getPack();
 
