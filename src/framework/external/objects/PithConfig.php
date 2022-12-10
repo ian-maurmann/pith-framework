@@ -114,8 +114,8 @@ class PithConfig
      */
     public function primeDatabase()
     {
-        $this->app->database->setDsn(DATABASE_DSN);
-        $this->app->database->setDbUserAndPassword(DATABASE_USER_USERNAME, DATABASE_USER_PASSWORD);
+        $this->app->database->setDsn(PITH_APP_DATABASE_DSN);
+        $this->app->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
     }
 }
 
