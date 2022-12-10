@@ -70,7 +70,7 @@ class PithDispatcher
 
             // Layout
             case 'layout':
-                $this->engineDispatchRoute($route, $secondary_route);
+                $this->dispatchRoute($route, $secondary_route);
                 break;
 
             // Pages
@@ -82,7 +82,7 @@ class PithDispatcher
                     $this->dispatch( $layout_route, $route);
                 }
                 else{
-                    $this->engineDispatchRoute($route);
+                    $this->dispatchRoute($route);
                 }
                 break;
 
@@ -90,7 +90,7 @@ class PithDispatcher
             case 'endpoint':
                 // fall through
             case 'partial':
-                $this->engineDispatchRoute($route);
+                $this->dispatchRoute($route);
                 break;
 
             // Resources
@@ -108,7 +108,7 @@ class PithDispatcher
      * @throws PithException
      * @throws ReflectionException
      */
-    public function engineDispatchRoute(PithRoute $route, PithRoute|null $secondary_route=null)
+    public function dispatchRoute(PithRoute $route, PithRoute|null $secondary_route=null)
     {
         // ROUTE
         // Tap on the Route (and secondary Route)
