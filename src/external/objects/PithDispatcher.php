@@ -17,6 +17,7 @@
  * @noinspection PhpVariableNamingConventionInspection      - Short variable names are ok.
  * @noinspection PhpMethodNamingConventionInspection        - Long method names are ok.
  * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore, array shapes are not set in stone yet.
+ * @noinspection PhpTooManyParametersInspection             - Methods with a long list of parameters are ok here.
  */
 
 
@@ -67,7 +68,7 @@ class PithDispatcher
      *
      * @noinspection DuplicatedCode - Ignore
      */
-    public function engineDispatch(PithRoute $route, PithRoute $secondary_route=null)
+    public function engineDispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
         switch ($route->route_type) {
 
@@ -111,7 +112,7 @@ class PithDispatcher
      * @throws PithException
      * @throws ReflectionException
      */
-    public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
+    public function engineDispatchRoute(PithRoute $route, PithRoute|null $secondary_route=null)
     {
         // ───────────────────────────────────────────────────────────────────────
         // ROUTE
@@ -158,41 +159,14 @@ class PithDispatcher
         // Tap on the View Requisition
         $requisition_info = $this->tapViewRequisition($route, $secondary_route);
         $resources        = $requisition_info['resources'];
-        
+
 
         // ───────────────────────────────────────────────────────────────────────
         // VIEW
 
-
-
-        // Get the view expression
-        $view_expression = $route->view;
-
-        // Get the view filepath
-        $view_path = $this->expression_utility->getViewPathFromExpression($view_expression, $pack_folder, $route_folder);
-
-        // Get the view adapter
-        $view_adapter = $route->getViewAdapter();
-
-        // Provision the view adapter
-        $view_adapter->setApp($this->app);
-        $view_adapter->setFilePath($view_path);
-        $view_adapter->setResources($resources);
-        $view_adapter->setVars($variables_for_view);
-        if(!empty($secondary_route)){
-            $view_adapter->setIsLayout(true);
-            $view_adapter->setContentRoute($secondary_route);
-        }
-
-        // Tell the view adapter to run the view
-        $view_adapter->run();
+        $this->tapView($route, $secondary_route, $pack_folder, $route_folder, $resources, $variables_for_view);
 
         // ───────────────────────────────────────────────────────────────────────
-
-
-
-        // Flush the output buffer
-        //ob_end_flush();
     }
 
 
@@ -317,7 +291,7 @@ class PithDispatcher
      * @return array
      * @throws ReflectionException
      */
-    protected function tapRoute(PithRoute $route, PithRoute $secondary_route=null): array
+    protected function tapRoute(PithRoute $route, PithRoute|null $secondary_route=null): array
     {
         // ROUTE
         // ─────
@@ -451,7 +425,7 @@ class PithDispatcher
      * @return array
      * @throws PithException
      */
-    protected function tapViewRequisition(PithRoute $route, PithRoute $secondary_route=null): array
+    protected function tapViewRequisition(PithRoute $route, PithRoute|null $secondary_route=null): array
     {
         // VIEW REQUISITION
         // ────────────────
@@ -490,6 +464,44 @@ class PithDispatcher
         return [
             'resources' => $resources
         ];
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @param string $pack_folder
+     * @param string $route_folder
+     * @param array $resources
+     * @param object $variables_for_view
+     * @throws PithException
+     */
+    protected function tapView(PithRoute $route, PithRoute|null $secondary_route, string $pack_folder, string $route_folder, array $resources, object $variables_for_view)
+    {
+        // VIEW
+        // ────
+
+        // Get the view expression
+        $view_expression = $route->view;
+
+        // Get the view filepath
+        $view_path = $this->expression_utility->getViewPathFromExpression($view_expression, $pack_folder, $route_folder);
+
+        // Get the view adapter
+        $view_adapter = $route->getViewAdapter();
+
+        // Provision the view adapter
+        $view_adapter->setApp($this->app);
+        $view_adapter->setFilePath($view_path);
+        $view_adapter->setResources($resources);
+        $view_adapter->setVars($variables_for_view);
+        if(!empty($secondary_route)){
+            $view_adapter->setIsLayout(true);
+            $view_adapter->setContentRoute($secondary_route);
+        }
+
+        // Tell the view adapter to run the view
+        $view_adapter->run();
     }
 
 }
