@@ -59,16 +59,12 @@ class PithDispatcher
 
 
     /**
-     * Engine Dispatch
-     *
      * @param PithRoute $route
      * @param PithRoute|null $secondary_route
      * @throws PithException
      * @throws ReflectionException
-     *
-     * @noinspection DuplicatedCode - Ignore
      */
-    public function engineDispatch(PithRoute $route, PithRoute|null $secondary_route=null)
+    public function dispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
         switch ($route->route_type) {
 
@@ -83,7 +79,7 @@ class PithDispatcher
             case 'page':
                 if($route->hasLayout()){
                     $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
-                    $this->engineDispatch( $layout_route, $route);
+                    $this->dispatch( $layout_route, $route);
                 }
                 else{
                     $this->engineDispatchRoute($route);
