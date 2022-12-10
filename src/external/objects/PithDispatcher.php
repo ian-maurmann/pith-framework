@@ -134,7 +134,7 @@ class PithDispatcher
         // Tap on the Access Level
         $this->tapAccess($route);
 
-
+        
         // ───────────────────────────────────────────────────────────────────────
         // ACTION
 
@@ -147,23 +147,10 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // PREPARER
 
-        // Get the preparer
-        $preparer = $route->getPreparer();
+        // Tap on the Preparer
+        $preparer_info      = $this->tapPreparer($route, $variables_for_prepare);
+        $variables_for_view = $preparer_info['variables_for_view'];
 
-        // Set app reference
-        $preparer->setAppReference($this->app);
-
-        // Provision preparer
-        $preparer->provisionPreparer($variables_for_prepare);
-
-        // Run preparer
-        $preparer->runPreparer();
-
-        // Get output buffer
-        // $preparer_output_buffer = ob_get_contents();
-
-        // Get variables for prepare
-        $variables_for_view = $preparer->getVariablesForView();
 
         // ───────────────────────────────────────────────────────────────────────
         // VIEW REQUISITION
@@ -451,6 +438,36 @@ class PithDispatcher
         // Return variables needed to continue dispatching
         return [
             'variables_for_prepare' => $variables_for_prepare
+        ];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @param object $variables_for_prepare
+     * @return array
+     * @throws PithException
+     */
+    protected function tapPreparer(PithRoute $route, object $variables_for_prepare): array
+    {
+        // PREPARER
+
+        // Get the preparer
+        $preparer = $route->getPreparer();
+
+        // Set app reference
+        $preparer->setAppReference($this->app);
+
+        // Provision preparer
+        $preparer->provisionPreparer($variables_for_prepare);
+
+        // Run preparer
+        $preparer->runPreparer();
+
+        // Get variables for prepare
+        $variables_for_view = $preparer->getVariablesForView();
+
+        return [
+            'variables_for_view' => $variables_for_view
         ];
     }
 
