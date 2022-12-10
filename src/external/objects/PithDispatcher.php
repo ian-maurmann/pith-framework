@@ -95,7 +95,7 @@ class PithDispatcher
 
             // Resources
             case 'resource':
-                $this->engineServeResource($route);
+                $this->dispatchResource($route);
                 break;
         }
     }
@@ -204,7 +204,7 @@ class PithDispatcher
      *
      * @noinspection PhpIncludeInspection
      */
-    public function engineServeResource(PithRoute $route)
+    public function dispatchResource(PithRoute $route)
     {
         // ROUTE
         // Tap on the Route
