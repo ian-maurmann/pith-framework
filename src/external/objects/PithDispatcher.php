@@ -134,7 +134,7 @@ class PithDispatcher
         // Tap on the Access Level
         $this->tapAccess($route);
 
-        
+
         // ───────────────────────────────────────────────────────────────────────
         // ACTION
 
@@ -155,23 +155,9 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // VIEW REQUISITION
 
-        // Get the view requisition
-        $requisition = $route->getViewRequisition();
-
-        // Dispatch requisition, set headers, get resources
-        $resources = $this->dispatchViewRequisition($requisition);
-
-        // If this is a layout
-        if($secondary_route){
-            // Get page requisition
-            $secondary_requisition = $secondary_route->getViewRequisition();
-
-            // Dispatch page requisition, set headers for page, get resources for page
-            $secondary_resources = $this->dispatchViewRequisition($secondary_requisition);
-
-            // Add new resources to resources array
-            $resources = array_merge($resources, $secondary_resources);
-        }
+        // Tap on the View Requisition
+        $requisition_info = $this->tapViewRequisition($route, $secondary_route);
+        $resources        = $requisition_info['resources'];
 
 
 
@@ -450,6 +436,7 @@ class PithDispatcher
     protected function tapPreparer(PithRoute $route, object $variables_for_prepare): array
     {
         // PREPARER
+        // ────────
 
         // Get the preparer
         $preparer = $route->getPreparer();
@@ -468,6 +455,40 @@ class PithDispatcher
 
         return [
             'variables_for_view' => $variables_for_view
+        ];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @return array
+     * @throws PithException
+     */
+    protected function tapViewRequisition(PithRoute $route, PithRoute $secondary_route=null): array
+    {
+        // VIEW REQUISITION
+        // ────────────────
+
+        // Get the view requisition
+        $requisition = $route->getViewRequisition();
+
+        // Dispatch requisition, set headers, get resources
+        $resources = $this->dispatchViewRequisition($requisition);
+
+        // If this is a layout
+        if($secondary_route){
+            // Get page requisition
+            $secondary_requisition = $secondary_route->getViewRequisition();
+
+            // Dispatch page requisition, set headers for page, get resources for page
+            $secondary_resources = $this->dispatchViewRequisition($secondary_requisition);
+
+            // Add new resources to resources array
+            $resources = array_merge($resources, $secondary_resources);
+        }
+
+        return [
+            'resources' => $resources
         ];
     }
 
