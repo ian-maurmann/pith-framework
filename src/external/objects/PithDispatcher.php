@@ -114,59 +114,38 @@ class PithDispatcher
      */
     public function engineDispatchRoute(PithRoute $route, PithRoute|null $secondary_route=null)
     {
-        // ───────────────────────────────────────────────────────────────────────
         // ROUTE
-
         // Tap on the Route (and secondary Route)
         $route_info   = $this->tapRoute($route, $secondary_route);
         $route_folder = $route_info['route_folder'];
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // PACK
-
         // Tap on the Pack
         $pack_info   = $this->tapPack($route);
         $pack_folder = $pack_info['pack_folder'];
 
-        // ───────────────────────────────────────────────────────────────────────
         // ACCESS
-
         // Tap on the Access Level
         $this->tapAccess($route);
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // ACTION
-
-
         // Tap on the Action
         $action_info           = $this->tapAction($route);
         $variables_for_prepare = $action_info['variables_for_prepare'];
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // PREPARER
-
         // Tap on the Preparer
         $preparer_info      = $this->tapPreparer($route, $variables_for_prepare);
         $variables_for_view = $preparer_info['variables_for_view'];
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // VIEW REQUISITION
-
         // Tap on the View Requisition
         $requisition_info = $this->tapViewRequisition($route, $secondary_route);
         $resources        = $requisition_info['resources'];
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // VIEW
-
+        // Tap on the View
         $this->tapView($route, $secondary_route, $pack_folder, $route_folder, $resources, $variables_for_view);
-
-        // ───────────────────────────────────────────────────────────────────────
     }
 
 
