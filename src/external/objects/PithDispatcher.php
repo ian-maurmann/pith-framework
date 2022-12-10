@@ -158,20 +158,7 @@ class PithDispatcher
         // Tap on the View Requisition
         $requisition_info = $this->tapViewRequisition($route, $secondary_route);
         $resources        = $requisition_info['resources'];
-
-
-
-        // ───────────────────────────────────────────────────────────────────────
-        // RESPONDER
-
-        // Add resource files to responder
-        $this->app->responder->addResourceFiles($resources);
-
-        // If partial, insert resource files
-        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
-        if($is_partial){
-            $this->app->responder->insertResourceFiles();
-        }
+        
 
         // ───────────────────────────────────────────────────────────────────────
         // VIEW
@@ -486,6 +473,19 @@ class PithDispatcher
             // Add new resources to resources array
             $resources = array_merge($resources, $secondary_resources);
         }
+
+        // RESPONDER
+        // ─────────
+
+        // Add resource files to responder
+        $this->app->responder->addResourceFiles($resources);
+
+        // If partial, insert resource files
+        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
+        if($is_partial){
+            $this->app->responder->insertResourceFiles();
+        }
+
 
         return [
             'resources' => $resources
