@@ -131,32 +131,17 @@ class PithDispatcher
         // ───────────────────────────────────────────────────────────────────────
         // ACCESS
 
+        // Tap on the Access Level
         $this->tapAccess($route);
 
 
         // ───────────────────────────────────────────────────────────────────────
         // ACTION
 
-        // Get the action
-        $action = $route->getAction();
 
-        // Set app reference
-        $action->setAppReference($this->app);
-
-        // Provision action
-        $action->provisionAction();
-
-        // Start the output buffer
-        //ob_start();
-
-        // Run action
-        $action->runAction();
-
-        // Get output buffer
-        // $action_output_buffer = ob_get_contents();
-
-        // Get variables for prepare
-        $variables_for_prepare = $action->getVariablesForPrepare();
+        // Tap on the Action
+        $action_info           = $this->tapAction($route);
+        $variables_for_prepare = $action_info['variables_for_prepare'];
 
 
         // ───────────────────────────────────────────────────────────────────────
@@ -312,36 +297,19 @@ class PithDispatcher
      */
     public function engineServeResource(PithRoute $route)
     {
-        // START - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
-        //------------
-
-        // ───────────────────────────────────────────────────────────────────────
         // ROUTE
-
         // Tap on the Route
         $route_info   = $this->tapRoute($route);
         $route_folder = $route_info['route_folder'];
 
-
-        // ───────────────────────────────────────────────────────────────────────
         // PACK
-
         // Tap on the Pack
         $pack_info   = $this->tapPack($route);
         $pack_folder = $pack_info['pack_folder'];
 
-        // ───────────────────────────────────────────────────────────────────────
         // ACCESS
-
+        // Tap on the Access Level
         $this->tapAccess($route);
-
-
-        // ───────────────────────────────────────────────────────────────────────
-
-
-        //------------
-        // END - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
-
 
         // Get the relative Resource Folder path
         $resource_folder_expression = (string) $route->resource_folder;
@@ -351,10 +319,8 @@ class PithDispatcher
         $route_parameters = $this->app->request->attributes->get('route_parameters');
         $request_filepath = (string) $route_parameters['filepath'];
 
-
         // Get the Real Resource Folder path
         $real_resource_folder_path = realpath(ltrim($resource_folder_path, '/'));
-
 
         // Check that the Real Resource Folder is a directory
         $this->helper->ensureRealResourceFolderIsADirectory($real_resource_folder_path);
@@ -380,7 +346,6 @@ class PithDispatcher
         // Set resource headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
 
-
         // Serve file
         require $real_filepath;
     }
@@ -391,7 +356,6 @@ class PithDispatcher
      * @param PithRoute|null $secondary_route
      * @return array
      * @throws ReflectionException
-     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
      */
     protected function tapRoute(PithRoute $route, PithRoute $secondary_route=null): array
     {
@@ -409,11 +373,10 @@ class PithDispatcher
         // Get route folder
         $route_folder = $route->getRouteFolder();
 
-        $info = [
+        // Return variables needed to continue dispatching
+        return [
             'route_folder' => $route_folder
         ];
-
-        return $info;
     }
 
 
@@ -422,7 +385,6 @@ class PithDispatcher
      * @return array
      * @throws PithException
      * @throws ReflectionException
-     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
      */
     protected function tapPack(PithRoute $route): array
     {
@@ -438,18 +400,16 @@ class PithDispatcher
         // Get pack folder
         $pack_folder = $pack->getPackFolder();
 
-        $info = [
+        // Return variables needed to continue dispatching
+        return[
             'pack_folder' => $pack_folder
         ];
-
-        return $info;
     }
 
     /**
      * @param PithRoute $route
      * @return array
      * @throws PithException
-     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
      */
     protected function tapAccess(PithRoute $route): array
     {
@@ -459,9 +419,39 @@ class PithDispatcher
         // Check access
         $route->checkAccess();
 
-        $info = [];
+        // Return variables needed to continue dispatching
+        return [];
+    }
 
-        return $info;
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     */
+    protected function tapAction(PithRoute $route): array
+    {
+        // ACTION
+        // ──────
+
+        // Get the action
+        $action = $route->getAction();
+
+        // Set app reference
+        $action->setAppReference($this->app);
+
+        // Provision action
+        $action->provisionAction();
+
+        // Run action
+        $action->runAction();
+
+        // Get variables for prepare
+        $variables_for_prepare = $action->getVariablesForPrepare();
+
+        // Return variables needed to continue dispatching
+        return [
+            'variables_for_prepare' => $variables_for_prepare
+        ];
     }
 
 }
