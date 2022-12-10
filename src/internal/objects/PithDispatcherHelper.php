@@ -40,11 +40,30 @@ class PithDispatcherHelper
 
 
     /**
+     * @param  string $real_resource_folder_path
+     * @throws PithException
+     */
+    public function ensureRealResourceFolderIsADirectory(string $real_resource_folder_path)
+    {
+        // Check that the Real Resource Folder is a directory
+        $is_real_resource_folder_path_a_folder = ($real_resource_folder_path && is_dir($real_resource_folder_path));
+        if(!$is_real_resource_folder_path_a_folder){
+            throw new PithException(
+                'Pith Framework Exception 4021: Resource folder must be a folder.',
+                4021
+            );
+        }
+    }
+
+
+
+    /**
      * @param  string $real_filepath
      * @throws PithException
      */
     public function ensureRealFilepathIsAFile(string $real_filepath)
     {
+        // Check that the Real Filepath is a file
         $is_real_filepath_a_file = ($real_filepath && is_file($real_filepath));
         if(!$is_real_filepath_a_file){
             throw new PithException(

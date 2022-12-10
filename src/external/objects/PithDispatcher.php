@@ -13,9 +13,11 @@
  * Pith Dispatcher
  * -----------
  *
- * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
- * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
- * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection      - Short property names are ok.
+ * @noinspection PhpVariableNamingConventionInspection      - Short variable names are ok.
+ * @noinspection PhpMethodNamingConventionInspection        - Long method names are ok.
+ * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore, array shapes are not set in stone yet.
+ * @noinspection PhpTooManyParametersInspection             - Methods with a long list of parameters are ok here.
  */
 
 
@@ -57,22 +59,18 @@ class PithDispatcher
 
 
     /**
-     * Engine Dispatch
-     *
      * @param PithRoute $route
      * @param PithRoute|null $secondary_route
      * @throws PithException
      * @throws ReflectionException
-     *
-     * @noinspection DuplicatedCode - Ignore
      */
-    public function engineDispatch(PithRoute $route, PithRoute $secondary_route=null)
+    public function dispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
         switch ($route->route_type) {
 
             // Layout
             case 'layout':
-                $this->engineDispatchRoute($route, $secondary_route);
+                $this->dispatchRoute($route, $secondary_route);
                 break;
 
             // Pages
@@ -81,10 +79,10 @@ class PithDispatcher
             case 'page':
                 if($route->hasLayout()){
                     $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
-                    $this->engineDispatch( $layout_route, $route);
+                    $this->dispatch( $layout_route, $route);
                 }
                 else{
-                    $this->engineDispatchRoute($route);
+                    $this->dispatchRoute($route);
                 }
                 break;
 
@@ -92,12 +90,12 @@ class PithDispatcher
             case 'endpoint':
                 // fall through
             case 'partial':
-                $this->engineDispatchRoute($route);
+                $this->dispatchRoute($route);
                 break;
 
             // Resources
             case 'resource':
-                $this->engineServeResource($route);
+                $this->dispatchResource($route);
                 break;
         }
     }
@@ -110,158 +108,40 @@ class PithDispatcher
      * @throws PithException
      * @throws ReflectionException
      */
-    public function engineDispatchRoute(PithRoute $route, PithRoute $secondary_route=null)
+    public function dispatchRoute(PithRoute $route, PithRoute|null $secondary_route=null)
     {
-        // ───────────────────────────────────────────────────────────────────────
         // ROUTE
+        // Tap on the Route (and secondary Route)
+        $route_info   = $this->tapRoute($route, $secondary_route);
+        $route_folder = $route_info['route_folder'];
 
-        // Set app reference
-        $route->setAppReference($this->app);
-
-        // Set app reference for secondary route
-        if($secondary_route){
-            $secondary_route->setAppReference($this->app);
-        }
-
-        // Get route folder
-        $route_folder = $route->getRouteFolder();
-
-
-
-
-        // ───────────────────────────────────────────────────────────────────────
         // PACK
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
 
-        // Get the pack
-        $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
-
-        // Get pack folder
-        $pack_folder = $pack->getPackFolder();
-
-        // ───────────────────────────────────────────────────────────────────────
         // ACCESS
+        // Tap on the Access Level
+        $this->tapAccess($route);
 
-        // Check access
-        $route->checkAccess();
-
-
-        // ───────────────────────────────────────────────────────────────────────
         // ACTION
+        // Tap on the Action
+        $action_info           = $this->tapAction($route);
+        $variables_for_prepare = $action_info['variables_for_prepare'];
 
-        // Get the action
-        $action = $route->getAction();
-
-        // Set app reference
-        $action->setAppReference($this->app);
-
-        // Provision action
-        $action->provisionAction();
-
-        // Start the output buffer
-        //ob_start();
-
-        // Run action
-        $action->runAction();
-
-        // Get output buffer
-        // $action_output_buffer = ob_get_contents();
-
-        // Get variables for prepare
-        $variables_for_prepare = $action->getVariablesForPrepare();
-
-
-        // ───────────────────────────────────────────────────────────────────────
         // PREPARER
+        // Tap on the Preparer
+        $preparer_info      = $this->tapPreparer($route, $variables_for_prepare);
+        $variables_for_view = $preparer_info['variables_for_view'];
 
-        // Get the preparer
-        $preparer = $route->getPreparer();
-
-        // Set app reference
-        $preparer->setAppReference($this->app);
-
-        // Provision preparer
-        $preparer->provisionPreparer($variables_for_prepare);
-
-        // Run preparer
-        $preparer->runPreparer();
-
-        // Get output buffer
-        // $preparer_output_buffer = ob_get_contents();
-
-        // Get variables for prepare
-        $variables_for_view = $preparer->getVariablesForView();
-
-        // ───────────────────────────────────────────────────────────────────────
         // VIEW REQUISITION
+        // Tap on the View Requisition
+        $requisition_info = $this->tapViewRequisition($route, $secondary_route);
+        $resources        = $requisition_info['resources'];
 
-        // Get the view requisition
-        $requisition = $route->getViewRequisition();
-
-        // Dispatch requisition, set headers, get resources
-        $resources = $this->dispatchViewRequisition($requisition);
-
-        // If this is a layout
-        if($secondary_route){
-            // Get page requisition
-            $secondary_requisition = $secondary_route->getViewRequisition();
-
-            // Dispatch page requisition, set headers for page, get resources for page
-            $secondary_resources = $this->dispatchViewRequisition($secondary_requisition);
-
-            // Add new resources to resources array
-            $resources = array_merge($resources, $secondary_resources);
-        }
-
-
-
-        // ───────────────────────────────────────────────────────────────────────
-        // RESPONDER
-
-        // Add resource files to responder
-        $this->app->responder->addResourceFiles($resources);
-
-        // If partial, insert resource files
-        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
-        if($is_partial){
-            $this->app->responder->insertResourceFiles();
-        }
-
-        // ───────────────────────────────────────────────────────────────────────
         // VIEW
-
-
-
-        // Get the view expression
-        $view_expression = $route->view;
-
-        // Get the view filepath
-        $view_path = $this->expression_utility->getViewPathFromExpression($view_expression, $pack_folder, $route_folder);
-
-        // Get the view adapter
-        $view_adapter = $route->getViewAdapter();
-
-        // Provision the view adapter
-        $view_adapter->setApp($this->app);
-        $view_adapter->setFilePath($view_path);
-        $view_adapter->setResources($resources);
-        $view_adapter->setVars($variables_for_view);
-        if(!empty($secondary_route)){
-            $view_adapter->setIsLayout(true);
-            $view_adapter->setContentRoute($secondary_route);
-        }
-
-        // Tell the view adapter to run the view
-        $view_adapter->run();
-
-        // ───────────────────────────────────────────────────────────────────────
-
-
-
-        // Flush the output buffer
-        //ob_end_flush();
+        // Tap on the View
+        $this->tapView($route, $secondary_route, $pack_folder, $route_folder, $resources, $variables_for_view);
     }
 
 
@@ -324,46 +204,21 @@ class PithDispatcher
      *
      * @noinspection PhpIncludeInspection
      */
-    public function engineServeResource(PithRoute $route)
+    public function dispatchResource(PithRoute $route)
     {
-        // START - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
-        //------------
-
-        // ───────────────────────────────────────────────────────────────────────
         // ROUTE
+        // Tap on the Route
+        $route_info   = $this->tapRoute($route);
+        $route_folder = $route_info['route_folder'];
 
-        // Set app reference
-        $route->setAppReference($this->app);
-
-        // Get route folder
-        $route_folder = $route->getRouteFolder();
-
-
-        // ───────────────────────────────────────────────────────────────────────
         // PACK
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
 
-        // Get the pack
-        $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
-
-        // Get pack folder
-        $pack_folder = $pack->getPackFolder();
-
-        // ───────────────────────────────────────────────────────────────────────
         // ACCESS
-
-        // Check access
-        $route->checkAccess();
-
-
-        // ───────────────────────────────────────────────────────────────────────
-
-
-        //------------
-        // END - Copied from engineDispatchRoute() // TODO: Need to fix duplication later
-
+        // Tap on the Access Level
+        $this->tapAccess($route);
 
         // Get the relative Resource Folder path
         $resource_folder_expression = (string) $route->resource_folder;
@@ -373,20 +228,11 @@ class PithDispatcher
         $route_parameters = $this->app->request->attributes->get('route_parameters');
         $request_filepath = (string) $route_parameters['filepath'];
 
-
         // Get the Real Resource Folder path
         $real_resource_folder_path = realpath(ltrim($resource_folder_path, '/'));
 
-
         // Check that the Real Resource Folder is a directory
-        $is_real_resource_folder_path_a_folder = ($real_resource_folder_path && is_dir($real_resource_folder_path));
-        if(!$is_real_resource_folder_path_a_folder){
-            throw new PithException(
-                'Pith Framework Exception 4021: Resource folder must be a folder.',
-                4021
-            );
-        }
-
+        $this->helper->ensureRealResourceFolderIsADirectory($real_resource_folder_path);
 
         // Get the Real Filepath
         $real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
@@ -409,9 +255,228 @@ class PithDispatcher
         // Set resource headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
 
-
         // Serve file
         require $real_filepath;
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @return array
+     * @throws ReflectionException
+     */
+    protected function tapRoute(PithRoute $route, PithRoute|null $secondary_route=null): array
+    {
+        // ROUTE
+        // ─────
+
+        // Set app reference
+        $route->setAppReference($this->app);
+
+        // Set app reference for secondary route
+        if($secondary_route){
+            $secondary_route->setAppReference($this->app);
+        }
+
+        // Get route folder
+        $route_folder = $route->getRouteFolder();
+
+        // Return variables needed to continue dispatching
+        return [
+            'route_folder' => $route_folder
+        ];
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    protected function tapPack(PithRoute $route): array
+    {
+        // PACK
+        // ────
+
+        // Get the pack
+        $pack = $route->getPack();
+
+        // Set app reference
+        $pack->setAppReference($this->app);
+
+        // Get pack folder
+        $pack_folder = $pack->getPackFolder();
+
+        // Return variables needed to continue dispatching
+        return[
+            'pack_folder' => $pack_folder
+        ];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     */
+    protected function tapAccess(PithRoute $route): array
+    {
+        // ACCESS
+        // ──────
+
+        // Check access
+        $route->checkAccess();
+
+        // Return variables needed to continue dispatching
+        return [];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @return array
+     * @throws PithException
+     */
+    protected function tapAction(PithRoute $route): array
+    {
+        // ACTION
+        // ──────
+
+        // Get the action
+        $action = $route->getAction();
+
+        // Set app reference
+        $action->setAppReference($this->app);
+
+        // Provision action
+        $action->provisionAction();
+
+        // Run action
+        $action->runAction();
+
+        // Get variables for prepare
+        $variables_for_prepare = $action->getVariablesForPrepare();
+
+        // Return variables needed to continue dispatching
+        return [
+            'variables_for_prepare' => $variables_for_prepare
+        ];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @param object $variables_for_prepare
+     * @return array
+     * @throws PithException
+     */
+    protected function tapPreparer(PithRoute $route, object $variables_for_prepare): array
+    {
+        // PREPARER
+        // ────────
+
+        // Get the preparer
+        $preparer = $route->getPreparer();
+
+        // Set app reference
+        $preparer->setAppReference($this->app);
+
+        // Provision preparer
+        $preparer->provisionPreparer($variables_for_prepare);
+
+        // Run preparer
+        $preparer->runPreparer();
+
+        // Get variables for prepare
+        $variables_for_view = $preparer->getVariablesForView();
+
+        return [
+            'variables_for_view' => $variables_for_view
+        ];
+    }
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @return array
+     * @throws PithException
+     */
+    protected function tapViewRequisition(PithRoute $route, PithRoute|null $secondary_route=null): array
+    {
+        // VIEW REQUISITION
+        // ────────────────
+
+        // Get the view requisition
+        $requisition = $route->getViewRequisition();
+
+        // Dispatch requisition, set headers, get resources
+        $resources = $this->dispatchViewRequisition($requisition);
+
+        // If this is a layout
+        if($secondary_route){
+            // Get page requisition
+            $secondary_requisition = $secondary_route->getViewRequisition();
+
+            // Dispatch page requisition, set headers for page, get resources for page
+            $secondary_resources = $this->dispatchViewRequisition($secondary_requisition);
+
+            // Add new resources to resources array
+            $resources = array_merge($resources, $secondary_resources);
+        }
+
+        // RESPONDER
+        // ─────────
+
+        // Add resource files to responder
+        $this->app->responder->addResourceFiles($resources);
+
+        // If partial, insert resource files
+        $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
+        if($is_partial){
+            $this->app->responder->insertResourceFiles();
+        }
+
+
+        return [
+            'resources' => $resources
+        ];
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @param PithRoute|null $secondary_route
+     * @param string $pack_folder
+     * @param string $route_folder
+     * @param array $resources
+     * @param object $variables_for_view
+     * @throws PithException
+     */
+    protected function tapView(PithRoute $route, PithRoute|null $secondary_route, string $pack_folder, string $route_folder, array $resources, object $variables_for_view)
+    {
+        // VIEW
+        // ────
+
+        // Get the view expression
+        $view_expression = $route->view;
+
+        // Get the view filepath
+        $view_path = $this->expression_utility->getViewPathFromExpression($view_expression, $pack_folder, $route_folder);
+
+        // Get the view adapter
+        $view_adapter = $route->getViewAdapter();
+
+        // Provision the view adapter
+        $view_adapter->setApp($this->app);
+        $view_adapter->setFilePath($view_path);
+        $view_adapter->setResources($resources);
+        $view_adapter->setVars($variables_for_view);
+        if(!empty($secondary_route)){
+            $view_adapter->setIsLayout(true);
+            $view_adapter->setContentRoute($secondary_route);
+        }
+
+        // Tell the view adapter to run the view
+        $view_adapter->run();
     }
 
 }
