@@ -79,6 +79,13 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
 - Re-organized the Dispatcher.
 - Now using Doctrine Migrations for database migrations.
 
+**0.8.2.0 - Alpha 36** `(semver: v0.22.0)`
+- Updates to the Database Wrapper. Now connects on first query called.
+- Removed more now-unneeded objects.
+- Defined property types, return types, parameter types since we're in PHP 8.1 now.
+- Added Converter object for converting objects and arrays, especially database results.
+- Upgraded all dependencies.
+
 **0.8.1.1 - Alpha 35** `(semver: v0.21.0)`
 - Updates to the Access Control. Now able to specify access level by namespace.
 - Added new base Access Level that can be extended.
