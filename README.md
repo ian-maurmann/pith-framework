@@ -3,7 +3,7 @@
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
 
-[Website](https://pith-framework.org/) | [TODO list](doc/todo-index.md) | [Stats](doc/stats.md) | [Old README](doc/old-readme.md)
+[Website](https://pith-framework.org/) | [Release Notes](doc/release-notes.md)
 
 ---
 
@@ -22,7 +22,7 @@ If you're looking for a framework to use for your project, please check out:
 or [CodeIgniter](https://codeigniter.com/) instead.
 
 
-
+---
 
 ## Install
 
@@ -33,7 +33,7 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 ```
 php composer.phar require pith/framework
 ```
-(Not ready yet:)
+(Not ready yet)
 - Use the installer to set up a new project:
 
 ```
@@ -46,5 +46,12 @@ php pith install
 ### :warning: **(Not ready yet)** :warning:
 
 ---
+Workflow:
 
-(For more info, see the [Old README](doc/old-readme.md) instead)
+![Pith workflow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-workflow-diagram.png?raw=true)
+
+.
+
+(Actual flow)
+
+![Pith Framework flow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-framework-flow-diagram.png?raw=true)
