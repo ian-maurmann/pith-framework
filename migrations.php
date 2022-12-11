@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 return [
     'table_storage' => [
@@ -10,8 +11,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'MyProject\Migrations' => '/data/doctrine/migrations/lib/MyProject/Migrations',
-        'MyProject\Component\Migrations' => './Component/MyProject/Migrations',
+        'Pith\\Framework\\Migrations' => './data/migrations',
     ],
 
     'all_or_nothing' => true,
