@@ -58,7 +58,7 @@ class PithEngine
         $route = $this->app->router->getRoute();
 
         // Dispatch route
-        $this->app->dispatcher->engineDispatch($route);
+        $this->app->dispatcher->dispatch($route);
     }
 
 }

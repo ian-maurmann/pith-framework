@@ -63,7 +63,7 @@ class PithResponder
         $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
 
         // Run route
-        $this->app->dispatcher->engineDispatchRoute($route);
+        $this->app->dispatcher->dispatchRoute($route);
     }
 
 
@@ -79,7 +79,7 @@ class PithResponder
         $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
 
         // Run route
-        $this->app->dispatcher->engineDispatchRoute($route);
+        $this->app->dispatcher->dispatchRoute($route);
     }
 
 
@@ -92,7 +92,7 @@ class PithResponder
     public function insertPageContent(PithRoute $content_route)
     {
         // Run route
-        $this->app->dispatcher->engineDispatchRoute($content_route);
+        $this->app->dispatcher->dispatchRoute($content_route);
     }
 
     /**
