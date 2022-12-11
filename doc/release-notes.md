@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 2022-12-10 | Stable, limited features
 Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 2022-12-03 | Stable, limited features
 Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 2022-11-22 | Stable, limited features
 Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 2022-11-01 | Stable, limited features
@@ -32,45 +33,51 @@ Rewrite Pre-Alpha 3   | 0.6.0.3   | *sv 0.4.0*  | 2019-03-23 | :warning: *Not ye
 Rewrite Pre-Alpha 2   | 0.6.0.2   | *sv 0.3.0*  | 2018-11-20 | :warning: *Not yet*
 Rewrite Pre-Alpha 1   | 0.6.0.1   | *sv 0.2.0*  | 2018-10-30 | :warning: *Not yet*
 (2nd) Initial Rewrite | 0.6.0.0   | *sv 0.1.0*  | 2018-10-23 | :warning: *Not yet*
-Alpha 22              | 0.5.7.2   |             | 2015-04-02 |
-Alpha 21              | 0.5.6.6   |             | 2014-09-06 |
-Alpha 20              | 0.5.6.5   |             | 2014-04-12 |
-Alpha 19              | 0.5.6.4   |             | 2014-03-11 |
-Alpha 18              | 0.5.6.3   |             | 2013-10-06 |
-Alpha 17              | 0.5.6.2   |             | 2013-09-20 |
-Alpha 16              | 0.5.6.1   |             | 2013-09-17 |
-Alpha 15              | 0.5.6.0   |             | 2013-08-29 |
-Alpha 14              | 0.5.5.0   |             | 2013-05-03 |
-Alpha 13              | 0.5.4.0   |             | 2013-04-11 |
-Alpha 12              | 0.5.3.0   |             | 2013-01-10 |
-Alpha 11              | 0.5.2.1   |             | 2012-04-16 |
-Alpha 10              | 0.5.1.0   |             | 2012-03-05 |
-Alpha 9               | 0.5.0.2   |             | 2012-02-22 |
-Alpha 8               | 0.5.0.1   |             | 2012-02-14 |
-Alpha 7               | 0.5.0.0   |             | 2012-02-13 |
-Alpha 6 (v2)          | 0.4.3.1v2 |             | 2012-02-07 |
-Alpha 6               | 0.4.3.1   |             | 2011-09-23 |
-Alpha 5               | 0.4.3.0   |             | 2011-08-01 |
-Alpha 4               | 0.4.2.0   |             | 2011-05-25 |
-Alpha 3               | 0.4.1.3   |             | 2011-03-24 |
-Alpha 2               | 0.4.1.2   |             | 2011-02-16 |
-Alpha 1 (v2)          | 0.4.1.1v2 |             | 2011-01-25 |
-Alpha 1               | 0.4.1.1   |             | 2011-01-17 |
-Initial Release       | 0.4.1.0   |             | 2010-12-29 |
-Second Pre-Alpha 2    | 0.4.0.2   |             | 2010-11-29 |
-Second Pre-Alpha 1    | 0.4.0.1   |             | 2010-06-17 |
-Initial Rewrite       | 0.4.0.0   |             | 2010-06-08 |
-Pre-Alpha 7           | 0.3.0.7   |             | 2010-02-02 |
-Pre-Alpha 6           | 0.3.0.6   |             | 2009-11-02 |
-Pre-Alpha 5           | 0.3.0.3   |             | 2009-07-06 |
-Pre-Alpha 4           | 0.3.0.2   |             | 2009-06-18 |
-Pre-Alpha 3           | 0.3.0.0   |             | 2009-06-08 |
-Pre-Alpha 2           | 0.2.1.0   |             | 2009-04-27 |
-Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 |
+Alpha 22              | 0.5.7.2   |             | 2015-04-02 | (Old)
+Alpha 21              | 0.5.6.6   |             | 2014-09-06 | (Old)
+Alpha 20              | 0.5.6.5   |             | 2014-04-12 | (Old)
+Alpha 19              | 0.5.6.4   |             | 2014-03-11 | (Old)
+Alpha 18              | 0.5.6.3   |             | 2013-10-06 | (Old)
+Alpha 17              | 0.5.6.2   |             | 2013-09-20 | (Old)
+Alpha 16              | 0.5.6.1   |             | 2013-09-17 | (Old)
+Alpha 15              | 0.5.6.0   |             | 2013-08-29 | (Old)
+Alpha 14              | 0.5.5.0   |             | 2013-05-03 | (Old)
+Alpha 13              | 0.5.4.0   |             | 2013-04-11 | (Old)
+Alpha 12              | 0.5.3.0   |             | 2013-01-10 | (Old)
+Alpha 11              | 0.5.2.1   |             | 2012-04-16 | (Old)
+Alpha 10              | 0.5.1.0   |             | 2012-03-05 | (Old)
+Alpha 9               | 0.5.0.2   |             | 2012-02-22 | (Old)
+Alpha 8               | 0.5.0.1   |             | 2012-02-14 | (Old)
+Alpha 7               | 0.5.0.0   |             | 2012-02-13 | (Old)
+Alpha 6 (v2)          | 0.4.3.1v2 |             | 2012-02-07 | (Old)
+Alpha 6               | 0.4.3.1   |             | 2011-09-23 | (Old)
+Alpha 5               | 0.4.3.0   |             | 2011-08-01 | (Old)
+Alpha 4               | 0.4.2.0   |             | 2011-05-25 | (Old)
+Alpha 3               | 0.4.1.3   |             | 2011-03-24 | (Old)
+Alpha 2               | 0.4.1.2   |             | 2011-02-16 | (Old)
+Alpha 1 (v2)          | 0.4.1.1v2 |             | 2011-01-25 | (Old)
+Alpha 1               | 0.4.1.1   |             | 2011-01-17 | (Old)
+Initial Release       | 0.4.1.0   |             | 2010-12-29 | (Old)
+Second Pre-Alpha 2    | 0.4.0.2   |             | 2010-11-29 | (Old)
+Second Pre-Alpha 1    | 0.4.0.1   |             | 2010-06-17 | (Old)
+Initial Rewrite       | 0.4.0.0   |             | 2010-06-08 | (Old)
+Pre-Alpha 7           | 0.3.0.7   |             | 2010-02-02 | (Old)
+Pre-Alpha 6           | 0.3.0.6   |             | 2009-11-02 | (Old)
+Pre-Alpha 5           | 0.3.0.3   |             | 2009-07-06 | (Old)
+Pre-Alpha 4           | 0.3.0.2   |             | 2009-06-18 | (Old)
+Pre-Alpha 3           | 0.3.0.0   |             | 2009-06-08 | (Old)
+Pre-Alpha 2           | 0.2.1.0   |             | 2009-04-27 | (Old)
+Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 (Started)             |           |             | 2008-11    | 
 
 
 ### Release Notes:
+
+**0.8.3.0 - Alpha 37** `(semver: v0.23.0)`
+- Database queries now throw new Pith Exceptions.
+- Added transaction methods to the Database Wrapper.
+- Re-organized the Dispatcher.
+- Now using Doctrine Migrations for database migrations.
 
 **0.8.2.0 - Alpha 36** `(semver: v0.22.0)`
 - Updates to the Database Wrapper. Now connects on first query called.
