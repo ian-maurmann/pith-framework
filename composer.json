@@ -38,6 +38,9 @@
                 "src/framework/internal/workflow-access-levels/",
                 "src/framework/internal/workflow-elements/"
             ],
+            "Pith\\Framework\\Migration\\": [
+                "data/migration/"
+            ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/framework/plugins/phtml-view-adapter-2/src/"
             ],

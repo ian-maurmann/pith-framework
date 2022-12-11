@@ -11,7 +11,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'Pith\\Framework\\Migrations' => './data/migrations',
+        'Pith\\Framework\\Migration' => './data/migrations',
     ],
 
     'all_or_nothing' => true,
