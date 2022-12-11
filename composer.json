@@ -13,6 +13,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
+        "doctrine/migrations": "^3.5",
         "ikm/copyright-year-utility":"^0.1",
         "lotfio/conso": "^2",
         "monolog/monolog": "^3.2",
@@ -36,6 +37,9 @@
                 "src/framework/internal/traits/",
                 "src/framework/internal/workflow-access-levels/",
                 "src/framework/internal/workflow-elements/"
+            ],
+            "Pith\\Framework\\Migration\\": [
+                "data/migration/"
             ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/framework/plugins/phtml-view-adapter-2/src/"
