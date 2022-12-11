@@ -25,4 +25,6 @@ class HomeRoute extends PithRoute
     public string $access_level = 'world';
     public string $view         = '[^route_folder]/home-view.phtml';
     public string $layout       = '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutRoute';
+
+    public string $page_title = 'Green Layout Test Example';
 }
