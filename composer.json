@@ -13,6 +13,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
+        "doctrine/migrations": "^3.5",
         "ikm/copyright-year-utility":"^0.1",
         "lotfio/conso": "^2",
         "monolog/monolog": "^3.2",
@@ -27,25 +28,27 @@
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
-                "src/external/about/",
-                "src/external/extend/",
-                "src/external/objects/"
+                "src/framework/external/about/",
+                "src/framework/external/extend/",
+                "src/framework/external/objects/"
             ],
             "Pith\\Framework\\Internal\\": [
-                "src/internal/objects/",
-                "src/internal/interfaces/",
-                "src/internal/traits/",
-                "src/internal/workflow-access-levels/",
-                "src/internal/workflow-elements/"
+                "src/framework/internal/objects/",
+                "src/framework/internal/traits/",
+                "src/framework/internal/workflow-access-levels/",
+                "src/framework/internal/workflow-elements/"
+            ],
+            "Pith\\Framework\\Migration\\": [
+                "data/migration/"
             ],
             "Pith\\PhtmlViewAdapter2\\": [
-                "src/plugins/phtml-view-adapter-2/src/"
+                "src/framework/plugins/phtml-view-adapter-2/src/"
             ],
             "Pith\\CommandTool\\": [
-                "src/plugins/command-tool/src/"
+                "src/framework/plugins/command-tool/src/"
             ],
             "Pith\\PithDotJson\\": [
-                "src/plugins/pith-dot-json/src/"
+                "src/framework/plugins/pith-dot-json/src/"
             ],
             "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
                 "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
@@ -72,7 +75,6 @@
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home",
-                
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/resources"
             ]
