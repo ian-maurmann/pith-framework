@@ -37,6 +37,10 @@ class PithResponder
     private array $resource_files = [];
     private array $resource_files_inserted = [];
 
+    private string $page_title = '';
+    private string $meta_keywords = '';
+    private string $meta_description = '';
+
     public function __construct()
     {
         // Reset
@@ -209,5 +213,32 @@ class PithResponder
     {
         $old_resource_files   = $this->resource_files;
         $this->resource_files = array_merge($old_resource_files, $resource_files_array);
+    }
+
+    /**
+     * @param string $page_title
+     * @param string $meta_keywords
+     * @param string $meta_description
+     */
+    public function setPageMetadata(string $page_title, string $meta_keywords, string $meta_description)
+    {
+        $this->page_title       = $page_title;
+        $this->meta_keywords    = $meta_keywords;
+        $this->meta_description = $meta_description;
+    }
+
+    public function insertPageTitle()
+    {
+        echo $this->page_title;
+    }
+
+    public function insertMetaKeywords()
+    {
+        echo $this->meta_keywords;
+    }
+
+    public function insertMetaDescription()
+    {
+        echo $this->meta_description;
     }
 }

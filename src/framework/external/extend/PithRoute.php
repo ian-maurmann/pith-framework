@@ -91,6 +91,10 @@ class PithRoute extends PithWorkflowElement
     public string $resource_folder;
     public string $route_type;
 
+    public string $page_title = '';
+    public string $meta_keywords = '';
+    public string $meta_description = '';
+
     /**
      * Holds the filepath expression for the view file.
      *
