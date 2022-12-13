@@ -464,7 +464,7 @@ class PithDispatcher
         // ────────
 
         // Set metadata
-        $this->app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description);
+        $this->app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
     }
 
 

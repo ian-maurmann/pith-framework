@@ -27,6 +27,8 @@ declare(strict_types=1);
         <!-- Page Keywords -->
         <meta name="keywords" content="<?php $this->app->responder->insertMetaKeywords(); ?>">
 
+        <?php $this->app->responder->insertMetaRobots(2); ?>
+
         <?php $this->app->responder->insertResourceFiles(2); ?>
     </head>
     <body>
