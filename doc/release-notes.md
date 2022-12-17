@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 2022-12-17 | Usable, but still adding new features
 Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 2022-12-10 | Stable, limited features
 Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 2022-12-03 | Stable, limited features
 Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 2022-11-22 | Stable, limited features
@@ -72,6 +73,11 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.3.1 - Alpha 38** `(semver: v0.24.0)`
+- Now able to add the page title and meta tags: keywords, description, robots.
+- Now able to set the title and meta tags in the page route, and be able to use them inside the layout view.
+- Made modifications to the Dispatcher and Responder to make the meta tags work.
 
 **0.8.3.0 - Alpha 37** `(semver: v0.23.0)`
 - Database queries now throw new Pith Exceptions.
