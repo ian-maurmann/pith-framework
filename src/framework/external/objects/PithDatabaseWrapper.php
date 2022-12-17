@@ -192,6 +192,20 @@ class PithDatabaseWrapper
         $results = false;
         $number_of_args = func_num_args();
 
+        // ===============================================================
+        // For when we need to measure query performance
+
+        // Before:
+        // $start_hires_time        = hrtime(true);
+        // $start_memory            = memory_get_usage(false);
+
+        // After
+        // $end_hires_time          = hrtime(true);
+        // $end_memory              = memory_get_usage(false);
+        // $hires_time_elapsed      = $end_hires_time - $start_hires_time;
+        // $memory_jump_after_query = $end_memory - $start_memory;
+        // ===============================================================
+
         // Query without parameters
         if ($number_of_args === 1) {
             try {

@@ -37,6 +37,11 @@ class PithResponder
     private array $resource_files = [];
     private array $resource_files_inserted = [];
 
+    private string $page_title = '';
+    private string $meta_keywords = '';
+    private string $meta_description = '';
+    private string $meta_robots = '';
+
     public function __construct()
     {
         // Reset
@@ -146,7 +151,7 @@ class PithResponder
                     $indent_string = $this->indent($indent);
                     $comment       = $indent_string . '<!-- ' . $heading_comment_message . ' -->' . "\r\n";
 
-                    echo "\r\n\r\n";
+                    echo "\r\n";
                     echo $comment;
                 }
                 if($file_type === 'script'){
@@ -209,5 +214,58 @@ class PithResponder
     {
         $old_resource_files   = $this->resource_files;
         $this->resource_files = array_merge($old_resource_files, $resource_files_array);
+    }
+
+    /**
+     * @param string $page_title
+     * @param string $meta_keywords
+     * @param string $meta_description
+     */
+    public function setPageMetadata(string $page_title, string $meta_keywords, string $meta_description, string $meta_robots)
+    {
+        $this->page_title       = $page_title;
+        $this->meta_keywords    = $meta_keywords;
+        $this->meta_description = $meta_description;
+        $this->meta_robots      = $meta_robots;
+    }
+
+    /**
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPageTitle()
+    {
+        echo $this->page_title;
+    }
+
+
+    /**
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaKeywords()
+    {
+        echo $this->meta_keywords;
+    }
+
+    /**
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaDescription()
+    {
+        echo $this->meta_description;
+    }
+
+    /**
+     * @param int $indent
+     *
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaRobots(int $indent = 0){
+        if(!empty($this->meta_robots)){
+            $indent_string = $this->indent($indent);
+            $tag = '<meta name="robots" content="' . $this->meta_robots . '">';
+
+            // Insert
+            echo '<!-- Robots -->' . "\r\n" . $indent_string . $tag;
+        }
     }
 }
