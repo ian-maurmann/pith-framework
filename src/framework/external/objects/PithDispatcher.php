@@ -79,6 +79,7 @@ class PithDispatcher
             case 'page':
                 if($route->hasLayout()){
                     $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                    $this->tapMetadata($route);
                     $this->dispatch( $layout_route, $route);
                 }
                 else{
@@ -138,6 +139,10 @@ class PithDispatcher
         // Tap on the View Requisition
         $requisition_info = $this->tapViewRequisition($route, $secondary_route);
         $resources        = $requisition_info['resources'];
+
+        // RESPONDER
+        // Tap on the Responder
+        $this->tapResponder($route,  $resources);
 
         // VIEW
         // Tap on the View
@@ -258,6 +263,7 @@ class PithDispatcher
         // Serve file
         require $real_filepath;
     }
+
 
 
     /**
@@ -423,6 +429,18 @@ class PithDispatcher
             $resources = array_merge($resources, $secondary_resources);
         }
 
+        return [
+            'resources' => $resources
+        ];
+    }
+
+
+    /**
+     * @param PithRoute $route
+     * @param array $resources
+     */
+    public function tapResponder(PithRoute $route, array $resources)
+    {
         // RESPONDER
         // ─────────
 
@@ -434,11 +452,19 @@ class PithDispatcher
         if($is_partial){
             $this->app->responder->insertResourceFiles();
         }
+    }
 
 
-        return [
-            'resources' => $resources
-        ];
+    /**
+     * @param PithRoute $route
+     */
+    protected function tapMetadata(PithRoute $route)
+    {
+        // METADATA
+        // ────────
+
+        // Set metadata
+        $this->app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
     }
 
 
