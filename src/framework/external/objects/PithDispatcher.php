@@ -96,7 +96,13 @@ class PithDispatcher
 
             // Resources
             case 'resource':
-                $this->dispatchResource($route);
+
+                try{
+                    $this->dispatchResource($route);
+                } catch (PithException $pith_exception) {
+                    // Set headers for 404
+                    http_response_code(404);
+                }
                 break;
         }
     }
