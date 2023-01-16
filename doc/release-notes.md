@@ -74,6 +74,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 ### Release Notes:
 
+**WIP**
+- Routing updates to allow the Router to deliver 404 error pages when route is not found by FastRoute.
+- Updated copyright notice to include 2023
+
 **0.8.3.1 - Alpha 38** `(semver: v0.24.0)`
 - Now able to add the page title and meta tags: keywords, description, robots.
 - Now able to set the title and meta tags in the page route, and be able to use them inside the layout view.
