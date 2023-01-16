@@ -54,8 +54,28 @@ class PithRouter
      */
     public function getRoute(): ?PithRoute
     {
-        // Get the route info
-        $routing_info = $this->routeWithFastRoute();
+        // Get route
+        try{
+            $routing_info = $this->routeWithFastRoute();
+        } catch (PithException $pith_exception) {
+            if($pith_exception->getCode() === 4004){
+
+                // Set headers for 404
+                http_response_code(404);
+
+                // 404 error page
+                $routing_info = $this->routeWithFastRoute('/error-404');
+            }
+            else{
+                throw $pith_exception;
+            }
+
+        }
+
+
+
+
+        // Get route info
         $route        = $this->getRouteObjectFromRouteInfo($routing_info);
         $route_params = $routing_info['vars'];
 
@@ -67,15 +87,15 @@ class PithRouter
     }
 
 
-
-    
     /**
      * Route by URL
      *
      * @noinspection PhpVariableNamingConventionInspection - Ignore here.
+     * @param string|null $uri
+     * @return array
      * @throws PithException
      */
-    public function routeWithFastRoute(): array
+    public function routeWithFastRoute(string|null $uri = null): array
     {
         $return_array = [];
 
@@ -93,12 +113,7 @@ class PithRouter
         $httpMethod = $_SERVER['REQUEST_METHOD'];
 
         // Get URI
-        $uri = $_SERVER['REQUEST_URI'];
-        // Strip query string (?foo=bar) and decode URI
-        if (false !== $pos = strpos($uri, '?')) {
-            $uri = substr($uri, 0, $pos);
-        }
-        $uri = rawurldecode($uri);
+        $uri = ($uri !== null) ? $uri : $this->getUri();
 
         $routeInfo = $fast_dispatcher->dispatch($httpMethod, $uri);
         switch ($routeInfo[0]) {
@@ -195,6 +210,22 @@ class PithRouter
         }
 
         return $route;
+    }
+
+
+
+    private function getUri(): string
+    {
+        // Get URI
+        $uri = $_SERVER['REQUEST_URI'];
+        // Strip query string (?foo=bar) and decode URI
+        if (false !== $pos = strpos($uri, '?')) {
+            $uri = substr($uri, 0, $pos);
+        }
+        $uri = rawurldecode($uri);
+
+        // Return the URI
+        return $uri;
     }
 
 
