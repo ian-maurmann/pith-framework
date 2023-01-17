@@ -75,7 +75,8 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 ### Release Notes:
 
 **WIP**
-- Routing updates to allow the Router to deliver 404 error pages when route is not found by FastRoute.
+- Routing updates to allow the Router to deliver 404 error pages when FastRoute does not find a Route.
+- When a resource cannot be dispatched, send a 404 status (without showing an exception, or error page).
 - Updated copyright notice to include 2023
 
 **0.8.3.1 - Alpha 38** `(semver: v0.24.0)`
