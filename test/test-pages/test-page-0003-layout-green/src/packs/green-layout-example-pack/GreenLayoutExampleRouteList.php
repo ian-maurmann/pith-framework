@@ -24,6 +24,7 @@ class GreenLayoutExampleRouteList extends PithRouteList
     public array $routes = [
         ['GET', '/',                                    '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HomeRoute'],
         ['GET', '/hello',                               '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\HelloRoute'],
+        ['GET', '/error-404',                           '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\Error404Route'],
         ['GET', '/front-end-application/{filepath:.+}', '\\Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutApplicationResourceRoute'],
     ];
 }

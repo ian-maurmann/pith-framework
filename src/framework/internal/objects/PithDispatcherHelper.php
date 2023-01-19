@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -58,10 +58,10 @@ class PithDispatcherHelper
 
 
     /**
-     * @param  string $real_filepath
+     * @param  string|mixed $real_filepath
      * @throws PithException
      */
-    public function ensureRealFilepathIsAFile(string $real_filepath)
+    public function ensureRealFilepathIsAFile(mixed $real_filepath)
     {
         // Check that the Real Filepath is a file
         $is_real_filepath_a_file = ($real_filepath && is_file($real_filepath));
