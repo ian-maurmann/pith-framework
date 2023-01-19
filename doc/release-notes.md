@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 2023-01-18 | Usable, but still adding new features
 Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 2022-12-17 | Usable, but still adding new features
 Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 2022-12-10 | Stable, limited features
 Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 2022-12-03 | Stable, limited features
@@ -73,6 +74,11 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.4.0 - Alpha 39** `(semver: v0.25.0)`
+- Routing updates to allow the Router to deliver 404 error pages when FastRoute does not find a Route.
+- When a resource cannot be dispatched, send a 404 status (without showing an exception, or error page).
+- Updated copyright notice to include 2023
 
 **0.8.3.1 - Alpha 38** `(semver: v0.24.0)`
 - Now able to add the page title and meta tags: keywords, description, robots.

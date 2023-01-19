@@ -71,6 +71,7 @@
             "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/bottom-quote",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/error-pages",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
