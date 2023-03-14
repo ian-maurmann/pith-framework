@@ -56,7 +56,9 @@ class PithReservedNameUtility
             'autodiscover',     // Hostname with special meaning for MS Outlook/Exchange autoconfig.
             'broadcasthost',    // Hostname with special meaning for network broadcast hostname.
             'ftp',              // Common protocol hostname, for FTP file transfer.
+            'ftp',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'hostmaster',       // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'hostmaster',       // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'imap',             // Common protocol hostname, for IMAP email.
             'info',             // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'is',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
@@ -65,13 +67,19 @@ class PithReservedNameUtility
             'localdomain',      // (Loop-back to self hostname).
             'localhost',        // (Loop-back to self hostname).
             'mail',             // Common hostname.
+            'mailer-daemon',    // Common no-reply email address for automated processes.
             'marketing',        // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'mis',              // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'news',             // Common hostname.
+            'news',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'nobody',           // Common no-reply email address for automated processes.
             'noc',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'noreply',          // Common no-reply email address for automated processes.
+            'no-reply',         // Common no-reply email address for automated processes.
             'pop',              // Common protocol hostname, for POP email.
             'pop3',             // Common protocol hostname, for POP3 email.
             'postmaster',       // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'postmaster',       // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'root',             // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'sales',            // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'security',         // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
@@ -82,11 +90,15 @@ class PithReservedNameUtility
             'support',          // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'sysadmin',         // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'usenet',           // Usenet.
+            'usenet',           // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'uucp',             // Common hostname.
+            'uucp',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'webmail',          // Common hostname.
             'webmaster',        // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'webmaster',        // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'wpad',             // Hostname with special meaning for proxy autodiscovery.
             'www',              // Most common subdomain.
+            'www',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
         ];
 
         return $reserved_names;
