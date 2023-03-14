@@ -49,13 +49,24 @@ class PithReservedNameUtility
 
 
         $reserved_names = [
-            'autoconfig',     # Hostname with special meaning for Thunderbird autoconfig
-            'autodiscover',   # Hostname with special meaning for MS Outlook/Exchange autoconfig
-            'broadcasthost',  # Hostname with special meaning for network broadcast hostname
-            'isatap',         # Hostname with special meaning for IPv6 tunnel autodiscovery
-            'localdomain',    # (Loop-back to self hostname)
-            'localhost',      # (Loop-back to self hostname)
-            'wpad',           # Hostname with special meaning for proxy autodiscovery
+            'autoconfig',     // Hostname with special meaning for Thunderbird autoconfig.
+            'autodiscover',   // Hostname with special meaning for MS Outlook/Exchange autoconfig.
+            'broadcasthost',  // Hostname with special meaning for network broadcast hostname.
+            'ftp',            // Common protocol hostname, for FTP file transfer.
+            'imap',           // Common protocol hostname, for IMAP email.
+            'isatap',         // Hostname with special meaning for IPv6 tunnel autodiscovery.
+            'localdomain',    // (Loop-back to self hostname).
+            'localhost',      // (Loop-back to self hostname).
+            'mail',           // Common hostname.
+            'news',           // Common hostname.
+            'pop',            // Common protocol hostname, for POP email.
+            'pop3',           // Common protocol hostname, for POP3 email.
+            'smtp',           // Common protocol hostname, for SMTP email.
+            'usenet',         // Usenet.
+            'uucp',           // Common hostname.
+            'webmail',        // Common hostname.
+            'wpad',           // Hostname with special meaning for proxy autodiscovery.
+            'www',            // Most common subdomain.
         ];
 
         return $reserved_names;
