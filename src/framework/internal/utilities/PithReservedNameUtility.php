@@ -49,24 +49,44 @@ class PithReservedNameUtility
 
 
         $reserved_names = [
-            'autoconfig',     // Hostname with special meaning for Thunderbird autoconfig.
-            'autodiscover',   // Hostname with special meaning for MS Outlook/Exchange autoconfig.
-            'broadcasthost',  // Hostname with special meaning for network broadcast hostname.
-            'ftp',            // Common protocol hostname, for FTP file transfer.
-            'imap',           // Common protocol hostname, for IMAP email.
-            'isatap',         // Hostname with special meaning for IPv6 tunnel autodiscovery.
-            'localdomain',    // (Loop-back to self hostname).
-            'localhost',      // (Loop-back to self hostname).
-            'mail',           // Common hostname.
-            'news',           // Common hostname.
-            'pop',            // Common protocol hostname, for POP email.
-            'pop3',           // Common protocol hostname, for POP3 email.
-            'smtp',           // Common protocol hostname, for SMTP email.
-            'usenet',         // Usenet.
-            'uucp',           // Common hostname.
-            'webmail',        // Common hostname.
-            'wpad',           // Hostname with special meaning for proxy autodiscovery.
-            'www',            // Most common subdomain.
+            'abuse',            // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'admin',            // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'administrator',    // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'autoconfig',       // Hostname with special meaning for Thunderbird autoconfig.
+            'autodiscover',     // Hostname with special meaning for MS Outlook/Exchange autoconfig.
+            'broadcasthost',    // Hostname with special meaning for network broadcast hostname.
+            'ftp',              // Common protocol hostname, for FTP file transfer.
+            'hostmaster',       // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'imap',             // Common protocol hostname, for IMAP email.
+            'info',             // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'is',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'isatap',           // Hostname with special meaning for IPv6 tunnel autodiscovery.
+            'it',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'localdomain',      // (Loop-back to self hostname).
+            'localhost',        // (Loop-back to self hostname).
+            'mail',             // Common hostname.
+            'marketing',        // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'mis',              // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'news',             // Common hostname.
+            'noc',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'pop',              // Common protocol hostname, for POP email.
+            'pop3',             // Common protocol hostname, for POP3 email.
+            'postmaster',       // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'root',             // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'sales',            // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'security',         // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'smtp',             // Common protocol hostname, for SMTP email.
+            'ssladmin',         // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'ssladministrator', // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'sslwebmaster',     // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'support',          // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'sysadmin',         // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'usenet',           // Usenet.
+            'uucp',             // Common hostname.
+            'webmail',          // Common hostname.
+            'webmaster',        // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
+            'wpad',             // Hostname with special meaning for proxy autodiscovery.
+            'www',              // Most common subdomain.
         ];
 
         return $reserved_names;
