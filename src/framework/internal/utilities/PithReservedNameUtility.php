@@ -44,7 +44,7 @@ class PithReservedNameUtility
         //   - https://www.b-list.org/weblog/2018/feb/11/usernames/
         //   - https://ldpreload.com/blog/names-to-reserve
         //
-        // I believe the way it's implemented here (but in the Python world) a correct approach:
+        // I believe the way it's implemented in Django-Registration (but in the Python world) is the correct approach:
         //   - https://github.com/ubernostrum/django-registration/blob/1d7d0f01a24b916977016c1d66823a5e4a33f2a0/registration/validators.py (License = BSD 3-Clause License)
 
 
@@ -53,61 +53,152 @@ class PithReservedNameUtility
             '.htpasswd',              // Sensitive filename.
             '.well-known',            // Sensitive filename.
             'abuse',                  // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'account',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'accounts',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'admin',                  // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'administrator',          // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'autoconfig',             // Hostname with special meaning for Thunderbird autoconfig.
             'autodiscover',           // Hostname with special meaning for MS Outlook/Exchange autoconfig.
+            'blog',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'branch',                 // (Names that I think might cause issues).
             'broadcasthost',          // Hostname with special meaning for network broadcast hostname.
+            'buy',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'clients',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'clientaccesspolicy.xml', // Sensitive filename, Silverlight cross-domain policy file.
+            'contact',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'contactus',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'contact-us',             // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'copyright',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'crossdomain.xml',        // Sensitive filename, Flash cross-domain policy file.
+            'dashboard',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'doc',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'docs',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'download',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'downloads',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'enquiry',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'faq',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'favicon.ico',            // Sensitive filename.
             'ftp',                    // Common protocol hostname, for FTP file transfer.
             'ftp',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'help',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'hostmaster',             // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'hostmaster',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'humans.txt',             // Sensitive filename, ( https://humanstxt.org/Standard.html ).
             'imap',                   // Common protocol hostname, for IMAP email.
             'info',                   // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'inquiry',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'is',                     // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'isatap',                 // Hostname with special meaning for IPv6 tunnel autodiscovery.
             'it',                     // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'keybase.txt',            // Sensitive filename, Keybase ownership-verification URL.
+            'license',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'localdomain',            // (Loop-back to self hostname).
             'localhost',              // (Loop-back to self hostname).
+            'login',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'logout',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'mail',                   // Common hostname.
             'mailer-daemon',          // Common no-reply email address for automated processes.
+            'main',                   // (Names that I think might cause issues).
+            'master',                 // (Names that I think might cause issues).
             'marketing',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'me',                     // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'mis',                    // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'myaccount',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'news',                   // Common hostname.
             'news',                   // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'nobody',                 // Common no-reply email address for automated processes.
             'noc',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'noreply',                // Common no-reply email address for automated processes.
             'no-reply',               // Common no-reply email address for automated processes.
+            'ns',                     // DNS Nameserver Subdomain.
+            'ns0',                    // DNS Nameserver Subdomain.
+            'ns1',                    // DNS Nameserver Subdomain.
+            'ns2',                    // DNS Nameserver Subdomain.
+            'ns3',                    // DNS Nameserver Subdomain.
+            'ns4',                    // DNS Nameserver Subdomain.
+            'ns5',                    // DNS Nameserver Subdomain.
+            'ns6',                    // DNS Nameserver Subdomain.
+            'ns7',                    // DNS Nameserver Subdomain.
+            'ns8',                    // DNS Nameserver Subdomain.
+            'ns9',                    // DNS Nameserver Subdomain.
+            'ns10',                   // DNS Nameserver Subdomain.
+            'ns11',                   // DNS Nameserver Subdomain.
+            'ns12',                   // DNS Nameserver Subdomain.
+            'password',               // (Names that I think might cause issues).
+            'password-reset',         // (Names that I think might cause issues).
+            'payment',                // (Names that I think might cause issues).
+            'payments',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'plans',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'pop',                    // Common protocol hostname, for POP email.
             'pop3',                   // Common protocol hostname, for POP3 email.
+            'portfolio',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'postmaster',             // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'postmaster',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'preferences',            // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'pricing',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'privacy',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'profile',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'register',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'reset',                  // (Names that I think might cause issues).
             'robots.txt',             // Sensitive filename.
             'root',                   // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'sales',                  // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'secure',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'security',               // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'settings',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'signin',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'signup',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'smtp',                   // Common protocol hostname, for SMTP email.
+            'ssl',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'ssladmin',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'ssladministrator',       // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'sslwebmaster',           // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'status',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'subscribe',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'support',                // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'sysadmin',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
-            'usenet',                 // Usenet.
+            'terms',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'tos',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'trunk',                  // (Names that I think might cause issues).
+            'usenet',                 // Usenet hostname.
             'usenet',                 // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'user',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'users',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'uucp',                   // Common hostname.
             'uucp',                   // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'vlog',                   // (Names that I think might cause issues).
             'webmail',                // Common hostname.
+            'weblog',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'webmaster',              // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'webmaster',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'work',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'wpad',                   // Hostname with special meaning for proxy autodiscovery.
             'www',                    // Most common subdomain.
             'www',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'www0',                   // www alternate.
+            'www1',                   // www alternate.
+            'www2',                   // www alternate.
+            'www3',                   // www alternate.
+            'www4',                   // www alternate.
+            'www5',                   // www alternate.
+            'www6',                   // www alternate.
+            'www7',                   // www alternate.
+            'www8',                   // www alternate.
+            'www9',                   // www alternate.
+            'www10',                  // www alternate.
+            'www11',                  // www alternate.
+            'www12',                  // www alternate.
+            'www13',                  // www alternate.
+            'www14',                  // www alternate.
+            'www15',                  // www alternate.
+            'www16',                  // www alternate.
+            'www17',                  // www alternate.
+            'www18',                  // www alternate.
+            'www19',                  // www alternate.
+            'www20',                  // www alternate.
+            'www21',                  // www alternate.
+            'www22',                  // www alternate.
+            'www23',                  // www alternate.
         ];
 
         return $reserved_names;
