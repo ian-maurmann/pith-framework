@@ -13,7 +13,9 @@
  * Pith Reserved Name Utility
  * --------------------------
  *
- * @noinspection PhpClassNamingConventionInspection - Long class name is ok here.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok here.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
  */
 
 
@@ -35,8 +37,7 @@ class PithReservedNameUtility
     }
 
     /**
-     *
-     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+     * @return string[]
      */
     public function getReservedNames(): array
     {
@@ -52,6 +53,7 @@ class PithReservedNameUtility
             '.htaccess',              // Sensitive filename.
             '.htpasswd',              // Sensitive filename.
             '.well-known',            // Sensitive filename.
+            'a',                      // (Names that I think might cause issues).
             'abuse',                  // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'account',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'accounts',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
@@ -63,6 +65,7 @@ class PithReservedNameUtility
             'branch',                 // (Names that I think might cause issues).
             'broadcasthost',          // Hostname with special meaning for network broadcast hostname.
             'buy',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'c',                      // (Names that I think might cause issues).
             'clients',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'clientaccesspolicy.xml', // Sensitive filename, Silverlight cross-domain policy file.
             'contact',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
@@ -103,7 +106,9 @@ class PithReservedNameUtility
             'marketing',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'me',                     // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'mis',                    // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'mx',                     // (Names that I think might cause issues).
             'myaccount',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'myself',                 // (Names that I think might cause issues).
             'news',                   // Common hostname.
             'news',                   // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'nobody',                 // Common no-reply email address for automated processes.
@@ -142,9 +147,11 @@ class PithReservedNameUtility
             'reset',                  // (Names that I think might cause issues).
             'robots.txt',             // Sensitive filename.
             'root',                   // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            's',                      // (Names that I think might cause issues).
             'sales',                  // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'secure',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'security',               // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'self',                   // (Names that I think might cause issues).
             'settings',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'signin',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'signup',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
@@ -173,6 +180,8 @@ class PithReservedNameUtility
             'webmaster',              // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'work',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'wpad',                   // Hostname with special meaning for proxy autodiscovery.
+            'w',                      // (Names that I think might cause issues).
+            'ww',                     // www alternate.
             'www',                    // Most common subdomain.
             'www',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'www0',                   // www alternate.
@@ -199,8 +208,47 @@ class PithReservedNameUtility
             'www21',                  // www alternate.
             'www22',                  // www alternate.
             'www23',                  // www alternate.
+            'x',                      // (Names that I think might cause issues).
+            'xyz',                    // Bad www alternate.
         ];
 
         return $reserved_names;
+    }
+
+
+    /**
+     * @return string[]
+     */
+    public function getReservedStartingStringsWhenFollowedByNumber(): array
+    {
+        $reserved_starts = [
+            'abuse',
+            'admin',
+            'administrator',
+            'ftp',
+            'http',
+            'imap',
+            'mail',
+            'mailer-daemon',
+            'marketing',
+            'mod',
+            'moderator',
+            'noreply',
+            'no-reply',
+            'ns',
+            's',
+            'smtp',
+            'ssl',
+            'pop',
+            'user',
+            'w',
+            'ww',
+            'www',
+            'wwww',
+            'wwwww',
+            'xyz',
+        ];
+
+        return $reserved_starts;
     }
 }
