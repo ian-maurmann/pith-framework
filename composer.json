@@ -35,6 +35,7 @@
             "Pith\\Framework\\Internal\\": [
                 "src/framework/internal/objects/",
                 "src/framework/internal/traits/",
+                "src/framework/internal/utilities/",
                 "src/framework/internal/workflow-access-levels/",
                 "src/framework/internal/workflow-elements/"
             ],
