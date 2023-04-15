@@ -42,6 +42,19 @@
             "Pith\\Framework\\Migration\\": [
                 "data/migration/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/home/"
+            ],
+            "Pith\\Framework\\SharedThemePack\\": [
+                "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
+            ],
+            "Pith\\Framework\\SharedUiResourcePack\\": [
+                "src/shared-infrastructure/src/shared-ui-resource-pack/",
+                "src/shared-infrastructure/src/shared-ui-resource-pack/resources/"
+            ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/framework/plugins/phtml-view-adapter-2/src/"
             ],

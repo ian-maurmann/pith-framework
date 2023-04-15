@@ -94,7 +94,12 @@ class PithRoute extends PithWorkflowElement
     public string $page_title = '';
     public string $meta_keywords = '';
     public string $meta_description = '';
-    public string $meta_robots = '';
+
+    /**
+     * Holds the meta content for the meta robots tag
+     * @var string
+     */
+    public string $meta_robots = 'index, follow'; // Default to index, follow
 
 
     /**
