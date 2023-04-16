@@ -45,6 +45,7 @@
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/home/"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
