@@ -27,6 +27,7 @@ class FooterAction extends PithAction
 
     public function __construct(CopyrightYearUtility $copyright_year_utility)
     {
+        // Add Objects
         $this->copyright_year_utility = $copyright_year_utility;
     }
 

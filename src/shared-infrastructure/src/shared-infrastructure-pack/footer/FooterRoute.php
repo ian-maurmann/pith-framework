@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Home Route
- * ----------
+ * Footer Route
+ * ------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  */
@@ -15,7 +15,7 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class HomeRoute
+ * Class FooterRoute
  * @package Pith\Framework\SharedInfrastructure
  */
 class FooterRoute extends PithRoute
