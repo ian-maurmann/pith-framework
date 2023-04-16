@@ -17,12 +17,12 @@ use Pith\Framework\PithException;
 
 
 // Switch folders
-chdir('../../../'); // Switch to whatever folder you want to run the App from.
+chdir('../../../'); // <---- 1) Switch to whatever folder you want to run the App from.
 
 
 // Error logging
 ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log'); // Add location of where you want the error log to be
+ini_set('error_log', './php_errors.log'); // <---- 2) Add location of where you want the error log to be
 
 
 // Auto-Load
@@ -73,13 +73,13 @@ if($pith) {
     $pith->log = $monolog; // Give the logger (Monolog) to our App.
 
     // Add env constants to config
-    $pith->config->env_constants_file = 'env.php'; // Set the env constants filepath here
+    $pith->config->env_constants_file = './src/shared-infrastructure/env.php'; // <---- 3) Set the env constants filepath here
 
     // Add other constants to config
-    $pith->config->tracked_constants_file = 'src/constants.php'; // Set the tracked constants filepath here
+    $pith->config->tracked_constants_file = './src/shared-infrastructure/tracked-constants.php'; // <---- 4) Set the tracked constants filepath here
 
     // Add route list to config
-    $pith->config->route_list_namespace = '\\Pith\\ExamplePack\\ExampleRouteList'; // Add namespace of your Route List here
+    $pith->config->route_list_namespace = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructureRouteList'; // <---- 5) Add namespace of your Route List here
 
     // Start
     $pith->engine->start();
