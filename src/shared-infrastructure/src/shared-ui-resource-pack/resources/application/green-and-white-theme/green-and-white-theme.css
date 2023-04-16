@@ -6,54 +6,9 @@
 
 /*noinspection CssRedundantUnit*/
 @media all {
-    html, body{
-        height:  100%;
-        width:   100%;
-        margin:  0px;
-        padding: 0px;
-
-        overflow:   auto;
-        overflow-x: hidden;
-    }
-
-    img{
-        border-style: none;
-        margin:       0px;
-        padding:      0px;
-    }
-
-    tr, td{
-        margin:  0px;
-        padding: 0px;
-    }
-
-    /* ===================== */
-
-    .nobr{
-        white-space: nowrap;
-    }
-
-    nobr{
-        white-space: nowrap;
-    }
-
-    /* ===================== */
-
-    .clearfix {
-        overflow: auto;
-    }
-
-    .clearfix::after {
-        content: "";
-        clear:   both;
-        display: table;
-    }
-
-    /* ____________________________________________________________ */
-
 
     html, body{
-        background-color: #fff;
+        background-color: #f0f4f3;
     }
 
     #banner-area{
