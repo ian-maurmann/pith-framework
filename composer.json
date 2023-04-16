@@ -48,7 +48,9 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/home/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/verify-font-awesome/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/verify-font-awesome-compatibility-fork/"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
