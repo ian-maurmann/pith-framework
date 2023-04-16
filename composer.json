@@ -44,9 +44,11 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/home/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",

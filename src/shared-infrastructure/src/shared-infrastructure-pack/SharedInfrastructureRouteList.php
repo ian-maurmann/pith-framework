@@ -24,6 +24,7 @@ class SharedInfrastructureRouteList extends PithRouteList
     public array $routes = [
         ['GET', '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
         ['GET', '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
+        ['GET', '/lorem-ipsum',                                     '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
         ['GET', '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['GET', '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
     ];
