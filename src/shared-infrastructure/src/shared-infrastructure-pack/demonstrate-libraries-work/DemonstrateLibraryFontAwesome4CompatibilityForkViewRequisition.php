@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Verify Font Awesome Compatibility Fork View Requisition
- * -------------------------------------------------------
+ * Demonstrate Library: FontAwesome4 Compatibility Fork View-Requisition
+ * ---------------------------------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class VerifyFontAwesomeCompatibilityForkViewRequisition
+ * Class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class VerifyFontAwesomeCompatibilityForkViewRequisition extends PithViewRequisition
+class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'layout-view-requisition';
 

@@ -22,16 +22,13 @@ use Pith\Framework\PithRouteList;
 class SharedInfrastructureRouteList extends PithRouteList
 {
     public array $routes = [
-        ['GET', '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
-        ['GET', '/demonstrate-libraries-work',                      '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrariesWorkRoute'],
-        ['GET', '/demonstrate-library/font-awesome-4',              '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4Route'],
-        ['GET', '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
-        ['GET', '/lorem-ipsum',                                     '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
-        ['GET', '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
-        ['GET', '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
-        ['GET', '/show-library/font-awesome-compatibility',         '\\Pith\\Framework\\SharedInfrastructure\\VerifyFontAwesomeCompatibilityForkRoute'],
-
-
-
+        ['GET', '/',                                                      '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
+        ['GET', '/demonstrate-libraries-work',                            '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrariesWorkRoute'],
+        ['GET', '/demonstrate-library/font-awesome-4',                    '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4Route'],
+        ['GET', '/demonstrate-library/font-awesome-4-compatibility-fork', '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4CompatibilityForkRoute'],
+        ['GET', '/error-404',                                             '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
+        ['GET', '/lorem-ipsum',                                           '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
+        ['GET', '/resources/framework/shared-ui/{filepath:.+}',           '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
+        ['GET', '/resources/vendor/common-libraries/{filepath:.+}',       '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
     ];
 }

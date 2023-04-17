@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Verify Font Awesome Compatibility Fork Route
- * --------------------------------------------
+ * Demonstrate Library: FontAwesome4 Compatibility Fork Route
+ * ----------------------------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
@@ -16,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class VerifyFontAwesomeCompatibilityForkRoute
+ * Class DemonstrateLibraryFontAwesome4CompatibilityForkRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class VerifyFontAwesomeCompatibilityForkRoute extends PithRoute
+class DemonstrateLibraryFontAwesome4CompatibilityForkRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\VerifyFontAwesomeCompatibilityForkViewRequisition';
-    public string $view             = '[^route_folder]/verify-font-awesome-compatibility-fork-view.phtml';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition';
+    public string $view             = '[^route_folder]/demonstrate-library-font-awesome-4-compatibility-fork-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home';
