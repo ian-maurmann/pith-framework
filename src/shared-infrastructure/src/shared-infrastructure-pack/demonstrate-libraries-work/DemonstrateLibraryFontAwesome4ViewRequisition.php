@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Green & White Layout View Requisition
- * -------------------------------------
+ * Demonstrate Library: FontAwesome4 View-Requisition
+ * --------------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class GreenAndWhiteLayoutViewRequisition
+ * Class DemonstrateLibraryFontAwesome4ViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class VerifyFontAwesomeViewRequisition extends PithViewRequisition
+class DemonstrateLibraryFontAwesome4ViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'layout-view-requisition';
 

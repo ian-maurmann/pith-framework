@@ -24,11 +24,11 @@ class SharedInfrastructureRouteList extends PithRouteList
     public array $routes = [
         ['GET', '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
         ['GET', '/demonstrate-libraries-work',                      '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrariesWorkRoute'],
+        ['GET', '/demonstrate-library/font-awesome-4',              '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4Route'],
         ['GET', '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
         ['GET', '/lorem-ipsum',                                     '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
         ['GET', '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['GET', '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
-        ['GET', '/show-library/font-awesome',                       '\\Pith\\Framework\\SharedInfrastructure\\VerifyFontAwesomeRoute'],
         ['GET', '/show-library/font-awesome-compatibility',         '\\Pith\\Framework\\SharedInfrastructure\\VerifyFontAwesomeCompatibilityForkRoute'],
 
 
