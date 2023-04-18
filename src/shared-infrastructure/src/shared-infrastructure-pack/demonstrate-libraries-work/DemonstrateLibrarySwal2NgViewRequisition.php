@@ -36,7 +36,7 @@ class DemonstrateLibrarySwal2NgViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Swal2 NG stylesheet', '/resources/vendor/common-libraries/swal2-ng-11.7.3/swal2-ng.css', 'library-for-page');
-        $this->addScript('Swal2 NG script', '/resources/vendor/common-libraries/swal2-ng-11.7.3/swal2-ng.all.js', 'library-for-page');
+        $this->addStylesheet('Swal2 NG stylesheet', '/resources/vendor/common-libraries/swal2-11.7.3-ng-fork/swal2-ng.css', 'library-for-page');
+        $this->addScript('Swal2 NG script', '/resources/vendor/common-libraries/swal2-11.7.3-ng-fork/swal2-ng.all.js', 'library-for-page');
     }
 }
