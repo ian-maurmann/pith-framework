@@ -22,14 +22,10 @@ use Pith\Framework\PithViewRequisition;
  */
 class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition extends PithViewRequisition
 {
-    public string $requisition_type = 'layout-view-requisition';
+    public string $requisition_type = 'view-requisition';
 
     public function runRequisition()
     {
-        // Headers
-        $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
-        $this->addHeader('Show site runs PHP 8', 'X-Powered-By: PHP/8');
-
         // Resource roles:
         //     0 - reset
         //     1 - library-for-layout
