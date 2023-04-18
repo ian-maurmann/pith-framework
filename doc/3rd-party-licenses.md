@@ -10,7 +10,7 @@ OxCSS 0.1.4 *(semver 0.9.0)* *(Needs jquery to work)*  | MIT License | Ian Maurm
 Sizzle.js *(included inside jQuery 3.6.4)* | MIT License, with exception for linked node modules being licensed separately. | Copyright (c) JS Foundation and other contributors, https://js.foundation/ | https://github.com/jquery/sizzle/wiki
 Swal 2 NG 11.7.3 | The MIT License (MIT) | (Fork of SweetAlert2, See SweetAlert2)
 SweetAlert2 11.7.3 | The MIT License (MIT) | Copyright (c) 2014 Tristan Edwards & Limon Monte | https://sweetalert2.github.io/ https://github.com/sweetalert2/sweetalert2
-Toastr *(Needs jquery to work)*| MIT License | Copyright (c) 2017 Toastr Maintainers (Current maintainers are John Papa and Tim Ferrell) | https://codeseven.github.io/toastr/demo.html https://github.com/CodeSeven/toastr https://codeseven.github.io/toastr/
+Toastr 2.1.4 *(Needs jquery to work)*| MIT License | Copyright (c) 2017 Toastr Maintainers (Current maintainers are John Papa and Tim Ferrell) | https://codeseven.github.io/toastr/demo.html https://github.com/CodeSeven/toastr https://codeseven.github.io/toastr/
 
 
 
