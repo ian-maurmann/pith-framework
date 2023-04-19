@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 2023-04-18 | Usable, but still adding new features
 Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 2023-01-18 | Usable, but still adding new features
 Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 2022-12-17 | Usable, but still adding new features
 Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 2022-12-10 | Stable, limited features
@@ -74,6 +75,11 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.5.0 - Alpha 40** `(semver: v0.26.0)`
+- Added "Shared Infrastructure" pages, with demo pages.
+- Added common-libraries folder.
+- Added common-fonts folder.
 
 **0.8.4.0 - Alpha 39** `(semver: v0.25.0)`
 - Routing updates to allow the Router to deliver 404 error pages when FastRoute does not find a Route.
