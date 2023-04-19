@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Common Libraries Resource Route
- * -------------------------------
+ * Common Fonts Resource Route
+ * ---------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
@@ -16,13 +16,13 @@ namespace Pith\Framework\CommonLibrariesResourcePack;
 use Pith\Framework\PithRoute;
 
 /**
- * Class CommonLibrariesResourceRoute
+ * Class CommonFontsResourceRoute
  * @package Pith\Framework\SharedUiResourcePack
  */
-class CommonLibrariesResourceRoute extends PithRoute
+class CommonFontsResourceRoute extends PithRoute
 {
     public string $pack            = 'Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourcePack';
     public string $route_type      = 'resource';
     public string $access_level    = 'world';
-    public string $resource_folder = '[^route_folder]/3rd-party-vendor-libraries/';
+    public string $resource_folder = '[^route_folder]/3rd-party-vendor-fonts/';
 }
