@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'JetBrainsMonoNL';
+    src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MesloLGL';
+    src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGL-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MesloLGM';
+    src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGM-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MesloLGS';
+    src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGS-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Monda';
+    src: url('/resources/vendor/common-fonts/monda-2012/Monda-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/resources/vendor/common-fonts/open-sans-2021/static/OpenSans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/resources/vendor/common-fonts/roboto-2017/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/resources/vendor/common-fonts/ubuntu-font-family-0.83/Ubuntu-R.ttf') format('truetype');
+}
