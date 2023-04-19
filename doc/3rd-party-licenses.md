@@ -8,6 +8,7 @@ Font Awesome 4.7.0 compatibility fork | (See: Font Awesome 4.7.0 ) | (Simple fin
 Hoja Double Ring | (MIT Licensed) https://blog.codepen.io/documentation/licensing/ | Marco Barría https://twitter.com/marco_bf | https://codepen.io/fixcl/pen/ANRYgd
 JetBrains Mono font 2.304 & JetBrains Mono NL font 2.304 | SIL OPEN FONT LICENSE Version 1.1 | AUTHORS: JetBrains, Philipp Nurullin (philipp.nurullin@jetbrains.com), Konstantin Bulenkov (kb@jetbrains.com) ---------------- TYPE DESIGNER: Philipp Nurullin. PROJECT LEAD: Konstantin Bulenkov. THANKS TO: Nikita Prokopov, Eugene Auduchinok, Dmitrij Batrak, Tatiana Tulupenko, IntelliJ UX Team, + the whole JetBrains Team. | https://www.jetbrains.com/lp/mono/
 jQuery 3.6.4 | Released under the MIT license. *(Also Includes Sizzle.js https://sizzlejs.com/)* | Copyright (c) OpenJS Foundation and other contributors. | https://jquery.com/
+Meslo LG font v1.2.1 | Apache License 2.0 | Copyright 2009, 2010, 2013 André Berg | https://github.com/andreberg/Meslo-Font
 Monda font (November 2012 version) | SIL OPEN FONT LICENSE Version 1.1 | Vernon Adams (vern@newtypography.co.uk) | https://fonts.google.com/specimen/Monda
 Open Sans (2011 versions with the 2021 update versions) | SIL OPEN FONT LICENSE Version 1.1 | Copyright 2020 The Open Sans Project Authors. Designed by Steve Matteson | https://github.com/googlefonts/opensans https://fonts.google.com/specimen/Open+Sans/about
 OxCSS 0.1.4 *(semver 0.9.0)* *(Needs jquery to work)*  | MIT License | Ian Maurmann (https://github.com/ian-maurmann) | https://github.com/ian-maurmann/oxcss
