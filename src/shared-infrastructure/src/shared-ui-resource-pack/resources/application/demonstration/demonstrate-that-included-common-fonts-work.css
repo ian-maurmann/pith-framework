@@ -1,17 +1,17 @@
 @font-face {
-    font-family: 'JetBrainsMonoNL';
+    font-family: 'JetBrains Mono NL';
     src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'MesloLGL';
+    font-family: 'Meslo LG L';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGL-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'MesloLGM';
+    font-family: 'Meslo LG M';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGM-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'MesloLGS';
+    font-family: 'Meslo LG S';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGS-Regular.ttf') format('truetype');
 }
 @font-face {
@@ -19,7 +19,15 @@
     src: url('/resources/vendor/common-fonts/monda-2012/Monda-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'OpenSans';
+    font-family: 'Noto Sans';
+    src: url('/resources/vendor/common-fonts/noto-sans-2.007-with-2016-cherrypick/NotoSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Noto Sans Light';
+    src: url('/resources/vendor/common-fonts/noto-sans-2.007-with-2016-cherrypick/NotoSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Open Sans';
     src: url('/resources/vendor/common-fonts/open-sans-2021/static/OpenSans/OpenSans-Regular.ttf') format('truetype');
 }
 @font-face {
