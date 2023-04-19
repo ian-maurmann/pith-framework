@@ -34,6 +34,9 @@ declare(strict_types=1);
     <body>
         <div id="banner-area">
             Banner
+            <nav>
+                <?php $this->app->responder->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>
+            </nav>
         </div>
         <div id="content-area">
             <div id="plate">
