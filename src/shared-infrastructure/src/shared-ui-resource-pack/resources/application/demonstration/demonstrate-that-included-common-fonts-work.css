@@ -1,17 +1,25 @@
 @font-face {
+    font-family: 'IBM Plex Sans Light';
+    src: url('/resources/vendor/common-fonts/ibm-plex-sans-3.2/IBMPlexSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('/resources/vendor/common-fonts/ibm-plex-sans-3.2/IBMPlexSans-Regular.ttf') format('truetype');
+}
+@font-face {
     font-family: 'JetBrains Mono NL';
     src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Meslo LG L';
+    font-family: 'MesloLGL';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGL-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Meslo LG M';
+    font-family: 'MesloLGM';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGM-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Meslo LG S';
+    font-family: 'MesloLGS';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGS-Regular.ttf') format('truetype');
 }
 @font-face {
