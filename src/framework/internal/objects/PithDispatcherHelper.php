@@ -251,6 +251,7 @@ class PithDispatcherHelper
             'wav',
             'webp',
             'woff',
+            'woff2',
             'zip',
         ];
 
