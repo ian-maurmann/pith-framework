@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Demonstrate Library: FontAwesome4 Compatibility Fork View-Requisition
- * ---------------------------------------------------------------------
+ * Demonstrate Library: FontAwesome6 View-Requisition
+ * --------------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition
+ * Class DemonstrateLibraryFontAwesomeFree6ViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition extends PithViewRequisition
+class DemonstrateLibraryFontAwesomeFree6ViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'view-requisition';
 
@@ -36,7 +36,6 @@ class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition extends Pit
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/common-libraries/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
-        $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
+        $this->addStylesheet('Font Awesome', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
     }
 }
