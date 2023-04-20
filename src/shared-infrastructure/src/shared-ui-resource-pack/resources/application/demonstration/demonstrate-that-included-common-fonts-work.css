@@ -35,8 +35,22 @@
     src: url('/resources/vendor/common-fonts/noto-sans-2.007-with-2016-cherrypick/NotoSans-Light.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans Regular';
     src: url('/resources/vendor/common-fonts/open-sans-2021/static/OpenSans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Open Sans Variable";
+    src:
+        url("OpenSans-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
+        url("OpenSans-VariableFont_wdth,wght.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+}
+@font-face {
+    font-family: "Open Sans Italic Variable";
+    src:
+            url("OpenSans-Italic-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
+            url("OpenSans-Italic-VariableFont_wdth,wght.ttf") format("truetype-variations");
+    font-weight: 100 1000;
 }
 @font-face {
     font-family: 'Roboto';
