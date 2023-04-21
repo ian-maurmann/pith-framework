@@ -29,6 +29,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['GET', '/demonstrate-library/font-awesome-4-compatibility-fork', '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4CompatibilityForkRoute'],
         ['GET', '/demonstrate-library/font-awesome-6-free',               '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesomeFree6Route'],
         ['GET', '/demonstrate-library/hoja',                              '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaRoute'],
+        ['GET', '/demonstrate-library/hoja-fork',                         '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaForkRoute'],
         ['GET', '/demonstrate-library/oxcss',                             '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryOxCssRoute'],
         ['GET', '/demonstrate-library/swal-2-ng',                         '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrarySwal2NgRoute'],
         ['GET', '/demonstrate-library/toastr',                            '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryToastrRoute'],

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Demonstrate Library: Hoja Route
- * -------------------------------
+ * Demonstrate Library: Hoja Fork Route
+ * ------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
@@ -16,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class DemonstrateLibraryHojaRoute
+ * Class DemonstrateLibraryHojaForkRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryHojaRoute extends PithRoute
+class DemonstrateLibraryHojaForkRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaViewRequisition';
-    public string $view             = '[^route_folder]/demonstrate-library-hoja-view.phtml';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaForkViewRequisition';
+    public string $view             = '[^route_folder]/demonstrate-library-hoja-fork-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home';
