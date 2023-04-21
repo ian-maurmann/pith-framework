@@ -38,6 +38,7 @@
 
     b, strong{
         font-weight: bold;
+        font-variation-settings: "wght" 700;
     }
 
     i, em{
