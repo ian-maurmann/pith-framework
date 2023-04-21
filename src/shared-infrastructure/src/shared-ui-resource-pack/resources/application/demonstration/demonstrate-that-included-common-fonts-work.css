@@ -22,6 +22,18 @@
     src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
 @font-face {
+    font-family: 'Liberation Mono';
+    src: url('/resources/vendor/common-fonts/liberation-fonts-2.1.5/LiberationMono-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Liberation Sans';
+    src: url('/resources/vendor/common-fonts/liberation-fonts-2.1.5/LiberationSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Liberation Serif';
+    src: url('/resources/vendor/common-fonts/liberation-fonts-2.1.5/LiberationSerif-Regular.ttf') format('truetype');
+}
+@font-face {
     font-family: 'Merriweather';
     src: url('/resources/vendor/common-fonts/merriweather-2.002/Merriweather-Regular.ttf') format('truetype');
 }
