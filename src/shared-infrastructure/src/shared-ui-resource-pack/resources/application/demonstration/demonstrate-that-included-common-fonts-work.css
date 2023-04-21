@@ -22,6 +22,10 @@
     src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
 @font-face {
+    font-family: 'Merriweather';
+    src: url('/resources/vendor/common-fonts/merriweather-2.002/Merriweather-Regular.ttf') format('truetype');
+}
+@font-face {
     font-family: 'MesloLGL';
     src: url('/resources/vendor/common-fonts/meslo-lg-1.2.1/dist/MesloLGL-Regular.ttf') format('truetype');
 }
