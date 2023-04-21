@@ -1,9 +1,9 @@
 /*!
-* sweetalert2 No-Grief Fork v11.7.3
+* SweetAlert2 No-Anthems Fork v11.7.3
 * Released under the MIT License.
 *
 * Fork of:
-* sweetalert2 v11.7.3
+* SweetAlert2 v11.7.3
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -3975,10 +3975,10 @@
     }
   };
 
-  // De-activated to not grief the Soviets into nuking our webservers
-  // -------------------------------------------------------------------------------------
+  // De-activated to not grief the Soviets into nuking us.
+  // =====================================================
   //    [Removed]
-  // -------------------------------------------------------------------------------------
+  // =====================================================
 
   // Assign instance methods from src/instanceMethods/*.js to prototype
   Object.assign(SweetAlert.prototype, instanceMethods);

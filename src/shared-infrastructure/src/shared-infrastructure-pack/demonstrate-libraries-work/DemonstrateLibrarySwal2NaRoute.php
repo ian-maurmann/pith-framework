@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Demonstrate Library: Swal 2 NG Route
+ * Demonstrate Library: Swal2NA Route
  * ------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
@@ -16,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class DemonstrateLibrarySwal2NgRoute
+ * Class DemonstrateLibrarySwal2NaRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibrarySwal2NgRoute extends PithRoute
+class DemonstrateLibrarySwal2NaRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrarySwal2NgViewRequisition';
-    public string $view             = '[^route_folder]/demonstrate-library-swal2-ng-view.phtml';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrarySwal2NaViewRequisition';
+    public string $view             = '[^route_folder]/demonstrate-library-swal2na-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home';
