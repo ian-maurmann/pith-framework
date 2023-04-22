@@ -19,6 +19,8 @@
 
         overflow: auto;
         overflow-x: hidden;
+
+        font-weight: 400;
     }
 
     img {
@@ -37,7 +39,7 @@
     /* ================== */
 
     b, strong{
-        font-weight: bold;
+        font-weight: 700;
         font-variation-settings: "wght" 700;
     }
 
