@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Demonstrate Library: Hoja Fork Route
+ * Demonstrate Library: Hoja Aquamarine Route
  * ------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
@@ -16,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class DemonstrateLibraryHojaForkRoute
+ * Class DemonstrateLibraryHojaAquamarineRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryHojaForkRoute extends PithRoute
+class DemonstrateLibraryHojaAquamarineRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaForkViewRequisition';
-    public string $view             = '[^route_folder]/demonstrate-library-hoja-fork-view.phtml';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaAquamarineViewRequisition';
+    public string $view             = '[^route_folder]/demonstrate-library-hoja-aquamarine-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home';

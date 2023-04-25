@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Demonstrate Library: Hoja Fork View-Requisition
+ * Demonstrate Library: Hoja Aquamarine View-Requisition
  * -----------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class DemonstrateLibraryHojaForkViewRequisition
+ * Class DemonstrateLibraryHojaAquamarineViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryHojaForkViewRequisition extends PithViewRequisition
+class DemonstrateLibraryHojaAquamarineViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'view-requisition';
 
@@ -36,6 +36,6 @@ class DemonstrateLibraryHojaForkViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Hoja Double Ring stylesheet', '/resources/vendor/common-libraries/hoja-double-ring-blue/hoja-double-ring-blue.css', 'library-for-page');
+        $this->addStylesheet('Hoja Aquamarine stylesheet', '/resources/vendor/common-libraries/hoja-aquamarine/hoja-aquamarine.css', 'library-for-page');
     }
 }
