@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Demonstrate Library: Hoja Aquamarine Route
- * ------------------------------------------
+ * Demonstrate Library: Hoja Blue Route
+ * ------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
@@ -16,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class DemonstrateLibraryHojaAquamarineRoute
+ * Class DemonstrateLibraryHojaBlueRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryHojaAquamarineRoute extends PithRoute
+class DemonstrateLibraryHojaBlueRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaAquamarineViewRequisition';
-    public string $view             = '[^route_folder]/demonstrate-library-hoja-aquamarine-view.phtml';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaBlueViewRequisition';
+    public string $view             = '[^route_folder]/demonstrate-library-hoja-blue-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home';
