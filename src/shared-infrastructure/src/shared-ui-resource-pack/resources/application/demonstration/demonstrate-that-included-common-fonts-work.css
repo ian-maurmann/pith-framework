@@ -25,6 +25,34 @@
     src: url('/resources/vendor/common-fonts/iosevka-webfont-22.1.0/iosevka-regular.woff2') format('woff2');
 }
 @font-face {
+    font-family: 'Iosevka VardanPro Term';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url('/resources/vendor/common-fonts/iosevka-vardanpro-term-2021/iosevka-vardanpro-term-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Iosevka VardanPro Term Lucida-style';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url('/resources/vendor/common-fonts/iosevka-vardanpro-term-2021/iosevka-vardanpro-term-lucida-style-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Iosevka VardanPro Term Monaco-style';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url('/resources/vendor/common-fonts/iosevka-vardanpro-term-2021/iosevka-vardanpro-term-monaco-style-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Iosevka VardanPro Term Ubuntu-style';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url('/resources/vendor/common-fonts/iosevka-vardanpro-term-2021/iosevka-vardanpro-term-ubuntu-style-regular.ttf') format('truetype');
+}
+@font-face {
     font-family: 'JetBrains Mono NL';
     src: url('/resources/vendor/common-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
