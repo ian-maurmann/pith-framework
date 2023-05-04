@@ -16,6 +16,7 @@ Noto Sans Mono 2.012 (2023 version)| SIL OPEN FONT LICENSE Version 1.1 | Copyrig
 Open Sans (2011 versions with the 2021 update versions) | SIL OPEN FONT LICENSE Version 1.1 | Copyright 2020 The Open Sans Project Authors. Designed by Steve Matteson | https://github.com/googlefonts/opensans , https://fonts.google.com/specimen/Open+Sans/about
 Roboto font (2017 version) | Apache License 2.0 | Copyright 2011 Google Inc. Designed for Google by Christian Robertson. Released to the public by Google through Google Fonts under the Apache License version 2.0. | https://fonts.google.com/specimen/Roboto/about
 Ubuntu font 0.83 | Ubuntu Font Licence 1.0 | Copyright 2010,2011 Canonical Ltd. The development is being funded by Canonical Ltd on behalf the wider Free Software community and the Ubuntu project.  The technical font design work and implementation is being undertaken by Dalton Maag. Ubuntu and Canonical are registered trademarks of Canonical Ltd. | https://design.ubuntu.com/font , https://fonts.google.com/specimen/Ubuntu
+VardanPro Fonts (Custom compiled fonts based on Iosevka font.) | The font is licensed under SIL OFL Version 1.1. The support code is licensed under Berkeley Software Distribution license. | Compiled and customized by Vardan Pogosian, from the Iosevka font created by Belleve Invis (Renzhi Li). --- See: Iosevka font. | https://github.com/varp/VardanPro-Fonts https://old.reddit.com/r/PHP/comments/igxjm2/precompiled_iosevka_fonts
 
 
 
