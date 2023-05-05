@@ -22,7 +22,7 @@ use Pith\Framework\PithRoute;
 class GreenLayoutApplicationResourceRoute extends PithRoute
 {
     public string $pack            = 'Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\GreenLayoutResourcePack';
-    public string $route_type      = 'resource';
+    public string $route_type      = 'resource-folder';
     public string $access_level    = 'world';
     public string $resource_folder = '[^route_folder]/application/';
 }
