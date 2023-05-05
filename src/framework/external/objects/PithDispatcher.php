@@ -304,33 +304,15 @@ class PithDispatcher
         // Tap on the Access Level
         $this->tapAccess($route);
 
-        // Get the relative Resource Folder path
-        // $resource_folder_expression = (string) $route->resource_folder;
-        // $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
-
         // Get the relative Resource path
         $resource_path_expression = (string) $route->resource_path;
         $resource_file_path       = $this->expression_utility->getViewPathFromExpression($resource_path_expression, $pack_folder, $route_folder);
 
-        // Get the relative Filepath
-        // $route_parameters = $this->app->request->attributes->get('route_parameters');
-        // $request_filepath = (string) $route_parameters['filepath'];
-
-        // Get the Real Resource Folder path
-        // $real_resource_folder_path = realpath(ltrim($resource_folder_path, '/'));
-
-        // Check that the Real Resource Folder is a directory
-        // $this->helper->ensureRealResourceFolderIsADirectory($real_resource_folder_path);
-
         // Get the Real Filepath
-        //$real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
         $real_filepath = realpath(ltrim($resource_file_path, '/'));
 
         // Check that the Real Filepath is a file
         $this->helper->ensureRealFilepathIsAFile($real_filepath);
-
-        // Check that the Real Filepath is really inside the Real Resource Folder
-        //$this->helper->ensureRealFilepathIsInsideRealResourceFolder($real_filepath, $real_resource_folder_path);
 
         // Get the base name
         $basename = basename($real_filepath);
@@ -338,8 +320,8 @@ class PithDispatcher
         // Don't serve dot files. Throw if dot file.
         $this->helper->ensureFilenameIsNotDotFile($basename, $real_filepath);
 
-        // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
-        // $file_extension = $this->helper->getResourceFileExtension($basename);
+        // Get the file extension
+        // (Since we're specifying the exact file to serve, we aren't going to forbid specific file extensions here)
         $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
 
         // Set resource-type headers
