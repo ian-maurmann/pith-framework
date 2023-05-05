@@ -58,7 +58,7 @@ class PithRoute extends PithWorkflowElement
     use PithGetObjectClassDirectoryTrait;
 
     /**
-     * Holds the name of the access level
+     * Holds the name of the access level, or namespace of an access level object
      * @var string
      */
     public string $access_level; // Default to null
@@ -68,6 +68,12 @@ class PithRoute extends PithWorkflowElement
      * @var string
      */
     public string $action = '\\Pith\\Framework\\Internal\\EmptyAction'; // Use empty action as default
+
+    /**
+     * Holds the name of the cache level, or string for Header Cache-Control
+     * @var string
+     */
+    public string $cache_level = ''; // Default to empty string
 
     /**
      * Holds the workflow element type as string
