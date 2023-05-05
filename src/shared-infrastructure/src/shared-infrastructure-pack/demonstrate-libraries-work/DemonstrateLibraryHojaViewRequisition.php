@@ -2,7 +2,7 @@
 
 /**
  * Demonstrate Library: Hoja View-Requisition
- * --------------------------------------------------
+ * ------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
