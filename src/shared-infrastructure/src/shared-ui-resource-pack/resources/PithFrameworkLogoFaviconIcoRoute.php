@@ -21,7 +21,7 @@ use Pith\Framework\PithRoute;
  */
 class PithFrameworkLogoFaviconIcoRoute extends PithRoute
 {
-    public string $route_type    = 'single-resource';
+    public string $route_type    = 'resource-file';
     public string $pack          = 'Pith\\Framework\\SharedUiResourcePack\\SharedUiResourcePack';
     public string $access_level  = 'world';
     public string $resource_path = '[^route_folder]/favicons/favicon.ico';
