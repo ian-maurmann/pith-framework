@@ -97,7 +97,7 @@ class PithDispatcher
             // Resource from a Resource Folder
             case 'resource-folder':
                 try{
-                    $this->dispatchResource($route);
+                    $this->dispatchResourceFromResourceFolder($route);
                 } catch (PithException $pith_exception) {
                     // Set headers for 404
                     http_response_code(404);
@@ -223,7 +223,7 @@ class PithDispatcher
      *
      * @noinspection PhpIncludeInspection
      */
-    public function dispatchResource(PithRoute $route)
+    public function dispatchResourceFromResourceFolder(PithRoute $route)
     {
         // ROUTE
         // Tap on the Route
@@ -240,7 +240,7 @@ class PithDispatcher
         $this->tapAccess($route);
 
         // Get the relative Resource Folder path
-        $resource_folder_expression = (string) $route->resource_folder;
+        $resource_folder_expression = $route->resource_folder;
         $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
 
         // Get the relative Filepath
@@ -305,7 +305,7 @@ class PithDispatcher
         $this->tapAccess($route);
 
         // Get the relative Resource path
-        $resource_path_expression = (string) $route->resource_path;
+        $resource_path_expression = $route->resource_path;
         $resource_file_path       = $this->expression_utility->getViewPathFromExpression($resource_path_expression, $pack_folder, $route_folder);
 
         // Get the Real Filepath
