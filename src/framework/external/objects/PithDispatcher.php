@@ -96,9 +96,17 @@ class PithDispatcher
 
             // Resources
             case 'resource':
-
                 try{
                     $this->dispatchResource($route);
+                } catch (PithException $pith_exception) {
+                    // Set headers for 404
+                    http_response_code(404);
+                }
+                break;
+            // Single Resource
+            case 'single-resource':
+                try{
+                    $this->dispatchSingleResource($route);
                 } catch (PithException $pith_exception) {
                     // Set headers for 404
                     http_response_code(404);
@@ -262,6 +270,77 @@ class PithDispatcher
 
         // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
         $file_extension = $this->helper->getResourceFileExtension($basename);
+
+        // Set resource-type headers
+        $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
+
+        // Set caching headers
+        $this->helper->setCachingHeaders($route);
+
+        // Serve file
+        require $real_filepath;
+    }
+
+    /**
+     * @param PithRoute $route
+     * @throws PithException
+     * @throws ReflectionException
+     *
+     * @noinspection PhpIncludeInspection
+     */
+    public function dispatchSingleResource(PithRoute $route)
+    {
+        // ROUTE
+        // Tap on the Route
+        $route_info   = $this->tapRoute($route);
+        $route_folder = $route_info['route_folder'];
+
+        // PACK
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
+
+        // ACCESS
+        // Tap on the Access Level
+        $this->tapAccess($route);
+
+        // Get the relative Resource Folder path
+        // $resource_folder_expression = (string) $route->resource_folder;
+        // $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
+
+        // Get the relative Resource path
+        $resource_path_expression = (string) $route->resource_path;
+        $resource_file_path       = $this->expression_utility->getViewPathFromExpression($resource_path_expression, $pack_folder, $route_folder);
+
+        // Get the relative Filepath
+        // $route_parameters = $this->app->request->attributes->get('route_parameters');
+        // $request_filepath = (string) $route_parameters['filepath'];
+
+        // Get the Real Resource Folder path
+        // $real_resource_folder_path = realpath(ltrim($resource_folder_path, '/'));
+
+        // Check that the Real Resource Folder is a directory
+        // $this->helper->ensureRealResourceFolderIsADirectory($real_resource_folder_path);
+
+        // Get the Real Filepath
+        //$real_filepath = realpath(ltrim($resource_folder_path . $request_filepath, '/'));
+        $real_filepath = realpath(ltrim($resource_file_path, '/'));
+
+        // Check that the Real Filepath is a file
+        $this->helper->ensureRealFilepathIsAFile($real_filepath);
+
+        // Check that the Real Filepath is really inside the Real Resource Folder
+        //$this->helper->ensureRealFilepathIsInsideRealResourceFolder($real_filepath, $real_resource_folder_path);
+
+        // Get the base name
+        $basename = basename($real_filepath);
+
+        // Don't serve dot files. Throw if dot file.
+        $this->helper->ensureFilenameIsNotDotFile($basename, $real_filepath);
+
+        // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
+        // $file_extension = $this->helper->getResourceFileExtension($basename);
+        $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
 
         // Set resource-type headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
