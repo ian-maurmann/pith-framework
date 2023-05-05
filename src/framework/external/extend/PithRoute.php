@@ -105,7 +105,7 @@ class PithRoute extends PithWorkflowElement
      * Holds expression of a single resource file path
      * @var string
      */
-    public string $resource_path;
+    public string $resource_path = '';
 
     /**
      * Specifies the type of route, for how the framework will handle it

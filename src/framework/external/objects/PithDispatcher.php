@@ -106,7 +106,7 @@ class PithDispatcher
             // Single Resource File
             case 'resource-file':
                 try{
-                    $this->dispatchSingleResource($route);
+                    $this->dispatchResourceFileRoute($route);
                 } catch (PithException $pith_exception) {
                     // Set headers for 404
                     http_response_code(404);
@@ -288,7 +288,7 @@ class PithDispatcher
      *
      * @noinspection PhpIncludeInspection
      */
-    public function dispatchSingleResource(PithRoute $route)
+    public function dispatchResourceFileRoute(PithRoute $route)
     {
         // ROUTE
         // Tap on the Route
