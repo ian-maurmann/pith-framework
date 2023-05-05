@@ -94,7 +94,19 @@ class PithRoute extends PithWorkflowElement
     public string $pack;
 
     public string $preparer = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
+
+    /**
+     * Holds string expression of the resource folder path
+     * @var string
+     */
     public string $resource_folder;
+
+    /**
+     * Holds expression of a single resource file path
+     * @var string
+     */
+    public string $resource_path;
+    
     public string $route_type;
 
     public string $page_title = '';
