@@ -26,6 +26,7 @@ namespace Pith\Framework\Internal;
 
 
 use Pith\Framework\PithException;
+use Pith\Framework\PithRoute;
 
 /**
  * Class PithDispatcherHelper
@@ -260,6 +261,62 @@ class PithDispatcherHelper
             $file_byte_size = filesize($real_filepath);
 
             header("Content-length: $file_byte_size");
+        }
+    }
+
+    /**
+     * @param PithRoute $route
+     */
+    public function setCachingHeaders(PithRoute $route)
+    {
+        $cache_level     = $route->cache_level;
+        $has_cache_level = !empty($cache_level);
+
+        // Caching Levels:
+        //    'unknown'
+        //    'private-always-reload-file'
+        //    'public-always-reload-file'
+        //    'private-cache-application-file'
+        //    'public-cache-application-file'
+        //    'public-cache-unchanging-application-file'
+        //    'public-cache-unchanging-library-file' (alias 'font', 'library')
+        //    ELSE: give exact header to use, as a string
+
+        if ($has_cache_level){
+            // Cache Levels
+            $cache_control_for_cache_level = match ($cache_level) {
+                'always-recreate-even-back-button'
+                => 'Cache-Control: no-store, no-cache, private, max-age=0, must-revalidate, proxy-revalidate',
+
+                'unknown',
+                'private-always-reload-file'
+                => 'Cache-Control: no-cache, private',
+
+                'public-always-reload-file'
+                => 'Cache-Control: no-cache, public',
+
+                'private-cache-application-file'
+                => 'Cache-Control: private, max-age=31536000, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                'public-cache-application-file'
+                => 'Cache-Control: public, max-age=31536000, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                'public-cache-unchanging-application-file',
+                'public-cache-unchanging-library-file',
+                'font',
+                'library'
+                => 'Cache-Control: public, max-age=31536000, immutable, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                default
+                => '',
+            };
+
+            // Get the Cache-Control
+            $has_cache_control_for_cache_level = !empty($cache_control_for_cache_level);
+            $cache_control = ($has_cache_control_for_cache_level) ? $cache_control_for_cache_level : $cache_level;
+
+            // Set the Cache-Control header
+            header($cache_control, true);
         }
     }
 }

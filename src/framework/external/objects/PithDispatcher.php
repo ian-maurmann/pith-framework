@@ -263,8 +263,11 @@ class PithDispatcher
         // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
         $file_extension = $this->helper->getResourceFileExtension($basename);
 
-        // Set resource headers
+        // Set resource-type headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
+
+        // Set caching headers
+        $this->helper->setCachingHeaders($route);
 
         // Serve file
         require $real_filepath;
