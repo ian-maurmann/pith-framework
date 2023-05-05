@@ -95,7 +95,7 @@ class PithDispatcher
                 break;
 
             // Resources
-            case 'resource':
+            case 'resource-folder':
                 try{
                     $this->dispatchResource($route);
                 } catch (PithException $pith_exception) {
