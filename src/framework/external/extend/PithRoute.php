@@ -99,13 +99,13 @@ class PithRoute extends PithWorkflowElement
      * Holds string expression of the resource folder path
      * @var string
      */
-    public string $resource_folder;
+    public string $resource_folder = '';
 
     /**
      * Holds expression of a single resource file path
      * @var string
      */
-    public string $resource_path;
+    public string $resource_path = '';
 
     /**
      * Specifies the type of route, for how the framework will handle it
