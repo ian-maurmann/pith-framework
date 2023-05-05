@@ -110,7 +110,7 @@ class PithRoute extends PithWorkflowElement
     /**
      * Specifies the type of route, for how the framework will handle it
      *
-     * Possible values: 'layout', 'page', 'partial', 'error-page', 'endpoint', 'single-resource', 'resource-folder'
+     * Possible values: 'layout', 'page', 'partial', 'error-page', 'endpoint', 'resource-file', 'resource-folder'
      * @var string
      */
     public string $route_type;

@@ -94,7 +94,7 @@ class PithDispatcher
                 $this->dispatchRoute($route);
                 break;
 
-            // Resources
+            // Resource from a Resource Folder
             case 'resource-folder':
                 try{
                     $this->dispatchResource($route);
@@ -103,8 +103,8 @@ class PithDispatcher
                     http_response_code(404);
                 }
                 break;
-            // Single Resource
-            case 'single-resource':
+            // Single Resource File
+            case 'resource-file':
                 try{
                     $this->dispatchSingleResource($route);
                 } catch (PithException $pith_exception) {
