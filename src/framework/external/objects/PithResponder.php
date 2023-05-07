@@ -135,13 +135,12 @@ class PithResponder
      */
     public function insertResourceFilesByRole(string $heading_comment_message, array $resource_files, string $role_to_insert, int $indent = 0)
     {
+        $is_first = true;
         foreach ($resource_files as $resource_file){
             // Extract variables
             $file_type           = $resource_file['resource_type'];
             $file_path           = $resource_file['filepath'];
             $file_role           = $resource_file['role'];
-
-            $is_first            = true;
             $is_already_inserted = in_array($file_path, $this->resource_files_inserted);
             $is_role_to_insert   = $file_role === $role_to_insert;
             $is_to_be_added      = $is_role_to_insert && !$is_already_inserted;
@@ -153,6 +152,8 @@ class PithResponder
 
                     echo "\r\n";
                     echo $comment;
+
+                    $is_first = false;
                 }
                 if($file_type === 'script'){
                     $this->insertScript($file_path, $indent);
