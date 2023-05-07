@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Demonstrate Library: OxCSS View-Requisition
- * -------------------------------------------
+ * Demonstrate Library: Bootstrap5 View-Requisition
+ * ------------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class DemonstrateLibraryOxCssViewRequisition
+ * Class DemonstrateLibraryBootstrap5ViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateLibraryOxCssViewRequisition extends PithViewRequisition
+class DemonstrateLibraryBootstrap5ViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'view-requisition';
 
@@ -35,9 +35,11 @@ class DemonstrateLibraryOxCssViewRequisition extends PithViewRequisition
         //     5 - application-for-page
         //     6 - application-for-partial
 
+        //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
         // Resources
-        $this->addStylesheet('OxCSS stylesheet', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-page');
-        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
-        $this->addScript('OxCSS script', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-page');
+        $this->addStylesheet('Bootstrap 5 stylesheet', '/resources/vendor/common-libraries/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css', 'library-for-page');
+        $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/common-libraries/bootstrap-icons-font-1.10.5/font/bootstrap-icons.min.css', 'library-for-page');
+        $this->addScript('Bootstrap 5 Bundle script', '/resources/vendor/common-libraries/bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js', 'library-for-page');
     }
 }
