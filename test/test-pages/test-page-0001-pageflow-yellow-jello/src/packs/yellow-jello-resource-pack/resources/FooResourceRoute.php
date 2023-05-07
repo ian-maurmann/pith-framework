@@ -21,7 +21,7 @@ use Pith\Framework\PithRoute;
 class FooResourceRoute extends PithRoute
 {
     public string $pack            = 'Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\YellowJelloResourcePack';
-    public string $route_type      = 'resource';
+    public string $route_type      = 'resource-folder';
     public string $access_level    = 'world';
     public string $resource_folder = '[^route_folder]/3rd-party-libraries/foo-v0.0.0/';
 }

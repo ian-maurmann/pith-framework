@@ -35,11 +35,32 @@
             "Pith\\Framework\\Internal\\": [
                 "src/framework/internal/objects/",
                 "src/framework/internal/traits/",
+                "src/framework/internal/utilities/",
                 "src/framework/internal/workflow-access-levels/",
                 "src/framework/internal/workflow-elements/"
             ],
             "Pith\\Framework\\Migration\\": [
                 "data/migration/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-nav-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demonstrate-libraries-work/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/"
+            ],
+            "Pith\\Framework\\SharedThemePack\\": [
+                "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
+            ],
+            "Pith\\Framework\\SharedUiResourcePack\\": [
+                "src/shared-infrastructure/src/shared-ui-resource-pack/",
+                "src/shared-infrastructure/src/shared-ui-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\CommonLibrariesResourcePack\\": [
+                "src/shared-infrastructure/src/common-libraries-pack/"
             ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/framework/plugins/phtml-view-adapter-2/src/"
@@ -71,6 +92,7 @@
             "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/bottom-quote",
+                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/error-pages",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
                 "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",

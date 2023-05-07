@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -58,7 +58,7 @@ class PithRoute extends PithWorkflowElement
     use PithGetObjectClassDirectoryTrait;
 
     /**
-     * Holds the name of the access level
+     * Holds the name of the access level, or namespace of an access level object
      * @var string
      */
     public string $access_level; // Default to null
@@ -68,6 +68,12 @@ class PithRoute extends PithWorkflowElement
      * @var string
      */
     public string $action = '\\Pith\\Framework\\Internal\\EmptyAction'; // Use empty action as default
+
+    /**
+     * Holds the name of the cache level, or string for Header Cache-Control
+     * @var string
+     */
+    public string $cache_level = ''; // Default to empty string
 
     /**
      * Holds the workflow element type as string
@@ -88,13 +94,36 @@ class PithRoute extends PithWorkflowElement
     public string $pack;
 
     public string $preparer = '\\Pith\\Framework\\Internal\\EmptyPreparer'; // Use empty preparer as default
-    public string $resource_folder;
+
+    /**
+     * Holds string expression of the resource folder path
+     * @var string
+     */
+    public string $resource_folder = '';
+
+    /**
+     * Holds expression of a single resource file path
+     * @var string
+     */
+    public string $resource_path = '';
+
+    /**
+     * Specifies the type of route, for how the framework will handle it
+     *
+     * Possible values: 'layout', 'page', 'partial', 'error-page', 'endpoint', 'resource-file', 'resource-folder'
+     * @var string
+     */
     public string $route_type;
 
     public string $page_title = '';
     public string $meta_keywords = '';
     public string $meta_description = '';
-    public string $meta_robots = '';
+
+    /**
+     * Holds the meta content for the meta robots tag
+     * @var string
+     */
+    public string $meta_robots = 'index, follow'; // Default to index, follow
 
 
     /**

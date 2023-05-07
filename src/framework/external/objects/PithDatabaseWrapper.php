@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2022 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -191,6 +191,20 @@ class PithDatabaseWrapper
 
         $results = false;
         $number_of_args = func_num_args();
+
+        // ===============================================================
+        // For when we need to measure query performance
+
+        // Before:
+        // $start_hires_time        = hrtime(true);
+        // $start_memory            = memory_get_usage(false);
+
+        // After
+        // $end_hires_time          = hrtime(true);
+        // $end_memory              = memory_get_usage(false);
+        // $hires_time_elapsed      = $end_hires_time - $start_hires_time;
+        // $memory_jump_after_query = $end_memory - $start_memory;
+        // ===============================================================
 
         // Query without parameters
         if ($number_of_args === 1) {
