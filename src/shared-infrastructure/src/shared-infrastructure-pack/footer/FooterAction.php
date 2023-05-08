@@ -16,6 +16,7 @@ namespace Pith\Framework\SharedInfrastructure;
 
 use IKM\CopyrightYearUtility\CopyrightYearUtility;
 use Pith\Framework\PithAction;
+use Pith\Framework\PithInfo;
 
 /**
  * Class FooterAction
@@ -24,17 +25,19 @@ use Pith\Framework\PithAction;
 class FooterAction extends PithAction
 {
     private CopyrightYearUtility $copyright_year_utility;
+    private PithInfo $pith_info;
 
-    public function __construct(CopyrightYearUtility $copyright_year_utility)
+    public function __construct(CopyrightYearUtility $copyright_year_utility, PithInfo $pith_info)
     {
         // Add Objects
         $this->copyright_year_utility = $copyright_year_utility;
+        $this->pith_info = $pith_info;
     }
 
     public function runAction()
     {
         // Variables
-        $version_text    = $this->app->info->getVersionSlug();
+        $version_text    = $this->pith_info->getVersionSlug();
         $copyright_years = $this->copyright_year_utility->getYearsByFirstYear('2008');
 
         // Push to Preparer
