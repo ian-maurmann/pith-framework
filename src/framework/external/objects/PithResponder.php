@@ -118,7 +118,7 @@ class PithResponder
 
         $resource_files = $this->resource_files;
 
-        $this->insertResourceFilesByRole('Reset',                             $resource_files, 'reset',                   $indent);
+        $this->insertResourceFilesByRole('CSS Resets',                        $resource_files, 'reset',                   $indent);
         $this->insertResourceFilesByRole('Library Resources for Layout',      $resource_files, 'library-for-layout',      $indent);
         $this->insertResourceFilesByRole('Library Resources for Page',        $resource_files, 'library-for-page',        $indent);
         $this->insertResourceFilesByRole('Library Resources for Partial',     $resource_files, 'library-for-partial',     $indent);
