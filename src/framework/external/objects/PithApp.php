@@ -44,7 +44,6 @@ class PithApp
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public PithEscapeUtility   $escape;
-    public PithInfo            $info;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
     public object              $registry; // TODO
     public Request             $request;
@@ -62,7 +61,6 @@ class PithApp
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
      * @param PithEscapeUtility   $escape
-     * @param PithInfo            $info
      * @param PithResponder       $responder
      * @param PithRouter          $router
      */
@@ -74,21 +72,17 @@ class PithApp
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
         PithEscapeUtility   $escape,
-        PithInfo            $info,
         PithResponder       $responder,
         PithRouter          $router
     )
     {
         $this->helper         = $helper;
         $this->access_control = $access_control;
-     // $this->authenticator  = null; // TODO
         $this->config         = $config;
         $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->escape         = $escape;
-        $this->info           = $info;
-     // $this->registry       = null; // TODO
         $this->request        = Request::createFromGlobals();
         $this->responder      = $responder;
         $this->router         = $router;
