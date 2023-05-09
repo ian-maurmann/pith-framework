@@ -33,6 +33,39 @@ $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, 
 $container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
 
 
+
+// ========================================================================================
+
+
+
+// Load the Pith Dependency Injection Wrapper
+$dependency_injection_wrapper = null;
+try {
+    // Pith Framework App
+    $dependency_injection_wrapper = $container->get('\\Pith\\Framework\\PithDependencyInjection');
+} catch (\DI\DependencyException $exception) {
+    throw new PithException(
+        'Pith Framework Exception 5009: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
+        5009,
+        $exception
+    );
+} catch (\DI\NotFoundException $exception) {
+    throw new PithException(
+        'Pith Framework Exception 5008: The container encountered a \DI\NotFoundException exception. Message: ' . $exception->getMessage(),
+        5008,
+        $exception
+    );
+}
+
+// Add the container to the Dependency Injection Wrapper
+$dependency_injection_wrapper->container = $container;
+
+
+
+// ========================================================================================
+
+
+
 // Load Pith
 $pith = null;
 try {

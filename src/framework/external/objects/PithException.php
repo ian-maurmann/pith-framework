@@ -64,6 +64,8 @@
  *     5005 - Loading route --> Container: DependencyException.
  *     5006 - Loading route list --> Container: DependencyException.
  *     5007 - Loading route list --> Container: NotFoundException.
+ *     5008 - Index Front Controller - Dependency Injection Wrapper - NotFoundException.
+ *     5009 - Index Front Controller - Dependency Injection Wrapper - DependencyException.
  *
  *
  *     6xxx - Database Exceptions Recoverable
