@@ -32,6 +32,8 @@ use Pith\Framework\Internal\PithEscapeUtility;
  */
 class PithPreparer extends PithWorkflowElement
 {
+    protected PithDependencyInjection $dependency_injection;
+
     /**
      * @var string
      */
@@ -53,11 +55,12 @@ class PithPreparer extends PithWorkflowElement
     /**
      * @param object $prepare_vars_object
      */
-    public function provisionPreparer(object $prepare_vars_object)
+    public function provisionPreparer(object $prepare_vars_object, PithDependencyInjection $dependency_injection, PithEscapeUtility $escape)
     {
-        $this->prepare = $prepare_vars_object;
-        $this->view    = (object)[];
-        $this->escape  = $this->app->container->get('\\Pith\\Framework\\Internal\\PithEscapeUtility');
+        $this->prepare              = $prepare_vars_object;
+        $this->view                 = (object)[];
+        $this->escape               = $escape;
+        $this->dependency_injection = $dependency_injection;
     }
 
     /**

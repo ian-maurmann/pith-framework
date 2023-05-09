@@ -27,6 +27,7 @@ namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithDispatcherHelper;
+use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\Internal\PithExpressionUtility;
 use ReflectionException;
 
@@ -43,19 +44,33 @@ class PithDispatcher
     private PithDispatcherHelper $helper;
 
     // Objects
-    private PithExpressionUtility $expression_utility;
-    private PithAccessControl     $access_control;
+    private PithExpressionUtility   $expression_utility;
+    private PithAccessControl       $access_control;
+    private PithDependencyInjection $dependency_injection;
+    private PithEscapeUtility       $escape_utility;
 
 
     /**
-     * @param PithDispatcherHelper  $helper
-     * @param PithExpressionUtility $expression_utility
+     * @param PithDispatcherHelper    $helper
+     * @param PithExpressionUtility   $expression_utility
+     * @param PithAccessControl       $access_control
+     * @param PithDependencyInjection $dependency_injection
+     * @param PithEscapeUtility       $escape_utility
      */
-    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility, PithAccessControl $access_control)
+    public function __construct
+    (
+        PithDispatcherHelper    $helper,
+        PithExpressionUtility   $expression_utility,
+        PithAccessControl       $access_control,
+        PithDependencyInjection $dependency_injection,
+        PithEscapeUtility       $escape_utility
+    )
     {
-        $this->helper             = $helper;
-        $this->expression_utility = $expression_utility;
-        $this->access_control     = $access_control;
+        $this->helper               = $helper;
+        $this->expression_utility   = $expression_utility;
+        $this->access_control       = $access_control;
+        $this->dependency_injection = $dependency_injection;
+        $this->escape_utility       = $escape_utility;
     }
 
 
@@ -459,7 +474,7 @@ class PithDispatcher
         $preparer->setAppReference($this->app);
 
         // Provision preparer
-        $preparer->provisionPreparer($variables_for_prepare);
+        $preparer->provisionPreparer($variables_for_prepare, $this->dependency_injection, $this->escape_utility);
 
         // Run preparer
         $preparer->runPreparer();
