@@ -9,8 +9,8 @@
 # ===================================================================
 
 /**
- * Pith Dependency Injection Wrapper to pass the PHP-DI object around
- * ------------------------------------------------------------------
+ * Pith Dependency Injection - Thin wrapper to pass the PHP-DI object around
+ * -------------------------------------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection - Long class name is ok.
  */
