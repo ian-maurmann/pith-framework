@@ -57,6 +57,14 @@ class PithConfig
     */
     public ?PithRouteList $route_list;
 
+    private PithDependencyInjection $dependency_injection;
+
+    public function __construct(PithDependencyInjection $dependency_injection)
+    {
+        // Object Dependencies
+        $this->dependency_injection = $dependency_injection;
+    }
+
     /**
      * Get array of routes for FastRoute.
      * @return array
@@ -90,7 +98,7 @@ class PithConfig
 
         // Add route list to config
         try {
-            $this->route_list = $this->app->container->get($this->route_list_namespace);
+            $this->route_list = $this->dependency_injection->container->get($this->route_list_namespace);
         } catch (DependencyException $exception) {
             throw new PithException(
                 'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
