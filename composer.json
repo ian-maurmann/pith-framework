@@ -30,7 +30,10 @@
             "Pith\\Framework\\": [
                 "src/framework/external/about/",
                 "src/framework/external/extend/",
-                "src/framework/external/objects/"
+                "src/framework/external/objects/",
+                "src/framework/external/extendable-workflow-elements/",
+                "src/framework/external/framework-engine-components",
+                "src/framework/external/injectable-thin-wrappers/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/framework/internal/objects/",
