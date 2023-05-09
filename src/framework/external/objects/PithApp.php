@@ -35,7 +35,6 @@ class PithApp
     private PithAppHelper $helper;
 
     // Objects
-    public object              $autoloader; // Composer Autoloader
     public PithConfig          $config;
     public Container           $container; // The front-controller passes the PHP-DI Container to here.
     public PithDatabaseWrapper $database;
@@ -79,7 +78,6 @@ class PithApp
 
         // Other objects:
         // --------------
-        // The Autoloader should be added after construct
         // The Container should be added after construct
         // The Log should be added after construct
 
