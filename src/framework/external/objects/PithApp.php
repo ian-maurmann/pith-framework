@@ -35,7 +35,6 @@ class PithApp
     private PithAppHelper $helper;
 
     // Objects
-    public PithAccessControl   $access_control;
     public object              $authenticator; // TODO
     public object              $autoloader; // Composer Autoloader
     public PithConfig          $config;
@@ -54,7 +53,6 @@ class PithApp
      * PithApp constructor.
      *
      * @param PithAppHelper       $helper
-     * @param PithAccessControl   $access_control
      * @param PithConfig          $config
      * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
@@ -64,7 +62,6 @@ class PithApp
      */
     public function __construct(
         PithAppHelper       $helper,
-        PithAccessControl   $access_control,
         PithConfig          $config,
         PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
@@ -74,7 +71,6 @@ class PithApp
     )
     {
         $this->helper         = $helper;
-        $this->access_control = $access_control;
         $this->config         = $config;
         $this->database       = $database;
         $this->dispatcher     = $dispatcher;

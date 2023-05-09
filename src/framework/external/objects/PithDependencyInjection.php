@@ -32,6 +32,6 @@ class PithDependencyInjection
 
     public function __construct()
     {
-        // Do nothing for now.
+        $this->container = new Container();
     }
 }

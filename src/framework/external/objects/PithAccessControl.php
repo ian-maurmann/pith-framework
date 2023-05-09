@@ -35,12 +35,12 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithAccessControl
 {
-    use PithAppReferenceTrait;
+    private PithDependencyInjection $dependency_injection;
 
-
-    public function __construct()
+    public function __construct(PithDependencyInjection $dependency_injection)
     {
-        // Do nothing for now.
+        // Objects
+        $this->dependency_injection = $dependency_injection;
     }
 
 
@@ -84,12 +84,12 @@ class PithAccessControl
 
             // 'world' --- Full access for anyone
             elseif ($access_level_string === 'world') {
-                $access_level = $this->app->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
             }
 
             // Else treat the string as an object namespace
             else{
-                $access_level = $this->app->container->get($access_level_string);
+                $access_level = $this->dependency_injection->container->get($access_level_string);
             }
 
         }
@@ -114,8 +114,11 @@ class PithAccessControl
 
         // After load
         if (is_object($access_level)) {
+            // Get App
+            $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
+
             // Set app reference
-            $access_level->setAppReference($this->app);
+            $access_level->setAppReference($app);
         }
         else{
             $access_level = false;

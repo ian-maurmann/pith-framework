@@ -29,8 +29,12 @@ ini_set('error_log', './php_errors.log'); // <---- 2) Add location of where you 
 $autoloader = require 'vendor/autoload.php'; // Enter the path to autoload.php, from the folder you're running the App from.
 
 
+// ========================================================================================
+
+
+
 // Setup our Container
-$container = new DI\Container(); // We're using PHP-DI by default. You can put your own container object here (Needs to be PSR-11 compatible plus auto-wiring support to run Pith).
+$container = new DI\Container();
 
 
 
@@ -57,10 +61,6 @@ try {
     );
 }
 
-// Add the container to the Dependency Injection Wrapper
-$dependency_injection_wrapper->container = $container;
-
-
 
 // ========================================================================================
 
@@ -70,7 +70,7 @@ $dependency_injection_wrapper->container = $container;
 $pith = null;
 try {
     // Pith Framework App
-    $pith = $container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
+    $pith = $dependency_injection_wrapper->container->get('\\Pith\\Framework\\PithApp'); // Pith Framework App. If you make a fork, put the fork's App object here.
 } catch (\DI\DependencyException $exception) {
     throw new PithException(
         'Pith Framework Exception 5002: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
