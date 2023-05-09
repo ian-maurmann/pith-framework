@@ -35,7 +35,6 @@ class PithApp
     private PithAppHelper $helper;
 
     // Objects
-    public object              $authenticator; // TODO
     public object              $autoloader; // Composer Autoloader
     public PithConfig          $config;
     public Container           $container; // The front-controller passes the PHP-DI Container to here.
@@ -43,7 +42,6 @@ class PithApp
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
-    public object              $registry; // TODO
     public Request             $request;
     public PithResponder       $responder;
     public PithRouter          $router;
