@@ -29,7 +29,7 @@ class FooterPreparer extends PithPreparer
         $copyright_years = (string) $this->prepare->copyright_years;
 
         // Push to View
-        $this->view->version_text    = $this->app->escape->html($version_text);
-        $this->view->copyright_years = $this->app->escape->html($copyright_years);
+        $this->view->version_text    = $this->escape->html($version_text);
+        $this->view->copyright_years = $this->escape->html($copyright_years);
     }
 }
