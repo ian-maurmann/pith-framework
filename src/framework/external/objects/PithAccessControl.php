@@ -124,4 +124,26 @@ class PithAccessControl
         // Return the Access Level Object, else return false
         return $access_level;
     }
+
+    /**
+     * @throws PithException
+     */
+    public function checkAccess($given_access_level_name)
+    {
+        // Check access
+        $is_allowed = $this->isAllowedToAccess($given_access_level_name);
+
+        if(!$is_allowed){
+            // If not logged in:
+            // TODO - Throw exception - Handle it and then - Deny & show the login page
+
+            // If logged in:
+            // TODO - Throw exception - Handle it and then - Deny & show the access denied page
+
+            throw new PithException(
+                'Pith Framework Exception 4007: Workflow element access denied.',
+                4007
+            );
+        }
+    }
 }

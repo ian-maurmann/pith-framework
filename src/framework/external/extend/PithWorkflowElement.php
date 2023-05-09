@@ -33,7 +33,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
 // │    +  app          : PithApp reference --- Access to Pith App          │
 // │    +  element_type : string            --- Name of workflow element    │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  checkAccess( )    : void || throws exception                     │
 // │    +  getAccessLevel( ) : string                                       │
 // └────────────────────────────────────────────────────────────────────────┘
 
@@ -57,29 +56,5 @@ class PithWorkflowElement
     public function getAccessLevel(): string
     {
         return (string) $this->access_level;
-    }
-
-
-    /**
-     * @throws PithException
-     */
-    public function checkAccess()
-    {
-        // Check access
-        $access_level_name = $this->getAccessLevel();
-        $is_allowed        = $this->app->access_control->isAllowedToAccess($access_level_name);
-
-        if(!$is_allowed){
-            // If not logged in:
-            // TODO - Throw exception - Handle it and then - Deny & show the login page
-
-            // If logged in:
-            // TODO - Throw exception - Handle it and then - Deny & show the access denied page
-
-            throw new PithException(
-                'Pith Framework Exception 4007: Workflow element access denied.',
-                4007
-            );
-        }
     }
 }

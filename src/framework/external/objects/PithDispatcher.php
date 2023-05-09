@@ -44,16 +44,18 @@ class PithDispatcher
 
     // Objects
     private PithExpressionUtility $expression_utility;
+    private PithAccessControl     $access_control;
 
 
     /**
      * @param PithDispatcherHelper  $helper
      * @param PithExpressionUtility $expression_utility
      */
-    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility)
+    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility, PithAccessControl $access_control)
     {
         $this->helper             = $helper;
         $this->expression_utility = $expression_utility;
+        $this->access_control     = $access_control;
     }
 
 
@@ -402,7 +404,7 @@ class PithDispatcher
         // ──────
 
         // Check access
-        $route->checkAccess();
+        $this->access_control->checkAccess($route->access_level);
 
         // Return variables needed to continue dispatching
         return [];
