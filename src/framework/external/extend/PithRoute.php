@@ -165,7 +165,7 @@ class PithRoute extends PithWorkflowElement
 
         if($has_action){
             try {
-                $action = $this->app->container->get($action_namespace);
+                $action = $this->dependency_injection->container->get($action_namespace);
             } catch (\DI\DependencyException $exception) {
                 throw new PithException(
                     'Pith Framework Exception 4009: The container encountered a \DI\DependencyException exception loading the Action. Message: ' . $exception->getMessage(),
@@ -204,7 +204,7 @@ class PithRoute extends PithWorkflowElement
 
         if($has_preparer){
             try {
-                $preparer = $this->app->container->get($preparer_namespace);
+                $preparer = $this->dependency_injection->container->get($preparer_namespace);
             } catch (\DI\DependencyException $exception) {
                 throw new PithException(
                     'Pith Framework Exception 4012: The container encountered a \DI\DependencyException exception loading the Preparer. Message: ' . $exception->getMessage(),
@@ -243,7 +243,7 @@ class PithRoute extends PithWorkflowElement
 
         if($has_view_adapter){
             try {
-                $view_adapter = $this->app->container->get($view_adapter_namespace);
+                $view_adapter = $this->dependency_injection->container->get($view_adapter_namespace);
             } catch (\DI\DependencyException $exception) {
                 throw new PithException(
                     'Pith Framework Exception 4015: The container encountered a \DI\DependencyException exception loading the View Adapter. Message: ' . $exception->getMessage(),
@@ -282,7 +282,7 @@ class PithRoute extends PithWorkflowElement
 
         if($has_pack){
             try {
-                $pack = $this->app->container->get($pack_namespace);
+                $pack = $this->dependency_injection->container->get($pack_namespace);
             } catch (\DI\DependencyException $exception) {
                 throw new PithException(
                     'Pith Framework Exception 4018: The container encountered a \DI\DependencyException exception loading the Pack. Message: ' . $exception->getMessage(),
@@ -322,7 +322,7 @@ class PithRoute extends PithWorkflowElement
 
         if($has_view_requisition){
             try {
-                $view_requisition = $this->app->container->get($view_requisition_namespace);
+                $view_requisition = $this->dependency_injection->container->get($view_requisition_namespace);
             } catch (\DI\DependencyException $exception) {
                 throw new PithException(
                     'Pith Framework Exception 4025: The container encountered a \DI\DependencyException exception loading the View Requisition. Message: ' . $exception->getMessage(),

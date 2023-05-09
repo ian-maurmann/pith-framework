@@ -364,12 +364,14 @@ class PithDispatcher
         // ROUTE
         // ─────
 
-        // Set app reference
-        $route->setAppReference($this->app);
+        // Set Dependencies
+        $route->setAppReference($this->app); // Set app reference
+        $route->setDependencyInjection($this->dependency_injection); // Set dependency injection
 
-        // Set app reference for secondary route
+        // Set dependencies for secondary route
         if($secondary_route){
-            $secondary_route->setAppReference($this->app);
+            $secondary_route->setAppReference($this->app); // Set app reference
+            $secondary_route->setDependencyInjection($this->dependency_injection); // Set dependency injection
         }
 
         // Get route folder

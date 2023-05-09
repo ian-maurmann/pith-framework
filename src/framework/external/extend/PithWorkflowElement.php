@@ -16,6 +16,7 @@
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Variables with underscores are ok.
  * @noinspection PhpCastIsUnnecessaryInspection        - Keep type casts for now. TODO
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok here.
  */
 
 
@@ -44,6 +45,8 @@ class PithWorkflowElement
 {
     use PithAppReferenceTrait;
 
+    protected PithDependencyInjection $dependency_injection;
+
     public string $access_level;
     public string $element_type;
 
@@ -57,4 +60,13 @@ class PithWorkflowElement
     {
         return (string) $this->access_level;
     }
+
+    /**
+     * @param PithDependencyInjection $dependency_injection
+     */
+    public function setDependencyInjection(PithDependencyInjection $dependency_injection)
+    {
+        $this->dependency_injection = $dependency_injection;
+    }
+
 }
