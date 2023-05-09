@@ -22,7 +22,6 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithEscapeUtility;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -43,7 +42,6 @@ class PithApp
     public PithDatabaseWrapper $database;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
-    public PithEscapeUtility   $escape;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
     public object              $registry; // TODO
     public Request             $request;
@@ -60,7 +58,6 @@ class PithApp
      * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
-     * @param PithEscapeUtility   $escape
      * @param PithResponder       $responder
      * @param PithRouter          $router
      */
@@ -71,7 +68,6 @@ class PithApp
         PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
-        PithEscapeUtility   $escape,
         PithResponder       $responder,
         PithRouter          $router
     )
@@ -82,7 +78,6 @@ class PithApp
         $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
-        $this->escape         = $escape;
         $this->request        = Request::createFromGlobals();
         $this->responder      = $responder;
         $this->router         = $router;

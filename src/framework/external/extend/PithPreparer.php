@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Pith\Framework\Internal\PithEscapeUtility;
+
 /**
  * Class PithPreparer
  * @package Pith\Framework
@@ -34,6 +36,8 @@ class PithPreparer extends PithWorkflowElement
      * @var string
      */
     public string $element_type = 'preparer';
+
+    public PithEscapeUtility $escape;
 
     /**
      * @var object
@@ -53,6 +57,7 @@ class PithPreparer extends PithWorkflowElement
     {
         $this->prepare = $prepare_vars_object;
         $this->view    = (object)[];
+        $this->escape  = $this->app->container->get('\\Pith\\Framework\\Internal\\PithEscapeUtility');
     }
 
     /**
