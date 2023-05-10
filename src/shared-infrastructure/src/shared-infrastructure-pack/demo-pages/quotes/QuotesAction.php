@@ -26,12 +26,14 @@ class QuotesAction extends PithAction
 {
     private CopyrightYearUtility $copyright_year_utility;
     private PithInfo $pith_info;
+    private TestQuoteService $test_quote_service;
 
-    public function __construct(CopyrightYearUtility $copyright_year_utility, PithInfo $pith_info)
+    public function __construct(CopyrightYearUtility $copyright_year_utility, PithInfo $pith_info, TestQuoteService $test_quote_service)
     {
         // Add Objects
         $this->copyright_year_utility = $copyright_year_utility;
-        $this->pith_info = $pith_info;
+        $this->pith_info              = $pith_info;
+        $this->test_quote_service     = $test_quote_service;
     }
 
     public function runAction()
@@ -59,6 +61,10 @@ class QuotesAction extends PithAction
         if($has_results){
             $quote = $results[0]['quote'];
         }
+
+        //-------------------------------------------------
+
+        //$quotes = $this->test_quote_service->getQuotes();
 
         //-------------------------------------------------
 
