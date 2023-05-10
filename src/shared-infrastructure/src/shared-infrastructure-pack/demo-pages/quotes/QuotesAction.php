@@ -64,7 +64,7 @@ class QuotesAction extends PithAction
 
         //-------------------------------------------------
 
-        //$quotes = $this->test_quote_service->getQuotes();
+        $quotes = $this->test_quote_service->getQuotes();
 
         //-------------------------------------------------
 
@@ -72,5 +72,6 @@ class QuotesAction extends PithAction
         $this->prepare->version_text    = $version_text;
         $this->prepare->copyright_years = $copyright_years;
         $this->prepare->quote           = $quote;
+        $this->prepare->quotes          = $quotes;
     }
 }

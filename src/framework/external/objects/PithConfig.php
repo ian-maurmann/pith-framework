@@ -58,11 +58,13 @@ class PithConfig
     public ?PithRouteList $route_list;
 
     private PithDependencyInjection $dependency_injection;
+    private PithDatabaseWrapper     $database;
 
-    public function __construct(PithDependencyInjection $dependency_injection)
+    public function __construct(PithDependencyInjection $dependency_injection, PithDatabaseWrapper $database)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
+        $this->database             = $database;
     }
 
     /**
@@ -115,6 +117,7 @@ class PithConfig
 
         // Initialize the database's Username/Password/DSN from env constants
         $this->primeDatabase();
+
     }
 
     /**
@@ -124,7 +127,11 @@ class PithConfig
     {
         $this->app->database->setDsn(PITH_APP_DATABASE_DSN);
         $this->app->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
+
+        $this->database->setDsn(PITH_APP_DATABASE_DSN);
+        $this->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
     }
+
 }
 
 

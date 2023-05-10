@@ -86,6 +86,16 @@ class PithDatabaseWrapper
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
+
+        // Initialize the database's Username/Password/DSN from env constants
+        $this->primeDatabase();
+    }
+
+
+    public function primeDatabase()
+    {
+        $this->setDsn(PITH_APP_DATABASE_DSN);
+        $this->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
     }
 
 

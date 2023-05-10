@@ -13,7 +13,20 @@ declare(strict_types=1);
 <br/>
 Copyright (c) <?php echo $copyright_years; ?>
 
+<br/><br/>
+
+<b>Quote #4:</b> <?php echo $quote_4; ?>
+
 <h3>Quotes</h3>
-
-<b>Quote #4:</b> <?php echo $quote; ?>
-
+<?php $foreach_else = true; ?>
+<?php foreach($test_quotes as $test_quotes_row_index => $test_quote_row): ?>
+    <?php $foreach_else = false; ?>
+    <?php echo $test_quote_row['quote_id']; ?>
+    <i>
+        <?php echo $test_quote_row['quote']; ?>
+    </i>
+    <br/>
+<?php endforeach; ?>
+<?php if($foreach_else): ?>
+    <i>No test quotes found.</i> <br/>
+<?php endif; ?>

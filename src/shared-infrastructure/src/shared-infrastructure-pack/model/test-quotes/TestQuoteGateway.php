@@ -46,7 +46,7 @@ class TestQuoteGateway
     public function getQuotes(): array
     {
         // Query
-        $sql = 'SELECT * FROM test_quotes WHERE quote_id = 4';
+        $sql = 'SELECT * FROM test_quotes WHERE quote_id < 100';
 
         // Execute
         $results = $this->database->query($sql);
