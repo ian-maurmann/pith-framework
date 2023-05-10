@@ -91,10 +91,10 @@ class PithConfig
     public function load()
     {
         // Load env constants
-        require $this->env_constants_file;
+        require_once $this->env_constants_file;
 
         // Load tracked constants
-        require $this->tracked_constants_file;
+        require_once $this->tracked_constants_file;
 
         // Add route list to config
         try {
