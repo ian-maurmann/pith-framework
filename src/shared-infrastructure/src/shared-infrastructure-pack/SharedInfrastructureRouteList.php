@@ -43,5 +43,6 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['GET', '/resources/framework/shared-ui/{filepath:.+}',           '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['GET', '/resources/vendor/common-fonts/{filepath:.+}',           '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonFontsResourceRoute'],
         ['GET', '/resources/vendor/common-libraries/{filepath:.+}',       '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
+        ['GET', '/quotes',                                                '\\Pith\\Framework\\SharedInfrastructure\\QuotesRoute'],
     ];
 }
