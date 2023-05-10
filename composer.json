@@ -53,7 +53,8 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/home/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
