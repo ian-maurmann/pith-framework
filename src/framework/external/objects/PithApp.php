@@ -40,7 +40,6 @@ class PithApp
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
-    public Request             $request;
     public PithResponder       $responder;
     public PithRouter          $router;
 
@@ -68,7 +67,6 @@ class PithApp
         $this->config         = $config;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
-        $this->request        = Request::createFromGlobals();
         $this->responder      = $responder;
         $this->router         = $router;
 
