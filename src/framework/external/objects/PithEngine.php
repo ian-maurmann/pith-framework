@@ -68,4 +68,43 @@ class PithEngine
         $this->dispatcher->dispatch($route);
     }
 
+    /**
+     * @param  string $route_namespace
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    public function runPartial(string $route_namespace)
+    {
+        // Get route
+        $route = $this->router->getRouteFromRouteNamespace($route_namespace);
+
+        // Run route
+        $this->dispatcher->dispatchRoute($route);
+    }
+
+    /**
+     * @param string $layout_namespace
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    public function runLayout(string $layout_namespace)
+    {
+        // Get route
+        $route = $this->router->getRouteFromRouteNamespace($layout_namespace);
+
+        // Run route
+        $this->dispatcher->dispatchRoute($route);
+    }
+
+    /**
+     * @param PithRoute $content_route
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    public function runPageContent(PithRoute $content_route)
+    {
+        // Run route
+        $this->dispatcher->dispatchRoute($content_route);
+    }
+
 }

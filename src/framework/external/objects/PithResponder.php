@@ -33,9 +33,8 @@ use ReflectionException;
 class PithResponder
 {
     use PithAppReferenceTrait;
-
-    private PithRouter     $router;
-    private PithDispatcher $dispatcher;
+    
+    private PithEngine     $engine;
 
     private array $resource_files = [];
     private array $resource_files_inserted = [];
@@ -45,11 +44,10 @@ class PithResponder
     private string $meta_description = '';
     private string $meta_robots = '';
 
-    public function __construct(PithRouter $router, PithDispatcher $dispatcher)
+    public function __construct(PithEngine $engine)
     {
         // Object Dependencies
-        $this->router     = $router;
-        $this->dispatcher = $dispatcher;
+        $this->engine     = $engine;
 
         // Reset
         $this->reset();
@@ -71,11 +69,7 @@ class PithResponder
      */
     public function insertPartial(string $route_namespace)
     {
-        // Get route
-        $route = $this->router->getRouteFromRouteNamespace($route_namespace);
-
-        // Run route
-        $this->dispatcher->dispatchRoute($route);
+        $this->engine->runPartial($route_namespace);
     }
 
 
@@ -87,11 +81,7 @@ class PithResponder
      */
     public function runLayout(string $layout_namespace)
     {
-        // Get route
-        $route = $this->router->getRouteFromRouteNamespace($layout_namespace);
-
-        // Run route
-        $this->dispatcher->dispatchRoute($route);
+        $this->engine->runLayout($layout_namespace);
     }
 
 
@@ -103,8 +93,7 @@ class PithResponder
      */
     public function insertPageContent(PithRoute $content_route)
     {
-        // Run route
-        $this->dispatcher->dispatchRoute($content_route);
+        $this->engine->runPageContent($content_route);
     }
 
     /**
