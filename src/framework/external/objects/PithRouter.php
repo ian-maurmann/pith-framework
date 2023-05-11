@@ -27,7 +27,6 @@ namespace Pith\Framework;
 
 
 use FastRoute;
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 
 /**
@@ -36,8 +35,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithRouter
 {
-    use PithAppReferenceTrait;
-
     private PithDependencyInjection $dependency_injection;
     private PithConfig              $config;
     private PithInboundRequest      $inbound_request;
