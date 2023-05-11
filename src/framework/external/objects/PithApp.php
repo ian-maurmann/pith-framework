@@ -38,7 +38,6 @@ class PithApp
     public PithEngine          $engine;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
     public PithResponder       $responder;
-    public PithRouter          $router;
 
 
     /**
@@ -49,7 +48,6 @@ class PithApp
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
      * @param PithResponder       $responder
-     * @param PithRouter          $router
      */
     public function __construct(
         PithAppHelper       $helper,
@@ -57,7 +55,6 @@ class PithApp
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
         PithResponder       $responder,
-        PithRouter          $router
     )
     {
         $this->helper         = $helper;
@@ -65,7 +62,6 @@ class PithApp
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->responder      = $responder;
-        $this->router         = $router;
 
         // Other objects:
         // --------------
