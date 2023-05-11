@@ -50,6 +50,5 @@ class PithAppHelper
         // Set app reference
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);
-        $app->responder->setAppReference($app);
     }
 }

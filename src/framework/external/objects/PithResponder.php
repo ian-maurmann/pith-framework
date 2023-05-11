@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 use ReflectionException;
 
 
@@ -32,8 +31,6 @@ use ReflectionException;
  */
 class PithResponder
 {
-    use PithAppReferenceTrait;
-    
     private PithEngine     $engine;
 
     private array $resource_files = [];
