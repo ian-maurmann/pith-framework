@@ -21,7 +21,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 use ReflectionException;
 
 // ┌────────────────────────────────────────────────────────────────────────┐
@@ -39,8 +38,6 @@ use ReflectionException;
  */
 class PithEngine
 {
-    use PithAppReferenceTrait;
-
     private PithConfig     $config;
     private PithRouter     $router;
     private PithDispatcher $dispatcher;
