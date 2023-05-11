@@ -23,7 +23,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 /**
  * Class PithAccessLevel
@@ -31,7 +30,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithAccessLevel
 {
-    use PithAppReferenceTrait;
 
     /**
      * @return string

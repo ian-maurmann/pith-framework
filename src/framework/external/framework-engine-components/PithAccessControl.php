@@ -116,9 +116,6 @@ class PithAccessControl
         if (is_object($access_level)) {
             // Get App
             $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
-
-            // Set app reference
-            $access_level->setAppReference($app);
         }
         else{
             $access_level = false;
