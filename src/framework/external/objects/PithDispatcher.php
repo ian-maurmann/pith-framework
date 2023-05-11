@@ -49,7 +49,7 @@ class PithDispatcher
     private PithDependencyInjection $dependency_injection;
     private PithEscapeUtility       $escape_utility;
     private PithInboundRequest      $inbound_request;
-
+    private PithRouter              $router;
 
     /**
      * @param PithDispatcherHelper    $helper
@@ -65,7 +65,8 @@ class PithDispatcher
         PithAccessControl       $access_control,
         PithDependencyInjection $dependency_injection,
         PithEscapeUtility       $escape_utility,
-        PithInboundRequest      $inbound_request
+        PithInboundRequest      $inbound_request,
+        PithRouter              $router
     )
     {
         $this->helper               = $helper;
@@ -74,6 +75,7 @@ class PithDispatcher
         $this->dependency_injection = $dependency_injection;
         $this->escape_utility       = $escape_utility;
         $this->inbound_request      = $inbound_request;
+        $this->router               = $router;
     }
 
 
@@ -98,7 +100,7 @@ class PithDispatcher
                 // fall through
             case 'page':
                 if($route->hasLayout()){
-                    $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                    $layout_route = $this->router->getRouteFromRouteNamespace($route->layout);
                     $this->tapMetadata($route);
                     $this->dispatch( $layout_route, $route);
                 }
