@@ -37,7 +37,6 @@ class PithApp
     // Objects
     public PithConfig          $config;
     public Container           $container; // The front-controller passes the PHP-DI Container to here.
-    public PithDatabaseWrapper $database;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
@@ -51,7 +50,6 @@ class PithApp
      *
      * @param PithAppHelper       $helper
      * @param PithConfig          $config
-     * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
      * @param PithResponder       $responder
@@ -60,7 +58,6 @@ class PithApp
     public function __construct(
         PithAppHelper       $helper,
         PithConfig          $config,
-        PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
         PithResponder       $responder,
@@ -69,7 +66,6 @@ class PithApp
     {
         $this->helper         = $helper;
         $this->config         = $config;
-        $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
         $this->request        = Request::createFromGlobals();
