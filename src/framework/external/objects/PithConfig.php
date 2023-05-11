@@ -23,7 +23,6 @@ namespace Pith\Framework;
 
 use DI\DependencyException;
 use DI\NotFoundException;
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 /**
  * Class PithConfig
@@ -31,8 +30,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithConfig
 {
-    use PithAppReferenceTrait;
-
     /**
      * Holds path to the env constants file
      * @var string | null
