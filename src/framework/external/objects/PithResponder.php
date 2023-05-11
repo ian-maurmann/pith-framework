@@ -34,6 +34,8 @@ class PithResponder
 {
     use PithAppReferenceTrait;
 
+    private PithRouter $router;
+
     private array $resource_files = [];
     private array $resource_files_inserted = [];
 
@@ -42,8 +44,11 @@ class PithResponder
     private string $meta_description = '';
     private string $meta_robots = '';
 
-    public function __construct()
+    public function __construct(PithRouter $router)
     {
+        // Object Dependencies
+        $this->router = $router;
+
         // Reset
         $this->reset();
     }
@@ -65,7 +70,7 @@ class PithResponder
     public function insertPartial(string $route_namespace)
     {
         // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
+        $route = $this->router->getRouteFromRouteNamespace($route_namespace);
 
         // Run route
         $this->app->dispatcher->dispatchRoute($route);
@@ -81,7 +86,7 @@ class PithResponder
     public function runLayout(string $layout_namespace)
     {
         // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
+        $route = $this->router->getRouteFromRouteNamespace($layout_namespace);
 
         // Run route
         $this->app->dispatcher->dispatchRoute($route);
