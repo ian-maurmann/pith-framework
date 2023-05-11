@@ -41,14 +41,16 @@ class PithEngine
 {
     use PithAppReferenceTrait;
 
-    private PithConfig $config;
-    private PithRouter $router;
+    private PithConfig     $config;
+    private PithRouter     $router;
+    private PithDispatcher $dispatcher;
 
-    public function __construct(PithConfig $config, PithRouter $router)
+    public function __construct(PithConfig $config, PithRouter $router, PithDispatcher $dispatcher)
     {
         // Object Dependencies
-        $this->config = $config;
-        $this->router = $router;
+        $this->config     = $config;
+        $this->router     = $router;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -63,7 +65,7 @@ class PithEngine
         $route = $this->router->getRoute();
 
         // Dispatch route
-        $this->app->dispatcher->dispatch($route);
+        $this->dispatcher->dispatch($route);
     }
 
 }
