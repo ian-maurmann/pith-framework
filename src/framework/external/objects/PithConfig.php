@@ -114,23 +114,8 @@ class PithConfig
                 $exception
             );
         }
-
-        // Initialize the database's Username/Password/DSN from env constants
-        $this->primeDatabase();
-
     }
 
-    /**
-     * Set Database Settings
-     */
-    public function primeDatabase()
-    {
-        $this->app->database->setDsn(PITH_APP_DATABASE_DSN);
-        $this->app->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
-
-        $this->database->setDsn(PITH_APP_DATABASE_DSN);
-        $this->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
-    }
 
 }
 
