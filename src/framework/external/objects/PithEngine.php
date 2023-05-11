@@ -42,11 +42,13 @@ class PithEngine
     use PithAppReferenceTrait;
 
     private PithConfig $config;
+    private PithRouter $router;
 
-    public function __construct(PithConfig $config)
+    public function __construct(PithConfig $config, PithRouter $router)
     {
         // Object Dependencies
         $this->config = $config;
+        $this->router = $router;
     }
 
     /**
@@ -56,9 +58,9 @@ class PithEngine
     {
         // Load config
         $this->config->load();
-
+        
         // Get route
-        $route = $this->app->router->getRoute();
+        $route = $this->router->getRoute();
 
         // Dispatch route
         $this->app->dispatcher->dispatch($route);
