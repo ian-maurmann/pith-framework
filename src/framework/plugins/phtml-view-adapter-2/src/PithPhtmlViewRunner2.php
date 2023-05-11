@@ -15,6 +15,7 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
+ * @noinspection PhpPropertyOnlyWrittenInspection      - Ignore here, $this->escape will be used in the phtml views.
  */
 
 
