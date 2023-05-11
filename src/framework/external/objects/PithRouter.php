@@ -39,11 +39,13 @@ class PithRouter
     use PithAppReferenceTrait;
 
     private PithDependencyInjection $dependency_injection;
+    private PithConfig              $config;
 
-    public function __construct(PithDependencyInjection $dependency_injection)
+    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
+        $this->config               = $config;
     }
 
 
@@ -102,8 +104,8 @@ class PithRouter
 
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
-            $app_routes = $this->app->config->getRoutes();
-
+            $app_routes = $this->config->getRoutes();
+            
             // Loop through routes, Add each route
             foreach ($app_routes as $app_route){
                 $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
