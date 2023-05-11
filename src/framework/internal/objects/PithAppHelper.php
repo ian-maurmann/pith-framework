@@ -48,7 +48,6 @@ class PithAppHelper
     public function initializeDependencies(PithApp $app)
     {
         // Set app reference
-        $app->access_control->setAppReference($app);
         $app->config->setAppReference($app);
         $app->dispatcher->setAppReference($app);
         $app->engine->setAppReference($app);

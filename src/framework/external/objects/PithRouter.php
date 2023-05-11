@@ -38,11 +38,12 @@ class PithRouter
 {
     use PithAppReferenceTrait;
 
+    private PithDependencyInjection $dependency_injection;
 
-
-    public function __construct()
+    public function __construct(PithDependencyInjection $dependency_injection)
     {
-        // Do nothing for now
+        // Object Dependencies
+        $this->dependency_injection = $dependency_injection;
     }
 
 
@@ -194,7 +195,7 @@ class PithRouter
 
         // Get the route object via the namespace
         try {
-            $route = $this->app->container->get($route_namespace);
+            $route = $this->dependency_injection->container->get($route_namespace);
         } catch (\DI\DependencyException $exception) {
             throw new PithException(
                 'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading route. Message: ' . $exception->getMessage(),

@@ -57,6 +57,16 @@ class PithConfig
     */
     public ?PithRouteList $route_list;
 
+    private PithDependencyInjection $dependency_injection;
+    private PithDatabaseWrapper     $database;
+
+    public function __construct(PithDependencyInjection $dependency_injection, PithDatabaseWrapper $database)
+    {
+        // Object Dependencies
+        $this->dependency_injection = $dependency_injection;
+        $this->database             = $database;
+    }
+
     /**
      * Get array of routes for FastRoute.
      * @return array
@@ -83,14 +93,14 @@ class PithConfig
     public function load()
     {
         // Load env constants
-        require $this->env_constants_file;
+        require_once $this->env_constants_file;
 
         // Load tracked constants
-        require $this->tracked_constants_file;
+        require_once $this->tracked_constants_file;
 
         // Add route list to config
         try {
-            $this->route_list = $this->app->container->get($this->route_list_namespace);
+            $this->route_list = $this->dependency_injection->container->get($this->route_list_namespace);
         } catch (DependencyException $exception) {
             throw new PithException(
                 'Pith Framework Exception 5006: The container encountered a \DI\DependencyException exception. Message: ' . $exception->getMessage(),
@@ -107,6 +117,7 @@ class PithConfig
 
         // Initialize the database's Username/Password/DSN from env constants
         $this->primeDatabase();
+
     }
 
     /**
@@ -116,7 +127,11 @@ class PithConfig
     {
         $this->app->database->setDsn(PITH_APP_DATABASE_DSN);
         $this->app->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
+
+        $this->database->setDsn(PITH_APP_DATABASE_DSN);
+        $this->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
     }
+
 }
 
 

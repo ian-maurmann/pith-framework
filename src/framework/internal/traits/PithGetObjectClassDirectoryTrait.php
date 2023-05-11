@@ -40,9 +40,6 @@ trait PithGetObjectClassDirectoryTrait
      */
     public function getObjectClassDirectoryFullPath(): string
     {
-        // $file      = $this->app->autoloader->findFile(static::class);
-        // $directory = dirname($file);
-
         $reflection = new ReflectionClass(get_class($this));
         $directory  = dirname($reflection->getFileName());
 
@@ -57,9 +54,6 @@ trait PithGetObjectClassDirectoryTrait
      */
     public function getObjectClassDirectoryRelativePath(): string
     {
-        // $file               = $this->app->autoloader->findFile(static::class);
-        // $directory          = dirname($file);
-
         $reflection = new ReflectionClass(get_class($this));
         $directory  = dirname($reflection->getFileName());
 

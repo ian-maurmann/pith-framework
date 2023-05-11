@@ -30,7 +30,10 @@
             "Pith\\Framework\\": [
                 "src/framework/external/about/",
                 "src/framework/external/extend/",
-                "src/framework/external/objects/"
+                "src/framework/external/objects/",
+                "src/framework/external/extendable-workflow-elements/",
+                "src/framework/external/framework-engine-components",
+                "src/framework/external/injectable-thin-wrappers/"
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/framework/internal/objects/",
@@ -44,12 +47,14 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-nav-links/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/demonstrate-libraries-work/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/home/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demo-nav-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demonstrate-libraries-work/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/footer/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
