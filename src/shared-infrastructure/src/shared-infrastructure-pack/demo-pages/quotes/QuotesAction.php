@@ -41,37 +41,11 @@ class QuotesAction extends PithAction
         // Variables
         $version_text    = $this->pith_info->getVersionSlug();
         $copyright_years = $this->copyright_year_utility->getYearsByFirstYear('2008');
-
-        // ------------------------------------------------
-        // This normally shouldn't be inside the action
-
-        $sql = 'SELECT * FROM test_quotes WHERE quote_id = 4';
-
-        // $this->app->database->startTransaction();
-
-        $results = $this->app->database->query($sql);
-
-        // $this->app->database->rollbackTransaction();
-
-        // $this->app->database->commitTransaction();
-
-        $has_results = is_array($results) && (count($results) > 0);
-
-        $quote = 'No quote found';
-        if($has_results){
-            $quote = $results[0]['quote'];
-        }
-
-        //-------------------------------------------------
-
-        $quotes = $this->test_quote_service->getQuotes();
-
-        //-------------------------------------------------
+        $quote_results   = $this->test_quote_service->getQuotes();
 
         // Push to Preparer
         $this->prepare->version_text    = $version_text;
         $this->prepare->copyright_years = $copyright_years;
-        $this->prepare->quote           = $quote;
-        $this->prepare->quotes          = $quotes;
+        $this->prepare->quote_results   = $quote_results;
     }
 }
