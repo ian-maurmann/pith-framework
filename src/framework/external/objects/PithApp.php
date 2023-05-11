@@ -21,9 +21,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use DI\Container;
 use Pith\Framework\Internal\PithAppHelper;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PithApp
@@ -36,7 +34,6 @@ class PithApp
 
     // Objects
     public PithConfig          $config;
-    public Container           $container; // The front-controller passes the PHP-DI Container to here.
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
@@ -72,7 +69,6 @@ class PithApp
 
         // Other objects:
         // --------------
-        // The Container should be added after construct
         // The Log should be added after construct
 
         // Initialize Dependencies
