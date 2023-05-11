@@ -24,12 +24,16 @@ declare(strict_types=1);
 namespace Pith\PhtmlViewAdapter2;
 
 
+use Pith\Framework\Internal\PithEscapeUtility;
+
 /**
  * Class PithPhtmlViewRunner2
  * @package Pith\PhtmlViewAdapter2
  */
 class PithPhtmlViewRunner2
 {
+    private PithEscapeUtility $escape;
+
     protected $app;
     protected $is_layout;
     protected $path;
@@ -37,8 +41,12 @@ class PithPhtmlViewRunner2
     protected $content_route;
 
 
-    public function __construct()
+    public function __construct(PithEscapeUtility $escape)
     {
+        // Object Dependencies
+        $this->escape = $escape;
+
+        // Reset
         $this->reset();
     }
 
