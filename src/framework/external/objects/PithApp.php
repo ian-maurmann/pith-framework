@@ -21,8 +21,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use DI\Container;
 use Pith\Framework\Internal\PithAppHelper;
-use Pith\Framework\Internal\PithEscapeUtility;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -35,18 +35,12 @@ class PithApp
     private PithAppHelper $helper;
 
     // Objects
-    public PithAccessControl   $access_control;
-    public object              $authenticator; // TODO
-    public object              $autoloader; // Composer Autoloader
     public PithConfig          $config;
-    public object              $container; // Planning to just enforce using PHP-DI Container here instead of any PSR-11 container.
+    public Container           $container; // The front-controller passes the PHP-DI Container to here.
     public PithDatabaseWrapper $database;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
-    public PithEscapeUtility   $escape;
-    public PithInfo            $info;
     public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
-    public object              $registry; // TODO
     public Request             $request;
     public PithResponder       $responder;
     public PithRouter          $router;
@@ -56,46 +50,34 @@ class PithApp
      * PithApp constructor.
      *
      * @param PithAppHelper       $helper
-     * @param PithAccessControl   $access_control
      * @param PithConfig          $config
      * @param PithDatabaseWrapper $database
      * @param PithDispatcher      $dispatcher
      * @param PithEngine          $engine
-     * @param PithEscapeUtility   $escape
-     * @param PithInfo            $info
      * @param PithResponder       $responder
      * @param PithRouter          $router
      */
     public function __construct(
         PithAppHelper       $helper,
-        PithAccessControl   $access_control,
         PithConfig          $config,
         PithDatabaseWrapper $database,
         PithDispatcher      $dispatcher,
         PithEngine          $engine,
-        PithEscapeUtility   $escape,
-        PithInfo            $info,
         PithResponder       $responder,
         PithRouter          $router
     )
     {
         $this->helper         = $helper;
-        $this->access_control = $access_control;
-     // $this->authenticator  = null; // TODO
         $this->config         = $config;
         $this->database       = $database;
         $this->dispatcher     = $dispatcher;
         $this->engine         = $engine;
-        $this->escape         = $escape;
-        $this->info           = $info;
-     // $this->registry       = null; // TODO
         $this->request        = Request::createFromGlobals();
         $this->responder      = $responder;
         $this->router         = $router;
 
         // Other objects:
         // --------------
-        // The Autoloader should be added after construct
         // The Container should be added after construct
         // The Log should be added after construct
 

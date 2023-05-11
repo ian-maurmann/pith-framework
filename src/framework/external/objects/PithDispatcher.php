@@ -27,6 +27,7 @@ namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithDispatcherHelper;
+use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\Internal\PithExpressionUtility;
 use ReflectionException;
 
@@ -43,17 +44,33 @@ class PithDispatcher
     private PithDispatcherHelper $helper;
 
     // Objects
-    private PithExpressionUtility $expression_utility;
+    private PithExpressionUtility   $expression_utility;
+    private PithAccessControl       $access_control;
+    private PithDependencyInjection $dependency_injection;
+    private PithEscapeUtility       $escape_utility;
 
 
     /**
-     * @param PithDispatcherHelper  $helper
-     * @param PithExpressionUtility $expression_utility
+     * @param PithDispatcherHelper    $helper
+     * @param PithExpressionUtility   $expression_utility
+     * @param PithAccessControl       $access_control
+     * @param PithDependencyInjection $dependency_injection
+     * @param PithEscapeUtility       $escape_utility
      */
-    public function __construct(PithDispatcherHelper $helper, PithExpressionUtility $expression_utility)
+    public function __construct
+    (
+        PithDispatcherHelper    $helper,
+        PithExpressionUtility   $expression_utility,
+        PithAccessControl       $access_control,
+        PithDependencyInjection $dependency_injection,
+        PithEscapeUtility       $escape_utility
+    )
     {
-        $this->helper             = $helper;
-        $this->expression_utility = $expression_utility;
+        $this->helper               = $helper;
+        $this->expression_utility   = $expression_utility;
+        $this->access_control       = $access_control;
+        $this->dependency_injection = $dependency_injection;
+        $this->escape_utility       = $escape_utility;
     }
 
 
@@ -94,11 +111,19 @@ class PithDispatcher
                 $this->dispatchRoute($route);
                 break;
 
-            // Resources
-            case 'resource':
-
+            // Resource from a Resource Folder
+            case 'resource-folder':
                 try{
-                    $this->dispatchResource($route);
+                    $this->dispatchResourceFromResourceFolder($route);
+                } catch (PithException $pith_exception) {
+                    // Set headers for 404
+                    http_response_code(404);
+                }
+                break;
+            // Single Resource File
+            case 'resource-file':
+                try{
+                    $this->dispatchResourceFileRoute($route);
                 } catch (PithException $pith_exception) {
                     // Set headers for 404
                     http_response_code(404);
@@ -215,7 +240,7 @@ class PithDispatcher
      *
      * @noinspection PhpIncludeInspection
      */
-    public function dispatchResource(PithRoute $route)
+    public function dispatchResourceFromResourceFolder(PithRoute $route)
     {
         // ROUTE
         // Tap on the Route
@@ -232,7 +257,7 @@ class PithDispatcher
         $this->tapAccess($route);
 
         // Get the relative Resource Folder path
-        $resource_folder_expression = (string) $route->resource_folder;
+        $resource_folder_expression = $route->resource_folder;
         $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
 
         // Get the relative Filepath
@@ -263,8 +288,64 @@ class PithDispatcher
         // Get extension. Throw exception if it's a file type that shouldn't be a front-end resource.
         $file_extension = $this->helper->getResourceFileExtension($basename);
 
-        // Set resource headers
+        // Set resource-type headers
         $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
+
+        // Set caching headers
+        $this->helper->setCachingHeaders($route);
+
+        // Serve file
+        require $real_filepath;
+    }
+
+    /**
+     * @param PithRoute $route
+     * @throws PithException
+     * @throws ReflectionException
+     *
+     * @noinspection PhpIncludeInspection
+     */
+    public function dispatchResourceFileRoute(PithRoute $route)
+    {
+        // ROUTE
+        // Tap on the Route
+        $route_info   = $this->tapRoute($route);
+        $route_folder = $route_info['route_folder'];
+
+        // PACK
+        // Tap on the Pack
+        $pack_info   = $this->tapPack($route);
+        $pack_folder = $pack_info['pack_folder'];
+
+        // ACCESS
+        // Tap on the Access Level
+        $this->tapAccess($route);
+
+        // Get the relative Resource path
+        $resource_path_expression = $route->resource_path;
+        $resource_file_path       = $this->expression_utility->getViewPathFromExpression($resource_path_expression, $pack_folder, $route_folder);
+
+        // Get the Real Filepath
+        $real_filepath = realpath(ltrim($resource_file_path, '/'));
+
+        // Check that the Real Filepath is a file
+        $this->helper->ensureRealFilepathIsAFile($real_filepath);
+
+        // Get the base name
+        $basename = basename($real_filepath);
+
+        // Don't serve dot files. Throw if dot file.
+        $this->helper->ensureFilenameIsNotDotFile($basename, $real_filepath);
+
+        // Get the file extension
+        // (Since we're specifying the exact file to serve, we aren't going to forbid specific file extensions here)
+        $file_extension = pathinfo($basename, PATHINFO_EXTENSION);
+
+        // Set resource-type headers
+        $this->helper->setResourceHeadersByExtension($real_filepath, $file_extension);
+
+        // Set caching headers
+        $this->helper->setCachingHeaders($route);
 
         // Serve file
         require $real_filepath;
@@ -283,12 +364,14 @@ class PithDispatcher
         // ROUTE
         // ─────
 
-        // Set app reference
-        $route->setAppReference($this->app);
+        // Set Dependencies
+        $route->setAppReference($this->app); // Set app reference
+        $route->setDependencyInjection($this->dependency_injection); // Set dependency injection
 
-        // Set app reference for secondary route
+        // Set dependencies for secondary route
         if($secondary_route){
-            $secondary_route->setAppReference($this->app);
+            $secondary_route->setAppReference($this->app); // Set app reference
+            $secondary_route->setDependencyInjection($this->dependency_injection); // Set dependency injection
         }
 
         // Get route folder
@@ -338,7 +421,7 @@ class PithDispatcher
         // ──────
 
         // Check access
-        $route->checkAccess();
+        $this->access_control->checkAccess($route->access_level);
 
         // Return variables needed to continue dispatching
         return [];
@@ -393,7 +476,7 @@ class PithDispatcher
         $preparer->setAppReference($this->app);
 
         // Provision preparer
-        $preparer->provisionPreparer($variables_for_prepare);
+        $preparer->provisionPreparer($variables_for_prepare, $this->dependency_injection, $this->escape_utility);
 
         // Run preparer
         $preparer->runPreparer();

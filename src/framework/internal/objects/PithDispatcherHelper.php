@@ -26,6 +26,7 @@ namespace Pith\Framework\Internal;
 
 
 use Pith\Framework\PithException;
+use Pith\Framework\PithRoute;
 
 /**
  * Class PithDispatcherHelper
@@ -174,41 +175,42 @@ class PithDispatcherHelper
     {
         // Content types
         $extensions_to_content_types = [
-            'apng' => 'Content-Type: image/apng',
-            'atom' => 'Content-Type: application/atom+xml',
-            'avif' => 'Content-Type: image/avif',
-            'bmp'  => 'Content-Type: image/bmp',
-            'css'  => 'Content-type: text/css; charset=utf-8',
-            'csv'  => 'Content-type: text/csv; charset=utf-8',
-            'gif'  => 'Content-Type: image/gif',
-            'gz'   => 'Content-Type: application/gzip',
-            'html' => 'Content-type: text/html; charset=utf-8',
-            'ico'  => 'Content-Type: image/x-icon',
-            'jpeg' => 'Content-Type: image/jpeg',
-            'jpg'  => 'Content-Type: image/jpeg',
-            'js'   => 'Content-type: text/javascript; charset=utf-8',
-            'json' => 'Content-type: application/json; charset=utf-8',
-            'md'   => 'Content-type: text/markdown; charset=utf-8',
-            'mpeg' => 'Content-Type: audio/mpeg',
-            'mp4'  => 'Content-Type: video/mp4',
-            'ogg'  => 'Content-Type: application/ogg',
-            'otf'  => 'Content-Type: font/otf',
-            'pdf'  => 'Content-Type: application/pdf',
-            'png'  => 'Content-Type: image/png',
-            'rar'  => 'Content-Type: application/vnd.rar, application/x-rar-compressed, application/octet-stream',
-            'rss'  => 'Content-Type: application/rss+xml; charset=utf-8',
-            'svg'  => 'Content-Type: image/svg+xml',
-            'tar'  => 'Content-Type: application/x-tar',
-            'tif'  => 'Content-Type: image/tiff',
-            'tiff' => 'Content-Type: image/tiff',
-            'ttf'  => 'Content-Type: font/ttf',
-            'TTF'  => 'Content-Type: font/ttf',
-            'txt'  => 'Content-type: text/plain; charset=utf-8',
-            'wav'  => 'Content-Type: audio/wav',
-            'webp' => 'Content-Type: image/webp',
-            'woff' => 'Content-Type: font/woff',
-            'xml'  => 'Content-type: text/xml',
-            'zip'  => 'Content-Type: application/zip',
+            'apng'  => 'Content-Type: image/apng',
+            'atom'  => 'Content-Type: application/atom+xml',
+            'avif'  => 'Content-Type: image/avif',
+            'bmp'   => 'Content-Type: image/bmp',
+            'css'   => 'Content-type: text/css; charset=utf-8',
+            'csv'   => 'Content-type: text/csv; charset=utf-8',
+            'gif'   => 'Content-Type: image/gif',
+            'gz'    => 'Content-Type: application/gzip',
+            'html'  => 'Content-type: text/html; charset=utf-8',
+            'ico'   => 'Content-Type: image/x-icon',
+            'jpeg'  => 'Content-Type: image/jpeg',
+            'jpg'   => 'Content-Type: image/jpeg',
+            'js'    => 'Content-type: text/javascript; charset=utf-8',
+            'json'  => 'Content-type: application/json; charset=utf-8',
+            'md'    => 'Content-type: text/markdown; charset=utf-8',
+            'mpeg'  => 'Content-Type: audio/mpeg',
+            'mp4'   => 'Content-Type: video/mp4',
+            'ogg'   => 'Content-Type: application/ogg',
+            'otf'   => 'Content-Type: font/otf',
+            'pdf'   => 'Content-Type: application/pdf',
+            'png'   => 'Content-Type: image/png',
+            'rar'   => 'Content-Type: application/vnd.rar, application/x-rar-compressed, application/octet-stream',
+            'rss'   => 'Content-Type: application/rss+xml; charset=utf-8',
+            'svg'   => 'Content-Type: image/svg+xml',
+            'tar'   => 'Content-Type: application/x-tar',
+            'tif'   => 'Content-Type: image/tiff',
+            'tiff'  => 'Content-Type: image/tiff',
+            'ttf'   => 'Content-Type: font/ttf',
+            'TTF'   => 'Content-Type: font/ttf',
+            'txt'   => 'Content-type: text/plain; charset=utf-8',
+            'wav'   => 'Content-Type: audio/wav',
+            'webp'  => 'Content-Type: image/webp',
+            'woff'  => 'Content-Type: font/woff',
+            'woff2' => 'Content-Type: font/woff2',
+            'xml'   => 'Content-type: text/xml',
+            'zip'   => 'Content-Type: application/zip',
         ];
 
 
@@ -250,6 +252,7 @@ class PithDispatcherHelper
             'wav',
             'webp',
             'woff',
+            'woff2',
             'zip',
         ];
 
@@ -258,6 +261,62 @@ class PithDispatcherHelper
             $file_byte_size = filesize($real_filepath);
 
             header("Content-length: $file_byte_size");
+        }
+    }
+
+    /**
+     * @param PithRoute $route
+     */
+    public function setCachingHeaders(PithRoute $route)
+    {
+        $cache_level     = $route->cache_level;
+        $has_cache_level = !empty($cache_level);
+
+        // Caching Levels:
+        //    'unknown'
+        //    'private-always-reload-file'
+        //    'public-always-reload-file'
+        //    'private-cache-application-file'
+        //    'public-cache-application-file'
+        //    'public-cache-unchanging-application-file'
+        //    'public-cache-unchanging-library-file' (alias 'font', 'library')
+        //    ELSE: give exact header to use, as a string
+
+        if ($has_cache_level){
+            // Cache Levels
+            $cache_control_for_cache_level = match ($cache_level) {
+                'always-recreate-even-back-button'
+                => 'Cache-Control: no-store, no-cache, private, max-age=0, must-revalidate, proxy-revalidate',
+
+                'unknown',
+                'private-always-reload-file'
+                => 'Cache-Control: no-cache, private',
+
+                'public-always-reload-file'
+                => 'Cache-Control: no-cache, public',
+
+                'private-cache-application-file'
+                => 'Cache-Control: private, max-age=31536000, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                'public-cache-application-file'
+                => 'Cache-Control: public, max-age=31536000, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                'public-cache-unchanging-application-file',
+                'public-cache-unchanging-library-file',
+                'font',
+                'library'
+                => 'Cache-Control: public, max-age=31536000, immutable, stale-while-revalidate=604800, stale-if-error=1209600',
+
+                default
+                => '',
+            };
+
+            // Get the Cache-Control
+            $has_cache_control_for_cache_level = !empty($cache_control_for_cache_level);
+            $cache_control = ($has_cache_control_for_cache_level) ? $cache_control_for_cache_level : $cache_level;
+
+            // Set the Cache-Control header
+            header($cache_control, true);
         }
     }
 }
