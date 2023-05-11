@@ -40,12 +40,14 @@ class PithRouter
 
     private PithDependencyInjection $dependency_injection;
     private PithConfig              $config;
+    private PithInboundRequest      $inbound_request;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config)
+    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config, PithInboundRequest $inbound_request)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
         $this->config               = $config;
+        $this->inbound_request      = $inbound_request;
     }
 
 
@@ -83,7 +85,7 @@ class PithRouter
         $route_params = $routing_info['vars'];
 
         // Save route params
-        $this->app->request->attributes->add(['route_parameters' => $route_params]);
+        $this->inbound_request->request->attributes->add(['route_parameters' => $route_params]);
 
         // Return the route object
         return $route;

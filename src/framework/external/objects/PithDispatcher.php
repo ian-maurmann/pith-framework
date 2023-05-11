@@ -48,6 +48,7 @@ class PithDispatcher
     private PithAccessControl       $access_control;
     private PithDependencyInjection $dependency_injection;
     private PithEscapeUtility       $escape_utility;
+    private PithInboundRequest      $inbound_request;
 
 
     /**
@@ -63,7 +64,8 @@ class PithDispatcher
         PithExpressionUtility   $expression_utility,
         PithAccessControl       $access_control,
         PithDependencyInjection $dependency_injection,
-        PithEscapeUtility       $escape_utility
+        PithEscapeUtility       $escape_utility,
+        PithInboundRequest      $inbound_request
     )
     {
         $this->helper               = $helper;
@@ -71,6 +73,7 @@ class PithDispatcher
         $this->access_control       = $access_control;
         $this->dependency_injection = $dependency_injection;
         $this->escape_utility       = $escape_utility;
+        $this->inbound_request      = $inbound_request;
     }
 
 
@@ -261,7 +264,7 @@ class PithDispatcher
         $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
 
         // Get the relative Filepath
-        $route_parameters = $this->app->request->attributes->get('route_parameters');
+        $route_parameters = $this->inbound_request->request->attributes->get('route_parameters');
         $request_filepath = (string) $route_parameters['filepath'];
 
         // Get the Real Resource Folder path
