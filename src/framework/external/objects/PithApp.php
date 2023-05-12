@@ -67,8 +67,6 @@ class PithApp
         // --------------
         // The Log should be added after construct
 
-        // Initialize Dependencies
-        $this->helper->initializeDependencies($this);
     }
     
 }
