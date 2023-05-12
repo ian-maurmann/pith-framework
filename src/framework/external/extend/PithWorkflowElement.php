@@ -43,8 +43,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithWorkflowElement
 {
-    use PithAppReferenceTrait;
-
     protected PithDependencyInjection $dependency_injection;
 
     public string $access_level;

@@ -193,9 +193,6 @@ class PithDispatcher
      */
     public function dispatchViewRequisition(PithViewRequisition $requisition): array
     {
-        // Set app reference
-        $requisition->setAppReference($this->app);
-
         // Provision the requisition
         $requisition->provisionViewRequisition();
 
@@ -369,13 +366,11 @@ class PithDispatcher
         // ROUTE
         // ─────
 
-        // Set Dependencies
-        $route->setAppReference($this->app); // Set app reference
+        // Add Dependency Injection
         $route->setDependencyInjection($this->dependency_injection); // Set dependency injection
 
         // Set dependencies for secondary route
         if($secondary_route){
-            $secondary_route->setAppReference($this->app); // Set app reference
             $secondary_route->setDependencyInjection($this->dependency_injection); // Set dependency injection
         }
 
@@ -402,9 +397,6 @@ class PithDispatcher
 
         // Get the pack
         $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
 
         // Get pack folder
         $pack_folder = $pack->getPackFolder();
@@ -445,9 +437,6 @@ class PithDispatcher
         // Get the action
         $action = $route->getAction();
 
-        // Set app reference
-        $action->setAppReference($this->app);
-
         // Provision action
         $action->provisionAction();
 
@@ -476,9 +465,6 @@ class PithDispatcher
 
         // Get the preparer
         $preparer = $route->getPreparer();
-
-        // Set app reference
-        $preparer->setAppReference($this->app);
 
         // Provision preparer
         $preparer->provisionPreparer($variables_for_prepare, $this->dependency_injection, $this->escape_utility);
