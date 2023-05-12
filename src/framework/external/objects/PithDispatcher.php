@@ -50,6 +50,7 @@ class PithDispatcher
     private PithEscapeUtility       $escape_utility;
     private PithInboundRequest      $inbound_request;
     private PithRouter              $router;
+    private PithAppRetriever        $app_retriever;
 
     /**
      * @param PithDispatcherHelper    $helper
@@ -57,6 +58,9 @@ class PithDispatcher
      * @param PithAccessControl       $access_control
      * @param PithDependencyInjection $dependency_injection
      * @param PithEscapeUtility       $escape_utility
+     * @param PithInboundRequest      $inbound_request
+     * @param PithRouter              $router
+     * @param PithAppRetriever        $app_retriever
      */
     public function __construct
     (
@@ -66,9 +70,11 @@ class PithDispatcher
         PithDependencyInjection $dependency_injection,
         PithEscapeUtility       $escape_utility,
         PithInboundRequest      $inbound_request,
-        PithRouter              $router
+        PithRouter              $router,
+        PithAppRetriever        $app_retriever
     )
     {
+        // Object Dependencies
         $this->helper               = $helper;
         $this->expression_utility   = $expression_utility;
         $this->access_control       = $access_control;
@@ -76,6 +82,7 @@ class PithDispatcher
         $this->escape_utility       = $escape_utility;
         $this->inbound_request      = $inbound_request;
         $this->router               = $router;
+        $this->app_retriever        = $app_retriever;
     }
 
 
@@ -524,13 +531,16 @@ class PithDispatcher
         // RESPONDER
         // ─────────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Add resource files to responder
-        $this->app->responder->addResourceFiles($resources);
+        $app->responder->addResourceFiles($resources);
 
         // If partial, insert resource files
         $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
         if($is_partial){
-            $this->app->responder->insertResourceFiles();
+            $app->responder->insertResourceFiles();
         }
     }
 
@@ -543,8 +553,11 @@ class PithDispatcher
         // METADATA
         // ────────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Set metadata
-        $this->app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
+        $app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
     }
 
 
@@ -562,6 +575,9 @@ class PithDispatcher
         // VIEW
         // ────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Get the view expression
         $view_expression = $route->view;
 
@@ -572,7 +588,7 @@ class PithDispatcher
         $view_adapter = $route->getViewAdapter();
 
         // Provision the view adapter
-        $view_adapter->setApp($this->app);
+        $view_adapter->setApp($app);
         $view_adapter->setFilePath($view_path);
         $view_adapter->setResources($resources);
         $view_adapter->setVars($variables_for_view);
