@@ -89,6 +89,8 @@ class PithDispatcher
      * @param PithRoute|null $secondary_route
      * @throws PithException
      * @throws ReflectionException
+     *
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore $pith_exception not being used
      */
     public function dispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
@@ -522,6 +524,8 @@ class PithDispatcher
     /**
      * @param PithRoute $route
      * @param array $resources
+     * 
+     * @throws PithException
      */
     public function tapResponder(PithRoute $route, array $resources)
     {
@@ -544,6 +548,8 @@ class PithDispatcher
 
     /**
      * @param PithRoute $route
+     *
+     * @throws PithException
      */
     protected function tapMetadata(PithRoute $route)
     {
