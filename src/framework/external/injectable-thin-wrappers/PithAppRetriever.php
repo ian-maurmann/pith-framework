@@ -45,7 +45,7 @@ class PithAppRetriever
         // Ugly, but should work until next re-write
         global $pith;
 
-        // Throw if $pith is not set yet
+        // Throw if $pith is not set to a PithApp instance yet
         $is_app_object = ($pith instanceof PithApp);
         if(!$is_app_object){
             throw new PithException(
