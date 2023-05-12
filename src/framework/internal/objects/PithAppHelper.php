@@ -36,17 +36,5 @@ class PithAppHelper
     {
         // Do nothing for now
     }
-
-
-
-
-    /**
-     * Initialize Dependencies
-     *
-     * @param PithApp $app
-     */
-    public function initializeDependencies(PithApp $app)
-    {
-        // Set app reference
-    }
+    
 }
