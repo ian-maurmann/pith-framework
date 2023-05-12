@@ -48,6 +48,5 @@ class PithAppHelper
     public function initializeDependencies(PithApp $app)
     {
         // Set app reference
-        $app->dispatcher->setAppReference($app);
     }
 }

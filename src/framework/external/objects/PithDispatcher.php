@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithDispatcherHelper;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\Internal\PithExpressionUtility;
@@ -38,8 +37,6 @@ use ReflectionException;
  */
 class PithDispatcher
 {
-    use PithAppReferenceTrait;
-
     // Helper
     private PithDispatcherHelper $helper;
 
