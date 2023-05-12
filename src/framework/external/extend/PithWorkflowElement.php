@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 // ┌────────────────────────────────────────────────────────────────────────┐
 // │    PithWorkflowElement                                                 │
