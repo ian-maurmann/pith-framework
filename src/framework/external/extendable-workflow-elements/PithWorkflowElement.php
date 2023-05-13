@@ -27,13 +27,14 @@ namespace Pith\Framework;
 
 
 // ┌────────────────────────────────────────────────────────────────────────┐
-// │    PithWorkflowElement                                                 │
+// │    Workflow Element                                                    │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  access_level : string            -- Name of access level         │
-// │    +  element_type : string            -- Name of workflow element     │
+// │    +  access_level : string | namespace                                │
+// │    #  dependency_injection : dependency injection object               │
+// │    +  element_type : string                                            │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  getAccessLevel( ) : string       -- Returns the Access Level     │
-// │    +  setDependencyInjection( ) : void -- Sets the DependencyInjection │
+// │    +  getAccessLevel( ) : string | namespace                           │
+// │    +  setDependencyInjection( ) : void                                 │
 // └────────────────────────────────────────────────────────────────────────┘
 
 /**
