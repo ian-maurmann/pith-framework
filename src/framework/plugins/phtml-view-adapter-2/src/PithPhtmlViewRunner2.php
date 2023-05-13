@@ -46,6 +46,7 @@ class PithPhtmlViewRunner2
     protected $content_route;
 
 
+
     public function __construct(PithEscapeUtility $escape, PithAppRetriever $app_retriever)
     {
         // Object Dependencies
@@ -57,6 +58,7 @@ class PithPhtmlViewRunner2
     }
 
 
+
     protected function reset()
     {
         $this->app           = null;
@@ -65,6 +67,7 @@ class PithPhtmlViewRunner2
         $this->variables     = null;
         $this->content_route = null;
     }
+
 
 
     /**
@@ -86,6 +89,7 @@ class PithPhtmlViewRunner2
     }
 
 
+
     /** @noinspection PhpIncludeInspection - Needed to run. */
     protected function dispatchView(){
 
@@ -95,6 +99,8 @@ class PithPhtmlViewRunner2
         // Include the view:
         require $this->path;
     }
+
+
 
     /**
      * @throws PithException
@@ -109,6 +115,8 @@ class PithPhtmlViewRunner2
         $app->responder->insertPageTitle();
     }
 
+
+
     /**
      * @throws PithException
      * @noinspection PhpUnused - Method will be used by views.
@@ -118,8 +126,23 @@ class PithPhtmlViewRunner2
         // Get App
         $app = $this->app_retriever->getApp();
 
-        // Insert Meta MetaDescription
+        // Insert Meta Description
         $app->responder->insertMetaDescription();
+    }
+
+
+
+    /**
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaKeywords()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Keywords
+        $app->responder->insertMetaKeywords();
     }
 
 

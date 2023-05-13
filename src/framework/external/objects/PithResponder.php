@@ -223,25 +223,29 @@ class PithResponder
         $this->meta_robots      = $meta_robots;
     }
 
+
+
     public function insertPageTitle()
     {
         echo $this->page_title;
     }
 
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
+
     public function insertMetaKeywords()
     {
         echo $this->meta_keywords;
     }
 
+
+
     public function insertMetaDescription()
     {
         echo $this->meta_description;
     }
-    
+
+
+
     /**
      * @param int $indent
      *
