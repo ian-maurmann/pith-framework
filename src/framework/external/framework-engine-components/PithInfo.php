@@ -27,11 +27,11 @@ namespace Pith\Framework;
  */
 class PithInfo
 {
-    private PithMeta $meta;
+    private PithAbout $about;
 
-    public function __construct(PithMeta $meta)
+    public function __construct(PithAbout $about)
     {
-        $this->meta = $meta;
+        $this->about = $about;
     }
 
     /**
@@ -39,6 +39,6 @@ class PithInfo
      */
     public function getVersionSlug(): string
     {
-        return $this->meta->framework_name . ' ' . $this->meta->real_version . ' (semver ' . $this->meta->semver_version . ') - ' . $this->meta->release_name;
+        return $this->about->framework_name . ' ' . $this->about->real_version . ' (semver ' . $this->about->semver_version . ') - ' . $this->about->release_name;
     }
 }
