@@ -28,35 +28,28 @@ namespace Pith\Framework;
 class PithApp
 {
     // Objects
-    public PithConfig          $config;
-    public PithDispatcher      $dispatcher;
-    public PithEngine          $engine;
-    public PithResponder       $responder;
+    public PithConfig     $config;
+    public PithDispatcher $dispatcher;
+    public PithEngine     $engine;
+    public PithResponder  $responder;
 
     /**
-     * PithApp constructor.
-     *
-     * @param PithConfig          $config
-     * @param PithDispatcher      $dispatcher
-     * @param PithEngine          $engine
-     * @param PithResponder       $responder
+     * @param PithConfig     $config
+     * @param PithDispatcher $dispatcher
+     * @param PithEngine     $engine
+     * @param PithResponder  $responder
      */
     public function __construct(
-        PithConfig          $config,
-        PithDispatcher      $dispatcher,
-        PithEngine          $engine,
-        PithResponder       $responder,
+        PithConfig     $config,
+        PithDispatcher $dispatcher,
+        PithEngine     $engine,
+        PithResponder  $responder,
     )
     {
-        $this->config         = $config;
-        $this->dispatcher     = $dispatcher;
-        $this->engine         = $engine;
-        $this->responder      = $responder;
-
-        // Other objects:
-        // --------------
-        // The Log should be added after construct
-
+        $this->config     = $config;
+        $this->dispatcher = $dispatcher;
+        $this->engine     = $engine;
+        $this->responder  = $responder;
     }
     
 }
