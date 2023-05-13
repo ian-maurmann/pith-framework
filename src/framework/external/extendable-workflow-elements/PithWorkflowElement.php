@@ -29,11 +29,11 @@ namespace Pith\Framework;
 // ┌────────────────────────────────────────────────────────────────────────┐
 // │    PithWorkflowElement                                                 │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  access_level : string            --- Name of access level        │
-// │    +  app          : PithApp reference --- Access to Pith App          │
-// │    +  element_type : string            --- Name of workflow element    │
+// │    +  access_level : string            -- Name of access level         │
+// │    +  element_type : string            -- Name of workflow element     │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  getAccessLevel( ) : string                                       │
+// │    +  getAccessLevel( ) : string       -- Returns the Access Level     │
+// │    +  setDependencyInjection( ) : void -- Sets the DependencyInjection │
 // └────────────────────────────────────────────────────────────────────────┘
 
 /**
@@ -50,7 +50,6 @@ class PithWorkflowElement
 
     /**
      * Get Access Level
-     *
      * @return string
      */
     public function getAccessLevel(): string
