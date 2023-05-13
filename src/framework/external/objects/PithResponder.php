@@ -214,6 +214,7 @@ class PithResponder
      * @param string $page_title
      * @param string $meta_keywords
      * @param string $meta_description
+     * @param string $meta_robots
      */
     public function setPageMetadata(string $page_title, string $meta_keywords, string $meta_description, string $meta_robots)
     {
@@ -248,8 +249,6 @@ class PithResponder
 
     /**
      * @param int $indent
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertMetaRobots(int $indent = 0){
         if(!empty($this->meta_robots)){
