@@ -11,7 +11,7 @@
 
 /**
  * 'world' Access Level
- * ---------------
+ * --------------------
  *
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
