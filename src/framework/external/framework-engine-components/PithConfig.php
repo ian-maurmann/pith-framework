@@ -23,7 +23,6 @@ namespace Pith\Framework;
 
 use DI\DependencyException;
 use DI\NotFoundException;
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 /**
  * Class PithConfig
@@ -31,20 +30,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithConfig
 {
-    use PithAppReferenceTrait;
-
-    /**
-     * Holds path to the env constants file
-     * @var string | null
-     */
-    public ?string $env_constants_file;
-
-    /**
-     * Holds path to the tracked constants file
-     * @var string | null
-     */
-    public ?string $tracked_constants_file;
-
     /**
      * Holds the namespace of the Route List object
      * @var string | null
@@ -58,13 +43,11 @@ class PithConfig
     public ?PithRouteList $route_list;
 
     private PithDependencyInjection $dependency_injection;
-    private PithDatabaseWrapper     $database;
 
     public function __construct(PithDependencyInjection $dependency_injection, PithDatabaseWrapper $database)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
-        $this->database             = $database;
     }
 
     /**
@@ -87,17 +70,9 @@ class PithConfig
 
     /**
      * @throws PithException
-     *
-     * @noinspection PhpIncludeInspection - The requires are ok here.
      */
     public function load()
     {
-        // Load env constants
-        require_once $this->env_constants_file;
-
-        // Load tracked constants
-        require_once $this->tracked_constants_file;
-
         // Add route list to config
         try {
             $this->route_list = $this->dependency_injection->container->get($this->route_list_namespace);
@@ -114,23 +89,8 @@ class PithConfig
                 $exception
             );
         }
-
-        // Initialize the database's Username/Password/DSN from env constants
-        $this->primeDatabase();
-
     }
 
-    /**
-     * Set Database Settings
-     */
-    public function primeDatabase()
-    {
-        $this->app->database->setDsn(PITH_APP_DATABASE_DSN);
-        $this->app->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
-
-        $this->database->setDsn(PITH_APP_DATABASE_DSN);
-        $this->database->setDbUserAndPassword(PITH_APP_DATABASE_USER_USERNAME, PITH_APP_DATABASE_USER_PASSWORD);
-    }
 
 }
 

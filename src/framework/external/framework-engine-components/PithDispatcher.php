@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 use Pith\Framework\Internal\PithDispatcherHelper;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\Internal\PithExpressionUtility;
@@ -38,8 +37,6 @@ use ReflectionException;
  */
 class PithDispatcher
 {
-    use PithAppReferenceTrait;
-
     // Helper
     private PithDispatcherHelper $helper;
 
@@ -48,7 +45,9 @@ class PithDispatcher
     private PithAccessControl       $access_control;
     private PithDependencyInjection $dependency_injection;
     private PithEscapeUtility       $escape_utility;
-
+    private PithInboundRequest      $inbound_request;
+    private PithRouter              $router;
+    private PithAppRetriever        $app_retriever;
 
     /**
      * @param PithDispatcherHelper    $helper
@@ -56,6 +55,9 @@ class PithDispatcher
      * @param PithAccessControl       $access_control
      * @param PithDependencyInjection $dependency_injection
      * @param PithEscapeUtility       $escape_utility
+     * @param PithInboundRequest      $inbound_request
+     * @param PithRouter              $router
+     * @param PithAppRetriever        $app_retriever
      */
     public function __construct
     (
@@ -63,14 +65,21 @@ class PithDispatcher
         PithExpressionUtility   $expression_utility,
         PithAccessControl       $access_control,
         PithDependencyInjection $dependency_injection,
-        PithEscapeUtility       $escape_utility
+        PithEscapeUtility       $escape_utility,
+        PithInboundRequest      $inbound_request,
+        PithRouter              $router,
+        PithAppRetriever        $app_retriever
     )
     {
+        // Object Dependencies
         $this->helper               = $helper;
         $this->expression_utility   = $expression_utility;
         $this->access_control       = $access_control;
         $this->dependency_injection = $dependency_injection;
         $this->escape_utility       = $escape_utility;
+        $this->inbound_request      = $inbound_request;
+        $this->router               = $router;
+        $this->app_retriever        = $app_retriever;
     }
 
 
@@ -80,6 +89,8 @@ class PithDispatcher
      * @param PithRoute|null $secondary_route
      * @throws PithException
      * @throws ReflectionException
+     *
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore $pith_exception not being used
      */
     public function dispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
@@ -95,7 +106,7 @@ class PithDispatcher
                 // fall through
             case 'page':
                 if($route->hasLayout()){
-                    $layout_route = $this->app->router->getRouteFromRouteNamespace($route->layout);
+                    $layout_route = $this->router->getRouteFromRouteNamespace($route->layout);
                     $this->tapMetadata($route);
                     $this->dispatch( $layout_route, $route);
                 }
@@ -188,9 +199,6 @@ class PithDispatcher
      */
     public function dispatchViewRequisition(PithViewRequisition $requisition): array
     {
-        // Set app reference
-        $requisition->setAppReference($this->app);
-
         // Provision the requisition
         $requisition->provisionViewRequisition();
 
@@ -261,7 +269,7 @@ class PithDispatcher
         $resource_folder_path       = $this->expression_utility->getViewPathFromExpression($resource_folder_expression, $pack_folder, $route_folder);
 
         // Get the relative Filepath
-        $route_parameters = $this->app->request->attributes->get('route_parameters');
+        $route_parameters = $this->inbound_request->request->attributes->get('route_parameters');
         $request_filepath = (string) $route_parameters['filepath'];
 
         // Get the Real Resource Folder path
@@ -364,13 +372,11 @@ class PithDispatcher
         // ROUTE
         // ─────
 
-        // Set Dependencies
-        $route->setAppReference($this->app); // Set app reference
+        // Add Dependency Injection
         $route->setDependencyInjection($this->dependency_injection); // Set dependency injection
 
         // Set dependencies for secondary route
         if($secondary_route){
-            $secondary_route->setAppReference($this->app); // Set app reference
             $secondary_route->setDependencyInjection($this->dependency_injection); // Set dependency injection
         }
 
@@ -397,9 +403,6 @@ class PithDispatcher
 
         // Get the pack
         $pack = $route->getPack();
-
-        // Set app reference
-        $pack->setAppReference($this->app);
 
         // Get pack folder
         $pack_folder = $pack->getPackFolder();
@@ -440,9 +443,6 @@ class PithDispatcher
         // Get the action
         $action = $route->getAction();
 
-        // Set app reference
-        $action->setAppReference($this->app);
-
         // Provision action
         $action->provisionAction();
 
@@ -471,9 +471,6 @@ class PithDispatcher
 
         // Get the preparer
         $preparer = $route->getPreparer();
-
-        // Set app reference
-        $preparer->setAppReference($this->app);
 
         // Provision preparer
         $preparer->provisionPreparer($variables_for_prepare, $this->dependency_injection, $this->escape_utility);
@@ -527,33 +524,43 @@ class PithDispatcher
     /**
      * @param PithRoute $route
      * @param array $resources
+     * 
+     * @throws PithException
      */
     public function tapResponder(PithRoute $route, array $resources)
     {
         // RESPONDER
         // ─────────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Add resource files to responder
-        $this->app->responder->addResourceFiles($resources);
+        $app->responder->addResourceFiles($resources);
 
         // If partial, insert resource files
         $is_partial = $route->route_type === 'partial' || $route->route_type === 'partial-route';
         if($is_partial){
-            $this->app->responder->insertResourceFiles();
+            $app->responder->insertResourceFiles();
         }
     }
 
 
     /**
      * @param PithRoute $route
+     *
+     * @throws PithException
      */
     protected function tapMetadata(PithRoute $route)
     {
         // METADATA
         // ────────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Set metadata
-        $this->app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
+        $app->responder->setPageMetadata($route->page_title, $route->meta_keywords, $route->meta_description, $route->meta_robots);
     }
 
 
@@ -571,6 +578,9 @@ class PithDispatcher
         // VIEW
         // ────
 
+        // Get App
+        $app = $this->app_retriever->getApp();
+
         // Get the view expression
         $view_expression = $route->view;
 
@@ -581,7 +591,7 @@ class PithDispatcher
         $view_adapter = $route->getViewAdapter();
 
         // Provision the view adapter
-        $view_adapter->setApp($this->app);
+        $view_adapter->setApp($app);
         $view_adapter->setFilePath($view_path);
         $view_adapter->setResources($resources);
         $view_adapter->setVars($variables_for_view);

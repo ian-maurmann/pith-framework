@@ -25,15 +25,9 @@ class QuotesPreparer extends PithPreparer
     public function runPreparer()
     {
         // Variables from Action
-        $version_text    = (string) $this->prepare->version_text;
-        $copyright_years = (string) $this->prepare->copyright_years;
-        $quote_4         = (string) $this->prepare->quote;
-        $test_quotes          = (array)  $this->prepare->quotes;
+        $quote_results   = (array)  $this->prepare->quote_results;
 
         // Push to View
-        $this->view->version_text    = $this->escape->html($version_text);
-        $this->view->copyright_years = $this->escape->html($copyright_years);
-        $this->view->quote_4         = $this->escape->html($quote_4);
-        $this->view->test_quotes          = $test_quotes;
+        $this->view->quote_results   = $quote_results;
     }
 }

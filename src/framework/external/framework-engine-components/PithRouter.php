@@ -27,7 +27,6 @@ namespace Pith\Framework;
 
 
 use FastRoute;
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 
 /**
@@ -36,14 +35,16 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithRouter
 {
-    use PithAppReferenceTrait;
-
     private PithDependencyInjection $dependency_injection;
+    private PithConfig              $config;
+    private PithInboundRequest      $inbound_request;
 
-    public function __construct(PithDependencyInjection $dependency_injection)
+    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config, PithInboundRequest $inbound_request)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
+        $this->config               = $config;
+        $this->inbound_request      = $inbound_request;
     }
 
 
@@ -81,7 +82,7 @@ class PithRouter
         $route_params = $routing_info['vars'];
 
         // Save route params
-        $this->app->request->attributes->add(['route_parameters' => $route_params]);
+        $this->inbound_request->request->attributes->add(['route_parameters' => $route_params]);
 
         // Return the route object
         return $route;
@@ -102,8 +103,8 @@ class PithRouter
 
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
-            $app_routes = $this->app->config->getRoutes();
-
+            $app_routes = $this->config->getRoutes();
+            
             // Loop through routes, Add each route
             foreach ($app_routes as $app_route){
                 $r->addRoute($app_route[0], $app_route[1], $app_route[2]);

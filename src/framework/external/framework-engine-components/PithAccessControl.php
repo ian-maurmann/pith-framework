@@ -27,8 +27,6 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
-
 /**
  * Class PithAccessControl
  * @package Pith\Framework
@@ -116,9 +114,6 @@ class PithAccessControl
         if (is_object($access_level)) {
             // Get App
             $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
-
-            // Set app reference
-            $access_level->setAppReference($app);
         }
         else{
             $access_level = false;

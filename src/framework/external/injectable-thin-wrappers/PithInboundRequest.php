@@ -1,5 +1,4 @@
 <?php
-
 # ===================================================================
 # Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -10,45 +9,29 @@
 # ===================================================================
 
 /**
- * Pith Access Level (extend)
- * ---------------------------
+ * Pith Inbound Request - Thin wrapper to pass the request around
+ * --------------------------------------------------------------
  *
- * @noinspection PhpMethodNamingConventionInspection - Long method names are ok here.
+ * @noinspection PhpClassNamingConventionInspection - Long class name is ok.
  */
-
 
 
 declare(strict_types=1);
 
-
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class PithAccessLevel
+ * Class PithInboundRequest
  * @package Pith\Framework
  */
-class PithAccessLevel
+class PithInboundRequest
 {
-    use PithAppReferenceTrait;
+    public Request $request;
 
-    /**
-     * @return string
-     */
-    public function getName(): string
+    public function __construct()
     {
-        return 'NOT NAMED';
-    }
-
-
-    /**
-     * @return bool
-     */
-    public function isAllowedToAccess(): bool
-    {
-        // Placeholder
-
-        return false;
+        $this->request = Request::createFromGlobals();
     }
 }
