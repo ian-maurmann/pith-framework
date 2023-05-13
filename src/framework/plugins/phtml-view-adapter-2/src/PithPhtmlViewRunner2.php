@@ -16,6 +16,7 @@
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
  * @noinspection PhpPropertyOnlyWrittenInspection      - Ignore here, $this->escape will be used in the phtml views.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok here.
  */
 
 
@@ -26,6 +27,8 @@ namespace Pith\PhtmlViewAdapter2;
 
 
 use Pith\Framework\Internal\PithEscapeUtility;
+use Pith\Framework\PithAppRetriever;
+use Pith\Framework\PithException;
 
 /**
  * Class PithPhtmlViewRunner2
@@ -34,6 +37,7 @@ use Pith\Framework\Internal\PithEscapeUtility;
 class PithPhtmlViewRunner2
 {
     private PithEscapeUtility $escape;
+    private PithAppRetriever  $app_retriever;
 
     protected $app;
     protected $is_layout;
@@ -42,10 +46,11 @@ class PithPhtmlViewRunner2
     protected $content_route;
 
 
-    public function __construct(PithEscapeUtility $escape)
+    public function __construct(PithEscapeUtility $escape, PithAppRetriever $app_retriever)
     {
         // Object Dependencies
-        $this->escape = $escape;
+        $this->escape        = $escape;
+        $this->app_retriever = $app_retriever;
 
         // Reset
         $this->reset();
@@ -89,6 +94,20 @@ class PithPhtmlViewRunner2
 
         // Include the view:
         require $this->path;
+    }
+
+    /**
+     * @noinspection PhpUnused - Method will be used by views.
+     *
+     * @throws PithException
+     */
+    public function insertPageTitle()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Page Title
+        $app->responder->insertPageTitle();
     }
 
 
