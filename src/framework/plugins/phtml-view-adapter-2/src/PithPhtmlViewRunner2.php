@@ -161,4 +161,19 @@ class PithPhtmlViewRunner2
     }
 
 
+    /**
+     * @param int $indent
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertResourceFiles(int $indent = 0)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Keywords
+        $app->responder->insertResourceFiles($indent);
+    }
+
+
 }

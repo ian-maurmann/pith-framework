@@ -94,9 +94,7 @@ class PithResponder
     }
 
     /**
-     * @param int   $indent
-     *
-     * @noinspection PhpUnused - Method will be used by views.
+     * @param int $indent
      */
     public function insertResourceFiles(int $indent = 0)
     {
