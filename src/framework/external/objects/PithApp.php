@@ -31,7 +31,6 @@ class PithApp
     public PithConfig          $config;
     public PithDispatcher      $dispatcher;
     public PithEngine          $engine;
-    public object              $log; // Enforce using Monolog here? Currently any PSR-3 logger.
     public PithResponder       $responder;
 
     /**

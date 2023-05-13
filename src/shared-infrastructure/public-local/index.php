@@ -98,24 +98,6 @@ try {
 }
 
 if($pith) {
-    // Setup the logger
-    // We're using Monolog here. You can use your own logger here instead of Monolog if you want. (Needs to be PSR-3 compatible)
-    $monolog = new \Monolog\Logger('Pith');
-    $monolog_stream = new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Logger::DEBUG);
-    $monolog_format = new \Monolog\Formatter\LineFormatter(
-        null, // Format of message in log, default [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n
-        'D M d H:i:s Y', // Datetime format // 'Y-m-d H:i:s'
-        true, // allowInlineLineBreaks option, default false
-        true  // ignoreEmptyContextAndExtra option, default false
-    );
-    $monolog_stream->setFormatter($monolog_format);
-    $monolog->pushHandler($monolog_stream);
-
-
-    // Add objects to Pith
-    $pith->container = $container; // Give the container (PHP-DI) to our App
-    $pith->log = $monolog; // Give the logger (Monolog) to our App.
-
     // Add env constants to config
     $pith->config->env_constants_file = './src/shared-infrastructure/env.php'; // <---- 6) Set the env constants filepath here
 
