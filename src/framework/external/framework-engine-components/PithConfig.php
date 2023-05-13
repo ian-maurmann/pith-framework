@@ -31,18 +31,6 @@ use DI\NotFoundException;
 class PithConfig
 {
     /**
-     * Holds path to the env constants file
-     * @var string | null
-     */
-    public ?string $env_constants_file;
-
-    /**
-     * Holds path to the tracked constants file
-     * @var string | null
-     */
-    public ?string $tracked_constants_file;
-
-    /**
      * Holds the namespace of the Route List object
      * @var string | null
      */
@@ -84,17 +72,9 @@ class PithConfig
 
     /**
      * @throws PithException
-     *
-     * @noinspection PhpIncludeInspection - The requires are ok here.
      */
     public function load()
     {
-        // Load env constants
-        require_once $this->env_constants_file;
-
-        // Load tracked constants
-        require_once $this->tracked_constants_file;
-
         // Add route list to config
         try {
             $this->route_list = $this->dependency_injection->container->get($this->route_list_namespace);
