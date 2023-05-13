@@ -29,23 +29,36 @@ use Pith\Framework\Internal\PithGetObjectClassDirectoryTrait;
 use ReflectionException;
 
 // ┌────────────────────────────────────────────────────────────────────────────┐
-// │    PithRoute                                                               │
+// │    Route                                                                   │
 // ├────────────────────────────────────────────────────────────────────────────┤
-// │    +  access_level : string            --- Name of access level            │
-// │    +  action       : string            --- Namespace for action            │
-// │    +  app          : PithApp reference --- Access to Pith App              │
-// │    +  element_type : string 'route'    --- Name of workflow element        │
-// │    +  layout       : string            --- Namespace for layout route      │
-// │    +  preparer     : string            --- Namespace for preparer          │
-// │    +  route_type   : string            --- Name of route type              │
-// │    +  view         : string            --- Path to view                    │
-// │    +  view_adapter : string            --- Namespace for view adapter      │
+// │    +  access_level : string | namespace string                             │
+// │    +  action : namespace string                                            │
+// │    +  cache_level : string | http header string                            │
+// │    #  dependency_injection : dependency injection object                   │
+// │    +  element_type : string 'route'                                        │
+// │    +  layout : namespace string                                            │
+// │    +  meta_description : string                                            │
+// │    +  meta_keywords : string                                               │
+// │    +  meta_robots : string                                                 │
+// │    +  pack : namespace string                                              │
+// │    +  page_title : string                                                  │
+// │    +  preparer : namespace string                                          │
+// │    +  resource_folder : string expression                                  │
+// │    +  resource_path : string expression                                    │
+// │    +  route_type : string                                                  │
+// │    +  view : string expression                                             │
+// │    +  view_adapter : namespace string                                      │
+// │    +  view_requisition : namespace string                                  │
 // ├────────────────────────────────────────────────────────────────────────────┤
-// │    +  checkAccess( )    : void || throw exception                          │
-// │    +  getAccessLevel( ) : string                                           │
-// │    +  getAction( )      : PithAction                                       │
-// │    +  getPreparer( )    : PithPreparer                                     │
-// │    +  getViewAdapter( ) : object                                           │
+// │    +  getAccessLevel( ) : string | namespace string                        │
+// │    +  getAction( ) : Action object                                         │
+// │    +  getPack( ) : Pack object                                             │
+// │    +  getPreparer( ) : Preparer object                                     │
+// │    +  getRouteFolder( ) : string expression                                │
+// │    +  getViewAdapter( ) : View Adapter object                              │
+// │    +  getViewRequisition( ) : View Requisition object                      │
+// │    +  hasLayout( ) : bool                                                  │
+// │    +  setDependencyInjection( ) : void                                     │
 // └────────────────────────────────────────────────────────────────────────────┘
 
 
