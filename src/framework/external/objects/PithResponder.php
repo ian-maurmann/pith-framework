@@ -61,8 +61,6 @@ class PithResponder
      * @param  string $route_namespace
      * @throws PithException
      * @throws ReflectionException
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertPartial(string $route_namespace)
     {
@@ -85,8 +83,6 @@ class PithResponder
     /**
      * @param  PithRoute $content_route
      * @throws PithException|ReflectionException
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertPageContent(PithRoute $content_route)
     {

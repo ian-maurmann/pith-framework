@@ -29,6 +29,8 @@ namespace Pith\PhtmlViewAdapter2;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
+use Pith\Framework\PithRoute;
+use ReflectionException;
 
 /**
  * Class PithPhtmlViewRunner2
@@ -161,6 +163,7 @@ class PithPhtmlViewRunner2
     }
 
 
+
     /**
      * @param int $indent
      * @throws PithException
@@ -173,6 +176,36 @@ class PithPhtmlViewRunner2
 
         // Insert Meta Keywords
         $app->responder->insertResourceFiles($indent);
+    }
+
+
+    /**
+     * @param string $route_namespace
+     * @throws PithException|ReflectionException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPartial(string $route_namespace)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Partial
+        $app->responder->insertPartial($route_namespace);
+    }
+
+
+    /**
+     * @param  PithRoute $content_route
+     * @throws PithException|ReflectionException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPageContent(PithRoute $content_route)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Partial
+        $app->responder->insertPageContent($content_route);
     }
 
 

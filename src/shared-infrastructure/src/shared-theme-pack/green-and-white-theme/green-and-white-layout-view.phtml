@@ -35,13 +35,13 @@ declare(strict_types=1);
         <div id="banner-area">
             Banner
             <nav>
-                <?php $this->app->responder->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>
+                <?php $this->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>
             </nav>
         </div>
         <div id="content-area">
             <div id="plate">
                 <div id="content">
-                    <?php $this->app->responder->insertPageContent($this->content_route); ?>
+                    <?php $this->insertPageContent($this->content_route); ?>
                 </div>
 
                 <hr/>
