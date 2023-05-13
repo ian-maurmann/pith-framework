@@ -43,13 +43,11 @@ class PithConfig
     public ?PithRouteList $route_list;
 
     private PithDependencyInjection $dependency_injection;
-    private PithDatabaseWrapper     $database;
 
     public function __construct(PithDependencyInjection $dependency_injection, PithDatabaseWrapper $database)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
-        $this->database             = $database;
     }
 
     /**
