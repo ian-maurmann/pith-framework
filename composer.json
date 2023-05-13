@@ -29,14 +29,12 @@
         "psr-4": {
             "Pith\\Framework\\": [
                 "src/framework/external/about/",
-                "src/framework/external/extend/",
-                "src/framework/external/objects/",
                 "src/framework/external/extendable-workflow-elements/",
                 "src/framework/external/framework-engine-components",
                 "src/framework/external/injectable-thin-wrappers/"
             ],
             "Pith\\Framework\\Internal\\": [
-                "src/framework/internal/objects/",
+                "src/framework/internal/helpers/",
                 "src/framework/internal/traits/",
                 "src/framework/internal/utilities/",
                 "src/framework/internal/workflow-access-levels/",
