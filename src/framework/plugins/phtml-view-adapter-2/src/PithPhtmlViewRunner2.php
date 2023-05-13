@@ -97,9 +97,8 @@ class PithPhtmlViewRunner2
     }
 
     /**
-     * @noinspection PhpUnused - Method will be used by views.
-     *
      * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertPageTitle()
     {
@@ -108,6 +107,19 @@ class PithPhtmlViewRunner2
 
         // Insert Page Title
         $app->responder->insertPageTitle();
+    }
+
+    /**
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaDescription()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta MetaDescription
+        $app->responder->insertMetaDescription();
     }
 
 

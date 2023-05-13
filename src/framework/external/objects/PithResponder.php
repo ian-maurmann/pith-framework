@@ -44,7 +44,7 @@ class PithResponder
     public function __construct(PithEngine $engine)
     {
         // Object Dependencies
-        $this->engine     = $engine;
+        $this->engine = $engine;
 
         // Reset
         $this->reset();
@@ -223,9 +223,6 @@ class PithResponder
         $this->meta_robots      = $meta_robots;
     }
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
     public function insertPageTitle()
     {
         echo $this->page_title;
@@ -240,14 +237,11 @@ class PithResponder
         echo $this->meta_keywords;
     }
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
     public function insertMetaDescription()
     {
         echo $this->meta_description;
     }
-
+    
     /**
      * @param int $indent
      *
