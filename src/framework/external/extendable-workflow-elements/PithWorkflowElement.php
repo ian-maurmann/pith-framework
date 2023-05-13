@@ -25,16 +25,16 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 
 // ┌────────────────────────────────────────────────────────────────────────┐
-// │    PithWorkflowElement                                                 │
+// │    Workflow Element                                                    │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  access_level : string            --- Name of access level        │
-// │    +  app          : PithApp reference --- Access to Pith App          │
-// │    +  element_type : string            --- Name of workflow element    │
+// │    +  access_level : string | namespace                                │
+// │    #  dependency_injection : dependency injection object               │
+// │    +  element_type : string                                            │
 // ├────────────────────────────────────────────────────────────────────────┤
-// │    +  getAccessLevel( ) : string                                       │
+// │    +  getAccessLevel( ) : string | namespace                           │
+// │    +  setDependencyInjection( ) : void                                 │
 // └────────────────────────────────────────────────────────────────────────┘
 
 /**
@@ -43,8 +43,6 @@ use Pith\Framework\Internal\PithAppReferenceTrait;
  */
 class PithWorkflowElement
 {
-    use PithAppReferenceTrait;
-
     protected PithDependencyInjection $dependency_injection;
 
     public string $access_level;
@@ -53,7 +51,6 @@ class PithWorkflowElement
 
     /**
      * Get Access Level
-     *
      * @return string
      */
     public function getAccessLevel(): string

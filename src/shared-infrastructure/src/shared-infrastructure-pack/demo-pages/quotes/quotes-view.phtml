@@ -1,29 +1,26 @@
-<?php
+<?php /** @noinspection PhpVariableNamingConventionInspection */
 
 /**
  * Quotes View
  *
  * @noinspection PhpUndefinedVariableInspection - Variables defined outside scope
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok
  */
 
 declare(strict_types=1);
 ?>
 
-<?php echo $version_text; ?>
-<br/>
-Copyright (c) <?php echo $copyright_years; ?>
-
-<br/><br/>
-
-<b>Quote #4:</b> <?php echo $quote_4; ?>
-
 <h3>Quotes</h3>
 <?php $foreach_else = true; ?>
-<?php foreach($test_quotes as $test_quotes_row_index => $test_quote_row): ?>
-    <?php $foreach_else = false; ?>
-    <?php echo $test_quote_row['quote_id']; ?>
+<?php foreach($quote_results as $quotes_row_index => $test_quote_row): ?>
+    <?php
+        $foreach_else       = false;
+        $html_safe_quote_id = $this->escape->html( (string) $test_quote_row['quote_id'] );
+        $html_safe_quote    = $this->escape->html( (string) $test_quote_row['quote'] );
+    ?>
+    <?php echo $html_safe_quote_id; ?>
     <i>
-        <?php echo $test_quote_row['quote']; ?>
+        <?php echo $html_safe_quote; ?>
     </i>
     <br/>
 <?php endforeach; ?>

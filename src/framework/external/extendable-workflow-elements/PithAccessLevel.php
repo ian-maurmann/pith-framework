@@ -1,4 +1,5 @@
 <?php
+
 # ===================================================================
 # Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -8,11 +9,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
-
 /**
- * Pith Info
- * ---------
+ * Pith Access Level (extend)
+ * ---------------------------
+ *
+ * @noinspection PhpMethodNamingConventionInspection - Long method names are ok here.
  */
+
 
 
 declare(strict_types=1);
@@ -22,23 +25,28 @@ namespace Pith\Framework;
 
 
 /**
- * Class PithInfo
+ * Class PithAccessLevel
  * @package Pith\Framework
  */
-class PithInfo
+class PithAccessLevel
 {
-    private PithAbout $about;
-
-    public function __construct(PithAbout $about)
-    {
-        $this->about = $about;
-    }
 
     /**
      * @return string
      */
-    public function getVersionSlug(): string
+    public function getName(): string
     {
-        return $this->about->framework_name . ' ' . $this->about->real_version . ' (semver ' . $this->about->semver_version . ') - ' . $this->about->release_name;
+        return 'NOT NAMED';
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isAllowedToAccess(): bool
+    {
+        // Placeholder
+
+        return false;
     }
 }

@@ -10,8 +10,8 @@
 # ===================================================================
 
 /**
- * Pith Meta
- * ---------
+ * Pith About
+ * ----------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
  * @noinspection PhpUnused                             - Ignore used properties for now.
@@ -23,10 +23,10 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 /**
- * Class PithMeta
+ * Class PithAbout
  * @package Pith\Framework
  */
-class PithMeta
+class PithAbout
 {
     public string $framework_name = 'Pith Framework';
     public string $copyright      = 'Copyright (c) 2008-2023 Ian K Maurmann';

@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-use Pith\Framework\Internal\PithAppReferenceTrait;
 use ReflectionException;
 
 
@@ -32,7 +31,7 @@ use ReflectionException;
  */
 class PithResponder
 {
-    use PithAppReferenceTrait;
+    private PithEngine     $engine;
 
     private array $resource_files = [];
     private array $resource_files_inserted = [];
@@ -42,8 +41,11 @@ class PithResponder
     private string $meta_description = '';
     private string $meta_robots = '';
 
-    public function __construct()
+    public function __construct(PithEngine $engine)
     {
+        // Object Dependencies
+        $this->engine = $engine;
+
         // Reset
         $this->reset();
     }
@@ -59,16 +61,10 @@ class PithResponder
      * @param  string $route_namespace
      * @throws PithException
      * @throws ReflectionException
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertPartial(string $route_namespace)
     {
-        // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($route_namespace);
-
-        // Run route
-        $this->app->dispatcher->dispatchRoute($route);
+        $this->engine->runPartial($route_namespace);
     }
 
 
@@ -80,30 +76,21 @@ class PithResponder
      */
     public function runLayout(string $layout_namespace)
     {
-        // Get route
-        $route = $this->app->router->getRouteFromRouteNamespace($layout_namespace);
-
-        // Run route
-        $this->app->dispatcher->dispatchRoute($route);
+        $this->engine->runLayout($layout_namespace);
     }
 
 
     /**
      * @param  PithRoute $content_route
      * @throws PithException|ReflectionException
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertPageContent(PithRoute $content_route)
     {
-        // Run route
-        $this->app->dispatcher->dispatchRoute($content_route);
+        $this->engine->runPageContent($content_route);
     }
 
     /**
-     * @param int   $indent
-     *
-     * @noinspection PhpUnused - Method will be used by views.
+     * @param int $indent
      */
     public function insertResourceFiles(int $indent = 0)
     {
@@ -221,6 +208,7 @@ class PithResponder
      * @param string $page_title
      * @param string $meta_keywords
      * @param string $meta_description
+     * @param string $meta_robots
      */
     public function setPageMetadata(string $page_title, string $meta_keywords, string $meta_description, string $meta_robots)
     {
@@ -230,35 +218,31 @@ class PithResponder
         $this->meta_robots      = $meta_robots;
     }
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
+
+
     public function insertPageTitle()
     {
         echo $this->page_title;
     }
 
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
+
     public function insertMetaKeywords()
     {
         echo $this->meta_keywords;
     }
 
-    /**
-     * @noinspection PhpUnused - Method will be used by views.
-     */
+
+
     public function insertMetaDescription()
     {
         echo $this->meta_description;
     }
 
+
+
     /**
      * @param int $indent
-     *
-     * @noinspection PhpUnused - Method will be used by views.
      */
     public function insertMetaRobots(int $indent = 0){
         if(!empty($this->meta_robots)){

@@ -24,18 +24,18 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 // ┌──────────────────────────────────────────────────────────────────────────┐
-// │    PithAction                                                            │
+// │    Action                                                                │
 // ├──────────────────────────────────────────────────────────────────────────┤
-// │    +  access_level : string                 --- Name of access level     │
-// │    +  app          : PithApp reference      --- Access to Pith App       │
-// │    +  element_type : string 'action'        --- Name of workflow element │
-// │    #  prepare      : public property object --- Vars to give to preparer │
+// │    +  access_level : string | namespace                                  │
+// │    #  dependency_injection : dependency injection object                 │
+// │    +  element_type : string 'action'                                     │
+// │    #  prepare      : public property object                              │
 // ├──────────────────────────────────────────────────────────────────────────┤
-// │    +  checkAccess( )            : void || throws exception               │
-// │    +  getAccessLevel( )         : string                                 │
-// │    +  getVariablesForPrepare( ) : public property object                 │
+// │    +  getAccessLevel( ) : string | namespace                             │
+// │    +  getVariablesForPrepare( ) : object                                 │
 // │    +  provisionAction( )        : void                                   │
 // │    +  runAction( )              : void                                   │
+// │    +  setDependencyInjection( ) : void                                   │
 // └──────────────────────────────────────────────────────────────────────────┘
 
 /**
@@ -46,10 +46,9 @@ class PithAction extends PithWorkflowElement
 {
     public string $element_type = 'action';
 
-
     protected object $prepare;
 
-
+    
     public function provisionAction()
     {
         $this->prepare = (object)[];
