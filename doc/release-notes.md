@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 41              | 0.8.5.1   | *sv 0.27.0* | 2023-05-13 | Usable, but still adding new features
 Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 2023-04-18 | Usable, but still adding new features
 Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 2023-01-18 | Usable, but still adding new features
 Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 2022-12-17 | Usable, but still adding new features
@@ -75,6 +76,13 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.5.1 - Alpha 41** `(semver: v0.27.0)`
+- Major refactor, decoupled circular references to the App object.
+- Added demo page showing that the database logic is working.
+- Added database migrations for a test_quotes table, for testing.
+- Added more open source front-end libraries to the common-libraries folder.
+- Added more open source fonts to common-fonts folder.
 
 **0.8.5.0 - Alpha 40** `(semver: v0.26.0)`
 - Added "Shared Infrastructure" pages, with demo pages.
