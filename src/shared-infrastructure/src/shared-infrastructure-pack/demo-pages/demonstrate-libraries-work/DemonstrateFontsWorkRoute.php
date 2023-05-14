@@ -28,7 +28,7 @@ class DemonstrateFontsWorkRoute extends PithRoute
     public string $view             = '[^route_folder]/demonstrate-fonts-work.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Demonstrate that fonts work';
+    public string $page_title       = 'Demonstrate that fonts work - '. PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'demonstrate fonts work, demonstrate,fonts, fonts, work keyword, keywords';
     public string $meta_description = 'Demonstrate that fonts work.';
 }

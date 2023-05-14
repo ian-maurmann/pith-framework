@@ -2,7 +2,7 @@
 
 /**
  * Lorem Ipsum Route
- * ----------
+ * -----------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  */
@@ -26,7 +26,7 @@ class LoremIpsumRoute extends PithRoute
     public string $view         = '[^route_folder]/lorem-ipsum-view.phtml';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Lorem Ipsum';
+    public string $page_title       = 'Lorem Ipsum - ' . PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'Lorem Ipsum, lorem, ipsum, demo, keyword, keywords';
-    public string $meta_description = 'Home. Home page description here.';
+    public string $meta_description = 'Lorem Ipsum. Page description here.';
 }

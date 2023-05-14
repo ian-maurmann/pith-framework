@@ -28,7 +28,7 @@ class DemonstrateLibraryFontAwesomeFree6Route extends PithRoute
     public string $view             = '[^route_folder]/demonstrate-library-font-awesome-free-6-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Home';
-    public string $meta_keywords    = 'home, demo, keyword, keywords';
-    public string $meta_description = 'Home. Home page description here.';
+    public string $page_title       = 'Show that Font Awesome 6 is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;
+    public string $meta_keywords    = 'Font Awesome 6, demo, keyword, keywords';
+    public string $meta_description = 'Font Awesome 6 demo page description here.';
 }

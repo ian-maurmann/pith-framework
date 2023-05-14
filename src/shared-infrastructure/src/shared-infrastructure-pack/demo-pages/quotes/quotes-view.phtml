@@ -10,7 +10,7 @@
 declare(strict_types=1);
 ?>
 
-<h3>Quotes</h3>
+<h3>Quotes from the Database:</h3>
 <?php $foreach_else = true; ?>
 <?php foreach($quote_results as $quotes_row_index => $test_quote_row): ?>
     <?php
@@ -18,7 +18,7 @@ declare(strict_types=1);
         $html_safe_quote_id = $this->escape->html( (string) $test_quote_row['quote_id'] );
         $html_safe_quote    = $this->escape->html( (string) $test_quote_row['quote'] );
     ?>
-    <?php echo $html_safe_quote_id; ?>
+    <?php echo $html_safe_quote_id; ?> -
     <i>
         <?php echo $html_safe_quote; ?>
     </i>

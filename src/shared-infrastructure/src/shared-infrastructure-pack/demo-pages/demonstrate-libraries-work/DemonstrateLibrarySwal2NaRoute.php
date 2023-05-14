@@ -28,7 +28,7 @@ class DemonstrateLibrarySwal2NaRoute extends PithRoute
     public string $view             = '[^route_folder]/demonstrate-library-swal2na-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Home';
-    public string $meta_keywords    = 'home, demo, keyword, keywords';
-    public string $meta_description = 'Home. Home page description here.';
+    public string $page_title       = 'Show that Swal2NA is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;
+    public string $meta_keywords    = 'Swal2NA, demo, keyword, keywords';
+    public string $meta_description = 'Show that Swal2NA is working page description here.';
 }
