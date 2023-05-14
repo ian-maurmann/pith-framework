@@ -22,18 +22,18 @@
         "symfony/http-foundation": "^6.2"
     },
     "suggest": {
-        "robmorgan/phinx":  "Suggested for database migrations",
         "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
                 "src/framework/external/about/",
-                "src/framework/external/extend/",
-                "src/framework/external/objects/"
+                "src/framework/external/extendable-workflow-elements/",
+                "src/framework/external/framework-engine-components",
+                "src/framework/external/injectable-thin-wrappers/"
             ],
             "Pith\\Framework\\Internal\\": [
-                "src/framework/internal/objects/",
+                "src/framework/internal/helpers/",
                 "src/framework/internal/traits/",
                 "src/framework/internal/utilities/",
                 "src/framework/internal/workflow-access-levels/",
@@ -44,12 +44,14 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-nav-links/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/demonstrate-libraries-work/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/error-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/footer/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/home/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/lorem-ipsum/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demo-nav-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demonstrate-libraries-work/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/footer/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
@@ -70,35 +72,6 @@
             ],
             "Pith\\PithDotJson\\": [
                 "src/framework/plugins/pith-dot-json/src/"
-            ],
-            "Pith\\Framework\\Test\\TestPage\\TestPageZero\\RoutingSamplePack\\": [
-                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack",
-                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/index-page/",
-                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/item/",
-                "test/test-pages/test-page-0000-routing/src/packs/routing-sample-pack/article/"
-            ],
-            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloPack\\": [
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/hello/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/index/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-layout/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-pack/jello-partial/"
-            ],
-            "Pith\\Framework\\Test\\TestPage\\TestPageOne\\YellowJelloResourcePack\\": [
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/",
-                "test/test-pages/test-page-0001-pageflow-yellow-jello/src/packs/yellow-jello-resource-pack/resources/"
-            ],
-            "Pith\\Framework\\Test\\TestPage\\TestPageThree\\GreenLayoutExample\\": [
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/bottom-quote",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/error-pages",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/footer",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/green-layout",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/hello",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-example-pack/home",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/",
-                "test/test-pages/test-page-0003-layout-green/src/packs/green-layout-resource-pack/resources"
             ]
         }
     }
