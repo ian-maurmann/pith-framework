@@ -28,7 +28,7 @@ class DemonstrateLibraryOxCssRoute extends PithRoute
     public string $view             = '[^route_folder]/demonstrate-library-oxcss-view.phtml';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Home';
-    public string $meta_keywords    = 'home, demo, keyword, keywords';
-    public string $meta_description = 'Home. Home page description here.';
+    public string $page_title       = 'Show that OxCSS is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;
+    public string $meta_keywords    = 'OxCSS, demo, keyword, keywords';
+    public string $meta_description = 'Show that OxCSS is working page description here.';
 }

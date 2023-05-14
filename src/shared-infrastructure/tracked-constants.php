@@ -11,4 +11,4 @@
 declare(strict_types=1);
 
 // Define our Constants
-const WORLD = 'Hello!';
+const PITH_DEMO_PAGE_MAIN_TITLE = 'Demo Page - Pith Framework';

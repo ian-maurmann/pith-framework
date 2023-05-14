@@ -61,6 +61,9 @@
                 "src/shared-infrastructure/src/shared-ui-resource-pack/",
                 "src/shared-infrastructure/src/shared-ui-resource-pack/resources/"
             ],
+            "Pith\\Framework\\CommonFontsResourcePack\\": [
+                "src/shared-infrastructure/src/common-fonts-pack/"
+            ],
             "Pith\\Framework\\CommonLibrariesResourcePack\\": [
                 "src/shared-infrastructure/src/common-libraries-pack/"
             ],
