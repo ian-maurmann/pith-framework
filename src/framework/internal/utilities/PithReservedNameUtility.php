@@ -74,20 +74,31 @@ class PithReservedNameUtility
             'copyright',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'crossdomain.xml',        // Sensitive filename, Flash cross-domain policy file.
             'dashboard',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'dev',                    // (Names that I think might cause issues).
+            'develop',                // (Names that I think might cause issues).
+            'developer',              // (Names that I think might cause issues).
+            'developers',             // (Names that I think might cause issues).
+            'development',            // (Names that I think might cause issues).
+            'developmentteam',        // (Names that I think might cause issues).
+            'development-team',       // (Names that I think might cause issues).
+            'devs',                   // (Names that I think might cause issues).
+            'devteam',                // (Names that I think might cause issues).
+            'dev-team',               // (Names that I think might cause issues).
             'doc',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'docs',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'download',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'downloads',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'enquiry',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'faq',                    // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
-            'favicon.ico',            // Sensitive filename.
+            'favicon.ico',            // Browser-necessary filename.
             'ftp',                    // Common protocol hostname, for FTP file transfer.
             'ftp',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'help',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'hostmaster',             // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'hostmaster',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
-            'humans.txt',             // Sensitive filename, ( https://humanstxt.org/Standard.html ).
+            'humans.txt',             // Reserved filename, ( https://humanstxt.org/Standard.html ).
             'imap',                   // Common protocol hostname, for IMAP email.
+            'indev',                  // (Names that I think might cause issues).
             'info',                   // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'inquiry',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'is',                     // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
@@ -130,6 +141,8 @@ class PithReservedNameUtility
             'ns11',                   // DNS Nameserver Subdomain.
             'ns12',                   // DNS Nameserver Subdomain.
             'password',               // (Names that I think might cause issues).
+            'passwords',              // (Names that I think might cause issues).
+            'passwordreset',          // (Names that I think might cause issues).
             'password-reset',         // (Names that I think might cause issues).
             'payment',                // (Names that I think might cause issues).
             'payments',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
@@ -142,6 +155,8 @@ class PithReservedNameUtility
             'preferences',            // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'pricing',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'privacy',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'prod',                   // (Names that I think might cause issues).
+            'production',             // (Names that I think might cause issues).
             'profile',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'register',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'reset',                  // (Names that I think might cause issues).
@@ -160,6 +175,8 @@ class PithReservedNameUtility
             'ssladmin',               // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'ssladministrator',       // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
             'sslwebmaster',           // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'stage',                  // (Names that I think might cause issues).
+            'staging',                // (Names that I think might cause issues).
             'status',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'subscribe',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'support',                // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
@@ -182,7 +199,7 @@ class PithReservedNameUtility
             'wpad',                   // Hostname with special meaning for proxy autodiscovery.
             'w',                      // (Names that I think might cause issues).
             'ww',                     // www alternate.
-            'www',                    // Most common subdomain.
+            'www',                    // World Wide Web subdomain.
             'www',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'www0',                   // www alternate.
             'www1',                   // www alternate.
@@ -221,13 +238,20 @@ class PithReservedNameUtility
      */
     public function getReservedStartingStringsWhenFollowedByNumber(): array
     {
+        // TODO - Reserve when followed by a number.
+        // TODO - Also reserve when followed by hyphen and then a number.
+
         $reserved_starts = [
             'abuse',
             'admin',
             'administrator',
             'ftp',
+            'dev',
+            'develop',
+            'development',
             'http',
             'imap',
+            'indev',
             'mail',
             'mailer-daemon',
             'marketing',
@@ -237,9 +261,14 @@ class PithReservedNameUtility
             'no-reply',
             'ns',
             's',
+            'stage',
+            'staging',
+            'support',
             'smtp',
             'ssl',
             'pop',
+            'prod',
+            'production',
             'user',
             'w',
             'ww',

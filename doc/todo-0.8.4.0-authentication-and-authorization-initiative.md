@@ -11,12 +11,12 @@
 ## General
 
 > Shared Infrastructure:
-> - [ ] Add a new Shared Infrastructure Pages pack
+> - [x] Add a new Shared Infrastructure Pages pack
 > - [ ] CSS using the name `shared-ui` as the prefix.
-> - [ ] Add CSS / Javascript resources for Shared Infrastructure Pages
-> - [ ] Use path `/resources/vendor/common-libraries` for libs (Ex: jquery, toastr, oxcss, hola).
-> - [ ] Use path `/resources/framework/shared-ui/` for resources for Shared-UI js / css.
-> - [ ] Shared Infrastructure Layout
+> - [x] Add CSS / Javascript resources for Shared Infrastructure Pages
+> - [x] Use path `/resources/vendor/common-libraries` for libs (Ex: jquery, toastr, oxcss, hola).
+> - [x] Use path `/resources/framework/shared-ui/` for resources for Shared-UI js / css.
+> - [x] Shared Infrastructure Layout
 > - [ ] New User page.
 > - [ ] User Login page.
 > 
@@ -30,4 +30,4 @@
 ## Housekeeping
 
 > Housekeeping:
-> - [ ] Remove more circular refs from the App Object.
+> - [x] Remove more circular refs from the App Object.

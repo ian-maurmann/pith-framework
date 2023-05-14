@@ -40,7 +40,7 @@ class GreenAndWhiteLayoutViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Fixie Reset 4', '/resources/vendor/common-libraries/fixie-reset-4.0.0/fixie-reset.css', 'reset');
+        $this->addStylesheet('Fixie Reset 4 Stylesheet', '/resources/vendor/common-libraries/fixie-reset-4.0.2/fixie-reset.css', 'reset');
         $this->addStylesheet('Green Layout Stylesheet', '/resources/framework/shared-ui/green-and-white-theme/green-and-white-theme.css', 'application-for-layout');
     }
 }
