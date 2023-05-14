@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\CommonLibrariesResourcePack;
+namespace Pith\Framework\CommonFontsResourcePack;
 
 use Pith\Framework\PithRoute;
 
@@ -21,7 +21,7 @@ use Pith\Framework\PithRoute;
  */
 class CommonFontsResourceRoute extends PithRoute
 {
-    public string $pack            = 'Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourcePack';
+    public string $pack            = 'Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourcePack';
     public string $route_type      = 'resource-folder';
     public string $access_level    = 'world';
     public string $resource_folder = '[^route_folder]/3rd-party-vendor-fonts/';
