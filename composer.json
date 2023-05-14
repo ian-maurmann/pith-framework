@@ -22,7 +22,6 @@
         "symfony/http-foundation": "^6.2"
     },
     "suggest": {
-        "robmorgan/phinx":  "Suggested for database migrations",
         "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
