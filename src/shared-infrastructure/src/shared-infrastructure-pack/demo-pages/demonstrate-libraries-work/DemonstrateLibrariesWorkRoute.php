@@ -27,7 +27,7 @@ class DemonstrateLibrariesWorkRoute extends PithRoute
     public string $view         = '[^route_folder]/demonstrate-libraries-work.phtml';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $page_title       = 'Demonstrate that libraries work';
+    public string $page_title       = 'Demonstrate that libraries work - ' . PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'demonstrate libraries work, demonstrate,library, libraries, work keyword, keywords';
     public string $meta_description = 'Demonstrate that libraries work.';
 }
