@@ -15,6 +15,7 @@
         "ext-readline": "*",
         "doctrine/migrations": "^3.5",
         "ikm/copyright-year-utility":"^0.1",
+        "latte/latte": "^3.0",
         "lotfio/conso": "^2",
         "monolog/monolog": "^3.2",
         "nikic/fast-route": "^1.3",
@@ -49,6 +50,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/error-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/latte/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
@@ -69,6 +71,9 @@
             ],
             "Pith\\PhtmlViewAdapter2\\": [
                 "src/framework/plugins/phtml-view-adapter-2/src/"
+            ],
+            "Pith\\LatteViewAdapter\\": [
+                "src/framework/plugins/latte-view-adapter/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
