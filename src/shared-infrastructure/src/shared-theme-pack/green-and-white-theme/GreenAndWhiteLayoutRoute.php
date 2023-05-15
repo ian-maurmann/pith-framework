@@ -26,4 +26,5 @@ class GreenAndWhiteLayoutRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutViewRequisition';
     public string $view             = '[^route_folder]/green-and-white-layout-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }
