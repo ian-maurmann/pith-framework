@@ -124,8 +124,11 @@ class PithLatteViewRunner
         $latte->addFunction('insertPartial', function (string $route_namespace) {
             $this->insertPartial($route_namespace);
         });
-        $latte->addFunction('insertPageContent', function (PithRoute $content_route) {
+        $latte->addFunction('insertPageContentByRoute', function (PithRoute $content_route) {
             $this->insertPageContent($content_route);
+        });
+        $latte->addFunction('insertPage', function () {
+            $this->insertPageContent($this->content_route);
         });
 
         // cache directory
