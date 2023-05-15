@@ -26,6 +26,7 @@ class DemonstrateLibraryHojaAquamarineRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaAquamarineViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-hoja-aquamarine-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Show that Hola Aquamarine is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;

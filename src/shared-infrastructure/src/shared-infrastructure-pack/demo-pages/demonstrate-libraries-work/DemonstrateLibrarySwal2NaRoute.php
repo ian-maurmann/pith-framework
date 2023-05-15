@@ -26,6 +26,7 @@ class DemonstrateLibrarySwal2NaRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrarySwal2NaViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-swal2na-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Show that Swal2NA is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;

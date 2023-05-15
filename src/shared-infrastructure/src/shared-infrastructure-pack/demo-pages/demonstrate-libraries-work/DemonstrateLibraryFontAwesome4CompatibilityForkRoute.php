@@ -26,6 +26,7 @@ class DemonstrateLibraryFontAwesome4CompatibilityForkRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-font-awesome-4-compatibility-fork-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Show that Font Awesome 4 and 6 are working - ' . PITH_DEMO_PAGE_MAIN_TITLE;
