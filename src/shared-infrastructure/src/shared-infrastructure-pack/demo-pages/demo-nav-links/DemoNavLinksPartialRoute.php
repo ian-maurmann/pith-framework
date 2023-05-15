@@ -25,4 +25,5 @@ class DemoNavLinksPartialRoute extends PithRoute
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $view         = '[^route_folder]/demo-nav-links-partial-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

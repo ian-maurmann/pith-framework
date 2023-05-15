@@ -26,4 +26,5 @@ class FooterRoute extends PithRoute
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\FooterAction';
     public string $preparer     = '\\Pith\\Framework\\SharedInfrastructure\\FooterPreparer';
     public string $view         = '[^route_folder]/footer-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }

@@ -26,8 +26,9 @@ class QuotesRoute extends PithRoute
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\QuotesAction';
     public string $preparer     = '\\Pith\\Framework\\SharedInfrastructure\\QuotesPreparer';
     public string $view         = '[^route_folder]/quotes-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+    public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
-    public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
     public string $page_title       = 'Quotes from Database - ' . PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'Quotes from database, quotes, database, keywords';
     public string $meta_description = 'Quotes. Quotes page description here.';
