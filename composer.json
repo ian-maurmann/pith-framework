@@ -1,27 +1,86 @@
 {
     "name": "pith/framework",
     "description": "Pith Framework - Another simple framework for PHP sites",
-    "require": {
-        "php": "^7.1",
-        "php-di/php-di": "^6",
-        "monolog/monolog": "^1.24"
-    },
-    "license": "MPL-2.0",
     "authors": [
         {
             "name": "Ian Maurmann",
             "role": "Developer"
         }
     ],
-    "require-dev": {
-        "phpunit/phpunit": "^7"
+    "license": "MPL-2.0",
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-readline": "*",
+        "doctrine/migrations": "^3.5",
+        "ikm/copyright-year-utility":"^0.1",
+        "latte/latte": "^3.0",
+        "lotfio/conso": "^2",
+        "monolog/monolog": "^3.2",
+        "nikic/fast-route": "^1.3",
+        "php-di/php-di": "^6.4",
+        "symfony/http-foundation": "^6.2"
+    },
+    "suggest": {
+        "phpunit/phpunit":  "Suggested for unit-testing"
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/external/objects/", "src/external/interfaces/", "src/external/traits/",  "src/external/extend/"],
-            "Pith\\Framework\\Internal\\": ["src/internal/objects/", "src/internal/interfaces/", "src/internal/traits/"],
-            "Pith\\ExampleModule\\": ["example/modules/example-module/", "example/modules/example-module/controllers/"],
-            "Pith\\ExampleConfig\\": ["example/config/"]
+            "Pith\\Framework\\": [
+                "src/framework/external/about/",
+                "src/framework/external/extendable-workflow-elements/",
+                "src/framework/external/framework-engine-components",
+                "src/framework/external/injectable-thin-wrappers/"
+            ],
+            "Pith\\Framework\\Internal\\": [
+                "src/framework/internal/helpers/",
+                "src/framework/internal/traits/",
+                "src/framework/internal/utilities/",
+                "src/framework/internal/workflow-access-levels/",
+                "src/framework/internal/workflow-elements/"
+            ],
+            "Pith\\Framework\\Migration\\": [
+                "data/migration/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demo-nav-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demonstrate-libraries-work/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/footer/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/latte/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
+            ],
+            "Pith\\Framework\\SharedThemePack\\": [
+                "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
+            ],
+            "Pith\\Framework\\SharedUiResourcePack\\": [
+                "src/shared-infrastructure/src/shared-ui-resource-pack/",
+                "src/shared-infrastructure/src/shared-ui-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\CommonFontsResourcePack\\": [
+                "src/shared-infrastructure/src/common-fonts-pack/"
+            ],
+            "Pith\\Framework\\CommonLibrariesResourcePack\\": [
+                "src/shared-infrastructure/src/common-libraries-pack/"
+            ],
+            "Pith\\PhtmlViewAdapter2\\": [
+                "src/framework/plugins/phtml-view-adapter-2/src/"
+            ],
+            "Pith\\LatteViewAdapter\\": [
+                "src/framework/plugins/latte-view-adapter/src/"
+            ],
+            "Pith\\CommandTool\\": [
+                "src/framework/plugins/command-tool/src/"
+            ],
+            "Pith\\PithDotJson\\": [
+                "src/framework/plugins/pith-dot-json/src/"
+            ]
         }
     }
 }
