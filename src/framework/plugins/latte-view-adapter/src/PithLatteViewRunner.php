@@ -105,6 +105,29 @@ class PithLatteViewRunner
         // Get Latte
         $latte = new Engine();
 
+        // Add functions
+        $latte->addFunction('insertPageTitle', function () {
+            $this->insertPageTitle();
+        });
+        $latte->addFunction('insertMetaDescription', function () {
+            $this->insertMetaDescription();
+        });
+        $latte->addFunction('insertMetaKeywords', function () {
+            $this->insertMetaKeywords();
+        });
+        $latte->addFunction('insertMetaRobots', function (int $indent = 0) {
+            $this->insertMetaRobots($indent);
+        });
+        $latte->addFunction('insertResourceFiles', function (int $indent = 0) {
+            $this->insertResourceFiles($indent);
+        });
+        $latte->addFunction('insertPartial', function (string $route_namespace) {
+            $this->insertPartial($route_namespace);
+        });
+        $latte->addFunction('insertPageContent', function (PithRoute $content_route) {
+            $this->insertPageContent($content_route);
+        });
+
         // cache directory
         $latte->setTempDirectory('./data/latte-cache');
 
