@@ -24,7 +24,7 @@ class LatteRoute extends PithRoute
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\LatteAction';
-    public string $preparer     = '\\Pith\\Framework\\SharedInfrastructure\\LattePreparer';
+    //public string $preparer     = '\\Pith\\Framework\\SharedInfrastructure\\LattePreparer';
     public string $view         = '[^route_folder]/template.latte';
     public string $view_adapter = '\\Pith\\LatteViewAdapter\\PithLatteViewAdapter';
     //public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
