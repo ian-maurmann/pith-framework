@@ -156,7 +156,8 @@ class PithRoute extends PithWorkflowElement
      * Holds the namespace for the View Adapter object
      * @var string
      */
-    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
+ // public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2'; // Use PithPhtmlViewAdapter2 as default
+    public string $view_adapter = '\\Pith\\LatteViewAdapter\\PithLatteViewAdapter'; // Use the View Adapter for using Latte with Pith as the new default
 
     /**
      * Holds the namespace for the View Requisition object
