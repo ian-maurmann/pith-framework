@@ -13,7 +13,7 @@ final class Template0062e1896d extends Latte\Runtime\Template
 
 		echo 'This view is using Latte.
 
-<p>Hello! ';
+<p>Hello, ';
 		echo LR\Filters::escapeHtmlText(($this->filters->upper)('World!')) /* line 3 */;
 		echo '</p>
 
@@ -32,24 +32,7 @@ final class Template0062e1896d extends Latte\Runtime\Template
 		}
 		$iterator = $ʟ_it = $ʟ_it->getParent();
 
-		echo '</ul>
-
-<dl>
-    <dt>insertPageTitle</dt>
-    <dd>';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPageTitle)()) /* line 15 */;
-		echo '</dd>
-
-    <dt>insertMetaDescription</dt>
-    <dd>';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertMetaDescription)()) /* line 18 */;
-		echo '</dd>
-
-    <dt>insertMetaKeywords</dt>
-    <dd>';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertMetaKeywords)()) /* line 21 */;
-		echo '</dd>
-</dl>';
+		echo '</ul>';
 	}
 
 

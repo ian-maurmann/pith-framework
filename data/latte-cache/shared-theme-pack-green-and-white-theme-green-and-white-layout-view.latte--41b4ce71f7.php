@@ -18,9 +18,11 @@ final class Template41b4ce71f7 extends Latte\Runtime\Template
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+        <!-- Using Latte -->
+
         <!-- Title -->
         <title>';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPageTitle)()) /* line 9 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPageTitle)()) /* line 11 */;
 		echo '</title>
 
         <!-- Viewport -->
@@ -30,19 +32,19 @@ final class Template41b4ce71f7 extends Latte\Runtime\Template
 
         <!-- Page Description -->
         <meta name="description" content="';
-		echo LR\Filters::escapeHtmlAttr(($this->global->fn->insertMetaDescription)()) /* line 17 */;
+		echo LR\Filters::escapeHtmlAttr(($this->global->fn->insertMetaDescription)()) /* line 19 */;
 		echo '">
 
         <!-- Page Keywords -->
         <meta name="keywords" content="';
-		echo LR\Filters::escapeHtmlAttr(($this->global->fn->insertMetaKeywords)()) /* line 20 */;
+		echo LR\Filters::escapeHtmlAttr(($this->global->fn->insertMetaKeywords)()) /* line 22 */;
 		echo '">
 
         ';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertMetaRobots)(2)) /* line 22 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertMetaRobots)(2)) /* line 24 */;
 		echo '
         ';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertResourceFiles)(2)) /* line 23 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertResourceFiles)(2)) /* line 25 */;
 		echo '
     </head>
     <body>
@@ -50,7 +52,7 @@ final class Template41b4ce71f7 extends Latte\Runtime\Template
             Banner
             <nav>
                 ';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPartial)('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute')) /* line 29 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPartial)('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute')) /* line 31 */;
 		echo '
             </nav>
         </div>
@@ -58,7 +60,7 @@ final class Template41b4ce71f7 extends Latte\Runtime\Template
             <div id="plate">
                 <div id="content">
                     ';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPage)()) /* line 35 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPage)()) /* line 37 */;
 		echo '
                 </div>
 
@@ -66,7 +68,7 @@ final class Template41b4ce71f7 extends Latte\Runtime\Template
             </div>
             <div id="footer">
                 ';
-		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPartial)('Pith\\Framework\\SharedInfrastructure\\FooterRoute')) /* line 41 */;
+		echo LR\Filters::escapeHtmlText(($this->global->fn->insertPartial)('Pith\\Framework\\SharedInfrastructure\\FooterRoute')) /* line 43 */;
 		echo '
             </div>
         </div>
