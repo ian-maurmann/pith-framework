@@ -101,6 +101,11 @@
     table[data-table-style="server-info"] td {
         padding: 1ex 1em;
     }
+    table[data-table-style="server-info"] tbody th,
+    table[data-table-style="server-info"] tbody td {
+        font-family: 'JetBrains Mono NL', Courier, Monaco, monospace;
+        font-size: 10pt;
+    }
     table[data-table-style="server-info"]{
         border-collapse: collapse;
     }
