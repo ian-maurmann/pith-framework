@@ -52,10 +52,45 @@
     font-stretch: 100%;
     src: url('/resources/vendor/common-fonts/vendor-fonts/iosevka-vardanpro-term-2021/iosevka-vardanpro-term-ubuntu-style-regular.ttf') format('truetype');
 }
+
+
+
+/* ================================================================================================= */
+
+/* #1 Regular Weight */
 @font-face {
-    font-family: 'JetBrains Mono NL';
+    font-family: "JetBrains Mono NL";
+    font-style: normal;
+    font-weight: normal;
     src: url('/resources/vendor/common-fonts/vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
+
+/* #2 Italic Style */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: italic;
+    font-weight: normal;
+    src: url('/resources/vendor/common-fonts/vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Italic.ttf') format('truetype');
+}
+
+/* #3 Bold Weight */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: normal;
+    font-weight: bold;
+    src: url('/resources/vendor/common-fonts/vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Bold.ttf') format('truetype');
+}
+
+/* #4 Bold Italic Style */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: italic;
+    font-weight: bold;
+    src: url('/resources/vendor/common-fonts/vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-BoldItalic.ttf') format('truetype');
+}
+
+/* ================================================================================================= */
+
 @font-face {
     font-family: 'Liberation Mono';
     src: url('/resources/vendor/common-fonts/vendor-fonts/liberation-fonts-2.1.5/LiberationMono-Regular.ttf') format('truetype');
