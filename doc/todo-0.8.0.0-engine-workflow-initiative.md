@@ -73,7 +73,7 @@
 >
 > Cleanup / refactor at the end:
 > - ~~Remove the current Dispatcher~~ (Added new functions to Dispatcher)
-> - [ ] Cleanup Dispatcher.
+> - [x] Cleanup Dispatcher.
 
 ## Error Reporting
 

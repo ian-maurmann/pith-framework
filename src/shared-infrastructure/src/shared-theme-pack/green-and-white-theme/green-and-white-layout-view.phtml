@@ -14,7 +14,7 @@ declare(strict_types=1);
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
         <!-- Title -->
-        <title><?php $this->app->responder->insertPageTitle(); ?></title>
+        <title><?php $this->insertPageTitle(); ?></title>
 
         <!-- Viewport -->
         <meta name="HandheldFriendly" content="true">
@@ -22,32 +22,32 @@ declare(strict_types=1);
         <meta name="viewport"         content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scale=no">
 
         <!-- Page Description -->
-        <meta name="description" content="<?php $this->app->responder->insertMetaDescription(); ?>">
+        <meta name="description" content="<?php $this->insertMetaDescription(); ?>">
 
         <!-- Page Keywords -->
-        <meta name="keywords" content="<?php $this->app->responder->insertMetaKeywords(); ?>">
+        <meta name="keywords" content="<?php $this->insertMetaKeywords(); ?>">
 
-        <?php $this->app->responder->insertMetaRobots(2); ?>
+        <?php $this->insertMetaRobots(2); ?>
 
-        <?php $this->app->responder->insertResourceFiles(2); ?>
+        <?php $this->insertResourceFiles(2); ?>
     </head>
     <body>
         <div id="banner-area">
             Banner
             <nav>
-                <?php $this->app->responder->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>
+                <?php $this->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>
             </nav>
         </div>
         <div id="content-area">
             <div id="plate">
                 <div id="content">
-                    <?php $this->app->responder->insertPageContent($this->content_route); ?>
+                    <?php $this->insertPageContent($this->content_route); ?>
                 </div>
 
                 <hr/>
             </div>
             <div id="footer">
-                <?php $this->app->responder->insertPartial('Pith\\Framework\\SharedInfrastructure\\FooterRoute'); ?>
+                <?php $this->insertPartial('Pith\\Framework\\SharedInfrastructure\\FooterRoute'); ?>
             </div>
         </div>
 

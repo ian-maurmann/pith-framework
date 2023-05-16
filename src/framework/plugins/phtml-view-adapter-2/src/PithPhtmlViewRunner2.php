@@ -15,6 +15,8 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
+ * @noinspection PhpPropertyOnlyWrittenInspection      - Ignore here, $this->escape will be used in the phtml views.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok here.
  */
 
 
@@ -24,12 +26,21 @@ declare(strict_types=1);
 namespace Pith\PhtmlViewAdapter2;
 
 
+use Pith\Framework\Internal\PithEscapeUtility;
+use Pith\Framework\PithAppRetriever;
+use Pith\Framework\PithException;
+use Pith\Framework\PithRoute;
+use ReflectionException;
+
 /**
  * Class PithPhtmlViewRunner2
  * @package Pith\PhtmlViewAdapter2
  */
 class PithPhtmlViewRunner2
 {
+    private PithEscapeUtility $escape;
+    private PithAppRetriever  $app_retriever;
+
     protected $app;
     protected $is_layout;
     protected $path;
@@ -37,10 +48,17 @@ class PithPhtmlViewRunner2
     protected $content_route;
 
 
-    public function __construct()
+
+    public function __construct(PithEscapeUtility $escape, PithAppRetriever $app_retriever)
     {
+        // Object Dependencies
+        $this->escape        = $escape;
+        $this->app_retriever = $app_retriever;
+
+        // Reset
         $this->reset();
     }
+
 
 
     protected function reset()
@@ -51,6 +69,7 @@ class PithPhtmlViewRunner2
         $this->variables     = null;
         $this->content_route = null;
     }
+
 
 
     /**
@@ -72,6 +91,7 @@ class PithPhtmlViewRunner2
     }
 
 
+
     /** @noinspection PhpIncludeInspection - Needed to run. */
     protected function dispatchView(){
 
@@ -80,6 +100,112 @@ class PithPhtmlViewRunner2
 
         // Include the view:
         require $this->path;
+    }
+
+
+
+    /**
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPageTitle()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Page Title
+        $app->responder->insertPageTitle();
+    }
+
+
+
+    /**
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaDescription()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Description
+        $app->responder->insertMetaDescription();
+    }
+
+
+
+    /**
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaKeywords()
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Keywords
+        $app->responder->insertMetaKeywords();
+    }
+
+
+
+    /**
+     * @param int $indent
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertMetaRobots(int $indent = 0){
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Keywords
+        $app->responder->insertMetaRobots($indent);
+    }
+
+
+
+    /**
+     * @param int $indent
+     * @throws PithException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertResourceFiles(int $indent = 0)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Meta Keywords
+        $app->responder->insertResourceFiles($indent);
+    }
+
+
+    /**
+     * @param string $route_namespace
+     * @throws PithException|ReflectionException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPartial(string $route_namespace)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Partial
+        $app->responder->insertPartial($route_namespace);
+    }
+
+
+    /**
+     * @param  PithRoute $content_route
+     * @throws PithException|ReflectionException
+     * @noinspection PhpUnused - Method will be used by views.
+     */
+    public function insertPageContent(PithRoute $content_route)
+    {
+        // Get App
+        $app = $this->app_retriever->getApp();
+
+        // Insert Partial
+        $app->responder->insertPageContent($content_route);
     }
 
 
