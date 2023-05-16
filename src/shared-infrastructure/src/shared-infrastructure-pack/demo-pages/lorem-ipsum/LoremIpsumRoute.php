@@ -24,7 +24,7 @@ class LoremIpsumRoute extends PithRoute
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $view         = '[^route_folder]/lorem-ipsum-view.phtml';
-    public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
+    public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLatteLayoutRoute';
 
     public string $page_title       = 'Lorem Ipsum - ' . PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'Lorem Ipsum, lorem, ipsum, demo, keyword, keywords';

@@ -26,6 +26,7 @@ class DemonstrateLibraryToastrRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryToastrViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-toastr-view.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Show that Toastr is working - ' . PITH_DEMO_PAGE_MAIN_TITLE;

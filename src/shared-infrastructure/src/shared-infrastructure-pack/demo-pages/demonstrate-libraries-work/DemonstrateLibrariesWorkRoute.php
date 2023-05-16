@@ -25,6 +25,7 @@ class DemonstrateLibrariesWorkRoute extends PithRoute
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $view         = '[^route_folder]/demonstrate-libraries-work.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Demonstrate that libraries work - ' . PITH_DEMO_PAGE_MAIN_TITLE;

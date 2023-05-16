@@ -24,6 +24,7 @@ class HomeRoute extends PithRoute
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $view         = '[^route_folder]/home-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Home - ' . PITH_DEMO_PAGE_MAIN_TITLE;

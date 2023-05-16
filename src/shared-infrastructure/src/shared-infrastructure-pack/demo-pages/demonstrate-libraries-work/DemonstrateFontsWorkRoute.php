@@ -26,6 +26,7 @@ class DemonstrateFontsWorkRoute extends PithRoute
     public string $access_level     = 'world';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsWorkViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-fonts-work.phtml';
+    public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
     public string $page_title       = 'Demonstrate that fonts work - '. PITH_DEMO_PAGE_MAIN_TITLE;
