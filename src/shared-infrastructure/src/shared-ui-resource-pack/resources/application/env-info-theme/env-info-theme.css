@@ -1,0 +1,73 @@
+/*
+    Env Info Theme Stylesheet
+    ==============================
+*/
+
+
+/*noinspection CssRedundantUnit*/
+@media all {
+
+    html, body{
+        background-color: #f0f4f3;
+    }
+
+    #sidebar{
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 16em;
+        height: 100%;
+        overflow: auto;
+
+        background-color: #d0dada;
+
+        padding-top: 2ex;
+
+    }
+
+    #sidebar h4{
+        margin-left: 1em;
+    }
+
+
+    #sidebar a:link,
+    #sidebar a:visited,
+    #sidebar a:hover,
+    #sidebar a:active {
+        color: #047cc0;
+        font-weight: bold;
+        text-decoration: none;
+
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        cursor: pointer;
+        user-select: none;
+    }
+    #sidebar a:hover   {
+        color: #009bef;
+    }
+
+
+    #main{
+        display: block;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: calc(100% - 16em);
+        height: 100%;
+        overflow: auto;
+    }
+
+
+
+
+    #content{
+        padding: 2ex 5em;
+    }
+
+    #footer{
+        text-align: center;
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Format -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!-- Using Latte -->
+
+        <!-- Title -->
+        <title>{insertPageTitle()}</title>
+
+        <!-- Viewport -->
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized"  content="width">
+        <meta name="viewport"         content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scale=no">
+
+        <!-- Page Description -->
+        <meta name="description" content="{insertMetaDescription()}">
+
+        <!-- Page Keywords -->
+        <meta name="keywords" content="{insertMetaKeywords()}">
+
+        {insertMetaRobots(2)}
+        {insertResourceFiles(2)}
+    </head>
+    <body>
+        <div id="sidebar">
+            <nav>
+                {insertPartial('Pith\\Framework\\SharedInfrastructure\\EnvInfoSidebarPartialRoute')}
+            </nav>
+        </div>
+        <div id="main">
+            <div id="content">
+                {insertPage()}
+            </div>
+
+            <hr/>
+
+            <div id="footer">
+                {insertPartial('Pith\\Framework\\SharedInfrastructure\\FooterRoute')}
+            </div>
+        </div>
+
+    </body>
+</html>
