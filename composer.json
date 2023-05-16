@@ -53,10 +53,17 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/latte/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/lorem-ipsum/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/db-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/env-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/php-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/route-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/server-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/env-info-pages/sidebar/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/env-info-theme/",
                 "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
             ],
             "Pith\\Framework\\SharedUiResourcePack\\": [
