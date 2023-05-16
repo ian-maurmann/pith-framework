@@ -11,7 +11,10 @@ final class Template9b850f8588 extends Latte\Runtime\Template
 		echo '<h4>Env Info Pages:</h4>
 <ul>
     <li>
-        <a href="/11111/22222/env-info">Env Info</a>
+        <a href="/11111/22222/env-info"><i class="fa-solid fa-house"></i> Env Info - Main</a>
+    </li>
+    <li>
+        <a href="/11111/22222/env-info/server-info"><i class="fa-solid fa-server"></i> Server Info</a>
     </li>
 </ul>
 

@@ -8,6 +8,14 @@ final class Template3d0fc35615 extends Latte\Runtime\Template
 
 	public function main(array $ʟ_args): void
 	{
-		echo 'Env Info';
+		echo '<h3>Env Info</h3>
+
+<ul>
+    <li>
+        <a href="/11111/22222/env-info/server-info">Server Info</a>
+    </li>
+</ul>
+
+';
 	}
 }

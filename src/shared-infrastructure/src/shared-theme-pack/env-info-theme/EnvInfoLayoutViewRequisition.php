@@ -40,6 +40,11 @@ class EnvInfoLayoutViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('Fixie Reset 4 Stylesheet', '/resources/vendor/common-libraries/fixie-reset-4.0.2/fixie-reset.css', 'reset');
+        $this->addStylesheet('OxCSS stylesheet', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-layout');
+        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-layout');
+        $this->addScript('OxCSS script', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-layout');
+        $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
+        $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/common-libraries/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
         $this->addStylesheet('Env Info Stylesheet', '/resources/framework/shared-ui/env-info-theme/env-info-theme.css', 'application-for-layout');
     }
 }
