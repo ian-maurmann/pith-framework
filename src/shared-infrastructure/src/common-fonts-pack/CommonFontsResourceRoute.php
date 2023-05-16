@@ -24,7 +24,7 @@ class CommonFontsResourceRoute extends PithRoute
     public string $pack            = 'Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourcePack';
     public string $route_type      = 'resource-folder';
     public string $access_level    = 'world';
-    public string $resource_folder = '[^route_folder]/3rd-party-vendor-fonts/';
+    public string $resource_folder = '[^route_folder]/resources/';
     public string $cache_level     = 'Cache-Control: public, max-age=31536000, immutable, stale-while-revalidate=604800, stale-if-error=1209600';
 }
 
