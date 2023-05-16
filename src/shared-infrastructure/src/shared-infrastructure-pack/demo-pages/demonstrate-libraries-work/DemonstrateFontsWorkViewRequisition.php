@@ -37,6 +37,6 @@ class DemonstrateFontsWorkViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('Demonstrate Common Fonts Stylesheet', '/resources/framework/shared-ui/demonstration/demonstrate-that-included-common-fonts-work.css', 'application-for-page');
-        $this->addStylesheet('open-sans-v34 Font Set', '/resources/vendor/common-fonts/fonts/open-sans-woff2-v34/open-sans.css', 'library-for-page');
+        $this->addStylesheet('open-sans-v34 Font Set', '/resources/vendor/common-fonts/vendor-fonts/open-sans-woff2-v34/open-sans.css', 'library-for-page');
     }
 }
