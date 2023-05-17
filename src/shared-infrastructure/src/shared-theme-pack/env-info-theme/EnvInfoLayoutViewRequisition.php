@@ -29,15 +29,6 @@ class EnvInfoLayoutViewRequisition extends PithViewRequisition
         // Headers
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
 
-        // Resource roles:
-        //     0 - reset
-        //     1 - library-for-layout
-        //     2 - library-for-page
-        //     3 - library-for-partial
-        //     4 - application-for-layout
-        //     5 - application-for-page
-        //     6 - application-for-partial
-
         // Resources
         $this->addPreload(    'preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
         $this->addStylesheet( 'Fixie Reset 4 Stylesheet',        '/resources/vendor/common-libraries/fixie-reset-4.0.2/fixie-reset.css', 'reset');
