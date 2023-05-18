@@ -24,12 +24,12 @@
 
         background-color: var(--ox-color-ibm1-cool-gray-10);
 
-        padding-top: 2ex;
-
+        padding: 2ex 0em 0ex 0em;
     }
 
     #sidebar h4{
-        margin-left: 1em;
+        margin: 0ex 0em 3ex 1em;
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     }
 
 
@@ -38,7 +38,6 @@
     #sidebar a:hover,
     #sidebar a:active {
         color: var(--ox-color-ibm1-cerulean-50);
-        background-color: var(--ox-color-ibm1-cool-gray-10) !important;
         font-weight: bold;
         text-decoration: none;
 
@@ -47,11 +46,25 @@
 
         cursor: pointer;
         user-select: none;
+
+        background-color: var(--ox-color-ibm1-cool-gray-10) !important;
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+        margin: 0ex 0em;
+        padding: 0px;
     }
     #sidebar a:hover   {
         color: var(--ox-color-ibm1-cerulean-40);
     }
 
+    #sidebar ul{
+        margin: 1ex 1em;
+        padding: 0px;
+    }
+    #sidebar ul li{
+        margin: 1ex 1em;
+        padding: 0px;
+    }
 
     #main{
         display: block;
