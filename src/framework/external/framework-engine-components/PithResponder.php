@@ -105,13 +105,16 @@ class PithResponder
 
         $resource_files = $this->resource_files;
 
-        $this->insertResourceFilesByRole('CSS Resets',                        $resource_files, 'reset',                   $indent);
+        $this->insertResourceFilesByRole('Font Preloads',                     $resource_files, 'font-preload',            $indent);
+        $this->insertResourceFilesByRole('CSS Reset',                         $resource_files, 'reset',                   $indent);
+        $this->insertResourceFilesByRole('Preloads',                          $resource_files, 'preload',                 $indent);
         $this->insertResourceFilesByRole('Library Resources for Layout',      $resource_files, 'library-for-layout',      $indent);
         $this->insertResourceFilesByRole('Library Resources for Page',        $resource_files, 'library-for-page',        $indent);
         $this->insertResourceFilesByRole('Library Resources for Partial',     $resource_files, 'library-for-partial',     $indent);
         $this->insertResourceFilesByRole('Application Resources for Layout',  $resource_files, 'application-for-layout',  $indent);
         $this->insertResourceFilesByRole('Application Resources for Page',    $resource_files, 'application-for-page',    $indent);
         $this->insertResourceFilesByRole('Application Resources for Partial', $resource_files, 'application-for-partial', $indent);
+        $this->insertResourceFilesByRole('Fontsheets',                        $resource_files, 'font-stylesheet',         $indent);
     }
 
     /**
@@ -125,9 +128,11 @@ class PithResponder
         $is_first = true;
         foreach ($resource_files as $resource_file){
             // Extract variables
+            $file_description    = $resource_file['name'];
             $file_type           = $resource_file['resource_type'];
             $file_path           = $resource_file['filepath'];
             $file_role           = $resource_file['role'];
+            $as                  = array_key_exists('as', $resource_file) ? $resource_file['as'] : '';
             $is_already_inserted = in_array($file_path, $this->resource_files_inserted);
             $is_role_to_insert   = $file_role === $role_to_insert;
             $is_to_be_added      = $is_role_to_insert && !$is_already_inserted;
@@ -143,10 +148,13 @@ class PithResponder
                     $is_first = false;
                 }
                 if($file_type === 'script'){
-                    $this->insertScript($file_path, $indent);
+                    $this->insertScript($file_path, $indent, $file_description);
                 }
                 elseif($file_type === 'stylesheet'){
-                    $this->insertStylesheet($file_path, $indent);
+                    $this->insertStylesheet($file_path, $indent, $file_description);
+                }
+                elseif($file_type === 'preload'){
+                    $this->insertPreload($file_path, $indent, $as, $file_description);
                 }
             }
         }
@@ -167,10 +175,10 @@ class PithResponder
      * @param string $file_path
      * @param int $indent
      */
-    private function insertScript(string $file_path, int $indent = 0)
+    private function insertScript(string $file_path, int $indent = 0, string $file_description = '')
     {
         $indent_string = $this->indent($indent);
-        $tag           = '<script src="' . $file_path . '"></script>';
+        $tag           = '<script src="' . $file_path . '"></script> <!-- ' . $file_description . ' -->';
 
         // Insert script
         echo $indent_string . $tag  . "\r\n";
@@ -183,16 +191,30 @@ class PithResponder
      * @param string $file_path
      * @param int $indent
      */
-    private function insertStylesheet(string $file_path, int $indent = 0)
+    private function insertStylesheet(string $file_path, int $indent = 0, string $file_description = '')
     {
         $indent_string = $this->indent($indent);
-        $tag           = '<link rel="stylesheet" href="' . $file_path . '">';
+        $tag           = '<link rel="stylesheet" href="' . $file_path . '"> <!-- ' . $file_description . ' -->';
 
         // Insert Stylesheet
         echo $indent_string . $tag . "\r\n";
 
         // Add to list of files inserted
         $this->resource_files_inserted[] = $file_path;
+    }
+
+
+    /**
+     * @param string $file_path
+     * @param int $indent
+     */
+    private function insertPreload(string $file_path, int $indent = 0, string $as = '', string $file_description = '')
+    {
+        $indent_string = $this->indent($indent);
+        $tag           = '<link rel="preload" href="' . $file_path . '" as="' . $as . '"> <!-- ' . $file_description . ' -->';
+
+        // Insert Stylesheet
+        echo $indent_string . $tag . "\r\n";
     }
 
     /**

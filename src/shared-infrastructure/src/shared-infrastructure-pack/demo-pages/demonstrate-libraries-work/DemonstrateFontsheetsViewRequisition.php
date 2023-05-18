@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Demonstrate Fonts Work View-Requisition
+ * Demonstrate Fontsheets View-Requisition
  * ---------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithViewRequisition;
 
 /**
- * Class DemonstrateFontsWorkViewRequisition
+ * Class DemonstrateFontsheetsViewRequisition
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateFontsWorkViewRequisition extends PithViewRequisition
+class DemonstrateFontsheetsViewRequisition extends PithViewRequisition
 {
     public string $requisition_type = 'view-requisition';
 
@@ -38,9 +38,6 @@ class DemonstrateFontsWorkViewRequisition extends PithViewRequisition
         // Resources
         $this->addPreload('preload JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
         $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
-
-        $this->addStylesheet('Demonstrate Common Fonts Stylesheet', '/resources/framework/shared-ui/demonstration/demonstrate-that-included-common-fonts-work.css', 'font-stylesheet');
-        $this->addStylesheet('open-sans-v34 Font Set', '/resources/vendor/common-fonts/vendor-fonts/open-sans-woff2-v34/open-sans.css', 'font-stylesheet');
         $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
         $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
     }

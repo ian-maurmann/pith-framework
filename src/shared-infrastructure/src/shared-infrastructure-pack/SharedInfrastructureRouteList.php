@@ -26,6 +26,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['GET', '/11111/22222/env-info',                                  '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
         ['GET', '/11111/22222/env-info/server-info',                      '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoServerInfoRoute'],
         ['GET', '/demonstrate-fonts-work',                                '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsWorkRoute'],
+        ['GET', '/demonstrate-fontsheets',                                '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsheetsRoute'],
         ['GET', '/demonstrate-libraries-work',                            '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrariesWorkRoute'],
         ['GET', '/demonstrate-library/animate-css',                       '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryAnimateCssRoute'],
         ['GET', '/demonstrate-library/bootstrap-5',                       '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryBootstrap5Route'],

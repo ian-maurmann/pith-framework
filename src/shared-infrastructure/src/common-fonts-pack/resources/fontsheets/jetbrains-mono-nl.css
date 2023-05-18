@@ -8,7 +8,7 @@
     font-family: "JetBrains Mono NL";
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
 }
 
 /* #2 Italic Style */
@@ -16,7 +16,7 @@
     font-family: "JetBrains Mono NL";
     font-style: italic;
     font-weight: normal;
-    src: url('../fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Italic.ttf') format('truetype');
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Italic.ttf') format('truetype');
 }
 
 /* #3 Bold Weight */
@@ -24,7 +24,7 @@
     font-family: "JetBrains Mono NL";
     font-style: normal;
     font-weight: bold;
-    src: url('../fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Bold.ttf') format('truetype');
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Bold.ttf') format('truetype');
 }
 
 /* #4 Bold Italic Style */
@@ -32,7 +32,7 @@
     font-family: "JetBrains Mono NL";
     font-style: italic;
     font-weight: bold;
-    src: url('../fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-BoldItalic.ttf') format('truetype');
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-BoldItalic.ttf') format('truetype');
 }
 
 /*

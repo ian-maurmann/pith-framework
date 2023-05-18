@@ -16,7 +16,7 @@ final class Templatec1ec2e59d5 extends Latte\Runtime\Template
     <head>
         <!-- Format -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <!-- Using Latte -->
 
