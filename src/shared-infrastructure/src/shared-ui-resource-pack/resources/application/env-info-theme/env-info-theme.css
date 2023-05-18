@@ -145,5 +145,36 @@
         background-color: var(--ox-color-tw-stone-300);
     }
 
+    /* =============================================================== */
+
+    table[data-table-style="route-list-info"],
+    table[data-table-style="route-list-info"] th,
+    table[data-table-style="route-list-info"] td {
+        border: 1px solid var(--ox-color-ibm1-warm-gray-20);
+    }
+    table[data-table-style="route-list-info"] th,
+    table[data-table-style="route-list-info"] td {
+        padding: 1ex 1em;
+    }
+    table[data-table-style="route-list-info"] tbody th,
+    table[data-table-style="route-list-info"] tbody td {
+        font-family: 'JetBrains Mono NL', Courier, Monaco, monospace;
+        font-size: 10pt;
+    }
+    table[data-table-style="route-list-info"]{
+        border-collapse: collapse;
+    }
+    table[data-table-style="route-list-info"] thead tr th{
+        background-color: var(--ox-color-tw-emerald-700);
+        color: var(--ox-color-ibm1-warm-white-2);
+    }
+    table[data-table-style="route-list-info"] tbody tr td{
+        background-color: var(--ox-color-tw-stone-200);
+    }
+    table[data-table-style="route-list-info"] tbody tr:nth-child(even) td{
+        background-color: var(--ox-color-tw-stone-300);
+    }
+
+
 
 }
