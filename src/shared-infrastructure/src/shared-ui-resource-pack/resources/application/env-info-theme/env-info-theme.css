@@ -25,6 +25,8 @@
         background-color: var(--ox-color-ibm1-cool-gray-10);
 
         padding: 2ex 0em 0ex 0em;
+
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     }
 
     #sidebar h4{
@@ -60,10 +62,12 @@
     #sidebar ul{
         margin: 1ex 1em;
         padding: 0px;
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     }
     #sidebar ul li{
         margin: 1ex 1em;
         padding: 0px;
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     }
 
     #main{
