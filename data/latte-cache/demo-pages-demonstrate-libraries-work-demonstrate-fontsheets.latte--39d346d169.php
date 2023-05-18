@@ -19,7 +19,7 @@ final class Template39d346d169 extends Latte\Runtime\Template
 
     <hr/>
 
-    <div style="font-family: \'IBM Plex Sans\',Consolas,monaco,monospace;">
+    <div style="font-family:\'IBM Plex Sans\',Frutiger,\'Segoe UI\',\'Frutiger Linotype\',\'Dejavu Sans\',\'Helvetica Neue\',Helvetica,Arial,sans-serif;">
         IBM Plex Sans - (Latin)
         <ul>
             <li>
@@ -36,7 +36,7 @@ final class Template39d346d169 extends Latte\Runtime\Template
             </li>
         </ul>
 
-        IBM Plex Sans - (Latin Ext)
+        IBM Plex Sans - (Latin Ext.)
         <ul>
             <li>
                 Ŧĥe quīćķ brown fŏx jůmpēď over the ļāźy đoġ. Ȏh ħow Ĩ quiĉkly dăft over lęapınģ jumpįnğ żěbrąs! ǢșȲƱƐƕƂƉƎǷƑ.
@@ -87,34 +87,34 @@ final class Template39d346d169 extends Latte\Runtime\Template
         IBM Plex Sans - (Cyrillic)
         <ul>
             <li>
-                Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
-                Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
-                Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя<br/>
+                Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя<br/>
+                Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя<br/>
             </li>
             <li>
-                <i>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
-                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
-                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                <i>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя<br/>
+                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя<br/>
+                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя<br/>
                 </i>
             </li>
             <li>
-                <b>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
-                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
-                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                <b>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя<br/>
+                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя<br/>
+                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя<br/>
                 </b>
             </li>
             <li>
                 <b>
                     <i>
-                        Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
-                        Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
-                        Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                        Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя<br/>
+                        Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя<br/>
+                        Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя<br/>
                     </i>
                 </b>
             </li>
         </ul>
 
-        IBM Plex Sans - (Cyrillic Ext)
+        IBM Plex Sans - (Cyrillic Ext.)
         <ul>
             <li>
                 Ԁ ԁ Ԃ ԃ Ԅ ԅ Ԇ ԇ Ԉ ԉ Ԋ ԋ Ԍ ԍ Ԏ ԏ Ԑ ԑ Ԓ ԓ Ԕ ԕ Ԗ ԗ Ԙ ԙ Ԛ ԛ Ԝ ԝ Ԟ ԟ Ԡ ԡ Ԣ ԣ Ԥ ԥ Ԧ ԧ Ԩ ԩ Ԫ ԫ Ԭ ԭ Ԯ ԯ
