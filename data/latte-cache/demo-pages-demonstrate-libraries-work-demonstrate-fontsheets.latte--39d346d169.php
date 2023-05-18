@@ -8,6 +8,9 @@ final class Template39d346d169 extends Latte\Runtime\Template
 
 	public function main(array $ʟ_args): void
 	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
 		echo '
 <section>
     <h3>
@@ -16,20 +19,137 @@ final class Template39d346d169 extends Latte\Runtime\Template
 
     <hr/>
 
-    <ul style="font-family: \'JetBrains Mono NL\',Consolas,monaco,monospace;">
-        <li>
-            The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789.
-        </li>
-        <li>
-            <i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789.</i>
-        </li>
-        <li>
-            <b>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789.</b>
-        </li>
-        <li>
-            <b><i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789.</i></b>
-        </li>
-    </ul>
+    <div style="font-family: \'IBM Plex Sans\',Consolas,monaco,monospace;">
+        IBM Plex Sans - (Latin)
+        <ul>
+            <li>
+                The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥
+            </li>
+            <li>
+                <i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</i>
+            </li>
+            <li>
+                <b>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</b>
+            </li>
+            <li>
+                <b><i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</i></b>
+            </li>
+        </ul>
+
+        IBM Plex Sans - (Latin Ext)
+        <ul>
+            <li>
+                Ŧĥe quīćķ brown fŏx jůmpēď over the ļāźy đoġ. Ȏh ħow Ĩ quiĉkly dăft over lęapınģ jumpįnğ żěbrąs! ǢșȲƱƐƕƂƉƎǷƑ.
+            </li>
+            <li>
+                <i>Ŧĥe quīćķ brown fŏx jůmpēď over the ļāźy đoġ. Ȏh ħow Ĩ quiĉkly dăft over lęapınģ jumpįnğ żěbrąs! ǢșȲƱƐƕƂƉƎǷƑ.</i>
+            </li>
+            <li>
+                <b>Ŧĥe quīćķ brown fŏx jůmpēď over the ļāźy đoġ. Ȏh ħow Ĩ quiĉkly dăft over lęapınģ jumpįnğ żěbrąs! ǢșȲƱƐƕƂƉƎǷƑ.</b>
+            </li>
+            <li>
+                <b><i>Ŧĥe quīćķ brown fŏx jůmpēď over the ļāźy đoġ. Ȏh ħow Ĩ quiĉkly dăft over lęapınģ jumpįnğ żěbrąs! ǢșȲƱƐƕƂƉƎǷƑ.</i></b>
+            </li>
+        </ul>
+
+        IBM Plex Sans - (Vietnamese)
+        <ul>
+            <li>
+                Vietnamese alphabet - Aa Ăă Ââ Bb Cc Dd Đđ Ee Êê Gg Hh Ii Kk Ll Mm Nn Oo Ôô Ơơ Pp Qq Rr Ss Tt Uu Ưư Vv Xx Yy.
+            </li>
+            <li>
+                <i>Vietnamese alphabet - Aa Ăă Ââ Bb Cc Dd Đđ Ee Êê Gg Hh Ii Kk Ll Mm Nn Oo Ôô Ơơ Pp Qq Rr Ss Tt Uu Ưư Vv Xx Yy.</i>
+            </li>
+            <li>
+                <b>Vietnamese alphabet - Aa Ăă Ââ Bb Cc Dd Đđ Ee Êê Gg Hh Ii Kk Ll Mm Nn Oo Ôô Ơơ Pp Qq Rr Ss Tt Uu Ưư Vv Xx Yy.</b>
+            </li>
+            <li>
+                <b><i>Vietnamese alphabet - Aa Ăă Ââ Bb Cc Dd Đđ Ee Êê Gg Hh Ii Kk Ll Mm Nn Oo Ôô Ơơ Pp Qq Rr Ss Tt Uu Ưư Vv Xx Yy.</i></b>
+            </li>
+        </ul>
+
+        IBM Plex Sans - (Greek)
+        <ul>
+            <li>
+                Greek alphabet - Αα Ββ Γγ Δδ Εε Ζζ Ηη Θθ Ιι Κκ Λλ Μμ Νν Ξξ Οο Ππ Ρρ Σςσ Ττ Υυ Φφ Χχ Ψψ Ωω.
+            </li>
+            <li>
+                <i>Greek alphabet - Αα Ββ Γγ Δδ Εε Ζζ Ηη Θθ Ιι Κκ Λλ Μμ Νν Ξξ Οο Ππ Ρρ Σςσ Ττ Υυ Φφ Χχ Ψψ Ωω.</i>
+            </li>
+            <li>
+                <b>Greek alphabet - Αα Ββ Γγ Δδ Εε Ζζ Ηη Θθ Ιι Κκ Λλ Μμ Νν Ξξ Οο Ππ Ρρ Σςσ Ττ Υυ Φφ Χχ Ψψ Ωω.</b>
+            </li>
+            <li>
+                <b><i>Greek alphabet - Αα Ββ Γγ Δδ Εε Ζζ Ηη Θθ Ιι Κκ Λλ Μμ Νν Ξξ Οο Ππ Ρρ Σςσ Ττ Υυ Φφ Χχ Ψψ Ωω.</i></b>
+            </li>
+        </ul>
+
+        IBM Plex Sans - (Cyrillic)
+        <ul>
+            <li>
+                Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
+                Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
+                Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+            </li>
+            <li>
+                <i>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
+                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
+                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                </i>
+            </li>
+            <li>
+                <b>Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
+                    Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
+                    Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                </b>
+            </li>
+            <li>
+                <b>
+                    <i>
+                        Belarusian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Іі Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Ўў Фф Хх Цц Чч Шш Ыы Ьь Ээ Юю Яя \' <br/>
+                        Russian alphabet - Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя <br/>
+                        Ukrainian alphabet - Аа Бб Вв Гг Ґґ Дд Ее Єє Жж Зз Ии Іі Її Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ьь Юю Яя \' <br/>
+                    </i>
+                </b>
+            </li>
+        </ul>
+
+        IBM Plex Sans - (Cyrillic Ext)
+        <ul>
+            <li>
+                Ԁ ԁ Ԃ ԃ Ԅ ԅ Ԇ ԇ Ԉ ԉ Ԋ ԋ Ԍ ԍ Ԏ ԏ Ԑ ԑ Ԓ ԓ Ԕ ԕ Ԗ ԗ Ԙ ԙ Ԛ ԛ Ԝ ԝ Ԟ ԟ Ԡ ԡ Ԣ ԣ Ԥ ԥ Ԧ ԧ Ԩ ԩ Ԫ ԫ Ԭ ԭ Ԯ ԯ
+            </li>
+            <li>
+                <i>Ԁ ԁ Ԃ ԃ Ԅ ԅ Ԇ ԇ Ԉ ԉ Ԋ ԋ Ԍ ԍ Ԏ ԏ Ԑ ԑ Ԓ ԓ Ԕ ԕ Ԗ ԗ Ԙ ԙ Ԛ ԛ Ԝ ԝ Ԟ ԟ Ԡ ԡ Ԣ ԣ Ԥ ԥ Ԧ ԧ Ԩ ԩ Ԫ ԫ Ԭ ԭ Ԯ ԯ</i>
+            </li>
+            <li>
+                <b>Ԁ ԁ Ԃ ԃ Ԅ ԅ Ԇ ԇ Ԉ ԉ Ԋ ԋ Ԍ ԍ Ԏ ԏ Ԑ ԑ Ԓ ԓ Ԕ ԕ Ԗ ԗ Ԙ ԙ Ԛ ԛ Ԝ ԝ Ԟ ԟ Ԡ ԡ Ԣ ԣ Ԥ ԥ Ԧ ԧ Ԩ ԩ Ԫ ԫ Ԭ ԭ Ԯ ԯ</b>
+            </li>
+            <li>
+                <b><i>Ԁ ԁ Ԃ ԃ Ԅ ԅ Ԇ ԇ Ԉ ԉ Ԋ ԋ Ԍ ԍ Ԏ ԏ Ԑ ԑ Ԓ ԓ Ԕ ԕ Ԗ ԗ Ԙ ԙ Ԛ ԛ Ԝ ԝ Ԟ ԟ Ԡ ԡ Ԣ ԣ Ԥ ԥ Ԧ ԧ Ԩ ԩ Ԫ ԫ Ԭ ԭ Ԯ ԯ</i></b>
+            </li>
+        </ul>
+    </div>
+
+    <hr/>
+
+    <div style="font-family: \'JetBrains Mono NL\',Consolas,monaco,monospace;">
+        JetBrains Mono NL
+        <ul>
+            <li>
+                The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥
+            </li>
+            <li>
+                <i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</i>
+            </li>
+            <li>
+                <b>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</b>
+            </li>
+            <li>
+                <b><i>The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥</i></b>
+            </li>
+        </ul>
+    </div>
 
     <hr/>
 
