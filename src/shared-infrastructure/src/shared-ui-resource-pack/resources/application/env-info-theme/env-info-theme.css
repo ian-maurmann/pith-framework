@@ -38,6 +38,7 @@
     #sidebar a:hover,
     #sidebar a:active {
         color: var(--ox-color-ibm1-cerulean-50);
+        background-color: var(--ox-color-ibm1-cool-gray-10) !important;
         font-weight: bold;
         text-decoration: none;
 

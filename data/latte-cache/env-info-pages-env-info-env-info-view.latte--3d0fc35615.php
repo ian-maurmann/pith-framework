@@ -14,6 +14,9 @@ final class Template3d0fc35615 extends Latte\Runtime\Template
     <li>
         <a href="/11111/22222/env-info/server-info">Server Info</a>
     </li>
+    <li>
+        <a href="/11111/22222/env-info/php-info">PHP Info</a>
+    </li>
 </ul>
 
 ';
