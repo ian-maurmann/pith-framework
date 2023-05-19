@@ -24,6 +24,7 @@ class SharedInfrastructureRouteList extends PithRouteList
     public array $routes = [
         ['GET', '/',                                                      '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
         ['GET', '/11111/22222/env-info',                                  '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
+        ['GET', '/11111/22222/env-info/database-info',                    '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoDatabaseInfoRoute'],
         ['GET', '/11111/22222/env-info/php-info',                         '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoPhpInfoRoute'],
         ['GET', '/11111/22222/env-info/route-list',                       '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteListRoute'],
         ['GET', '/11111/22222/env-info/server-info',                      '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoServerInfoRoute'],
