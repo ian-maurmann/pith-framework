@@ -36,6 +36,9 @@ class DemonstrateFontsheetsViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'library-for-layout');
+        $this->addPreload('preload JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
     }
 }

@@ -24,7 +24,7 @@ class DemonstrateFontsheetsRoute extends PithRoute
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level     = 'world';
-    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsWorkViewRequisition';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsheetsViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-fontsheets.latte';
     public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 

@@ -16,6 +16,15 @@ final class Template9b850f8588 extends Latte\Runtime\Template
     <li>
         <a href="/11111/22222/env-info/server-info"><i class="fa-solid fa-server"></i> Server Info</a>
     </li>
+    <li>
+        <a href="/11111/22222/env-info/php-info"><i class="fa-brands fa-php"></i> PHP Info</a>
+    </li>
+    <li>
+        <a href="/11111/22222/env-info/route-list"><i class="fa-solid fa-right-long"></i> Route List</a>
+    </li>
+    <li>
+        <a href="/11111/22222/env-info/database-info"><i class="fa-solid fa-database"></i> Database Info</a>
+    </li>
 </ul>
 
 ';
