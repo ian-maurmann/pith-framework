@@ -39,6 +39,8 @@ class PithRouter
     private PithConfig              $config;
     private PithInboundRequest      $inbound_request;
 
+    private string $current_route_list_namespace;
+
     public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config, PithInboundRequest $inbound_request)
     {
         // Object Dependencies
@@ -90,6 +92,31 @@ class PithRouter
 
 
     /**
+     * @param FastRoute\RouteCollector $r
+     * @param array $routes
+     * @throws PithException
+     */
+    public function addRoutes(FastRoute\RouteCollector &$r, array $routes)
+    {
+        // Loop through routes, Add each route
+        foreach ($routes as $route){
+            if($route[0] === 'route'){
+                $r->addRoute($route[1], $route[2], $route[3]);
+            }
+            elseif($route[0] === 'route-group') {
+                $this->current_route_list_namespace = $route[3];
+                $r->addGroup($route[2], function (FastRoute\RouteCollector $r) {
+                    $route_group_routes = $this->getRoutesFromRouteListNamespace($this->current_route_list_namespace);
+
+                    // Recurse
+                    $this->addRoutes($r, $route_group_routes);
+                });
+
+            }
+        }
+    }
+
+    /**
      * Route by URL
      *
      * @noinspection PhpVariableNamingConventionInspection - Ignore here.
@@ -104,11 +131,8 @@ class PithRouter
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
             $app_routes = $this->config->getRoutes();
-            
-            // Loop through routes, Add each route
-            foreach ($app_routes as $app_route){
-                $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
-            }
+
+            $this->addRoutes($r, $app_routes);
         });
 
         // Get HTTP method
@@ -185,15 +209,13 @@ class PithRouter
 
     /**
      * @param  string $route_namespace
-     * @return null|PithRoute
+     * @return PithRoute
      * @throws PithException
      *
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function getRouteFromRouteNamespace(string $route_namespace): ?PithRoute
+    public function getRouteFromRouteNamespace(string $route_namespace): PithRoute
     {
-        $route = null; // Default to null
-
         // Get the route object via the namespace
         try {
             $route = $this->dependency_injection->container->get($route_namespace);
@@ -214,6 +236,33 @@ class PithRouter
         return $route;
     }
 
+    /**
+     * @param string $route_list_namespace
+     * @return PithRouteList
+     * @throws PithException
+     */
+    public function getRouteListFromRouteListNamespace(string $route_list_namespace): PithRouteList
+    {
+        // Get the route object via the namespace
+        try {
+            $route_list = $this->dependency_injection->container->get($route_list_namespace);
+        } catch (\DI\DependencyException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5004: The container encountered a \DI\DependencyException exception loading a route list. Message: ' . $exception->getMessage(),
+                5012,
+                $exception
+            );
+        } catch (\DI\NotFoundException $exception) {
+            throw new PithException(
+                'Pith Framework Exception 5005: The container encountered a \DI\NotFoundException exception loading a route list. Message: ' . $exception->getMessage(),
+                5011,
+                $exception
+            );
+        }
+
+        return $route_list;
+    }
+
 
 
     private function getUri(): string
@@ -228,6 +277,18 @@ class PithRouter
 
         // Return the URI
         return $uri;
+    }
+
+    /**
+     * @param string $route_list_namespace
+     * @return array
+     * @throws PithException
+     */
+    public function getRoutesFromRouteListNamespace(string $route_list_namespace): array
+    {
+        $route_list = $this->getRouteListFromRouteListNamespace($route_list_namespace);
+
+        return $route_list->routes;
     }
 
 

@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Env Info Route
- * --------------
+ * Env Info - Route-List Route
+ * ---------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  */
 
 
@@ -15,16 +16,16 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class EnvInfoRoute
+ * Class EnvInfoRouteListRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class EnvInfoRoute extends PithRoute
+class EnvInfoRouteListRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
-    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoAction';
-    public string $view         = '[^route_folder]/env-info-view.latte';
+    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteListAction';
+    public string $view         = '[^route_folder]/env-info-route-list-view.latte';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\EnvInfoLayoutRoute';
 
     public string $page_title       = 'Env Info';

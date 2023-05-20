@@ -134,7 +134,7 @@ final class Template39d346d169 extends Latte\Runtime\Template
     <hr/>
 
     <div style="font-family: \'JetBrains Mono NL\',Consolas,monaco,monospace;">
-        JetBrains Mono NL
+        JetBrains Mono NL - (Latin)
         <ul>
             <li>
                 The quick brown fox jumped over the lazy dog. Oh how I quickly daft over leaping jumping zebras! 01234-56789. Åå Ææ Çç Éé Ññ Öö ß Üü $¢£¥
