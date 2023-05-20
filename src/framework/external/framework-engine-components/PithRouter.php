@@ -107,7 +107,9 @@ class PithRouter
             
             // Loop through routes, Add each route
             foreach ($app_routes as $app_route){
-                $r->addRoute($app_route[0], $app_route[1], $app_route[2]);
+                if($app_route[0] === 'route'){
+                    $r->addRoute($app_route[1], $app_route[2], $app_route[3]);
+                }
             }
         });
 
