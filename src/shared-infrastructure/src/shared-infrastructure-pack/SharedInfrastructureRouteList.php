@@ -23,12 +23,7 @@ class SharedInfrastructureRouteList extends PithRouteList
 {
     public array $routes = [
         ['route',       'GET', '/',                                                      '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
-        ['route',       'GET', '/11111/22222/env-info',                                  '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
-        ['route',       'GET', '/11111/22222/env-info/database-info',                    '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoDatabaseInfoRoute'],
-        ['route',       'GET', '/11111/22222/env-info/php-info',                         '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoPhpInfoRoute'],
-        ['route',       'GET', '/11111/22222/env-info/route-list',                       '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteListRoute'],
-        ['route',       'GET', '/11111/22222/env-info/server-info',                      '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoServerInfoRoute'],
-        ['route-group', '',    '/33333/44444/env-info',                                  '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteList'],
+        ['route-group', '',    PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,                     '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteList'],
         ['route',       'GET', '/demonstrate-fonts-work',                                '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsWorkRoute'],
         ['route',       'GET', '/demonstrate-fontsheets',                                '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateFontsheetsRoute'],
         ['route',       'GET', '/demonstrate-libraries-work',                            '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrariesWorkRoute'],

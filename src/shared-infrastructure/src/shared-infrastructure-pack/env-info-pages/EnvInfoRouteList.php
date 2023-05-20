@@ -22,7 +22,7 @@ use Pith\Framework\PithRouteList;
 class EnvInfoRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '/',              '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
+        ['route', 'GET', '',               '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
         ['route', 'GET', '/database-info', '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoDatabaseInfoRoute'],
         ['route', 'GET', '/php-info',      '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoPhpInfoRoute'],
         ['route', 'GET', '/route-list',    '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteListRoute'],

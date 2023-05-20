@@ -8,20 +8,31 @@ final class Template3d0fc35615 extends Latte\Runtime\Template
 
 	public function main(array $ʟ_args): void
 	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
 		echo '<h3>Env Info</h3>
 
 <ul>
     <li>
-        <a href="/11111/22222/env-info/server-info">Server Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 5 */;
+		echo '/server-info">Server Info</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/php-info">PHP Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 8 */;
+		echo '/php-info">PHP Info</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/route-list">Route List</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 11 */;
+		echo '/route-list">Route List</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/database-info">Database Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 14 */;
+		echo '/database-info">Database Info</a>
     </li>
 </ul>
 
