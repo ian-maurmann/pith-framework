@@ -92,6 +92,31 @@ class PithRouter
 
 
     /**
+     * @param FastRoute\RouteCollector $r
+     * @param array $routes
+     * @throws PithException
+     */
+    public function addRoutes(FastRoute\RouteCollector &$r, array $routes)
+    {
+        // Loop through routes, Add each route
+        foreach ($routes as $route){
+            if($route[0] === 'route'){
+                $r->addRoute($route[1], $route[2], $route[3]);
+            }
+            elseif($route[0] === 'route-group') {
+                $this->current_route_list_namespace = $route[3];
+                $r->addGroup($route[2], function (FastRoute\RouteCollector $r) {
+                    $route_group_routes = $this->getRoutesFromRouteListNamespace($this->current_route_list_namespace);
+
+                    // Recurse
+                    $this->addRoutes($r, $route_group_routes);
+                });
+
+            }
+        }
+    }
+
+    /**
      * Route by URL
      *
      * @noinspection PhpVariableNamingConventionInspection - Ignore here.
@@ -106,29 +131,8 @@ class PithRouter
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
             $app_routes = $this->config->getRoutes();
-            
-            // Loop through routes, Add each route
-            foreach ($app_routes as $app_route){
-                if($app_route[0] === 'route'){
-                    $r->addRoute($app_route[1], $app_route[2], $app_route[3]);
-                }
-                elseif($app_route[0] === 'route-group'){
-                    $this->current_route_list_namespace = $app_route[3];
 
-
-                    $r->addGroup($app_route[2], function (FastRoute\RouteCollector $r) {
-                        // Get routes from the route group's Route List
-                        $route_group_routes = $this->getRoutesFromRouteListNamespace($this->current_route_list_namespace);
-
-                        // Loop through routes, Add each route
-                        foreach ($route_group_routes as $route_group_route){
-                            if($route_group_route[0] === 'route'){
-                                $r->addRoute($route_group_route[1], $route_group_route[2], $route_group_route[3]);
-                            }
-                        }
-                    });
-                }
-            }
+            $this->addRoutes($r, $app_routes);
         });
 
         // Get HTTP method
