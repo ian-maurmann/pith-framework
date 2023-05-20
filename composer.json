@@ -45,6 +45,7 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/demonstrate-libraries-work/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/demo-pages/error-pages/",
