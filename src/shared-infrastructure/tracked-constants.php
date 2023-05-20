@@ -5,6 +5,8 @@
  * -----------------
  *
  * This is the place for constants that should be viewable and tracked by Git.
+ *
+ * @noinspection PhpConstantNamingConventionInspection - Long constant names are ok.
  */
 
 // Turn on strict types
