@@ -16,9 +16,10 @@ final class Template336c569d15 extends Latte\Runtime\Template
 <table data-table-style="route-list-info">
     <thead>
     <tr>
-        <th colspan="3">Route List</th>
+        <th colspan="4">Route List</th>
     </tr>
     <tr>
+        <th>Type</th>
         <th>Method</th>
         <th>Path</th>
         <th>Route Namespace</th>
@@ -26,21 +27,24 @@ final class Template336c569d15 extends Latte\Runtime\Template
     </thead>
     <tbody>
 ';
-		foreach ($iterator = $ʟ_it = new Latte\Essential\CachingIterator($routes, $ʟ_it ?? null) as $route) /* line 15 */ {
+		foreach ($iterator = $ʟ_it = new Latte\Essential\CachingIterator($routes, $ʟ_it ?? null) as $route) /* line 16 */ {
 			echo '        <tr>
             <td>';
-			echo LR\Filters::escapeHtmlText($route[0]) /* line 17 */;
+			echo LR\Filters::escapeHtmlText($route[0]) /* line 18 */;
 			echo '</td>
             <td>';
-			echo LR\Filters::escapeHtmlText($route[1]) /* line 18 */;
+			echo LR\Filters::escapeHtmlText($route[1]) /* line 19 */;
 			echo '</td>
             <td>';
-			echo LR\Filters::escapeHtmlText($route[2]) /* line 19 */;
+			echo LR\Filters::escapeHtmlText($route[2]) /* line 20 */;
+			echo '</td>
+            <td>';
+			echo LR\Filters::escapeHtmlText($route[3]) /* line 21 */;
 			echo '</td>
         </tr>
 ';
 		}
-		if ($iterator->isEmpty()) /* line 21 */ {
+		if ($iterator->isEmpty()) /* line 23 */ {
 			echo '        <tr>
             <td colspan="2"><i>No routes found.</i></td>
         </tr>
@@ -59,7 +63,7 @@ final class Template336c569d15 extends Latte\Runtime\Template
 		extract($this->params);
 
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
-			foreach (array_intersect_key(['route' => '15'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['route' => '16'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}

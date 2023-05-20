@@ -8,22 +8,35 @@ final class Template9b850f8588 extends Latte\Runtime\Template
 
 	public function main(array $ʟ_args): void
 	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
 		echo '<h4>Env Info Pages:</h4>
 <ul>
     <li>
-        <a href="/11111/22222/env-info"><i class="fa-solid fa-house"></i> Env Info - Main</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 4 */;
+		echo '"><i class="fa-solid fa-house"></i> Env Info - Main</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/server-info"><i class="fa-solid fa-server"></i> Server Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 7 */;
+		echo '/server-info"><i class="fa-solid fa-server"></i> Server Info</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/php-info"><i class="fa-brands fa-php"></i> PHP Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 10 */;
+		echo '/php-info"><i class="fa-brands fa-php"></i> PHP Info</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/route-list"><i class="fa-solid fa-right-long"></i> Route List</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 13 */;
+		echo '/route-list"><i class="fa-solid fa-right-long"></i> Route List</a>
     </li>
     <li>
-        <a href="/11111/22222/env-info/database-info"><i class="fa-solid fa-database"></i> Database Info</a>
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH)) /* line 16 */;
+		echo '/database-info"><i class="fa-solid fa-database"></i> Database Info</a>
     </li>
 </ul>
 
