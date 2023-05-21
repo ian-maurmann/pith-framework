@@ -45,6 +45,7 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/default-landing/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/demonstrate-libraries-work/",
@@ -65,6 +66,7 @@
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/default-landing-theme/",
                 "src/shared-infrastructure/src/shared-theme-pack/env-info-theme/",
                 "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
             ],
