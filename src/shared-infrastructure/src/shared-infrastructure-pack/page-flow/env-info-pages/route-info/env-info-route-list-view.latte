@@ -1,0 +1,29 @@
+<h3>Route List</h3>
+
+<table data-table-style="route-list-info">
+    <thead>
+    <tr>
+        <th colspan="4">Route List</th>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <th>Method</th>
+        <th>Path</th>
+        <th>Route Namespace</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach $routes as $route}
+        <tr>
+            <td>{$route[0]}</td>
+            <td>{$route[1]}</td>
+            <td>{$route[2]}</td>
+            <td>{$route[3]}</td>
+        </tr>
+    {else}
+        <tr>
+            <td colspan="2"><i>No routes found.</i></td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>

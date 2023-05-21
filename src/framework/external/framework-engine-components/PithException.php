@@ -67,7 +67,8 @@
  *     5008 - Index Front Controller - Dependency Injection Wrapper - NotFoundException.
  *     5009 - Index Front Controller - Dependency Injection Wrapper - DependencyException.
  *     5010 - Pith Framework App variable is not a Pith App Object.
- *
+ *     5011 - Loading a route list --> Container: NotFoundException.
+ *     5012 - Loading a route list --> Container: DependencyException.
  *
  *     6xxx - Database Exceptions Recoverable
  *     --------------------------------------
