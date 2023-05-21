@@ -49,7 +49,6 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/demonstrate-libraries-work/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/error-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/home/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/latte/",
@@ -62,6 +61,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/route-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/server-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/sidebar/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/error-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
