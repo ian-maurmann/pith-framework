@@ -28,28 +28,33 @@ namespace Pith\Framework;
 class PithApp
 {
     // Objects
+    public PithActiveUser $active_user;
     public PithConfig     $config;
     public PithDispatcher $dispatcher;
     public PithEngine     $engine;
     public PithResponder  $responder;
 
+
     /**
+     * @param PithActiveUser $active_user
      * @param PithConfig     $config
      * @param PithDispatcher $dispatcher
      * @param PithEngine     $engine
      * @param PithResponder  $responder
      */
     public function __construct(
+        PithActiveUser $active_user,
         PithConfig     $config,
         PithDispatcher $dispatcher,
         PithEngine     $engine,
         PithResponder  $responder,
     )
     {
-        $this->config     = $config;
-        $this->dispatcher = $dispatcher;
-        $this->engine     = $engine;
-        $this->responder  = $responder;
+        $this->active_user = $active_user;
+        $this->config      = $config;
+        $this->dispatcher  = $dispatcher;
+        $this->engine      = $engine;
+        $this->responder   = $responder;
     }
     
 }

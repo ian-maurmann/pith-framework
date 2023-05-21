@@ -85,6 +85,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
             }
 
+            // 'dev-ip' --- Only whitelisted dev IPs
+            elseif ($access_level_string === 'dev-ip') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
+            }
+
             // Else treat the string as an object namespace
             else{
                 $access_level = $this->dependency_injection->container->get($access_level_string);
@@ -138,10 +143,17 @@ class PithAccessControl
             // If logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the access denied page
 
+            /*
             throw new PithException(
                 'Pith Framework Exception 4007: Workflow element access denied.',
                 4007
             );
+            */
+
+            // Set headers for 403
+            http_response_code(403);
+            echo 'Error 403';
+            exit;
         }
     }
 }

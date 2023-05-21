@@ -25,6 +25,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route-group', '',    PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                   '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
         ['route-group', '',    PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteList'],
         ['route',       'GET', '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
+        ['route',       'GET', '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],
         ['route',       'GET', '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
         ['route',       'GET', '/favicon.ico',                                     '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       'GET', '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],

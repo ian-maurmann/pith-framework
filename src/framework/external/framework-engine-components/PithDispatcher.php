@@ -94,6 +94,10 @@ class PithDispatcher
      */
     public function dispatch(PithRoute $route, PithRoute|null $secondary_route=null)
     {
+        // Check access early before dispatching farther,
+        // (because sometimes we need to send headers before the Dispatcher sends headers)
+        $this->tapAccess($route);
+        
         switch ($route->route_type) {
 
             // Layout
