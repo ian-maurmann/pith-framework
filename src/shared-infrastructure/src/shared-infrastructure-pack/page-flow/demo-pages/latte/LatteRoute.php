@@ -22,7 +22,7 @@ class LatteRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'world';
+    public string $access_level = 'dev-ip';
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\LatteAction';
     //public string $preparer     = '\\Pith\\Framework\\SharedInfrastructure\\LattePreparer';
     public string $view         = '[^route_folder]/template.latte';

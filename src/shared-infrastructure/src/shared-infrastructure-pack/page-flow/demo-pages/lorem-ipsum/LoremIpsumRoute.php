@@ -22,7 +22,7 @@ class LoremIpsumRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'world';
+    public string $access_level = 'dev-ip';
     public string $view         = '[^route_folder]/lorem-ipsum-view.phtml';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLatteLayoutRoute';
 
