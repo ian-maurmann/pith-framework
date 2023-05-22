@@ -22,7 +22,7 @@ class EnvInfoRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'world';
+    public string $access_level = 'dev-ip';
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoAction';
     public string $view         = '[^route_folder]/env-info-view.latte';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\EnvInfoLayoutRoute';
