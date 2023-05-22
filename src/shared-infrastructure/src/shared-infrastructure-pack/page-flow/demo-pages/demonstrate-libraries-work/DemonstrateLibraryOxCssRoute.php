@@ -23,7 +23,7 @@ class DemonstrateLibraryOxCssRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level     = 'world';
+    public string $access_level     = 'dev-ip';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryOxCssViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-oxcss-view.phtml';
     public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
