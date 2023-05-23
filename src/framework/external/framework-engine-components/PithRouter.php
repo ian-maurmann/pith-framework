@@ -38,15 +38,17 @@ class PithRouter
     private PithDependencyInjection $dependency_injection;
     private PithConfig              $config;
     private PithInboundRequest      $inbound_request;
+    private PithAppRetriever        $app_retriever;
 
     private string $current_route_list_namespace;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config, PithInboundRequest $inbound_request)
+    public function __construct(PithDependencyInjection $dependency_injection, PithConfig $config, PithInboundRequest $inbound_request, PithAppRetriever $app_retriever)
     {
         // Object Dependencies
         $this->dependency_injection = $dependency_injection;
         $this->config               = $config;
         $this->inbound_request      = $inbound_request;
+        $this->app_retriever        = $app_retriever;
     }
 
 
@@ -128,6 +130,10 @@ class PithRouter
     {
         $return_array = [];
 
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
+        // Create a Fast Route Simple Dispatcher
         $fast_dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
             // Get Routes
             $app_routes = $this->config->getRoutes();
@@ -138,8 +144,14 @@ class PithRouter
         // Get HTTP method
         $httpMethod = $_SERVER['REQUEST_METHOD'];
 
+        // Save the HTTP method to the app registry for whoever wants it later
+        $app->registry->requested_http_method = $httpMethod;
+
         // Get URI
         $uri = ($uri !== null) ? $uri : $this->getUri();
+
+        // Save the URI to the app registry for whoever wants it later
+        $app->registry->requested_uri = $uri;
 
         $routeInfo = $fast_dispatcher->dispatch($httpMethod, $uri);
         switch ($routeInfo[0]) {
