@@ -35,6 +35,8 @@
             ],
             "Pith\\Framework\\Internal\\": [
                 "src/framework/internal/helpers/",
+                "src/framework/internal/loggers/",
+                "src/framework/internal/tools/",
                 "src/framework/internal/traits/",
                 "src/framework/internal/utilities/",
                 "src/framework/internal/workflow-access-levels/",
