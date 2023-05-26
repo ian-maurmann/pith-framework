@@ -88,8 +88,8 @@ class PithImpressionLogger
         // Message
         $allowed_or_denied = ($access_success) ? 'allowed' : 'denied';
         $user_or_guest = 'guest';
-        $session_id = '[session id]';
-        $user_id = '[user id]';
+        $session_id = '';
+        $user_id = '';
 
         $message =
             '➤ '
