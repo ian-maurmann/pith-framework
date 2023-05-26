@@ -46,7 +46,7 @@ php_errors.log
 
 # Ignore all log files
 # --------------------
-.log
+*.log
 
 # Ignore template cache
 # ---------------------
