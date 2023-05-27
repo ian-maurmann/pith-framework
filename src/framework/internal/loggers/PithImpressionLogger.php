@@ -14,6 +14,7 @@
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
  */
 
 
@@ -40,13 +41,12 @@ class PithImpressionLogger
     }
 
 
-
     /**
      * @param string $requested_http_method
      * @param string $requested_uri
      * @param string $requested_server_port
      * @param string $access_level
-     * @param bool $access_success
+     * @param bool   $access_success
      * @param string $remote_ip_address
      * @param string $session_id_string
      * @param string $user_or_guest
@@ -61,9 +61,9 @@ class PithImpressionLogger
      * @param string $ch_ua_bitness
      * @param string $client_accept_language_string
      * @param string $client_referer_string
-     * @param string $ch_perfers_reduced_motion
      * @param string $ch_downlink
      * @param string $ch_viewport_width
+     * @param string $ch_prefers_color_scheme
      * @throws PithException
      * @noinspection PhpTooManyParametersInspection - Ignore.
      */
@@ -113,9 +113,6 @@ class PithImpressionLogger
 
         // Message
         $allowed_or_denied = ($access_success) ? 'allowed' : 'denied';
-        // $user_or_guest = 'guest';
-        // $session_id = '';
-        // $user_id = '';
 
         $message =
             '➤ '
@@ -128,10 +125,7 @@ class PithImpressionLogger
           . "$client_accept_language_string ● "
           . "$client_referer_string ● "
           . "$ch_downlink ● $ch_viewport_width ● $ch_prefers_color_scheme"
-
         ;
-
-
 
         $bytes = file_put_contents($filename, $message . PHP_EOL , FILE_APPEND | LOCK_EX);
     }
