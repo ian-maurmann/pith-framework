@@ -25,7 +25,6 @@ namespace Pith\Framework;
 
 
 use Pith\Framework\Internal\PithImpressionLogger;
-use Pith\Framework\Internal\PithImpressionLoggingTool;
 
 /**
  * Class PithActiveUser
@@ -33,9 +32,8 @@ use Pith\Framework\Internal\PithImpressionLoggingTool;
  */
 class PithActiveUser
 {
-    private PithImpressionLoggingTool $impression_tool;
-    private PithAppRetriever          $app_retriever;
-    private PithImpressionLogger      $impression_logger;
+    private PithAppRetriever     $app_retriever;
+    private PithImpressionLogger $impression_logger;
 
     private bool   $did_log_impression_on_first_access;
 
@@ -59,10 +57,9 @@ class PithActiveUser
     private string $ch_viewport_width;
     private string $ch_prefers_color_scheme;
 
-    public function __construct(PithImpressionLoggingTool $impression_tool, PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
+    public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
     {
         // Set object dependencies
-        $this->impression_tool   = $impression_tool;
         $this->app_retriever     = $app_retriever;
         $this->impression_logger = $impression_logger;
 
