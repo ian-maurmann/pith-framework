@@ -39,6 +39,8 @@ class PithImpressionLogger
         $this->app_retriever = $app_retriever;
     }
 
+
+
     /**
      * @param string $requested_http_method
      * @param string $requested_uri
@@ -46,30 +48,54 @@ class PithImpressionLogger
      * @param string $access_level
      * @param bool $access_success
      * @param string $remote_ip_address
-     * @param string $client_ua_string
-     * @param string $client_hint_ua_string
-     * @param string $client_hint_ua_mobile_string
-     * @param string $client_hint_ua_platform_string
+     * @param string $session_id_string
+     * @param string $user_or_guest
+     * @param string $user_id_string
+     * @param string $user_agent_string
+     * @param string $ch_ua
+     * @param string $ch_ua_platform
+     * @param string $ch_ua_platform_version
+     * @param string $ch_ua_mobile
+     * @param string $ch_ua_model
+     * @param string $ch_ua_architecture
+     * @param string $ch_ua_bitness
      * @param string $client_accept_language_string
      * @param string $client_referer_string
-     *
-     * @noinspection PhpTooManyParametersInspection - Ignore.
+     * @param string $ch_perfers_reduced_motion
+     * @param string $ch_downlink
+     * @param string $ch_viewport_width
      * @throws PithException
+     * @noinspection PhpTooManyParametersInspection - Ignore.
      */
     public function logImpression(
         string $requested_http_method,
         string $requested_uri,
         string $requested_server_port,
+
         string $access_level,
         bool   $access_success,
+
         string $remote_ip_address,
-        string $client_ua_string,
-        string $client_hint_ua_string,
-        string $client_hint_ua_mobile_string,
-        string $client_hint_ua_platform_string,
+        string $session_id_string,
+        string $user_or_guest,
+        string $user_id_string,
+
+        string $user_agent_string,
+        string $ch_ua,
+        string $ch_ua_platform,
+        string $ch_ua_platform_version,
+        string $ch_ua_mobile,
+        string $ch_ua_model,
+        string $ch_ua_architecture,
+        string $ch_ua_bitness,
+
         string $client_accept_language_string,
 
         string $client_referer_string,
+
+        string $ch_downlink,
+        string $ch_viewport_width,
+        string $ch_prefers_color_scheme
     )
     {
         // Get the app
@@ -87,18 +113,23 @@ class PithImpressionLogger
 
         // Message
         $allowed_or_denied = ($access_success) ? 'allowed' : 'denied';
-        $user_or_guest = 'guest';
-        $session_id = '';
-        $user_id = '';
+        // $user_or_guest = 'guest';
+        // $session_id = '';
+        // $user_id = '';
 
         $message =
             '➤ '
           . "$message_date ● $requested_http_method ● $requested_uri ● $requested_server_port ● "
           . "$access_level ● $allowed_or_denied ● "
           . "$remote_ip_address ● "
-          . "$session_id ● $user_or_guest ● $user_id ● "
-          . "$client_ua_string ● $client_hint_ua_string ● $client_hint_ua_mobile_string ● $client_hint_ua_platform_string ● $client_accept_language_string ● "
-          . "$client_referer_string";
+          . "$session_id_string ● $user_or_guest ● $user_id_string ● "
+          . "$user_agent_string ● "
+          . "$ch_ua ● $ch_ua_platform ● $ch_ua_platform_version ● $ch_ua_mobile ● $ch_ua_model ● $ch_ua_architecture ● $ch_ua_bitness ● "
+          . "$client_accept_language_string ● "
+          . "$client_referer_string ● "
+          . "$ch_downlink ● $ch_viewport_width ● $ch_prefers_color_scheme"
+
+        ;
 
 
 

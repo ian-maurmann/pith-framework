@@ -24,6 +24,7 @@ namespace Pith\Framework;
 
 
 
+use Pith\Framework\Internal\PithImpressionLogger;
 use Pith\Framework\Internal\PithImpressionLoggingTool;
 
 /**
@@ -34,42 +35,73 @@ class PithActiveUser
 {
     private PithImpressionLoggingTool $impression_tool;
     private PithAppRetriever          $app_retriever;
+    private PithImpressionLogger      $impression_logger;
 
     private bool   $did_log_impression_on_first_access;
 
-    private string $remote_ip_address = '';
+    private string $remote_ip_address;
 
-    private string $client_ua_string = '';
-    private string $client_hint_ua_string = '';
-    private string $client_hint_ua_mobile_string = '';
-    private string $client_hint_ua_platform_string = '';
-    private string $client_accept_language_string = '';
-    private string $requested_server_port = '';
-    private string $requested_uri = '';
-    private string $requested_http_method = '';
-    private string $client_referer_string = '';
+    private string $user_agent_string;
 
-    public function __construct(PithImpressionLoggingTool $impression_tool, PithAppRetriever $app_retriever)
+    private string $ch_ua;
+    private string $ch_ua_architecture;
+    private string $ch_ua_bitness;
+    private string $ch_ua_mobile;
+    private string $ch_ua_model;
+    private string $ch_ua_platform;
+    private string $ch_ua_platform_version;
+    private string $client_accept_language_string;
+    private string $requested_server_port;
+    private string $requested_uri;
+    private string $requested_http_method;
+    private string $client_referer_string;
+    private string $ch_downlink;
+    private string $ch_viewport_width;
+    private string $ch_prefers_color_scheme;
+
+    public function __construct(PithImpressionLoggingTool $impression_tool, PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
     {
         // Set object dependencies
-        $this->impression_tool = $impression_tool;
-        $this->app_retriever   = $app_retriever;
+        $this->impression_tool   = $impression_tool;
+        $this->app_retriever     = $app_retriever;
+        $this->impression_logger = $impression_logger;
 
         // Set defaults
         $this->did_log_impression_on_first_access = false;
     }
 
     public function start(){
-        $this->remote_ip_address              = $_SERVER['REMOTE_ADDR']             ?? '';
-        $this->client_ua_string               = $_SERVER['HTTP_USER_AGENT']         ?? '';
-        $this->client_hint_ua_string          = $_SERVER['HTTP_SEC_CH_UA']          ?? '';
-        $this->client_hint_ua_mobile_string   = $_SERVER['HTTP_SEC_CH_UA_MOBILE']   ?? '';
-        $this->client_hint_ua_platform_string = $_SERVER['HTTP_SEC_CH_UA_PLATFORM'] ?? '';
-        $this->client_accept_language_string  = $_SERVER['HTTP_ACCEPT_LANGUAGE']    ?? '';
-        $this->requested_server_port          = $_SERVER['SERVER_PORT']             ?? '';
-        $this->requested_uri                  = $_SERVER['REQUEST_URI']             ?? '';
-        $this->requested_http_method          = $_SERVER['REQUEST_METHOD']          ?? '';
-        $this->client_referer_string          = $_SERVER['HTTP_REFERER']            ?? '';
+
+        // Save what the user requested
+        $this->requested_http_method = $_SERVER['REQUEST_METHOD'] ?? '';
+        $this->requested_uri         = $_SERVER['REQUEST_URI']    ?? '';
+        $this->requested_server_port = $_SERVER['SERVER_PORT']    ?? '';
+
+        // Save info about what the user identified itself as being
+        $this->remote_ip_address = $_SERVER['REMOTE_ADDR'] ?? '';
+
+        // User Agent
+        $this->user_agent_string = $_SERVER['HTTP_USER_AGENT'] ?? '';
+
+        // CH UA Hinting Info (Might or might not be set, or true)
+        $this->ch_ua                  = $_SERVER['HTTP_SEC_CH_UA']                  ?? '';
+        $this->ch_ua_platform         = $_SERVER['HTTP_SEC_CH_UA_PLATFORM']         ?? '';
+        $this->ch_ua_platform_version = $_SERVER['HTTP_SEC_CH_UA_PLATFORM_VERSION'] ?? '';
+        $this->ch_ua_mobile           = $_SERVER['HTTP_SEC_CH_UA_MOBILE']           ?? '';
+        $this->ch_ua_model            = $_SERVER['HTTP_SEC_CH_UA_MODEL']            ?? '';
+        $this->ch_ua_architecture     = $_SERVER['HTTP_SEC_CH_UA_ARCH']             ?? '';
+        $this->ch_ua_bitness          = $_SERVER['HTTP_SEC_CH_UA_BITNESS']          ?? '';
+
+        // User's web-browser's set language
+        $this->client_accept_language_string = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
+
+        // Referer
+        $this->client_referer_string = $_SERVER['HTTP_REFERER'] ?? '';
+
+        // Other CH Hinting Info
+        $this->ch_downlink             = $_SERVER['HTTP_DOWNLINK']                    ?? '';
+        $this->ch_viewport_width       = $_SERVER['HTTP_VIEWPORT_WIDTH']              ?? '';
+        $this->ch_prefers_color_scheme = $_SERVER['HTTP_SEC_CH_PREFERS_COLOR_SCHEME'] ?? '';
     }
 
     /**
@@ -88,28 +120,37 @@ class PithActiveUser
     {
         if(!$this->did_log_impression_on_first_access){
 
-            // Request
-            $this->impression_tool->setRequestedHttpMethod($this->requested_http_method);
-            $this->impression_tool->setRequestedUri($this->requested_uri);
-            $this->impression_tool->setRequestedServerPort($this->requested_server_port);
-
-            // Access
-            $this->impression_tool->setAccessLevel($access_level);
-            $this->impression_tool->setAccessSuccess($access_success);
-
-            // Client
-            $this->impression_tool->setRemoteIpAddress($this->remote_ip_address);
-            $this->impression_tool->setClientUaString($this->client_ua_string);
-            $this->impression_tool->setClientHintUaString($this->client_hint_ua_string);
-            $this->impression_tool->setClientHintUaMobileString($this->client_hint_ua_mobile_string);
-            $this->impression_tool->setClientHintUaPlatformString($this->client_hint_ua_platform_string);
-            $this->impression_tool->setClientAcceptLanguageString($this->client_accept_language_string);
-
-            // Referer
-            $this->impression_tool->setClientRefererString($this->client_referer_string);
-
             // Run
-            $this->impression_tool->logImpression();
+            $this->impression_logger->logImpression(
+                $this->requested_http_method,
+                $this->requested_uri,
+                $this->requested_server_port,
+
+                $access_level,
+                $access_success,
+
+                $this->remote_ip_address,
+                '(TODO: Session ID)', // TODO: Session ID will do here
+                '(guest)',
+                '(TODO: User ID)', // TODO: User ID will do here
+
+                $this->user_agent_string,
+                $this->ch_ua,
+                $this->ch_ua_platform,
+                $this->ch_ua_platform_version,
+                $this->ch_ua_mobile,
+                $this->ch_ua_model,
+                $this->ch_ua_architecture,
+                $this->ch_ua_bitness,
+
+                $this->client_accept_language_string,
+
+                $this->client_referer_string,
+
+                $this->ch_downlink,
+                $this->ch_viewport_width,
+                $this->ch_prefers_color_scheme
+            );
 
             // Mark that this ran
             $this->did_log_impression_on_first_access = true;
