@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpPropertyNamingConventionInspection */
+<?php
 # ===================================================================
 # Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -32,15 +32,14 @@ use Pith\Framework\Internal\PithImpressionLogger;
  */
 class PithActiveUser
 {
+    // Dependencies
     private PithAppRetriever     $app_retriever;
     private PithImpressionLogger $impression_logger;
 
-    private bool   $did_log_impression_on_first_access;
-
-    private string $remote_ip_address;
-
-    private string $user_agent_string;
-
+    // $_SERVER info, User Agent info, CH info
+    private string $ch_downlink;
+    private string $ch_prefers_color_scheme;
+    private string $ch_viewport_width;
     private string $ch_ua;
     private string $ch_ua_architecture;
     private string $ch_ua_bitness;
@@ -49,13 +48,16 @@ class PithActiveUser
     private string $ch_ua_platform;
     private string $ch_ua_platform_version;
     private string $client_accept_language_string;
+    private string $client_referer_string;
+    private string $remote_ip_address;
+    private string $requested_http_method;
     private string $requested_server_port;
     private string $requested_uri;
-    private string $requested_http_method;
-    private string $client_referer_string;
-    private string $ch_downlink;
-    private string $ch_viewport_width;
-    private string $ch_prefers_color_scheme;
+    private string $user_agent_string;
+
+    // Properties
+    private bool $did_log_impression_on_first_access;
+
 
     public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
     {
@@ -111,7 +113,8 @@ class PithActiveUser
 
     /**
      * @param string $access_level
-     * @param bool $access_success
+     * @param bool   $access_success
+     * @throws PithException
      */
     public function logImpressionOnFirstAccessOnly(string $access_level, bool $access_success)
     {
