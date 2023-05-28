@@ -118,42 +118,44 @@ class PithActiveUser
      */
     public function logImpressionOnFirstAccessOnly(string $access_level, bool $access_success)
     {
-        if(!$this->did_log_impression_on_first_access){
+        if(PITH_ENABLE_IMPRESSION_LOG) {
+            if (!$this->did_log_impression_on_first_access) {
 
-            // Run
-            $this->impression_logger->logImpression(
-                $this->requested_http_method,
-                $this->requested_uri,
-                $this->requested_server_port,
+                // Run
+                $this->impression_logger->logImpression(
+                    $this->requested_http_method,
+                    $this->requested_uri,
+                    $this->requested_server_port,
 
-                $access_level,
-                $access_success,
+                    $access_level,
+                    $access_success,
 
-                $this->remote_ip_address,
-                '(TODO: Session ID)', // TODO: Session ID will do here
-                '(guest)',
-                '(TODO: User ID)', // TODO: User ID will do here
+                    $this->remote_ip_address,
+                    '(TODO: Session ID)', // TODO: Session ID will do here
+                    '(guest)',
+                    '(TODO: User ID)', // TODO: User ID will do here
 
-                $this->user_agent_string,
-                $this->ch_ua,
-                $this->ch_ua_platform,
-                $this->ch_ua_platform_version,
-                $this->ch_ua_mobile,
-                $this->ch_ua_model,
-                $this->ch_ua_architecture,
-                $this->ch_ua_bitness,
+                    $this->user_agent_string,
+                    $this->ch_ua,
+                    $this->ch_ua_platform,
+                    $this->ch_ua_platform_version,
+                    $this->ch_ua_mobile,
+                    $this->ch_ua_model,
+                    $this->ch_ua_architecture,
+                    $this->ch_ua_bitness,
 
-                $this->client_accept_language_string,
+                    $this->client_accept_language_string,
 
-                $this->client_referer_string,
+                    $this->client_referer_string,
 
-                $this->ch_downlink,
-                $this->ch_viewport_width,
-                $this->ch_prefers_color_scheme
-            );
+                    $this->ch_downlink,
+                    $this->ch_viewport_width,
+                    $this->ch_prefers_color_scheme
+                );
 
-            // Mark that this ran
-            $this->did_log_impression_on_first_access = true;
+                // Mark that this ran
+                $this->did_log_impression_on_first_access = true;
+            }
         }
     }
 
