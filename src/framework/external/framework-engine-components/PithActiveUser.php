@@ -37,12 +37,12 @@ class PithActiveUser
     private PithImpressionLogger $impression_logger;
 
     // $_SERVER info, User Agent info, CH info
-    private string $ch_downlink;
+    private string $ch_down_link;
     private string $ch_prefers_color_scheme;
     private string $ch_viewport_width;
     private string $ch_ua;
     private string $ch_ua_architecture;
-    private string $ch_ua_bitness;
+    private string $ch_ua_bits;
     private string $ch_ua_mobile;
     private string $ch_ua_model;
     private string $ch_ua_platform;
@@ -69,6 +69,9 @@ class PithActiveUser
         $this->did_log_impression_on_first_access = false;
     }
 
+    /**
+     * @noinspection SpellCheckingInspection - Ignore "addr", "bitness", and "downlink" not being real words
+     */
     public function start(){
 
         // Save what the user requested
@@ -89,7 +92,7 @@ class PithActiveUser
         $this->ch_ua_mobile           = $_SERVER['HTTP_SEC_CH_UA_MOBILE']           ?? '';
         $this->ch_ua_model            = $_SERVER['HTTP_SEC_CH_UA_MODEL']            ?? '';
         $this->ch_ua_architecture     = $_SERVER['HTTP_SEC_CH_UA_ARCH']             ?? '';
-        $this->ch_ua_bitness          = $_SERVER['HTTP_SEC_CH_UA_BITNESS']          ?? '';
+        $this->ch_ua_bits             = $_SERVER['HTTP_SEC_CH_UA_BITNESS']          ?? '';
 
         // User's web-browser's set language
         $this->client_accept_language_string = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
@@ -98,7 +101,7 @@ class PithActiveUser
         $this->client_referer_string = $_SERVER['HTTP_REFERER'] ?? '';
 
         // Other CH Hinting Info
-        $this->ch_downlink             = $_SERVER['HTTP_DOWNLINK']                    ?? '';
+        $this->ch_down_link            = $_SERVER['HTTP_DOWNLINK']                    ?? '';
         $this->ch_viewport_width       = $_SERVER['HTTP_VIEWPORT_WIDTH']              ?? '';
         $this->ch_prefers_color_scheme = $_SERVER['HTTP_SEC_CH_PREFERS_COLOR_SCHEME'] ?? '';
     }
@@ -118,7 +121,7 @@ class PithActiveUser
      */
     public function logImpressionOnFirstAccessOnly(string $access_level, bool $access_success)
     {
-        if(PITH_ENABLE_IMPRESSION_LOG) {
+        if(PITH_IMPRESSION_LOG_ENABLE) {
             if (!$this->did_log_impression_on_first_access) {
 
                 // Run
@@ -142,13 +145,13 @@ class PithActiveUser
                     $this->ch_ua_mobile,
                     $this->ch_ua_model,
                     $this->ch_ua_architecture,
-                    $this->ch_ua_bitness,
+                    $this->ch_ua_bits,
 
                     $this->client_accept_language_string,
 
                     $this->client_referer_string,
 
-                    $this->ch_downlink,
+                    $this->ch_down_link,
                     $this->ch_viewport_width,
                     $this->ch_prefers_color_scheme
                 );

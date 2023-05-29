@@ -113,7 +113,7 @@ class PithImpressionLogger
         $filename_date_time = date('H-i', $hour_time);
 
         // Filename
-        $filename = 'logs/impressions-log/impressions_'.$filename_date_day.'_at_'.$filename_date_time.'.log';
+        $filename = PITH_IMPRESSION_LOG_LOCATION.'impressions_'.$filename_date_day.'_at_'.$filename_date_time.'.log';
 
         // Access Control's response
         $allowed_or_denied = ($access_success) ? 'allowed' : 'denied';
