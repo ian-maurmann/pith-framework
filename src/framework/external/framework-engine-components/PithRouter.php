@@ -65,7 +65,6 @@ class PithRouter
             $routing_info = $this->routeWithFastRoute();
         } catch (PithException $pith_exception) {
             if($pith_exception->getCode() === 4004){
-
                 // Set headers for 404
                 http_response_code(404);
 
@@ -77,9 +76,6 @@ class PithRouter
             }
 
         }
-
-
-
 
         // Get route info
         $route        = $this->getRouteObjectFromRouteInfo($routing_info);
@@ -158,6 +154,9 @@ class PithRouter
             case FastRoute\Dispatcher::NOT_FOUND:
                 // ... 404 Not Found
                 // error_log('Router: 404 Not Found');
+
+                // Log impression
+                $app->active_user->logImpressionOnFirstAccessOnly('not-found', false);
 
                 throw new PithException(
                     'Pith Framework Exception 4004: Route not found. FastRoute\Dispatcher::NOT_FOUND',
