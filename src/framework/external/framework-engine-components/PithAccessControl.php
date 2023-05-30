@@ -34,11 +34,13 @@ namespace Pith\Framework;
 class PithAccessControl
 {
     private PithDependencyInjection $dependency_injection;
+    private PithAppRetriever        $app_retriever;
 
-    public function __construct(PithDependencyInjection $dependency_injection)
+    public function __construct(PithDependencyInjection $dependency_injection, PithAppRetriever $app_retriever)
     {
         // Objects
         $this->dependency_injection = $dependency_injection;
+        $this->app_retriever        = $app_retriever;
     }
 
 
@@ -72,7 +74,6 @@ class PithAccessControl
     {
         $access_level = false;
 
-
         // Try to load the access level
         try {
             // 'none' --- No access
@@ -83,6 +84,11 @@ class PithAccessControl
             // 'world' --- Full access for anyone
             elseif ($access_level_string === 'world') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WorldAccessLevel');
+            }
+
+            // 'dev-ip' --- Only whitelisted dev IPs
+            elseif ($access_level_string === 'dev-ip') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
             }
 
             // Else treat the string as an object namespace
@@ -128,20 +134,38 @@ class PithAccessControl
      */
     public function checkAccess($given_access_level_name)
     {
+        // Get app
+        $app = $this->app_retriever->getApp();
+
         // Check access
         $is_allowed = $this->isAllowedToAccess($given_access_level_name);
 
-        if(!$is_allowed){
+        if($is_allowed){
+            // Log impression
+            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, true);
+        }
+        else{
             // If not logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the login page
 
             // If logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the access denied page
 
+            /*
             throw new PithException(
                 'Pith Framework Exception 4007: Workflow element access denied.',
                 4007
             );
+            */
+
+
+            // Log impression
+            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
+
+            // Set headers for 403
+            http_response_code(403);
+            echo 'Error 403';
+            exit;
         }
     }
 }

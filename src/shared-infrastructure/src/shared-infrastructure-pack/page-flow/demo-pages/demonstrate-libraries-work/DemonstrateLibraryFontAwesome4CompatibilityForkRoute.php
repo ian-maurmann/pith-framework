@@ -23,7 +23,7 @@ class DemonstrateLibraryFontAwesome4CompatibilityForkRoute extends PithRoute
 {
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level     = 'world';
+    public string $access_level     = 'dev-ip';
     public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition';
     public string $view             = '[^route_folder]/demonstrate-library-font-awesome-4-compatibility-fork-view.phtml';
     public string $view_adapter     = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
