@@ -31,13 +31,13 @@ final class Version20230601193239 extends AbstractMigration
     {
         $this->addSql('
             CREATE TABLE `user_login_usernames` (
-                `username_id` INT AUTO_INCREMENT NOT NULL, 
-                `user_id` INT,
-                `username` VARCHAR(191) DEFAULT NULL, 
-                `username_normalized` VARCHAR(191) DEFAULT NULL, 
-                `datetime_created` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                `username_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `user_id` INT NOT NULL,
+                `username` VARCHAR(191) UNIQUE NOT NULL, 
+                `username_normalized` VARCHAR(191) UNIQUE NOT NULL, 
+                `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY(`username_id`),
-                FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)                
+                FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
