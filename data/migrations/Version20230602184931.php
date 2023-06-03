@@ -43,7 +43,8 @@ final class Version20230602184931 extends AbstractMigration
                 `datetime_verified` DATETIME DEFAULT NULL,
                 `datetime_last_reasserted` DATETIME DEFAULT NULL,
                 PRIMARY KEY(`telephone_number_id`),
-                FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)                
+                CONSTRAINT `user_telephone_numbers_fk_user_id` 
+                    FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)                
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
