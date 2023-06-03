@@ -36,6 +36,7 @@ final class Version20230602042618 extends AbstractMigration
                 `email_address` VARCHAR(191) NOT NULL,
                 `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `datetime_verified` DATETIME DEFAULT NULL,
+                `datetime_last_reasserted` DATETIME DEFAULT NULL,
                 PRIMARY KEY(`email_address_id`),
                 FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)                
             )
