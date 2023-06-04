@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Migration to add test_quotes table
- * ----------------------------------
+ * Migration to add user_login_passwords table
+ * -------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection   - Long class name is ok.
  * @noinspection PhpMissingParentCallCommonInspection - Parent method calls are not needed.
@@ -18,24 +18,26 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Migration
  */
-final class Version20230509232040 extends AbstractMigration
+final class Version20230602010457 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table `test_quotes`.';
+        return 'Create new table `user_login_passwords`.';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-
         $this->addSql('
-            CREATE TABLE test_quotes (
-                quote_id INT AUTO_INCREMENT NOT NULL, 
-                quote VARCHAR(191) DEFAULT NULL, 
-                PRIMARY KEY(quote_id)
+            CREATE TABLE `user_login_passwords` (
+                `password_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `user_id` INT NOT NULL,
+                `password_hash` VARCHAR(191) NOT NULL,
+                `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(`password_id`),
+                CONSTRAINT `user_login_passwords_fk_user_id` 
+                    FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)                
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
@@ -44,8 +46,6 @@ final class Version20230509232040 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
-        $this->addSql('DROP TABLE test_quotes');
+        $this->addSql('DROP TABLE IF EXISTS `user_login_passwords`');
     }
 }
