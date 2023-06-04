@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Migration to add test_quotes table
- * ----------------------------------
+ * Migration to add user table
+ * ---------------------------
  *
  * @noinspection PhpClassNamingConventionInspection   - Long class name is ok.
  * @noinspection PhpMissingParentCallCommonInspection - Parent method calls are not needed.
@@ -20,22 +20,25 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230509232040 extends AbstractMigration
+final class Version20230601002528 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table `test_quotes`.';
+        return 'Create new table `users`.';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
+        // SideNote:
+        //     check_char would be VARCHAR(4) for 1 char in utf8mb4, but, "basic Latin
+        //         letters, numbers and punctuation only use one byte", so using CHAR(1) here.
 
         $this->addSql('
-            CREATE TABLE test_quotes (
-                quote_id INT AUTO_INCREMENT NOT NULL, 
-                quote VARCHAR(191) DEFAULT NULL, 
-                PRIMARY KEY(quote_id)
+            CREATE TABLE `users` (
+                `user_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `check_char` CHAR(1) NOT NULL,
+                `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(`user_id`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
@@ -45,7 +48,6 @@ final class Version20230509232040 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-
-        $this->addSql('DROP TABLE test_quotes');
+        $this->addSql('DROP TABLE IF EXISTS `users`');
     }
 }

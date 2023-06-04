@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Migration to add test_quotes table
- * ----------------------------------
+ * Migration to add user_login_usernames table
+ * -------------------------------------------
  *
  * @noinspection PhpClassNamingConventionInspection   - Long class name is ok.
  * @noinspection PhpMissingParentCallCommonInspection - Parent method calls are not needed.
@@ -20,32 +20,34 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230509232040 extends AbstractMigration
+final class Version20230601193239 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table `test_quotes`.';
+        return 'Create new table `user_login_usernames`.';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-
         $this->addSql('
-            CREATE TABLE test_quotes (
-                quote_id INT AUTO_INCREMENT NOT NULL, 
-                quote VARCHAR(191) DEFAULT NULL, 
-                PRIMARY KEY(quote_id)
+            CREATE TABLE `user_login_usernames` (
+                `username_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `user_id` INT NOT NULL,
+                `username` VARCHAR(191) UNIQUE NOT NULL, 
+                `username_normalized` VARCHAR(191) UNIQUE NOT NULL, 
+                `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(`username_id`),
+                CONSTRAINT `user_login_usernames_fk_user_id` 
+                    FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
         );
+
     }
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
-        $this->addSql('DROP TABLE test_quotes');
+        $this->addSql('DROP TABLE IF EXISTS `user_login_usernames`');
     }
 }

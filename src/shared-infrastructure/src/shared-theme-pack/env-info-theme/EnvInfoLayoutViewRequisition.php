@@ -28,6 +28,7 @@ class EnvInfoLayoutViewRequisition extends PithViewRequisition
     {
         // Headers
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
+        $this->addHeader('Ask for Accept-CH info', 'Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version, Sec-CH-UA-Model, Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Viewport-Width, Downlink, Sec-CH-Prefers-Color-Scheme');
 
         // Resources
         $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');

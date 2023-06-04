@@ -34,11 +34,13 @@ namespace Pith\Framework;
 class PithAccessControl
 {
     private PithDependencyInjection $dependency_injection;
+    private PithAppRetriever        $app_retriever;
 
-    public function __construct(PithDependencyInjection $dependency_injection)
+    public function __construct(PithDependencyInjection $dependency_injection, PithAppRetriever $app_retriever)
     {
         // Objects
         $this->dependency_injection = $dependency_injection;
+        $this->app_retriever        = $app_retriever;
     }
 
 
@@ -71,7 +73,6 @@ class PithAccessControl
     public function getAccessLevel(string $access_level_string): object|false
     {
         $access_level = false;
-
 
         // Try to load the access level
         try {
@@ -133,10 +134,17 @@ class PithAccessControl
      */
     public function checkAccess($given_access_level_name)
     {
+        // Get app
+        $app = $this->app_retriever->getApp();
+
         // Check access
         $is_allowed = $this->isAllowedToAccess($given_access_level_name);
 
-        if(!$is_allowed){
+        if($is_allowed){
+            // Log impression
+            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, true);
+        }
+        else{
             // If not logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the login page
 
@@ -149,6 +157,10 @@ class PithAccessControl
                 4007
             );
             */
+
+
+            // Log impression
+            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
 
             // Set headers for 403
             http_response_code(403);
