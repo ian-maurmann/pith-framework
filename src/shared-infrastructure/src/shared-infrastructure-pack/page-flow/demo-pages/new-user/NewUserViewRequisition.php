@@ -26,18 +26,27 @@ class NewUserViewRequisition extends PithViewRequisition
 
     public function runRequisition()
     {
-        // Resources
+        // Preload fonts
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+
+        // CSS Libraries
         $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
         $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/common-libraries/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
-
         $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/common-libraries/bootstrap-icons-font-1.10.5/font/bootstrap-icons.min.css', 'library-for-page');
-
         $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-page');
+
+        // JS Libraries
         $this->addScript(     'jQuery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
         $this->addScript(     'OxCSS script','/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-page');
 
-
+        // App CSS
         $this->addStylesheet( 'New User Signup stylesheet', '/resources/framework/shared-ui/user-system/new-user-signup.css', 'application-for-page');
+
+        // App JS
+        $this->addScript(     'Shared-UI Mask script', '/resources/framework/shared-ui/utilities/input-mask-utility.js', 'application-for-page');
         $this->addScript(     'New User Signup script', '/resources/framework/shared-ui/user-system/new-user-signup.js', 'application-for-page');
+
+        // Font
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
     }
 }

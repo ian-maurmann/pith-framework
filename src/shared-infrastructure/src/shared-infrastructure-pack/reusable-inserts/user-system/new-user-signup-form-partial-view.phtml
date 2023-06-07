@@ -21,31 +21,31 @@ declare(strict_types=1);
     <div data-section-item-type="center-glide">
         <div data-section-item-type="form">
             <div data-section-item-type="field">
-                <label for="shared-ui-new-user-signup-form-username-field">Username for Login:</label>
+                <label for="shared-ui-new-user-signup-form-username-field">Username for Login</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-person" data-section-item-type="field-icon"></i></div>
-                <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username">
+                <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" onkeyup="SharedUI.InputMaskUtility.username_mask(this);">
             </div>
 
             <div data-section-item-type="field">
-                <label for="shared-ui-new-user-signup-form-email-address-field">Email Address:</label>
+                <label for="shared-ui-new-user-signup-form-email-address-field">Email Address</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-envelope-at" data-section-item-type="field-icon"></i></div>
                 <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address">
             </div>
 
             <div data-section-item-type="field">
-                <label for="shared-ui-new-user-signup-form-email-address-field">Email Address:</label>
-                <div data-section-item-type="left-glide"><i class="bi bi-envelope-at" data-section-item-type="field-icon"></i></div>
-                <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address">
+                <label for="shared-ui-new-user-signup-form-dob-field">Birthday</label>
+                <div data-section-item-type="left-glide"><i class="bi bi-gift" data-section-item-type="field-icon"></i></div>
+                <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);">
             </div>
 
             <div data-section-item-type="field">
-                <label for="shared-ui-new-user-signup-form-password-field">New Password:</label>
+                <label for="shared-ui-new-user-signup-form-password-field">New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <input type="password" id="shared-ui-new-user-signup-form-password-field" autocomplete="new-password" placeholder="Password">
             </div>
 
             <div data-section-item-type="field">
-                <label for="shared-ui-new-user-signup-form-confirm-password-field">Confirm New Password:</label>
+                <label for="shared-ui-new-user-signup-form-confirm-password-field">Confirm New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <input type="password" id="shared-ui-new-user-signup-form-confirm-password-field" autocomplete="new-password" placeholder="Confirm Password">
             </div>
@@ -53,7 +53,7 @@ declare(strict_types=1);
     </div>
 
     <div data-section-item-type="center-glide">
-        <div data-item-type="signup-submit-button-div">Register New User</div>
+        <div data-item-type="signup-submit-button-div" class="aero-gel aero-gel-blurred">Continue </div>
     </div>
 
 </div>
@@ -137,3 +137,4 @@ declare(strict_types=1);
 <i class="bi bi-gift-fill"></i>
 <i class="bi bi-braces-asterisk"></i>
 <i class="bi bi-type"></i>
+<i class="bi bi-chevron-right"></i>
