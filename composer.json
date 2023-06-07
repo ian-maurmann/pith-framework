@@ -54,7 +54,10 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/footer/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/home/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/latte/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/login/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/logout/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/demo-pages/quotes/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/db-info/",
@@ -65,6 +68,8 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/server-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/sidebar/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/error-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts/user-system",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
