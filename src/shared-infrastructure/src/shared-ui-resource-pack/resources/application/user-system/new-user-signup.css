@@ -82,6 +82,17 @@
     }
 
 
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]{
+        user-select: none;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]:hover{
+        color: var(--ox-color-ant-blue-7);
+    }
+
+
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-type="field-callout-roller"]{
         position: absolute;
         right: -2em;
@@ -151,6 +162,9 @@
         width: 1em;
         color: var(--ox-color-tw-stone-500);
         color: #ffffff;
+
+        transition-property: all;
+        transition-duration: 0.4s;
     }
 
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="field-callout-gutter"] i{
