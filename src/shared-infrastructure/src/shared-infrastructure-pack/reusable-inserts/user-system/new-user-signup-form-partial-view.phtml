@@ -45,7 +45,7 @@ declare(strict_types=1);
                         </div>
                     </div>
                 </div>
-                <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" onkeyup="SharedUI.InputMaskUtility.username_mask(this);">
+                <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" onkeyup="SharedUI.InputMaskUtility.username_mask(this);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
             </div>
 
             <div data-section-item-type="field">
@@ -68,7 +68,7 @@ declare(strict_types=1);
                         </div>
                     </div>
                 </div>
-                <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address">
+                <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
             </div>
 
             <div data-section-item-type="field">
@@ -78,18 +78,18 @@ declare(strict_types=1);
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
                 <div data-section-item-type="right-glide">
                     <div data-section-item-type="field-callout-roller">
-                        <div data-section-item-type="field-callout" data-show="yes">
+                        <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
                             <span data-section-item-type="callout-content">
                                 <ul>
                                     <li>Date-of-birth is needed for us to follow legal requirements and age restrictions in various countries across the world.</li>
-                                    <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 18 years before the current calendar year, <nbsp>i.e.</nbsp> YYYY or earlier.</li>
+                                    <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 19 years before the current calendar year, <nbsp>i.e.</nbsp> <?php echo $year_19_years_ago ?> or earlier.</li>
                                 </ul>
                             </span>
                         </div>
                     </div>
                 </div>
-                <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);">
+                <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
             </div>
 
             <div data-section-item-type="field">
@@ -97,7 +97,22 @@ declare(strict_types=1);
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
-                <input type="password" id="shared-ui-new-user-signup-form-password-field" autocomplete="new-password" placeholder="Password">
+                <div data-section-item-type="right-glide">
+                    <div data-section-item-type="field-callout-roller">
+                        <div data-section-item-type="field-callout" data-show="no">
+                            <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
+                            <span data-section-item-type="callout-content">
+                                <ul>
+                                    <li>Password must be 10 characters or longer.</li>
+                                    <li>Password cannot contain spaces.</li>
+                                    <li>Please use a good password!</li>
+                                    <li>See also: <a href="https://xkcd.com/936/" target="_blank">xkcd.com/936/</a></li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="password" id="shared-ui-new-user-signup-form-password-field" autocomplete="new-password" placeholder="Password" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
             </div>
 
             <div data-section-item-type="field">
@@ -105,13 +120,25 @@ declare(strict_types=1);
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
-                <input type="password" id="shared-ui-new-user-signup-form-confirm-password-field" autocomplete="new-password" placeholder="Confirm Password">
+                <div data-section-item-type="right-glide">
+                    <div data-section-item-type="field-callout-roller">
+                        <div data-section-item-type="field-callout" data-show="no">
+                            <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
+                            <span data-section-item-type="callout-content">
+                                <ul>
+                                    <li>Must match password.</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="password" id="shared-ui-new-user-signup-form-confirm-password-field" autocomplete="new-password" placeholder="Confirm Password" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
             </div>
         </div>
     </div>
 
     <div data-section-item-type="center-glide">
-        <div data-item-type="signup-submit-button-div" class="aero-gel aero-gel-blurred">Continue </div>
+        <div data-item-type="signup-submit-button-div" class="aero-gel aero-gel-blurred" tabindex="0">Continue </div>
     </div>
 
 </div>

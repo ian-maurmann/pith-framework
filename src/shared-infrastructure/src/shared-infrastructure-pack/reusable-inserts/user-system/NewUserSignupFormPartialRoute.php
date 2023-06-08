@@ -24,6 +24,7 @@ class NewUserSignupFormPartialRoute extends PithRoute
     public string $route_type   = 'partial';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\NewUserSignupFormPartialAction';
     public string $view         = '[^route_folder]/new-user-signup-form-partial-view.phtml';
     public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 }
