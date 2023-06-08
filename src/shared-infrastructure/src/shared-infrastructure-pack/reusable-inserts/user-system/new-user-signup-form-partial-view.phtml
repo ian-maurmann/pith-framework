@@ -23,30 +23,88 @@ declare(strict_types=1);
             <div data-section-item-type="field">
                 <label for="shared-ui-new-user-signup-form-username-field">Username for Login</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-person" data-section-item-type="field-icon"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
+                <div data-section-item-type="right-glide">
+                    <div data-section-item-type="field-callout-roller">
+                        <div data-section-item-type="field-callout" data-show="no">
+                            <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
+                            <span data-section-item-type="callout-content">
+                                <ul>
+                                    <li>Usernames for logging-in can contain <b>letters</b>, <b>numbers</b>, and <b>underscores</b>.</li>
+                                    <li>Can start with a letter.</li>
+                                    <li>Can end with a letter or a number.</li>
+                                    <li>Only one underscore in a row.</li>
+                                    <li>Allowed characters:
+                                        <span data-section-item-type="callout-allowed-chars-list">
+                                            abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789
+                                        </span>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" onkeyup="SharedUI.InputMaskUtility.username_mask(this);">
             </div>
 
             <div data-section-item-type="field">
                 <label for="shared-ui-new-user-signup-form-email-address-field">Email Address</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-envelope-at" data-section-item-type="field-icon"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
+                <div data-section-item-type="right-glide">
+                    <div data-section-item-type="field-callout-roller">
+                        <div data-section-item-type="field-callout" data-show="no">
+                            <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
+                            <span data-section-item-type="callout-content">
+                                <ul>
+                                    <li>Email address must be in normal format, <nbsp>i.e.</nbsp> <i><nbsp>name@example.com</nbsp></i></li>
+                                    <li>Back-up email addresses can be added to account later.</li>
+                                    <li>Can select option to log in with an email address after email address is verified.</li>
+
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address">
             </div>
 
             <div data-section-item-type="field">
                 <label for="shared-ui-new-user-signup-form-dob-field">Birthday</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-gift" data-section-item-type="field-icon"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
+                <div data-section-item-type="right-glide">
+                    <div data-section-item-type="field-callout-roller">
+                        <div data-section-item-type="field-callout" data-show="yes">
+                            <div data-section-item-type="field-callout-gutter"><i class="bi bi-chevron-left"></i></div>
+                            <span data-section-item-type="callout-content">
+                                <ul>
+                                    <li>Date-of-birth is needed for us to follow legal requirements and age restrictions in various countries across the world.</li>
+                                    <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 18 years before the current calendar year, <nbsp>i.e.</nbsp> YYYY or earlier.</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);">
             </div>
 
             <div data-section-item-type="field">
                 <label for="shared-ui-new-user-signup-form-password-field">New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
                 <input type="password" id="shared-ui-new-user-signup-form-password-field" autocomplete="new-password" placeholder="Password">
             </div>
 
             <div data-section-item-type="field">
                 <label for="shared-ui-new-user-signup-form-confirm-password-field">Confirm New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right"></i></div>
+                <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after"></i></div>
                 <input type="password" id="shared-ui-new-user-signup-form-confirm-password-field" autocomplete="new-password" placeholder="Confirm Password">
             </div>
         </div>
