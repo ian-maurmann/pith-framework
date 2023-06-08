@@ -22,7 +22,7 @@ declare(strict_types=1);
         <div data-section-item-type="form" data-form-show-passwords="no">
 
             <!-- Username field -->
-            <div data-section-item-type="field" data-section-item="username-field">
+            <div data-section-item-type="field" data-section-item="username-field" data-display-as-valid="no">
                 <label for="shared-ui-new-user-signup-form-username-field">Username for Login</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-person" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
@@ -51,7 +51,7 @@ declare(strict_types=1);
             </div>
 
             <!-- Email Address field -->
-            <div data-section-item-type="field" data-section-item="email-address-field">
+            <div data-section-item-type="field" data-section-item="email-address-field" data-display-as-valid="no">
                 <label for="shared-ui-new-user-signup-form-email-address-field">Email Address</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-envelope-at" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
@@ -71,11 +71,11 @@ declare(strict_types=1);
                         </div>
                     </div>
                 </div>
-                <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
+                <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input">
             </div>
 
             <!-- Date-of-Birth field -->
-            <div data-section-item-type="field" data-section-item="date-of-birth-field">
+            <div data-section-item-type="field" data-section-item="date-of-birth-field" data-display-as-valid="no">
                 <label for="shared-ui-new-user-signup-form-dob-field">Birthday</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-gift" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
@@ -98,7 +98,7 @@ declare(strict_types=1);
             </div>
 
             <!-- Password field -->
-            <div data-section-item-type="field" data-section-item="password-field">
+            <div data-section-item-type="field" data-section-item="password-field" data-display-as-valid="no">
                 <label for="shared-ui-new-user-signup-form-password-field">New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right" data-section-item-role="password-eye" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"></i></div>
@@ -122,7 +122,7 @@ declare(strict_types=1);
             </div>
 
             <!-- Confirm Password field -->
-            <div data-section-item-type="field" data-section-item="confirm-password-field">
+            <div data-section-item-type="field" data-section-item="confirm-password-field" data-display-as-valid="no">
                 <label for="shared-ui-new-user-signup-form-confirm-password-field">Confirm New Password</label>
                 <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
                 <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right" data-section-item-role="password-eye" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"></i></div>

@@ -36,15 +36,20 @@ SharedUI.NewUserSignupForm.listen = function(){
 
     // Password show/hide events
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"]', 'click', self.handleOnPasswordEyeClick);
+
+    // Events while typing in fields
+    Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input"]', 'input', self.handleOnEmailAddressFieldInput);
 }
 
 
 // Refresh Field Validity Icon
 SharedUI.NewUserSignupForm.refreshFieldValidityIcon = function(field_element){
-    let self          = SharedUI.NewUserSignupForm;
-    let field         = $(field_element);
-    let validity_icon = field.find('[data-section-item-type="field-icon-after"]').first();
-    let is_valid      = false;
+    let self                = SharedUI.NewUserSignupForm;
+    let field               = $(field_element);
+    let validity_icon       = field.find('[data-section-item-type="field-icon-after"]').first();
+    let display_as_valid_yn = field.attr('data-display-as-valid');
+    let display_as_valid    = display_as_valid_yn === 'yes';
+    let is_valid            = display_as_valid;
 
     if(is_valid){
         // Change ex to check
@@ -62,9 +67,14 @@ SharedUI.NewUserSignupForm.refreshFieldValidityIcon = function(field_element){
         // Change color to red
         validity_icon.attr('data-ox-text-color', 'tw-red-500')
     }
-    
+
     // Show the validity icon
     validity_icon.attr('data-show', 'yes');
+}
+
+SharedUI.NewUserSignupForm.isValidEmailAddress = function(given_email_address){
+    let expression = /\S+@\S+\.\S+/;
+    return expression.test(given_email_address);
 }
 
 
@@ -136,6 +146,25 @@ SharedUI.NewUserSignupForm.handleOnPasswordEyeClick = function(element, event){
         // Change the form's show-passwords value
         form.attr('data-form-show-passwords', 'yes');
     }
+}
+
+// Handle On Email Address Field Input
+SharedUI.NewUserSignupForm.handleOnEmailAddressFieldInput = function(element, event){
+    let self     = SharedUI.NewUserSignupForm;
+    let textbox  = $(element);
+    let field    = textbox.parent().closest('[data-section-item-type="field"]');
+    let text     = textbox.val();
+    let is_valid = self.isValidEmailAddress(text);
+
+    if(is_valid){
+        field.attr('data-display-as-valid', 'yes');
+    }
+    else{
+        field.attr('data-display-as-valid', 'no');
+    }
+
+    // Refresh the validity icon
+    self.refreshFieldValidityIcon(field);
 }
 
 
