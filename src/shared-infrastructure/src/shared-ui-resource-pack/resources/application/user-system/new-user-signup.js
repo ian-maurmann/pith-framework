@@ -30,12 +30,41 @@ SharedUI.NewUserSignupForm.construct = function(){
 SharedUI.NewUserSignupForm.listen = function(){
     let self = SharedUI.NewUserSignupForm;
 
-    // Callout events
+    // Field focus/blur events
     Ox.Event.delegate('[data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus"]', 'focus', self.handleOnFieldFocus);
     Ox.Event.delegate('[data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur"]', 'blur', self.handleOnFieldBlur);
 
     // Password show/hide events
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"]', 'click', self.handleOnPasswordEyeClick);
+}
+
+
+// Refresh Field Validity Icon
+SharedUI.NewUserSignupForm.refreshFieldValidityIcon = function(field_element){
+    let self          = SharedUI.NewUserSignupForm;
+    let field         = $(field_element);
+    let validity_icon = field.find('[data-section-item-type="field-icon-after"]').first();
+    let is_valid      = false;
+
+    if(is_valid){
+        // Change ex to check
+        validity_icon.removeClass('bi-x-lg');
+        validity_icon.addClass('bi-check-lg');
+
+        // Change color to green
+        validity_icon.attr('data-ox-text-color', 'tw-green-500')
+    }
+    else{
+        // Change check to ex
+        validity_icon.removeClass('bi-check-lg');
+        validity_icon.addClass('bi-x-lg');
+
+        // Change color to red
+        validity_icon.attr('data-ox-text-color', 'tw-red-500')
+    }
+    
+    // Show the validity icon
+    validity_icon.attr('data-show', 'yes');
 }
 
 
@@ -48,6 +77,9 @@ SharedUI.NewUserSignupForm.handleOnFieldFocus = function(element, event){
 
     // Show the callout
     callout.attr('data-show', 'yes');
+
+    // Refresh the validity icon
+    self.refreshFieldValidityIcon(field);
 }
 
 
