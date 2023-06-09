@@ -40,6 +40,7 @@ SharedUI.NewUserSignupForm.listen = function(){
     // Events while typing in fields
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input"]', 'input', self.handleOnEmailAddressFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input"]', 'input', self.handleOnBirthdayFieldInput);
+    Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-password-field-input"]', 'input', self.handleOnPasswordFieldInput);
 }
 
 
@@ -73,12 +74,13 @@ SharedUI.NewUserSignupForm.refreshFieldValidityIcon = function(field_element){
     validity_icon.attr('data-show', 'yes');
 }
 
+// Is Valid Email Address
 SharedUI.NewUserSignupForm.isValidEmailAddress = function(given_email_address){
     let expression = /\S+@\S+\.\S+/;
     return expression.test(given_email_address);
 }
 
-
+// Is Valid Birthday
 SharedUI.NewUserSignupForm.isValidBirthday = function(given_date_string){
     let self               = SharedUI.NewUserSignupForm;
     let is_valid           = false;
@@ -144,7 +146,7 @@ SharedUI.NewUserSignupForm.isValidBirthday = function(given_date_string){
     return is_valid;
 }
 
-
+// Change Birthday Right Icon
 SharedUI.NewUserSignupForm.changeBirthdayRightIcon = function(show= false, reason= ''){
     let section             = $('[data-section="shared-ui-new-user-signup-form"]');
     let form                = section.find('[data-section-item-type="form"]').first();
@@ -184,6 +186,22 @@ SharedUI.NewUserSignupForm.changeBirthdayRightIcon = function(show= false, reaso
         // Hide the icon
         birthday_right_icon.attr('data-show', 'no');
     }
+}
+
+
+// Is Valid Password To Use
+SharedUI.NewUserSignupForm.isValidPasswordToUse = function(given_password_string){
+    let is_valid               = false;
+    let is_too_short           = given_password_string.length < 10;
+    let password_no_whitespace = given_password_string.replace(/\s+/g, '');
+    let has_whitespace         = given_password_string.length !== password_no_whitespace.length;
+    let has_comma              = given_password_string.includes(',');
+
+    // Check if valid
+    is_valid = !is_too_short && !has_whitespace && !has_comma;
+
+    // Return true if valid, false if invalid
+    return is_valid;
 }
 
 
@@ -284,6 +302,25 @@ SharedUI.NewUserSignupForm.handleOnBirthdayFieldInput = function(element, event)
     let field    = textbox.parent().closest('[data-section-item-type="field"]');
     let text     = textbox.val();
     let is_valid = self.isValidBirthday(text);
+
+    if(is_valid){
+        field.attr('data-display-as-valid', 'yes');
+    }
+    else{
+        field.attr('data-display-as-valid', 'no');
+    }
+
+    // Refresh the validity icon
+    self.refreshFieldValidityIcon(field);
+}
+
+// Handle On Password Field Input
+SharedUI.NewUserSignupForm.handleOnPasswordFieldInput = function(element, event){
+    let self     = SharedUI.NewUserSignupForm;
+    let textbox  = $(element);
+    let field    = textbox.parent().closest('[data-section-item-type="field"]');
+    let text     = textbox.val();
+    let is_valid = self.isValidPasswordToUse(text);
 
     if(is_valid){
         field.attr('data-display-as-valid', 'yes');
