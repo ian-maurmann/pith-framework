@@ -88,13 +88,13 @@ declare(strict_types=1);
                                 <ul>
                                     <li>Use <b><nbsp>MM/DD/YYYY</nbsp></b> as the date format.</li>
                                     <li>Date-of-birth is needed for us to follow legal requirements and age restrictions in various countries across the world.</li>
-                                    <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 19 years before the current calendar year, <nbsp>i.e.</nbsp> <?php echo $year_19_years_ago ?> or earlier.</li>
+                                    <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 19 years before the current calendar year, <nbsp>i.e.</nbsp> <b><?php echo $year_19_years_ago ?> or earlier</b>.</li>
                                 </ul>
                             </span>
                         </div>
                     </div>
                 </div>
-                <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur">
+                <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input">
             </div>
 
             <!-- Password field -->
