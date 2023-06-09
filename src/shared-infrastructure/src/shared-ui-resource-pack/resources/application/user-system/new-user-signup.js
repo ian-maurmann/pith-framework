@@ -41,6 +41,7 @@ SharedUI.NewUserSignupForm.listen = function(){
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input"]', 'input', self.handleOnEmailAddressFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input"]', 'input', self.handleOnBirthdayFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-password-field-input"]', 'input', self.handleOnPasswordFieldInput);
+    Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-confirm-password-field-input"]', 'input', self.handleOnConfirmPasswordFieldInput);
 }
 
 
@@ -206,6 +207,24 @@ SharedUI.NewUserSignupForm.isValidPasswordToUse = function(given_password_string
 
 
 
+// Is Valid Confirm Password Text
+SharedUI.NewUserSignupForm.isValidConfirmPasswordText = function(given_confirm_password_string){
+    let section         = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form            = section.find('[data-section-item-type="form"]').first();
+    let password_field  = form.find('[data-section-item="password-field"]').first();
+    let password_input  = password_field.find('[data-section-item="password-input"]').first();
+    let password_string = password_input.val();
+    let is_empty        = !(password_string.length > 0);
+
+    // Check if valid
+    let is_valid = !is_empty && (given_confirm_password_string === password_string);
+
+    // Return true if valid, false if invalid
+    return is_valid;
+}
+
+
+
 // Handle On Field Focus
 SharedUI.NewUserSignupForm.handleOnFieldFocus = function(element, event){
     let self    = SharedUI.NewUserSignupForm;
@@ -331,6 +350,43 @@ SharedUI.NewUserSignupForm.handleOnPasswordFieldInput = function(element, event)
 
     // Refresh the validity icon
     self.refreshFieldValidityIcon(field);
+
+    // Re-run validation on confirm password field
+    self.triggerHandleOnConfirmPasswordFieldInput();
+}
+
+
+
+// Handle On Confirm Password Field Input
+SharedUI.NewUserSignupForm.handleOnConfirmPasswordFieldInput = function(element, event){
+    let self     = SharedUI.NewUserSignupForm;
+    let textbox  = $(element);
+    let field    = textbox.parent().closest('[data-section-item-type="field"]');
+    let text     = textbox.val();
+    let is_valid = self.isValidConfirmPasswordText(text);
+
+    if(is_valid){
+        field.attr('data-display-as-valid', 'yes');
+    }
+    else{
+        field.attr('data-display-as-valid', 'no');
+    }
+
+    // Refresh the validity icon
+    self.refreshFieldValidityIcon(field);
+}
+
+
+// Trigger Handle On Confirm Password Field Input
+SharedUI.NewUserSignupForm.triggerHandleOnConfirmPasswordFieldInput = function(){
+    let self                   = SharedUI.NewUserSignupForm;
+    let section                = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                   = section.find('[data-section-item-type="form"]').first();
+    let confirm_password_field = form.find('[data-section-item="confirm-password-field"]').first();
+    let confirm_password_input = confirm_password_field.find('[data-section-item="confirm-password-input"]').first();
+
+    // Trigger event
+    self.handleOnConfirmPasswordFieldInput(confirm_password_input, null);
 }
 
 
