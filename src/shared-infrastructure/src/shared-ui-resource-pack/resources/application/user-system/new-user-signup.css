@@ -100,7 +100,7 @@
 
 
 
-    [data-section="shared-ui-new-user-signup-form"] [data-item-type="signup-submit-button-div"]{
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="signup-submit-button-div"]{
         display: inline-block;
         margin-top: 1.5rem;
         margin-bottom: 2rem;
@@ -117,11 +117,56 @@
         user-select: none;
         transition-property: all;
         transition-duration: 0.4s;
-    }
 
-    [data-section="shared-ui-new-user-signup-form"] [data-item-type="signup-submit-button-div"]:hover{
+        text-align: center;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="signup-submit-button-div"]:hover{
         background-color: var(--ox-color-ant-blue-7);
     }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]{
+        display: inline-block;
+        margin-top: 1ex;
+        margin-bottom: 3ex;
+
+        background-color: var(--ox-color-ant-blue-8);
+        color: #ffffff;
+
+        border-radius: 9px;
+        padding: 1ex 1em;
+        width: 8rem;
+
+        cursor: pointer;
+        user-select: none;
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        text-align: center;
+        font-size: 10pt;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]:hover{
+        background-color: var(--ox-color-ant-blue-7);
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="peg"]{
+        position:absolute;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="username-availability-text"]{
+        font-size: 10pt;
+        margin-top: 1ex;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-checking-availability"]{
+        color: var(--ox-color-tw-slate-500);
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-unavailable"]{
+        color: var(--ox-color-tw-red-500);
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-available"]{
+        color: var(--ox-color-tw-green-500);
+    }
+
 
     /* ============================== */
 

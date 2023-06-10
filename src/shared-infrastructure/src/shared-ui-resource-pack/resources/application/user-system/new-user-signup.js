@@ -38,6 +38,7 @@ SharedUI.NewUserSignupForm.listen = function(){
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"]', 'click', self.handleOnPasswordEyeClick);
 
     // Events while typing in fields
+    Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-username-field-input"]', 'input', self.handleOnUsernameFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input"]', 'input', self.handleOnEmailAddressFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input"]', 'input', self.handleOnBirthdayFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-password-field-input"]', 'input', self.handleOnPasswordFieldInput);
@@ -388,6 +389,91 @@ SharedUI.NewUserSignupForm.triggerHandleOnConfirmPasswordFieldInput = function()
     // Trigger event
     self.handleOnConfirmPasswordFieldInput(confirm_password_input, null);
 }
+
+// Handle On Username Field Input
+SharedUI.NewUserSignupForm.handleOnUsernameFieldInput = function(element, event){
+    let self     = SharedUI.NewUserSignupForm;
+    let textbox  = $(element);
+    let field    = textbox.parent().closest('[data-section-item-type="field"]');
+    let text     = textbox.val();
+ // let is_valid = self.isValidConfirmPasswordText(text);
+    let is_valid = false;
+    let is_empty = text.length < 1;
+
+    if(is_empty){
+        // self.removeRightIconFromUsernameField();
+
+        self.hideUsernameAvailabilityLookupArea();
+    }
+    else{
+        // self.addHourglassToUsernameField();
+
+        self.showUsernameAvailabilityLookupArea();
+    }
+
+
+    if(is_valid){
+        field.attr('data-display-as-valid', 'yes');
+    }
+    else{
+        field.attr('data-display-as-valid', 'no');
+    }
+
+    // Refresh the validity icon
+    self.refreshFieldValidityIcon(field);
+}
+
+SharedUI.NewUserSignupForm.addHourglassToUsernameField = function(){
+    let self                = SharedUI.NewUserSignupForm;
+    let section             = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                = section.find('[data-section-item-type="form"]').first();
+    let username_field      = form.find('[data-section-item="username-field"]').first();
+    let username_right_icon = username_field.find('[data-section-item-type="field-icon-right"]').first();
+
+    // Swap icon
+    username_right_icon.removeClass('bi-x-lg');
+    username_right_icon.addClass('bi');
+    username_right_icon.addClass('bi-hourglass-split');
+
+    // Change color
+    username_right_icon.attr('data-ox-text-color', 'tw-slate-400');
+
+    // Show
+    username_right_icon.attr('data-show', 'yes');
+}
+
+
+SharedUI.NewUserSignupForm.removeRightIconFromUsernameField = function(){
+    let self                = SharedUI.NewUserSignupForm;
+    let section             = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                = section.find('[data-section-item-type="form"]').first();
+    let username_field      = form.find('[data-section-item="username-field"]').first();
+    let username_right_icon = username_field.find('[data-section-item-type="field-icon-right"]').first();
+
+    // Hide
+    username_right_icon.attr('data-show', 'no');
+}
+
+SharedUI.NewUserSignupForm.showUsernameAvailabilityLookupArea = function(){
+    let self        = SharedUI.NewUserSignupForm;
+    let section     = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form        = section.find('[data-section-item-type="form"]').first();
+    let lookup_area = form.find('[data-section-item="username-availability-lookup-area"]').first();
+
+    // Show
+    lookup_area.attr('data-show', 'yes');
+}
+
+SharedUI.NewUserSignupForm.hideUsernameAvailabilityLookupArea = function(){
+    let self        = SharedUI.NewUserSignupForm;
+    let section     = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form        = section.find('[data-section-item-type="form"]').first();
+    let lookup_area = form.find('[data-section-item="username-availability-lookup-area"]').first();
+
+    // Hide
+    lookup_area.attr('data-show', 'no');
+}
+
 
 
 // Run Construct on page load
