@@ -31,10 +31,10 @@ declare(strict_types=1);
                     <div data-section-item-type="field-callout-roller">
                         <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
-                            <span data-section-item-type="callout-content">
+                            <div data-section-item-type="callout-content">
                                 <ul>
                                     <li>Usernames for logging-in can contain <b>letters</b>, <b>numbers</b>, and <b>underscores</b>.</li>
-                                    <li>Can start with a letter.</li>
+                                    <li>Can start with a letter or a number.</li>
                                     <li>Can end with a letter or a number.</li>
                                     <li>Only one underscore in a row.</li>
                                     <li>Allowed characters:
@@ -43,14 +43,15 @@ declare(strict_types=1);
                                         </span>
                                     </li>
                                 </ul>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" onkeyup="SharedUI.InputMaskUtility.username_mask(this);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-username-field-input">
             </div>
 
-            <div data-section-item-type="field" data-section-item="username-availability-lookup-area" data-show="no">
+            <!-- Username Availability Lookup Area -->
+            <div data-section-item-type="field-slide-down" data-section-item="username-availability-lookup-area">
                 <div data-section-item-type="left-glide">
                     <div data-section-item-type="peg">
                         <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-checking-availability" data-show="no"><i class="fa4 fa4-spinner fa4-pulse"></i> Checking availability...</div>
@@ -58,7 +59,7 @@ declare(strict_types=1);
                         <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-username-available" data-show="no">Username available!</div>
                     </div>
                 </div>
-                <div data-section-item-type="right-glide">
+                <div data-section-item-type="right-glide" data-section-item="field-slide-down-slider">
                     <div data-section-item-type="check-username-availability-button-div" class="aero-gel aero-gel-blurred" tabindex="0">Check Availability</div>
                 </div>
             </div>
@@ -73,14 +74,14 @@ declare(strict_types=1);
                     <div data-section-item-type="field-callout-roller">
                         <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
-                            <span data-section-item-type="callout-content">
+                            <div data-section-item-type="callout-content">
                                 <ul>
                                     <li>Email address must be in normal format, <nbsp>i.e.</nbsp> <i><nbsp>name@example.com</nbsp></i></li>
                                     <li>Back-up email addresses can be added to account later.</li>
                                     <li>Can select option to log in with an email address after email address is verified.</li>
 
                                 </ul>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,13 +98,13 @@ declare(strict_types=1);
                     <div data-section-item-type="field-callout-roller">
                         <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
-                            <span data-section-item-type="callout-content">
+                            <div data-section-item-type="callout-content">
                                 <ul>
                                     <li>Use <b><nbsp>MM/DD/YYYY</nbsp></b> as the date format.</li>
                                     <li>Date-of-birth is needed for us to follow legal requirements and age restrictions in various countries across the world.</li>
                                     <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 19 years before the current calendar year, <nbsp>i.e.</nbsp> <b><?php echo $year_19_years_ago ?> or earlier</b>.</li>
                                 </ul>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,14 +121,14 @@ declare(strict_types=1);
                     <div data-section-item-type="field-callout-roller">
                         <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
-                            <span data-section-item-type="callout-content">
+                            <div data-section-item-type="callout-content">
                                 <ul>
                                     <li>Password must be 10 characters or longer.</li>
                                     <li>Password cannot contain any spaces, tabs, or commas.</li>
                                     <li>Please use a good password!</li>
                                     <li>See also: <a href="https://xkcd.com/936/" target="_blank">xkcd.com/936/</a></li>
                                 </ul>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,11 +145,11 @@ declare(strict_types=1);
                     <div data-section-item-type="field-callout-roller">
                         <div data-section-item-type="field-callout" data-show="no">
                             <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
-                            <span data-section-item-type="callout-content">
+                            <div data-section-item-type="callout-content">
                                 <ul>
                                     <li>Must match password.</li>
                                 </ul>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>

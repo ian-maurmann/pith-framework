@@ -461,7 +461,10 @@ SharedUI.NewUserSignupForm.showUsernameAvailabilityLookupArea = function(){
     let lookup_area = form.find('[data-section-item="username-availability-lookup-area"]').first();
 
     // Show
-    lookup_area.attr('data-show', 'yes');
+    lookup_area.slideDown( 400, function() {
+        lookup_area.animate({ opacity: 1 }, 400);
+    });
+
 }
 
 SharedUI.NewUserSignupForm.hideUsernameAvailabilityLookupArea = function(){
@@ -471,7 +474,9 @@ SharedUI.NewUserSignupForm.hideUsernameAvailabilityLookupArea = function(){
     let lookup_area = form.find('[data-section-item="username-availability-lookup-area"]').first();
 
     // Hide
-    lookup_area.attr('data-show', 'no');
+    lookup_area.animate({ opacity: 0},400, function(){
+        lookup_area.slideUp( 400, function() {});
+    });
 }
 
 

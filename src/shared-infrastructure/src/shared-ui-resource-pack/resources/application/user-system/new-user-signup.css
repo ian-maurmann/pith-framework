@@ -43,6 +43,12 @@
         display: block;
     }
 
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-slide-down"]{
+        display: none;
+        opacity: 0;
+    }
+
+
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] label{
         display: block;
         text-align: left;
@@ -247,7 +253,7 @@
         background-blend-mode: overlay;
         background-attachment: fixed;
         background-repeat: no-repeat;
-        transform: translateZ(0x);
+        transform: translateZ(0);
         background-size: 100vw 100vh;
         transition: background-color 125ms ease-in-out;
         will-change: backdrop-filter, background-color;
@@ -281,7 +287,7 @@
         background-blend-mode: overlay;
         background-attachment: fixed;
         background-repeat: no-repeat;
-        transform: translateZ(0x);
+        transform: translateZ(0);
         background-size: 100vw 100vh;
         transition: background-color 125ms ease-in-out;
         will-change: backdrop-filter, background-color;
@@ -320,7 +326,7 @@
         background-blend-mode: overlay;
         background-attachment: fixed;
         background-repeat: no-repeat;
-        transform: translateZ(0x);
+        transform: translateZ(0);
         background-size: 100vw 100vh;
         transition: background-color 125ms ease-in-out;
         will-change: backdrop-filter, background-color;
@@ -346,6 +352,15 @@
 
 
     /* ============================== */
+
+    [data-is-opaque="yes"]{
+        opacity: 1 !important;
+    }
+
+    [data-is-opaque="no"]{
+        opacity: 0 !important;
+    }
+
     [data-show="no"]{
         display: none !important;
     }
