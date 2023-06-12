@@ -68,9 +68,13 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/server-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/sidebar/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/error-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts/user-system",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/reusable-inserts/user-system/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\UserSystemAjaxEndpoints\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/ajax-endpoints/user-system/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/ajax-endpoints/user-system/is-username-available/"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
@@ -93,6 +97,9 @@
             ],
             "Pith\\LatteViewAdapter\\": [
                 "src/framework/plugins/latte-view-adapter/src/"
+            ],
+            "Pith\\JsonEndpointViewAdapter\\": [
+                "src/framework/plugins/json-endpoint-view-adapter/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
