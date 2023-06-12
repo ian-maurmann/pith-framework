@@ -396,7 +396,6 @@ SharedUI.NewUserSignupForm.handleOnUsernameFieldInput = function(element, event)
     let textbox  = $(element);
     let field    = textbox.parent().closest('[data-section-item-type="field"]');
     let text     = textbox.val();
- // let is_valid = self.isValidConfirmPasswordText(text);
     let is_valid = false;
     let is_empty = text.length < 1;
 
@@ -462,7 +461,7 @@ SharedUI.NewUserSignupForm.showUsernameAvailabilityLookupArea = function(){
 
     // Show
     lookup_area.slideDown( 400, function() {
-        lookup_area.animate({ opacity: 1 }, 400);
+        lookup_area.animate({ opacity: 1.0 }, 600);
     });
 
 }
@@ -474,7 +473,7 @@ SharedUI.NewUserSignupForm.hideUsernameAvailabilityLookupArea = function(){
     let lookup_area = form.find('[data-section-item="username-availability-lookup-area"]').first();
 
     // Hide
-    lookup_area.animate({ opacity: 0},400, function(){
+    lookup_area.animate({ opacity: 0.0},600, function(){
         lookup_area.slideUp( 400, function() {});
     });
 }
