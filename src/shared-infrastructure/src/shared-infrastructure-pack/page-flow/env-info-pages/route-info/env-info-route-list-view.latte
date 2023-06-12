@@ -16,7 +16,15 @@
     {foreach $routes as $route}
         <tr>
             <td>{$route[0]}</td>
-            <td>{$route[1]}</td>
+            <td>
+                {if isString($route[1])}
+                    {$route[1]}
+                {elseif isArray($route[1])}
+                    {foreach $route[1] as $method}
+                        {$method}{if !$iterator->last},{/if}
+                    {/foreach}
+                {/if}
+            </td>
             <td>{$route[2]}</td>
             <td>{$route[3]}</td>
         </tr>
