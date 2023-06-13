@@ -76,6 +76,9 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/ajax-endpoints/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/ajax-endpoints/user-system/is-username-available/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\UserSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/user-system/"
+            ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
                 "src/shared-infrastructure/src/shared-theme-pack/default-landing-theme/",
