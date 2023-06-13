@@ -240,7 +240,9 @@ SharedUI.NewUserSignupForm.handleOnFieldFocus = function(element, event){
     let callout = field.find('[data-section-item-type="field-callout"]').first();
 
     // Show the callout
+    callout.css('opacity', 0.0);
     callout.attr('data-show', 'yes');
+    callout.animate({ opacity: 1.0},500, function(){});
 
     // Refresh the validity icon
     self.refreshFieldValidityIcon(field);
@@ -255,7 +257,9 @@ SharedUI.NewUserSignupForm.handleOnFieldBlur = function(element, event){
     let callout = field.find('[data-section-item-type="field-callout"]').first();
 
     // Hide the callout
-    callout.attr('data-show', 'no');
+    callout.animate({ opacity: 0.0},180, function(){
+        callout.attr('data-show', 'no');
+    });
 }
 
 
