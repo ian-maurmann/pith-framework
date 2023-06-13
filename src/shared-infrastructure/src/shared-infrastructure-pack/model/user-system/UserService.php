@@ -78,14 +78,17 @@ class UserService
 
     /**
      * @param $given_username
-     * @return bool
+     * @return array
+     *
+     * @noinspection PhpUndefinedVariableInspection - Ignore, the logic is fine here.
      */
-    public function isUsernameAvailable($given_username): bool
+    public function getUsernameAvailability($given_username): array
     {
         try {
             // Default to false
             $is_available = false;
             $has_matches  = false;
+            $reason       = '';
 
             // Check if name is number
             $is_numeric = is_numeric($given_username);
@@ -102,6 +105,9 @@ class UserService
                 $matches     = $this->getUsernameNormalizationMatches($given_username);
                 $has_matches = is_array($matches) && count($matches) > 0;
             }
+            else{
+                $reason = 'incorrect-format';
+            }
 
             // Check if name is free
             if($has_matches){
@@ -112,6 +118,7 @@ class UserService
 
                     if(!$is_empty){
                         $is_available = false;
+                        $reason = 'name-unavailable';
                         break;
                     }
                 }
@@ -125,12 +132,18 @@ class UserService
                 $is_reserved = $is_raw_name_reserved || $is_normalized_name_reserved;
                 if($is_reserved){
                     $is_available = false;
+                    $reason = 'name-reserved';
                 }
             }
         } catch (PithException $e) {
             $is_available = false;
         }
 
-        return $is_available;
+        $r = [
+            'is_available' => $is_available,
+            'reason'       => $reason,
+        ];
+
+        return $r;
     }
 }
