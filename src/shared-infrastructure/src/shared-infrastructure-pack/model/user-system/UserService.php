@@ -83,9 +83,25 @@ class UserService
     public function isUsernameAvailable($given_username): bool
     {
         try {
+            // Default to false
             $is_available = false;
-            $matches      = $this->getUsernameNormalizationMatches($given_username);
-            $has_matches  = is_array($matches) && count($matches) > 0;
+            $has_matches  = false;
+
+            // Check if name is number
+            $is_numeric = is_numeric($given_username);
+
+            // Check how the name starts and ends
+            $starts_with_underscore = str_starts_with($given_username, '_');
+            $starts_with_dash       = str_starts_with($given_username, '-');
+            $ends_with_underscore   = str_ends_with($given_username, '_');
+            $ends_with_dash         = str_ends_with($given_username, '-');
+
+            $has_format = !$is_numeric && !$starts_with_underscore && !$starts_with_dash && !$ends_with_underscore && !$ends_with_dash;
+
+            if($has_format){
+                $matches     = $this->getUsernameNormalizationMatches($given_username);
+                $has_matches = is_array($matches) && count($matches) > 0;
+            }
 
             // Check if name is free
             if($has_matches){
@@ -100,7 +116,7 @@ class UserService
                     }
                 }
             }
-            
+
             // Check if name is reserved
             if($is_available){
                 $is_raw_name_reserved = $this->reserved_name_utility->isReserved($given_username);
