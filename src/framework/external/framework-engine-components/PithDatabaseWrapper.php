@@ -41,10 +41,12 @@ class PithDatabaseWrapper
     // Helper
     private PithDatabaseWrapperHelper $helper;
 
+    // PDO
+    public PDO          $pdo;
+    public PDOStatement $results_handle;
+    public PDOStatement $statement_handle;
+
     // Objects
-    private PDO              $pdo;
-    private PDOStatement     $results_handle;
-    private PDOStatement     $statement_handle;
     private PithErrorUtility $error_utility;
 
     // Properties
