@@ -98,8 +98,9 @@ class UserService
             $starts_with_dash       = str_starts_with($given_username, '-');
             $ends_with_underscore   = str_ends_with($given_username, '_');
             $ends_with_dash         = str_ends_with($given_username, '-');
+            $has_double_underscore  = str_contains($given_username, '__');
 
-            $has_format = !$is_numeric && !$starts_with_underscore && !$starts_with_dash && !$ends_with_underscore && !$ends_with_dash;
+            $has_format = !$is_numeric && !$starts_with_underscore && !$starts_with_dash && !$ends_with_underscore && !$ends_with_dash && !$has_double_underscore;
 
             if($has_format){
                 $matches     = $this->getUsernameNormalizationMatches($given_username);
