@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\UserSystemAjaxEndpoints;
 
 use Pith\Framework\PithAction;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class IsUsernameAvailableAction
@@ -23,13 +24,22 @@ use Pith\Framework\PithAction;
  */
 class IsUsernameAvailableAction extends PithAction
 {
+    private UserService $user_service;
+
+    public function __construct(UserService $user_service){
+        // Set object dependencies
+        $this->user_service = $user_service;
+    }
+
     public function runAction()
     {
-        $is_username_available = false;
+        $username_unsafe       = $_REQUEST['username'] ?? '';
+        $is_username_available = $this->user_service->isUsernameAvailable($username_unsafe);
 
+        // Build the response
         $response = [
-            'status'                => 'success',
-            'data'                  => [
+            'status' => 'success',
+            'data'   => [
                 'is_username_available' => $is_username_available ? 'yes' : 'no',
             ],
         ];

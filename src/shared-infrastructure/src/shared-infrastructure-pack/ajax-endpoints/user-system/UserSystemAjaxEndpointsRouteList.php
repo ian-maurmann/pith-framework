@@ -22,6 +22,6 @@ use Pith\Framework\PithRouteList;
 class UserSystemAjaxEndpointsRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '/is-username-available', '\\Pith\\Framework\\SharedInfrastructure\\UserSystemAjaxEndpoints\\IsUsernameAvailableRoute'],
+        ['route', ['GET', 'POST'], '/is-username-available', '\\Pith\\Framework\\SharedInfrastructure\\UserSystemAjaxEndpoints\\IsUsernameAvailableRoute'],
     ];
 }
