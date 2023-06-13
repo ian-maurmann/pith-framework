@@ -43,6 +43,9 @@ SharedUI.NewUserSignupForm.listen = function(){
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input"]', 'input', self.handleOnBirthdayFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-password-field-input"]', 'input', self.handleOnPasswordFieldInput);
     Ox.Event.delegate('[data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-confirm-password-field-input"]', 'input', self.handleOnConfirmPasswordFieldInput);
+
+    // Events on button click
+    Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-click-check-username-availability-button"]', 'click', self.handleOnClickCheckUsernameAvailabilityButton);
 }
 
 
@@ -476,6 +479,91 @@ SharedUI.NewUserSignupForm.hideUsernameAvailabilityLookupArea = function(){
     lookup_area.animate({ opacity: 0.0},600, function(){
         lookup_area.slideUp( 400, function() {});
     });
+}
+
+
+// Handle On Click Check Username Availability Button
+SharedUI.NewUserSignupForm.handleOnClickCheckUsernameAvailabilityButton = function(element, event){
+    let self                       = SharedUI.NewUserSignupForm;
+    let button_div                 = $(element);
+    let section                    = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                       = section.find('[data-section-item-type="form"]').first();
+    let lookup_area                = form.find('[data-section-item="username-availability-lookup-area"]').first();
+    let text_checking_availability = lookup_area.find('[data-section-item="username-availability-text-checking-availability"]');
+    let text_username_unavailable  = lookup_area.find('[data-section-item="username-availability-text-username-unavailable"]');
+    let text_username_available    = lookup_area.find('[data-section-item="username-availability-text-username-available"]');
+    let text_username_bad_format   = lookup_area.find('[data-section-item="username-availability-text-incorrect-format"]');
+    let text_username_reserved     = lookup_area.find('[data-section-item="username-availability-text-name-reserved"]');
+    let username_field             = form.find('[data-section-item="username-field"]').first();
+    let username_input             = username_field.find('input[type="text"]').first();
+    let given_username             = username_input.val();
+
+    // Hide labels
+    text_checking_availability.attr('data-show', 'no');
+    text_username_unavailable.attr('data-show', 'no');
+    text_username_available.attr('data-show', 'no');
+    text_username_bad_format.attr('data-show', 'no');
+    text_username_reserved.attr('data-show', 'no');
+
+    // Show checking availability
+    text_checking_availability.attr('data-show', 'yes');
+    // Make an ajax request
+    let jqxhr = $.post( "/ajax/user-system/is-username-available", { username: given_username}, function() {
+        // Do nothing for now
+    })
+        .done(function(data) {
+            //alert( "second success" );
+            //alert( "Data Loaded: " + JSON.stringify(data) );
+
+            let message_status     = data.hasOwnProperty('message_status') ? data.message_status : 'error';
+            let is_message_success = message_status === 'success';
+
+            if(is_message_success){
+                // Get the dataset
+                let dataset = data.hasOwnProperty('data') ? data.data : {};
+
+                // Get info
+                let is_username_available_yn = dataset.hasOwnProperty('is_username_available') ? dataset.is_username_available : 'no';
+                let is_username_available    = is_username_available_yn === 'yes';
+                let reason                   = dataset.hasOwnProperty('reason') ? dataset.reason : '';
+
+                if(is_username_available){
+                    // Hide text labels
+                    text_checking_availability.attr('data-show', 'no');
+                    text_username_unavailable.attr('data-show', 'no');
+                    text_username_available.attr('data-show', 'no');
+                    text_username_bad_format.attr('data-show', 'no');
+                    text_username_reserved.attr('data-show', 'no');
+
+                    // Show username available text label
+                    text_username_available.attr('data-show', 'yes');
+                }
+                else{
+                    // Hide text labels
+                    text_checking_availability.attr('data-show', 'no');
+                    text_username_unavailable.attr('data-show', 'no');
+                    text_username_available.attr('data-show', 'no');
+                    text_username_bad_format.attr('data-show', 'no');
+                    text_username_reserved.attr('data-show', 'no');
+
+                    if(reason === 'incorrect-format'){
+                        text_username_bad_format.attr('data-show', 'yes');
+                    }
+                    else if(reason === 'name-reserved'){
+                        text_username_reserved.attr('data-show', 'yes');
+                    }
+                    else{
+                        text_username_unavailable.attr('data-show', 'yes');
+                    }
+                }
+            }
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+        .always(function() {
+            //alert( "finished" );
+        });
 }
 
 

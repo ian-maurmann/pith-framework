@@ -166,7 +166,9 @@
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-checking-availability"]{
         color: var(--ox-color-tw-slate-500);
     }
-    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-unavailable"]{
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-unavailable"],
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-incorrect-format"],
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-name-reserved"]{
         color: var(--ox-color-tw-red-500);
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-available"]{
