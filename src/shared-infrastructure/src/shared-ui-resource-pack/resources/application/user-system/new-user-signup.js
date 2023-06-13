@@ -23,6 +23,7 @@ SharedUI.NewUserSignupForm.construct = function(){
 
     // Set properties
     self.is_first_username_search = true;
+    self.is_first_callout_pop     = true;
 
     // Listen for events
     self.listen();
@@ -240,9 +241,18 @@ SharedUI.NewUserSignupForm.handleOnFieldFocus = function(element, event){
     let callout = field.find('[data-section-item-type="field-callout"]').first();
 
     // Show the callout
-    callout.css('opacity', 0.0);
-    callout.attr('data-show', 'yes');
-    callout.animate({ opacity: 1.0},500, function(){});
+    if(self.is_first_callout_pop){
+        callout.css('opacity', 0.0);
+        callout.attr('data-show', 'yes');
+        callout.animate({ opacity: 1.0},1000, function(){});
+
+        self.is_first_callout_pop = false;
+    }
+    else{
+        callout.css('opacity', 1.0);
+        callout.attr('data-show', 'yes');
+    }
+
 
     // Refresh the validity icon
     self.refreshFieldValidityIcon(field);
@@ -257,9 +267,10 @@ SharedUI.NewUserSignupForm.handleOnFieldBlur = function(element, event){
     let callout = field.find('[data-section-item-type="field-callout"]').first();
 
     // Hide the callout
-    callout.animate({ opacity: 0.0},180, function(){
-        callout.attr('data-show', 'no');
-    });
+    //callout.animate({ opacity: 0.0},180, function(){
+    //    callout.attr('data-show', 'no');
+    //});
+    callout.attr('data-show', 'no');
 }
 
 
