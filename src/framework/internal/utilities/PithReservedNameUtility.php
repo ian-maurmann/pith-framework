@@ -181,6 +181,8 @@ class PithReservedNameUtility
             'host',                   // (Names that I think might cause issues).
             'hostmaster',             // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'hostmaster',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'http',                   // (Names that I think might cause issues).
+            'https',                  // (Names that I think might cause issues).
             'humans.txt',             // Reserved filename, ( https://humanstxt.org/Standard.html ).
             'image',                  // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'images',                 // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
@@ -210,6 +212,8 @@ class PithReservedNameUtility
             'me',                     // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'media',                  // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'mis',                    // Certificate authority validation email - 2009 - ( https://bugzilla.mozilla.org/show_bug.cgi?id=477783#c19 ).
+            'mod',                    // (Names that I think might cause issues).
+            'moderator',              // (Names that I think might cause issues).
             'mx',                     // (Names that I think might cause issues).
             'myaccount',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'myself',                 // (Names that I think might cause issues).
@@ -263,6 +267,9 @@ class PithReservedNameUtility
             'secure',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'security',               // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'self',                   // (Names that I think might cause issues).
+            'serve',                  // (Names that I think might cause issues).
+            'server',                 // (Names that I think might cause issues).
+            'service',                // (Names that I think might cause issues).
             'settings',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'signin',                 // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'sign-in',                // (Names that I think might cause issues).
