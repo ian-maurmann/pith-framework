@@ -16,6 +16,8 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok here.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
+ * @noinspection PhpPureAttributeCanBeAddedInspection  - Not making as pure for now, maybe later.
  */
 
 
@@ -35,6 +37,70 @@ class PithReservedNameUtility
     {
         // Do nothing for now.
     }
+
+    /**
+     * @param $given_name
+     * @return bool
+     */
+    public function isReserved($given_name): bool
+    {
+        $is_inside_reserved_name_list        = $this->isInsideReservedNameList($given_name);
+        $is_reserved_when_followed_by_number = $this->isReservedWhenFollowedByNumber($given_name);
+        $is_reserved                         = $is_inside_reserved_name_list || $is_reserved_when_followed_by_number;
+
+        return $is_reserved;
+    }
+
+    /**
+     * @param $given_name
+     * @return bool
+     */
+    public function isInsideReservedNameList($given_name): bool
+    {
+        $is_inside_reserved_name_list = false;
+        $reserved_names = $this->getReservedNames();
+
+        if(in_array($given_name, $reserved_names)){
+            $is_inside_reserved_name_list = true;
+        }
+
+        return $is_inside_reserved_name_list;
+    }
+
+
+    /**
+     * @param  $given_name
+     * @return bool
+     */
+    public function isReservedWhenFollowedByNumber($given_name): bool
+    {
+        // Default to false
+        $is_reserved_followed_by_number = false;
+
+        // See if the given name is a name that cannot be followed by a number
+        $array_of_names_reserved_with_number = $this->getReservedStartingStringsWhenFollowedByNumber();
+        foreach ($array_of_names_reserved_with_number as $name_reserved_with_number){
+            $starts_with_reserved_name = str_starts_with($given_name, $name_reserved_with_number);
+            if($starts_with_reserved_name){
+                $second_half_of_given_name = substr($given_name, strlen($name_reserved_with_number));
+
+                if(str_starts_with($second_half_of_given_name, '-')){
+                    $second_half_of_given_name = substr($second_half_of_given_name, 1);
+                }
+
+                if(str_starts_with($second_half_of_given_name, '_')){
+                    $second_half_of_given_name = substr($second_half_of_given_name, 1);
+                }
+
+                $is_reserved_followed_by_number = is_numeric($second_half_of_given_name);
+            }
+        }
+
+        // Return true if the given name is a reserved name followed by number
+        return $is_reserved_followed_by_number;
+    }
+
+
 
     /**
      * @return string[]
@@ -319,4 +385,8 @@ class PithReservedNameUtility
 
         return $reserved_starts;
     }
+
+
+
+
 }
