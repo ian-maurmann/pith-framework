@@ -1,0 +1,26 @@
+
+
+div.swal2-modal{
+    font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #212121;
+}
+
+div.swal2-modal div.swal2-actions button.swal2-confirm{
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 1em;
+}
+div.swal2-modal div.swal2-actions button.swal2-confirm:focus {
+
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.5);
+
+}
+
+/*
+MD Gray 900: #212121
+Bootstrap button blue: #0d6efd
+Bootstrap button blue hover: #0b5ed7;
+*/
