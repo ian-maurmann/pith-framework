@@ -50,6 +50,7 @@ SharedUI.NewUserSignupForm.listen = function(){
 
     // Events on button click
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-click-check-username-availability-button"]', 'click', self.handleOnClickCheckUsernameAvailabilityButton);
+    Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> submit"]', 'click', self.handleOnSubmit);
 }
 
 
@@ -652,17 +653,68 @@ SharedUI.NewUserSignupForm.handleOnClickCheckUsernameAvailabilityButton = functi
                     }
                 });
             }).fail(function() {
-                alert( "error" );
+                //alert( "error" );
             }).always(function() {
                 //alert( "finished" );
             });
         });
     }, starting_delay);
-
-
 }
 
 
+// Handle On Submit
+SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
+    let self                               = SharedUI.NewUserSignupForm;
+    let button_div                         = $(element);
+    let section                            = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                               = section.find('[data-section-item-type="form"]').first();
+    let username_field                     = form.find('[data-section-item="username-field"]').first();
+    let email_address_field                = form.find('[data-section-item="email-address-field"]').first();
+    let birthday_field                     = form.find('[data-section-item="date-of-birth-field"]').first();
+    let password_field                     = form.find('[data-section-item="password-field"]').first();
+    let confirm_password_field             = form.find('[data-section-item="confirm-password-field"]').first();
+    let is_username_field_valid_yn         = username_field.attr('data-display-as-valid');
+    let is_email_address_field_valid_yn    = email_address_field.attr('data-display-as-valid');
+    let is_birthday_field_valid_yn         = birthday_field.attr('data-display-as-valid');
+    let is_password_field_valid_yn         = password_field.attr('data-display-as-valid');
+    let is_confirm_password_field_valid_yn = confirm_password_field.attr('data-display-as-valid');
+    let is_username_field_valid            = is_username_field_valid_yn === 'yes';
+    let is_email_address_field_valid       = is_email_address_field_valid_yn === 'yes';
+    let is_birthday_field_valid            = is_birthday_field_valid_yn === 'yes';
+    let is_password_field_valid            = is_password_field_valid_yn === 'yes';
+    let is_confirm_password_field_valid    = is_confirm_password_field_valid_yn === 'yes';
+
+    if(!is_username_field_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'The username needs be valid and available.'
+        });
+    }
+    else if(!is_email_address_field_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'The email address needs to be formatted correctly.'
+        });
+    }
+    else if(!is_birthday_field_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'Verify that birth date is in the correct format.'
+        });
+    }
+    else if(!is_password_field_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'New password must be 10 characters or longer.'
+        });
+    }
+    else if(!is_confirm_password_field_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'The password and password confirmation must match!'
+        });
+    }
+}
 
 // Run Construct on page load
 $( document ).ready(function() {

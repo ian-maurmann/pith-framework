@@ -34,10 +34,13 @@ class NewUserViewRequisition extends PithViewRequisition
         $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/common-libraries/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
         $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/common-libraries/bootstrap-icons-font-1.10.5/font/bootstrap-icons.min.css', 'library-for-page');
         $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-page');
+        $this->addStylesheet('Swal2 NA stylesheet', '/resources/vendor/common-libraries/swal2-no-anthems-11.7.3/swal2-na.css', 'library-for-page');
+        $this->addStylesheet('Re-style Swal2', '/resources/vendor/common-libraries/swal2-modified-theme/swal2-modified-theme.css', 'library-for-page');
 
         // JS Libraries
         $this->addScript(     'jQuery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
         $this->addScript(     'OxCSS script','/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-page');
+        $this->addScript('Swal2 NA script', '/resources/vendor/common-libraries/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
 
         // App CSS
         $this->addStylesheet( 'New User Signup stylesheet', '/resources/framework/shared-ui/user-system/new-user-signup.css', 'application-for-page');
