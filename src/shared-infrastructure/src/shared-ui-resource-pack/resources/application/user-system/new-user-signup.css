@@ -12,6 +12,8 @@
         padding-bottom: 3rem;
 
         font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+        min-height: 500px;
     }
 
 
@@ -226,9 +228,9 @@
     }
 
 
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="section-loading"]{
 
-
-
+    }
 
 
     /*

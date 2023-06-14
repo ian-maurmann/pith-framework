@@ -36,6 +36,7 @@ class NewUserViewRequisition extends PithViewRequisition
         $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-page');
         $this->addStylesheet('Swal2 NA stylesheet', '/resources/vendor/common-libraries/swal2-no-anthems-11.7.3/swal2-na.css', 'library-for-page');
         $this->addStylesheet('Re-style Swal2', '/resources/vendor/common-libraries/swal2-custom-themes/swal2-aerogel-theme.css', 'library-for-page');
+        $this->addStylesheet('Hoja Aquamarine stylesheet', '/resources/vendor/common-libraries/hoja-aquamarine/hoja-aquamarine.css', 'library-for-page');
 
         // JS Libraries
         $this->addScript(     'jQuery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');

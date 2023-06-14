@@ -667,6 +667,8 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
     let self                               = SharedUI.NewUserSignupForm;
     let button_div                         = $(element);
     let section                            = $('[data-section="shared-ui-new-user-signup-form"]');
+    let section_content                    = section.find('[data-section-item="section-content"]').first();
+    let section_loading_screen             = section.find('[data-section-item="section-loading"]').first();
     let form                               = section.find('[data-section-item-type="form"]').first();
     let username_field                     = form.find('[data-section-item="username-field"]').first();
     let email_address_field                = form.find('[data-section-item="email-address-field"]').first();
@@ -712,6 +714,17 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
         Swal.fire({
             icon: 'error',
             html: 'The password and password confirmation must match!'
+        });
+    }
+    else{
+        section_content.animate({ opacity: 0.0},600, function(){
+            section_content.attr('data-show', 'no');
+
+            section_loading_screen.css('opacity', 0.0);
+            section_loading_screen.attr('data-show', 'yes');
+            section_loading_screen.animate({ opacity: 1.0},600, function(){
+
+            });
         });
     }
 }
