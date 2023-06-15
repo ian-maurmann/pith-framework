@@ -163,10 +163,11 @@ class UsernameNormalizer
         elseif ( $given_char === 'ā'){ return ['a'];} // Spanish
         elseif ( $given_char === 'á'){ return ['a'];} // Spanish
         elseif ( $given_char === 'à'){ return ['a'];} // French
-        elseif ( $given_char === 'ä'){ return ['a'];} // German
+     // elseif ( $given_char === 'ä'){ return ['ae'];} // German
+        elseif ( $given_char === 'ä'){ return ['ae', 'a'];} // German
         elseif ( $given_char === 'â'){ return ['a'];} // French
-     // elseif ( $given_char === 'å'){ return ['a', 'aa'];}
-        elseif ( $given_char === 'å'){ return ['a'];}
+        elseif ( $given_char === 'å'){ return ['aa', 'a'];}
+     // elseif ( $given_char === 'å'){ return ['a'];}
         elseif ( $given_char === 'ç'){ return ['c'];} // French
         elseif ( $given_char === 'é'){ return ['e'];} // English, Spanish, French
         elseif ( $given_char === 'è'){ return ['e'];} // French
@@ -176,17 +177,23 @@ class UsernameNormalizer
         elseif ( $given_char === 'ì'){ return ['i'];} // French
         elseif ( $given_char === 'ï'){ return ['i'];} // French
         elseif ( $given_char === 'î'){ return ['i'];} // French
-     // elseif ( $given_char === 'ñ'){ return ['n', 'ny'];} // Spanish
-        elseif ( $given_char === 'ñ'){ return ['n'];} // Spanish
+        elseif ( $given_char === 'ñ'){ return ['n', 'ny'];} // Spanish
+     // elseif ( $given_char === 'ñ'){ return ['n'];} // Spanish
         elseif ( $given_char === 'ó'){ return ['o'];} // Spanish
         elseif ( $given_char === 'ò'){ return ['o'];} // French
-        elseif ( $given_char === 'ö'){ return ['o'];} // German
+     // elseif ( $given_char === 'ö'){ return ['o'];} // German
+        elseif ( $given_char === 'ö'){ return ['oe', 'o'];} // German
+        elseif ( $given_char === 'ø'){ return ['oe', 'o'];}
+        elseif ( $given_char === 'ǿ'){ return ['oe', 'o'];}
         elseif ( $given_char === 'ô'){ return ['o'];} // French
      // elseif ( $given_char === 'ß'){ return ['ss', 's', 'b'];} // German
-        elseif ( $given_char === 'ß'){ return ['ss'];} // German
+     // elseif ( $given_char === 'ß'){ return ['ss'];} // German
+        elseif ( $given_char === 'ß'){ return ['ss', 'b'];} // German
         elseif ( $given_char === 'ú'){ return ['u'];} // Spanish
         elseif ( $given_char === 'ù'){ return ['u'];} // French
-        elseif ( $given_char === 'ü'){ return ['u'];} // Spanish, French, German
+     // elseif ( $given_char === 'ü'){ return ['u'];} // Spanish, French, German
+        elseif ( $given_char === 'ü'){ return ['ue', 'u'];} // Spanish, French, German, Hungarian
+        elseif ( $given_char === 'ű'){ return ['u'];} // Hungarian
         elseif ( $given_char === 'û'){ return ['u'];} // French
 
         return [];

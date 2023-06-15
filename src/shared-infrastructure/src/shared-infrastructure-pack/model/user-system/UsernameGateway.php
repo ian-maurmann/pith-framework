@@ -71,4 +71,41 @@ class UsernameGateway
         // Return row as array when found, return empty array when not found
         return $row;
     }
+
+    /**
+     * @param array $normalizations
+     * @return array
+     * @throws PithException
+     */
+    public function findNormalizations(array $normalizations): array
+    {
+        // Default to empty array
+        $results = [];
+
+        // Qs
+        // $in_list = rtrim( str_repeat('?,', count($normalizations)), ',');
+        $in = $this->database->in($normalizations);
+
+        // Query
+        $sql = '
+            SELECT 
+                * 
+            FROM 
+                user_login_usernames
+            WHERE 
+                username_normalized IN ('. $in .')
+            LIMIT 1';
+
+        // Execute
+        $results = $this->database->query($sql, $normalizations);
+
+        $has_results = is_array($results) && (count($results) > 0);
+        if(!$has_results){
+            $results = [];
+        }
+
+        //echo $this->database->debug();
+
+        return $results;
+    }
 }

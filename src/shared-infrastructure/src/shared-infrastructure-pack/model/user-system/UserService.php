@@ -16,6 +16,7 @@
  * @noinspection PhpPropertyNamingConventionInspection - Long property names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - Ignore for readability.
  */
 
 
@@ -52,35 +53,37 @@ class UserService
      */
     public function getUsernameNormalizationMatches($given_username): array
     {
-        $matches = [];
+        $r = [];
+        $normalizations = [];
+        $found_normalization_results = [];
 
         try {
             $normalizations = $this->username_normalizer->getNormalizations($given_username);
-
-            if(is_array($normalizations)){
-                foreach($normalizations as $normalization){
-                    $match = [];
-                    $row   = $this->username_gateway->getUsernameRowByNormalizedUsername($normalization);
-
-                    $match['name']      = $normalization;
-                    $match['found_row'] = $row;
-
-                    // Add match to matches
-                    $matches[] = $match;
+            if($normalizations){
+                $has_too_many_permutations = count($normalizations) > 256;
+                if($has_too_many_permutations){
+                    $found_normalization_results = $this->username_gateway->findNormalizations($normalizations);
                 }
+
+                $r = [
+                    'normalizations'            => $normalizations,
+                    'has_too_many_permutations' => $has_too_many_permutations ? 'yes' : 'no',
+                    'existing_results'          => $found_normalization_results,
+                ];
             }
         } catch (PithException $e) {
             // TODO - Log exception
         }
 
-        return $matches;
+        return $r;
     }
 
     /**
      * @param $given_username
      * @return array
      *
-     * @noinspection PhpUndefinedVariableInspection - Ignore, the logic is fine here.
+     * @noinspection PhpUndefinedVariableInspection             - Ignore for $matches, the logic is fine here.
+     * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore array shape for now, add later.
      */
     public function getUsernameAvailability($given_username): array
     {
@@ -113,22 +116,25 @@ class UserService
             // Check if name is free
             if($has_matches){
                 $is_available = true;
-                foreach ($matches as $match){
-                    $row      = $match['found_row'];
-                    $is_empty = empty($row);
 
-                    if(!$is_empty){
-                        $is_available = false;
-                        $reason = 'name-unavailable';
-                        break;
-                    }
+                $is_taken = (bool) count($matches['existing_results']);
+                if($is_taken){
+                    $is_available = false;
+                    $reason = 'name-unavailable';
+                }
+            }
+
+            if($is_available){
+                if($matches['has_too_many_permutations'] === 'yes'){
+                    $is_available = false;
+                    $reason = 'permutations';
                 }
             }
 
             // Check if name is reserved
             if($is_available){
                 $is_raw_name_reserved = $this->reserved_name_utility->isReserved($given_username);
-                $normalized_name = $matches[0]['name'];
+                $normalized_name = $matches['normalizations'][0];
                 $is_normalized_name_reserved = $this->reserved_name_utility->isReserved($normalized_name);
                 $is_reserved = $is_raw_name_reserved || $is_normalized_name_reserved;
                 if($is_reserved){
@@ -141,8 +147,10 @@ class UserService
         }
 
         $r = [
-            'is_available' => $is_available,
-            'reason'       => $reason,
+            'normalized_name' => $normalized_name,
+            'is_available'    => $is_available,
+            'reason'          => $reason,
+            'matches'         => $matches,
         ];
 
         return $r;

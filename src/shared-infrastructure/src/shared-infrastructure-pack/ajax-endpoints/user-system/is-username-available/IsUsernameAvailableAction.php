@@ -37,14 +37,18 @@ class IsUsernameAvailableAction extends PithAction
         $username_availability = $this->user_service->getUsernameAvailability($username_unsafe);
         $is_username_available = (bool) $username_availability['is_available'];
         $unavailability_reason = (string) $username_availability['reason'];
+        $normalization_matches = (array) $username_availability['matches'];
+        $normalized_name       = (string) $username_availability['normalized_name'];
 
         // Build the response
         $response = [
             'message_status' => 'success',
             'action_status'  => $is_username_available ? 'success' : 'failure',
             'data'           => [
+                'normalized_name'       => $normalized_name,
                 'is_username_available' => $is_username_available ? 'yes' : 'no',
                 'reason'                => $unavailability_reason,
+             // 'normalization_matches' => $normalization_matches,
             ],
         ];
 
