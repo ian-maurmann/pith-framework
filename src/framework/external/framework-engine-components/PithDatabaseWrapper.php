@@ -451,6 +451,20 @@ class PithDatabaseWrapper
     }
 
 
+    /**
+     * @param $array
+     * @return string
+     * @noinspection PhpUnnecessaryLocalVariableInspection
+     */
+    public function in($array): string
+    {
+        $in_list = rtrim( str_repeat('?,', count($array)), ',');
+
+        return $in_list;
+    }
+
+
+
 
 //    public function run($query_object)
 //    {
