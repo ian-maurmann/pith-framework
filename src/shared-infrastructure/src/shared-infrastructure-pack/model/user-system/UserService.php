@@ -88,13 +88,13 @@ class UserService
     public function getUsernameAvailability($given_username): array
     {
         try {
-            // Default to false
-            $is_available = false;
-            $has_matches  = false;
-            $reason       = '';
-
-            // Check if name is number
-            $is_numeric = is_numeric($given_username);
+            $is_available           = false;
+            $normalization_info     = [];
+            $has_normalization_info = false;
+            $reason                 = '';
+            $is_numeric             = is_numeric($given_username);
+            $has_format             = false;
+            $normalized_name        = '';
 
             // Check how the name starts and ends
             $starts_with_underscore = str_starts_with($given_username, '_');
@@ -103,29 +103,32 @@ class UserService
             $ends_with_dash         = str_ends_with($given_username, '-');
             $has_double_underscore  = str_contains($given_username, '__');
 
+            // Check if has correct format
             $has_format = !$is_numeric && !$starts_with_underscore && !$starts_with_dash && !$ends_with_underscore && !$ends_with_dash && !$has_double_underscore;
 
             if($has_format){
-                $matches     = $this->getUsernameNormalizationMatches($given_username);
-                $has_matches = is_array($matches) && count($matches) > 0;
+                // Get normalization info
+                $normalization_info     = $this->getUsernameNormalizationMatches($given_username);
+                $has_normalization_info = is_array($normalization_info) && count($normalization_info) > 0;
             }
             else{
                 $reason = 'incorrect-format';
             }
 
             // Check if name is free
-            if($has_matches){
+            if($has_normalization_info){
                 $is_available = true;
 
-                $is_taken = (bool) count($matches['existing_results']);
+                $is_taken = (bool) count($normalization_info['existing_results']);
                 if($is_taken){
                     $is_available = false;
                     $reason = 'name-unavailable';
                 }
             }
 
+            // Check normalization permutations
             if($is_available){
-                if($matches['has_too_many_permutations'] === 'yes'){
+                if($normalization_info['has_too_many_permutations'] === 'yes'){
                     $is_available = false;
                     $reason = 'permutations';
                 }
@@ -133,10 +136,11 @@ class UserService
 
             // Check if name is reserved
             if($is_available){
-                $is_raw_name_reserved = $this->reserved_name_utility->isReserved($given_username);
-                $normalized_name = $matches['normalizations'][0];
+                $is_raw_name_reserved        = $this->reserved_name_utility->isReserved($given_username);
+                $normalized_name             = $normalization_info['normalizations'][0];
                 $is_normalized_name_reserved = $this->reserved_name_utility->isReserved($normalized_name);
-                $is_reserved = $is_raw_name_reserved || $is_normalized_name_reserved;
+                $is_reserved                 = $is_raw_name_reserved || $is_normalized_name_reserved;
+
                 if($is_reserved){
                     $is_available = false;
                     $reason = 'name-reserved';
@@ -147,10 +151,10 @@ class UserService
         }
 
         $r = [
-            'normalized_name' => $normalized_name,
-            'is_available'    => $is_available,
-            'reason'          => $reason,
-            'matches'         => $matches,
+            'normalized_name'    => $normalized_name,
+            'is_available'       => $is_available,
+            'reason'             => $reason,
+            'normalization_info' => $normalization_info,
         ];
 
         return $r;
