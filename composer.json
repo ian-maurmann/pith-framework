@@ -68,13 +68,14 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/server-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/env-info-pages/sidebar/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/page-flow/error-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\ReusableInserts\\UserSystemReusableInserts\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\UserSystem\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/user-system/"

@@ -13,13 +13,13 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\ReusableInserts\UserSystemReusableInserts;
 
 use Pith\Framework\PithAction;
 
 /**
  * Class NewUserSignupFormPartialAction
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\ReusableInserts\UserSystemReusableInserts
  */
 class NewUserSignupFormPartialAction extends PithAction
 {
