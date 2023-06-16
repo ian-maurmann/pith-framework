@@ -21,14 +21,14 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Model\TestQuotes;
 
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
  * Class TestQuoteGateway
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Model\TestQuotes
  */
 class TestQuoteGateway
 {

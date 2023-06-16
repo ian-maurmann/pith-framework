@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Migration to add test_quotes table
+ * ----------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection   - Long class name is ok.
+ * @noinspection PhpMissingParentCallCommonInspection - Parent method calls are not needed.
+ * @noinspection PhpMethodNamingConventionInspection  - Short method names are ok.
+ * @noinspection PhpUnused                            - Ignore.
+ */
+
 declare(strict_types=1);
 
 namespace Pith\Framework\Migration;
@@ -14,7 +24,7 @@ final class Version20230509232040 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table test_quotes.';
+        return 'Create new table `test_quotes`.';
     }
 
     public function up(Schema $schema): void
