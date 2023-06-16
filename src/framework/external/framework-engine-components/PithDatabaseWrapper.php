@@ -41,10 +41,12 @@ class PithDatabaseWrapper
     // Helper
     private PithDatabaseWrapperHelper $helper;
 
+    // PDO
+    public PDO          $pdo;
+    public PDOStatement $results_handle;
+    public PDOStatement $statement_handle;
+
     // Objects
-    private PDO              $pdo;
-    private PDOStatement     $results_handle;
-    private PDOStatement     $statement_handle;
     private PithErrorUtility $error_utility;
 
     // Properties
@@ -447,6 +449,20 @@ class PithDatabaseWrapper
         // Return true if did rollback
         return $did_rollback;
     }
+
+
+    /**
+     * @param $array
+     * @return string
+     * @noinspection PhpUnnecessaryLocalVariableInspection
+     */
+    public function in($array): string
+    {
+        $in_list = rtrim( str_repeat('?,', count($array)), ',');
+
+        return $in_list;
+    }
+
 
 
 
