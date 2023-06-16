@@ -33,23 +33,15 @@ class IsUsernameAvailableAction extends PithAction
 
     public function runAction()
     {
-        $username_unsafe       = $_REQUEST['username'] ?? '';
-        $username_availability = $this->user_service->getUsernameAvailability($username_unsafe);
-        $is_username_available = (bool) $username_availability['is_available'];
-        $unavailability_reason = (string) $username_availability['reason'];
-        $normalization_matches = (array) $username_availability['normalization_info'];
-        $normalized_name       = (string) $username_availability['normalized_name'];
+        $username_unsafe            = $_REQUEST['username'] ?? '';
+        $username_availability_info = $this->user_service->getUsernameAvailability($username_unsafe);
+        $is_available               = $username_availability_info['is_available'] === 'yes';
 
         // Build the response
         $response = [
             'message_status' => 'success',
-            'action_status'  => $is_username_available ? 'success' : 'failure',
-            'data'           => [
-                'normalized_name'       => $normalized_name,
-                'is_username_available' => $is_username_available ? 'yes' : 'no',
-                'reason'                => $unavailability_reason,
-                'normalization_matches' => $normalization_matches,
-            ],
+            'action_status'  => $is_available ? 'success' : 'failure',
+            'data'           => $username_availability_info,
         ];
 
         // Push to Preparer

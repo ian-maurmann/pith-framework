@@ -108,4 +108,39 @@ class UsernameGateway
 
         return $results;
     }
+
+    /**
+     * @param $name
+     * @param $name_lower
+     * @return array
+     * @throws PithException
+     */
+    public function findUsernameResults($name, $name_lower): array
+    {
+        // Default to empty array
+        $results = [];
+
+        // Query
+        $sql = '
+            SELECT 
+                * 
+            FROM 
+                user_login_usernames
+            WHERE 
+                username = ?
+                OR 
+                username_lower = ?
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $name, $name_lower);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if(!$has_results){
+            $results = [];
+        }
+
+        return $results;
+    }
 }

@@ -51,6 +51,7 @@ SharedUI.NewUserSignupForm.listen = function(){
     // Events on button click
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-click-check-username-availability-button"]', 'click', self.handleOnClickCheckUsernameAvailabilityButton);
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> submit"]', 'click', self.handleOnSubmit);
+
 }
 
 
@@ -429,6 +430,11 @@ SharedUI.NewUserSignupForm.handleOnUsernameFieldInput = function(element, event)
     let text_username_bad_format   = lookup_area.find('[data-section-item="username-availability-text-incorrect-format"]');
     let text_username_reserved     = lookup_area.find('[data-section-item="username-availability-text-name-reserved"]');
 
+    let mask = self.getMaskedUsername(text);
+    textbox.val(mask);
+
+    is_empty = mask.length < 1;
+
     if(is_empty){
         // self.removeRightIconFromUsernameField();
 
@@ -593,9 +599,9 @@ SharedUI.NewUserSignupForm.handleOnClickCheckUsernameAvailabilityButton = functi
                         let dataset = data.hasOwnProperty('data') ? data.data : {};
 
                         // Get info
-                        let is_username_available_yn = dataset.hasOwnProperty('is_username_available') ? dataset.is_username_available : 'no';
+                        let is_username_available_yn = dataset.hasOwnProperty('is_available') ? dataset.is_available : 'no';
                         let is_username_available    = is_username_available_yn === 'yes';
-                        let reason                   = dataset.hasOwnProperty('reason') ? dataset.reason : '';
+                        let fail_reason              = dataset.hasOwnProperty('fail_reason') ? dataset.fail_reason : '';
 
                         if(is_username_available){
                             // Hide text labels
@@ -628,14 +634,37 @@ SharedUI.NewUserSignupForm.handleOnClickCheckUsernameAvailabilityButton = functi
                             text_username_bad_format.attr('data-show', 'no');
                             text_username_reserved.attr('data-show', 'no');
 
-                            if(reason === 'incorrect-format'){
+
+
+                            if(
+                                fail_reason === 'incorrect-format'
+                                || fail_reason === 'starts-with-underscore'
+                                || fail_reason === 'ends-with-underscore'
+                                || fail_reason === 'has-double-underscore'
+                            ){
+                                text_username_bad_format.html('Incorrect format.');
+                                if(fail_reason === 'starts-with-underscore'){
+                                    text_username_bad_format.html('Cannot start<br> with underscore.');
+                                }
+                                if(fail_reason === 'ends-with-underscore'){
+                                    text_username_bad_format.html('Cannot end<br> with underscore.');
+                                }
+                                if(fail_reason === 'has-double-underscore'){
+                                    text_username_bad_format.html('Cannot have<br> double-underscore.');
+                                }
+
                                 text_username_bad_format.css('opacity', 0.0);
                                 text_username_bad_format.attr('data-show', 'yes');
                                 text_username_bad_format.animate({ opacity: 1.0},600, function(){
                                     // do nothing for now
                                 });
                             }
-                            else if(reason === 'name-reserved'){
+                            else if(fail_reason === 'reserved-name' || fail_reason === 'reserved-name-with-number'){
+                                text_username_reserved.html('Reserved name.');
+                                if(fail_reason === 'reserved-name-with-number'){
+                                    text_username_reserved.html('Reserved name<br> with number.');
+                                }
+
                                 text_username_reserved.css('opacity', 0.0);
                                 text_username_reserved.attr('data-show', 'yes');
                                 text_username_reserved.animate({ opacity: 1.0},600, function(){
@@ -727,6 +756,32 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
             });
         });
     }
+}
+
+
+// Get Masked Username
+SharedUI.NewUserSignupForm.getMaskedUsername = function(given_username){
+    let filtered_string = '';
+    let given_string = given_username;
+    let allowed_special = '_';
+
+    // Filter to allowed chars
+    for (let i = 0; i < given_string.length; i++) {
+        let is_allowed = false;
+        let current_char = given_string.charAt(i);
+
+        is_allowed = (allowed_special.indexOf(current_char) !== -1);
+        if(!is_allowed) {
+            is_allowed = current_char.match(/\p{Lu}|\p{Ll}|\p{Lt}|\p{Lm}|\p{Lo}|\p{Nd}|\p{Nl}/gu) !== null;
+        }
+
+        if(is_allowed){
+            filtered_string += current_char;
+        }
+    }
+
+    // Return the filtered string
+    return filtered_string;
 }
 
 // Run Construct on page load

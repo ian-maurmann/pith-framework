@@ -28,7 +28,9 @@ namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
 
 
+use Exception;
 use Normalizer;
+use Pith\Framework\Internal\PithReservedNameUtility;
 
 /**
  * Class UsernameNormalizer
@@ -36,9 +38,12 @@ use Normalizer;
  */
 class UsernameNormalizer
 {
-    public function __construct()
+    private PithReservedNameUtility $reserved_name_utility;
+
+    public function __construct(PithReservedNameUtility $reserved_name_utility)
     {
-        // Do nothing for now.
+        // Set object dependencies
+        $this->reserved_name_utility = $reserved_name_utility;
     }
 
 
@@ -222,5 +227,250 @@ class UsernameNormalizer
 
 
         return [];
+    }
+
+
+    // ==============================================
+
+
+
+    /**
+     * @param $given_name
+     * @return string
+     */
+    public function normalizeToNfc($given_name):string
+    {
+        $utf8_nfc_string = normalizer_normalize($given_name, Normalizer::NFC);
+
+        return $utf8_nfc_string;
+    }
+
+    /**
+     * @param $given_name
+     * @return string
+     */
+    public function getLowerCase($given_name):string
+    {
+        $name_lower = mb_strtolower($given_name);
+
+        return $name_lower;
+    }
+
+
+
+    /**
+     * @param $given_name
+     * @return array
+     * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore shape for now.
+     */
+    public function doesNameFollowRules($given_name):array
+    {
+        // Check how the name starts and ends
+        $does_follow_rules      = false;
+        $reason                 = '';
+        $starts_with_underscore = str_starts_with($given_name, '_');
+        $starts_with_dash       = str_starts_with($given_name, '-');
+        $ends_with_underscore   = str_ends_with($given_name, '_');
+        $ends_with_dash         = str_ends_with($given_name, '-');
+        $has_double_underscore  = str_contains($given_name, '__');
+        $has_double_dash        = str_contains($given_name, '--');
+
+        if($starts_with_underscore){
+            $reason = 'starts-with-underscore';
+        }
+        elseif($starts_with_dash){
+            $reason = 'starts-with-dash';
+        }
+        elseif($ends_with_underscore){
+            $reason = 'ends-with-underscore';
+        }
+        elseif($ends_with_dash){
+            $reason = 'ends-with-dash';
+        }
+        elseif($has_double_underscore){
+            $reason = 'has-double-underscore';
+        }
+        elseif($has_double_dash){
+            $reason = 'has-double-dash';
+        }
+        else{
+            $does_follow_rules = true;
+        }
+
+        // Build the return
+        $r = [
+            'does_follow_rules' => $does_follow_rules ? 'yes' : 'no',
+            'fail_reason'       => $reason,
+        ];
+
+        return $r;
+    }
+
+
+    /**
+     * @param $given_name
+     * @return array
+     * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore shape for now.
+     */
+    public function areCharsAllowed($given_name):array
+    {
+        // Default to false
+        $are_chars_allowed = false;
+        $reason            = '';
+
+        // Split
+        $chars = mb_str_split($given_name);
+
+        $problem_char_index = -1;
+        if(is_array($chars) && count($chars) > 0){
+            foreach ($chars as $char_index => $char){
+                $is_char_allowed = $this->isCharAllowed($char);
+
+                if(!$is_char_allowed){
+                    $problem_char_index = $char_index;
+                    $reason = 'disallowed-char';
+                    break;
+                }
+            }
+            $are_chars_allowed = $problem_char_index === -1;
+        }
+        else{
+            // empty string
+            $reason = 'empty-name';
+        }
+
+        // Build the return
+        $r = [
+            'are_chars_allowed'  => $are_chars_allowed ? 'yes' : 'no',
+            'fail_reason'        => $reason,
+            'problem_char_index' => $problem_char_index,
+        ];
+
+        return $r;
+    }
+
+    /**
+     * @param $given_char
+     * @return bool
+     */
+    public function isCharAllowed($given_char): bool
+    {
+        $special_chars = '_';
+        $is_special_char = str_contains($special_chars, $given_char);
+        if($is_special_char){
+            return true;
+        }
+
+        $match_01f = preg_match('/\p{Lu}|\p{Ll}|\p{Lt}|\p{Lm}|\p{Lo}|\p{Nd}|\p{Nl}/u', $given_char);
+        $is_char_allowed = $match_01f === 1;
+        return $is_char_allowed;
+    }
+
+    /**
+     * @param $given_name
+     * @return bool
+     */
+    public function isTooLong($given_name): bool
+    {
+        return strlen($given_name) > 100; // Max for DB row is 191
+    }
+
+
+    /**
+     * @param $given_name
+     * @return array
+     * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore shape for now
+     */
+    public function getNameInfo($given_name): array
+    {
+        // Set defaults
+        $is_allowed            = false;
+        $fail_reason           = '';
+        $problem_char_index    = -1;
+        $is_too_long           = false;
+        $name_normalized       = '';
+        $name_normalized_lower = '';
+        $is_reserved           = false;
+
+
+        // Continue on success, Stop on failure
+        try{
+            // Check if too long when raw
+            $is_too_long = $this->isTooLong($given_name);
+            if($is_too_long){
+                throw new Exception('is-too-long');
+            }
+
+            // Normalize
+            $name_normalized       = $this->normalizeToNfc($given_name);
+            $name_normalized_lower = $this->normalizeToNfc( $this->getLowerCase($name_normalized) );
+
+            // Check if too long when normalized
+            $is_too_long = $this->isTooLong($name_normalized_lower);
+            if($is_too_long){
+                throw new Exception('is-too-long');
+            }
+
+            // Check rules for underscores and dashes
+            $name_rule_info    = $this->doesNameFollowRules($name_normalized_lower);
+            $does_follow_rules = $name_rule_info['does_follow_rules'] === 'yes';
+            if(!$does_follow_rules){
+                $fail_reason = $name_rule_info['fail_reason'];
+                throw new Exception($fail_reason);
+            }
+
+            // Check chars
+            $name_char_info    = $this->areCharsAllowed($name_normalized);
+            $are_chars_allowed = $name_char_info['are_chars_allowed'] === 'yes';
+            if(!$are_chars_allowed){
+                $fail_reason        = $name_char_info['fail_reason'];
+                $problem_char_index = $name_char_info['problem_char_index'];
+                throw new Exception($fail_reason);
+            }
+
+            // Check chars (lower)
+            $name_char_info    = $this->areCharsAllowed($name_normalized_lower);
+            $are_chars_allowed = $name_char_info['are_chars_allowed'] === 'yes';
+            if(!$are_chars_allowed){
+                $fail_reason        = $name_char_info['fail_reason'];
+                $problem_char_index = $name_char_info['problem_char_index'];
+                throw new Exception($fail_reason);
+            }
+
+            // Check if name is reserved
+            $is_inside_reserved_name_list = $this->reserved_name_utility->isInsideReservedNameList($name_normalized_lower);
+            if($is_inside_reserved_name_list){
+                $is_reserved = true;
+                $fail_reason = 'reserved-name';
+                throw new Exception($fail_reason);
+            }
+
+            // Check if name is reserved when followed by a number
+            $is_reserved_with_number = $this->reserved_name_utility->isReservedWhenFollowedByNumber($name_normalized_lower);
+            if($is_reserved_with_number){
+                $is_reserved = true;
+                $fail_reason = 'reserved-name-with-number';
+                throw new Exception($fail_reason);
+            }
+
+            // Allow
+            $is_allowed = true;
+
+        }catch (Exception $e) {
+            $fail_reason = $e->getMessage();
+        }
+
+        // Build return
+        $r = [
+            'is_too_long'           => $is_too_long ? 'yes' : 'no',
+            'name_normalized'       => $name_normalized,
+            'name_normalized_lower' => $name_normalized_lower,
+            'is_reserved'           => $is_reserved,
+            'is_allowed'            => $is_allowed ? 'yes' : 'no',
+            'fail_reason'           => $fail_reason,
+            'problem_char_index'    => $problem_char_index,
+        ];
+
+        return $r;
     }
 }

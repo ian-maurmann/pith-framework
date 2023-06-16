@@ -34,7 +34,7 @@ final class Version20230601193239 extends AbstractMigration
                 `username_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
                 `user_id` INT NOT NULL,
                 `username` VARCHAR(191) UNIQUE NOT NULL, 
-                `username_normalized` VARCHAR(191) UNIQUE NOT NULL, 
+                `username_lower` VARCHAR(191) UNIQUE NOT NULL, 
                 `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY(`username_id`),
                 CONSTRAINT `user_login_usernames_fk_user_id` 

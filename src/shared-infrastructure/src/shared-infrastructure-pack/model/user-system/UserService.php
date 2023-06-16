@@ -13,10 +13,11 @@
  * User Service
  * ------------
  *
- * @noinspection PhpPropertyNamingConventionInspection - Long property names are ok.
- * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
- * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
- * @noinspection PhpUnnecessaryLocalVariableInspection - Ignore for readability.
+ * @noinspection PhpPropertyNamingConventionInspection      - Long property names are ok.
+ * @noinspection PhpMethodNamingConventionInspection        - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection      - Short variable names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection      - Ignore for readability.
+ * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore shape for now, add later.
  */
 
 
@@ -40,123 +41,52 @@ class UserService
 
     public function __construct(PithReservedNameUtility $reserved_name_utility, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
-        // Object Dependencies
+        // Set object dependencies
         $this->reserved_name_utility = $reserved_name_utility;
         $this->username_normalizer   = $username_normalizer;
         $this->username_gateway      = $username_gateway;
     }
 
-
     /**
-     * @param $given_username
+     * @param $given_name
      * @return array
      */
-    public function getUsernameNormalizationMatches($given_username): array
+    public function getUsernameAvailability($given_name): array
     {
-        $r = [];
-        $normalizations = [];
-        $found_normalization_results = [];
+        $is_available = false;
+        $name_info    = $this->username_normalizer->getNameInfo($given_name);
+        $is_allowed   = $name_info['is_allowed'] === 'yes';
+        $fail_reason  = $name_info['fail_reason'];
 
-        try {
-            $normalizations = $this->username_normalizer->getNormalizations($given_username);
-            if($normalizations){
-                $has_too_many_permutations = count($normalizations) > 256;
-                if($has_too_many_permutations){
-                    $found_normalization_results = $this->username_gateway->findNormalizations($normalizations);
-                }
-
-                $r = [
-                    'normalizations'            => $normalizations,
-                    'has_too_many_permutations' => $has_too_many_permutations ? 'yes' : 'no',
-                    'existing_results'          => $found_normalization_results,
-                ];
+        if($is_allowed){
+            $name             = $name_info['name_normalized'];
+            $name_lower       = $name_info['name_normalized_lower'];
+            try{
+                $name_results     = $this->username_gateway->findUsernameResults($name, $name_lower);
+                $has_name_results = count($name_results) > 0;
+                $fail_reason      = $has_name_results ? 'username-unavailable' : $fail_reason;
+                $is_available     = !$has_name_results;
+            } catch (PithException $pith_exception){
+                $is_available = false;
+                $fail_reason  = 'database-query-exception';
             }
-        } catch (PithException $e) {
-            // TODO - Log exception
+
         }
 
-        return $r;
-    }
-
-    /**
-     * @param $given_username
-     * @return array
-     *
-     * @noinspection PhpUndefinedVariableInspection             - Ignore for $matches, the logic is fine here.
-     * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore array shape for now, add later.
-     */
-    public function getUsernameAvailability($given_username): array
-    {
-        try {
-            $is_available           = false;
-            $normalization_info     = [];
-            $has_normalization_info = false;
-            $reason                 = '';
-            $is_numeric             = is_numeric($given_username);
-            $has_format             = false;
-            $normalized_name        = '';
-
-            // Check how the name starts and ends
-            $starts_with_underscore = str_starts_with($given_username, '_');
-            $starts_with_dash       = str_starts_with($given_username, '-');
-            $ends_with_underscore   = str_ends_with($given_username, '_');
-            $ends_with_dash         = str_ends_with($given_username, '-');
-            $has_double_underscore  = str_contains($given_username, '__');
-
-            // Check if has correct format
-            $has_format = !$is_numeric && !$starts_with_underscore && !$starts_with_dash && !$ends_with_underscore && !$ends_with_dash && !$has_double_underscore;
-
-            if($has_format){
-                // Get normalization info
-                $normalization_info     = $this->getUsernameNormalizationMatches($given_username);
-                $has_normalization_info = is_array($normalization_info) && count($normalization_info) > 0;
-            }
-            else{
-                $reason = 'incorrect-format';
-            }
-
-            // Check if name is free
-            if($has_normalization_info){
-                $is_available = true;
-
-                $is_taken = (bool) count($normalization_info['existing_results']);
-                if($is_taken){
-                    $is_available = false;
-                    $reason = 'name-unavailable';
-                }
-            }
-
-            // Check normalization permutations
-            if($is_available){
-                if($normalization_info['has_too_many_permutations'] === 'yes'){
-                    $is_available = false;
-                    $reason = 'permutations';
-                }
-            }
-
-            // Check if name is reserved
-            if($is_available){
-                $is_raw_name_reserved        = $this->reserved_name_utility->isReserved($given_username);
-                $normalized_name             = $normalization_info['normalizations'][0];
-                $is_normalized_name_reserved = $this->reserved_name_utility->isReserved($normalized_name);
-                $is_reserved                 = $is_raw_name_reserved || $is_normalized_name_reserved;
-
-                if($is_reserved){
-                    $is_available = false;
-                    $reason = 'name-reserved';
-                }
-            }
-        } catch (PithException $e) {
-            $is_available = false;
-        }
-
+        // Build return
         $r = [
-            'normalized_name'    => $normalized_name,
-            'is_available'       => $is_available,
-            'reason'             => $reason,
-            'normalization_info' => $normalization_info,
+            'is_too_long'           => $name_info['is_too_long'],
+            'name_normalized'       => $name_info['name_normalized'],
+            'name_normalized_lower' => $name_info['name_normalized_lower'],
+            'is_reserved'           => $name_info['is_reserved'],
+            'problem_char_index'    => $name_info['problem_char_index'],
+            'is_allowed'            => $name_info['is_allowed'],
+            'is_available'          => $is_available ? 'yes' : 'no',
+            'fail_reason'           => $fail_reason,
         ];
 
         return $r;
     }
+
+
 }
