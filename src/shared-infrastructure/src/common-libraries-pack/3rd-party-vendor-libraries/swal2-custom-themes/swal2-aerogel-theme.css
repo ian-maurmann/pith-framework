@@ -22,7 +22,6 @@ div.swal2-modal div.swal2-actions button.swal2-confirm{
     background-repeat: no-repeat;
     transform: translateZ(0);
     background-size: 100vw 100vh;
-    transition: background-color 125ms ease-in-out;
     will-change: backdrop-filter, background-color;
     z-index: 5;
 
@@ -62,7 +61,6 @@ div.swal2-modal div.swal2-actions button.swal2-confirm:focus {
     background-repeat: no-repeat;
     transform: translateZ(0);
     background-size: 100vw 100vh;
-    transition: background-color 125ms ease-in-out;
     will-change: backdrop-filter, background-color;
     z-index: 5;
 
