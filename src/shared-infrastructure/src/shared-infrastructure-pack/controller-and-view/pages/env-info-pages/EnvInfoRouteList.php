@@ -10,23 +10,22 @@
 
 declare(strict_types=1);
 
-
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
 use Pith\Framework\PithRouteList;
 
 /**
  * Class EnvInfoRouteList
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages
  */
 class EnvInfoRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '',                  '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRoute'],
-        ['route', 'GET', '/database-info',    '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoDatabaseInfoRoute'],
-        ['route', 'GET', '/fixed-path-links', '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoFixedPathFileLinksRoute'],
-        ['route', 'GET', '/php-info',         '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoPhpInfoRoute'],
-        ['route', 'GET', '/route-list',       '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteListRoute'],
-        ['route', 'GET', '/server-info',      '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoServerInfoRoute'],
+        ['route', 'GET', '',                  '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRoute'],
+        ['route', 'GET', '/database-info',    '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoDatabaseInfoRoute'],
+        ['route', 'GET', '/fixed-path-links', '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoFixedPathFileLinksRoute'],
+        ['route', 'GET', '/php-info',         '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoPhpInfoRoute'],
+        ['route', 'GET', '/route-list',       '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteListRoute'],
+        ['route', 'GET', '/server-info',      '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoServerInfoRoute'],
     ];
 }

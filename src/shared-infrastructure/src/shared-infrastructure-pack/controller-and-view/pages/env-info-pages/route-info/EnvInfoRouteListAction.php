@@ -13,14 +13,14 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
 
 /**
  * Class EnvInfoRouteListAction
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages
  */
 class EnvInfoRouteListAction extends PithAction
 {

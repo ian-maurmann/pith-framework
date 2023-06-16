@@ -13,13 +13,13 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
 use Pith\Framework\PithAction;
 
 /**
  * Class EnvInfoSidebarPartialAction
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages
  */
 class EnvInfoSidebarPartialAction extends PithAction
 {

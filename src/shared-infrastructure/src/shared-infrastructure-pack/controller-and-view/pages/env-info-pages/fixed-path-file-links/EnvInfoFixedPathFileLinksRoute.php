@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
 use Pith\Framework\PithRoute;
 
 /**
  * Class EnvInfoFixedPathFileLinksRoute
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages
  */
 class EnvInfoFixedPathFileLinksRoute extends PithRoute
 {

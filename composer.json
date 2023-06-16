@@ -59,6 +59,9 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/db-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/env-info/",
@@ -66,8 +69,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/php-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/route-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/server-info/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/sidebar/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/sidebar/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",

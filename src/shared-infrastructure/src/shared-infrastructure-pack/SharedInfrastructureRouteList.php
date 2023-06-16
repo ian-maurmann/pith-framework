@@ -23,7 +23,7 @@ class SharedInfrastructureRouteList extends PithRouteList
 {
     public array $routes = [
         ['route-group', '',              PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                   '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
-        ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoRouteList'],
+        ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteList'],
         ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
         ['route',       ['GET', 'POST'], '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
         ['route',       'GET',           '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],

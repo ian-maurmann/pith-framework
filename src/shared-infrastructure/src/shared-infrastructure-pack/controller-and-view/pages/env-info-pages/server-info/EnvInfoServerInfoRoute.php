@@ -10,20 +10,20 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
 use Pith\Framework\PithRoute;
 
 /**
  * Class EnvInfoServerInfoRoute
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages
  */
 class EnvInfoServerInfoRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'dev-ip';
-    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\EnvInfoServerInfoAction';
+    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoServerInfoAction';
     public string $view         = '[^route_folder]/env-info-server-info-view.latte';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\EnvInfoLayoutRoute';
 
