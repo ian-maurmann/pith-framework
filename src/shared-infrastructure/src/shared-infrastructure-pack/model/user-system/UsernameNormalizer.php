@@ -465,7 +465,7 @@ class UsernameNormalizer
             'is_too_long'           => $is_too_long ? 'yes' : 'no',
             'name_normalized'       => $name_normalized,
             'name_normalized_lower' => $name_normalized_lower,
-            'is_reserved'           => $is_reserved,
+            'is_reserved'           => $is_reserved ? 'yes' : 'no',
             'is_allowed'            => $is_allowed ? 'yes' : 'no',
             'fail_reason'           => $fail_reason,
             'problem_char_index'    => $problem_char_index,
