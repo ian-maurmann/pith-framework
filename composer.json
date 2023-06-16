@@ -72,7 +72,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
             ],
-            "Pith\\Framework\\SharedInfrastructure\\UserSystemAjaxEndpoints\\": [
+            "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
             ],

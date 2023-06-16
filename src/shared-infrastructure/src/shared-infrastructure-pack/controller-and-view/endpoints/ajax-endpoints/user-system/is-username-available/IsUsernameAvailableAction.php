@@ -13,14 +13,14 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure\UserSystemAjaxEndpoints;
+namespace Pith\Framework\SharedInfrastructure\Endpoints\UserSystemAjaxEndpoints;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class IsUsernameAvailableAction
- * @package Pith\Framework\SharedInfrastructure\UserSystemAjaxEndpoints
+ * @package Pith\Framework\SharedInfrastructure\Endpoints\UserSystemAjaxEndpoints
  */
 class IsUsernameAvailableAction extends PithAction
 {
