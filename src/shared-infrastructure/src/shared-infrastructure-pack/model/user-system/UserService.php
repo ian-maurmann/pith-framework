@@ -86,7 +86,11 @@ class UserService
         return $r;
     }
 
-    public function spotcheckNewUserEmailAddress($given_email_address)
+    /**
+     * @param $given_email_address
+     * @return array
+     */
+    public function spotcheckNewUserEmailAddress($given_email_address): array
     {
         $is_ok       = true;
         $fail_reason = '';
