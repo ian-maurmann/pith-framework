@@ -26,7 +26,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
-use Pith\Framework\Internal\PithReservedNameUtility;
+use Exception;
 use Pith\Framework\PithException;
 
 /**
@@ -35,16 +35,14 @@ use Pith\Framework\PithException;
  */
 class UserService
 {
-    private PithReservedNameUtility $reserved_name_utility;
     private UsernameNormalizer      $username_normalizer;
     private UsernameGateway         $username_gateway;
 
-    public function __construct(PithReservedNameUtility $reserved_name_utility, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies
-        $this->reserved_name_utility = $reserved_name_utility;
-        $this->username_normalizer   = $username_normalizer;
-        $this->username_gateway      = $username_gateway;
+        $this->username_normalizer = $username_normalizer;
+        $this->username_gateway    = $username_gateway;
     }
 
     /**
@@ -86,6 +84,68 @@ class UserService
         ];
 
         return $r;
+    }
+
+    public function spotcheckNewUserEmailAddress($given_email_address)
+    {
+        $is_ok       = true;
+        $fail_reason = '';
+
+        // Continue on success, Stop on failure
+        try{
+            if(empty($given_email_address)){
+                throw new Exception('email-address-is-empty');
+            }
+
+            $email_address_char_length = mb_strlen($given_email_address);
+            $at_sign_position          = mb_strpos($given_email_address, '@');
+
+            $has_at_sign = $at_sign_position !== false;
+            if(!$has_at_sign){
+                throw new Exception('email-address-does-not-have-at-sign');
+            }
+
+            $is_at_sign_at_start = $at_sign_position === 0;
+            if($is_at_sign_at_start){
+                throw new Exception('email-address-does-not-have-name');
+            }
+
+            $is_at_sign_too_late = !(($email_address_char_length - 3) > $at_sign_position);
+            if($is_at_sign_too_late){
+                throw new Exception('email-address-does-not-have-domain');
+            }
+
+            $domain             = mb_substr($given_email_address,$at_sign_position + 1);
+            $domain_char_length = mb_strlen($domain);
+            $dot_position       = mb_strpos($domain, '.');
+
+            $has_dot = $dot_position !== false;
+            if(!$has_dot){
+                throw new Exception('email-address-domain-does-not-have-dot');
+            }
+
+            $is_dot_at_start = $dot_position === 0;
+            if($is_dot_at_start){
+                throw new Exception('email-address-dot-is-at-start-of-domain');
+            }
+
+            $is_at_first_dot_at_end = !(($domain_char_length - 1) > $dot_position);
+            if($is_at_first_dot_at_end){
+                throw new Exception('email-address-first-dot-in-domain-is-at-the-end');
+            }
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
+        }
+
+        // Build the response
+        $response = [
+            'email_address' => $given_email_address,
+            'is_allowed'    => $is_ok ? 'yes' : 'no',
+            'fail_reason'   => $fail_reason,
+        ];
+
+        return $response;
     }
 
 
