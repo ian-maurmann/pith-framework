@@ -87,10 +87,10 @@ class UserService
     }
 
     /**
-     * @param $given_email_address
+     * @param string $given_email_address
      * @return array
      */
-    public function spotcheckNewUserEmailAddress($given_email_address): array
+    public function spotcheckNewUserEmailAddress(string $given_email_address): array
     {
         $is_ok       = true;
         $fail_reason = '';
@@ -147,6 +147,106 @@ class UserService
             'email_address' => $given_email_address,
             'is_allowed'    => $is_ok ? 'yes' : 'no',
             'fail_reason'   => $fail_reason,
+        ];
+
+        return $response;
+    }
+
+    /**
+     * @param string $given_date_of_birth
+     * @return array
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore for readability.
+     */
+    public function spotcheckNewUserDateOfBirth(string $given_date_of_birth): array
+    {
+        $is_ok             = false;
+        $fail_reason       = '';
+        $year_yyyy         = '';
+        $month_mm          = '';
+        $day_dd            = '';
+        $current_year_yyyy = date('Y');
+        $current_year_int  = (int) $current_year_yyyy;
+        $year_19_ago_int   = $current_year_int - 19;
+        $yyyy_19_years_ago = (string) $year_19_ago_int;
+
+        // Continue on success, Stop on failure
+        try{
+            // Check if empty
+            if(empty($given_date_of_birth)){
+                throw new Exception('date-of-birth-is-empty');
+            }
+
+            // Check if long enough
+            $dob_string_length = strlen($given_date_of_birth);
+            $is_dob_string_10_chars = $dob_string_length === 10;
+            if(!$is_dob_string_10_chars){
+                throw new Exception('date-of-birth-is-not-the-correct-length');
+            }
+
+            // Get year
+            $year_yyyy = mb_substr($given_date_of_birth,0, 4);
+            $year_int  = (int) $year_yyyy;
+
+            // Get month
+            $month_mm  = mb_substr($given_date_of_birth,5, 2);
+            $month_int = (int) $month_mm;
+
+            // Get day
+            $day_dd  = mb_substr($given_date_of_birth,8, 2);
+            $day_int = (int) $day_dd;
+
+            // Check year is old enough
+            $is_year_old_enough = $year_int <= $year_19_ago_int;
+            if(!$is_year_old_enough){
+                throw new Exception('date-of-birth-year-is-not-old-enough');
+            }
+
+            // Check year is new enough
+            $is_year_new_enough = $year_int >= 1900;
+            if(!$is_year_new_enough){
+                throw new Exception('date-of-birth-year-is-not-new-enough');
+            }
+
+            // Check month is high enough
+            $is_month_high_enough = $month_int > 0;
+            if(!$is_month_high_enough){
+                throw new Exception('date-of-birth-month-is-too-low');
+            }
+
+            // Check month is low enough
+            $is_month_low_enough = $month_int < 13;
+            if(!$is_month_low_enough){
+                throw new Exception('date-of-birth-month-is-too-high');
+            }
+
+            // Check day is high enough
+            $is_day_high_enough = $day_int > 0;
+            if(!$is_day_high_enough){
+                throw new Exception('date-of-birth-day-is-too-low');
+            }
+
+            // Check day is low enough
+            $is_day_low_enough = $day_int < 32;
+            if(!$is_day_low_enough){
+                throw new Exception('date-of-birth-day-is-too-high');
+            }
+
+            $is_ok = true;
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
+        }
+
+        // Build the response
+        $response = [
+            'date_of_birth'     => $given_date_of_birth,
+            'yyyy'              => $year_yyyy,
+            'mm'                => $month_mm,
+            'dd'                => $day_dd,
+            'current_year_yyyy' => $current_year_yyyy,
+            'yyyy_19_years_ago' => $yyyy_19_years_ago,
+            'is_allowed'        => $is_ok ? 'yes' : 'no',
+            'fail_reason'       => $fail_reason,
         ];
 
         return $response;
