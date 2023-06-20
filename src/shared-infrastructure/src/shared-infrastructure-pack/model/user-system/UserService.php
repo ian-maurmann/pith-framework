@@ -144,7 +144,7 @@ class UserService
 
         // Build the response
         $response = [
-            'email_address' => $given_email_address,
+         // 'email_address' => $given_email_address,
             'is_allowed'    => $is_ok ? 'yes' : 'no',
             'fail_reason'   => $fail_reason,
         ];
@@ -239,12 +239,12 @@ class UserService
 
         // Build the response
         $response = [
-            'date_of_birth'     => $given_date_of_birth,
-            'yyyy'              => $year_yyyy,
-            'mm'                => $month_mm,
-            'dd'                => $day_dd,
-            'current_year_yyyy' => $current_year_yyyy,
-            'yyyy_19_years_ago' => $yyyy_19_years_ago,
+         // 'date_of_birth'     => $given_date_of_birth,
+         // 'yyyy'              => $year_yyyy,
+         // 'mm'                => $month_mm,
+         // 'dd'                => $day_dd,
+         // 'current_year_yyyy' => $current_year_yyyy,
+         // 'yyyy_19_years_ago' => $yyyy_19_years_ago,
             'is_allowed'        => $is_ok ? 'yes' : 'no',
             'fail_reason'       => $fail_reason,
         ];
@@ -252,5 +252,136 @@ class UserService
         return $response;
     }
 
+    /**
+     * @param string $given_raw_password_string
+     * @param string $confirm_password_string
+     */
+    public function spotcheckNewUserPassword(string $raw_password_string, string $confirm_raw_password_string)
+    {
+        $is_ok       = false;
+        $fail_reason = '';
 
+        // Continue on success, Stop on failure
+        try{
+            // Check if empty
+            if(empty($raw_password_string)){
+                throw new Exception('password-is-empty');
+            }
+            if(empty($confirm_raw_password_string)){
+                throw new Exception('confirm-password-is-empty');
+            }
+
+            // Check that confirm matches
+            $is_match = $raw_password_string === $confirm_raw_password_string;
+            if(!$is_match){
+                throw new Exception('confirm-password-does-not-match-password');
+            }
+
+            // Check if password is 10 chars or longer
+            $password_length  = strlen($raw_password_string);
+            $is_10_chars_plus = $password_length > 9;
+            if(!$is_10_chars_plus){
+                throw new Exception('password-is-too-short');
+            }
+
+            $is_ok = true;
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
+        }
+
+        // Build the response
+        $response = [
+         // 'password'         => $raw_password_string,
+         // 'confirm_password' => $confirm_raw_password_string,
+            'is_ok'            => $is_ok ? 'yes' : 'no',
+            'fail_reason'      => $fail_reason,
+        ];
+
+        return $response;
+    }
+
+
+    /**
+     * @param $username_unsafe
+     * @param $email_address_unsafe
+     * @param $date_of_birth_unsafe
+     * @param $new_password_unsafe
+     * @param $confirm_new_password_unsafe
+     * @return array
+     */
+    public function spotcheckNewUserInfo(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    {
+        $is_username_available    = false;
+        $is_email_address_allowed = false;
+        $is_date_of_birth_allowed = false;
+        $is_password_ok           = false;
+
+        $username_availability_info       = [];
+        $email_address_acceptability_info = [];
+        $date_of_birth_acceptability_info = [];
+        $password_acceptability_info      = [];
+
+        $continue    = true;
+        $fail_field  = '';
+        $fail_reason = '';
+
+        // Username
+        $username_availability_info = $this->getUsernameAvailability($username_unsafe);
+        $is_username_available      = $username_availability_info['is_available'] === 'yes';
+        if(!$is_username_available){
+            $continue    = false;
+            $fail_field  = 'username';
+            $fail_reason = $username_availability_info['fail_reason'];
+        }
+
+        // Email address
+        if($continue){
+            $email_address_acceptability_info = $this->spotcheckNewUserEmailAddress($email_address_unsafe);
+            $is_email_address_allowed         = $email_address_acceptability_info['is_allowed'] === 'yes';
+            if(!$is_email_address_allowed){
+                $continue    = false;
+                $fail_field  = 'email';
+                $fail_reason = $email_address_acceptability_info['fail_reason'];
+            }
+        }
+
+        // Date of birth
+        if($continue){
+            $date_of_birth_acceptability_info = $this->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
+            $is_date_of_birth_allowed         = $date_of_birth_acceptability_info['is_allowed'] === 'yes';
+            if(!$is_date_of_birth_allowed){
+                $continue    = false;
+                $fail_field  = 'birthday';
+                $fail_reason = $date_of_birth_acceptability_info['fail_reason'];
+            }
+        }
+
+        // Password
+        if($continue){
+            $password_acceptability_info = $this->spotcheckNewUserPassword($new_password_unsafe, $confirm_new_password_unsafe);
+            $is_password_ok              = $password_acceptability_info['is_ok'] === 'yes';
+            if(!$is_password_ok){
+                $continue    = false;
+                $fail_field  = 'password';
+                $fail_reason = $password_acceptability_info['fail_reason'];
+            }
+        }
+
+        $is_acceptable = $is_username_available && $is_email_address_allowed && $is_date_of_birth_allowed && $is_password_ok;
+
+
+        // Build the response
+        $response = [
+            'username_availability_info'       => $username_availability_info,
+            'email_address_acceptability_info' => $email_address_acceptability_info,
+            'date_of_birth_acceptability_info' => $date_of_birth_acceptability_info,
+            'password_acceptability_info'      => $password_acceptability_info,
+            'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
+            'fail_field'                       => $fail_field,
+            'fail_reason'                      => $fail_reason,
+        ];
+
+        return $response;
+    }
 }

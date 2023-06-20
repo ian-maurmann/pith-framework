@@ -33,26 +33,21 @@ class CreateNewUserAction extends PithAction
 
     public function runAction()
     {
-        $username_unsafe                  = $_REQUEST['username'] ?? '';
-        $email_address_unsafe             = $_REQUEST['email_address'] ?? '';
-        $date_of_birth_unsafe             = $_REQUEST['date_of_birth'] ?? '';
-        $new_password_unsafe              = $_REQUEST['new_password'] ?? '';
-        $username_availability_info       = $this->user_service->getUsernameAvailability($username_unsafe);
-        $is_username_available            = $username_availability_info['is_available'] === 'yes';
-        $email_address_acceptability_info = $this->user_service->spotcheckNewUserEmailAddress($email_address_unsafe);
-        $is_email_address_allowed         = $email_address_acceptability_info['is_allowed'] === 'yes';
-        $date_of_birth_acceptability_info = $this->user_service->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
-        $is_date_of_birth_allowed         = $date_of_birth_acceptability_info['is_allowed'] === 'yes';
-        $is_acceptable                    = $is_username_available && $is_email_address_allowed && $is_date_of_birth_allowed;
+        $username_unsafe             = $_REQUEST['username'] ?? '';
+        $email_address_unsafe        = $_REQUEST['email_address'] ?? '';
+        $date_of_birth_unsafe        = $_REQUEST['date_of_birth_yyyy_mm_dd'] ?? '';
+        $new_password_unsafe         = $_REQUEST['new_password'] ?? '';
+        $confirm_new_password_unsafe = $_REQUEST['confirm_new_password'] ?? '';
+
+        $user_creation_acceptability_info = $this->user_service->spotcheckNewUserInfo($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
+        $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
 
         // Build the response
         $response = [
             'message_status' => 'success',
             'action_status'  => $is_acceptable ? 'success' : 'failure',
             'data'           => [
-                'username_availability_info'       => $username_availability_info,
-                'email_address_acceptability_info' => $email_address_acceptability_info,
-                'date_of_birth_acceptability_info' => $date_of_birth_acceptability_info,
+                'user_creation_acceptability_info' => $user_creation_acceptability_info,
             ],
         ];
 
