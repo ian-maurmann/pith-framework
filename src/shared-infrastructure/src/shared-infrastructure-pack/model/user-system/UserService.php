@@ -35,14 +35,18 @@ use Pith\Framework\PithException;
  */
 class UserService
 {
-    private UsernameNormalizer      $username_normalizer;
-    private UsernameGateway         $username_gateway;
+    private PasswordUtility          $password_utility;
+    private UserCreationQueueGateway $user_creation_queue_gateway;
+    private UsernameGateway          $username_gateway;
+    private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PasswordUtility $password_utility, UserCreationQueueGateway $user_creation_queue_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
-        // Set object dependencies
-        $this->username_normalizer = $username_normalizer;
-        $this->username_gateway    = $username_gateway;
+        // Set object dependencies:
+        $this->password_utility            = $password_utility;
+        $this->user_creation_queue_gateway = $user_creation_queue_gateway;
+        $this->username_gateway            = $username_gateway;
+        $this->username_normalizer         = $username_normalizer;
     }
 
     /**
@@ -195,6 +199,10 @@ class UserService
             $day_dd  = mb_substr($given_date_of_birth,8, 2);
             $day_int = (int) $day_dd;
 
+            // Get delimiters
+            $delimiter_1 = mb_substr($given_date_of_birth,4, 1);
+            $delimiter_2 = mb_substr($given_date_of_birth,7, 1);
+
             // Check year is old enough
             $is_year_old_enough = $year_int <= $year_19_ago_int;
             if(!$is_year_old_enough){
@@ -229,6 +237,11 @@ class UserService
             $is_day_low_enough = $day_int < 32;
             if(!$is_day_low_enough){
                 throw new Exception('date-of-birth-day-is-too-high');
+            }
+
+            $is_delimited_right = $delimiter_1 === '-' && $delimiter_2 === '-';
+            if(!$is_delimited_right){
+                throw new Exception('date-of-birth-delimiters-are-not-dashes');
             }
 
             $is_ok = true;
@@ -380,6 +393,58 @@ class UserService
             'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
             'fail_field'                       => $fail_field,
             'fail_reason'                      => $fail_reason,
+        ];
+
+        return $response;
+    }
+
+    public function createUser(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    {
+        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
+        $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
+        $fail_field                       = $user_creation_acceptability_info['fail_field'];
+        $fail_reason                      = $user_creation_acceptability_info['fail_reason'];
+
+        if($is_acceptable){
+            $username       = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
+            $username_lower = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
+            $password_hash  = $this->password_utility->getPasswordHash($new_password_unsafe);
+
+            $queue_info = $this->queueUserCreation($username,  $username_lower,  $email_address_unsafe,  $date_of_birth_unsafe,  $password_hash);
+            $queue_id = $queue_info['queue_id'];
+        }
+
+        // Build the response
+        $response = [
+            'user_creation_acceptability_info' => $user_creation_acceptability_info,
+            'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
+            'fail_field'                       => $fail_field,
+            'fail_reason'                      => $fail_reason,
+        ];
+
+        return $response;
+    }
+
+    public function queueUserCreation(string $username, string $username_lower, string $email_address, string $date_of_birth, string $password_hash): array
+    {
+        $is_ok       = false;
+        $fail_reason = '';
+        $queue_id    = 0;
+
+        try{
+            $queue_id = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
+            $is_ok = $queue_id > 0;
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
+        }
+
+
+        // Build the response
+        $response = [
+            'is_ok'       => $is_ok,
+            'fail_reason' => $fail_reason,
+            'queue_id'    => $queue_id,
         ];
 
         return $response;
