@@ -27,7 +27,9 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
 use Exception;
+use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
+use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
 
 /**
  * Class UserService
@@ -35,16 +37,22 @@ use Pith\Framework\PithException;
  */
 class UserService
 {
+    private PithDatabaseWrapper      $database;
     private PasswordUtility          $password_utility;
+    private RandomCharUtility        $random_char_utility;
     private UserCreationQueueGateway $user_creation_queue_gateway;
+    private UserGateway              $user_gateway;
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PasswordUtility $password_utility, UserCreationQueueGateway $user_creation_queue_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
+        $this->database                    = $database;
         $this->password_utility            = $password_utility;
+        $this->random_char_utility         = $random_char_utility;
         $this->user_creation_queue_gateway = $user_creation_queue_gateway;
+        $this->user_gateway                = $user_gateway;
         $this->username_gateway            = $username_gateway;
         $this->username_normalizer         = $username_normalizer;
     }
@@ -398,33 +406,83 @@ class UserService
         return $response;
     }
 
-    public function createUser(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    public function createUser(string $username_unsafe, string $email_address, string $date_of_birth, string $new_password, string $confirm_new_password): array
     {
-        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
+        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address, $date_of_birth, $new_password, $confirm_new_password);
         $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
         $fail_field                       = $user_creation_acceptability_info['fail_field'];
         $fail_reason                      = $user_creation_acceptability_info['fail_reason'];
+        $continue                         = true;
+        $user_creation_info               = [];
+        $is_successful                    = false;
 
         if($is_acceptable){
-            $username       = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
-            $username_lower = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
-            $password_hash  = $this->password_utility->getPasswordHash($new_password_unsafe);
 
-            $queue_info = $this->queueUserCreation($username,  $username_lower,  $email_address_unsafe,  $date_of_birth_unsafe,  $password_hash);
-            $queue_id = $queue_info['queue_id'];
+            $username        = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
+            $username_lower  = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
+            $password_hash   = $this->password_utility->getPasswordHash($new_password);
+            $queue_id        = 0;
+            $user_check_char = '';
+            $user_id         = 0;
+
+            // Continue on success, Stop on failure
+            try{
+                // Insert new row to the User Creation Queue
+                $queue_id     = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
+                $has_queue_id = $queue_id > 0;
+                if(!$has_queue_id){
+                    throw new Exception('No queue id from User Creation Queue');
+                }
+
+                // Begin transaction
+                $this->database->startTransaction();
+
+                // Insert new row to Users
+                $user_check_char = $this->random_char_utility->getRandomCheckCharVersion1();
+                $user_id         = $this->user_gateway->createUser($user_check_char, $username_lower, $email_address);
+                $has_user_id = $user_id > 0;
+                if(!$has_user_id){
+                    throw new Exception('No user id returned when creating new User.');
+                }
+
+                $did_flag = $this->user_creation_queue_gateway->flagUserWasCreated($queue_id,  $user_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the user was created.');
+                }
+
+                // Commit transaction
+                $this->database->commitTransaction();
+
+                // Flag as successful
+                $is_successful = true;
+            }catch (Exception $e) {
+                $fail_reason = $e->getMessage();
+            }
+
+            $user_creation_info = [
+                'username'               => $username,
+                'username_lower'         => $username_lower,
+                'user_creation_queue_id' => $queue_id,
+                'user_check_char'        => $user_check_char,
+                'user_id'                => $user_id,
+                'is_successful'          => $is_successful ? 'yes' : 'no',
+            ];
         }
 
         // Build the response
         $response = [
             'user_creation_acceptability_info' => $user_creation_acceptability_info,
+            'user_creation_info'               => $user_creation_info,
             'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
             'fail_field'                       => $fail_field,
             'fail_reason'                      => $fail_reason,
+            'is_successful'                    => $is_successful ? 'yes' : 'no',
         ];
 
         return $response;
     }
 
+    /*
     public function queueUserCreation(string $username, string $username_lower, string $email_address, string $date_of_birth, string $password_hash): array
     {
         $is_ok       = false;
@@ -432,8 +490,9 @@ class UserService
         $queue_id    = 0;
 
         try{
+            // Insert new row to the User Creation Queue
             $queue_id = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
-            $is_ok = $queue_id > 0;
+            $is_ok    = $queue_id > 0;
         }catch (Exception $e) {
             $is_ok       = false;
             $fail_reason = $e->getMessage();
@@ -449,4 +508,5 @@ class UserService
 
         return $response;
     }
+    */
 }

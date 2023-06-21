@@ -39,16 +39,13 @@ class CreateNewUserAction extends PithAction
         $new_password_unsafe         = $_REQUEST['new_password'] ?? '';
         $confirm_new_password_unsafe = $_REQUEST['confirm_new_password'] ?? '';
 
-        $user_creation_acceptability_info = $this->user_service->spotcheckNewUserInfo($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
-        $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
-
         $user_creation_info = $this->user_service->createUser($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
-
+        $is_successful      = $user_creation_info['is_successful'] === 'yes';
 
         // Build the response
         $response = [
             'message_status' => 'success',
-            'action_status'  => $is_acceptable ? 'success' : 'failure',
+            'action_status'  => $is_successful ? 'success' : 'failure',
             'data'           => [
                 'user_creation_info' => $user_creation_info,
             ],

@@ -17,6 +17,7 @@
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - Readability.
  */
 
 
@@ -83,5 +84,40 @@ class UserCreationQueueGateway
         }
 
         return (int) $inserted_id;
+    }
+
+    /**
+     * @param $queue_id
+     * @param $user_id
+     * @return bool
+     */
+    public function flagUserWasCreated($queue_id, $user_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_user_created = NOW(),
+                created_user_id = :user_id
+            WHERE
+                user_creation_queue_id = :user_creation_queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':user_id'                => $user_id,
+                ':user_creation_queue_id' => $queue_id,
+            ]
+        );
+
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        return $did_update;
     }
 }
