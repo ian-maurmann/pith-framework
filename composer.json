@@ -79,6 +79,9 @@
             "Pith\\Framework\\SharedInfrastructure\\ReusableInserts\\UserSystemReusableInserts\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\TestQuotes\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
             ],
