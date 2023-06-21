@@ -10,8 +10,8 @@
 
 
 /**
- * Username Gateway
- * ----------------
+ * User Gateway
+ * ------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
@@ -24,14 +24,16 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
+use Exception;
+use PDOException;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class UsernameGateway
+ * Class UserGateway
  * @package Pith\Framework\SharedInfrastructure\Model\UserSystem
  */
-class UsernameGateway
+class UserGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -42,37 +44,43 @@ class UsernameGateway
 
 
     /**
-     * @param $name
-     * @param $name_lower
-     * @return array
-     * @throws PithException
+     * @param string $check_char
+     * @param string $username_lower
+     * @param string $email_address
+     * @return int
+     * @throws Exception
+     * @throws PDOException
      */
-    public function findUsernameResults($name, $name_lower): array
+    public function createUser(string $check_char, string $username_lower, string $email_address): int
     {
-        // Default to empty array
-        $results = [];
-
         // Query
         $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username = ?
-                OR 
-                username_lower = ?
+            INSERT INTO `users` 
+                (check_char, created_with_username_lower, created_with_email_address) 
+            VALUES 
+                (:check_char, :created_with_username_lower, :created_with_email_address) 
             ';
 
-        // Execute
-        $results = $this->database->query($sql, $name, $name_lower);
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
 
-        // Check for results
-        $has_results = is_array($results) && (count($results) > 0);
-        if(!$has_results){
-            $results = [];
+        // Execute
+        $statement->execute(
+            [
+                ':check_char'                  => $check_char,
+                ':created_with_username_lower' => $username_lower,
+                ':created_with_email_address'  => $email_address,
+            ]
+        );
+
+        // Get inserted id
+        $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
+
+        if($inserted_id === 0){
+            throw new Exception('Failed to insert to the User table.');
         }
 
-        return $results;
+        return (int) $inserted_id;
     }
+
 }
