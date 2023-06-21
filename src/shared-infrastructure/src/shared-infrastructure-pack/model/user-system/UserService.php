@@ -445,6 +445,7 @@ class UserService
                     throw new Exception('No user id returned when creating new User.');
                 }
 
+                // Tell the queue that the user was created
                 $did_flag = $this->user_creation_queue_gateway->flagUserWasCreated($queue_id,  $user_id);
                 if(!$did_flag){
                     throw new Exception('Failed to inform the queue that the user was created.');
