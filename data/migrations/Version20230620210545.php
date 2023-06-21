@@ -36,6 +36,7 @@ final class Version20230620210545 extends AbstractMigration
                 `username` VARCHAR(191) NOT NULL, 
                 `username_lower` VARCHAR(191) NOT NULL, 
                 `email_address` VARCHAR(191) NOT NULL,
+                `datetime_birth_date` DATETIME NOT NULL,
                 `password_hash` VARCHAR(191) NOT NULL,
                 `datetime_queued` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `datetime_user_created` DATETIME DEFAULT NULL,
