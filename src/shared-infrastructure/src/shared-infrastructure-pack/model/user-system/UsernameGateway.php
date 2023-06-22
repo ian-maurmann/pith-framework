@@ -16,6 +16,8 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
+ * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
  */
 
 
@@ -24,6 +26,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
+use Exception;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
@@ -74,5 +77,45 @@ class UsernameGateway
         }
 
         return $results;
+    }
+
+
+    /**
+     * @param int $user_id
+     * @param string $username
+     * @param string $username_lower
+     * @return int
+     * @throws Exception
+     */
+    public function createUsername(int $user_id, string $username, string $username_lower): int
+    {
+        // Query
+        $sql = '
+            INSERT INTO `user_login_usernames` 
+                (user_id, username, username_lower) 
+            VALUES 
+                (:user_id, :username, :username_lower) 
+            ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':user_id'        => $user_id,
+                ':username'       => $username,
+                ':username_lower' => $username_lower,
+            ]
+        );
+
+        // Get inserted id
+        $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
+        if($inserted_id === 0){
+            throw new Exception('Failed to insert to the User table.');
+        }
+
+        // Return the inserted id
+        return (int) $inserted_id;
     }
 }

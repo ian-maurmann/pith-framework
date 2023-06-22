@@ -75,11 +75,11 @@ class UserGateway
 
         // Get inserted id
         $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
-
         if($inserted_id === 0){
             throw new Exception('Failed to insert to the User table.');
         }
 
+        // Return the inserted id
         return (int) $inserted_id;
     }
 

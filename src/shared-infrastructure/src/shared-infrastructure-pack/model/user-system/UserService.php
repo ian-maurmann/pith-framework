@@ -412,7 +412,6 @@ class UserService
         $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
         $fail_field                       = $user_creation_acceptability_info['fail_field'];
         $fail_reason                      = $user_creation_acceptability_info['fail_reason'];
-        $continue                         = true;
         $user_creation_info               = [];
         $is_successful                    = false;
 
@@ -424,6 +423,7 @@ class UserService
             $queue_id        = 0;
             $user_check_char = '';
             $user_id         = 0;
+            $username_id     = 0;
 
             // Continue on success, Stop on failure
             try{
@@ -440,7 +440,7 @@ class UserService
                 // Insert new row to Users
                 $user_check_char = $this->random_char_utility->getRandomCheckCharVersion1();
                 $user_id         = $this->user_gateway->createUser($user_check_char, $username_lower, $email_address);
-                $has_user_id = $user_id > 0;
+                $has_user_id     = $user_id > 0;
                 if(!$has_user_id){
                     throw new Exception('No user id returned when creating new User.');
                 }
@@ -450,6 +450,20 @@ class UserService
                 if(!$did_flag){
                     throw new Exception('Failed to inform the queue that the user was created.');
                 }
+
+                // Insert new row to Usernames
+                $username_id     = $this->username_gateway->createUsername($user_id, $username, $username_lower);
+                $has_username_id = $username_id > 0;
+                if(!$has_username_id){
+                    throw new Exception('No username id returned when creating new Username.');
+                }
+
+                // Tell the queue that the username was created
+                $did_flag = $this->user_creation_queue_gateway->flagUsernameWasCreated($queue_id,  $username_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the username was added.');
+                }
+
 
                 // Commit transaction
                 $this->database->commitTransaction();
@@ -466,6 +480,7 @@ class UserService
                 'user_creation_queue_id' => $queue_id,
                 'user_check_char'        => $user_check_char,
                 'user_id'                => $user_id,
+                'username_id'            => $username_id,
                 'is_successful'          => $is_successful ? 'yes' : 'no',
             ];
         }

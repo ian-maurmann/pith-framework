@@ -18,6 +18,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
  * @noinspection PhpUnnecessaryLocalVariableInspection - Readability.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
  */
 
 
@@ -111,6 +112,38 @@ class UserCreationQueueGateway
         $statement->execute(
             [
                 ':user_id'                => $user_id,
+                ':user_creation_queue_id' => $queue_id,
+            ]
+        );
+
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        return $did_update;
+    }
+
+
+
+    public function flagUsernameWasCreated($queue_id, $username_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_username_added = NOW(),
+                created_username_id = :username_id
+            WHERE
+                user_creation_queue_id = :user_creation_queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':username_id'            => $username_id,
                 ':user_creation_queue_id' => $queue_id,
             ]
         );
