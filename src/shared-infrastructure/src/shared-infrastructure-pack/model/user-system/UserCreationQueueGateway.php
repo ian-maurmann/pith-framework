@@ -123,8 +123,12 @@ class UserCreationQueueGateway
     }
 
 
-
-    public function flagUsernameWasCreated($queue_id, $username_id): bool
+    /**
+     * @param int $queue_id
+     * @param int $username_id
+     * @return bool
+     */
+    public function flagUsernameWasCreated(int $queue_id, int $username_id): bool
     {
         $sql = '
             UPDATE 
@@ -148,9 +152,44 @@ class UserCreationQueueGateway
             ]
         );
 
+        // Check rows affected
         $rows_affected = $statement->rowCount();
         $did_update    = $rows_affected > 0;
 
+        // Return true if updated, else false
+        return $did_update;
+    }
+
+
+    public function flagUserEmailAddressWasAdded(int $queue_id, int $email_address_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_email_address_added = NOW(),
+                created_email_address_id = :email_address_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':email_address_id' => $email_address_id,
+                ':queue_id'         => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
         return $did_update;
     }
 }

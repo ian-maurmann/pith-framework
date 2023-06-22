@@ -41,17 +41,19 @@ class UserService
     private PasswordUtility          $password_utility;
     private RandomCharUtility        $random_char_utility;
     private UserCreationQueueGateway $user_creation_queue_gateway;
+    private UserEmailAddressGateway  $user_email_address_gateway;
     private UserGateway              $user_gateway;
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
         $this->database                    = $database;
         $this->password_utility            = $password_utility;
         $this->random_char_utility         = $random_char_utility;
         $this->user_creation_queue_gateway = $user_creation_queue_gateway;
+        $this->user_email_address_gateway  = $user_email_address_gateway;
         $this->user_gateway                = $user_gateway;
         $this->username_gateway            = $username_gateway;
         $this->username_normalizer         = $username_normalizer;
@@ -417,13 +419,14 @@ class UserService
 
         if($is_acceptable){
 
-            $username        = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
-            $username_lower  = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
-            $password_hash   = $this->password_utility->getPasswordHash($new_password);
-            $queue_id        = 0;
-            $user_check_char = '';
-            $user_id         = 0;
-            $username_id     = 0;
+            $username         = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
+            $username_lower   = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
+            $password_hash    = $this->password_utility->getPasswordHash($new_password);
+            $queue_id         = 0;
+            $user_check_char  = '';
+            $user_id          = 0;
+            $username_id      = 0;
+            $email_address_id = 0;
 
             // Continue on success, Stop on failure
             try{
@@ -459,9 +462,22 @@ class UserService
                 }
 
                 // Tell the queue that the username was created
-                $did_flag = $this->user_creation_queue_gateway->flagUsernameWasCreated($queue_id,  $username_id);
+                $did_flag = $this->user_creation_queue_gateway->flagUsernameWasCreated($queue_id, $username_id);
                 if(!$did_flag){
                     throw new Exception('Failed to inform the queue that the username was added.');
+                }
+
+                // Insert new row to User Email Addresses
+                $email_address_id     = $this->user_email_address_gateway->addUserEmailAddress($user_id, $email_address);
+                $has_email_address_id = $email_address_id > 0;
+                if(!$has_email_address_id){
+                    throw new Exception('No email address id was returned when adding new User Email Address.');
+                }
+
+                // Tell the queue that the email address was added
+                $did_flag = $this->user_creation_queue_gateway->flagUserEmailAddressWasAdded($queue_id, $email_address_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the user email address was added.');
                 }
 
 
@@ -481,6 +497,7 @@ class UserService
                 'user_check_char'        => $user_check_char,
                 'user_id'                => $user_id,
                 'username_id'            => $username_id,
+                'email_address_id'       => $email_address_id,
                 'is_successful'          => $is_successful ? 'yes' : 'no',
             ];
         }

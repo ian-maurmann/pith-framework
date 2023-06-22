@@ -10,8 +10,8 @@
 
 
 /**
- * User Gateway
- * ------------
+ * User Email Address Gateway
+ * --------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
@@ -31,10 +31,10 @@ use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class UserGateway
+ * Class UserEmailAddressGateway
  * @package Pith\Framework\SharedInfrastructure\Model\UserSystem
  */
-class UserGateway
+class UserEmailAddressGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -43,23 +43,20 @@ class UserGateway
         $this->database = $database;
     }
 
-
     /**
-     * @param string $check_char
-     * @param string $username_lower
+     * @param int $user_id
      * @param string $email_address
      * @return int
      * @throws Exception
-     * @throws PDOException
      */
-    public function createUser(string $check_char, string $username_lower, string $email_address): int
+    public function addUserEmailAddress(int $user_id, string $email_address): int
     {
         // Query
         $sql = '
-            INSERT INTO `users` 
-                (check_char, created_with_username_lower, created_with_email_address) 
+            INSERT INTO `user_email_addresses` 
+                (user_id, email_address) 
             VALUES 
-                (:check_char, :created_with_username_lower, :created_with_email_address) 
+                (:user_id, :email_address) 
             ';
 
         // Prepare
@@ -68,9 +65,8 @@ class UserGateway
         // Execute
         $statement->execute(
             [
-                ':check_char'                  => $check_char,
-                ':created_with_username_lower' => $username_lower,
-                ':created_with_email_address'  => $email_address,
+                ':user_id'       => $user_id,
+                ':email_address' => $email_address,
             ]
         );
 
@@ -83,5 +79,4 @@ class UserGateway
         // Return the inserted id
         return (int) $inserted_id;
     }
-
 }
