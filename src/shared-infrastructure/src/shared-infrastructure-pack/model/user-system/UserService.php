@@ -18,6 +18,8 @@
  * @noinspection PhpVariableNamingConventionInspection      - Short variable names are ok.
  * @noinspection PhpUnnecessaryLocalVariableInspection      - Ignore for readability.
  * @noinspection PhpArrayShapeAttributeCanBeAddedInspection - Ignore shape for now, add later.
+ * @noinspection PhpIllegalPsrClassPathInspection           - Ignore, using PSR 4 not 0.
+ * @noinspection PhpUnusedLocalVariableInspection           - Readability.
  */
 
 
@@ -38,6 +40,7 @@ use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
 class UserService
 {
     private PithDatabaseWrapper      $database;
+    private PasswordGateway          $password_gateway;
     private PasswordUtility          $password_utility;
     private RandomCharUtility        $random_char_utility;
     private UserCreationQueueGateway $user_creation_queue_gateway;
@@ -46,10 +49,11 @@ class UserService
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
         $this->database                    = $database;
+        $this->password_gateway            = $password_gateway;
         $this->password_utility            = $password_utility;
         $this->random_char_utility         = $random_char_utility;
         $this->user_creation_queue_gateway = $user_creation_queue_gateway;
@@ -276,10 +280,11 @@ class UserService
     }
 
     /**
-     * @param string $given_raw_password_string
-     * @param string $confirm_password_string
+     * @param string $raw_password_string
+     * @param string $confirm_raw_password_string
+     * @return array
      */
-    public function spotcheckNewUserPassword(string $raw_password_string, string $confirm_raw_password_string)
+    public function spotcheckNewUserPassword(string $raw_password_string, string $confirm_raw_password_string): array
     {
         $is_ok       = false;
         $fail_reason = '';
@@ -326,11 +331,11 @@ class UserService
 
 
     /**
-     * @param $username_unsafe
-     * @param $email_address_unsafe
-     * @param $date_of_birth_unsafe
-     * @param $new_password_unsafe
-     * @param $confirm_new_password_unsafe
+     * @param string $username_unsafe
+     * @param string $email_address_unsafe
+     * @param string $date_of_birth_unsafe
+     * @param string $new_password_unsafe
+     * @param string $confirm_new_password_unsafe
      * @return array
      */
     public function spotcheckNewUserInfo(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
@@ -427,6 +432,7 @@ class UserService
             $user_id          = 0;
             $username_id      = 0;
             $email_address_id = 0;
+            $password_id      = 0;
 
             // Continue on success, Stop on failure
             try{
@@ -480,6 +486,19 @@ class UserService
                     throw new Exception('Failed to inform the queue that the user email address was added.');
                 }
 
+                // Insert new row to User Passwords
+                $password_id     = $this->password_gateway->createPassword($user_id, $password_hash);
+                $has_password_id = $password_id > 0;
+                if(!$has_password_id){
+                    throw new Exception('No password id returned when creating a new Password for User.');
+                }
+
+                // Tell the queue that the password was created
+                $did_flag = $this->user_creation_queue_gateway->flagPasswordWasCreated($queue_id, $password_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the password was added.');
+                }
+
 
                 // Commit transaction
                 $this->database->commitTransaction();
@@ -498,6 +517,7 @@ class UserService
                 'user_id'                => $user_id,
                 'username_id'            => $username_id,
                 'email_address_id'       => $email_address_id,
+                'password_id'            => $password_id,
                 'is_successful'          => $is_successful ? 'yes' : 'no',
             ];
         }

@@ -192,4 +192,37 @@ class UserCreationQueueGateway
         // Return true if updated, else false
         return $did_update;
     }
+
+
+    public function flagPasswordWasCreated(int $queue_id, int $password_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_password_added = NOW(),
+                created_password_id = :password_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':password_id' => $password_id,
+                ':queue_id'    => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
 }
