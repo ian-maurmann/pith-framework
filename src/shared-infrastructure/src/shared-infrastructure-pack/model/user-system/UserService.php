@@ -40,6 +40,7 @@ use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
 class UserService
 {
     private PithDatabaseWrapper      $database;
+    private LoginCredentialGateway   $login_credential_gateway;
     private PasswordGateway          $password_gateway;
     private PasswordUtility          $password_utility;
     private RandomCharUtility        $random_char_utility;
@@ -49,10 +50,11 @@ class UserService
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
         $this->database                    = $database;
+        $this->login_credential_gateway    = $login_credential_gateway;
         $this->password_gateway            = $password_gateway;
         $this->password_utility            = $password_utility;
         $this->random_char_utility         = $random_char_utility;
@@ -424,15 +426,16 @@ class UserService
 
         if($is_acceptable){
 
-            $username         = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
-            $username_lower   = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
-            $password_hash    = $this->password_utility->getPasswordHash($new_password);
-            $queue_id         = 0;
-            $user_check_char  = '';
-            $user_id          = 0;
-            $username_id      = 0;
-            $email_address_id = 0;
-            $password_id      = 0;
+            $username            = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
+            $username_lower      = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
+            $password_hash       = $this->password_utility->getPasswordHash($new_password);
+            $queue_id            = 0;
+            $user_check_char     = '';
+            $user_id             = 0;
+            $username_id         = 0;
+            $email_address_id    = 0;
+            $password_id         = 0;
+            $login_credential_id = 0;
 
             // Continue on success, Stop on failure
             try{
@@ -500,6 +503,20 @@ class UserService
                 }
 
 
+                // Insert new row to User Login Credentials
+                $login_credential_id = $this->login_credential_gateway->createLoginCredentialWithUsernameAndPassword($user_id, $username_id, $password_id);
+                $has_login_credential_id = $login_credential_id > 0;
+                if(!$has_login_credential_id){
+                    throw new Exception('No login-credential id returned when creating new Login Credential for User.');
+                }
+                
+                // Tell the queue that the login-credential was created
+                $did_flag = $this->user_creation_queue_gateway->flagLoginCredentialWasCreated($queue_id, $login_credential_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the login-credential was added.');
+                }
+
+
                 // Commit transaction
                 $this->database->commitTransaction();
 
@@ -518,6 +535,7 @@ class UserService
                 'username_id'            => $username_id,
                 'email_address_id'       => $email_address_id,
                 'password_id'            => $password_id,
+                'login_credential_id'    => $login_credential_id,
                 'is_successful'          => $is_successful ? 'yes' : 'no',
             ];
         }

@@ -225,4 +225,39 @@ class UserCreationQueueGateway
         // Return true if updated, else false
         return $did_update;
     }
+
+
+
+    public function flagLoginCredentialWasCreated(int $queue_id, int $login_credential_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_login_credential_added = NOW(),
+                created_login_credential_id = :login_credential_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':login_credential_id' => $login_credential_id,
+                ':queue_id'            => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
+
 }
