@@ -44,13 +44,14 @@ class UserService
     private PasswordGateway          $password_gateway;
     private PasswordUtility          $password_utility;
     private RandomCharUtility        $random_char_utility;
+    private UserAccountInfoGateway   $user_account_info_gateway;
     private UserCreationQueueGateway $user_creation_queue_gateway;
     private UserEmailAddressGateway  $user_email_address_gateway;
     private UserGateway              $user_gateway;
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccountInfoGateway $user_account_info_gateway, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
         $this->database                    = $database;
@@ -58,6 +59,7 @@ class UserService
         $this->password_gateway            = $password_gateway;
         $this->password_utility            = $password_utility;
         $this->random_char_utility         = $random_char_utility;
+        $this->user_account_info_gateway   = $user_account_info_gateway;
         $this->user_creation_queue_gateway = $user_creation_queue_gateway;
         $this->user_email_address_gateway  = $user_email_address_gateway;
         $this->user_gateway                = $user_gateway;
@@ -509,11 +511,17 @@ class UserService
                 if(!$has_login_credential_id){
                     throw new Exception('No login-credential id returned when creating new Login Credential for User.');
                 }
-                
+
                 // Tell the queue that the login-credential was created
                 $did_flag = $this->user_creation_queue_gateway->flagLoginCredentialWasCreated($queue_id, $login_credential_id);
                 if(!$did_flag){
                     throw new Exception('Failed to inform the queue that the login-credential was added.');
+                }
+
+                // Insert new row to User Account Info
+                $did_create_user_account_info = $this->user_account_info_gateway->createUserAccountInfo($user_id, $date_of_birth);
+                if(!$did_create_user_account_info){
+                    throw new Exception('Problem creating User Account Info.');
                 }
 
 
