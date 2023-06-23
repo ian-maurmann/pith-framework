@@ -2,7 +2,7 @@
 // New User Signup Form
 // ────────────────────
 //
-// noinspection ES6ConvertVarToLetConst --- Ignore var here.
+// noinspection ES6ConvertVarToLetConst, UnnecessaryLocalVariableJS, UnnecessaryLocalVariableJS
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
@@ -752,7 +752,7 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
             section_loading_screen.css('opacity', 0.0);
             section_loading_screen.attr('data-show', 'yes');
             section_loading_screen.animate({ opacity: 1.0},600, function(){
-
+                self.requestUserCreation();
             });
         });
     }
@@ -782,6 +782,95 @@ SharedUI.NewUserSignupForm.getMaskedUsername = function(given_username){
 
     // Return the filtered string
     return filtered_string;
+}
+
+
+
+SharedUI.NewUserSignupForm.getUserCreationData = function(){
+    let self                   = SharedUI.NewUserSignupForm;
+    let section                = $('[data-section="shared-ui-new-user-signup-form"]');
+    let form                   = section.find('[data-section-item-type="form"]').first();
+    let username_field         = form.find('[data-section-item="username-field"]').first();
+    let email_address_field    = form.find('[data-section-item="email-address-field"]').first();
+    let birthday_field         = form.find('[data-section-item="date-of-birth-field"]').first();
+    let password_field         = form.find('[data-section-item="password-field"]').first();
+    let confirm_password_field = form.find('[data-section-item="confirm-password-field"]').first();
+    let username_input         = username_field.find('input[type="text"]').first();
+    let email_address_input    = email_address_field.find('input[type="text"]').first();
+    let birthday_input         = birthday_field.find('input[type="text"]').first();
+    let password_input         = password_field.find('[data-section-item="password-input"]').first();
+    let confirm_password_input = confirm_password_field.find('[data-section-item="confirm-password-input"]').first();
+    let username               = username_input.val();
+    let email_address          = email_address_input.val();
+    let birthday               = birthday_input.val();
+    let password               = password_input.val();
+    let confirm_password       = confirm_password_input.val();
+    let birthday_yyyy_mm_dd    = self.mmddyyyy_to_yyyymmdd(birthday);
+    let user_creation_fields   = {};
+
+    user_creation_fields = {
+        'username'                 : username,
+        'email_address'            : email_address,
+        'date_of_birth_yyyy_mm_dd' : birthday_yyyy_mm_dd,
+        'new_password'             : password,
+        'confirm_new_password'     : confirm_password
+    }
+
+    return user_creation_fields;
+}
+
+SharedUI.NewUserSignupForm.mmddyyyy_to_yyyymmdd = function(date_as_mm_dd_yyyy){
+    let mm_dd_yyyy_no_whitespace = date_as_mm_dd_yyyy.replace(/\s+/g, '');
+    let year_yyyy                = mm_dd_yyyy_no_whitespace.substring(6);
+    let month_mm                 = mm_dd_yyyy_no_whitespace.substring(0,2);
+    let day_dd                   = mm_dd_yyyy_no_whitespace.substring(3,5);
+    let date_yyyy_mm_dd          = year_yyyy + '-' + month_mm + '-' + day_dd;
+
+    return date_yyyy_mm_dd;
+}
+
+
+SharedUI.NewUserSignupForm.requestUserCreation = function(){
+    let self                   = SharedUI.NewUserSignupForm;
+    let section                = $('[data-section="shared-ui-new-user-signup-form"]');
+    let section_content        = section.find('[data-section-item="section-content"]').first();
+    let section_loading_screen = section.find('[data-section-item="section-loading"]').first();
+    let user_creation_fields   = self.getUserCreationData();
+
+    // Make an ajax request
+    let jqxhr = $.post( "/ajax/user-system/create-new-user", user_creation_fields, function() {
+        // Do nothing for now
+    }).done(function(data) {
+        let message_status     = data.hasOwnProperty('message_status') ? data.message_status : 'error';
+        let is_message_success = message_status === 'success';
+
+        if(is_message_success){
+            section_loading_screen.animate({ opacity: 0.0},600, function() {
+                section_loading_screen.attr('data-show', 'no');
+
+                let action_status     = data.hasOwnProperty('action_status') ? data.action_status : 'error';
+                let is_action_success = action_status === 'success';
+
+                if(is_action_success){
+                    // To Do
+                }
+                else{
+                    section_content.css('opacity', 0.0);
+                    section_content.attr('data-show', 'yes');
+                    section_content.animate({ opacity: 1.0},600, function(){
+                        Swal.fire({
+                            icon: 'error',
+                            html: 'Encountered a problem creating user.'
+                        });
+                    });
+                }
+            });
+        }
+    }).fail(function() {
+        //alert( "error" );
+    }).always(function() {
+        //alert( "finished" );
+    });
 }
 
 // Run Construct on page load
