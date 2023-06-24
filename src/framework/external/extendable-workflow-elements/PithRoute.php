@@ -150,7 +150,7 @@ class PithRoute extends PithWorkflowElement
      *
      * @var string
      */
-    public string $view;
+    public string $view = '';
 
     /**
      * Holds the namespace for the View Adapter object
