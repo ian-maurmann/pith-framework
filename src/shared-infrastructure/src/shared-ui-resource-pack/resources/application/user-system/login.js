@@ -32,6 +32,9 @@ SharedUI.LoginForm.listen = function(){
     // Password show/hide events
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.login-form >>> on-password-eye-click"]', 'click', self.handleOnPasswordEyeClick);
 
+    // Submit login form
+    Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.login-form >>> submit"]', 'click', self.handleOnSubmit);
+
 }
 
 
@@ -78,6 +81,9 @@ SharedUI.LoginForm.handleOnPasswordEyeClick = function(element, event){
     }
 }
 
+SharedUI.LoginForm.handleOnSubmit = function(element, event){
+    alert('x');
+}
 
 // Run Construct on page load
 $( document ).ready(function() {
