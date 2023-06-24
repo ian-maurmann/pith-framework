@@ -10,7 +10,7 @@
 
 
 /**
- * Username Gateway
+ * Password Gateway
  * ----------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
@@ -31,10 +31,10 @@ use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class UsernameGateway
+ * Class PasswordGateway
  * @package Pith\Framework\SharedInfrastructure\Model\UserSystem
  */
-class UsernameGateway
+class PasswordGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -45,56 +45,19 @@ class UsernameGateway
 
 
     /**
-     * @param $name
-     * @param $name_lower
-     * @return array
-     * @throws PithException
-     */
-    public function findUsernameResults($name, $name_lower): array
-    {
-        // Default to empty array
-        $results = [];
-
-        // Query
-        $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username = ?
-                OR 
-                username_lower = ?
-            ';
-
-        // Execute
-        $results = $this->database->query($sql, $name, $name_lower);
-
-        // Check for results
-        $has_results = is_array($results) && (count($results) > 0);
-        if(!$has_results){
-            $results = [];
-        }
-
-        return $results;
-    }
-
-
-    /**
      * @param int $user_id
-     * @param string $username
-     * @param string $username_lower
+     * @param string $password_hash
      * @return int
      * @throws Exception
      */
-    public function createUsername(int $user_id, string $username, string $username_lower): int
+    public function createPassword(int $user_id, string $password_hash): int
     {
         // Query
         $sql = '
-            INSERT INTO `user_login_usernames` 
-                (user_id, username, username_lower) 
+            INSERT INTO `user_login_passwords` 
+                (user_id, password_hash) 
             VALUES 
-                (:user_id, :username, :username_lower) 
+                (:user_id, :password_hash) 
             ';
 
         // Prepare
@@ -103,9 +66,8 @@ class UsernameGateway
         // Execute
         $statement->execute(
             [
-                ':user_id'        => $user_id,
-                ':username'       => $username,
-                ':username_lower' => $username_lower,
+                ':user_id'       => $user_id,
+                ':password_hash' => $password_hash,
             ]
         );
 

@@ -18,6 +18,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
  * @noinspection PhpUnnecessaryLocalVariableInspection - Readability.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
  */
 
 
@@ -120,4 +121,143 @@ class UserCreationQueueGateway
 
         return $did_update;
     }
+
+
+    /**
+     * @param int $queue_id
+     * @param int $username_id
+     * @return bool
+     */
+    public function flagUsernameWasCreated(int $queue_id, int $username_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_username_added = NOW(),
+                created_username_id = :username_id
+            WHERE
+                user_creation_queue_id = :user_creation_queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':username_id'            => $username_id,
+                ':user_creation_queue_id' => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
+
+
+    public function flagUserEmailAddressWasAdded(int $queue_id, int $email_address_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_email_address_added = NOW(),
+                created_email_address_id = :email_address_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':email_address_id' => $email_address_id,
+                ':queue_id'         => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
+
+
+    public function flagPasswordWasCreated(int $queue_id, int $password_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_password_added = NOW(),
+                created_password_id = :password_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':password_id' => $password_id,
+                ':queue_id'    => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
+
+
+
+    public function flagLoginCredentialWasCreated(int $queue_id, int $login_credential_id): bool
+    {
+        $sql = '
+            UPDATE 
+                user_creation_queue
+            SET 
+                datetime_login_credential_added = NOW(),
+                created_login_credential_id = :login_credential_id
+            WHERE
+                user_creation_queue_id = :queue_id
+            LIMIT 1
+        ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':login_credential_id' => $login_credential_id,
+                ':queue_id'            => $queue_id,
+            ]
+        );
+
+        // Check rows affected
+        $rows_affected = $statement->rowCount();
+        $did_update    = $rows_affected > 0;
+
+        // Return true if updated, else false
+        return $did_update;
+    }
+
 }

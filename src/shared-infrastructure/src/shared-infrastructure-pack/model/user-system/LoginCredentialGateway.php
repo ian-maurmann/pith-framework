@@ -10,8 +10,8 @@
 
 
 /**
- * Username Gateway
- * ----------------
+ * Login Credential Gateway
+ * ------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
@@ -31,10 +31,10 @@ use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class UsernameGateway
+ * Class LoginCredentialGateway
  * @package Pith\Framework\SharedInfrastructure\Model\UserSystem
  */
-class UsernameGateway
+class LoginCredentialGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -45,56 +45,16 @@ class UsernameGateway
 
 
     /**
-     * @param $name
-     * @param $name_lower
-     * @return array
-     * @throws PithException
-     */
-    public function findUsernameResults($name, $name_lower): array
-    {
-        // Default to empty array
-        $results = [];
-
-        // Query
-        $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username = ?
-                OR 
-                username_lower = ?
-            ';
-
-        // Execute
-        $results = $this->database->query($sql, $name, $name_lower);
-
-        // Check for results
-        $has_results = is_array($results) && (count($results) > 0);
-        if(!$has_results){
-            $results = [];
-        }
-
-        return $results;
-    }
-
-
-    /**
-     * @param int $user_id
-     * @param string $username
-     * @param string $username_lower
-     * @return int
      * @throws Exception
      */
-    public function createUsername(int $user_id, string $username, string $username_lower): int
+    public function createLoginCredentialWithUsernameAndPassword(int $user_id, int $username_id, int $password_id): int
     {
         // Query
         $sql = '
-            INSERT INTO `user_login_usernames` 
-                (user_id, username, username_lower) 
+            INSERT INTO `user_login_credentials` 
+                (user_id, username_id, password_id) 
             VALUES 
-                (:user_id, :username, :username_lower) 
+                (:user_id, :username_id, :password_id) 
             ';
 
         // Prepare
@@ -103,16 +63,16 @@ class UsernameGateway
         // Execute
         $statement->execute(
             [
-                ':user_id'        => $user_id,
-                ':username'       => $username,
-                ':username_lower' => $username_lower,
+                ':user_id'     => $user_id,
+                ':username_id' => $username_id,
+                ':password_id' => $password_id,
             ]
         );
 
         // Get inserted id
         $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
         if($inserted_id === 0){
-            throw new Exception('Failed to insert to the User table.');
+            throw new Exception('Failed to insert to the user_login_credentials table.');
         }
 
         // Return the inserted id

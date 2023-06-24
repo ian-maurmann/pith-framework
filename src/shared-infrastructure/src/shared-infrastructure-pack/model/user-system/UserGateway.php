@@ -16,6 +16,7 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
  */
 
 
@@ -75,11 +76,11 @@ class UserGateway
 
         // Get inserted id
         $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
-
         if($inserted_id === 0){
             throw new Exception('Failed to insert to the User table.');
         }
 
+        // Return the inserted id
         return (int) $inserted_id;
     }
 

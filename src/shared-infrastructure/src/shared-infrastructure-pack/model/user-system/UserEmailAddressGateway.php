@@ -10,14 +10,13 @@
 
 
 /**
- * Username Gateway
- * ----------------
+ * User Email Address Gateway
+ * --------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
- * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
  */
 
 
@@ -27,14 +26,15 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
 use Exception;
+use PDOException;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class UsernameGateway
+ * Class UserEmailAddressGateway
  * @package Pith\Framework\SharedInfrastructure\Model\UserSystem
  */
-class UsernameGateway
+class UserEmailAddressGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -43,58 +43,20 @@ class UsernameGateway
         $this->database = $database;
     }
 
-
-    /**
-     * @param $name
-     * @param $name_lower
-     * @return array
-     * @throws PithException
-     */
-    public function findUsernameResults($name, $name_lower): array
-    {
-        // Default to empty array
-        $results = [];
-
-        // Query
-        $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username = ?
-                OR 
-                username_lower = ?
-            ';
-
-        // Execute
-        $results = $this->database->query($sql, $name, $name_lower);
-
-        // Check for results
-        $has_results = is_array($results) && (count($results) > 0);
-        if(!$has_results){
-            $results = [];
-        }
-
-        return $results;
-    }
-
-
     /**
      * @param int $user_id
-     * @param string $username
-     * @param string $username_lower
+     * @param string $email_address
      * @return int
      * @throws Exception
      */
-    public function createUsername(int $user_id, string $username, string $username_lower): int
+    public function addUserEmailAddress(int $user_id, string $email_address): int
     {
         // Query
         $sql = '
-            INSERT INTO `user_login_usernames` 
-                (user_id, username, username_lower) 
+            INSERT INTO `user_email_addresses` 
+                (user_id, email_address) 
             VALUES 
-                (:user_id, :username, :username_lower) 
+                (:user_id, :email_address) 
             ';
 
         // Prepare
@@ -103,9 +65,8 @@ class UsernameGateway
         // Execute
         $statement->execute(
             [
-                ':user_id'        => $user_id,
-                ':username'       => $username,
-                ':username_lower' => $username_lower,
+                ':user_id'       => $user_id,
+                ':email_address' => $email_address,
             ]
         );
 
