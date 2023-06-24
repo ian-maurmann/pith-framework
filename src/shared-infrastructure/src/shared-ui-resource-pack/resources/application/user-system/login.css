@@ -1,0 +1,160 @@
+/*
+    Login stylesheet
+    ================
+*/
+
+
+/*noinspection CssRedundantUnit*/
+@media all {
+    [data-section="shared-ui-login-form"] {
+        display: block;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+        min-height: 500px;
+    }
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="center-glide"]{
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="left-glide"]{
+        display: block;
+        text-align: left;
+        position: relative;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="right-glide"]{
+        display: block;
+        text-align: right;
+        position: relative;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="form"]{
+        display: inline-block;
+        text-align: center;
+    }
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"]{
+        display: block;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field-slide-down"]{
+        display: none;
+        opacity: 0;
+    }
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] label{
+        display: block;
+        text-align: left;
+        margin-top: 1.5rem;
+        margin-bottom: 0rem;
+
+        user-select: none;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] input{
+        display: block;
+        width:   15rem;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-type="field-icon"]{
+        position: absolute;
+        padding-top: 0.5em;
+        left: 0.5em;
+        user-select: none;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-type="field-icon-right"]{
+        position: absolute;
+        padding-top: 0.5em;
+        right: 0.5em;
+        user-select: none;
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-type="field-icon-after"]{
+        position: absolute;
+        padding-top: 0.5em;
+        right: -1.5em;
+        user-select: none;
+    }
+
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]{
+        user-select: none;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]:hover{
+        color: var(--ox-color-ant-blue-7);
+    }
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="field"] [data-section-item-type="field-callout-roller"]{
+        position: absolute;
+        right: -2em;
+    }
+
+
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="login-submit-button-div"]{
+        display: inline-block;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+
+        background-color: #0a53be;
+        background-color: var(--ox-color-ant-blue-8);
+        color: #ffffff;
+
+        border-radius: 9px;
+        padding: 0.7em 3em;
+        width: 8rem;
+
+        cursor: pointer;
+        user-select: none;
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        text-align: center;
+    }
+    [data-section="shared-ui-login-form"] [data-section-item-type="login-submit-button-div"]:hover{
+        background-color: var(--ox-color-ant-blue-7);
+    }
+
+    [data-section="shared-ui-login-form"] [data-section-item-type="peg"]{
+        position:absolute;
+    }
+
+
+    /* ============================== */
+
+
+    [data-section="shared-ui-login-form"] [data-section-item="section-loading"]{
+
+    }
+
+    /* ============================================ */
+
+    [data-is-opaque="yes"]{
+        opacity: 1 !important;
+    }
+
+    [data-is-opaque="no"]{
+        opacity: 0 !important;
+    }
+
+    [data-show="no"]{
+        display: none !important;
+    }
+}

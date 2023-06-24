@@ -25,6 +25,7 @@ class DemoPagesRouteList extends PithRouteList
         ['route',       'GET', '',                                   '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
         ['route-group', '',    '/demonstrate-front-end-integration', '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesDemonstrateFrontEndIntegrationRouteList'],
         ['route',       'GET', '/latte',                             '\\Pith\\Framework\\SharedInfrastructure\\LatteRoute'],
+        ['route',       'GET', '/login',                             '\\Pith\\Framework\\SharedInfrastructure\\LoginRoute'],
         ['route',       'GET', '/lorem-ipsum',                       '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
         ['route',       'GET', '/new-user',                          '\\Pith\\Framework\\SharedInfrastructure\\NewUserRoute'],
         ['route',       'GET', '/quotes',                            '\\Pith\\Framework\\SharedInfrastructure\\QuotesRoute'],
