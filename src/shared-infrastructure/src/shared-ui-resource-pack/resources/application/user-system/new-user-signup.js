@@ -852,7 +852,11 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
                 let is_action_success = action_status === 'success';
 
                 if(is_action_success){
-                    // To Do
+                    Swal.fire({
+                        icon: 'success',
+                        html: 'New account successfully created.',
+                        confirmButtonText: 'Continue'
+                    });
                 }
                 else{
                     section_content.css('opacity', 0.0);
