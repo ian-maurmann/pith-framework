@@ -41,14 +41,20 @@ declare(strict_types=1);
                     <input type="password" id="shared-ui-login-form-password-field" data-section-item="password-input" autocomplete="current-password" placeholder="Password">
                 </div>
 
+
+                <div data-section-item-type="field" data-section-item="action-row" data-display-as-valid="no">
+                    <div style="text-align: right;">
+                        <a data-section-item="forgot-password-link">Forgot Password?</a> &nbsp; &nbsp; &nbsp;
+                        <div data-section-item-type="login-submit-button-div" class="aero-gel aero-gel-blurred" tabindex="0" data-shared-ui-click-event="shared-ui.login-form >>> submit">Login</div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div data-section-item-type="center-glide">
-            <div data-section-item-type="login-submit-button-div" class="aero-gel aero-gel-blurred" tabindex="0" data-shared-ui-click-event="shared-ui.login-form >>> submit">Login</div>
-        </div>
+
     </div>
     <div data-section-item="section-loading" data-show="no">
-            <div class="hoja" style="font-size:20pt;">Loading...</div>
+        <div class="hoja" style="font-size:20pt;">Loading...</div>
     </div>
 </div>
