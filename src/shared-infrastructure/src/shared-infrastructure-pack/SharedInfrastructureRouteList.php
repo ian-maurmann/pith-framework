@@ -26,11 +26,13 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteList'],
         ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
         ['route',       ['GET', 'POST'], '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
-        ['route',       'GET',           '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],
-        ['route',       'GET',           '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
+        ['route',       ['GET', 'POST'], '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],
+        ['route',       ['GET', 'POST'], '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
+        ['route',       ['GET', 'POST'], '/error-405',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error405Route'],
         ['route',       'GET',           '/favicon.ico',                                     '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',     '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
+        ['route',       'POST',          '/shared-ui/login-target',                          '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\LoginTargetRoute'],
     ];
 }

@@ -71,6 +71,13 @@ class PithRouter
                 // 404 error page
                 $routing_info = $this->routeWithFastRoute('/error-404');
             }
+            elseif($pith_exception->getCode() === 4005){
+                // Set headers for 404
+                http_response_code(405);
+
+                // 404 error page
+                $routing_info = $this->routeWithFastRoute('/error-405');
+            }
             else{
                 throw $pith_exception;
             }
@@ -168,7 +175,7 @@ class PithRouter
                 // error_log('Router: 405 Method Not Allowed');
 
                 throw new PithException(
-                    'Pith Framework Exception 4005: Route not found. FastRoute\Dispatcher::NOT_FOUND. Allowed Methods: ' . $allowedMethods,
+                    'Pith Framework Exception 4005: Route not found. FastRoute\Dispatcher::NOT_FOUND. Allowed Methods: ' . print_r($allowedMethods, true),
                     4005
                 );
             case FastRoute\Dispatcher::FOUND:
