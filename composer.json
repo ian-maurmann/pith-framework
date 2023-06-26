@@ -61,6 +61,20 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/quotes/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\TestQuotes\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\UserSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/user-system/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/db-info/",
@@ -71,22 +85,12 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/server-info/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/sidebar/"
             ],
-            "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            "Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/login-target/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\ReusableInserts\\UserSystemReusableInserts\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/"
-            ],
-            "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
-                "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
-            ],
-            "Pith\\Framework\\SharedInfrastructure\\Model\\TestQuotes\\": [
-                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
-            ],
-            "Pith\\Framework\\SharedInfrastructure\\Model\\UserSystem\\": [
-                "src/shared-infrastructure/src/shared-infrastructure-pack/model/user-system/"
             ],
             "Pith\\Framework\\SharedThemePack\\": [
                 "src/shared-infrastructure/src/shared-theme-pack/",
