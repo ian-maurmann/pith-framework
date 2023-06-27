@@ -23,7 +23,7 @@ class DoLoginUserRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'world';
+    public string $access_level = 'do-login-user';
     public string $view         = '[^route_folder]/do-login-user-view.phtml';
     public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 

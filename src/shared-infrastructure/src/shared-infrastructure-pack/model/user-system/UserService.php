@@ -561,31 +561,40 @@ class UserService
         return $response;
     }
 
-    /*
-    public function queueUserCreation(string $username, string $username_lower, string $email_address, string $date_of_birth, string $password_hash): array
-    {
-        $is_ok       = false;
-        $fail_reason = '';
-        $queue_id    = 0;
 
-        try{
-            // Insert new row to the User Creation Queue
-            $queue_id = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
-            $is_ok    = $queue_id > 0;
-        }catch (Exception $e) {
-            $is_ok       = false;
-            $fail_reason = $e->getMessage();
+    public function isLoginValidWithUsernameAndPassword($given_username, $given_password)
+    {
+        // Default to false
+        $is_login_valid = false;
+
+        try {
+            // Find user id
+            $username_lower = $this->username_normalizer->getUsernameLower($given_username);
+            $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
+            $has_user_id    = $user_id > 0;
+
+            // Throw when the user id isn't found
+            if(!$has_user_id){
+                throw new Exception('No user id found.');
+            }
+
+            // Find the login credentials
+            $user_login_credential     = $this->login_credential_gateway->getNewestLoginCredentialRowForUserByUserId($user_id);
+            $has_user_login_credential = count($user_login_credential) > 0;
+
+            // Throw when the login credentials aren't found
+            if(!$has_user_login_credential){
+                throw new Exception('No login credentials found.');
+            }
+
+            print_r($user_login_credential);
+
+
+        } catch (PithException | Exception $e) {
+            // Default to false
+            $is_login_valid = false;
         }
 
-
-        // Build the response
-        $response = [
-            'is_ok'       => $is_ok,
-            'fail_reason' => $fail_reason,
-            'queue_id'    => $queue_id,
-        ];
-
-        return $response;
+        return $is_login_valid;
     }
-    */
 }

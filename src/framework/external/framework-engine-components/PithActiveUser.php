@@ -15,6 +15,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Long property names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - Ignore for readability.
  */
 
 
@@ -25,6 +26,7 @@ namespace Pith\Framework;
 
 
 use Pith\Framework\Internal\PithImpressionLogger;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class PithActiveUser
@@ -35,6 +37,7 @@ class PithActiveUser
     // Dependencies
     private PithAppRetriever     $app_retriever;
     private PithImpressionLogger $impression_logger;
+    private UserService          $user_service;
 
     // $_SERVER info, User Agent info, CH info
     private string $ch_down_link;
@@ -59,11 +62,12 @@ class PithActiveUser
     private bool $did_log_impression_on_first_access;
 
 
-    public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
+    public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger, UserService $user_service)
     {
         // Set object dependencies
         $this->app_retriever     = $app_retriever;
         $this->impression_logger = $impression_logger;
+        $this->user_service      = $user_service;
 
         // Set defaults
         $this->did_log_impression_on_first_access = false;
@@ -160,6 +164,13 @@ class PithActiveUser
                 $this->did_log_impression_on_first_access = true;
             }
         }
+    }
+
+    public function attemptToLogInWithUsernameAndPassword($given_username, $given_password)
+    {
+        $is_login_valid = $this->user_service->isLoginValidWithUsernameAndPassword($given_username, $given_password);
+
+        return $is_login_valid;
     }
 
 }
