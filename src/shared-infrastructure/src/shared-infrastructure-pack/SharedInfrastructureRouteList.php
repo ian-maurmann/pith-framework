@@ -25,6 +25,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route-group', '',              PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                   '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
         ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteList'],
         ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
+        ['route',       'POST',          SHARED_UI_LOGIN_FORM_ACTION_LINK,                   '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\DoLoginUserRoute'],
         ['route',       ['GET', 'POST'], '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
         ['route',       ['GET', 'POST'], '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],
         ['route',       ['GET', 'POST'], '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
@@ -33,6 +34,5 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',     '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
-        ['route',       'POST',          '/shared-ui/login-target',                          '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\LoginTargetRoute'],
     ];
 }
