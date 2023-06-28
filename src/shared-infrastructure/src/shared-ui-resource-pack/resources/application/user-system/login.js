@@ -22,6 +22,9 @@ SharedUI.LoginForm.construct = function(){
 
     // Listen for events
     self.listen();
+
+    // Check for failed login
+    self.checkForFailedLogin();
 }
 
 
@@ -38,6 +41,30 @@ SharedUI.LoginForm.listen = function(){
     // On click forgot password link
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.login-form >>> forgot-password"]', 'click', self.handleOnClickForgotPassword);
 
+}
+
+// Check for failed login
+SharedUI.LoginForm.checkForFailedLogin = function(){
+    let self                 = SharedUI.LoginForm;
+    let section              = $('[data-section="shared-ui-login-form"]').first();
+    let notification_area    = section.find('[data-section-item="section-notification"]').first();
+    let failed_login_message = notification_area.find('[data-section-item="failed-login-message-note"]').first();
+    let url_query_string     = window.location.search;
+    let url_GET_parameters   = new URLSearchParams(url_query_string);
+    let has_login_failed     = url_GET_parameters.has('login-failed');
+
+    // If url show that login failed
+    if(has_login_failed){
+        // Display failed-login text
+        failed_login_message.attr('data-show', 'yes');
+        notification_area.attr('data-show', 'yes');
+
+        // Display error pop-up
+        Swal.fire({
+            icon: 'error',
+            html: 'Login failed.<br><br>Please double-check your username and password.'
+        });
+    }
 }
 
 

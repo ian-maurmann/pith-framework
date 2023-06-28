@@ -192,7 +192,7 @@ class PithActiveUser
         }
         else{
             // Redirect to user failed login form
-            header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?unable-to-login', true, 302);
+            header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?login-failed', true, 302);
             exit;
         }
     }

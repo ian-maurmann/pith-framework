@@ -160,6 +160,14 @@
 
     /* ============================================ */
 
+    [data-section="shared-ui-login-form"]  [data-section-item="failed-login-message-note"]{
+        padding-top: 2ex;
+        padding-bottom: 2ex;
+        color: var(--ox-color-ibm2-red-60)
+    }
+
+    /* ============================================ */
+
     [data-is-opaque="yes"]{
         opacity: 1 !important;
     }
