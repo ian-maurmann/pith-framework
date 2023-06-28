@@ -103,13 +103,13 @@ SharedUI.LoginForm.handleOnSubmit = function(element, event){
     if(!has_username){
         Swal.fire({
             icon: 'error',
-            html: 'Needs a Username to log in.'
+            html: 'Username cannot be empty.'
         });
     }
     else if(!has_password){
         Swal.fire({
             icon: 'error',
-            html: 'Needs a Password to log in.'
+            html: 'Password cannot be empty.'
         });
     }
     else if(!is_password_valid){
