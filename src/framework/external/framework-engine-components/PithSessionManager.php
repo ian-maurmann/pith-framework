@@ -35,7 +35,7 @@ class PithSessionManager
 
     public function startSession()
     {
-        session_start();
+        @session_start();
     }
 
     public function createNewSession()
@@ -44,7 +44,7 @@ class PithSessionManager
         $this->killSession();
 
         // (re)-initialize the session.
-        session_start();
+        @session_start();
 
         // Re-generate the session id
         session_regenerate_id(true);
@@ -52,10 +52,10 @@ class PithSessionManager
 
     public function killSession()
     {
-        // (re)-initialize the session.
-        session_start();
+        // (Re)-initialize the session
+        @session_start();
 
-        // Unset all of the session variables.
+        // Unset all of the session variables
         $_SESSION = [];
 
         // If it's desired to kill the session, also delete the session cookie.
@@ -68,7 +68,24 @@ class PithSessionManager
             );
         }
 
-        // Finally, destroy the session.
+        // Finally, destroy the session
         session_destroy();
+    }
+
+    public function buildUserSession(int $user_id, string $username, string $username_lower, int $login_time)
+    {
+        // Make fresh new session / kill old session
+        $this->createNewSession();
+
+        // Reset all of the session variables
+        $_SESSION = [];
+
+        // Build session variables
+        $_SESSION['session_type']         = 'user';
+        $_SESSION['session_created_time'] = time();
+        $_SESSION['user_id']              = $user_id;
+        $_SESSION['username']             = $username;
+        $_SESSION['username_lower']       = $username_lower;
+        $_SESSION['login_time']           = $login_time;
     }
 }

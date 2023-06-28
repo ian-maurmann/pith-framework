@@ -168,9 +168,33 @@ class PithActiveUser
 
     public function attemptToLogInWithUsernameAndPassword($given_username, $given_password)
     {
-        $is_login_valid = $this->user_service->isLoginValidWithUsernameAndPassword($given_username, $given_password);
+        // Get login info
+        $login_validation_info = $this->user_service->getLoginValidationWithUsernameAndPassword($given_username, $given_password);
+        $is_login_valid        = $login_validation_info['is_login_valid_yn'] === 'yes';
+        $login_failure_reason  = (string) $login_validation_info['fail_reason'];
+        $login_credential_id   = (int) $login_validation_info['login_credential_id'];
+        $user_id               = (int) $login_validation_info['user_id'];
+        $username              = (string) $login_validation_info['username'];
+        $username_lower        = (string) $login_validation_info['username_lower'];
+        $datetime_first_used   = (string) $login_validation_info['datetime_first_used'];
+        $login_time            = (int) $login_validation_info['login_time'];
 
-        return $is_login_valid;
+        if($is_login_valid){
+            // Get app
+            $app = $this->app_retriever->getApp();
+
+            // Build new user session
+            $app->session_manager->buildUserSession($user_id, $username, $username_lower, $login_time);
+
+            // Redirect to user successful login landing
+            header('Location: ' . SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+        else{
+            // Redirect to user failed login form
+            header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?unable-to-login', true, 302);
+            exit;
+        }
     }
 
 }

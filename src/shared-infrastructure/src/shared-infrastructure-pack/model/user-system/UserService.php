@@ -562,12 +562,35 @@ class UserService
     }
 
 
-    public function isLoginValidWithUsernameAndPassword($given_username, $given_password)
+    /**
+     * @param string $given_username
+     * @param string $given_password
+     * @return array
+     */
+    public function getLoginValidationWithUsernameAndPassword(string $given_username, string $given_password): array
     {
-        // Default to false
-        $is_login_valid = false;
+        // Set defaults
+        $r                            = [];
+        $is_login_valid               = false;
+        $fail_reason                  = '';
+        $response_login_credential_id = 0;
+        $response_user_id             = 0;
+        $response_username            = '';
+        $response_username_lower      = '';
+        $response_datetime_first_used = '';
+
+
 
         try {
+            // Look at given password
+            $given_password_length         = mb_strlen($given_password);
+            $is_given_password_long_enough = $given_password_length > 9;
+
+            // Throw when the password is too short
+            if(!$is_given_password_long_enough){
+                throw new Exception('Bad password length.');
+            }
+
             // Find user id
             $username_lower = $this->username_normalizer->getUsernameLower($given_username);
             $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
@@ -587,14 +610,49 @@ class UserService
                 throw new Exception('No login credentials found.');
             }
 
-            print_r($user_login_credential);
+            // Look at login credential info
+            $login_credential_id             = (int) $user_login_credential['login_credential_id'];
+            $login_credential_username       = (string) $user_login_credential['username'];
+            $login_credential_username_lower = (string) $user_login_credential['username_lower'];
+            $login_credential_password_hash  = (string) $user_login_credential['password_hash'];
+            $login_credential_first_used     = (string) $user_login_credential['datetime_first_used'];
 
+            // Throw when the username is not the user's current username
+            $are_usernames_a_match = $username_lower === $login_credential_username_lower;
+            if(!$are_usernames_a_match){
+                throw new Exception('Username does not match login credential username.');
+            }
 
+            // Check password
+            $is_password_a_match = password_verify($given_password, $login_credential_password_hash);
+
+            if(!$is_password_a_match){
+                throw new Exception('Wrong password.');
+            }
+
+            $response_login_credential_id = $login_credential_id;
+            $response_user_id             = $user_id;
+            $response_username            = $login_credential_username;
+            $response_username_lower      = $login_credential_username_lower;
+            $response_datetime_first_used = $login_credential_first_used;
+
+            $is_login_valid = true;
         } catch (PithException | Exception $e) {
-            // Default to false
             $is_login_valid = false;
+            $fail_reason    = $e->getMessage();
         }
 
-        return $is_login_valid;
+        $r = [
+            'is_login_valid_yn'   => $is_login_valid ? 'yes' : 'no',
+            'fail_reason'         => $fail_reason,
+            'login_credential_id' => $response_login_credential_id,
+            'user_id'             => $response_user_id,
+            'username'            => $response_username,
+            'username_lower'      => $response_username_lower,
+            'datetime_first_used' => $response_datetime_first_used,
+            'login_time'          => time(),
+        ];
+
+        return $r;
     }
 }

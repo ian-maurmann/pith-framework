@@ -95,11 +95,9 @@ class LoginCredentialGateway
             SELECT 
                 c.login_credential_id,
                 c.user_id,
-                c.username_id,
+                n.username,
                 n.username_lower,
-                c.password_id,
                 p.password_hash,
-                c.email_address_id,
                 c.datetime_created,
                 c.datetime_first_used
             FROM 

@@ -42,10 +42,7 @@ class DoLoginUserAccessLevel extends PithAccessLevel
 
     public function isAllowedToAccess(): bool
     {
-        // "dev-ip" access;
-
-        // Default to deny access
-        $is_allowed = false;
+        // "do-login-user" access;
 
         // Get the app
         $app = $this->app_retriever->getApp();
@@ -53,13 +50,10 @@ class DoLoginUserAccessLevel extends PithAccessLevel
         $username_unsafe = $_POST['username'];
         $password_unsafe = $_POST['password'];
 
-        $is_valid = $app->active_user->attemptToLogInWithUsernameAndPassword($username_unsafe, $password_unsafe);
+        // Attempt to login, should redirect
+        $app->active_user->attemptToLogInWithUsernameAndPassword($username_unsafe, $password_unsafe);
 
-        echo $is_valid ? ' LOGIN ' : ' NO LOGIN ';
-
-        $is_allowed = true;
-
-
-        return $is_allowed;
+        // Should redirect before this point, else return false
+        return false;
     }
 }

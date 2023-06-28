@@ -85,13 +85,42 @@ SharedUI.LoginForm.handleOnPasswordEyeClick = function(element, event){
 }
 
 SharedUI.LoginForm.handleOnSubmit = function(element, event){
-    alert('login');
+    //alert('login');
 
-    let self    = SharedUI.LoginForm;
-    let section = $('[data-section="shared-ui-login-form"]').first();
-    let form    = section.find('form').first();
+    let self              = SharedUI.LoginForm;
+    let section           = $('[data-section="shared-ui-login-form"]').first();
+    let form              = section.find('form').first();
+    let username_field    = form.find('[data-section-item="username-field"]').first();
+    let password_field    = form.find('[data-section-item="password-field"]').first();
+    let username_input    = username_field.find('input[name="username"]').first();
+    let password_input    = password_field.find('input[name="password"]').first();
+    let username          = username_input.val();
+    let password          = password_input.val();
+    let has_username      = username.length > 0;
+    let has_password      = password.length > 0;
+    let is_password_valid = password.length > 9;
 
-    form.submit();
+    if(!has_username){
+        Swal.fire({
+            icon: 'error',
+            html: 'Needs a Username to log in.'
+        });
+    }
+    else if(!has_password){
+        Swal.fire({
+            icon: 'error',
+            html: 'Needs a Password to log in.'
+        });
+    }
+    else if(!is_password_valid){
+        Swal.fire({
+            icon: 'error',
+            html: 'Password is too short.'
+        });
+    }
+    else{
+        form.submit();
+    }
 }
 
 SharedUI.LoginForm.handleOnClickForgotPassword = function(element, event){

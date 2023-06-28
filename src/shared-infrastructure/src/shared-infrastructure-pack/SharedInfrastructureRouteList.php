@@ -25,7 +25,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route-group', '',              PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                   '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
         ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteList'],
         ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,               '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
-        ['route',       'POST',          SHARED_UI_LOGIN_FORM_ACTION_LINK,                   '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\DoLoginUserRoute'],
+        ['route',       'POST',          SHARED_UI_USER_LOGIN_FORM_ACTION_LINK,              '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\DoLoginUserRoute'],
         ['route',       ['GET', 'POST'], '/',                                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
         ['route',       ['GET', 'POST'], '/error-403',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error403Route'],
         ['route',       ['GET', 'POST'], '/error-404',                                       '\\Pith\\Framework\\SharedInfrastructure\\Error404Route'],
