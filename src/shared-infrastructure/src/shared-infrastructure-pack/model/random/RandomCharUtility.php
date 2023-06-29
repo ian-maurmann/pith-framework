@@ -58,4 +58,13 @@ class RandomCharUtility
         return $random_char;
     }
 
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getRandomCheckCharVersion1Lower(): string
+    {
+        return mb_strtolower( $this->getRandomCheckCharVersion1() );
+    }
+
 }

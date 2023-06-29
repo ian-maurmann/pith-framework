@@ -54,7 +54,7 @@ class RandomTokenUtility
         $random_bytes = random_bytes(10);
         $random_hex   = bin2hex($random_bytes);
         $delimited    = $this->grouping_utility->hyphenDelimitGroupsOfFour($random_hex);
-        $end_char     = mb_strtolower( $this->random_char_utility->getRandomCheckCharVersion1() );
+        $end_char     = $this->random_char_utility->getRandomCheckCharVersion1Lower();
         $token        = 't-' . $delimited . '-' . $end_char;
 
         return $token;
