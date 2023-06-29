@@ -25,6 +25,7 @@ namespace Pith\Framework;
 
 
 
+use JetBrains\PhpStorm\NoReturn;
 use Pith\Framework\Internal\PithImpressionLogger;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
@@ -76,7 +77,7 @@ class PithActiveUser
     /**
      * @noinspection SpellCheckingInspection - Ignore "addr", "bitness", and "downlink" not being real words
      */
-    public function start(){
+    public function init(){
 
         // Save what the user requested
         $this->requested_http_method = $_SERVER['REQUEST_METHOD'] ?? '';
@@ -108,6 +109,21 @@ class PithActiveUser
         $this->ch_down_link            = $_SERVER['HTTP_DOWNLINK']                    ?? '';
         $this->ch_viewport_width       = $_SERVER['HTTP_VIEWPORT_WIDTH']              ?? '';
         $this->ch_prefers_color_scheme = $_SERVER['HTTP_SEC_CH_PREFERS_COLOR_SCHEME'] ?? '';
+
+        // Get app
+        // $app = $this->app_retriever->getApp();
+
+        // Load-up the session
+        // $app->session_manager->loadSession();
+    }
+
+    /** @noinspection PhpUnhandledExceptionInspection */
+    public function start(){
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Load-up the session
+        $app->session_manager->loadSession();
     }
 
     /**
@@ -166,7 +182,15 @@ class PithActiveUser
         }
     }
 
-    public function attemptToLogInWithUsernameAndPassword($given_username, $given_password)
+    /**
+     * @param string $given_username
+     * @param string $given_password
+     * @throws PithException
+     *
+     * @noinspection PhpIfWithCommonPartsInspection - Ignore common parts warning.
+     * @noinspection PhpNoReturnAttributeCanBeAddedInspection - Ignore no-return.
+     */
+    public function attemptToLogInWithUsernameAndPassword(string $given_username, string $given_password)
     {
         // Get login info
         $login_validation_info = $this->user_service->getLoginValidationWithUsernameAndPassword($given_username, $given_password);
@@ -195,6 +219,19 @@ class PithActiveUser
             header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?login-failed', true, 302);
             exit;
         }
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isLoggedIn(): bool
+    {
+        $app = $this->app_retriever->getApp();
+
+        $is_logged_in = $app->session_manager->isLoggedIn();
+
+        return $is_logged_in;
     }
 
 }

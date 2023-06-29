@@ -13,6 +13,7 @@
  * Pith Session Manager
  * --------------------
  *
+ * @noinspection PhpUnnecessaryLocalVariableInspection - Ignore for readability.
  */
 
 declare(strict_types=1);
@@ -21,21 +22,35 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Exception;
+use Pith\Framework\SharedInfrastructure\Model\Random\RandomTokenUtility;
+
 /**
  * Class PithSessionManager
  * @package Pith\Framework
  */
 class PithSessionManager
 {
-    public function __construct()
+    private RandomTokenUtility $random_token_utility;
+
+    private bool $did_load_session_already;
+
+    public function __construct(RandomTokenUtility $random_token_utility)
     {
         // Set object dependencies
-        // Do nothing for now.
+        $this->random_token_utility = $random_token_utility;
+
+        // Set defaults
+        $this->did_load_session_already = false;
     }
 
-    public function startSession()
+    public function loadSession()
     {
-        @session_start();
+        if(!$this->did_load_session_already){
+            @session_start();
+
+            $this->did_load_session_already = true;
+        }
     }
 
     public function createNewSession()
@@ -72,6 +87,9 @@ class PithSessionManager
         session_destroy();
     }
 
+    /**
+     * @throws Exception
+     */
     public function buildUserSession(int $user_id, string $username, string $username_lower, int $login_time)
     {
         // Make fresh new session / kill old session
@@ -81,11 +99,41 @@ class PithSessionManager
         $_SESSION = [];
 
         // Build session variables
+        $_SESSION['has_session_yn']       = 'yes';
+        $_SESSION['is_logged_in_yn']      = 'yes';
         $_SESSION['session_type']         = 'user';
         $_SESSION['session_created_time'] = time();
         $_SESSION['user_id']              = $user_id;
         $_SESSION['username']             = $username;
         $_SESSION['username_lower']       = $username_lower;
         $_SESSION['login_time']           = $login_time;
+        $_SESSION['anti_csrf_token']      = $this->random_token_utility->getRandomAntiCsrfToken();
     }
+
+    public function hasSession(): bool
+    {
+        $this->loadSession();
+
+        $has_session_yn = $_SESSION['has_session_yn'] ?? 'no';
+        $has_session    = $has_session_yn === 'yes';
+
+        return $has_session;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLoggedIn(): bool
+    {
+        $is_logged_in = false;
+        $has_session  = $this->hasSession();
+
+        if($has_session){
+            $is_logged_in_yn = $_SESSION['is_logged_in_yn'] ?? 'no';
+            $is_logged_in    = $is_logged_in_yn === 'yes';
+        }
+
+        return $is_logged_in;
+    }
+
 }

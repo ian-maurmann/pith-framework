@@ -77,7 +77,7 @@ class PithApp
         $this->clock->init();
 
         // Startup the active user
-        $this->active_user->start();
+        $this->active_user->init();
     }
     
 }
