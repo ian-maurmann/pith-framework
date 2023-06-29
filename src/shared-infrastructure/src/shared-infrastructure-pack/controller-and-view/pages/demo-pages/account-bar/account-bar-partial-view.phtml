@@ -9,7 +9,7 @@
 declare(strict_types=1);
 ?>
 <?php if($is_logged_in): ?>
-    <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/logout?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
+    <a href="<?php echo SHARED_UI_USER_PERFORM_LOGOUT_LINK; ?>?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
 <?php else: ?>
     <div>
         <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/new-user">New User</a>

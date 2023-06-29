@@ -91,7 +91,8 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/do-login-user/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/perform-user-login/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/perform-user-logout/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\ReusableInserts\\UserSystemReusableInserts\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/"

@@ -10,8 +10,8 @@
 
 
 /**
- * 'do-login-user' Access Level
- * ---------------------
+ * 'perform-user-login' Access Level
+ * ---------------------------------
  *
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
@@ -26,12 +26,13 @@ namespace Pith\Framework\Internal;
 
 use Pith\Framework\PithAccessLevel;
 use Pith\Framework\PithAppRetriever;
+use Pith\Framework\PithException;
 
 /**
  * Class DoLoginUserAccessLevel
  * @package Pith\Framework\Internal
  */
-class DoLoginUserAccessLevel extends PithAccessLevel
+class PerformUserLoginAccessLevel extends PithAccessLevel
 {
     private PithAppRetriever $app_retriever;
 
@@ -40,18 +41,23 @@ class DoLoginUserAccessLevel extends PithAccessLevel
         $this->app_retriever = $app_retriever;
     }
 
+    /** @noinspection PhpUnusedLocalVariableInspection */
     public function isAllowedToAccess(): bool
     {
         // "do-login-user" access;
+        try {
+            // Get the app
+            $app = $this->app_retriever->getApp();
 
-        // Get the app
-        $app = $this->app_retriever->getApp();
+            // Get the POST vars
+            $username_unsafe = $_POST['username'];
+            $password_unsafe = $_POST['password'];
 
-        $username_unsafe = $_POST['username'];
-        $password_unsafe = $_POST['password'];
-
-        // Attempt to login, should redirect
-        $app->active_user->attemptToLogInWithUsernameAndPassword($username_unsafe, $password_unsafe);
+            // Attempt to login, should redirect
+            $app->active_user->attemptToLogInWithUsernameAndPassword($username_unsafe, $password_unsafe);
+        } catch (PithException $e) {
+            return false;
+        }
 
         // Should redirect before this point, else return false
         return false;

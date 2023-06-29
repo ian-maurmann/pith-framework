@@ -91,9 +91,9 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
             }
 
-            // 'do-login-user' --- Attempt to login user
-            elseif ($access_level_string === 'do-login-user') {
-                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DoLoginUserAccessLevel');
+            // 'perform-user-login' --- Attempt to login user
+            elseif ($access_level_string === 'perform-user-login') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLoginAccessLevel');
             }
 
             // Else treat the string as an object namespace
