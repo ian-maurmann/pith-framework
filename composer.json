@@ -49,6 +49,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/account-bar",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demonstrate-libraries-work/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/footer/",
@@ -65,6 +66,9 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
