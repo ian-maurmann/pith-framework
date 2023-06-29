@@ -23,9 +23,6 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-
-
-use JetBrains\PhpStorm\NoReturn;
 use Pith\Framework\Internal\PithImpressionLogger;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
@@ -189,6 +186,8 @@ class PithActiveUser
      *
      * @noinspection PhpIfWithCommonPartsInspection - Ignore common parts warning.
      * @noinspection PhpNoReturnAttributeCanBeAddedInspection - Ignore no-return.
+     * @noinspection PhpUnhandledExceptionInspection
+     * @noinspection PhpUnusedLocalVariableInspection
      */
     public function attemptToLogInWithUsernameAndPassword(string $given_username, string $given_password)
     {
@@ -221,16 +220,59 @@ class PithActiveUser
         }
     }
 
+
+    /**
+     * @param string $given_anti_csrf_token
+     * @throws PithException
+     *
+     * @noinspection PhpIfWithCommonPartsInspection
+     * @noinspection PhpNoReturnAttributeCanBeAddedInspection
+     */
+    public function attemptToLogOutWithToken(string $given_anti_csrf_token)
+    {
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
+        // Load up the session
+        $app->session_manager->loadSession();
+
+        // Get the session's anti-CSRF token
+        $session_anti_csrf_token = $_SESSION['anti_csrf_token'] ?? '';
+
+        // Check if the anti-CSRF tokens match, or are both empty
+        $is_a_match = $given_anti_csrf_token === $session_anti_csrf_token;
+
+        // If is a match, kill session
+        if($is_a_match){
+            $app->session_manager->killSession();
+
+            // Redirect to user successful logout landing
+            header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+        else{
+            // Redirect to user successful logout landing
+            header('Location: ' . SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+
+
+    }
+
+
     /**
      * @return bool
      * @throws PithException
      */
     public function isLoggedIn(): bool
     {
+        // Get app
         $app = $this->app_retriever->getApp();
 
+        // Get is logged in
         $is_logged_in = $app->session_manager->isLoggedIn();
 
+        // Return true if logged in, else return false
         return $is_logged_in;
     }
 

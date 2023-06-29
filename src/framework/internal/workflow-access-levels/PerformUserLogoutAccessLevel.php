@@ -10,7 +10,7 @@
 
 
 /**
- * 'perform-user-login' Access Level
+ * 'perform-user-logout' Access Level
  * ---------------------------------
  *
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
@@ -29,10 +29,10 @@ use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
 
 /**
- * Class PerformUserLoginAccessLevel
+ * Class PerformUserLogoutAccessLevel
  * @package Pith\Framework\Internal
  */
-class PerformUserLoginAccessLevel extends PithAccessLevel
+class PerformUserLogoutAccessLevel extends PithAccessLevel
 {
     private PithAppRetriever $app_retriever;
 
@@ -44,17 +44,16 @@ class PerformUserLoginAccessLevel extends PithAccessLevel
     /** @noinspection PhpUnusedLocalVariableInspection */
     public function isAllowedToAccess(): bool
     {
-        // "perform-user-login" access;
+        // "perform-user-logout" access;
         try {
             // Get the app
             $app = $this->app_retriever->getApp();
 
-            // Get the POST vars
-            $username_unsafe = $_POST['username'];
-            $password_unsafe = $_POST['password'];
+            // Get the REQUEST vars
+            $token_unsafe = $_REQUEST['token'] ?? '';
 
-            // Attempt to login, should redirect
-            $app->active_user->attemptToLogInWithUsernameAndPassword($username_unsafe, $password_unsafe);
+            // Attempt to logout, should redirect
+            $app->active_user->attemptToLogOutWithToken($token_unsafe);
         } catch (PithException $e) {
             return false;
         }
