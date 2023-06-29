@@ -714,8 +714,15 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
     let is_birthday_field_valid            = is_birthday_field_valid_yn === 'yes';
     let is_password_field_valid            = is_password_field_valid_yn === 'yes';
     let is_confirm_password_field_valid    = is_confirm_password_field_valid_yn === 'yes';
+    let is_form_empty                      = !is_username_field_valid && !is_email_address_field_valid && !is_birthday_field_valid && !is_password_field_valid && !is_confirm_password_field_valid;
 
-    if(!is_username_field_valid){
+    if(is_form_empty){
+        Swal.fire({
+            icon: 'warning',
+            html: 'The form is empty.'
+        });
+    }
+    else if(!is_username_field_valid){
         Swal.fire({
             icon: 'error',
             html: 'The username needs be valid and available.'
