@@ -78,4 +78,49 @@ class LoginCredentialGateway
         // Return the inserted id
         return (int) $inserted_id;
     }
+
+    /**
+     * @param int $user_id
+     * @return array
+     * @throws PithException
+     */
+    public function getNewestLoginCredentialRowForUserByUserId(int $user_id): array
+    {
+        // Default to empty array
+        $results = [];
+        $row     = [];
+
+        // Query
+        $sql = '
+            SELECT 
+                c.login_credential_id,
+                c.user_id,
+                n.username,
+                n.username_lower,
+                p.password_hash,
+                c.datetime_created,
+                c.datetime_first_used
+            FROM 
+                user_login_credentials as c
+            LEFT JOIN 
+                user_login_usernames as n on c.username_id = n.username_id
+            LEFT JOIN
+                user_login_passwords as p on c.password_id = p.password_id
+            WHERE 
+                c.user_id = ?
+            ORDER BY c.datetime_created DESC
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $user_id);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $row = $results[0];
+        }
+
+        return $row;
+    }
 }

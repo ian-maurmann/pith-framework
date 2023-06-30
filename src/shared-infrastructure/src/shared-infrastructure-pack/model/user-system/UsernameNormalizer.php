@@ -473,4 +473,13 @@ class UsernameNormalizer
 
         return $r;
     }
+
+    public function getUsernameLower($given_username)
+    {
+        // Normalize
+        $name_normalized       = $this->normalizeToNfc($given_username);
+        $name_normalized_lower = $this->normalizeToNfc( $this->getLowerCase($name_normalized) );
+
+        return $name_normalized_lower;
+    }
 }

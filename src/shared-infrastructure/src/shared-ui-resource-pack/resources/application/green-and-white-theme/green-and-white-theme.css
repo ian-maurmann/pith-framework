@@ -43,6 +43,34 @@
         color: gold;
     }
 
+    #banner-area #account-bar{
+        position: absolute;
+        top:0px;
+        right:0px;
+
+        padding: 2ex 2em;
+    }
+
+    #banner-area #account-bar a:link,
+    #banner-area #account-bar a:visited,
+    #banner-area #account-bar a:hover,
+    #banner-area #account-bar a:active {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        cursor: pointer;
+        user-select: none;
+    }
+    #banner-area #account-bar a:hover   {
+        color: gold;
+    }
+
+
+
     #content-area{
         background-color: #f0f4f3;
         position: absolute;
@@ -68,4 +96,6 @@
     #bottom-quote{
         text-align: center;
     }
+
+
 }
