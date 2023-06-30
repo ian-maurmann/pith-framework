@@ -42,7 +42,8 @@ class LogoutAction extends PithAction
         $app = $this->app_retriever->getApp();
 
         // Variables
-        $logout_note = $app->registry->access_level_note;
+        // $logout_note = $app->registry->access_level_note;
+        $logout_note = $app->registry->getRuntimeNote('logout-note');
 
         // Push to Preparer
         $this->prepare->logout_note = $logout_note;

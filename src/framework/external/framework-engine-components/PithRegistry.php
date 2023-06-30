@@ -37,7 +37,11 @@ class PithRegistry
 
     public function __construct()
     {
+        // Set object dependencies
         // Do nothing for now.
+
+        // Set defaults
+        $this->runtime_notes = [];
     }
 
     /**
@@ -72,7 +76,7 @@ class PithRegistry
     public function setRuntimeNoteOnce(string $note_name, string $note_message)
     {
         $has_note = $this->hasRuntimeNote($note_name);
-        
+
         if(!$has_note){
             $this->setRuntimeNote($note_name, $note_message);
         }
