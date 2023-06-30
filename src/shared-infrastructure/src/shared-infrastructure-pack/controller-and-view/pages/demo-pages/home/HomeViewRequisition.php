@@ -53,8 +53,9 @@ class HomeViewRequisition extends PithViewRequisition
         // $this->addScript(     'Shared-UI Mask script', '/resources/framework/shared-ui/utilities/input-mask-utility.js', 'application-for-page');
         // $this->addScript(     'New User Signup script', '/resources/framework/shared-ui/user-system/new-user-signup.js', 'application-for-page');
         // $this->addScript(     'Login script', '/resources/framework/shared-ui/user-system/login.js', 'application-for-page');
-        $this->addScript(     'Logout Success Message script', '/resources/framework/shared-ui/user-system/logout-success-landing-pop.js', 'application-for-page');
-        $this->addScript(     'Logout Failure Message script', '/resources/framework/shared-ui/user-system/logout-failure-landing-pop.js', 'application-for-page');
+
+        //$this->addScript(     'Logout Success Message script', '/resources/framework/shared-ui/user-system/logout-success-landing-pop.js', 'application-for-page');
+        //$this->addScript(     'Logout Failure Message script', '/resources/framework/shared-ui/user-system/logout-failure-landing-pop.js', 'application-for-page');
 
         // Font
         $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
