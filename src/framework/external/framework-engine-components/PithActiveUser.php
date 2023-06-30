@@ -223,13 +223,13 @@ class PithActiveUser
 
     /**
      * @param string $given_anti_csrf_token
+     * @return bool
      * @throws PithException
-     *
-     * @noinspection PhpIfWithCommonPartsInspection
-     * @noinspection PhpNoReturnAttributeCanBeAddedInspection
      */
-    public function attemptToLogOutWithToken(string $given_anti_csrf_token)
+    public function logOutWithToken(string $given_anti_csrf_token): bool
     {
+        $did_log_out = false;
+
         // Get the app
         $app = $this->app_retriever->getApp();
 
@@ -245,7 +245,26 @@ class PithActiveUser
         // If is a match, kill session
         if($is_a_match){
             $app->session_manager->killSession();
+            $did_log_out = true;
+        }
 
+        return $did_log_out;
+    }
+
+    /**
+     * @param string $given_anti_csrf_token
+     * @throws PithException
+     *
+     * @noinspection PhpIfWithCommonPartsInspection
+     * @noinspection PhpNoReturnAttributeCanBeAddedInspection
+     */
+    public function attemptToLogOutWithTokenAndRedirect(string $given_anti_csrf_token)
+    {
+        // Try to log out
+        $did_log_out = $this->logOutWithToken($given_anti_csrf_token);
+
+        // If is a match, kill session
+        if($did_log_out){
             // Redirect to user successful logout landing
             header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
             exit;
@@ -255,8 +274,6 @@ class PithActiveUser
             header('Location: ' . SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
             exit;
         }
-
-
     }
 
 

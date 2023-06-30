@@ -53,7 +53,7 @@ class PerformUserLogoutAccessLevel extends PithAccessLevel
             $token_unsafe = $_REQUEST['token'] ?? '';
 
             // Attempt to logout, should redirect
-            $app->active_user->attemptToLogOutWithToken($token_unsafe);
+            $app->active_user->attemptToLogOutWithTokenAndRedirect($token_unsafe);
         } catch (PithException $e) {
             return false;
         }
