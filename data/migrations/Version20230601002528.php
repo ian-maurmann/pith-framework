@@ -38,7 +38,7 @@ final class Version20230601002528 extends AbstractMigration
                 `user_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
                 `check_char` CHAR(1) NOT NULL,
                 `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                `created_with_username_lower` VARCHAR(191) NOT NULL, 
+                `created_with_username_lower` VARCHAR(191) UNIQUE NOT NULL, 
                 `created_with_email_address` VARCHAR(191) NOT NULL, 
                 PRIMARY KEY(`user_id`)
             )

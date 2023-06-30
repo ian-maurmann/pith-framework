@@ -16,6 +16,8 @@
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
+ * @noinspection PhpUnusedLocalVariableInspection      - Ignore for readability.
  */
 
 
@@ -24,6 +26,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Model\UserSystem;
 
+use Exception;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
@@ -40,74 +43,6 @@ class UsernameGateway
         $this->database = $database;
     }
 
-
-    /**
-     * @throws PithException
-     */
-    public function getUsernameRowByNormalizedUsername($normalized_username): array
-    {
-        // Default to empty array
-        $row = [];
-
-        // Query
-        $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username_normalized = ?
-            LIMIT 1';
-
-        // Execute
-        $results = $this->database->query($sql, $normalized_username);
-
-        // Check results, Get row
-        $has_results = is_array($results) && (count($results) > 0);
-        if($has_results){
-            $row = $results[0];
-        }
-
-        // Return row as array when found, return empty array when not found
-        return $row;
-    }
-
-    /**
-     * @param array $normalizations
-     * @return array
-     * @throws PithException
-     */
-    public function findNormalizations(array $normalizations): array
-    {
-        // Default to empty array
-        $results = [];
-
-        // Qs
-        // $in_list = rtrim( str_repeat('?,', count($normalizations)), ',');
-        $in = $this->database->in($normalizations);
-
-        // Query
-        $sql = '
-            SELECT 
-                * 
-            FROM 
-                user_login_usernames
-            WHERE 
-                username_normalized IN ('. $in .')
-            LIMIT 1';
-
-        // Execute
-        $results = $this->database->query($sql, $normalizations);
-
-        $has_results = is_array($results) && (count($results) > 0);
-        if(!$has_results){
-            $results = [];
-        }
-
-        //echo $this->database->debug();
-
-        return $results;
-    }
 
     /**
      * @param $name
@@ -142,5 +77,79 @@ class UsernameGateway
         }
 
         return $results;
+    }
+
+
+    /**
+     * @param int $user_id
+     * @param string $username
+     * @param string $username_lower
+     * @return int
+     * @throws Exception
+     */
+    public function createUsername(int $user_id, string $username, string $username_lower): int
+    {
+        // Query
+        $sql = '
+            INSERT INTO `user_login_usernames` 
+                (user_id, username, username_lower) 
+            VALUES 
+                (:user_id, :username, :username_lower) 
+            ';
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':user_id'        => $user_id,
+                ':username'       => $username,
+                ':username_lower' => $username_lower,
+            ]
+        );
+
+        // Get inserted id
+        $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
+        if($inserted_id === 0){
+            throw new Exception('Failed to insert to the User table.');
+        }
+
+        // Return the inserted id
+        return (int) $inserted_id;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function findUserIdByUsernameLower($username_lower): int
+    {
+        // Default to empty
+        $results = [];
+        $user_id = 0;
+
+        // Query
+        $sql = '
+            SELECT 
+                user_id
+            FROM 
+                user_login_usernames
+            WHERE 
+                username_lower = ?
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $username_lower);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $row     = $results[0];
+            $user_id = (int) $row['user_id'];
+        }
+
+        // Return user id as int if found, else return zero if not found
+        return $user_id;
     }
 }
