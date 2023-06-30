@@ -27,8 +27,10 @@ namespace Pith\Framework;
  */
 class PithRegistry
 {
-    public string $requested_uri = '';
+    public string $access_level_note     = '';
+    public string $requested_uri         = '';
     public string $requested_http_method = '';
+
 
     public function __construct()
     {
