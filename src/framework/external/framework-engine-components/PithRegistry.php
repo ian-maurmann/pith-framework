@@ -13,6 +13,7 @@
  * -------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
  */
 
 
@@ -31,6 +32,8 @@ class PithRegistry
     public string $requested_uri         = '';
     public string $requested_http_method = '';
 
+    private array $runtime_notes;
+
 
     public function __construct()
     {
@@ -43,6 +46,36 @@ class PithRegistry
     public function getRequestedUri(): string
     {
         return $this->requested_uri;
+    }
+
+
+    /** @noinspection PhpPureAttributeCanBeAddedInspection - Ignore pure for now, add later */
+    public function getRuntimeNote(string $note_name): string
+    {
+        $has_note = $this->hasRuntimeNote($note_name);
+
+        $note = $has_note ? (string) $this->runtime_notes[$note_name] : '';
+
+        return $note;
+    }
+
+    public function hasRuntimeNote(string $note_name): bool
+    {
+        return array_key_exists($note_name, $this->runtime_notes);
+    }
+
+    public function setRuntimeNote(string $note_name, string $note_message)
+    {
+        $this->runtime_notes[$note_name] = $note_message;
+    }
+
+    public function setRuntimeNoteOnce(string $note_name, string $note_message)
+    {
+        $has_note = $this->hasRuntimeNote($note_name);
+        
+        if(!$has_note){
+            $this->setRuntimeNote($note_name, $note_message);
+        }
     }
 
 }
