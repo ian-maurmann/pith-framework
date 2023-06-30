@@ -24,6 +24,7 @@ class DemoPagesRouteList extends PithRouteList
     public array $routes = [
         ['route',       'GET', '',                                   '\\Pith\\Framework\\SharedInfrastructure\\HomeRoute'],
         ['route-group', '',    '/demonstrate-front-end-integration', '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesDemonstrateFrontEndIntegrationRouteList'],
+        ['route-group', '',    '/demonstrate-access-levels',         '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesDemonstrateAccessLevelsRouteList'],
         ['route',       'GET', '/latte',                             '\\Pith\\Framework\\SharedInfrastructure\\LatteRoute'],
         ['route',       'GET', '/login',                             '\\Pith\\Framework\\SharedInfrastructure\\LoginRoute'],
         ['route',       'GET', '/lorem-ipsum',                       '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
