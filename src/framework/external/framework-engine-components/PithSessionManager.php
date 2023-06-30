@@ -136,4 +136,30 @@ class PithSessionManager
         return $is_logged_in;
     }
 
+    /**
+     * @return bool
+     */
+    public function isLoggedInUser(): bool
+    {
+        // Default to false
+        $is_user = false;
+
+        // Get if visitor is logged in
+        $is_logged_in = $this->isLoggedIn();
+
+        if($is_logged_in){
+            // Session types with user access or higher
+            $session_types_counted_as_user = ['user'];
+
+            // Get the visitor's session type
+            $session_type = $_SESSION['session_type'] ?? '';
+
+            // Get is user
+            $is_user = in_array($session_type, $session_types_counted_as_user, true);
+        }
+
+        // Returns true if is user, else false
+        return $is_user;
+    }
+
 }

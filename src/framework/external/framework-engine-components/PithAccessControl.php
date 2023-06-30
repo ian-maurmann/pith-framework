@@ -27,6 +27,8 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Exception;
+
 /**
  * Class PithAccessControl
  * @package Pith\Framework
@@ -101,6 +103,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLogoutAccessLevel');
             }
 
+            // 'user' --- Logged in user access only
+            elseif ($access_level_string === 'user') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\UserAccessLevel');
+            }
+
             // Else treat the string as an object namespace
             else{
                 $access_level = $this->dependency_injection->container->get($access_level_string);
@@ -124,12 +131,19 @@ class PithAccessControl
                 $exception
             );
         }
+        catch (Exception $exception){
+            throw new PithException(
+                'Pith Framework Exception 4030: The Access Control encountered a problem when running the Access Level. Message: ' . $exception->getMessage(),
+                4030,
+                $exception
+            );
+        }
 
 
         // After load
         if (is_object($access_level)) {
             // Get App
-            $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
+            // $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
         }
         else{
             $access_level = false;

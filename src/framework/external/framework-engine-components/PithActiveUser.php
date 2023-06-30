@@ -276,4 +276,20 @@ class PithActiveUser
         return $is_logged_in;
     }
 
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isUser(): bool
+    {
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        // Return true if is a logged in user or above, else return false
+        return $is_logged_in_user;
+    }
+
 }
