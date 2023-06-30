@@ -44,9 +44,11 @@ class AccountBarAction extends PithAction
         // Variables
         $is_logged_in    = $app->active_user->isLoggedIn();
         $anti_csrf_token = $_SESSION['anti_csrf_token'] ?? '';
+        $display_name    = $_SESSION['username'] ?? '';
 
         // Push to Preparer
         $this->prepare->is_logged_in    = $is_logged_in;
         $this->prepare->anti_csrf_token = $anti_csrf_token;
+        $this->prepare->display_name    = $display_name;
     }
 }
