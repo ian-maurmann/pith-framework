@@ -141,11 +141,7 @@ class PithAccessControl
 
 
         // After load
-        if (is_object($access_level)) {
-            // Get App
-            // $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
-        }
-        else{
+        if (!is_object($access_level)) {
             $access_level = false;
         }
 
@@ -170,10 +166,19 @@ class PithAccessControl
         }
         else{
             // If not logged in:
-            // TODO - Throw exception - Handle it and then - Deny & show the login page
-
+            // T*O*D*O - Throw exception - Handle it and then - Deny & show the login page. Done.
             // If logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the access denied page
+
+            $is_logged_in = $app->active_user->isLoggedIn();
+            if($is_logged_in){
+                // TODO Send to access denied page. (Need to make an access denied page first)
+            }
+            else{
+                // Redirect to user login form
+                header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK, true, 302);
+                exit;
+            }
 
             /*
             throw new PithException(
@@ -181,7 +186,6 @@ class PithAccessControl
                 4007
             );
             */
-
 
             // Log impression
             $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
