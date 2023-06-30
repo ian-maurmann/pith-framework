@@ -12,7 +12,7 @@ declare(strict_types=1);
     <div>
         <?php echo $display_name; ?>
         |
-        <a href="<?php echo SHARED_UI_USER_PERFORM_LOGOUT_LINK; ?>?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
+        <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/sign-out?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
     </div>
 <?php else: ?>
     <div>
