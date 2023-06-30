@@ -103,6 +103,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLogoutAccessLevel');
             }
 
+            // 'logout' --- Attempt to logout user
+            elseif ($access_level_string === 'logout') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\LogoutAccessLevel');
+            }
+
             // 'user' --- Logged in user access only
             elseif ($access_level_string === 'user') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\UserAccessLevel');
