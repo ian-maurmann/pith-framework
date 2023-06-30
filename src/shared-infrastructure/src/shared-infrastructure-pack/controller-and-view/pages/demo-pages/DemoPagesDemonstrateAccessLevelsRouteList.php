@@ -23,6 +23,7 @@ use Pith\Framework\PithRouteList;
 class DemoPagesDemonstrateAccessLevelsRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '', '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateAccessLevelsRoute'],
+        ['route', 'GET', '',             '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateAccessLevelsRoute'],
+        ['route', 'GET', '/user-access', '\\Pith\\Framework\\SharedInfrastructure\\UserAccessRoute'],
     ];
 }

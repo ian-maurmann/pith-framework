@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Demonstrate Access-Levels Route
- * -------------------------------
+ * User Access Route
+ * -----------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  * @noinspection PhpIllegalPsrClassPathInspection      - PSR-4.
@@ -16,15 +16,15 @@ namespace Pith\Framework\SharedInfrastructure;
 use Pith\Framework\PithRoute;
 
 /**
- * Class DemonstrateAccessLevelsRoute
+ * Class UserAccessRoute
  * @package Pith\Framework\SharedInfrastructure
  */
-class DemonstrateAccessLevelsRoute extends PithRoute
+class UserAccessRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'dev-ip';
-    public string $view         = '[^route_folder]/demonstrate-access-levels-view.phtml';
+    public string $view         = '[^route_folder]/lorem-ipsum-view.phtml';
     public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
     public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLayoutRoute';
 
