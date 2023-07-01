@@ -1,0 +1,171 @@
+<?php
+
+/**
+ * New User Signup Form partial view
+ * ---------------------------------
+ *
+ * @noinspection PhpUndefinedVariableInspection - Variables defined outside scope
+ */
+
+declare(strict_types=1);
+?>
+
+
+
+
+
+<!-- New User Sign-up form section -->
+<div data-section="shared-ui-new-user-signup-form">
+    <div data-section-item="section-content">
+
+        <div data-section-item-type="center-glide">
+
+            <div data-section-item-type="form" data-form-show-passwords="no">
+
+                <!-- Username field -->
+                <div data-section-item-type="field" data-section-item="username-field" data-display-as-valid="no">
+                    <label for="shared-ui-new-user-signup-form-username-field">Username for Login</label>
+                    <div data-section-item-type="left-glide"><i class="bi bi-person" data-section-item-type="field-icon"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide">
+                        <div data-section-item-type="field-callout-roller">
+                            <div data-section-item-type="field-callout" data-show="no">
+                                <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
+                                <div data-section-item-type="callout-content">
+                                    <ul>
+                                        <li>Usernames for logging-in can contain <b>letters</b>, <b>numbers</b>, and <b>underscores</b>.</li>
+                                        <li>Can start with a letter or a number.</li>
+                                        <li>Can end with a letter or a number.</li>
+                                        <li>Only one underscore in a row.</li>
+                                        <li>Allowed characters:
+                                            <span data-section-item-type="callout-allowed-chars-list">
+                                                abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" id="shared-ui-new-user-signup-form-username-field" placeholder="Username" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-username-field-input">
+                </div>
+
+                <!-- Username Availability Lookup Area -->
+                <div data-section-item-type="field-slide-down" data-section-item="username-availability-lookup-area">
+                    <div data-section-item-type="left-glide">
+                        <div data-section-item-type="peg">
+                            <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-checking-availability" data-show="no"><i class="fa4 fa4-spinner fa4-pulse"></i> Checking availability...</div>
+                            <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-username-unavailable" data-show="no">Username unavailable.</div>
+                            <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-username-available" data-show="no">Username available!</div>
+                            <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-incorrect-format" data-show="no">Incorrect format.</div>
+                            <div data-section-item-type="username-availability-text" data-section-item="username-availability-text-name-reserved" data-show="no">Reserved name.</div>
+                        </div>
+                    </div>
+                    <div data-section-item-type="right-glide" data-section-item="field-slide-down-slider">
+                        <div data-section-item-type="check-username-availability-button-div" class="aero-gel aero-gel-blurred" tabindex="0" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-click-check-username-availability-button">Check Availability</div>
+                    </div>
+                </div>
+
+                <!-- Email Address field -->
+                <div data-section-item-type="field" data-section-item="email-address-field" data-display-as-valid="no">
+                    <label for="shared-ui-new-user-signup-form-email-address-field">Email Address</label>
+                    <div data-section-item-type="left-glide"><i class="bi bi-envelope-at" data-section-item-type="field-icon"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide">
+                        <div data-section-item-type="field-callout-roller">
+                            <div data-section-item-type="field-callout" data-show="no">
+                                <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
+                                <div data-section-item-type="callout-content">
+                                    <ul>
+                                        <li>Email address must be in normal format, <nbsp>i.e.</nbsp> <i><nbsp>name@example.com</nbsp></i></li>
+                                        <li>Back-up email addresses can be added to account later.</li>
+                                        <li>Can select option to log in with an email address after email address is verified.</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" id="shared-ui-new-user-signup-form-email-address-field" placeholder="Email Address" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-email-address-field-input">
+                </div>
+
+                <!-- Date-of-Birth field -->
+                <div data-section-item-type="field" data-section-item="date-of-birth-field" data-display-as-valid="no">
+                    <label for="shared-ui-new-user-signup-form-dob-field">Birthday</label>
+                    <div data-section-item-type="left-glide"><i class="bi bi-gift" data-section-item-type="field-icon"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-right" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide">
+                        <div data-section-item-type="field-callout-roller">
+                            <div data-section-item-type="field-callout" data-show="no">
+                                <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
+                                <div data-section-item-type="callout-content">
+                                    <ul>
+                                        <li>Use <b><nbsp>MM/DD/YYYY</nbsp></b> as the date format.</li>
+                                        <li>Date-of-birth is needed for us to follow legal requirements and age restrictions in various countries across the world.</li>
+                                        <li>The calendar year of the user's <nbsp>date-of-birth</nbsp> must be at least 19 years before the current calendar year, <nbsp>i.e.</nbsp> <b><?php echo $year_19_years_ago ?> or earlier</b>.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" id="shared-ui-new-user-signup-form-dob-field" placeholder="Date of Birth (MM/DD/YYYY)" onkeyup="SharedUI.InputMaskUtility.date_mmddyyyy_mask(this, event);" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-birthday-field-input">
+                </div>
+
+                <!-- Password field -->
+                <div data-section-item-type="field" data-section-item="password-field" data-display-as-valid="no">
+                    <label for="shared-ui-new-user-signup-form-password-field">New Password</label>
+                    <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right" data-section-item-role="password-eye" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide">
+                        <div data-section-item-type="field-callout-roller">
+                            <div data-section-item-type="field-callout" data-show="no">
+                                <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
+                                <div data-section-item-type="callout-content">
+                                    <ul>
+                                        <li>Password must be 10 characters or longer.</li>
+                                        <li>Password cannot contain any spaces, tabs, or commas.</li>
+                                        <li>Please use a good password!</li>
+                                        <li>See also: <a href="https://xkcd.com/936/" target="_blank">xkcd.com/936/</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="password" id="shared-ui-new-user-signup-form-password-field" data-section-item="password-input" autocomplete="new-password" placeholder="Password" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-password-field-input">
+                </div>
+
+                <!-- Confirm Password field -->
+                <div data-section-item-type="field" data-section-item="confirm-password-field" data-display-as-valid="no">
+                    <label for="shared-ui-new-user-signup-form-confirm-password-field">Confirm New Password</label>
+                    <div data-section-item-type="left-glide"><i class="bi bi-key" data-section-item-type="field-icon"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-eye" data-section-item-type="field-icon-right" data-section-item-role="password-eye" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-password-eye-click"></i></div>
+                    <div data-section-item-type="right-glide"><i class="bi bi-x-lg" data-section-item-type="field-icon-after" data-show="no"></i></div>
+                    <div data-section-item-type="right-glide">
+                        <div data-section-item-type="field-callout-roller">
+                            <div data-section-item-type="field-callout" data-show="no">
+                                <div data-section-item-type="field-callout-gutter" class="aero-gel-shimmer aero-gel-blurred"><i class="bi bi-chevron-left"></i></div>
+                                <div data-section-item-type="callout-content">
+                                    <ul>
+                                        <li>Must match password.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="password" id="shared-ui-new-user-signup-form-confirm-password-field" data-section-item="confirm-password-input" autocomplete="new-password" placeholder="Confirm Password" data-shared-ui-focus-event="shared-ui.new-user-signup-form >>> on-field-focus" data-shared-ui-blur-event="shared-ui.new-user-signup-form >>> on-field-blur" data-shared-ui-input-event="shared-ui.new-user-signup-form >>> on-confirm-password-field-input">
+                </div>
+            </div>
+        </div>
+
+        <div data-section-item-type="center-glide">
+            <div data-section-item-type="signup-submit-button-div" class="aero-gel aero-gel-blurred" tabindex="0" data-shared-ui-click-event="shared-ui.new-user-signup-form >>> submit">Continue </div>
+        </div>
+    </div>
+    <div data-section-item="section-loading" data-show="no">
+            <div class="hoja" style="font-size:20pt;">Loading...</div>
+    </div>
+</div>

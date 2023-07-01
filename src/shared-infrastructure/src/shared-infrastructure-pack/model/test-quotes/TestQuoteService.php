@@ -22,7 +22,7 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\SharedInfrastructure\Model\TestQuotes;
 
 
 use Exception;
@@ -30,7 +30,7 @@ use Pith\Framework\PithException;
 
 /**
  * Class TestQuoteService
- * @package Pith\Framework\SharedInfrastructure
+ * @package Pith\Framework\SharedInfrastructure\Model\TestQuotes
  */
 class TestQuoteService
 {
