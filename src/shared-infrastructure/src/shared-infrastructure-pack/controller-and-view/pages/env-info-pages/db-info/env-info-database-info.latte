@@ -1,0 +1,48 @@
+Connection Info:
+<br/>
+<table data-table-style="route-list-info">
+    <tbody>
+    <tr>
+        <th>DSN</th>
+        <td>{$dsn}</td>
+    </tr>
+    <tr>
+        <th>Migrations DB Name</th>
+        <td>{$migrations_database_name}</td>
+    </tr>
+    <tr>
+        <th>Migrations DB Host</th>
+        <td>{$migrations_database_host}</td>
+    </tr>
+    <tr>
+        <th>Migrations DB Driver</th>
+        <td>{$migrations_database_driver}</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+Try to fetch the test quotes:<br/>
+<br/>
+<table data-table-style="route-list-info">
+    <thead>
+    <tr>
+        <th colspan="2">Test Quotes</th>
+    </tr>
+    <tr>
+        <th>Quote ID</th>
+        <th>Quote</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach $quote_results as $quote_result}
+        <tr>
+            <td>{$quote_result[quote_id]}</td>
+            <td>{$quote_result[quote]}</td>
+        </tr>
+    {else}
+        <tr>
+            <td colspan="2"><i>No routes found.</i></td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>

@@ -33,6 +33,9 @@ declare(strict_types=1);
     </head>
     <body>
         <div id="banner-area">
+            <div id="account-bar">
+                <?php $this->insertPartial('Pith\\Framework\\SharedInfrastructure\\AccountBarPartialRoute'); ?>
+            </div>
             Banner
             <nav>
                 <?php $this->insertPartial('Pith\\Framework\\SharedInfrastructure\\DemoNavLinksPartialRoute'); ?>

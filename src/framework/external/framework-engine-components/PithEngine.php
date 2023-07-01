@@ -30,16 +30,18 @@ use ReflectionException;
  */
 class PithEngine
 {
-    private PithConfig     $config;
-    private PithRouter     $router;
-    private PithDispatcher $dispatcher;
+    private PithAppRetriever $app_retriever;
+    private PithConfig       $config;
+    private PithRouter       $router;
+    private PithDispatcher   $dispatcher;
 
-    public function __construct(PithConfig $config, PithRouter $router, PithDispatcher $dispatcher)
+    public function __construct(PithAppRetriever $app_retriever, PithConfig $config, PithRouter $router, PithDispatcher $dispatcher)
     {
         // Object Dependencies
-        $this->config     = $config;
-        $this->router     = $router;
-        $this->dispatcher = $dispatcher;
+        $this->app_retriever = $app_retriever;
+        $this->config        = $config;
+        $this->router        = $router;
+        $this->dispatcher    = $dispatcher;
     }
 
     /**
@@ -47,9 +49,15 @@ class PithEngine
      */
     public function start()
     {
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
         // Load config
         $this->config->load();
-        
+
+        // User and session
+        $app->active_user->start();
+
         // Get route
         $route = $this->router->getRoute();
 

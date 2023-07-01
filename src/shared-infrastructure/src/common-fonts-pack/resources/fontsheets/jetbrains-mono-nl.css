@@ -1,0 +1,41 @@
+/*
+    The normal weight must be at the top of the list!
+    https://support.fontspring.com/hc/en-us/articles/10244250193691
+*/
+
+/* #1 Regular Weight */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: normal;
+    font-weight: normal;
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf') format('truetype');
+}
+
+/* #2 Italic Style */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: italic;
+    font-weight: normal;
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Italic.ttf') format('truetype');
+}
+
+/* #3 Bold Weight */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: normal;
+    font-weight: bold;
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-Bold.ttf') format('truetype');
+}
+
+/* #4 Bold Italic Style */
+@font-face {
+    font-family: "JetBrains Mono NL";
+    font-style: italic;
+    font-weight: bold;
+    src: url('../vendor-fonts/jetbrains-mono-2.304/fonts/ttf/JetBrainsMonoNL-BoldItalic.ttf') format('truetype');
+}
+
+/*
+    The order is important, the bold/italic style must come last. – The Who
+    https://stackoverflow.com/questions/2436749/how-to-add-multiple-font-files-for-the-same-font
+*/

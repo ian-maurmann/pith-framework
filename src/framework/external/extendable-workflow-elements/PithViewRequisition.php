@@ -93,6 +93,7 @@ class PithViewRequisition extends PithWorkflowElement
     public function addStylesheet(string $human_readable_name, string $filepath, string $role = 'application-for-page')
     {
         // Roles:
+        //     'font-preload'
         //     'reset'
         //     'library-for-layout'
         //     'application-for-layout'
@@ -100,12 +101,36 @@ class PithViewRequisition extends PithWorkflowElement
         //     'application-for-page'
         //     'library-for-partial'
         //     'application-for-partial'
+        //     'font-stylesheet'
 
         $this->resources[] = [
             'name'          => $human_readable_name,
             'resource_type' => 'stylesheet',
             'filepath'      => $filepath,
             'role'          => $role,
+        ];
+    }
+
+    public function addPreload(string $human_readable_name, string $filepath, string $role = 'preload', string $as = '')
+    {
+        // Roles:
+        //     'font-preload'
+        //     'reset'
+        //     'preload'
+        //     'library-for-layout'
+        //     'application-for-layout'
+        //     'library-for-page'
+        //     'application-for-page'
+        //     'library-for-partial'
+        //     'application-for-partial'
+        //     'font-stylesheet'
+
+        $this->resources[] = [
+            'name'          => $human_readable_name,
+            'resource_type' => 'preload',
+            'filepath'      => $filepath,
+            'role'          => $role,
+            'as'            => $as,
         ];
     }
 

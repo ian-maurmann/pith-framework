@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Migration to populate test_quotes table
+ * ---------------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection   - Long class name is ok.
+ * @noinspection PhpMissingParentCallCommonInspection - Parent method calls are not needed.
+ * @noinspection PhpMethodNamingConventionInspection  - Short method names are ok.
+ * @noinspection PhpUnused                            - Ignore.
+ */
+
 declare(strict_types=1);
 
 namespace Pith\Framework\Migration;
@@ -14,7 +24,7 @@ final class Version20230510000814 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Populate test_quotes with some quotes for testing.';
+        return 'Populate `test_quotes` table with some quotes for testing.';
     }
 
     public function up(Schema $schema): void
