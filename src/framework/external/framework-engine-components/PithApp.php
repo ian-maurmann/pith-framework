@@ -28,28 +28,56 @@ namespace Pith\Framework;
 class PithApp
 {
     // Objects
-    public PithConfig     $config;
-    public PithDispatcher $dispatcher;
-    public PithEngine     $engine;
-    public PithResponder  $responder;
+    public PithActiveUser     $active_user;
+    public PithClock          $clock;
+    public PithConfig         $config;
+    public PithDispatcher     $dispatcher;
+    public PithEngine         $engine;
+    public PithResponder      $responder;
+    public PithRegistry       $registry;
+    public PithRouter         $router;
+    public PithSessionManager $session_manager;
+
 
     /**
-     * @param PithConfig     $config
+     * @param PithActiveUser $active_user
+     * @param PithClock $clock
+     * @param PithConfig $config
      * @param PithDispatcher $dispatcher
-     * @param PithEngine     $engine
-     * @param PithResponder  $responder
+     * @param PithEngine $engine
+     * @param PithRegistry $registry
+     * @param PithResponder $responder
+     * @param PithRouter $router
+     * @param PithSessionManager $session_manager
      */
     public function __construct(
-        PithConfig     $config,
-        PithDispatcher $dispatcher,
-        PithEngine     $engine,
-        PithResponder  $responder,
+        PithActiveUser     $active_user,
+        PithClock          $clock,
+        PithConfig         $config,
+        PithDispatcher     $dispatcher,
+        PithEngine         $engine,
+        PithRegistry       $registry,
+        PithResponder      $responder,
+        PithRouter         $router,
+        PithSessionManager $session_manager
     )
     {
-        $this->config     = $config;
-        $this->dispatcher = $dispatcher;
-        $this->engine     = $engine;
-        $this->responder  = $responder;
+        // Set object dependencies
+        $this->active_user     = $active_user;
+        $this->clock           = $clock;
+        $this->config          = $config;
+        $this->dispatcher      = $dispatcher;
+        $this->engine          = $engine;
+        $this->registry        = $registry;
+        $this->responder       = $responder;
+        $this->router          = $router;
+        $this->session_manager = $session_manager;
+
+        // Init the clock
+        $this->clock->init();
+
+        // Startup the active user
+        $this->active_user->init();
     }
     
 }

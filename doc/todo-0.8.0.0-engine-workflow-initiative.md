@@ -283,5 +283,5 @@ Misc. Plugins
 - Database workflow
 - Unit Testing
 - Integration Testing
-- Database Migrations
-- Access Levels
+- <del>Database Migrations</del>
+- Access Levels ***(WIP)***

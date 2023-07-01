@@ -42,3 +42,13 @@ env.php
 # Ignore error log
 # ----------------
 php_errors.log
+
+
+# Ignore all log files
+# --------------------
+*.log
+
+# Ignore template cache
+# ---------------------
+/data/latte-cache/*.php
+/data/latte-cache/*.php.lock

@@ -12,13 +12,13 @@
 
 > Shared Infrastructure:
 > - [x] Add a new Shared Infrastructure Pages pack
-> - [ ] CSS using the name `shared-ui` as the prefix.
+> - [x] CSS using the name `shared-ui` as the prefix.
 > - [x] Add CSS / Javascript resources for Shared Infrastructure Pages
 > - [x] Use path `/resources/vendor/common-libraries` for libs (Ex: jquery, toastr, oxcss, hola).
 > - [x] Use path `/resources/framework/shared-ui/` for resources for Shared-UI js / css.
 > - [x] Shared Infrastructure Layout
-> - [ ] New User page.
-> - [ ] User Login page.
+> - [x] New User page.
+> - [x] User Login page.
 > 
 > Pith Panel
 > - [ ] Add a new Pith Panel Pages pack

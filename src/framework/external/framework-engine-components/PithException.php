@@ -53,6 +53,7 @@
  *     4027 - Access Control could not load the Access Level --> Container: NotFoundException.
  *     4028 - Access Control could not load the Access Level --> Container: DependencyException.
  *     4029 - Requested Resource is a file type that should not be inside the resource folder.
+ *     4030 - Access Control encountered a problem when running the Access Level
  *
  *
  *     5xxx - Server Exceptions Unrecoverable
@@ -67,7 +68,8 @@
  *     5008 - Index Front Controller - Dependency Injection Wrapper - NotFoundException.
  *     5009 - Index Front Controller - Dependency Injection Wrapper - DependencyException.
  *     5010 - Pith Framework App variable is not a Pith App Object.
- *
+ *     5011 - Loading a route list --> Container: NotFoundException.
+ *     5012 - Loading a route list --> Container: DependencyException.
  *
  *     6xxx - Database Exceptions Recoverable
  *     --------------------------------------

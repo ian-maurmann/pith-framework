@@ -1,0 +1,11 @@
+This view is using Latte.
+
+<p>Hello, {='World!'|upper}</p>
+
+<ul>
+    {foreach $quote_results as $quote_result}
+    <li>{$quote_result[quote]}</li>
+    {else}
+    <li><em>Sorry, no quotes in this list</em></li>
+    {/foreach}
+</ul>
