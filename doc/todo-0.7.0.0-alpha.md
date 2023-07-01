@@ -30,17 +30,17 @@
 ##### Alpha TODO
 
 Router:
-- [ ] TODO: Switch to FastRoute
+- [x] TODO: Switch to FastRoute
 
 Database:
-- [ ] TODO: Database Wrapper Object using PDO
+- [x] TODO: Database Wrapper Object using PDO
 - [ ] TODO: Database Query Objects
 
 User System:
-- [ ] TODO: User System Setup / Install / Uninstall
-- [ ] TODO: User Creation
-- [ ] TODO: User Login / Logout
-- [ ] TODO: User Info
+- [x] TODO: User System Setup / Install / <del>Uninstall</del>
+- [x] TODO: User Creation
+- [x] TODO: User Login / Logout
+- [x] TODO: User Info
 - [ ] TODO: User Events
 
 Event System:
