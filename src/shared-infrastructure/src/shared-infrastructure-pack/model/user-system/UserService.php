@@ -561,31 +561,98 @@ class UserService
         return $response;
     }
 
-    /*
-    public function queueUserCreation(string $username, string $username_lower, string $email_address, string $date_of_birth, string $password_hash): array
-    {
-        $is_ok       = false;
-        $fail_reason = '';
-        $queue_id    = 0;
 
-        try{
-            // Insert new row to the User Creation Queue
-            $queue_id = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
-            $is_ok    = $queue_id > 0;
-        }catch (Exception $e) {
-            $is_ok       = false;
-            $fail_reason = $e->getMessage();
+    /**
+     * @param string $given_username
+     * @param string $given_password
+     * @return array
+     */
+    public function getLoginValidationWithUsernameAndPassword(string $given_username, string $given_password): array
+    {
+        // Set defaults
+        $r                            = [];
+        $is_login_valid               = false;
+        $fail_reason                  = '';
+        $response_login_credential_id = 0;
+        $response_user_id             = 0;
+        $response_username            = '';
+        $response_username_lower      = '';
+        $response_datetime_first_used = '';
+
+
+
+        try {
+            // Look at given password
+            $given_password_length         = mb_strlen($given_password);
+            $is_given_password_long_enough = $given_password_length > 9;
+
+            // Throw when the password is too short
+            if(!$is_given_password_long_enough){
+                throw new Exception('Bad password length.');
+            }
+
+            // Find user id
+            $username_lower = $this->username_normalizer->getUsernameLower($given_username);
+            $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
+            $has_user_id    = $user_id > 0;
+
+            // Throw when the user id isn't found
+            if(!$has_user_id){
+                throw new Exception('No user id found.');
+            }
+
+            // Find the login credentials
+            $user_login_credential     = $this->login_credential_gateway->getNewestLoginCredentialRowForUserByUserId($user_id);
+            $has_user_login_credential = count($user_login_credential) > 0;
+
+            // Throw when the login credentials aren't found
+            if(!$has_user_login_credential){
+                throw new Exception('No login credentials found.');
+            }
+
+            // Look at login credential info
+            $login_credential_id             = (int) $user_login_credential['login_credential_id'];
+            $login_credential_username       = (string) $user_login_credential['username'];
+            $login_credential_username_lower = (string) $user_login_credential['username_lower'];
+            $login_credential_password_hash  = (string) $user_login_credential['password_hash'];
+            $login_credential_first_used     = (string) $user_login_credential['datetime_first_used'];
+
+            // Throw when the username is not the user's current username
+            $are_usernames_a_match = $username_lower === $login_credential_username_lower;
+            if(!$are_usernames_a_match){
+                throw new Exception('Username does not match login credential username.');
+            }
+
+            // Check password
+            $is_password_a_match = password_verify($given_password, $login_credential_password_hash);
+
+            if(!$is_password_a_match){
+                throw new Exception('Wrong password.');
+            }
+
+            $response_login_credential_id = $login_credential_id;
+            $response_user_id             = $user_id;
+            $response_username            = $login_credential_username;
+            $response_username_lower      = $login_credential_username_lower;
+            $response_datetime_first_used = $login_credential_first_used;
+
+            $is_login_valid = true;
+        } catch (PithException | Exception $e) {
+            $is_login_valid = false;
+            $fail_reason    = $e->getMessage();
         }
 
-
-        // Build the response
-        $response = [
-            'is_ok'       => $is_ok,
-            'fail_reason' => $fail_reason,
-            'queue_id'    => $queue_id,
+        $r = [
+            'is_login_valid_yn'   => $is_login_valid ? 'yes' : 'no',
+            'fail_reason'         => $fail_reason,
+            'login_credential_id' => $response_login_credential_id,
+            'user_id'             => $response_user_id,
+            'username'            => $response_username,
+            'username_lower'      => $response_username_lower,
+            'datetime_first_used' => $response_datetime_first_used,
+            'login_time'          => time(),
         ];
 
-        return $response;
+        return $r;
     }
-    */
 }

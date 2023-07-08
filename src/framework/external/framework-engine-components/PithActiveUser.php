@@ -15,6 +15,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Long property names are ok.
+ * @noinspection PhpUnnecessaryLocalVariableInspection - Ignore for readability.
  */
 
 
@@ -22,9 +23,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
-
-
 use Pith\Framework\Internal\PithImpressionLogger;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class PithActiveUser
@@ -35,6 +35,7 @@ class PithActiveUser
     // Dependencies
     private PithAppRetriever     $app_retriever;
     private PithImpressionLogger $impression_logger;
+    private UserService          $user_service;
 
     // $_SERVER info, User Agent info, CH info
     private string $ch_down_link;
@@ -59,11 +60,12 @@ class PithActiveUser
     private bool $did_log_impression_on_first_access;
 
 
-    public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger)
+    public function __construct(PithAppRetriever $app_retriever, PithImpressionLogger $impression_logger, UserService $user_service)
     {
         // Set object dependencies
         $this->app_retriever     = $app_retriever;
         $this->impression_logger = $impression_logger;
+        $this->user_service      = $user_service;
 
         // Set defaults
         $this->did_log_impression_on_first_access = false;
@@ -72,7 +74,7 @@ class PithActiveUser
     /**
      * @noinspection SpellCheckingInspection - Ignore "addr", "bitness", and "downlink" not being real words
      */
-    public function start(){
+    public function init(){
 
         // Save what the user requested
         $this->requested_http_method = $_SERVER['REQUEST_METHOD'] ?? '';
@@ -104,6 +106,21 @@ class PithActiveUser
         $this->ch_down_link            = $_SERVER['HTTP_DOWNLINK']                    ?? '';
         $this->ch_viewport_width       = $_SERVER['HTTP_VIEWPORT_WIDTH']              ?? '';
         $this->ch_prefers_color_scheme = $_SERVER['HTTP_SEC_CH_PREFERS_COLOR_SCHEME'] ?? '';
+
+        // Get app
+        // $app = $this->app_retriever->getApp();
+
+        // Load-up the session
+        // $app->session_manager->loadSession();
+    }
+
+    /** @noinspection PhpUnhandledExceptionInspection */
+    public function start(){
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Load-up the session
+        $app->session_manager->loadSession();
     }
 
     /**
@@ -160,6 +177,136 @@ class PithActiveUser
                 $this->did_log_impression_on_first_access = true;
             }
         }
+    }
+
+    /**
+     * @param string $given_username
+     * @param string $given_password
+     * @throws PithException
+     *
+     * @noinspection PhpIfWithCommonPartsInspection - Ignore common parts warning.
+     * @noinspection PhpNoReturnAttributeCanBeAddedInspection - Ignore no-return.
+     * @noinspection PhpUnhandledExceptionInspection
+     * @noinspection PhpUnusedLocalVariableInspection
+     */
+    public function attemptToLogInWithUsernameAndPassword(string $given_username, string $given_password)
+    {
+        // Get login info
+        $login_validation_info = $this->user_service->getLoginValidationWithUsernameAndPassword($given_username, $given_password);
+        $is_login_valid        = $login_validation_info['is_login_valid_yn'] === 'yes';
+        $login_failure_reason  = (string) $login_validation_info['fail_reason'];
+        $login_credential_id   = (int) $login_validation_info['login_credential_id'];
+        $user_id               = (int) $login_validation_info['user_id'];
+        $username              = (string) $login_validation_info['username'];
+        $username_lower        = (string) $login_validation_info['username_lower'];
+        $datetime_first_used   = (string) $login_validation_info['datetime_first_used'];
+        $login_time            = (int) $login_validation_info['login_time'];
+
+        if($is_login_valid){
+            // Get app
+            $app = $this->app_retriever->getApp();
+
+            // Build new user session
+            $app->session_manager->buildUserSession($user_id, $username, $username_lower, $login_time);
+
+            // Redirect to user successful login landing
+            header('Location: ' . SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+        else{
+            // Redirect to user failed login form
+            header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?login-failed', true, 302);
+            exit;
+        }
+    }
+
+
+    /**
+     * @param string $given_anti_csrf_token
+     * @return bool
+     * @throws PithException
+     */
+    public function logOutWithToken(string $given_anti_csrf_token): bool
+    {
+        $did_log_out = false;
+
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
+        // Load up the session
+        $app->session_manager->loadSession();
+
+        // Get the session's anti-CSRF token
+        $session_anti_csrf_token = $_SESSION['anti_csrf_token'] ?? '';
+
+        // Check if the anti-CSRF tokens match, or are both empty
+        $is_a_match = $given_anti_csrf_token === $session_anti_csrf_token;
+
+        // If is a match, kill session
+        if($is_a_match){
+            $app->session_manager->killSession();
+            $did_log_out = true;
+        }
+
+        return $did_log_out;
+    }
+
+    /**
+     * @param string $given_anti_csrf_token
+     * @throws PithException
+     *
+     * @noinspection PhpIfWithCommonPartsInspection
+     * @noinspection PhpNoReturnAttributeCanBeAddedInspection
+     */
+    public function attemptToLogOutWithTokenAndRedirect(string $given_anti_csrf_token)
+    {
+        // Try to log out
+        $did_log_out = $this->logOutWithToken($given_anti_csrf_token);
+
+        // If is a match, kill session
+        if($did_log_out){
+            // Redirect to user successful logout landing
+            header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+        else{
+            // Redirect to user successful logout landing
+            header('Location: ' . SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
+            exit;
+        }
+    }
+
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isLoggedIn(): bool
+    {
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in
+        $is_logged_in = $app->session_manager->isLoggedIn();
+
+        // Return true if logged in, else return false
+        return $is_logged_in;
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isUser(): bool
+    {
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        // Return true if is a logged in user or above, else return false
+        return $is_logged_in_user;
     }
 
 }

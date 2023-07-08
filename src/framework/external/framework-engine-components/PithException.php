@@ -53,6 +53,7 @@
  *     4027 - Access Control could not load the Access Level --> Container: NotFoundException.
  *     4028 - Access Control could not load the Access Level --> Container: DependencyException.
  *     4029 - Requested Resource is a file type that should not be inside the resource folder.
+ *     4030 - Access Control encountered a problem when running the Access Level
  *
  *
  *     5xxx - Server Exceptions Unrecoverable

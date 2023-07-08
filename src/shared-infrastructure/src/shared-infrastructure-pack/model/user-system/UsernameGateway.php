@@ -118,4 +118,38 @@ class UsernameGateway
         // Return the inserted id
         return (int) $inserted_id;
     }
+
+    /**
+     * @throws PithException
+     */
+    public function findUserIdByUsernameLower($username_lower): int
+    {
+        // Default to empty
+        $results = [];
+        $user_id = 0;
+
+        // Query
+        $sql = '
+            SELECT 
+                user_id
+            FROM 
+                user_login_usernames
+            WHERE 
+                username_lower = ?
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $username_lower);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $row     = $results[0];
+            $user_id = (int) $row['user_id'];
+        }
+
+        // Return user id as int if found, else return zero if not found
+        return $user_id;
+    }
 }

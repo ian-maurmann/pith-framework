@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpMethodNamingConventionInspection */
+<?php
 # ===================================================================
 # Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -34,16 +34,37 @@ use Exception;
 class RandomCharUtility
 {
     /**
+     * @throws Exception
+     */
+    public function pickRandomChar($possible_chars): string
+    {
+        $max         = mb_strlen($possible_chars) - 1;
+        $random_int  = random_int(0, $max);
+        $random_char = substr($possible_chars,$random_int, 1);
+
+        return $random_char;
+    }
+
+    /**
      * @return string
      * @throws Exception
      * @noinspection SpellCheckingInspection
      */
     public function getRandomCheckCharVersion1(): string
     {
-        $random_int     = random_int(0, 20);
         $possible_chars = 'ACDEFGHJKMNPRSTUVWXYZ'; // Alphabet letters except B,I,L,O,Q
-        $random_char    = substr($possible_chars,$random_int, 1);
+        $random_char    = $this->pickRandomChar($possible_chars);
 
         return $random_char;
     }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getRandomCheckCharVersion1Lower(): string
+    {
+        return mb_strtolower( $this->getRandomCheckCharVersion1() );
+    }
+
 }
