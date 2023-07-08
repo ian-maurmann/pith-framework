@@ -714,15 +714,8 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
     let is_birthday_field_valid            = is_birthday_field_valid_yn === 'yes';
     let is_password_field_valid            = is_password_field_valid_yn === 'yes';
     let is_confirm_password_field_valid    = is_confirm_password_field_valid_yn === 'yes';
-    let is_form_empty                      = !is_username_field_valid && !is_email_address_field_valid && !is_birthday_field_valid && !is_password_field_valid && !is_confirm_password_field_valid;
 
-    if(is_form_empty){
-        Swal.fire({
-            icon: 'warning',
-            html: 'The form is empty.'
-        });
-    }
-    else if(!is_username_field_valid){
+    if(!is_username_field_valid){
         Swal.fire({
             icon: 'error',
             html: 'The username needs be valid and available.'
@@ -843,6 +836,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
     let section_content        = section.find('[data-section-item="section-content"]').first();
     let section_loading_screen = section.find('[data-section-item="section-loading"]').first();
     let user_creation_fields   = self.getUserCreationData();
+    let success_loading_area   = section.find('[data-section-item="success-page-loading-area"]').first();
+    let success_loading_form   = success_loading_area.find('form').first();
 
     // Make an ajax request
     let jqxhr = $.post( "/ajax/user-system/create-new-user", user_creation_fields, function() {
@@ -863,6 +858,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
                         icon: 'success',
                         html: 'New account successfully created.',
                         confirmButtonText: 'Continue'
+                    }).then(function(isConfirm) {
+                        success_loading_form.submit();
                     });
                 }
                 else{
