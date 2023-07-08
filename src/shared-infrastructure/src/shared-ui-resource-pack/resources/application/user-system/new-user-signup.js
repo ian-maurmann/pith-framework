@@ -836,6 +836,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
     let section_content        = section.find('[data-section-item="section-content"]').first();
     let section_loading_screen = section.find('[data-section-item="section-loading"]').first();
     let user_creation_fields   = self.getUserCreationData();
+    let success_loading_area   = section.find('[data-section-item="success-page-loading-area"]').first();
+    let success_loading_form   = success_loading_area.find('form').first();
 
     // Make an ajax request
     let jqxhr = $.post( "/ajax/user-system/create-new-user", user_creation_fields, function() {
@@ -856,6 +858,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
                         icon: 'success',
                         html: 'New account successfully created.',
                         confirmButtonText: 'Continue'
+                    }).then(function(isConfirm) {
+                        success_loading_form.submit();
                     });
                 }
                 else{
