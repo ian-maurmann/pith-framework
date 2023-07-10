@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 2023-07-10 | Usable, but still adding new features
 Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 2023-06-30 | Usable, but still adding new features
 Alpha 41              | 0.8.5.1   | *sv 0.27.0* | 2023-05-13 | Usable, but still adding new features
 Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 2023-04-18 | Usable, but still adding new features
@@ -77,6 +78,11 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+
+**0.8.6.1 - Alpha 43** `(semver: v0.29.0)`
+- Minor javascript fix-ups.
+- Added redirect after new user creation. 
 
 **0.8.6.0 - Alpha 42** `(semver: v0.28.0)`
 - Now able to use Latte as a template engine for views, via the new Latte View Adaptor for making it work with Pith.
