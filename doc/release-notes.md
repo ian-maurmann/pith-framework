@@ -79,6 +79,8 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 ### Release Notes:
 
+**WIP**
+- Update PHP-DI from PHP-DI 6 to PHP-DI 7.
 
 **0.8.6.1 - Alpha 43** `(semver: v0.29.0)`
 - Minor javascript fix-ups.
