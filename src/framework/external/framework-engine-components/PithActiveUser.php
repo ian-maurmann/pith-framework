@@ -262,8 +262,7 @@ class PithActiveUser
     {
         // Try to log out
         $did_log_out = $this->logOutWithToken($given_anti_csrf_token);
-
-        // If is a match, kill session
+        
         if($did_log_out){
             // Redirect to user successful logout landing
             header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
