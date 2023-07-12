@@ -42,6 +42,16 @@
             "Pith\\Framework\\Migration\\": [
                 "data/migration/"
             ],
+            "Pith\\Framework\\Panel\\": [
+                "src/panel/"
+            ],
+            "Pith\\Framework\\Panel\\Pages\\": [
+                "src/panel/packs/panel-pages-pack"
+            ],
+            "Pith\\Framework\\Panel\\Theme\\": [
+                "src/panel/packs/panel-theme-pack/",
+                "src/panel/packs/panel-theme-pack/theme-resources"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
