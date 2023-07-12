@@ -22,9 +22,6 @@
         "php-di/php-di": "^7.0",
         "symfony/http-foundation": "^6.2"
     },
-    "suggest": {
-        "phpunit/phpunit":  "Suggested for unit-testing"
-    },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
@@ -129,6 +126,14 @@
             "Pith\\PithDotJson\\": [
                 "src/framework/plugins/pith-dot-json/src/"
             ]
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
