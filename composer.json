@@ -22,9 +22,6 @@
         "php-di/php-di": "^7.0",
         "symfony/http-foundation": "^6.2"
     },
-    "suggest": {
-        "phpunit/phpunit":  "Suggested for unit-testing"
-    },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
