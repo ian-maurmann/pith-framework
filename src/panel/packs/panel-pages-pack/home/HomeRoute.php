@@ -25,7 +25,7 @@ class HomeRoute extends PithRoute
     public string $access_level = 'world';
     public string $action       = '\\Pith\\Framework\\Panel\\Pages\\HomeAction';
     public string $view         = '[^route_folder]/home-view.latte';
- // public string $layout       = '\\Pith\\Framework\\SharedThemePack\\EnvInfoLayoutRoute';
+    public string $layout       = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutRoute';
 
     public string $page_title       = 'Pith Panel';
     public string $meta_keywords    = 'pith panel, pith framework';
