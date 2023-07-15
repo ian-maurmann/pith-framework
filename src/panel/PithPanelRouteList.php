@@ -21,6 +21,7 @@ use Pith\Framework\PithRouteList;
 class PithPanelRouteList extends PithRouteList
 {
     public array $routes = [
+        ['route', 'GET', '',                         '\\Pith\\Framework\\Panel\\Pages\\HomeRoute'],
         ['route', 'GET', '/resources/{filepath:.+}', '\\Pith\\Framework\\Panel\\Theme\\ThemeResourcesRoute'],
     ];
 }
