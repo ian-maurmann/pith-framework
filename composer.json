@@ -51,6 +51,7 @@
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
                 "src/panel/packs/panel-theme-pack/",
+                "src/panel/packs/panel-theme-pack/main-layout/",
                 "src/panel/packs/panel-theme-pack/theme-resources/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
