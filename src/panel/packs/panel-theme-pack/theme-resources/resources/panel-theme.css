@@ -2,6 +2,8 @@
 
 html{
     background: #555555;
+
+    overflow: auto;
 }
 
 /* =========================================================== */
@@ -23,8 +25,10 @@ body{
     background-attachment: fixed;
     background-position: center;
 
-    height: 100%;
     width: 100%;
+    min-height: 100%;
+
+    overflow: auto;
 }
 
 body>header{
@@ -34,6 +38,8 @@ body>header{
     left: 0;
     height: 3em;
     width: 100%;
+
+    z-index: 100;
 }
 
 .panel-header-rim{
@@ -68,6 +74,8 @@ body>header [data-section-item-type="header-icon"]:hover{
     margin-bottom: 8em;
     margin-left: 3em;
     margin-right: 3em;
+
+    z-index: 50;
 }
 
 
@@ -79,6 +87,8 @@ body>header [data-section-item-type="header-icon"]:hover{
     position: relative;
 
     border-radius: 7px;
+
+    padding: 1em 2em 3em 2em;
 }
 
 .plate::before {
