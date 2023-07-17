@@ -30,4 +30,6 @@ class HomeRoute extends PithRoute
     public string $page_title       = 'Pith Panel';
     public string $meta_keywords    = 'pith panel, pith framework';
     public string $meta_description = 'Website internal-user panel for internal use.';
+
+    public string $meta_robots = 'noindex, nofollow';
 }
