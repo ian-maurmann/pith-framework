@@ -47,6 +47,7 @@
             ],
             "Pith\\Framework\\Panel\\Pages\\": [
                 "src/panel/packs/panel-pages-pack/",
+                "src/panel/packs/panel-pages-pack/account-bar/",
                 "src/panel/packs/panel-pages-pack/home/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [

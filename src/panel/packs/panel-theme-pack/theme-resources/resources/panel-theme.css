@@ -29,6 +29,8 @@ body{
     min-height: 100%;
 
     overflow: auto;
+
+    font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 body>header{
