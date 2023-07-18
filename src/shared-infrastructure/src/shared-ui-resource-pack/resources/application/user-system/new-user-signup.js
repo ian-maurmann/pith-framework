@@ -51,7 +51,6 @@ SharedUI.NewUserSignupForm.listen = function(){
     // Events on button click
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> on-click-check-username-availability-button"]', 'click', self.handleOnClickCheckUsernameAvailabilityButton);
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.new-user-signup-form >>> submit"]', 'click', self.handleOnSubmit);
-
 }
 
 

@@ -1,0 +1,122 @@
+/* Panel Theme */
+
+html{
+    background: #555555;
+
+    overflow: auto;
+}
+
+/* =========================================================== */
+
+.card {
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+/* =========================================================== */
+
+body{
+    background-color: #DDDDDD;
+    background-image: url("./background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    width: 100%;
+    min-height: 100%;
+
+    overflow: auto;
+}
+
+body>header{
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3em;
+    width: 100%;
+
+    z-index: 100;
+}
+
+.panel-header-rim{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1em;
+}
+
+.panel-header-bar-right{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+}
+
+body>header [data-section-item-type="header-icon"]{
+    color: #212121;
+    user-select: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+body>header [data-section-item-type="header-icon"]:hover{
+    color: var(--ox-color-tw-sky-400);
+}
+
+.plate{
+    position: relative;
+
+    margin-top: 9em;
+    margin-bottom: 8em;
+    margin-left: 3em;
+    margin-right: 3em;
+
+    z-index: 50;
+}
+
+
+.inner-plate{
+    background: #ffffff;
+
+    margin: 1em;
+
+    position: relative;
+
+    border-radius: 7px;
+
+    padding: 1em 2em 3em 2em;
+}
+
+.plate::before {
+    content: '';
+    position: absolute;
+
+    top: -1em;
+    bottom: -1em;
+
+    right: 0;
+    left: 0;
+
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+
+    border-radius: 14px;
+}
+
+
+.panel-header-bar-icon-left {
+    position: absolute;
+    top: 0;
+    left: 0.3em;
+    height: 100%;
+    width: 4em;
+    background-image: url(./pith-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
