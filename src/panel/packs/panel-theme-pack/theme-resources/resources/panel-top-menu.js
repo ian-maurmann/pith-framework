@@ -33,8 +33,15 @@ PithPanel.TopMenu.handleOnSignOutClick = function(element, event){
     let self = PithPanel.TopMenu;
 
     Swal.fire({
-        icon: 'error',
-        html: 'Hello.'
+        html: 'Sign out?',
+        heightAuto: false,
+        iconHtml: '',
+
+        showConfirmButton: true,
+        showCancelButton: true,
+
+        focusConfirm: false,
+        focusCancel: false
     });
 }
 
