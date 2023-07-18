@@ -108,3 +108,15 @@ body>header [data-section-item-type="header-icon"]:hover{
 
     border-radius: 14px;
 }
+
+
+.panel-header-bar-icon-left {
+    position: absolute;
+    top: 0;
+    left: 0.3em;
+    height: 100%;
+    width: 4em;
+    background-image: url(./pith-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
