@@ -22,7 +22,7 @@
         {insertMetaRobots(2)}
         {insertResourceFiles(2)}
     </head>
-    <body data-theme="pith-panel" data-color-mode="light">
+    <body data-theme="pith-panel" data-color-mode="{$color_scheme}">
         <header>
             <div class="panel-header-bar-icon-left"></div>
 
@@ -30,11 +30,12 @@
                 {insertPartial('Pith\\Framework\\Panel\\Pages\\AccountBarPartialRoute')}
                 <i class="bi bi-house" data-section-item-type="header-icon"></i>
                 <i class="bi bi-list" data-section-item-type="header-icon"></i>
-                <i class="bi bi-sun" data-section-item-type="header-icon"></i>
+                <!-- <i class="bi bi-sun" data-section-item-type="header-icon"></i> -->
+                <!-- <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i> -->
                 <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i>
                 <i class="bi bi-power" data-section-item-type="header-icon" data-pith-panel-click-event="pith-panel.top-menu >>> on-sign-out-icon-click"></i>
             </div>
-            <div class="panel-header-rim card"></div>
+            <div class="panel-header-rim card-rim-bottom"></div>
         </header>
         <aside>
         </aside>

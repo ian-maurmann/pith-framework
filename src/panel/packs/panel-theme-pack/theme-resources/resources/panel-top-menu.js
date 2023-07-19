@@ -26,6 +26,14 @@ PithPanel.TopMenu.listen = function(){
 
     // Icon click events
     Ox.Event.delegate('[data-pith-panel-click-event="pith-panel.top-menu >>> on-sign-out-icon-click"]', 'click', self.handleOnSignOutClick);
+
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(media_query_event) {
+        let new_mode = media_query_event.matches ? "dark" : "light";
+        let body     = $('body');
+
+        body.attr('data-color-mode', new_mode);
+    })
 };
 
 // Handle On Sign-Out Click
