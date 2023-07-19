@@ -48,7 +48,9 @@
             "Pith\\Framework\\Panel\\Pages\\": [
                 "src/panel/packs/panel-pages-pack/",
                 "src/panel/packs/panel-pages-pack/account-bar/",
-                "src/panel/packs/panel-pages-pack/home/"
+                "src/panel/packs/panel-pages-pack/home/",
+                "src/panel/packs/panel-pages-pack/jobs/",
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
                 "src/panel/packs/panel-theme-pack/",
