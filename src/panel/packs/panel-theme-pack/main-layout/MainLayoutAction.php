@@ -45,6 +45,7 @@ class MainLayoutAction extends PithAction
         $color_scheme = $app->active_user->getUserColorScheme() ?: 'auto';
 
         // Push to Preparer
-        $this->prepare->color_scheme = $color_scheme;
+        $this->prepare->PITH_PANEL_PATH = PITH_PANEL_PATH;
+        $this->prepare->color_scheme    = $color_scheme;
     }
 }

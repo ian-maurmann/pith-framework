@@ -28,8 +28,8 @@
 
             <div class="panel-header-bar-right">
                 {insertPartial('Pith\\Framework\\Panel\\Pages\\AccountBarPartialRoute')}
-                <i class="bi bi-house" data-section-item-type="header-icon"></i>
-                <i class="bi bi-list" data-section-item-type="header-icon"></i>
+                <a href="{$PITH_PANEL_PATH}"><i class="bi bi-house" data-section-item-type="header-icon"></i></a>
+                <i class="bi bi-list" data-section-item-type="header-icon" data-pith-panel-click-event="pith-panel.top-menu >>> on-menu-icon-click"></i>
                 <!-- <i class="bi bi-sun" data-section-item-type="header-icon"></i> -->
                 <!-- <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i> -->
                 <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i>
@@ -37,7 +37,10 @@
             </div>
             <div class="panel-header-rim card-rim-bottom"></div>
         </header>
-        <aside>
+
+        <aside data-panel-slideout-menu-state="slid-in">
+            Menu
+            <div class="panel-aside-rim card-rim-right"></div>
         </aside>
 
         <div class="plate">
