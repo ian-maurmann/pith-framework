@@ -25,6 +25,7 @@ class MainLayoutRoute extends PithRoute
     public string $pack             = '\\Pith\\Framework\\Panel\\Theme\\PithPanelThemePack';
     public string $route_type       = 'layout';
     public string $access_level     = 'world';
+    public string $action           = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutAction';
     public string $view_requisition = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutViewRequisition';
     public string $view             = '[^route_folder]/main-layout-view.latte';
 }

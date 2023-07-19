@@ -308,4 +308,10 @@ class PithActiveUser
         return $is_logged_in_user;
     }
 
+    public function getUserColorScheme(): string
+    {
+        // Return the color mode, ex: 'light', 'dark', ''
+        return $this->ch_prefers_color_scheme;
+    }
+
 }

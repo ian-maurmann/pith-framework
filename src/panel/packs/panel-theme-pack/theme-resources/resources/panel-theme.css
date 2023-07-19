@@ -14,6 +14,19 @@ html{
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(209, 213, 219, 0.3);
 }
+body[data-color-mode="dark"] .card {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.card-rim-bottom {
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+}
+body[data-color-mode="dark"] .card-rim-bottom {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 /* =========================================================== */
 
@@ -29,9 +42,11 @@ body{
     min-height: 100%;
 
     overflow: auto;
+
+    font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
-body>header{
+body > header{
     background: #FFFFFF;
     position: fixed;
     top: 0;
@@ -40,6 +55,12 @@ body>header{
     width: 100%;
 
     z-index: 100;
+}
+
+body[data-color-mode="dark"] > header{
+    background: #242828;
+    /*color: var(--ox-color-ibm1-cool-white-4);*/
+    color: #afb1b3;
 }
 
 .panel-header-rim{
@@ -57,13 +78,17 @@ body>header{
     cursor: pointer;
 }
 
-body>header [data-section-item-type="header-icon"]{
+body > header [data-section-item-type="header-icon"]{
     color: #212121;
     user-select: none;
     cursor: pointer;
     transition-duration: 0.4s;
 }
-body>header [data-section-item-type="header-icon"]:hover{
+body[data-color-mode="dark"] > header [data-section-item-type="header-icon"]{
+    /* color: var(--ox-color-ibm1-cool-white-4); */
+    color: #afb1b3;
+}
+body > header [data-section-item-type="header-icon"]:hover{
     color: var(--ox-color-tw-sky-400);
 }
 
@@ -90,6 +115,11 @@ body>header [data-section-item-type="header-icon"]:hover{
 
     padding: 1em 2em 3em 2em;
 }
+body[data-color-mode="dark"] .inner-plate{
+    /*background: #3b3f41;*/
+    background: #242828;
+    color: #afb1b3;
+}
 
 .plate::before {
     content: '';
@@ -108,7 +138,9 @@ body>header [data-section-item-type="header-icon"]:hover{
 
     border-radius: 14px;
 }
-
+body[data-color-mode="dark"] .plate::before {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 .panel-header-bar-icon-left {
     position: absolute;
