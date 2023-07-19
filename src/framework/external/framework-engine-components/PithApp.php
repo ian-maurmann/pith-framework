@@ -28,6 +28,7 @@ namespace Pith\Framework;
 class PithApp
 {
     // Objects
+    public PithAccessControl  $access_control;
     public PithActiveUser     $active_user;
     public PithClock          $clock;
     public PithConfig         $config;
@@ -40,6 +41,7 @@ class PithApp
 
 
     /**
+     * @param PithAccessControl $access_control
      * @param PithActiveUser $active_user
      * @param PithClock $clock
      * @param PithConfig $config
@@ -51,6 +53,7 @@ class PithApp
      * @param PithSessionManager $session_manager
      */
     public function __construct(
+        PithAccessControl  $access_control,
         PithActiveUser     $active_user,
         PithClock          $clock,
         PithConfig         $config,
@@ -63,6 +66,7 @@ class PithApp
     )
     {
         // Set object dependencies
+        $this->access_control  = $access_control;
         $this->active_user     = $active_user;
         $this->clock           = $clock;
         $this->config          = $config;
