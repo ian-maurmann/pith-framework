@@ -22,6 +22,7 @@ class PithPanelRouteList extends PithRouteList
 {
     public array $routes = [
         ['route', 'GET', '',                         '\\Pith\\Framework\\Panel\\Pages\\HomeRoute'],
+        ['route', 'GET', '/jobs',                    '\\Pith\\Framework\\Panel\\Pages\\JobsRoute'],
         ['route', 'GET', '/lorem-ipsum',             '\\Pith\\Framework\\Panel\\Pages\\LoremIpsumRoute'],
         ['route', 'GET', '/resources/{filepath:.+}', '\\Pith\\Framework\\Panel\\Theme\\ThemeResourcesRoute'],
     ];
