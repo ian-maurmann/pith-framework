@@ -28,6 +28,7 @@ namespace Pith\Framework;
 
 
 use Exception;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class PithAccessControl
@@ -35,14 +36,17 @@ use Exception;
  */
 class PithAccessControl
 {
-    private PithDependencyInjection $dependency_injection;
     private PithAppRetriever        $app_retriever;
+    private PithDependencyInjection $dependency_injection;
+    private UserService             $user_service;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithAppRetriever $app_retriever)
+
+    public function __construct(PithAppRetriever $app_retriever, PithDependencyInjection $dependency_injection, UserService $user_service)
     {
-        // Objects
-        $this->dependency_injection = $dependency_injection;
+        // Set object dependencies
         $this->app_retriever        = $app_retriever;
+        $this->dependency_injection = $dependency_injection;
+        $this->user_service         = $user_service;
     }
 
 
@@ -200,5 +204,9 @@ class PithAccessControl
             echo 'Error 403';
             exit;
         }
+    }
+
+    public function getUserAccessLevelsAboveUser(int $user_id){
+
     }
 }
