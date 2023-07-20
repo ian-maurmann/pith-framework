@@ -30,6 +30,7 @@ class PithApp
     // Objects
     public PithAccessControl  $access_control;
     public PithActiveUser     $active_user;
+    public PithCliWriter      $cli_writer;
     public PithClock          $clock;
     public PithConfig         $config;
     public PithDispatcher     $dispatcher;
@@ -43,6 +44,7 @@ class PithApp
     /**
      * @param PithAccessControl $access_control
      * @param PithActiveUser $active_user
+     * @param PithCliWriter $cli_writer
      * @param PithClock $clock
      * @param PithConfig $config
      * @param PithDispatcher $dispatcher
@@ -55,6 +57,7 @@ class PithApp
     public function __construct(
         PithAccessControl  $access_control,
         PithActiveUser     $active_user,
+        PithCliWriter      $cli_writer,
         PithClock          $clock,
         PithConfig         $config,
         PithDispatcher     $dispatcher,
@@ -68,6 +71,7 @@ class PithApp
         // Set object dependencies
         $this->access_control  = $access_control;
         $this->active_user     = $active_user;
+        $this->cli_writer      = $cli_writer;
         $this->clock           = $clock;
         $this->config          = $config;
         $this->dispatcher      = $dispatcher;
