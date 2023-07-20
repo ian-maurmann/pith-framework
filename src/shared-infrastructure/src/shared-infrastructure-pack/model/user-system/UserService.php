@@ -39,6 +39,7 @@ use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
  */
 class UserService
 {
+    private AccessLevelGateway       $access_level_gateway;
     private PithDatabaseWrapper      $database;
     private LoginCredentialGateway   $login_credential_gateway;
     private PasswordGateway          $password_gateway;
@@ -51,9 +52,10 @@ class UserService
     private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccountInfoGateway $user_account_info_gateway, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(AccessLevelGateway $access_level_gateway, PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccountInfoGateway $user_account_info_gateway, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
+        $this->access_level_gateway        = $access_level_gateway;
         $this->database                    = $database;
         $this->login_credential_gateway    = $login_credential_gateway;
         $this->password_gateway            = $password_gateway;
@@ -654,5 +656,16 @@ class UserService
         ];
 
         return $r;
+    }
+
+    /**
+     * @param int $user_id
+     * @return array
+     */
+    public function getUserAccessLevelsAboveUser(int $user_id): array
+    {
+        $user_access_levels_above_user = $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
+
+        return $user_access_levels_above_user;
     }
 }
