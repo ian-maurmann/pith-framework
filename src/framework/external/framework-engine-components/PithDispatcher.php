@@ -122,6 +122,8 @@ class PithDispatcher
             // Partials and Endpoints
             case 'endpoint':
                 // fall through
+            case 'job':
+                // fall through
             case 'partial':
                 $this->dispatchRoute($route);
                 break;
