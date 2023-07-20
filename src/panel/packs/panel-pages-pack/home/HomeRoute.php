@@ -22,7 +22,7 @@ class HomeRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\Panel\\Pages\\PithPanelPagesPack';
-    public string $access_level = 'world';
+    public string $access_level = 'internal';
     public string $action       = '\\Pith\\Framework\\Panel\\Pages\\HomeAction';
     public string $view         = '[^route_folder]/home-view.latte';
     public string $layout       = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutRoute';
