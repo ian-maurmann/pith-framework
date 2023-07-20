@@ -122,6 +122,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WebmasterAccessLevel');
             }
 
+            // 'internal' --- Organization internal user access only
+            elseif ($access_level_string === 'internal') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\InternalAccessLevel');
+            }
+
             // Else treat the string as an object namespace
             else{
                 $access_level = $this->dependency_injection->container->get($access_level_string);
