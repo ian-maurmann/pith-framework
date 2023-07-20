@@ -308,4 +308,63 @@ class PithActiveUser
         return $is_logged_in_user;
     }
 
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isWebmaster(): bool
+    {
+        $is_webmaster = false;
+
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        if($is_logged_in_user){
+            $is_webmaster = $app->session_manager->isWebmaster();
+        }
+
+        // Return true if is a logged in user or above, else return false
+        return $is_webmaster;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserColorScheme(): string
+    {
+        // Return the color mode, ex: 'light', 'dark', ''
+        return $this->ch_prefers_color_scheme;
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isInternal(): bool
+    {
+        // Default to false
+        $is_internal  = false;
+
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        if($is_logged_in_user){
+            // Check for internal user types
+            $is_webmaster = $app->session_manager->isWebmaster();
+            // ^... Add types as needed
+
+            // Check if is an internal user
+            $is_internal = $is_webmaster; // ... Add types as needed
+        }
+
+        // Return true if is a logged in user or above, else return false
+        return $is_internal;
+    }
+
 }

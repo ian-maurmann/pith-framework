@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Account Bar partial view
+ * ------------------------
+ *
+ * @noinspection PhpUndefinedVariableInspection - Variables defined outside scope
+ */
+
+declare(strict_types=1);
+?>
+<?php if($is_logged_in): ?>
+    <span>
+        <?php echo $display_name; ?> &nbsp;
+    </span>
+<?php else: ?>
+    <span>
+        Not logged in.
+    </span>
+<?php endif; ?>

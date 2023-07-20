@@ -42,11 +42,26 @@
             "Pith\\Framework\\Migration\\": [
                 "data/migration/"
             ],
+            "Pith\\Framework\\Panel\\": [
+                "src/panel/"
+            ],
+            "Pith\\Framework\\Panel\\Pages\\": [
+                "src/panel/packs/panel-pages-pack/",
+                "src/panel/packs/panel-pages-pack/account-bar/",
+                "src/panel/packs/panel-pages-pack/home/",
+                "src/panel/packs/panel-pages-pack/jobs/",
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/"
+            ],
+            "Pith\\Framework\\Panel\\Theme\\": [
+                "src/panel/packs/panel-theme-pack/",
+                "src/panel/packs/panel-theme-pack/main-layout/",
+                "src/panel/packs/panel-theme-pack/theme-resources/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/account-bar",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/account-bar/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demo-nav-links/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demonstrate-access-levels/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demonstrate-libraries-work/",
