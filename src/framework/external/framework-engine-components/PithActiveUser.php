@@ -308,6 +308,28 @@ class PithActiveUser
         return $is_logged_in_user;
     }
 
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isWebmaster(): bool
+    {
+        $is_webmaster = false;
+
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        if($is_logged_in_user){
+            $is_webmaster = $app->session_manager->isWebmaster();
+        }
+
+        // Return true if is a logged in user or above, else return false
+        return $is_webmaster;
+    }
+
     public function getUserColorScheme(): string
     {
         // Return the color mode, ex: 'light', 'dark', ''

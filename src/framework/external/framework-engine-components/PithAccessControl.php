@@ -117,6 +117,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\UserAccessLevel');
             }
 
+            // 'webmaster' --- Webmaster access only
+            elseif ($access_level_string === 'webmaster') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WebmasterAccessLevel');
+            }
+
             // Else treat the string as an object namespace
             else{
                 $access_level = $this->dependency_injection->container->get($access_level_string);
@@ -206,7 +211,15 @@ class PithAccessControl
         }
     }
 
-    public function getUserAccessLevelsAboveUser(int $user_id){
+    /**
+     * @param int $user_id
+     * @return array
+     * @noinspection PhpUnnecessaryLocalVariableInspection
+     */
+    public function getUserAccessLevelsAboveUser(int $user_id): array
+    {
+        $user_access_levels_above_user = $this->user_service->getUserAccessLevelsAboveUser($user_id);
 
+        return $user_access_levels_above_user;
     }
 }
