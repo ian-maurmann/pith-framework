@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure\Jobs\ImpressionLoggingJobs;
+namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
@@ -21,7 +21,7 @@ use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class ImportImpressionLogToDatabaseJobAction
- * @package Pith\Framework\SharedInfrastructure\Jobs\ImpressionLoggingJobs
+ * @package Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks
  */
 class ImportImpressionLogToDatabaseJobAction extends PithAction
 {

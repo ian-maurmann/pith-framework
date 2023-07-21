@@ -80,10 +80,10 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
             ],
-            "Pith\\Framework\\SharedInfrastructure\\Jobs\\": [
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/"
             ],
-            "Pith\\Framework\\SharedInfrastructure\\Jobs\\ImpressionLoggingJobs\\": [
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/"
             ],
