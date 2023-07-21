@@ -17,6 +17,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
  * @noinspection PhpPropertyOnlyWrittenInspection      - Ignore here, $this->escape will be used in the phtml views.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok here.
+ * @noinspection PhpMissingFieldTypeInspection         - Ignore missing types for View Runner
  */
 
 
@@ -130,6 +131,34 @@ class PithLatteViewRunner
         $latte->addFunction('insertPage', function () {
             $this->insertPageContent($this->content_route);
         });
+
+        // Add type utility functions
+        $latte->addFunction('getType', function ($given_variable) {
+            return gettype($given_variable);
+        });
+        $latte->addFunction('isObject', function ($given_variable) {
+            return is_object($given_variable);
+        });
+        $latte->addFunction('isArray', function ($given_variable) {
+            return is_array($given_variable);
+        });
+        $latte->addFunction('isString', function ($given_variable) {
+            return is_string($given_variable);
+        });
+        $latte->addFunction('isBool', function ($given_variable) {
+            return is_bool($given_variable);
+        });
+        $latte->addFunction('isInt', function ($given_variable) {
+            return is_int($given_variable);
+        });
+        $latte->addFunction('isFloat', function ($given_variable) {
+            return is_float($given_variable);
+        });
+        $latte->addFunction('isDouble', function ($given_variable) {
+            return is_double($given_variable);
+        });
+
+
 
         // cache directory
         $latte->setTempDirectory('./data/latte-cache');

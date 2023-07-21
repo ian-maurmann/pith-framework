@@ -27,20 +27,26 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 
+use Exception;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+
 /**
  * Class PithAccessControl
  * @package Pith\Framework
  */
 class PithAccessControl
 {
-    private PithDependencyInjection $dependency_injection;
     private PithAppRetriever        $app_retriever;
+    private PithDependencyInjection $dependency_injection;
+    private UserService             $user_service;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithAppRetriever $app_retriever)
+
+    public function __construct(PithAppRetriever $app_retriever, PithDependencyInjection $dependency_injection, UserService $user_service)
     {
-        // Objects
-        $this->dependency_injection = $dependency_injection;
+        // Set object dependencies
         $this->app_retriever        = $app_retriever;
+        $this->dependency_injection = $dependency_injection;
+        $this->user_service         = $user_service;
     }
 
 
@@ -91,6 +97,36 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
             }
 
+            // 'perform-user-login' --- Attempt to login user
+            elseif ($access_level_string === 'perform-user-login') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLoginAccessLevel');
+            }
+
+            // 'perform-user-logout' --- Attempt to logout user
+            elseif ($access_level_string === 'perform-user-logout') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLogoutAccessLevel');
+            }
+
+            // 'logout' --- Attempt to logout user
+            elseif ($access_level_string === 'logout') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\LogoutAccessLevel');
+            }
+
+            // 'user' --- Logged in user access only
+            elseif ($access_level_string === 'user') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\UserAccessLevel');
+            }
+
+            // 'webmaster' --- Webmaster access only
+            elseif ($access_level_string === 'webmaster') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WebmasterAccessLevel');
+            }
+
+            // 'internal' --- Organization internal user access only
+            elseif ($access_level_string === 'internal') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\InternalAccessLevel');
+            }
+
             // Else treat the string as an object namespace
             else{
                 $access_level = $this->dependency_injection->container->get($access_level_string);
@@ -114,14 +150,17 @@ class PithAccessControl
                 $exception
             );
         }
+        catch (Exception $exception){
+            throw new PithException(
+                'Pith Framework Exception 4030: The Access Control encountered a problem when running the Access Level. Message: ' . $exception->getMessage(),
+                4030,
+                $exception
+            );
+        }
 
 
         // After load
-        if (is_object($access_level)) {
-            // Get App
-            $app = $this->dependency_injection->container->get('\\Pith\\Framework\\PithApp');
-        }
-        else{
+        if (!is_object($access_level)) {
             $access_level = false;
         }
 
@@ -146,10 +185,19 @@ class PithAccessControl
         }
         else{
             // If not logged in:
-            // TODO - Throw exception - Handle it and then - Deny & show the login page
-
+            // T*O*D*O - Throw exception - Handle it and then - Deny & show the login page. Done.
             // If logged in:
             // TODO - Throw exception - Handle it and then - Deny & show the access denied page
+
+            $is_logged_in = $app->active_user->isLoggedIn();
+            if($is_logged_in){
+                // TODO Send to access denied page. (Need to make an access denied page first)
+            }
+            else{
+                // Redirect to user login form
+                header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK, true, 302);
+                exit;
+            }
 
             /*
             throw new PithException(
@@ -157,7 +205,6 @@ class PithAccessControl
                 4007
             );
             */
-
 
             // Log impression
             $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
@@ -167,5 +214,17 @@ class PithAccessControl
             echo 'Error 403';
             exit;
         }
+    }
+
+    /**
+     * @param int $user_id
+     * @return array
+     * @noinspection PhpUnnecessaryLocalVariableInspection
+     */
+    public function getUserAccessLevelsAboveUser(int $user_id): array
+    {
+        $user_access_levels_above_user = $this->user_service->getUserAccessLevelsAboveUser($user_id);
+
+        return $user_access_levels_above_user;
     }
 }
