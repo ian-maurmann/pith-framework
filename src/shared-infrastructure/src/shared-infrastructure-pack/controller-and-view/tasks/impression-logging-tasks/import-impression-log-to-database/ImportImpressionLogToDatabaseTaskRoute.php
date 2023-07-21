@@ -25,6 +25,6 @@ class ImportImpressionLogToDatabaseTaskRoute extends PithRoute
     public string $route_type   = 'job';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
-    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseJobAction';
+    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskAction';
     public string $view_adapter = '\\Pith\\CliViewAdapter\\PithCliViewAdapter';
 }
