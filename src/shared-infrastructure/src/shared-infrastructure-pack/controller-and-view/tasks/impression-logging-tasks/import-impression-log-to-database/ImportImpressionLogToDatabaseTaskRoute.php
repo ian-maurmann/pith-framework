@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Import Impression Log To Database Job Route
- * -------------------------------------------
+ * Import Impression Log To Database Task Route
+ * --------------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
@@ -17,10 +17,10 @@ namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 use Pith\Framework\PithRoute;
 
 /**
- * Class ImportImpressionLogToDatabaseJobRoute
+ * Class ImportImpressionLogToDatabaseTaskRoute
  * @package Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks
  */
-class ImportImpressionLogToDatabaseJobRoute extends PithRoute
+class ImportImpressionLogToDatabaseTaskRoute extends PithRoute
 {
     public string $route_type   = 'job';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';

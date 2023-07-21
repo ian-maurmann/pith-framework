@@ -23,6 +23,6 @@ use Pith\Framework\PithRouteList;
 class TasksRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', ['GET'], '/import_impression_log_to_database', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseJobRoute'],
+        ['route', ['GET'], '/import_impression_log_to_database', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskRoute'],
     ];
 }
