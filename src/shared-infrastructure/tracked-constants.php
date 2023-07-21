@@ -33,4 +33,4 @@ const SHARED_UI_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = SHARED_UI_USER_LOGIN_F
 
 const PITH_PANEL_PATH = '/3333/3333/panel';
 
-const SHARED_INFRASTRUCTURE_JOBS_URL_PATH = '/shared-infrastructure/run/job';
+const SHARED_INFRASTRUCTURE_TASKS_URL_PATH = '/shared-infrastructure/run/task';
