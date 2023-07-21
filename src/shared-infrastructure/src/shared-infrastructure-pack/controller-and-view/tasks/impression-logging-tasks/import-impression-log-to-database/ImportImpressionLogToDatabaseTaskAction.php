@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Import Impression Log To Database Job Action
- * --------------------------------------------
+ * Import Impression Log To Database Task Action
+ * ---------------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
  * @noinspection PhpMissingParentCallCommonInspection  - Action parent methods exist as fallback.
@@ -13,17 +13,17 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\SharedInfrastructure\Jobs\ImpressionLoggingJobs;
+namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
- * Class ImportImpressionLogToDatabaseJobAction
- * @package Pith\Framework\SharedInfrastructure\Jobs\ImpressionLoggingJobs
+ * Class ImportImpressionLogToDatabaseTaskAction
+ * @package Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks
  */
-class ImportImpressionLogToDatabaseJobAction extends PithAction
+class ImportImpressionLogToDatabaseTaskAction extends PithAction
 {
     private PithAppRetriever $app_retriever;
 
