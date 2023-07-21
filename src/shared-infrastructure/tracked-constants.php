@@ -12,6 +12,11 @@
 // Turn on strict types
 declare(strict_types=1);
 
+// Make sure STDOUT is defined
+if(!defined('STDOUT')){
+    define('STDOUT', fopen('php://stdout', 'wb'));
+}
+
 // Define our Constants
 const PITH_DEMO_PAGE_MAIN_TITLE            = 'Demo Page - Pith Framework';
 const PITH_DEMO_PAGES_ROUTE_GROUP_PATH     = '/1111/1111/demo';
@@ -27,3 +32,5 @@ const SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK   = '/1111/1111/demo?logge
 const SHARED_UI_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = SHARED_UI_USER_LOGIN_FORM_PAGE_LINK;
 
 const PITH_PANEL_PATH = '/3333/3333/panel';
+
+const SHARED_INFRASTRUCTURE_JOBS_URL_PATH = '/shared-infrastructure/run/job';

@@ -142,6 +142,9 @@
             "Pith\\JsonEndpointViewAdapter\\": [
                 "src/framework/plugins/json-endpoint-view-adapter/src/"
             ],
+            "Pith\\CliViewAdapter\\": [
+                "src/framework/plugins/cli-view-adapter/src/"
+            ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
             ],
