@@ -25,4 +25,6 @@ class ImportImpressionLogToDatabaseJobRoute extends PithRoute
     public string $route_type   = 'job';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
+    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Jobs\\ImpressionLoggingJobs\\ImportImpressionLogToDatabaseJobAction';
+    public string $view_adapter = '\\Pith\\CliViewAdapter\\PithCliViewAdapter';
 }
