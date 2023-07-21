@@ -85,7 +85,8 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-log-for-import/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
