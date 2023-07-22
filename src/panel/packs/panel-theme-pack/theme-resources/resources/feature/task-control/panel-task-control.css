@@ -2,4 +2,9 @@
 =================================== */
 
 
+[data-section-item="cli-display"]{
+    background-color: #212121;
+    color: #afb1b3;
 
+    font-family: 'JetBrains Mono NL',Consolas,monaco,monospace;
+}
