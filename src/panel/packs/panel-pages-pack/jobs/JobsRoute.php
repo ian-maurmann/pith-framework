@@ -23,7 +23,7 @@ class JobsRoute extends PithRoute
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\Panel\\Pages\\PithPanelPagesPack';
     public string $access_level = 'webmaster';
-    public string $view         = '[^route_folder]/jobs-view.latte';
+    public string $view         = '[^route_folder]/tasks-view.latte';
     public string $layout       = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutRoute';
 
     public string $page_title       = 'Pith Panel';
