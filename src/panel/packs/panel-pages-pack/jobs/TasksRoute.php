@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Jobs Route
- * ----------
+ * Tasks Route
+ * -----------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Ignore.
  */
@@ -15,10 +15,10 @@ namespace Pith\Framework\Panel\Pages;
 use Pith\Framework\PithRoute;
 
 /**
- * Class JobsRoute
+ * Class TasksRoute
  * @package Pith\Framework\Panel\Pages
  */
-class JobsRoute extends PithRoute
+class TasksRoute extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '\\Pith\\Framework\\Panel\\Pages\\PithPanelPagesPack';
