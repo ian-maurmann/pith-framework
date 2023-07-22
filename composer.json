@@ -49,8 +49,8 @@
                 "src/panel/packs/panel-pages-pack/",
                 "src/panel/packs/panel-pages-pack/account-bar/",
                 "src/panel/packs/panel-pages-pack/home/",
-                "src/panel/packs/panel-pages-pack/jobs/",
-                "src/panel/packs/panel-pages-pack/lorem-ipsum/"
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/",
+                "src/panel/packs/panel-pages-pack/tasks/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
                 "src/panel/packs/panel-theme-pack/",
@@ -85,7 +85,8 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-log-for-import/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
