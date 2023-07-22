@@ -10,26 +10,22 @@
     </div>
 
     <p>
-        List of task runners:
+        List of tasks:
     </p>
 
-    <!-- Impressions -->
-    <div>
-        <p>
-            Impression Logging
-        </p>
+    <table>
+        {foreach $task_routes as $task_route_index => $task_route}
+            <tr>
+                <td>
+                    {$task_route[2]}
+                </td>
+                <td>
+                    <div class="aero-gel aero-gel-blurred aero-gel-button aero-gel-button-red aero-gel-button-x4" tabindex="0" data-pith-panel-click-event="pith-panel.task-control >>> on-button-click">Run Task</div>
+                </td>
+            </tr>
+        {/foreach}
+    </table>
 
-        <ul>
-            <li>
-                queue_impression_logs_for_import
-                <div class="aero-gel aero-gel-blurred aero-gel-button aero-gel-button-red aero-gel-button-x4" tabindex="0" data-pith-panel-click-event="pith-panel.task-control >>> on-button-click">Run Task</div>
-            </li>
-            <li>
-                import_impression_log_to_database
-                <div class="aero-gel aero-gel-blurred aero-gel-button aero-gel-button-red aero-gel-button-x4" tabindex="0" data-pith-panel-click-event="pith-panel.task-control >>> on-button-click">Run Task</div>
-            </li>
-        </ul>
-    </div>
 
 </section>
 
