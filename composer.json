@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.1",
         "ext-json": "*",
+        "ext-gd": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
         "doctrine/migrations": "^3.5",
@@ -49,8 +50,8 @@
                 "src/panel/packs/panel-pages-pack/",
                 "src/panel/packs/panel-pages-pack/account-bar/",
                 "src/panel/packs/panel-pages-pack/home/",
-                "src/panel/packs/panel-pages-pack/jobs/",
-                "src/panel/packs/panel-pages-pack/lorem-ipsum/"
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/",
+                "src/panel/packs/panel-pages-pack/tasks/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
                 "src/panel/packs/panel-theme-pack/",
@@ -79,6 +80,14 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-logs-for-import/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
@@ -134,6 +143,9 @@
             ],
             "Pith\\JsonEndpointViewAdapter\\": [
                 "src/framework/plugins/json-endpoint-view-adapter/src/"
+            ],
+            "Pith\\CliViewAdapter\\": [
+                "src/framework/plugins/cli-view-adapter/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
