@@ -23,6 +23,7 @@ class TasksRoute extends PithRoute
     public string $route_type       = 'page';
     public string $pack             = '\\Pith\\Framework\\Panel\\Pages\\PithPanelPagesPack';
     public string $access_level     = 'webmaster';
+    public string $action           = '\\Pith\\Framework\\Panel\\Pages\\TasksAction';
     public string $view_requisition = '\\Pith\\Framework\\Panel\\Pages\\TasksViewRequisition';
     public string $view             = '[^route_folder]/tasks-view.latte';
     public string $layout           = '\\Pith\\Framework\\Panel\\Theme\\MainLayoutRoute';
