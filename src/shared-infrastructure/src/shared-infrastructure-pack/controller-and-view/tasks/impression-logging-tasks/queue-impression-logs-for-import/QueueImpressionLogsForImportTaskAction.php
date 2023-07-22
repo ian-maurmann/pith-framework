@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Queue Impression Log For Import task action
+ * Queue Impression Logs For Import task action
  * -------------------------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
@@ -20,10 +20,10 @@ use Pith\Framework\PithAppRetriever;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
- * Class QueueImpressionLogForImportTaskAction
+ * Class QueueImpressionLogsForImportTaskAction
  * @package Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks
  */
-class QueueImpressionLogForImportTaskAction extends PithAction
+class QueueImpressionLogsForImportTaskAction extends PithAction
 {
     private PithAppRetriever $app_retriever;
 
