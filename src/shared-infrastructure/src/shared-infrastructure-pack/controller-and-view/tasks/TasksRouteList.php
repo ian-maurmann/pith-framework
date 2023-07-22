@@ -24,6 +24,6 @@ class TasksRouteList extends PithRouteList
 {
     public array $routes = [
         ['route', ['GET'], '/import_impression_log_to_database', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskRoute'],
-        ['route', ['GET'], '/queue_impression_log_for_import',   '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\QueueImpressionLogForImportTaskRoute'],
+        ['route', ['GET'], '/queue_impression_logs_for_import',  '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\QueueImpressionLogsForImportTaskRoute'],
     ];
 }
