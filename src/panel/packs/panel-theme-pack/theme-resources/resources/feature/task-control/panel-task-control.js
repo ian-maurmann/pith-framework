@@ -27,6 +27,7 @@ PithPanel.TaskControl.listen = function(){
     let self = PithPanel.TaskControl;
 
     Ox.Event.delegate('[data-pith-panel-click-event="pith-panel.task-control >>> on-button-click"]', 'click', self.handleOnButtonClick);
+    Ox.Event.delegate('[data-pith-panel-click-event="pith-panel.task-control >>> run-task"]', 'click', self.handleOnRunTask);
 };
 
 
@@ -35,6 +36,17 @@ PithPanel.TaskControl.handleOnButtonClick = function(element, event){
     let self = PithPanel.TaskControl;
 
     alert('You clicked the button!');
+}
+
+
+// Handle On Run Task
+PithPanel.TaskControl.handleOnRunTask = function(element, event){
+    let self   = PithPanel.TaskControl;
+    let button = $(element);
+    let row    = button.parent().closest('tr').first();
+    let task   = row.attr('data-task');
+
+    alert('Run task ' + task);
 }
 
 
