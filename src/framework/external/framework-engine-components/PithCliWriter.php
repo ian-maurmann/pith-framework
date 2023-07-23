@@ -40,6 +40,23 @@ class PithCliWriter
         $this->writes = [];
     }
 
+    public function write(...$args): void
+    {
+        foreach ($args as $arg) {
+            if (is_object($arg) || is_array($arg) || is_resource($arg)) {
+                $output = print_r($arg, true);
+            } else {
+                $output = (string) $arg;
+            }
+
+            // Save output for later
+            $this->writes[] = $output;
+
+            // Write to CLI
+            fwrite(STDOUT, $output);
+        }
+    }
+
     /**
      * Send a log message to the STDOUT stream.
      *
