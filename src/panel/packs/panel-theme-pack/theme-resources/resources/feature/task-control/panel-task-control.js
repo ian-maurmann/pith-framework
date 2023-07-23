@@ -82,7 +82,7 @@ PithPanel.TaskControl.runTask = function(task, task_url){
         //alert( "done" );
         //alert(stringified_data);
 
-        cli_display_code_element.append('<br>' + data);
+        cli_display_code_element.append(task + '<br>' + data +'<br><br>▶️ ');
     }).fail(function() {
         //alert( "error" );
     }).always(function() {
