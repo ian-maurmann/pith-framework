@@ -15,7 +15,7 @@
 
     <table>
         {foreach $task_routes as $task_route_index => $task_route}
-            <tr data-task="{$task_route[2]}">
+            <tr data-task="{$task_route[2]}" data-task-url="{$TASKS_URL_PATH}{$task_route[2]}">
                 <td>
                     {$task_route[2]}
                 </td>

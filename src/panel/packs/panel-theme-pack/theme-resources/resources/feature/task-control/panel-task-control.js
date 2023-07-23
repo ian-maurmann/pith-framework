@@ -41,12 +41,53 @@ PithPanel.TaskControl.handleOnButtonClick = function(element, event){
 
 // Handle On Run Task
 PithPanel.TaskControl.handleOnRunTask = function(element, event){
-    let self   = PithPanel.TaskControl;
-    let button = $(element);
-    let row    = button.parent().closest('tr').first();
-    let task   = row.attr('data-task');
+    let self     = PithPanel.TaskControl;
+    let button   = $(element);
+    let row      = button.parent().closest('tr').first();
+    let task     = row.attr('data-task');
+    let task_url = row.attr('data-task-url');
 
-    alert('Run task ' + task);
+    //alert('Run task ' + task);
+
+    Swal.fire({
+        html: '<pre><code>' + task + '</code></pre><br> Run task?',
+        heightAuto: false,
+        iconHtml: '',
+
+        showConfirmButton: true,
+        showCancelButton: true,
+
+        focusConfirm: false,
+        focusCancel: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            self.runTask(task, task_url);
+        }
+    });
+}
+
+// Run Task
+PithPanel.TaskControl.runTask = function(task, task_url){
+    let self                     = PithPanel.TaskControl;
+    let section                  = $('[data-section="task-control"]');
+    let cli_display_div          = section.find('[data-section-item="cli-display"]').first();
+    let cli_display_pre_element  = cli_display_div.find('pre').first();
+    let cli_display_code_element = cli_display_pre_element.find('code').first();
+
+    // Make an ajax request
+    let jqxhr = $.get( task_url, {}, function() {
+        // Do nothing for now
+    }).done(function(data) {
+        let stringified_data = JSON.stringify(data);
+        //alert( "done" );
+        //alert(stringified_data);
+
+        cli_display_code_element.append('<br>' + data);
+    }).fail(function() {
+        //alert( "error" );
+    }).always(function() {
+        //alert( "finished" );
+    });
 }
 
 
