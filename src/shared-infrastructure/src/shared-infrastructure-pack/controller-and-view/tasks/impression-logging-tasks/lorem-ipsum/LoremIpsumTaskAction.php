@@ -54,6 +54,48 @@ class LoremIpsumTaskAction extends PithAction
         $app->cli_writer->writeLine($format->fg_dark_black . 'dark black'  . $format->reset);
         $app->cli_writer->writeLine($format->fg_dark_red . 'dark red'  . $format->reset);
         $app->cli_writer->writeLine($format->fg_dark_green . 'dark green'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'dark yellow'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_blue . 'dark blue'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_magenta . 'dark magenta'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_cyan . 'dark cyan'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_white . 'dark white'  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->fg_bright_black . 'bright black'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_red . 'bright red'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_green . 'bright green'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_yellow . 'bright yellow'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_blue . 'bright blue'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_magenta . 'bright magenta'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_cyan . 'bright cyan'  . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_white . 'bright white'  . $format->reset);
+
+
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->bg_dark_black . 'dark black'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_red . 'dark red'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_green . 'dark green'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_yellow . 'dark yellow'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_blue . 'dark blue'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_magenta . 'dark magenta'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_cyan . 'dark cyan'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_white . 'dark white'  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->bg_bright_black . 'bright black'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_red . 'bright red'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_green . 'bright green'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_yellow . 'bright yellow'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_blue . 'bright blue'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_magenta . 'bright magenta'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_cyan . 'bright cyan'  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_white . 'bright white'  . $format->reset);
+
+
     }
 
 }
