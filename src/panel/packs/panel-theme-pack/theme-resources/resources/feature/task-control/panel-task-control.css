@@ -11,7 +11,9 @@
     padding: 5px;
     border-radius: 5px;
 }
-
+[data-section-item="cli-display"] > pre{
+    white-space: pre-wrap;
+}
 
 
 [data-cli-format="fg_dark_black"]{color: #000000;}
