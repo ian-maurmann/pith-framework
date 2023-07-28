@@ -47,6 +47,40 @@ class LoremIpsumTaskAction extends PithAction
 
         $app->cli_writer->writeLine('    ');
 
+        $app->cli_writer->writeLine($format->fg_dark_yellow . '╭───────────────╮' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_yellow . '│  lorem_ipsum  │' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_yellow . '╰───────────────╯' . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->bg_dark_black . $format->fg_bright_white . '▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚' . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_black . $format->fg_bright_white . '▚  lorem_ipsum  ▚' . $format->reset);
+        $app->cli_writer->writeLine($format->bg_dark_black . $format->fg_bright_white . '▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚' . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->fg_dark_cyan . '╔───────────────╗' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_cyan . '│  lorem_ipsum  │' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_cyan . '╚───────────────╝' . $format->reset);
+
+        $app->cli_writer->writeLine($format->fg_dark_red . '┏───────────────┓' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_red . '│  lorem_ipsum  │' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_red . '┗───────────────┛' . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->fg_bright_blue . '┏━─────────────━┓' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_blue . '┃  lorem_ipsum  ┃' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_blue . '┗━─────────────━┛' . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
+        $app->cli_writer->writeLine($format->fg_dark_green . '╔═══════════════╗' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_green . '║  lorem_ipsum  ║' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_dark_green . '╚═══════════════╝' . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+
         $app->cli_writer->writeLine('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean malesuada viverra arcu. Vestibulum condimentum fermentum tortor nec sagittis. Suspendisse mi purus, sagittis et sem in, efficitur blandit nisi. Donec tempus venenatis risus at gravida. Vivamus accumsan ante et felis ullamcorper luctus in quis ex. Nulla varius mauris lacus, eu pharetra metus elementum et. Ut quis dictum felis. Ut nec maximus justo. Aenean mollis erat libero, molestie bibendum ipsum dignissim faucibus. Etiam a cursus ex. Nunc dignissim ultricies ante, at pellentesque sapien varius non. Praesent tincidunt, enim ultricies condimentum aliquet, odio nulla malesuada orci, id laoreet eros dui vel mi. Morbi vitae ipsum ut est vehicula rhoncus.');
 
         $app->cli_writer->writeLine('    ');
@@ -94,6 +128,30 @@ class LoremIpsumTaskAction extends PithAction
         $app->cli_writer->writeLine($format->bg_bright_magenta . 'bright magenta'  . $format->reset);
         $app->cli_writer->writeLine($format->bg_bright_cyan . 'bright cyan'  . $format->reset);
         $app->cli_writer->writeLine($format->bg_bright_white . 'bright white'  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_bright_green . $format->fg_bright_black . '  Success  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_bright_yellow . $format->fg_bright_black . '  Warning  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_bright_red . $format->fg_bright_white . '  Failure  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_bright_blue . $format->fg_bright_white . '  Info  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_dark_red . $format->fg_bright_white . '  Alert  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_dark_green . $format->fg_bright_white . '  Pass  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_dark_yellow . $format->fg_bright_white . '  Debug  '  . $format->reset);
+
+        $app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->bg_dark_blue . $format->fg_bright_white . '   Fr'  . $format->bg_bright_white . $format->fg_dark_black . 'anc' . $format->bg_bright_red . $format->fg_bright_white . 'e..? ' . $format->reset);
 
 
     }
