@@ -23,7 +23,9 @@ use Pith\Framework\PithRouteList;
 class TasksRouteList extends PithRouteList
 {
     public array $routes = [
+        ['route', ['GET'], '/hello_world',                       '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\HelloWorldTaskRoute'],
         ['route', ['GET'], '/import_impression_log_to_database', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskRoute'],
+        ['route', ['GET'], '/lorem_ipsum',                       '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\LoremIpsumTaskRoute'],
         ['route', ['GET'], '/queue_impression_logs_for_import',  '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\QueueImpressionLogsForImportTaskRoute'],
     ];
 }
