@@ -73,12 +73,15 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
             $time_now = time();
             $seconds_diff = $time_now - $change_time;
             $age_string = $this->secondsToTime($seconds_diff);
+            $is_over_2_hours_old = $seconds_diff > 7200;
+            $is_over_2_hours_old_yn_colored = $is_over_2_hours_old ? $format->fg_bright_green . 'yes' : $format->fg_bright_yellow . 'no';
             $app->cli_writer->writeLine('    ' . $format->fg_dark_yellow . (string) $file_number . $format->reset . '    ' . $file);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '↳ - '. $format->reset . 'impression log');
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Last updated timestamp: ' . $format->fg_dark_cyan . $change_time . $format->reset);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . $change_date_string_1 . ' at ' . $change_date_string_2);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Diff seconds to now: ' . $format->fg_dark_cyan . $seconds_diff . $format->reset);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Age: ' . $age_string);
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Is over 2 hours old? ' . $is_over_2_hours_old_yn_colored . $format->reset);
 
             $app->cli_writer->writeLine('    ');
             //break;
