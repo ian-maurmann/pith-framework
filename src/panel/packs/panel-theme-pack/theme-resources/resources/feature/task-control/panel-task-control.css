@@ -13,6 +13,8 @@
 }
 [data-section-item="cli-display"] > pre{
     white-space: pre-wrap;
+    font-family: 'JetBrains Mono NL',Consolas,monaco,monospace;
+    line-height: 1em;
 }
 
 
