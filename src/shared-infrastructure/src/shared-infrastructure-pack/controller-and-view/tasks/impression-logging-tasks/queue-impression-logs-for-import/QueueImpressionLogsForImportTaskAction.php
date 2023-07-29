@@ -83,6 +83,13 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Age: ' . $age_string);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Is over 2 hours old? ' . $is_over_2_hours_old_yn_colored . $format->reset);
 
+            if($is_over_2_hours_old){
+                $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Checking if already queued.... ');
+            }
+            else{
+                $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Ignore for now.');
+            }
+
             $app->cli_writer->writeLine('    ');
             //break;
         }
