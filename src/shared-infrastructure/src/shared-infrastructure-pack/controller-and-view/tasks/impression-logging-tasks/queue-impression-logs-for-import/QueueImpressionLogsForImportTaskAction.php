@@ -70,9 +70,15 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
             $change_time = filectime($file);
             $change_date_string_1 = date("F d Y", $change_time);
             $change_date_string_2 = date("H:i:s", $change_time);
+            $time_now = time();
+            $seconds_diff = $time_now - $change_time;
+            $age_string = $this->secondsToTime($seconds_diff);
             $app->cli_writer->writeLine('    ' . $format->fg_dark_yellow . (string) $file_number . $format->reset . '    ' . $file);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '↳ - '. $format->reset . 'impression log');
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Last updated timestamp: ' . $format->fg_dark_cyan . $change_time . $format->reset);
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . $change_date_string_1 . ' at ' . $change_date_string_2);
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Diff seconds to now: ' . $format->fg_dark_cyan . $seconds_diff . $format->reset);
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Age: ' . $age_string);
 
             $app->cli_writer->writeLine('    ');
             //break;
@@ -80,4 +86,51 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
         $app->cli_writer->writeLine('    ');
     }
 
+    private function secondsToTime($inputSeconds) {
+
+        //See:
+        //    https://stackoverflow.com/questions/8273804/convert-seconds-into-days-hours-minutes-and-seconds
+        //    Answer by Luke Cousins
+
+        if($inputSeconds > 0){
+            $secondsInAMinute = 60;
+            $secondsInAnHour = 60 * $secondsInAMinute;
+            $secondsInADay = 24 * $secondsInAnHour;
+
+            // Extract days
+            $days = floor($inputSeconds / $secondsInADay);
+
+            // Extract hours
+            $hourSeconds = $inputSeconds % $secondsInADay;
+            $hours = floor($hourSeconds / $secondsInAnHour);
+
+            // Extract minutes
+            $minuteSeconds = $hourSeconds % $secondsInAnHour;
+            $minutes = floor($minuteSeconds / $secondsInAMinute);
+
+            // Extract the remaining seconds
+            $remainingSeconds = $minuteSeconds % $secondsInAMinute;
+            $seconds = ceil($remainingSeconds);
+
+            // Format and return
+            $timeParts = [];
+            $sections = [
+                'day' => (int)$days,
+                'hour' => (int)$hours,
+                'minute' => (int)$minutes,
+                'second' => (int)$seconds,
+            ];
+
+            foreach ($sections as $name => $value){
+                if ($value > 0){
+                    $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
+                }
+            }
+
+            return implode(', ', $timeParts);
+        }
+        else{
+            return 'now';
+        }
+    }
 }
