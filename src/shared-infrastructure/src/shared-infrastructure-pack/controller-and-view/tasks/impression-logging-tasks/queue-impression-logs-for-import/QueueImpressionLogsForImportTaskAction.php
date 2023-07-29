@@ -43,9 +43,41 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
         $app->cli_writer->writeLine($format->fg_bright_yellow . '┏━────────────────────────────────────────────────────────────────━┓' . $format->reset);
         $app->cli_writer->writeLine($format->fg_bright_yellow . '┃  Impression Logging - Task 1 - Queue impression logs for import  ┃' . $format->reset);
         $app->cli_writer->writeLine($format->fg_bright_yellow . '┗━────────────────────────────────────────────────────────────────━┛' . $format->reset);
+        $app->cli_writer->writeLine('    ');
 
+        // Folder
+        $folder = PITH_IMPRESSION_LOG_LOCATION;
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Searching for impression logs in folder:' . $format->reset);
+        $app->cli_writer->writeLine($folder);
+        $app->cli_writer->writeLine('    ');
 
-        $app->cli_writer->writeLine('___ Queue Impression Log For Import task action ___');
+        // Get all logs
+        $files = glob($folder . '*.log');
+        $file_count = count($files);
+        //$app->cli_writer->writeLine(print_r($files, true));
+        //$app->cli_writer->writeLine('    ');
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Found ' . (string) $file_count . ' impression log files:' . $format->reset);
+        foreach($files as $file_index => $file){
+            $file_number = $file_index + 1;
+            $app->cli_writer->writeLine('    ' . $format->fg_dark_yellow . (string) $file_number . $format->reset . '    ' . $file);
+        }
+        $app->cli_writer->writeLine('    ');
+
+        // Add to queue
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Add impression log files to import queue:' . $format->reset);
+        foreach($files as $file_index => $file){
+            $file_number = $file_index + 1;
+            $change_time = filectime($file);
+            $change_date_string_1 = date("F d Y", $change_time);
+            $change_date_string_2 = date("H:i:s", $change_time);
+            $app->cli_writer->writeLine('    ' . $format->fg_dark_yellow . (string) $file_number . $format->reset . '    ' . $file);
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '↳ - '. $format->reset . 'impression log');
+            $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . $change_date_string_1 . ' at ' . $change_date_string_2);
+
+            $app->cli_writer->writeLine('    ');
+            //break;
+        }
+        $app->cli_writer->writeLine('    ');
     }
 
 }
