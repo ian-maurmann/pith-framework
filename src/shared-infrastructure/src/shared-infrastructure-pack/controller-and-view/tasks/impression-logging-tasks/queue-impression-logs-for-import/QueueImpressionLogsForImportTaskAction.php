@@ -39,11 +39,11 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
         $app = $this->app_retriever->getApp();
         $format = $app->cli_format;
 
-        // Test the CLI Writer ---- CLI View Adapter show also remember this in the view
+        // Header
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┏━────────────────────────────────────────────────────────────────━┓' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┃  Impression Logging - Task 1 - Queue impression logs for import  ┃' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┗━────────────────────────────────────────────────────────────────━┛' . $format->reset);
 
-        $app->cli_writer->writeLine($format->fg_bright_yellow . '┌────────────────────────────────────┐' . $format->reset);
-        $app->cli_writer->writeLine($format->fg_bright_yellow . '│  queue_impression_logs_for_import  │' . $format->reset);
-        $app->cli_writer->writeLine($format->fg_bright_yellow . '└────────────────────────────────────┘' . $format->reset);
 
         $app->cli_writer->writeLine('___ Queue Impression Log For Import task action ___');
     }
