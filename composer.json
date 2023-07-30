@@ -94,6 +94,9 @@
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\ImpressionSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/impression-system/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
             ],

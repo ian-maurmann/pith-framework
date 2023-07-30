@@ -130,10 +130,10 @@ class LoremIpsumTaskAction extends PithAction
         $app->cli_writer->writeLine($format->bg_bright_white . 'bright white'  . $format->reset);
 
         $app->cli_writer->writeLine('    ');
-        $app->cli_writer->writeLine($format->bg_bright_green . $format->fg_bright_black . '  Success  '  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_green . $format->fg_dark_black . '  Success  '  . $format->reset);
 
         $app->cli_writer->writeLine('    ');
-        $app->cli_writer->writeLine($format->bg_bright_yellow . $format->fg_bright_black . '  Warning  '  . $format->reset);
+        $app->cli_writer->writeLine($format->bg_bright_yellow . $format->fg_dark_black . '  Warning  '  . $format->reset);
 
         $app->cli_writer->writeLine('    ');
         $app->cli_writer->writeLine($format->bg_bright_red . $format->fg_bright_white . '  Failure  '  . $format->reset);
