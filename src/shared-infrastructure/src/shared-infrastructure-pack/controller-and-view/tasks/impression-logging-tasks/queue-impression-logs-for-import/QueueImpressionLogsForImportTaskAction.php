@@ -17,6 +17,7 @@ namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
+use Pith\Framework\SharedInfrastructure\Model\ImpressionSystem\ImpressionService;
 use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
@@ -25,14 +26,19 @@ use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
  */
 class QueueImpressionLogsForImportTaskAction extends PithAction
 {
-    private PithAppRetriever $app_retriever;
+    private PithAppRetriever  $app_retriever;
+    private ImpressionService $impression_service;
 
-    public function __construct(PithAppRetriever $app_retriever)
+    public function __construct(PithAppRetriever $app_retriever, ImpressionService $impression_service)
     {
         // Set object dependencies
-        $this->app_retriever = $app_retriever;
+        $this->app_retriever      = $app_retriever;
+        $this->impression_service = $impression_service;
     }
 
+    /**
+     * @throws \Pith\Framework\PithException
+     */
     public function runAction()
     {
         // Get app
@@ -84,19 +90,43 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
             $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Is over 2 hours old? ' . $is_over_2_hours_old_yn_colored . $format->reset);
 
             if($is_over_2_hours_old){
-                $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Checking if already queued.... ');
+                $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Checking if file is already queued for import.... ');
+
+                $is_file_queued_for_import = $this->impression_service->isImpressionLogFileQueuedForImport($file);
+                $is_file_queued_for_import_yn_colored = $is_file_queued_for_import ? $format->fg_bright_yellow . 'yes' : $format->fg_bright_green . 'no';
+
+                $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Is already queued for import? ' . $is_file_queued_for_import_yn_colored . $format->reset);
+
+                if($is_file_queued_for_import){
+                    $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Ignore for now.');
+                }
+                else{
+                    $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Adding to queue for import.... ');
+                    $queue_id = $this->impression_service->addImpressionLogFileToQueueForImport($file);
+                    $did_add_to_queue_for_import = $queue_id > 0;
+                    $did_add_to_queue_for_import_yn_colored = $did_add_to_queue_for_import ? $format->fg_bright_green . 'yes' : $format->fg_bright_red . 'no';
+                    $queue_id_colored = $did_add_to_queue_for_import ? $format->fg_bright_green . (string) $queue_id : $format->fg_bright_red . (string) $queue_id;
+
+                    $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Added to queue? ' . $did_add_to_queue_for_import_yn_colored . $format->reset);
+                    $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'ID in queue: ' . $queue_id_colored . $format->reset);
+                }
             }
             else{
                 $app->cli_writer->writeLine('            ' . $format->fg_dark_yellow .  '  - '. $format->reset . 'Ignore for now.');
             }
 
             $app->cli_writer->writeLine('    ');
-            //break;
+
+            if($file_number > 49){
+                $app->cli_writer->writeLine($format->fg_dark_yellow . 'Stopping at ' . (string) $file_number . ' to not stress the memory.' . $format->reset);
+                break;
+            }
         }
         $app->cli_writer->writeLine('    ');
     }
 
-    private function secondsToTime($inputSeconds) {
+    private function secondsToTime($inputSeconds): string
+    {
 
         //See:
         //    https://stackoverflow.com/questions/8273804/convert-seconds-into-days-hours-minutes-and-seconds
