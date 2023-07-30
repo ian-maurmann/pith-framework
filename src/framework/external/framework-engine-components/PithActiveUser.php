@@ -159,7 +159,7 @@ class PithActiveUser
 
                     $this->remote_ip_address,
                     $this->session_id,
-                    '(guest)',
+                    $this->isUser() ? 'user' : 'guest',
                     '(TODO: User ID)', // TODO: User ID will do here
 
                     $this->user_agent_string,
