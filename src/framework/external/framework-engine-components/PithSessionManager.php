@@ -187,4 +187,14 @@ class PithSessionManager
         return $is_webmaster;
     }
 
+    /**
+     * @return string
+     */
+    public function getSessionId(): string
+    {
+        $session_id = session_id() ?? '';
+
+        return $session_id;
+    }
+
 }
