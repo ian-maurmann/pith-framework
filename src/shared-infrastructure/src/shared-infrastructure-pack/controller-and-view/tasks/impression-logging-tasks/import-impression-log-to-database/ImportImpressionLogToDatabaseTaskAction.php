@@ -38,11 +38,17 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
         // Get app
         $app = $this->app_retriever->getApp();
 
-        // Test the CLI Writer ---- CLI View Adapter show also remember this in the view
-        $app->cli_writer->writeLine('Hello, World!');
-        $app->cli_writer->writeLine('Jello!');
-        $app->cli_writer->writeLine('Jello!');
-        $app->cli_writer->writeLine('More jello!');
+        // Get CLI format
+        $format = $app->cli_format;
+
+        // Header
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┏━─────────────────────────────────────────────────────────────────━┓' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┃  Impression Logging - Task 2 - Import impression log to database  ┃' . $format->reset);
+        $app->cli_writer->writeLine($format->fg_bright_yellow . '┗━─────────────────────────────────────────────────────────────────━┛' . $format->reset);
+        $app->cli_writer->writeLine(' ');
+
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Looking for next item in queue:' . $format->reset);
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Selecting...');
     }
 
 }
