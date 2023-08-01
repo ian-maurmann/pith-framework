@@ -6,15 +6,23 @@
     background-color: #212121;
     color: #afb1b3;
 
-    font-family: 'JetBrains Mono NL',Consolas,monaco,monospace;
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
 
     padding: 5px;
     border-radius: 5px;
 }
 [data-section-item="cli-display"] > pre{
     white-space: pre-wrap;
-    font-family: 'JetBrains Mono NL',Consolas,monaco,monospace;
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
     line-height: 1em;
+    font-size: 9pt;
+}
+
+[data-section-item="cli-display"] > pre > code{
+    white-space: pre-wrap;
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
+    line-height: 1em;
+    font-size: 9pt;
 }
 
 
