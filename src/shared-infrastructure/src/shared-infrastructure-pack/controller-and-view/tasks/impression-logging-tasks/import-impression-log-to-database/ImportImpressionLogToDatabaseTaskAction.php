@@ -20,6 +20,7 @@ use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
 use Pith\Framework\SharedInfrastructure\Model\ImpressionSystem\ImpressionService;
+use SplFileObject;
 
 /**
  * Class ImportImpressionLogToDatabaseTaskAction
@@ -153,10 +154,40 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
         if($continue){
             $file_size_in_bytes = filesize($log_file_name);
             $file_size_readable_string = $this->unit_conversion_utility->getHumanFilesize($file_size_in_bytes);
-            
+
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size in bytes: ' . $format->fg_dark_cyan . $file_size_in_bytes . $format->reset);
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size: ' . $format->fg_dark_cyan . $file_size_readable_string . $format->reset);
         }
+
+        if($continue){
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- Read log file' . $format->reset);
+
+            $file = new SplFileObject($log_file_name);
+            $line_number = 0;
+            while (!$file->eof()) {
+                $line_number++;
+                $line = $file->fgets();
+                $line_length = mb_strlen($line);
+
+                $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- Line ' . $line_number . $format->reset);
+                $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Line Length: ' . $format->fg_dark_cyan . $line_length . $format->reset);
+
+                if($line_length > 1){
+                    $impression_variables   = explode(' ● ', $line);
+                    $impression_datetime    = $impression_variables[0];
+                    $impression_http_method = $impression_variables[1];
+                    $impression_uri         = $impression_variables[2];
+
+                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Datetime: ' . $format->fg_dark_cyan . $impression_datetime . $format->reset);
+                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'HTTP Method: ' . $format->fg_dark_cyan . $impression_http_method . $format->reset);
+                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'URI: ' . $format->fg_dark_cyan . $impression_uri . $format->reset);
+                }
+
+                $app->cli_writer->writeLine($format->fg_dark_red . $line . $format->reset);
+            }
+        }
+
+
 
     }
 
