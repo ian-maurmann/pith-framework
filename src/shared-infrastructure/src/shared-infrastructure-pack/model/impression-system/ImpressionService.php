@@ -48,6 +48,7 @@ class ImpressionService
     /**
      * @param string $file_name
      * @return bool
+     * @throws PithException
      */
     public function isImpressionLogFileQueuedForImport(string $file_name): bool
     {
@@ -68,6 +69,28 @@ class ImpressionService
 
         // Return the queue_id as int
         return $queue_id;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getOldestQueuedImpressionLog():array
+    {
+        // Get oldest row from queue
+        $queued_row = $this->impression_log_loading_queue_gateway->getOldestQueuedImpressionLog();
+
+        return $queued_row;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsNotFound(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsNotFound($queue_item_id);
+
+        return $did_update;
     }
 
 

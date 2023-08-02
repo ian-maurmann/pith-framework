@@ -17,7 +17,8 @@ namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
-use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+use Pith\Framework\PithException;
+use Pith\Framework\SharedInfrastructure\Model\ImpressionSystem\ImpressionService;
 
 /**
  * Class ImportImpressionLogToDatabaseTaskAction
@@ -25,16 +26,23 @@ use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
  */
 class ImportImpressionLogToDatabaseTaskAction extends PithAction
 {
-    private PithAppRetriever $app_retriever;
+    private PithAppRetriever  $app_retriever;
+    private ImpressionService $impression_service;
 
-    public function __construct(PithAppRetriever $app_retriever)
+    public function __construct(PithAppRetriever $app_retriever, ImpressionService $impression_service)
     {
         // Set object dependencies
-        $this->app_retriever = $app_retriever;
+        $this->app_retriever      = $app_retriever;
+        $this->impression_service = $impression_service;
     }
 
+    /**
+     * @throws PithException
+     */
     public function runAction()
     {
+        $continue = true;
+
         // Get app
         $app = $this->app_retriever->getApp();
 
@@ -49,6 +57,96 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
 
         $app->cli_writer->writeLine($format->fg_dark_yellow . 'Looking for next item in queue:' . $format->reset);
         $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Selecting...');
+
+        // Find row
+        $queue_row = $this->impression_service->getOldestQueuedImpressionLog();
+        $did_find_queued_row = (bool) count($queue_row);
+
+        if($did_find_queued_row){
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found the oldest item in the queue? ' . $format->fg_bright_green . 'yes' . $format->reset);
+        }
+        else{
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found the oldest item in the queue? ' . $format->fg_bright_red . 'no' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+            $continue = false;
+        }
+
+        // Get row variables
+        $in_queue_id                 = $queue_row['in_queue_id'] ?? 0;
+        $log_file_name               = $queue_row['log_file_name'] ?? '';
+        $datetime_added_to_queue     = $queue_row['datetime_added_to_queue'] ?? '';
+        $datetime_start_loading      = $queue_row['datetime_start_loading'] ?? '';
+        $datetime_done_loading       = $queue_row['datetime_done_loading'] ?? '';
+        $datetime_file_not_found     = $queue_row['datetime_file_not_found'] ?? '';
+        $has_datetime_start_loading  = !empty($datetime_start_loading);
+        $has_datetime_done_loading   = !empty($datetime_done_loading);
+        $has_datetime_file_not_found = !empty($datetime_file_not_found);
+
+        // Display row variables
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'In-queue ID: ' . $format->fg_dark_cyan . $in_queue_id . $format->reset);
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file: ' . $format->fg_dark_cyan . $log_file_name . $format->reset);
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Added to queue on: ' . $format->fg_dark_cyan . $datetime_added_to_queue . $format->reset);
+
+        // Is marked as file not found?
+        if($continue){
+            if($has_datetime_file_not_found){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as file not found? ' . $format->fg_bright_red . 'yes' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+                $continue = false;
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as file not found? ' . $format->fg_bright_green . 'no' . $format->reset);
+            }
+        }
+
+        // Is marked as already done loading?
+        if($continue){
+            if($has_datetime_done_loading){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as already done loading? ' . $format->fg_bright_red . 'yes' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+                $continue = false;
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as already done loading? ' . $format->fg_bright_green . 'no' . $format->reset);
+            }
+        }
+
+        // Is marked as already done loading?
+        if($continue){
+            if($has_datetime_start_loading){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as already started loading? ' . $format->fg_bright_red . 'yes' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+                $continue = false;
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Is marked as already started loading? ' . $format->fg_bright_green . 'no' . $format->reset);
+            }
+        }
+
+        // Does file exist?
+        if($continue){
+            $log_file_exists = file_exists((string) $log_file_name);
+            if($log_file_exists){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Does file exist? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Does file exist? ' . $format->fg_bright_red . 'no' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- Mark file as not found' . $format->reset);
+
+                $did_mark_as_not_found = $this->impression_service->markQueuedImpressionLogFileAsNotFound((int) $in_queue_id);
+
+                if($did_mark_as_not_found){
+                    $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as not found? ' . $format->fg_bright_green . 'yes' . $format->reset);
+                }
+                else{
+                    $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as not found? ' . $format->fg_bright_red . 'Failed to update' . $format->reset);
+                }
+
+                $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+                $continue = false;
+            }
+        }
+
     }
 
 }

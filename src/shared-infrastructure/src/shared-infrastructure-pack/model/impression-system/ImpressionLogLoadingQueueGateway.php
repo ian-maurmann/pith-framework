@@ -79,8 +79,13 @@ class ImpressionLogLoadingQueueGateway
             ]
         );
 
+        // Get results
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Get row count
         $row_count = $results ? count($results) : 0;
+
+        // Get is queued for import
         $is_queued_for_import = $row_count > 0;
 
         // Return ture if the file is in the queue, else return false if the file is not in the queue
@@ -133,6 +138,88 @@ class ImpressionLogLoadingQueueGateway
 
         // Return the inserted id
         return (int) $inserted_id;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     * @noinspection SqlRedundantOrderingDirection
+     */
+    public function getOldestQueuedImpressionLog(): array
+    {
+        // Default to empty array
+        $row = [];
+
+        // Query
+        $sql = '
+            SELECT
+                *
+            FROM
+                `impression_log_loading_queue` AS q 
+            ORDER BY q.in_queue_id ASC
+            LIMIT 1
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute();
+
+        // Get results
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Get row count
+        $row_count = $results ? count($results) : 0;
+
+        // Get row
+        if($row_count > 0){
+            $row = $results[0];
+        }
+
+        // Return row
+        return $row;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsNotFound(int $in_queue_id): bool
+    {
+        // Default to false
+        $did_update = false;
+
+        // Query
+        $sql = '
+            UPDATE `impression_log_loading_queue`
+            SET datetime_file_not_found = NOW() 
+            WHERE in_queue_id = :in_queue_id
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':in_queue_id' => $in_queue_id,
+            ]
+        );
+
+        // Get number of row affected
+        $rows_affected = $statement->rowCount();
+
+        // Did update?
+        $did_update = $rows_affected > 0;
+
+        // Return true if updated
+        return $did_update;
     }
 
 }
