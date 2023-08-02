@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
+use Pith\Framework\Internal\PithUnitConversionUtility;
 use Pith\Framework\PithAction;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
@@ -26,14 +27,16 @@ use Pith\Framework\SharedInfrastructure\Model\ImpressionSystem\ImpressionService
  */
 class ImportImpressionLogToDatabaseTaskAction extends PithAction
 {
-    private PithAppRetriever  $app_retriever;
-    private ImpressionService $impression_service;
+    private PithAppRetriever          $app_retriever;
+    private ImpressionService         $impression_service;
+    private PithUnitConversionUtility $unit_conversion_utility;
 
-    public function __construct(PithAppRetriever $app_retriever, ImpressionService $impression_service)
+    public function __construct(PithAppRetriever $app_retriever, ImpressionService $impression_service, PithUnitConversionUtility $unit_conversion_utility)
     {
         // Set object dependencies
-        $this->app_retriever      = $app_retriever;
-        $this->impression_service = $impression_service;
+        $this->app_retriever           = $app_retriever;
+        $this->impression_service      = $impression_service;
+        $this->unit_conversion_utility = $unit_conversion_utility;
     }
 
     /**
@@ -149,8 +152,8 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
 
         if($continue){
             $file_size_in_bytes = filesize($log_file_name);
-            $file_size_readable_string = $format->getHumanFilesize($file_size_in_bytes);
-
+            $file_size_readable_string = $this->unit_conversion_utility->getHumanFilesize($file_size_in_bytes);
+            
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size in bytes: ' . $format->fg_dark_cyan . $file_size_in_bytes . $format->reset);
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size: ' . $format->fg_dark_cyan . $file_size_readable_string . $format->reset);
         }
