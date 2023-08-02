@@ -147,6 +147,14 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
             }
         }
 
+        if($continue){
+            $file_size_in_bytes = filesize($log_file_name);
+            $file_size_readable_string = $format->getHumanFilesize($file_size_in_bytes);
+
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size in bytes: ' . $format->fg_dark_cyan . $file_size_in_bytes . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file size: ' . $format->fg_dark_cyan . $file_size_readable_string . $format->reset);
+        }
+
     }
 
 }

@@ -81,5 +81,24 @@ class PithCliFormat
         // Do nothing for now.
     }
 
+    /**
+     * See:
+     *     https://www.php.net/manual/en/function.filesize.php
+     *     Comment by rommel at rommelsantor dot com
+     *
+     * @noinspection SpellCheckingInspection
+     */
+    public function getHumanFilesize($bytes, $decimals = 2): string
+    {
+        //$sizes_string = 'BKMGTP';
+        //$sizes = str_split($sizes_string);
+        //$sizes = ['b', 'kb','mb','gb','tb', 'pb'];
+        $sizes = [' Bytes', ' Kilobytes', ' Megabytes', ' Gigabytes', ' Terabytes', ' Petabytes'];
+
+        $bytes_as_string = (string)$bytes;
+        $factor = floor((strlen($bytes_as_string) - 1) / 3);
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sizes[$factor];
+    }
+
 
 }
