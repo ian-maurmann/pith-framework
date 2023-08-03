@@ -164,71 +164,80 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
 
             $file = new SplFileObject($log_file_name);
 
-            // TODO mark file as started being loaded
+            $did_mark_as_started_loading = $this->impression_service->markQueuedImpressionLogFileAsStartedLoading((int) $in_queue_id);
+            if($did_mark_as_started_loading){
+                $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as started loading? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            }
+            else{
+                $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as started loading? ' . $format->fg_bright_red . 'Failed to update' . $format->reset);
+                $continue = false;
+            }
 
-            $line_number = 0;
-            while (!$file->eof()) {
-                $line_number++;
-                $line = $file->fgets();
-                $line_length = mb_strlen($line);
+            if($continue) {
+                $line_number = 0;
+                while (!$file->eof()) {
+                    $line_number++;
+                    $line = $file->fgets();
+                    $line_length = mb_strlen($line);
 
-                $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- Line ' . $line_number . $format->reset);
-                $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Line Length: ' . $format->fg_dark_cyan . $line_length . $format->reset);
+                    $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow . '- Line ' . $line_number . $format->reset);
+                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Line Length: ' . $format->fg_dark_cyan . $line_length . $format->reset);
 
-                if($line_length > 1){
-                    $impression_variables          = explode(' ● ', $line);
-                    $impression_datetime           = $impression_variables[0];
-                    $impression_http_method        = $impression_variables[1];
-                    $impression_uri                = $impression_variables[2];
-                    $impression_port               = $impression_variables[3];
-                    $impression_access_level       = $impression_variables[4];
-                    $impression_allowed_or_denied  = $impression_variables[5];
-                    $impression_remote_ip_address  = $impression_variables[6];
-                    $impression_session_id         = $impression_variables[7];
-                    $impression_user_or_guest      = $impression_variables[8];
-                    $impression_user_id_string     = $impression_variables[9];
-                    $impression_user_agent_string  = $impression_variables[10];
-                    $ch_ua                         = $impression_variables[11];
-                    $ch_ua_platform                = $impression_variables[12];
-                    $ch_ua_platform_version        = $impression_variables[13];
-                    $ch_ua_mobile                  = $impression_variables[14];
-                    $ch_ua_model                   = $impression_variables[15];
-                    $ch_ua_architecture            = $impression_variables[16];
-                    $ch_ua_bitness                 = $impression_variables[17];
-                    $client_accept_language_string = $impression_variables[18];
-                    $referer_string                = $impression_variables[19];
-                    $ch_downlink                   = $impression_variables[20];
-                    $ch_viewport_width             = $impression_variables[21];
-                    $ch_prefers_color_scheme       = $impression_variables[22];
+                    if ($line_length > 1) {
+                        $impression_variables = explode(' ● ', $line);
+                        $impression_datetime = $impression_variables[0];
+                        $impression_http_method = $impression_variables[1];
+                        $impression_uri = $impression_variables[2];
+                        $impression_port = $impression_variables[3];
+                        $impression_access_level = $impression_variables[4];
+                        $impression_allowed_or_denied = $impression_variables[5];
+                        $impression_remote_ip_address = $impression_variables[6];
+                        $impression_session_id = $impression_variables[7];
+                        $impression_user_or_guest = $impression_variables[8];
+                        $impression_user_id_string = $impression_variables[9];
+                        $impression_user_agent_string = $impression_variables[10];
+                        $ch_ua = $impression_variables[11];
+                        $ch_ua_platform = $impression_variables[12];
+                        $ch_ua_platform_version = $impression_variables[13];
+                        $ch_ua_mobile = $impression_variables[14];
+                        $ch_ua_model = $impression_variables[15];
+                        $ch_ua_architecture = $impression_variables[16];
+                        $ch_ua_bitness = $impression_variables[17];
+                        $client_accept_language_string = $impression_variables[18];
+                        $referer_string = $impression_variables[19];
+                        $ch_downlink = $impression_variables[20];
+                        $ch_viewport_width = $impression_variables[21];
+                        $ch_prefers_color_scheme = $impression_variables[22];
 
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Datetime: ' . $format->fg_dark_cyan . $impression_datetime . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'HTTP Method: ' . $format->fg_dark_cyan . $impression_http_method . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'URI: ' . $format->fg_dark_cyan . $impression_uri . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Port: ' . $format->fg_dark_cyan . $impression_port . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Access Level: ' . $format->fg_dark_cyan . $impression_access_level . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Allowed or denied? ' . $format->fg_dark_cyan . $impression_allowed_or_denied . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'IP address: ' . $format->fg_dark_cyan . $impression_remote_ip_address . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Session ID: ' . $format->fg_dark_cyan . $impression_session_id . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'User or guest? ' . $format->fg_dark_cyan . $impression_user_or_guest . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'User ID: ' . $format->fg_dark_cyan . $impression_user_id_string . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'User agent string: ' . $format->fg_dark_cyan . $impression_user_agent_string . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA: ' . $format->fg_dark_cyan . $ch_ua . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA platform: ' . $format->fg_dark_cyan . $ch_ua_platform . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA platform version: ' . $format->fg_dark_cyan . $ch_ua_platform_version . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA mobile: ' . $format->fg_dark_cyan . $ch_ua_mobile . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA model: ' . $format->fg_dark_cyan . $ch_ua_model . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA architecture: ' . $format->fg_dark_cyan . $ch_ua_architecture . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH UA bitness: ' . $format->fg_dark_cyan . $ch_ua_bitness . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Client accept language string: ' . $format->fg_dark_cyan . $client_accept_language_string . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'Referer string: ' . $format->fg_dark_cyan . $referer_string . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH downlink: ' . $format->fg_dark_cyan . $ch_downlink . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH viewport width: ' . $format->fg_dark_cyan . $ch_viewport_width . ' ' . $format->reset);
-                    $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- ' . $format->reset . 'CH prefers color scheme: ' . $format->fg_dark_cyan . $ch_prefers_color_scheme . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Datetime: ' . $format->fg_dark_cyan . $impression_datetime . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'HTTP Method: ' . $format->fg_dark_cyan . $impression_http_method . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'URI: ' . $format->fg_dark_cyan . $impression_uri . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Port: ' . $format->fg_dark_cyan . $impression_port . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Access Level: ' . $format->fg_dark_cyan . $impression_access_level . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Allowed or denied? ' . $format->fg_dark_cyan . $impression_allowed_or_denied . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'IP address: ' . $format->fg_dark_cyan . $impression_remote_ip_address . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Session ID: ' . $format->fg_dark_cyan . $impression_session_id . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'User or guest? ' . $format->fg_dark_cyan . $impression_user_or_guest . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'User ID: ' . $format->fg_dark_cyan . $impression_user_id_string . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'User agent string: ' . $format->fg_dark_cyan . $impression_user_agent_string . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA: ' . $format->fg_dark_cyan . $ch_ua . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA platform: ' . $format->fg_dark_cyan . $ch_ua_platform . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA platform version: ' . $format->fg_dark_cyan . $ch_ua_platform_version . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA mobile: ' . $format->fg_dark_cyan . $ch_ua_mobile . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA model: ' . $format->fg_dark_cyan . $ch_ua_model . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA architecture: ' . $format->fg_dark_cyan . $ch_ua_architecture . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH UA bitness: ' . $format->fg_dark_cyan . $ch_ua_bitness . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Client accept language string: ' . $format->fg_dark_cyan . $client_accept_language_string . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Referer string: ' . $format->fg_dark_cyan . $referer_string . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH downlink: ' . $format->fg_dark_cyan . $ch_downlink . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH viewport width: ' . $format->fg_dark_cyan . $ch_viewport_width . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH prefers color scheme: ' . $format->fg_dark_cyan . $ch_prefers_color_scheme . ' ' . $format->reset);
 
 
+                    }
+
+                    //$app->cli_writer->writeLine($format->fg_dark_red . $line . $format->reset);
                 }
-
-                //$app->cli_writer->writeLine($format->fg_dark_red . $line . $format->reset);
             }
         }
 

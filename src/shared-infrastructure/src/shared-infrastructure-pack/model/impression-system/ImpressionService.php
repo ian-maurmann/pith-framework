@@ -93,5 +93,15 @@ class ImpressionService
         return $did_update;
     }
 
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsStartedLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsStartedLoading($queue_item_id);
+
+        return $did_update;
+    }
+
 
 }

@@ -222,4 +222,43 @@ class ImpressionLogLoadingQueueGateway
         return $did_update;
     }
 
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsStartedLoading(int $in_queue_id): bool
+    {
+        // Default to false
+        $did_update = false;
+
+        // Query
+        $sql = '
+            UPDATE `impression_log_loading_queue`
+            SET datetime_start_loading = NOW() 
+            WHERE in_queue_id = :in_queue_id
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':in_queue_id' => $in_queue_id,
+            ]
+        );
+
+        // Get number of row affected
+        $rows_affected = $statement->rowCount();
+
+        // Did update?
+        $did_update = $rows_affected > 0;
+
+        // Return true if updated
+        return $did_update;
+    }
+
 }
