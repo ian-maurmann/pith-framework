@@ -75,21 +75,23 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
             $continue = false;
         }
 
-        // Get row variables
-        $in_queue_id                 = $queue_row['in_queue_id'] ?? 0;
-        $log_file_name               = $queue_row['log_file_name'] ?? '';
-        $datetime_added_to_queue     = $queue_row['datetime_added_to_queue'] ?? '';
-        $datetime_start_loading      = $queue_row['datetime_start_loading'] ?? '';
-        $datetime_done_loading       = $queue_row['datetime_done_loading'] ?? '';
-        $datetime_file_not_found     = $queue_row['datetime_file_not_found'] ?? '';
-        $has_datetime_start_loading  = !empty($datetime_start_loading);
-        $has_datetime_done_loading   = !empty($datetime_done_loading);
-        $has_datetime_file_not_found = !empty($datetime_file_not_found);
+        if($continue) {
+            // Get row variables
+            $in_queue_id = $queue_row['in_queue_id'] ?? 0;
+            $log_file_name = $queue_row['log_file_name'] ?? '';
+            $datetime_added_to_queue = $queue_row['datetime_added_to_queue'] ?? '';
+            $datetime_start_loading = $queue_row['datetime_start_loading'] ?? '';
+            $datetime_done_loading = $queue_row['datetime_done_loading'] ?? '';
+            $datetime_file_not_found = $queue_row['datetime_file_not_found'] ?? '';
+            $has_datetime_start_loading = !empty($datetime_start_loading);
+            $has_datetime_done_loading = !empty($datetime_done_loading);
+            $has_datetime_file_not_found = !empty($datetime_file_not_found);
 
-        // Display row variables
-        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'In-queue ID: ' . $format->fg_dark_cyan . $in_queue_id . $format->reset);
-        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file: ' . $format->fg_dark_cyan . $log_file_name . $format->reset);
-        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Added to queue on: ' . $format->fg_dark_cyan . $datetime_added_to_queue . $format->reset);
+            // Display row variables
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'In-queue ID: ' . $format->fg_dark_cyan . $in_queue_id . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Log file: ' . $format->fg_dark_cyan . $log_file_name . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Added to queue on: ' . $format->fg_dark_cyan . $datetime_added_to_queue . $format->reset);
+        }
 
         // Is marked as file not found?
         if($continue){
@@ -175,7 +177,7 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
 
             if($continue) {
                 $line_number = 0;
-                while (!$file->eof()) {
+                while ($continue && !$file->eof()) {
                     $line_number++;
                     $line = $file->fgets();
                     $line_length = mb_strlen($line);
@@ -209,6 +211,17 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
                         $ch_viewport_width = $impression_variables[21];
                         $ch_prefers_color_scheme = $impression_variables[22];
 
+                        $impression_port_as_int          = (int) $impression_port;
+                        $was_allowed_01                  = $impression_allowed_or_denied === 'allowed' ? 1 : 0;
+                        $was_logged_user_01              = $impression_user_or_guest === 'user' ? 1 : 0;
+                        $impression_user_id_int          = (int) $impression_user_id_string;
+                        $ch_prefers_color_scheme_trimmed = trim($ch_prefers_color_scheme);
+                        $ch_ua_platform_no_quote         = str_replace('"', '', $ch_ua_platform);
+                        $ch_ua_platform_version_no_quote = str_replace('"', '', $ch_ua_platform_version);
+                        $ch_ua_model_no_quote            = str_replace('"', '', $ch_ua_model);
+                        $ch_ua_architecture_no_quote     = str_replace('"', '', $ch_ua_architecture);
+                        $ch_ua_bitness_no_quote          = str_replace('"', '', $ch_ua_bitness);
+
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Datetime: ' . $format->fg_dark_cyan . $impression_datetime . $format->reset);
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'HTTP Method: ' . $format->fg_dark_cyan . $impression_http_method . $format->reset);
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'URI: ' . $format->fg_dark_cyan . $impression_uri . ' ' . $format->reset);
@@ -231,9 +244,42 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Referer string: ' . $format->fg_dark_cyan . $referer_string . ' ' . $format->reset);
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH downlink: ' . $format->fg_dark_cyan . $ch_downlink . ' ' . $format->reset);
                         $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH viewport width: ' . $format->fg_dark_cyan . $ch_viewport_width . ' ' . $format->reset);
-                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH prefers color scheme: ' . $format->fg_dark_cyan . $ch_prefers_color_scheme . ' ' . $format->reset);
+                        $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow . '- ' . $format->reset . 'CH prefers color scheme: ' . $format->fg_dark_cyan . $ch_prefers_color_scheme_trimmed . ' ' . $format->reset);
 
+                        // Insert impression
+                        $did_insert_impression = $this->impression_service->insertImpression(
+                            $impression_datetime,
+                            $impression_http_method,
+                            $impression_uri,
+                            $impression_port_as_int,
+                            $impression_access_level,
+                            $was_allowed_01,
+                            $impression_remote_ip_address,
+                            $impression_session_id,
+                            $was_logged_user_01,
+                            $impression_user_id_int,
+                            $impression_user_agent_string,
+                            $ch_ua,
+                            $ch_ua_platform_no_quote,
+                            $ch_ua_platform_version_no_quote,
+                            $ch_ua_mobile,
+                            $ch_ua_model_no_quote,
+                            $ch_ua_architecture_no_quote,
+                            $ch_ua_bitness_no_quote,
+                            $client_accept_language_string,
+                            $referer_string,
+                            $ch_downlink,
+                            $ch_viewport_width,
+                            $ch_prefers_color_scheme_trimmed,
+                        );
 
+                        if($did_insert_impression){
+                            $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- '. $format->reset . $format->fg_bright_green . 'Saved impression to the impressions table.' . $format->reset);
+                        }
+                        else{
+                            $app->cli_writer->writeLine('          ' . $format->fg_dark_yellow .  '- '. $format->reset . $format->fg_bright_red . 'Failed to impression to the impressions table.' . $format->reset);
+                            $continue = false;
+                        }
                     }
 
                     //$app->cli_writer->writeLine($format->fg_dark_red . $line . $format->reset);

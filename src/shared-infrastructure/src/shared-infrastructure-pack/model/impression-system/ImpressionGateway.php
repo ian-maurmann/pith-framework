@@ -46,7 +46,7 @@ class ImpressionGateway
     }
 
 
-    
+
     /**
      * @throws PithException
      * @throws Exception
@@ -148,7 +148,7 @@ class ImpressionGateway
                 ':time'                    => $impression_datetime,
                 ':http_method'             => $impression_http_method,
                 ':uri'                     => $impression_uri,
-                ':port '                   => $impression_port_as_int,
+                ':port'                    => $impression_port_as_int,
                 ':access_level'            => $impression_access_level,
                 ':is_allowed'              => $was_allowed_01,
                 ':ip'                      => $impression_remote_ip_address,
@@ -167,7 +167,7 @@ class ImpressionGateway
                 ':referer'                 => $referer_string,
                 ':ch_downlink'             => $ch_downlink,
                 ':ch_viewport_width'       => $ch_viewport_width,
-                ':ch_prefers_color_scheme' => $ch_prefers_color_scheme,
+                ':ch_prefers_color_scheme' => $ch_prefers_color_scheme
             ]
         );
 
