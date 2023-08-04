@@ -86,6 +86,7 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/delete-loaded-impression-logs/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/hello-world/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/lorem-ipsum",
