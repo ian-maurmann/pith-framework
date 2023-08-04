@@ -165,7 +165,7 @@ PithPanel.TaskControl.do_format = function(cli_string, escape_sequence, escape_s
         let replace_text     = escape_sequence + sandwich;
         let replacement_text = '<span data-cli-format="' + escape_sequence_name + '">' + sandwich + '</span>';
 
-        new_cli_string  = cli_string.replace(replace_text, replacement_text);
+        new_cli_string  = cli_string.replaceAll(replace_text, replacement_text);
     }
 
     return new_cli_string;

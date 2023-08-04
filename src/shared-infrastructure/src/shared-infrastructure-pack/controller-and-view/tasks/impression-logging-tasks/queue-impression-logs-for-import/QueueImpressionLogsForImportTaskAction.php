@@ -43,6 +43,8 @@ class QueueImpressionLogsForImportTaskAction extends PithAction
     {
         // Get app
         $app = $this->app_retriever->getApp();
+
+        // Get CLI format
         $format = $app->cli_format;
 
         // Header

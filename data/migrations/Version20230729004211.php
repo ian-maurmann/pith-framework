@@ -36,6 +36,7 @@ final class Version20230729004211 extends AbstractMigration
                 `datetime_added_to_queue` DATETIME DEFAULT NULL,
                 `datetime_start_loading` DATETIME DEFAULT NULL,
                 `datetime_done_loading` DATETIME DEFAULT NULL,
+                `datetime_file_not_found` DATETIME DEFAULT NULL,
                 PRIMARY KEY (`in_queue_id`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci

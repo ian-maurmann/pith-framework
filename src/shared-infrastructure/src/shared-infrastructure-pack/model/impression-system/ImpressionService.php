@@ -37,17 +37,20 @@ use Pith\Framework\PithException;
  */
 class ImpressionService
 {
+    private ImpressionGateway                $impression_gateway;
     private ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway;
 
-    public function __construct(ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway)
+    public function __construct(ImpressionGateway $impression_gateway, ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway)
     {
         // Set object dependencies:
+        $this->impression_gateway                   = $impression_gateway;
         $this->impression_log_loading_queue_gateway = $impression_log_loading_queue_gateway;
     }
 
     /**
      * @param string $file_name
      * @return bool
+     * @throws PithException
      */
     public function isImpressionLogFileQueuedForImport(string $file_name): bool
     {
@@ -69,6 +72,109 @@ class ImpressionService
         // Return the queue_id as int
         return $queue_id;
     }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getOldestQueuedImpressionLog():array
+    {
+        // Get oldest row from queue
+        $queued_row = $this->impression_log_loading_queue_gateway->getOldestQueuedImpressionLog();
+
+        return $queued_row;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsNotFound(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsNotFound($queue_item_id);
+
+        return $did_update;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsStartedLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsStartedLoading($queue_item_id);
+
+        return $did_update;
+    }
+
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsDoneLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsDoneLoading($queue_item_id);
+
+        return $did_update;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function insertImpression(
+        string $impression_datetime,
+        string $impression_http_method,
+        string $impression_uri,
+        int    $impression_port_as_int,
+        string $impression_access_level,
+        int    $was_allowed_01,
+        string $impression_remote_ip_address,
+        string $impression_session_id,
+        int    $was_logged_user_01,
+        int    $impression_user_id_int,
+        string $impression_user_agent_string,
+        string $ch_ua,
+        string $ch_ua_platform,
+        string $ch_ua_platform_version,
+        string $ch_ua_mobile,
+        string $ch_ua_model,
+        string $ch_ua_architecture,
+        string $ch_ua_bitness,
+        string $client_accept_language_string,
+        string $referer_string,
+        string $ch_downlink,
+        string $ch_viewport_width,
+        string $ch_prefers_color_scheme
+    ): int
+    {
+        $did_insert = $this->impression_gateway->insertImpression(
+            $impression_datetime,
+            $impression_http_method,
+            $impression_uri,
+            $impression_port_as_int,
+            $impression_access_level,
+            $was_allowed_01,
+            $impression_remote_ip_address,
+            $impression_session_id,
+            $was_logged_user_01,
+            $impression_user_id_int,
+            $impression_user_agent_string,
+            $ch_ua,
+            $ch_ua_platform,
+            $ch_ua_platform_version,
+            $ch_ua_mobile,
+            $ch_ua_model,
+            $ch_ua_architecture,
+            $ch_ua_bitness,
+            $client_accept_language_string,
+            $referer_string,
+            $ch_downlink,
+            $ch_viewport_width,
+            $ch_prefers_color_scheme
+            );
+
+        return $did_insert;
+    }
+
+
 
 
 }
