@@ -35,7 +35,7 @@ final class Version20230803233822 extends AbstractMigration
                 `time` DATETIME NOT NULL,
                 `http_method` VARCHAR(9) NOT NULL,
                 `uri` VARCHAR(191) NOT NULL,
-                `port` VARCHAR(191) NOT NULL,
+                `port` INT NOT NULL,
                 `access_level` VARCHAR(191) NOT NULL,
                 `is_allowed` TINYINT(1) NOT NULL,
                 `ip` VARCHAR(191) NOT NULL,
