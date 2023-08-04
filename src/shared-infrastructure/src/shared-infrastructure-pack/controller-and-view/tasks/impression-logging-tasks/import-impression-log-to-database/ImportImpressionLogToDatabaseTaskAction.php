@@ -285,6 +285,17 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
                     //$app->cli_writer->writeLine($format->fg_dark_red . $line . $format->reset);
                 }
             }
+
+            if($continue) {
+                $did_mark_as_done_loading = $this->impression_service->markQueuedImpressionLogFileAsDoneLoading((int) $in_queue_id);
+                if($did_mark_as_done_loading){
+                    $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as done loading? ' . $format->fg_bright_green . 'yes' . $format->reset);
+                }
+                else{
+                    $app->cli_writer->writeLine('      ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Did mark as done loading? ' . $format->fg_bright_red . 'Failed to update' . $format->reset);
+                    $continue = false;
+                }
+            }
         }
 
 

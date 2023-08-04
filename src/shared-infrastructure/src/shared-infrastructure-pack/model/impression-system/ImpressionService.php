@@ -105,6 +105,17 @@ class ImpressionService
         return $did_update;
     }
 
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsDoneLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsDoneLoading($queue_item_id);
+
+        return $did_update;
+    }
+
     /**
      * @throws PithException
      */
@@ -162,6 +173,8 @@ class ImpressionService
 
         return $did_insert;
     }
+
+
 
 
 }
