@@ -208,5 +208,12 @@ class ImpressionService
         return $queued_row;
     }
 
+    public function clearItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded()
+    {
+        $number_of_rows_deleted = $this->impression_log_loading_queue_gateway->deleteItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded();
+
+        return $number_of_rows_deleted;
+    }
+
 
 }

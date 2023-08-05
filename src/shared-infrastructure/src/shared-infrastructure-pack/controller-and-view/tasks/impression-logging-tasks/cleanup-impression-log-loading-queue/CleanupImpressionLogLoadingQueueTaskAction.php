@@ -55,6 +55,10 @@ class CleanupImpressionLogLoadingQueueTaskAction extends PithAction
 
         $app->cli_writer->writeLine($format->fg_dark_yellow . 'Delete items in the queue that are no longer needed.' . $format->reset);
         $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Deleting...');
+
+        $number_of_rows_deleted = $this->impression_service->clearItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded();
+
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Number of queue items deleted: ' . $format->fg_dark_cyan . $number_of_rows_deleted . $format->reset);
     }
 
 }
