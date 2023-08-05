@@ -41,7 +41,10 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
      */
     public function runAction()
     {
-        $continue = true;
+        $continue            = true;
+        $does_log_file_exist = null;
+        $log_file_name       = null;
+        $in_queue_id         = 0;
 
         // Get app
         $app = $this->app_retriever->getApp();
@@ -55,22 +58,25 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
         $app->cli_writer->writeLine($format->fg_bright_yellow . '┗━────────────────────────────────────────────────────────────━┛' . $format->reset);
         $app->cli_writer->writeLine(' ');
 
-        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Find the next item in the queue that is marked as done loading.' . $format->reset);
-        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Searching...');
+        // "Find the next item in the queue that is marked as done loading"
+        if($continue) {
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Find the next item in the queue that is marked as done loading.' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Searching...');
 
-        // Find row
-        $queue_row = $this->impression_service->getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet();
-        $did_find_queue_row = (bool) count($queue_row);
+            // Find row
+            $queue_row = $this->impression_service->getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet();
+            $did_find_queue_row = (bool)count($queue_row);
 
-        if($did_find_queue_row){
-            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            if ($did_find_queue_row) {
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            } else {
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_red . 'no' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Stopping.');
+                $continue = false;
+            }
         }
-        else{
-            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_red . 'no' . $format->reset);
-            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
-            $continue = false;
-        }
 
+        // "Look at the queue item's info"
         if($continue){
             $app->cli_writer->writeLine($format->fg_dark_yellow . 'Look at the queue item\'s info:' . $format->reset);
 
@@ -81,8 +87,56 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'In-queue ID: ' . $format->fg_dark_cyan . $in_queue_id . $format->reset);
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file name: ' . $format->fg_dark_cyan . $log_file_name . $format->reset);
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Done loading at: ' . $format->fg_dark_cyan . $datetime_done_loading . $format->reset);
+        }
 
+        // "Check if log file exists"
+        if($continue){
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Check if log file exists.' . $format->reset);
+
+            $does_log_file_exist = file_exists($log_file_name);
+
+            if($does_log_file_exist){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'log file exists? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'log file exists? ' . $format->fg_bright_red . 'no' . $format->reset);
+            }
+        }
+
+        // "Delete the log file"
+        if($continue && $does_log_file_exist){
             $app->cli_writer->writeLine($format->fg_dark_yellow . 'Delete the log file.' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Deleting log file...');
+
+            // Delete file
+            unlink($log_file_name);
+        }
+
+        // "Re-check if log file exists"
+        if($continue){
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Re-check if log file exists.' . $format->reset);
+
+            $does_log_file_exist = file_exists($log_file_name);
+
+            if($does_log_file_exist){
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'log file exists? ' . $format->fg_bright_red . 'yes' . $format->reset);
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+            }
+            else{
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'log file exists? ' . $format->fg_bright_green . 'no' . $format->reset);
+            }
+        }
+
+        if($continue&& !$does_log_file_exist) {
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Mark that the log file was deleted.' . $format->reset);
+
+            $did_mark_that_the_log_file_was_deleted = false;
+            //$did_mark_that_the_log_file_was_deleted = $this->impression_service->markQueuedImpressionLogFileAsDeletedAfterLoading((int) $in_queue_id);
+            if ($did_mark_that_the_log_file_was_deleted) {
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Did update the queue item to mark that the log file was deleted? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            } else {
+                $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Did update the queue item to mark that the log file was deleted? ' . $format->fg_bright_red . 'Failed to update' . $format->reset);
+            }
         }
 
     }
