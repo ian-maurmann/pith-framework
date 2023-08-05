@@ -174,7 +174,16 @@ class ImpressionService
         return $did_insert;
     }
 
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet(): array
+    {
+        $queue_row = $this->impression_log_loading_queue_gateway->getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet();
 
+        return $queue_row;
+    }
 
 
 }

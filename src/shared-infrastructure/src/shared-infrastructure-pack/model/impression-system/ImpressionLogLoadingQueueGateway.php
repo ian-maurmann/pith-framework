@@ -18,6 +18,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
  * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ * @noinspection DuplicatedCode                        - Ignore for gateway code.
  */
 
 
@@ -298,6 +299,51 @@ class ImpressionLogLoadingQueueGateway
 
         // Return true if updated
         return $did_update;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet(): array
+    {
+        // Default to empty array
+        $row = [];
+
+        // Query
+        $sql = '
+            SELECT
+                *
+            FROM
+                `impression_log_loading_queue` AS q 
+            WHERE
+                q.datetime_done_loading IS NOT NULL
+            ORDER BY q.in_queue_id ASC
+            LIMIT 1
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute();
+
+        // Get results
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Get row count
+        $row_count = $results ? count($results) : 0;
+
+        // Get row
+        if($row_count > 0){
+            $row = $results[0];
+        }
+
+        // Return row
+        return $row;
     }
 
 }

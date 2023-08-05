@@ -53,10 +53,21 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
         $app->cli_writer->writeLine($format->fg_bright_yellow . '┗━────────────────────────────────────────────────────────────━┛' . $format->reset);
         $app->cli_writer->writeLine(' ');
 
-        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Delete the log files that have already been imported into the database.' . $format->reset);
-        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Run the delete...');
+        $app->cli_writer->writeLine($format->fg_dark_yellow . 'Find the next item in the queue that is marked as done loading.' . $format->reset);
+        $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Searching...');
 
-        //$number_of_logs_deleted = $this->impression_service->deleteImpressionLogsThatHaveBeenImported
+        // Find row
+        $queue_row = $this->impression_service->getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet();
+        $did_find_queue_row = (bool) count($queue_row);
+
+        if($did_find_queue_row){
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item for loaded log? ' . $format->fg_bright_green . 'yes' . $format->reset);
+        }
+        else{
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item for loaded log? ' . $format->fg_bright_red . 'no' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
+            $continue = false;
+        }
     }
 
 }
