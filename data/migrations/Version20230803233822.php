@@ -32,6 +32,7 @@ final class Version20230803233822 extends AbstractMigration
         $this->addSql('
             CREATE TABLE `impressions` (
                 `impression_id` BIGINT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `unique_daily_view_id` BIGINT DEFAULT NULL,
                 `time` DATETIME NOT NULL,
                 `http_method` VARCHAR(9) NOT NULL,
                 `uri` VARCHAR(191) NOT NULL,
