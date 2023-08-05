@@ -439,6 +439,40 @@ class ImpressionLogLoadingQueueGateway
         return $row;
     }
 
+    /**
+     * @return int
+     * @throws PithException
+     */
+    public function deleteItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded(): int
+    {
+        // Default to zero
+        $rows_affected = 0;
+
+        // Query
+        $sql = '
+            DELETE FROM 
+                `impression_log_loading_queue`
+            WHERE
+                datetime_file_deleted_after_import IS NOT NULL
+                OR
+                datetime_file_not_found IS NOT NULL
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute();
+
+        // Get number of row affected
+        $rows_affected = $statement->rowCount();
+
+        // Return the number of rows affected
+        return $rows_affected;
+    }
 
 
 }
