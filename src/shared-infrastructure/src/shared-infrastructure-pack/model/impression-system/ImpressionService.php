@@ -116,6 +116,17 @@ class ImpressionService
         return $did_update;
     }
 
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsDeletedAfterLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsDeletedAfterLoading($queue_item_id);
+
+        return $did_update;
+    }
+
     /**
      * @throws PithException
      */

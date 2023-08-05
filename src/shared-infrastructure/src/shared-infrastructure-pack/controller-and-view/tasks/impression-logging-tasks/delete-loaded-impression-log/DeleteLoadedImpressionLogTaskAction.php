@@ -127,11 +127,11 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
             }
         }
 
+        // "Mark that the log file was deleted"
         if($continue&& !$does_log_file_exist) {
             $app->cli_writer->writeLine($format->fg_dark_yellow . 'Mark that the log file was deleted.' . $format->reset);
 
-            $did_mark_that_the_log_file_was_deleted = false;
-            //$did_mark_that_the_log_file_was_deleted = $this->impression_service->markQueuedImpressionLogFileAsDeletedAfterLoading((int) $in_queue_id);
+            $did_mark_that_the_log_file_was_deleted = $this->impression_service->markQueuedImpressionLogFileAsDeletedAfterLoading((int) $in_queue_id);
             if ($did_mark_that_the_log_file_was_deleted) {
                 $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow . '- ' . $format->reset . 'Did update the queue item to mark that the log file was deleted? ' . $format->fg_bright_green . 'yes' . $format->reset);
             } else {
