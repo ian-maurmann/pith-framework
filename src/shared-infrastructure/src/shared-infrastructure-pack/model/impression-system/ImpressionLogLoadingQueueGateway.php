@@ -18,6 +18,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
  * @noinspection PhpUnnecessaryLocalVariableInspection - For readability.
+ * @noinspection DuplicatedCode                        - Ignore for gateway code.
  */
 
 
@@ -299,5 +300,145 @@ class ImpressionLogLoadingQueueGateway
         // Return true if updated
         return $did_update;
     }
+
+
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsDeletedAfterLoading(int $in_queue_id): bool
+    {
+        // Default to false
+        $did_update = false;
+
+        // Query
+        $sql = '
+            UPDATE `impression_log_loading_queue`
+            SET datetime_file_deleted_after_import = NOW() 
+            WHERE in_queue_id = :in_queue_id
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute(
+            [
+                ':in_queue_id' => $in_queue_id,
+            ]
+        );
+
+        // Get number of row affected
+        $rows_affected = $statement->rowCount();
+
+        // Did update?
+        $did_update = $rows_affected > 0;
+
+        // Return true if updated
+        return $did_update;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet(): array
+    {
+        // Default to empty array
+        $row = [];
+
+        // Query
+        $sql = '
+            SELECT
+                *
+            FROM
+                `impression_log_loading_queue` AS q 
+            WHERE
+                q.datetime_done_loading IS NOT NULL
+                AND
+                q.datetime_file_deleted_after_import IS NULL
+            ORDER BY q.in_queue_id ASC
+            LIMIT 1
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute();
+
+        // Get results
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Get row count
+        $row_count = $results ? count($results) : 0;
+
+        // Get row
+        if($row_count > 0){
+            $row = $results[0];
+        }
+
+        // Return row
+        return $row;
+    }
+
+
+    /**
+     * @return array
+     * @throws PithException
+     * @noinspection SqlRedundantOrderingDirection
+     */
+    public function getNextQueuedImpressionLogToImport(): array
+    {
+        // Default to empty array
+        $row = [];
+
+        // Query
+        $sql = '
+            SELECT
+                *
+            FROM
+                `impression_log_loading_queue` AS q 
+            WHERE
+                q.datetime_file_not_found IS NULL
+                AND
+                q.datetime_start_loading IS NULL
+                AND
+                q.datetime_done_loading IS NULL
+            ORDER BY q.in_queue_id ASC
+            LIMIT 1
+            ';
+
+        // Connect if not connected
+        $this->database->connectOnce();
+
+        // Prepare
+        $statement = $this->database->pdo->prepare($sql);
+
+        // Execute
+        $statement->execute();
+
+        // Get results
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Get row count
+        $row_count = $results ? count($results) : 0;
+
+        // Get row
+        if($row_count > 0){
+            $row = $results[0];
+        }
+
+        // Return row
+        return $row;
+    }
+
+
 
 }

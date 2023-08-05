@@ -116,6 +116,17 @@ class ImpressionService
         return $did_update;
     }
 
+
+    /**
+     * @throws PithException
+     */
+    public function markQueuedImpressionLogFileAsDeletedAfterLoading(int $queue_item_id): bool
+    {
+        $did_update = $this->impression_log_loading_queue_gateway->markQueuedImpressionLogFileAsDeletedAfterLoading($queue_item_id);
+
+        return $did_update;
+    }
+
     /**
      * @throws PithException
      */
@@ -174,7 +185,28 @@ class ImpressionService
         return $did_insert;
     }
 
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet(): array
+    {
+        $queue_row = $this->impression_log_loading_queue_gateway->getNextQueuedImpressionLogMarkedAsLoadedButNotDeletedYet();
 
+        return $queue_row;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogToImport():array
+    {
+        // Get oldest row from queue
+        $queued_row = $this->impression_log_loading_queue_gateway->getNextQueuedImpressionLogToImport();
+
+        return $queued_row;
+    }
 
 
 }
