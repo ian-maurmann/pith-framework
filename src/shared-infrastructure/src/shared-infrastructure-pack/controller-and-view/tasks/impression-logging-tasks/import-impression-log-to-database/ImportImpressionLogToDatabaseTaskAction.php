@@ -63,7 +63,7 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
         $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Selecting...');
 
         // Find row
-        $queue_row = $this->impression_service->getOldestQueuedImpressionLog();
+        $queue_row = $this->impression_service->getNextQueuedImpressionLogToImport();
         $did_find_queued_row = (bool) count($queue_row);
 
         if($did_find_queued_row){

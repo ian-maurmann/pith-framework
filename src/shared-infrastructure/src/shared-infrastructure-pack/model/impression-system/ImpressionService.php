@@ -185,5 +185,17 @@ class ImpressionService
         return $queue_row;
     }
 
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function getNextQueuedImpressionLogToImport():array
+    {
+        // Get oldest row from queue
+        $queued_row = $this->impression_log_loading_queue_gateway->getNextQueuedImpressionLogToImport();
+
+        return $queued_row;
+    }
+
 
 }
