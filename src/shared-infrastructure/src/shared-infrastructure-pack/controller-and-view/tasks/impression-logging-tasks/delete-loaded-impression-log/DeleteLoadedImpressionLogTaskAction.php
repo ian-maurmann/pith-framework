@@ -41,6 +41,8 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
      */
     public function runAction()
     {
+        $continue = true;
+
         // Get app
         $app = $this->app_retriever->getApp();
 
@@ -61,13 +63,28 @@ class DeleteLoadedImpressionLogTaskAction extends PithAction
         $did_find_queue_row = (bool) count($queue_row);
 
         if($did_find_queue_row){
-            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item for loaded log? ' . $format->fg_bright_green . 'yes' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_green . 'yes' . $format->reset);
         }
         else{
-            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item for loaded log? ' . $format->fg_bright_red . 'no' . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Found queue item with loaded log? ' . $format->fg_bright_red . 'no' . $format->reset);
             $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Stopping.');
             $continue = false;
         }
+
+        if($continue){
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Look at the queue item\'s info:' . $format->reset);
+
+            $in_queue_id           = $queue_row['in_queue_id'];
+            $log_file_name         = $queue_row['log_file_name'];
+            $datetime_done_loading = $queue_row['datetime_done_loading'];
+
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'In-queue ID: ' . $format->fg_dark_cyan . $in_queue_id . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Log file name: ' . $format->fg_dark_cyan . $log_file_name . $format->reset);
+            $app->cli_writer->writeLine('  ' . $format->fg_dark_yellow .  '- '. $format->reset . 'Done loading at: ' . $format->fg_dark_cyan . $datetime_done_loading . $format->reset);
+
+            $app->cli_writer->writeLine($format->fg_dark_yellow . 'Delete the log file.' . $format->reset);
+        }
+
     }
 
 }
