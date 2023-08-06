@@ -23,6 +23,8 @@ const PITH_DEMO_PAGES_ROUTE_GROUP_PATH     = '/1111/1111/demo';
 const PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH = '/2222/2222/env-info';
 const PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH = '/ajax/user-system';
 
+const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
+
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
 const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';
 const SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK    = '/1111/1111/demo';
@@ -33,4 +35,5 @@ const SHARED_UI_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = SHARED_UI_USER_LOGIN_F
 
 const PITH_PANEL_PATH = '/3333/3333/panel';
 
-const SHARED_INFRASTRUCTURE_TASKS_URL_PATH = '/shared-infrastructure/run/task';
+const TASKS_URL_PATH   = '/shared-infrastructure/run/task';
+const TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksRouteList';

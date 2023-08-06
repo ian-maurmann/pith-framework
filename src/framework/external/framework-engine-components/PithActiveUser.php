@@ -54,7 +54,9 @@ class PithActiveUser
     private string $requested_http_method;
     private string $requested_server_port;
     private string $requested_uri;
+    private string $session_id;
     private string $user_agent_string;
+    private int    $user_id;
 
     // Properties
     private bool $did_log_impression_on_first_access;
@@ -67,8 +69,12 @@ class PithActiveUser
         $this->impression_logger = $impression_logger;
         $this->user_service      = $user_service;
 
-        // Set defaults
+        // Set first-run flags
         $this->did_log_impression_on_first_access = false;
+
+        // Set user info defaults
+        // $this->session_id = '';
+        // $this->user_id    = 0;
     }
 
     /**
@@ -121,6 +127,10 @@ class PithActiveUser
 
         // Load-up the session
         $app->session_manager->loadSession();
+
+        // Store user info for later
+        $this->session_id = $app->session_manager->getSessionId();
+        $this->user_id    = $app->session_manager->getUserId();
     }
 
     /**
@@ -145,15 +155,15 @@ class PithActiveUser
                 $this->impression_logger->logImpression(
                     $this->requested_http_method,
                     $this->requested_uri,
-                    $this->requested_server_port,
+                    (string) $this->requested_server_port,
 
                     $access_level,
                     $access_success,
 
-                    $this->remote_ip_address,
-                    '(TODO: Session ID)', // TODO: Session ID will do here
-                    '(guest)',
-                    '(TODO: User ID)', // TODO: User ID will do here
+                    (string) $this->remote_ip_address,
+                    (string) $this->session_id,
+                    $this->isUser() ? 'user' : 'guest',
+                    (string) $this->user_id,
 
                     $this->user_agent_string,
                     $this->ch_ua,
