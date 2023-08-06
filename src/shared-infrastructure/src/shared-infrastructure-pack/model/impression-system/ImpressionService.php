@@ -39,12 +39,14 @@ class ImpressionService
 {
     private ImpressionGateway                $impression_gateway;
     private ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway;
+    private UniqueDailyViewGateway           $unique_daily_view_gateway;
 
-    public function __construct(ImpressionGateway $impression_gateway, ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway)
+    public function __construct(ImpressionGateway $impression_gateway, ImpressionLogLoadingQueueGateway $impression_log_loading_queue_gateway, UniqueDailyViewGateway $unique_daily_view_gateway)
     {
         // Set object dependencies:
         $this->impression_gateway                   = $impression_gateway;
         $this->impression_log_loading_queue_gateway = $impression_log_loading_queue_gateway;
+        $this->unique_daily_view_gateway            = $unique_daily_view_gateway;
     }
 
     /**
@@ -208,11 +210,36 @@ class ImpressionService
         return $queued_row;
     }
 
-    public function clearItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded()
+    /**
+     * @return int
+     * @throws PithException
+     */
+    public function clearItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded(): int
     {
         $number_of_rows_deleted = $this->impression_log_loading_queue_gateway->deleteItemsFromTheImpressionLogLoadingQueueThatAreNoLongerNeeded();
 
         return $number_of_rows_deleted;
+    }
+
+    /**
+     * @return array
+     * @throws PithException
+     */
+    public function findDistinctImpressionsWithoutUniqueDailyViews(): array
+    {
+        $results = $this->impression_gateway->findDistinctImpressionsWithoutUniqueDailyViews();
+
+        return $results;
+    }
+
+    /**
+     * @throws PithException
+     */
+    public function insertNewUniqueDailyView(array $distinct_impression): int
+    {
+        $inserted_id = $this->unique_daily_view_gateway->insertNewUniqueDailyView($distinct_impression);
+
+        return $inserted_id;
     }
 
 

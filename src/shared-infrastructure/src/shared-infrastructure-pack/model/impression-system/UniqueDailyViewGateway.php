@@ -10,8 +10,8 @@
 
 
 /**
- * Impression Gateway
- * ------------------
+ * Unique Daily View Gateway
+ * -------------------------
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
@@ -33,10 +33,10 @@ use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 
 /**
- * Class ImpressionGateway
+ * Class UniqueDailyViewGateway
  * @package Pith\Framework\SharedInfrastructure\Model\ImpressionSystem
  */
-class ImpressionGateway
+class UniqueDailyViewGateway
 {
     private PithDatabaseWrapper $database;
 
@@ -189,37 +189,38 @@ class ImpressionGateway
     }
 
     /**
-     * @return array
+     * @param array $distinct_impression
+     * @return int
      * @throws PithException
+     * @throws Exception
      */
-    public function findDistinctImpressionsWithoutUniqueDailyViews(): array
+    public function insertNewUniqueDailyView(array $distinct_impression): int
     {
-        // Query morphology: SELECT DISTINCT from entity and return Results Array
+        // Default to zero
+        $inserted_id = 0;
 
-        // Default to empty results array
-        $results = [];
+        // Vars
+        $date_as_string    = $distinct_impression['date_as_string'];
+        $ip                = $distinct_impression['ip'];
+        $user_id           = $distinct_impression['user_id'];
+        $user_agent_string = $distinct_impression['user_agent_string'];
 
         // Query
         $sql = '
-            SELECT DISTINCT
-                i.`date_as_string`,
-                i.`ip`,
-                i.`user_id`,
-                i.`user_agent_string`,
-                udv.`unique_daily_view_id`
-            FROM
-                `impressions` AS i
-            LEFT JOIN
-                `unique_daily_views` AS udv 
-                ON 
-                    udv.date_as_string = i.date_as_string
-                    AND udv.ip = i.ip
-                    AND udv.user_id = i.user_id
-                    AND udv.user_agent_string = i.user_agent_string
-            WHERE
-                i.`unique_daily_view_id` IS NULL
-                AND
-                udv.`unique_daily_view_id` IS NULL
+            INSERT INTO `unique_daily_views`
+            (
+                date_as_string,
+                ip, 
+                user_id, 
+                user_agent_string
+            )
+            VALUES
+            (
+                :date_as_string,
+                :ip, 
+                :user_id, 
+                :user_agent_string
+            )
             ';
 
         // Connect if not connected
@@ -229,13 +230,24 @@ class ImpressionGateway
         $statement = $this->database->pdo->prepare($sql);
 
         // Execute
-        $statement->execute();
+        $statement->execute(
+            [
+                ':date_as_string'    => $date_as_string,
+                ':ip'                => $ip,
+                ':user_id'           => $user_id,
+                ':user_agent_string' => $user_agent_string,
+            ]
+        );
 
-        // Get results
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        // Get inserted id
+        $inserted_id = $this->database->pdo->lastInsertId() ?: 0;
+        if($inserted_id === 0){
+            throw new Exception('Failed to insert new row.');
+        }
 
-        // Return the results array
-        return $results;
+        // Return the inserted id
+        return (int) $inserted_id;
     }
+
 
 }
