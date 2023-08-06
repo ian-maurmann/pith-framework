@@ -30,5 +30,6 @@ class TasksRouteList extends PithRouteList
         ['route', ['GET'], '/import_impression_log_to_database',    '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskRoute'],
         ['route', ['GET'], '/lorem_ipsum',                          '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\LoremIpsumTaskRoute'],
         ['route', ['GET'], '/queue_impression_logs_for_import',     '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\QueueImpressionLogsForImportTaskRoute'],
+        ['route', ['GET'], '/tick',                                 '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\TickTaskRoute'],
     ];
 }
