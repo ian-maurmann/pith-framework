@@ -94,6 +94,10 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/lorem-ipsum",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-logs-for-import/"
             ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/tick/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
             ],
