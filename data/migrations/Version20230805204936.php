@@ -35,12 +35,12 @@ final class Version20230805204936 extends AbstractMigration
                 `unique_weekly_view_id` BIGINT DEFAULT NULL, 
                 `unique_monthly_view_id` BIGINT DEFAULT NULL, 
                 `unique_actor_id` BIGINT DEFAULT NULL, 
-                `date` DATETIME NOT NULL,
+                `date_as_string` VARCHAR(10) NOT NULL,
                 `ip` VARCHAR(191) NOT NULL,
                 `user_id` INT NOT NULL,
                 `user_agent_string` VARCHAR(191) NOT NULL,
                 PRIMARY KEY (`unique_daily_view_id`),
-                UNIQUE KEY `unique_daily_views_uk_identifiers` (`date`,`ip`, `user_id`, `user_agent_string`)
+                UNIQUE KEY `unique_daily_views_uk_identifiers` (`date_as_string`,`ip`, `user_id`, `user_agent_string`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
             '
