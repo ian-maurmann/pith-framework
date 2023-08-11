@@ -54,7 +54,9 @@ class PithActiveUser
     private string $requested_http_method;
     private string $requested_server_port;
     private string $requested_uri;
+    private string $session_id;
     private string $user_agent_string;
+    private int    $user_id;
 
     // Properties
     private bool $did_log_impression_on_first_access;
@@ -67,8 +69,12 @@ class PithActiveUser
         $this->impression_logger = $impression_logger;
         $this->user_service      = $user_service;
 
-        // Set defaults
+        // Set first-run flags
         $this->did_log_impression_on_first_access = false;
+
+        // Set user info defaults
+        // $this->session_id = '';
+        // $this->user_id    = 0;
     }
 
     /**
@@ -121,6 +127,10 @@ class PithActiveUser
 
         // Load-up the session
         $app->session_manager->loadSession();
+
+        // Store user info for later
+        $this->session_id = $app->session_manager->getSessionId();
+        $this->user_id    = $app->session_manager->getUserId();
     }
 
     /**
@@ -145,15 +155,15 @@ class PithActiveUser
                 $this->impression_logger->logImpression(
                     $this->requested_http_method,
                     $this->requested_uri,
-                    $this->requested_server_port,
+                    (string) $this->requested_server_port,
 
                     $access_level,
                     $access_success,
 
-                    $this->remote_ip_address,
-                    '(TODO: Session ID)', // TODO: Session ID will do here
-                    '(guest)',
-                    '(TODO: User ID)', // TODO: User ID will do here
+                    (string) $this->remote_ip_address,
+                    (string) $this->session_id,
+                    $this->isUser() ? 'user' : 'guest',
+                    (string) $this->user_id,
 
                     $this->user_agent_string,
                     $this->ch_ua,
@@ -262,8 +272,7 @@ class PithActiveUser
     {
         // Try to log out
         $did_log_out = $this->logOutWithToken($given_anti_csrf_token);
-
-        // If is a match, kill session
+        
         if($did_log_out){
             // Redirect to user successful logout landing
             header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
@@ -307,6 +316,65 @@ class PithActiveUser
 
         // Return true if is a logged in user or above, else return false
         return $is_logged_in_user;
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isWebmaster(): bool
+    {
+        $is_webmaster = false;
+
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        if($is_logged_in_user){
+            $is_webmaster = $app->session_manager->isWebmaster();
+        }
+
+        // Return true if is a logged in user or above, else return false
+        return $is_webmaster;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserColorScheme(): string
+    {
+        // Return the color mode, ex: 'light', 'dark', ''
+        return $this->ch_prefers_color_scheme;
+    }
+
+    /**
+     * @return bool
+     * @throws PithException
+     */
+    public function isInternal(): bool
+    {
+        // Default to false
+        $is_internal  = false;
+
+        // Get app
+        $app = $this->app_retriever->getApp();
+
+        // Get is logged in user or higher
+        $is_logged_in_user = $app->session_manager->isLoggedInUser();
+
+        if($is_logged_in_user){
+            // Check for internal user types
+            $is_webmaster = $app->session_manager->isWebmaster();
+            // ^... Add types as needed
+
+            // Check if is an internal user
+            $is_internal = $is_webmaster; // ... Add types as needed
+        }
+
+        // Return true if is a logged in user or above, else return false
+        return $is_internal;
     }
 
 }

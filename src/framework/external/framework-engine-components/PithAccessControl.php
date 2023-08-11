@@ -28,6 +28,7 @@ namespace Pith\Framework;
 
 
 use Exception;
+use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 
 /**
  * Class PithAccessControl
@@ -35,14 +36,17 @@ use Exception;
  */
 class PithAccessControl
 {
-    private PithDependencyInjection $dependency_injection;
     private PithAppRetriever        $app_retriever;
+    private PithDependencyInjection $dependency_injection;
+    private UserService             $user_service;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithAppRetriever $app_retriever)
+
+    public function __construct(PithAppRetriever $app_retriever, PithDependencyInjection $dependency_injection, UserService $user_service)
     {
-        // Objects
-        $this->dependency_injection = $dependency_injection;
+        // Set object dependencies
         $this->app_retriever        = $app_retriever;
+        $this->dependency_injection = $dependency_injection;
+        $this->user_service         = $user_service;
     }
 
 
@@ -93,6 +97,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
             }
 
+            // 'cron-ip' --- Only whitelisted IPs for running tasks
+            elseif ($access_level_string === 'cron-ip') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\CronIpAccessLevel');
+            }
+
             // 'perform-user-login' --- Attempt to login user
             elseif ($access_level_string === 'perform-user-login') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLoginAccessLevel');
@@ -111,6 +120,16 @@ class PithAccessControl
             // 'user' --- Logged in user access only
             elseif ($access_level_string === 'user') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\UserAccessLevel');
+            }
+
+            // 'webmaster' --- Webmaster access only
+            elseif ($access_level_string === 'webmaster') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\WebmasterAccessLevel');
+            }
+
+            // 'internal' --- Organization internal user access only
+            elseif ($access_level_string === 'internal') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\InternalAccessLevel');
             }
 
             // Else treat the string as an object namespace
@@ -200,5 +219,17 @@ class PithAccessControl
             echo 'Error 403';
             exit;
         }
+    }
+
+    /**
+     * @param int $user_id
+     * @return array
+     * @noinspection PhpUnnecessaryLocalVariableInspection
+     */
+    public function getUserAccessLevelsAboveUser(int $user_id): array
+    {
+        $user_access_levels_above_user = $this->user_service->getUserAccessLevelsAboveUser($user_id);
+
+        return $user_access_levels_above_user;
     }
 }

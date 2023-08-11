@@ -62,7 +62,7 @@ Notification System:
 - [ ] TODO: SMS Notifications
 
 Panel System:
-- [ ] TODO: Webmaster Panel
+- [x] TODO: Webmaster Panel
 - [ ] TODO: Dev Panel
 - [ ] TODO: Admin Panel
 - [ ] TODO: Mod Panel
