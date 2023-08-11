@@ -97,6 +97,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\DevIpAccessLevel');
             }
 
+            // 'cron-ip' --- Only whitelisted IPs for running tasks
+            elseif ($access_level_string === 'cron-ip') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\CronIpAccessLevel');
+            }
+
             // 'perform-user-login' --- Attempt to login user
             elseif ($access_level_string === 'perform-user-login') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLoginAccessLevel');
