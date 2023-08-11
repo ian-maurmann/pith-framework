@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Format -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!-- Title -->
+        <title>{insertPageTitle()}</title>
+
+        <!-- Viewport -->
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized"  content="width">
+        <meta name="viewport"         content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scale=no">
+
+        <!-- Page Description -->
+        <meta name="description" content="{insertMetaDescription()}">
+
+        <!-- Page Keywords -->
+        <meta name="keywords" content="{insertMetaKeywords()}">
+
+        {insertMetaRobots(2)}
+        {insertResourceFiles(2)}
+    </head>
+    <body data-theme="pith-panel" data-color-mode="{$color_scheme}">
+        <header>
+            <div class="panel-header-bar-icon-left"></div>
+
+            <div class="panel-header-bar-right">
+                {insertPartial('Pith\\Framework\\Panel\\Pages\\AccountBarPartialRoute')}
+                <a href="{$PITH_PANEL_PATH}"><i class="bi bi-house" data-section-item-type="header-icon"></i></a>
+                <i class="bi bi-list" data-section-item-type="header-icon" data-pith-panel-click-event="pith-panel.top-menu >>> on-menu-icon-click"></i>
+                <!-- <i class="bi bi-sun" data-section-item-type="header-icon"></i> -->
+                <!-- <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i> -->
+                <i class="bi bi-moon-stars" data-section-item-type="header-icon"></i>
+                <i class="bi bi-power" data-section-item-type="header-icon" data-pith-panel-click-event="pith-panel.top-menu >>> on-sign-out-icon-click"></i>
+            </div>
+            <div class="panel-header-rim card-rim-bottom"></div>
+        </header>
+
+        <aside data-panel-slideout-menu-state="slid-in">
+            Menu
+
+            <ul>
+                <li><a href="{$PITH_PANEL_PATH}"><i class="bi bi-house" data-section-item-type="header-icon"></i> Panel Home</a></li>
+                <li><a href="{$PITH_PANEL_PATH}/tasks"><i class="bi bi-briefcase" data-section-item-type="header-icon"></i> Tasks</a></li>
+                <li><a href="{$PITH_PANEL_PATH}/lorem-ipsum"><i class="bi bi-app" data-section-item-type="header-icon"></i> Lorem Ipsum</a></li>
+            </ul>
+
+            <div class="panel-aside-rim card-rim-right"></div>
+        </aside>
+
+        <div class="plate">
+            <div class="inner-plate">
+                {insertPage()}
+            </div>
+        </div>
+    </body>
+</html>

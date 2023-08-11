@@ -31,13 +31,15 @@ use Pith\Framework\SharedInfrastructure\Model\Random\RandomTokenUtility;
  */
 class PithSessionManager
 {
+    private PithAppRetriever   $app_retriever;
     private RandomTokenUtility $random_token_utility;
 
     private bool $did_load_session_already;
 
-    public function __construct(RandomTokenUtility $random_token_utility)
+    public function __construct(PithAppRetriever $app_retriever, RandomTokenUtility $random_token_utility)
     {
         // Set object dependencies
+        $this->app_retriever        = $app_retriever;
         $this->random_token_utility = $random_token_utility;
 
         // Set defaults
@@ -98,6 +100,9 @@ class PithSessionManager
         // Reset all of the session variables
         $_SESSION = [];
 
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
         // Build session variables
         $_SESSION['has_session_yn']       = 'yes';
         $_SESSION['is_logged_in_yn']      = 'yes';
@@ -108,6 +113,7 @@ class PithSessionManager
         $_SESSION['username_lower']       = $username_lower;
         $_SESSION['login_time']           = $login_time;
         $_SESSION['anti_csrf_token']      = $this->random_token_utility->getRandomAntiCsrfToken();
+        $_SESSION['access_levels']        = $app->access_control->getUserAccessLevelsAboveUser($user_id);
     }
 
     public function hasSession(): bool
@@ -160,6 +166,49 @@ class PithSessionManager
 
         // Returns true if is user, else false
         return $is_user;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isWebmaster(): bool
+    {
+        $is_webmaster = false;
+
+        if($this->isLoggedInUser()){
+            // Get the session's saved list of user access levels (access levels above user access level)
+            $session_access_levels = $_SESSION['access_levels'] ?? [];
+
+            // Get is webmaster
+            $is_webmaster = in_array('webmaster',$session_access_levels,true);
+        }
+
+        return $is_webmaster;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        $user_id = 0;
+
+        if($this->isLoggedInUser()){
+            $user_id = $_SESSION['user_id'];
+        }
+
+        return (int) $user_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSessionId(): string
+    {
+        $session_id = session_id() ?? '';
+
+        return $session_id;
     }
 
 }

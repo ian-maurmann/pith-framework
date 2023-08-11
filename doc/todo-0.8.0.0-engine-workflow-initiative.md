@@ -143,19 +143,19 @@ Internal
 ### Current Objects in 0.8+ (WIP)
 
 
-External
+Framework External
 
 > About:
-> - [x] **Pith Meta**
+> - [x] **Pith About**
 > 
-> External Extendable:
+> Extendable Workflow Elements:
 > - Pith Access Level
 > - [x] **Pith Action**
 > - ~~Pith Controller~~
 > - [x] **Pith Conversion**
 > - [x] **Pith Pack**
 > - [x] **Pith Preparer**
-> - Pith Query
+> - Pith Query (Keep ???)
 > - [x] **Pith Route**
 > - [x] **Pith Route List**
 > - [x] **Pith View Requisition**
@@ -168,9 +168,13 @@ External
 > - ~~Pith Module Interface~~
 > - ~~Pith Router Interface~~
 >
-> External Objects
+> Framework Engine Components
 > - Pith Access Control
+> - [x] **Pith Active User**
 > - Pith App
+> - [x] **Pith CLI Format**
+> - [x] **Pith CLI Writer**
+> - [x] **Pith Clock**
 > - Pith Config
 > - [x] **Pith Converter**
 > - [x] *Pith Database Wrapper* (Moved)
@@ -178,49 +182,82 @@ External
 > - [x] **Pith Engine**
 > - [x] **Pith Exception**
 > - [x] **Pith Info**
+> - [x] **Pith Registry**
 > - ~~Pith Request Processor~~
 > - [x] **Pith Responder**
 > - Pith Router
+> - [x] **Pith Session Manager**
 >
 > External Traits
 > - ~~Pith Problem Trait~~
 > - ~~Pith Run Trait~~
 > - ~~Pith Startup Trait~~
 > - ~~Pith Version Trait~~
+> 
+> Injectable Thin Wrappers
+> - [x] **Pith App Retriever**
+> - [x] **Pith Dependency Injection**
+> - [x] **Pith Inbound Request**
+> - [x] **Pith Logging**
 
 
 
 Internal
-
+>  Helpers
+> - [x] *Pith Database Wrapper Helper* (Moved in)
+> - [x] **Pith Dispatcher Helper**
+> 
+> Loggers
+> - [x] **Pith Impression Logger**
+> 
 > Internal Objects
 > - ~~Pith Access Level Factory~~
-> - Pith App Helper
-> - [x] *Pith Array Utility* (Moved)
-> - [x] *Pith Database Wrapper Helper* (Moved)
-> - [x] *Error Utility* (Moved)
-> - [x] **Pith Escape Utility**
-> - [x] **Pith Expression Utility**
+> - ~~Pith App Helper~~
+> - [x] ~~*Pith Array Utility*~~ (Moved out)
+> - [x] ~~*Pith Database Wrapper Helper*~~ (Moved out)
+> - [x] ~~*Error Utility*~~ (Moved out)
+> - [x] ~~**Pith Escape Utility**~~ (Moved out)
+> - [x] ~~**Pith Expression Utility**~~ (Moved out)
 > - ~~Pith Problem Handler~~
 > - ~~Pith Problem List~~
 > - ~~Pith Request Helper~~ *(Converted to URI Utility)*
 > - ~~Pith Route~~
-> - [x] *Pith Rowset Array Utility* (Moved)
+> - [x] ~~*Pith Rowset Array Utility*~~ (Moved out)
 > - ~~Pith State Enum~~
 > - ~~Pith State Machine~~
 > - Pith String Utility
-> - [x] **Pith URI Utility** *(From old Pith Request Helper)*
+> - [x] ~~**Pith URI Utility** *(From old Pith Request Helper)*~~ (Moved out)
 >
 > Internal Traits
-> - Pith App Reference Trait
+> - ~~Pith App Reference Trait~~
 > - [x] **Pith Get Object Class Directory Trait**
 > 
-> Internal Workflow Access Levels
-> - [x] **World Access Level**
+> Utilities
+> - [x] *Pith Array Utility* (Moved)
+> - [x] *Pith Error Utility* (Moved)
+> - [x] **Pith Escape Utility**
+> - [x] **Pith Expression Utility**
+> - [x] **Reserved Name Utility**
+> - [x] *Pith Rowset Array Utility* (Moved)
+> - [x] **Pith Unit Conversion Utility**
+> - [x] **Pith URI Utility** *(From old Pith Request Helper)*
+> 
+> Workflow Access Levels
+> - [x] **'cron-ip' Access Level**
+> - [x] **'dev-ip' Access Level**
+> - [x] **'internal' Access Level**
+> - [x] **'logout' Access Level**
+> - [x] **'perform-user-login' Access Level**
+> - [x] **'perform-user-logout' Access Level**
+> - [x] **'user' Access Level**
+> - [x] **'webmaster' Access Level**
+> - [x] **'world' Access Level**
 > 
 > Internal Workflow Elements
 > - [x] **Empty Action**
 > - [x] **Empty Preparer**
 > - [x] **Empty View Requisition**
+> - [x] **Pass-Through Preparer**
 
 
 Misc. Files
@@ -280,8 +317,8 @@ Misc. Plugins
 
 ## Next Steps
 
-- Database workflow
+- <del>Database workflow</del>
 - Unit Testing
 - Integration Testing
 - <del>Database Migrations</del>
-- Access Levels ***(WIP)***
+- <del>Access Levels</del> ***(WIP)***
