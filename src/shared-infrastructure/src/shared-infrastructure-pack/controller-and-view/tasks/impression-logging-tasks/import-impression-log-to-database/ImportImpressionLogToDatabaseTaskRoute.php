@@ -22,7 +22,7 @@ use Pith\Framework\PithRoute;
  */
 class ImportImpressionLogToDatabaseTaskRoute extends PithRoute
 {
-    public string $route_type   = 'job';
+    public string $route_type   = 'task';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
     public string $access_level = 'world';
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskAction';
