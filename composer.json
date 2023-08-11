@@ -10,6 +10,7 @@
     "license": "MPL-2.0",
     "require": {
         "php": "^8.1",
+        "ext-gd": "*",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
@@ -19,6 +20,7 @@
         "lotfio/conso": "^2",
         "monolog/monolog": "^3.2",
         "nikic/fast-route": "^1.3",
+        "peppeocchi/php-cron-scheduler": "^4.0",
         "php-di/php-di": "^7.0",
         "symfony/http-foundation": "^6.2"
     },
@@ -49,8 +51,8 @@
                 "src/panel/packs/panel-pages-pack/",
                 "src/panel/packs/panel-pages-pack/account-bar/",
                 "src/panel/packs/panel-pages-pack/home/",
-                "src/panel/packs/panel-pages-pack/jobs/",
-                "src/panel/packs/panel-pages-pack/lorem-ipsum/"
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/",
+                "src/panel/packs/panel-pages-pack/tasks/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
                 "src/panel/packs/panel-theme-pack/",
@@ -85,10 +87,23 @@
             ],
             "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
-                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/"
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/cleanup-impression-log-loading-queue/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/delete-loaded-impression-log/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/hello-world/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/gather-unique-daily-views/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/lorem-ipsum",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-logs-for-import/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/tick/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\ImpressionSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/impression-system/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"

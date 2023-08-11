@@ -82,3 +82,54 @@
 .aero-gel-shimmer.aero-gel-blurred {
     backdrop-filter: blur(7px) brightness(1.25);
 }
+
+/* Button */
+.aero-gel-button{
+    display: inline-block;
+
+    border-radius: 9px;
+    padding: 0.7em 3em;
+
+    cursor: pointer;
+    user-select: none;
+    transition-property: all;
+    transition-duration: 0.4s;
+
+    text-align: center;
+}
+
+
+
+/* Button color */
+/* Blue */
+.aero-gel-button-blue{
+    background-color: var(--ox-color-ant-blue-8);
+    color: #ffffff;
+}
+.aero-gel-button-blue:hover{
+    background-color: var(--ox-color-ant-blue-7);
+}
+/* Red */
+.aero-gel-button-red{
+    background-color: var(--ox-color-ant-red-8);
+    color: #ffffff;
+}
+.aero-gel-button-red:hover{
+    background-color: var(--ox-color-ant-red-7);
+}
+/* Orange */
+.aero-gel-button-orange{
+    background-color: var(--ox-color-md-orange-600);
+    color: #212121;
+}
+.aero-gel-button-orange:hover{
+    background-color: var(--ox-color-md-orange-400);
+}
+
+/* Button size */
+.aero-gel-button-x4{
+    padding: 4px 16px;
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

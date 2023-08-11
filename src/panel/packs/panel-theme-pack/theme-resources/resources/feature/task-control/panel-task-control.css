@@ -1,0 +1,63 @@
+/* Panel Task-Control stylesheet
+=================================== */
+
+
+[data-section-item="cli-display"]{
+    background-color: #212121;
+    color: #afb1b3;
+
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
+
+    padding: 5px;
+    border-radius: 5px;
+}
+[data-section-item="cli-display"] > pre{
+    white-space: pre-wrap;
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
+    line-height: 1em;
+    font-size: 9pt;
+}
+
+[data-section-item="cli-display"] > pre > code{
+    white-space: pre-wrap;
+    font-family: 'SF Mono', 'JetBrains Mono NL',Consolas,monaco,monospace;
+    line-height: 1em;
+    font-size: 9pt;
+}
+
+
+[data-cli-format="fg_dark_black"]{color: #000000;}
+[data-cli-format="fg_dark_red"]{color: #880000;}
+[data-cli-format="fg_dark_green"]{color: #008800;}
+[data-cli-format="fg_dark_yellow"]{color: #888800;}
+[data-cli-format="fg_dark_blue"]{color: #000088;}
+[data-cli-format="fg_dark_magenta"]{color: #880088;}
+[data-cli-format="fg_dark_cyan"]{color: #008888;}
+[data-cli-format="fg_dark_white"]{color: #888888;}
+
+[data-cli-format="bg_dark_black"]{background-color: #000000;}
+[data-cli-format="bg_dark_red"]{background-color: #880000;}
+[data-cli-format="bg_dark_green"]{background-color: #008800;}
+[data-cli-format="bg_dark_yellow"]{background-color: #888800;}
+[data-cli-format="bg_dark_blue"]{background-color: #000088;}
+[data-cli-format="bg_dark_magenta"]{background-color: #880088;}
+[data-cli-format="bg_dark_cyan"]{background-color: #008888;}
+[data-cli-format="bg_dark_white"]{background-color: #888888;}
+
+[data-cli-format="fg_bright_black"]{color: #000000;}
+[data-cli-format="fg_bright_red"]{color: #FF0000;}
+[data-cli-format="fg_bright_green"]{color: #00FF00;}
+[data-cli-format="fg_bright_yellow"]{color: #FFFF00;}
+[data-cli-format="fg_bright_blue"]{color: #0000FF;}
+[data-cli-format="fg_bright_magenta"]{color: #FF00FF;}
+[data-cli-format="fg_bright_cyan"]{color: #00FFFF;}
+[data-cli-format="fg_bright_white"]{color: #FFFFFF;}
+
+[data-cli-format="bg_bright_black"]{background-color: #000000;}
+[data-cli-format="bg_bright_red"]{background-color: #FF0000;}
+[data-cli-format="bg_bright_green"]{background-color: #00FF00;}
+[data-cli-format="bg_bright_yellow"]{background-color: #FFFF00;}
+[data-cli-format="bg_bright_blue"]{background-color: #0000FF;}
+[data-cli-format="bg_bright_magenta"]{background-color: #FF00FF;}
+[data-cli-format="bg_bright_cyan"]{background-color: #00FFFF;}
+[data-cli-format="bg_bright_white"]{background-color: #FFFFFF;}

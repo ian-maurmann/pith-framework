@@ -187,4 +187,28 @@ class PithSessionManager
         return $is_webmaster;
     }
 
+    /**
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        $user_id = 0;
+
+        if($this->isLoggedInUser()){
+            $user_id = $_SESSION['user_id'];
+        }
+
+        return (int) $user_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSessionId(): string
+    {
+        $session_id = session_id() ?? '';
+
+        return $session_id;
+    }
+
 }
