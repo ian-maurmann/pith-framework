@@ -36,7 +36,7 @@ $scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure
 $scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure/run/task/import_impression_log_to_database"')->everyMinute(7);
 $scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure/run/task/delete_loaded_impression_log"')->everyMinute(9);
 $scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure/run/task/cleanup_impression_log_loading_queue"')->hourly(2);
-$scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure/run/task/gather_unique_daily_views"')->hourly(22);
+$scheduler->raw('curl --request GET "http://127.0.0.1:8080/shared-infrastructure/run/task/gather_unique_daily_views"')->hourly(15);
 
 
 // Let the scheduler execute jobs which are due.
