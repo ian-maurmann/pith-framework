@@ -8,6 +8,7 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 44              | 0.8.6.2   | *sv 0.30.0* | 2023-08-10 | Usable, but still adding new features
 Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 2023-07-10 | Usable, but still adding new features
 Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 2023-06-30 | Usable, but still adding new features
 Alpha 41              | 0.8.5.1   | *sv 0.27.0* | 2023-05-13 | Usable, but still adding new features
@@ -79,7 +80,7 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 ### Release Notes:
 
-**WIP**
+**0.8.6.2 - Alpha 44** `(semver: v0.30.0)`
 - Update PHP-DI from PHP-DI 6 to PHP-DI 7.
 - Added Pest for unit testing.
 - Added Panel.
