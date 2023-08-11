@@ -7,14 +7,19 @@ require_once __DIR__.'/vendor/autoload.php';
 
 use GO\Scheduler;
 
+
+// Set folder
+chdir(__DIR__);
+
+
 // Error logging
 ini_set('log_errors', '1');
 ini_set('error_log', './php_errors.log');
 
-error_log('scheduler run');
-error_log(__DIR__);
 
-chdir(__DIR__);
+// error_log('scheduler run');
+// error_log(__DIR__);
+
 
 // Create a new scheduler
 $scheduler = new Scheduler();
