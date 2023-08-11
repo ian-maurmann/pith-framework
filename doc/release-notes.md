@@ -82,6 +82,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 **WIP**
 - Update PHP-DI from PHP-DI 6 to PHP-DI 7.
 - Added Pest for unit testing.
+- Added Panel.
+- Added tasks for impression logging.
+- Added task runner.
+- Added task scheduler.
 
 **0.8.6.1 - Alpha 43** `(semver: v0.29.0)`
 - Minor javascript fix-ups.
