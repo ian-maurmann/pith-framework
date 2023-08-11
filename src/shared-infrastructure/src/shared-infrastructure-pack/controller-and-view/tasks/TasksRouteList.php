@@ -23,12 +23,13 @@ use Pith\Framework\PithRouteList;
 class TasksRouteList extends PithRouteList
 {
     public array $routes = [
+        ['route', ['GET'], '/cleanup_impression_log_loading_queue', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\CleanupImpressionLogLoadingQueueTaskRoute'],
+        ['route', ['GET'], '/delete_loaded_impression_log',         '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\DeleteLoadedImpressionLogTaskRoute'],
+        ['route', ['GET'], '/gather_unique_daily_views',            '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\GatherUniqueDailyViewsTaskRoute'],
         ['route', ['GET'], '/hello_world',                          '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\HelloWorldTaskRoute'],
-        ['route', ['GET'], '/cleanup-impression-log-loading-queue', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\CleanupImpressionLogLoadingQueueTaskRoute'],
-        ['route', ['GET'], '/delete-loaded-impression-log',         '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\DeleteLoadedImpressionLogTaskRoute'],
-        ['route', ['GET'], '/gather-unique-daily-views',            '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\GatherUniqueDailyViewsTaskRoute'],
         ['route', ['GET'], '/import_impression_log_to_database',    '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\ImportImpressionLogToDatabaseTaskRoute'],
         ['route', ['GET'], '/lorem_ipsum',                          '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\LoremIpsumTaskRoute'],
         ['route', ['GET'], '/queue_impression_logs_for_import',     '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\QueueImpressionLogsForImportTaskRoute'],
+        ['route', ['GET'], '/tick',                                 '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\TickTaskRoute'],
     ];
 }
