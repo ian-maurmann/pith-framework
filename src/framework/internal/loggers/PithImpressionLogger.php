@@ -139,8 +139,7 @@ class PithImpressionLogger
 
         // Build the log message
         $message =
-            '➤ '
-          . "$message_date ● $formatted_requested_http_method ● $formatted_requested_uri ● $formatted_requested_server_port ● "
+            "$message_date ● $formatted_requested_http_method ● $formatted_requested_uri ● $formatted_requested_server_port ● "
           . "$access_level ● $allowed_or_denied ● "
           . "$remote_ip_address ● "
           . "$formatted_session_id_string ● $user_or_guest ● $user_id_string ● "

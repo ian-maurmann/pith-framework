@@ -13,34 +13,34 @@
 - [x] <del>Container</del> ([PHP-DI](https://github.com/PHP-DI/PHP-DI))
 - [x] <del>Logger</del> ([Monolog](https://github.com/Seldaek/monolog))
 - [x] <del>Config Object</del>
-- [ ] TODO: Authenticator Object
-- [ ] TODO: Access Control Object
+- [x] <del>Authenticator Object</del>
+- [x] <del>Access Control Object</del>
 - [x] <del>Router Object</del> :wrench:
 - [x] <del>Dispatcher Object</del>
 - [x] <del>Modules</del>
 - [x] <del>Routes</del>
-- [ ] TODO: Access Levels
+- [x] <del>Access Levels</del>
 - [x] <del>Injectors</del>
 - [x] <del>Actions</del>
 - [x] <del>Preparers</del>
-- [x] <del>Views</del> (.phtml only right now)
+- [x] <del>Views</del>
 - [x] <del>Layouts</del>
 
 
 ##### Alpha TODO
 
 Router:
-- [ ] TODO: Switch to FastRoute
+- [x] TODO: Switch to FastRoute
 
 Database:
-- [ ] TODO: Database Wrapper Object using PDO
+- [x] TODO: Database Wrapper Object using PDO
 - [ ] TODO: Database Query Objects
 
 User System:
-- [ ] TODO: User System Setup / Install / Uninstall
-- [ ] TODO: User Creation
-- [ ] TODO: User Login / Logout
-- [ ] TODO: User Info
+- [x] TODO: User System Setup / Install / <del>Uninstall</del>
+- [x] TODO: User Creation
+- [x] TODO: User Login / Logout
+- [x] TODO: User Info
 - [ ] TODO: User Events
 
 Event System:
@@ -62,7 +62,7 @@ Notification System:
 - [ ] TODO: SMS Notifications
 
 Panel System:
-- [ ] TODO: Webmaster Panel
+- [x] TODO: Webmaster Panel
 - [ ] TODO: Dev Panel
 - [ ] TODO: Admin Panel
 - [ ] TODO: Mod Panel

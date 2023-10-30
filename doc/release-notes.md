@@ -8,6 +8,9 @@
 
 Release status | Version | Semver | Date | Can I use?
 -------------- | ------- | ------ | ---- |----------
+Alpha 44              | 0.8.6.2   | *sv 0.30.0* | 2023-08-10 | Usable, but still adding new features
+Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 2023-07-10 | Usable, but still adding new features
+Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 2023-06-30 | Usable, but still adding new features
 Alpha 41              | 0.8.5.1   | *sv 0.27.0* | 2023-05-13 | Usable, but still adding new features
 Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 2023-04-18 | Usable, but still adding new features
 Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 2023-01-18 | Usable, but still adding new features
@@ -76,6 +79,40 @@ Pre-Alpha 1           | 0.1.0.0   |             | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.6.2 - Alpha 44** `(semver: v0.30.0)`
+- Update PHP-DI from PHP-DI 6 to PHP-DI 7.
+- Added Pest for unit testing.
+- Added Panel.
+- Added tasks for impression logging.
+- Added task runner.
+- Added task scheduler.
+
+**0.8.6.1 - Alpha 43** `(semver: v0.29.0)`
+- Minor javascript fix-ups.
+- Added redirect after new user creation. 
+
+**0.8.6.0 - Alpha 42** `(semver: v0.28.0)`
+- Now able to use Latte as a template engine for views, via the new Latte View Adaptor for making it work with Pith.
+- Added environment info pages to display server/setup info.
+- Added resource pre-loading.
+- Added new folder to start putting font stylesheets for fonts; currently IBM Plex Sans and JetBrains Mono NL.
+- Was finally able to get the long-planned "route-spacing" to work; used FastRoute's route-groups with constants.
+- Added a new default landing page for the Shared Infrastructure pages.
+- 403 error page.
+- Add new access level: 'dev-ip'.
+- Log user activity / page impressions.
+- Added migrations for user system.
+- Added new user signup form.
+- Added user login form.
+- Added anti-CSRF token generation.
+- Added utility for grouping chars in tokens and id numbers, group by 4.
+- Added logout.
+- Add new access level: 'logout'.
+- Added logout page.
+- Added "runtime notes"
+- Add new access level: 'user'.
+
 
 **0.8.5.1 - Alpha 41** `(semver: v0.27.0)`
 - Major refactor, decoupled circular references to the App object.
