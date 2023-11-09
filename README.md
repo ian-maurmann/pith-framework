@@ -30,16 +30,26 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 - Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
 - Require Pith Framework from Composer:
 
-```
+```bash
 php composer.phar require pith/framework
 ```
-(Not ready yet)
-- Use the installer to set up a new project:
 
+Copy the Pith Command Tool into the directory
 ```
 cp vendor/pith/framework/pith .
-php pith install
 ```
+
+Copy the Migration runner into the directory
+```
+cp vendor/pith/framework/mig .
+```
+
+Make a symbolic link to Pest inside the directory
+```bash
+ln -s ./vendor/bin/pest ./pest
+```
+
+
 
 ---
 
