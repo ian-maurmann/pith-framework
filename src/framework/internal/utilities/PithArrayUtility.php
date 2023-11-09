@@ -55,4 +55,12 @@ class PithArrayUtility
 
         return $return;
     }
+
+    /**
+     * @return string
+     */
+    public function whereAmI(): string
+    {
+        return 'Pith Array Utility';
+    }
 }
