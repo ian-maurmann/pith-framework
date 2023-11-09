@@ -169,7 +169,8 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^2.8"
+        "pestphp/pest": "^2.8",
+        "pestphp/pest-plugin-type-coverage": "^2.4"
     },
     "config": {
         "allow-plugins": {
