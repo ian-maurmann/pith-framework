@@ -34,6 +34,15 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 php composer.phar require pith/framework
 ```
 
+
+**Nice to haves:**
+
+Add a symbolic link to composer.phar
+```bash
+ln -s ./composer.phar ./composer
+```
+
+
 Copy the Pith Command Tool into the directory
 ```
 cp vendor/pith/framework/pith .
@@ -65,3 +74,8 @@ Workflow:
 (Actual flow)
 
 ![Pith Framework flow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-framework-flow-diagram.png?raw=true)
+
+
+
+
+---
