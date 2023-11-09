@@ -22,6 +22,7 @@
 # Ignore composer.phar and vendor folder
 # --------------------------------------
 composer.phar
+/composer
 vendor/
 
 
