@@ -58,6 +58,13 @@ Make a symbolic link to Pest inside the directory
 ln -s ./vendor/bin/pest ./pest
 ```
 
+Make a symbolic link to PHPStan inside the directory
+```bash
+ln -s ./vendor/bin/phpstan ./phpstan
+
+ln -s ./vendor/bin/phpstan ./stan
+```
+
 
 
 ---
