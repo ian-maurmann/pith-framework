@@ -18,7 +18,9 @@ declare(strict_types=1);
 
 namespace Pith\CommandTool;
 
-use Conso;
+use Conso\Conso;
+use Conso\Input;
+use Conso\Output;
 use DI\Container;
 use Pith\PithDotJson\PithDotJsonService;
 
@@ -50,10 +52,25 @@ class PithCommandTool
 
     public function start()
     {
-        $this->conso = new Conso\Conso(new Conso\Input, new Conso\Output);
+        // Create Conso Input and Output
+        $input = new Input;
+        $output = new Output;
+        @ $this->conso = new Conso($input, $output);
 
+        // Or just use @ for now
+        //     // Change error level to avoid PHP deprecated warning about Conso's constructor setting dynamic properties
+        //     $previous_error_reporting_level = error_reporting(0);
+        //
+        //     // Instantiate Conso
+        //     $this->conso = new Conso($input, $output);
+        //
+        //     // Return to previous error level
+        //     error_reporting($previous_error_reporting_level);
+
+        // Give setup info to Conso
         $this->initialize();
 
+        // Run Conso
         $this->conso->run();
     }
 

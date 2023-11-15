@@ -9,7 +9,7 @@
     ],
     "license": "MPL-2.0",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-gd": "*",
         "ext-json": "*",
         "ext-pdo": "*",
@@ -169,7 +169,9 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^2.8"
+        "pestphp/pest": "^2.8",
+        "pestphp/pest-plugin-type-coverage": "^2.4",
+        "phpstan/phpstan": "^1.10"
     },
     "config": {
         "allow-plugins": {
