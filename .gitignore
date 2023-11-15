@@ -3,14 +3,10 @@
 # ==========
 
 
-
-
 # Ignore OS generated files
 # -------------------------
 .DS_Store
 .DS_Store?
-
-
 
 
 # Ignore IDE files
@@ -22,10 +18,7 @@
 # Ignore composer.phar and vendor folder
 # --------------------------------------
 composer.phar
-/composer
 vendor/
-
-
 
 
 # Ignore dev-test folder
@@ -49,11 +42,16 @@ php_errors.log
 # --------------------
 *.log
 
+
 # Ignore template cache
 # ---------------------
 /data/latte-cache/*.php
 /data/latte-cache/*.php.lock
 
-# Ignore link to Pest
-# -----------------------
+
+# Ignore symlinks
+# ---------------
+/composer
 /pest
+/phpstan
+/stan
