@@ -41,4 +41,12 @@ class PithInfo
     {
         return $this->about->framework_name . ' ' . $this->about->real_version . ' (semver ' . $this->about->semver_version . ') - ' . $this->about->release_name;
     }
+
+    /**
+     * @return string
+     */
+    public function getVersionPlusSemver(): string
+    {
+        return $this->about->real_version . ' (sv ' . $this->about->semver_version . ')';
+    }
 }
