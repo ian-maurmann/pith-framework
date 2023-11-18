@@ -49,4 +49,20 @@ class PithInfo
     {
         return $this->about->real_version . ' (sv ' . $this->about->semver_version . ')';
     }
+
+    /**
+     * @return string
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->about->copyright;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLicenseName(): string
+    {
+        return $this->about->license;
+    }
 }
