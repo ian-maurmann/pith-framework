@@ -8,6 +8,7 @@
 
 Release status | Version | Semver |PHP Version | Date | Can I use?
 -------------- | ------- | ------ | ----------- | ---- |----------
+Alpha 45              | 0.8.7.0   | *sv 0.30.1* | 8.2 | 2023-11-14 | Usable, but still adding new features
 Alpha 44              | 0.8.6.2   | *sv 0.30.0* | 8.2 | 2023-08-10 | Usable, but still adding new features
 Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 8.2 | 2023-07-10 | Usable, but still adding new features
 Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 8.2 | 2023-06-30 | Usable, but still adding new features
@@ -79,6 +80,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.7.0 - Alpha 45** `(semver: v0.30.1)`
+- Housekeeping and dependency updates.
+- Added PHPStan.
 
 **0.8.6.2 - Alpha 44** `(semver: v0.30.0)`
 - Update PHP-DI from PHP-DI 6 to PHP-DI 7.
