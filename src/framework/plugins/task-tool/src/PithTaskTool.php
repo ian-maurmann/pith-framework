@@ -46,8 +46,9 @@ class PithTaskTool
 
     public function run()
     {
-        $hasParams = false;
-        $hasOptions = false;
+        global $argv;
+        $file = $argv[0] ?? '';
+        $positional_parameter_1 = $argv[1] ?? '';
 
         // Short Options
         // ==============================================================
@@ -82,17 +83,25 @@ class PithTaskTool
         $options = getopt($short_options, $long_options);
         $option_keys = array_keys($options);
 
+        // List
+        // ────
+        $has_list_flag = $positional_parameter_1 === 'list';
+        if($has_list_flag){
+            $this->displayList();
+            return;
+        }
 
-
-        $has_version_flag = $this->array_utility->arrayHasValueInsensitive($option_keys,'v') || $this->array_utility->arrayHasValueInsensitive($option_keys,'version');
+        // Version
+        // ───────
+        $has_version_flag = $this->array_utility->arrayHasValueInsensitive($option_keys,'v') || $this->array_utility->arrayHasValueInsensitive($option_keys,'version') || $positional_parameter_1 === 'version' || $positional_parameter_1 === 'Version';
         if($has_version_flag){
             $this->displayVersion();
             return;
         }
 
-        if(!$hasOptions && !$hasParams){
-            $this->displayInfo();
-        }
+        // Info
+        // ────
+        $this->displayInfo();
     }
 
     public function displayInfo()
@@ -120,5 +129,12 @@ class PithTaskTool
         $writer = $this->cli_writer;
 
         $writer->writeLine($this->info->getVersionPlusSemver());
+    }
+
+    public function displayList()
+    {
+        $writer = $this->cli_writer;
+
+        $writer->writeLine('List');
     }
 }
