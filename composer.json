@@ -163,6 +163,9 @@
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
             ],
+            "Pith\\TaskTool\\": [
+                "src/framework/plugins/task-tool/src/"
+            ],
             "Pith\\PithDotJson\\": [
                 "src/framework/plugins/pith-dot-json/src/"
             ]
