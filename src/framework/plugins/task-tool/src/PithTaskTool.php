@@ -87,6 +87,26 @@ class PithTaskTool
         $writer->writeLine($this->info->getVersionPlusSemver());
     }
 
+    public function displayWorkspaces()
+    {
+        $writer = $this->cli_writer;
+
+        $writer->writeLine('Workspaces:');
+
+        $workspaces = $this->getWorkspaces();
+        foreach ($workspaces as $workspace_index => $workspace){
+            $writer->writeLine('    ' . $workspace_index . ' => ' . $workspace[1]);
+        }
+    }
+
+    public function getWorkspaces(){
+        $workspaces_list_namespace = PITH_APP_TASK_WORKSPACES_LIST;
+        $workspaces_list = $this->container->get($workspaces_list_namespace);
+        $workspaces = $workspaces_list->workspaces;
+
+        return $workspaces;
+    }
+
     public function run()
     {
         global $argv;
@@ -134,6 +154,14 @@ class PithTaskTool
         $has_list_flag = $positional_parameter_1 === 'list';
         if($has_list_flag){
             $this->displayList();
+            return;
+        }
+
+        // Workspaces
+        // ────
+        $has_workspaces_flag = $positional_parameter_1 === 'workspaces';
+        if($has_workspaces_flag){
+            $this->displayWorkspaces();
             return;
         }
 

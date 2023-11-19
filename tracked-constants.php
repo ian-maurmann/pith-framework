@@ -37,3 +37,6 @@ const PITH_PANEL_PATH = '/3333/3333/panel';
 
 const TASKS_URL_PATH   = '/shared-infrastructure/run/task';
 const TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksRouteList';
+
+
+const PITH_APP_TASK_WORKSPACES_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TaskWorkspacesList';
