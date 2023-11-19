@@ -109,15 +109,15 @@ class PithTaskTool
         $writer = $this->cli_writer;
         $format = $this->cli_format;
 
-        $writer->writeLine($format->bg_dark_black . $format->fg_bright_yellow);
+     // $writer->writeLine($format->bg_dark_black . $format->fg_bright_yellow);
         $writer->writeLine('Pith Task Tool');
         $writer->writeLine('    ' . 'Tool for running commands from the command line.');
         $writer->writeLine('    ');
-        $writer->writeLine('    ' . '╭─────────────────────────────────────────────────────────╮');
+        $writer->writeLine('    ' . '╭────────────────────────────────────────────────────────╮');
         $writer->writeLine('    ' . '  ' . $this->info->getVersionSlug());
         $writer->writeLine('    ' . '  ' .'Released under license: ' . $this->info->getLicenseName());
         $writer->writeLine('    ' . '  ' .$this->info->getCopyrightNotice());
-        $writer->writeLine('    ' . '╰─────────────────────────────────────────────────────────╯');
+        $writer->writeLine('    ' . '╰────────────────────────────────────────────────────────╯');
         $writer->writeLine('    ');
         $writer->writeLine('    ' . '- Thanks!');
         $writer->writeLine('    ' . '- Ian M.');

@@ -1,7 +1,14 @@
 #!/usr/bin/env php
 <?php declare(strict_types=1);
 
+// Auto-Load
 require 'vendor/autoload.php';
+
+// Add env constants
+require './env.php';
+
+// Add other constants
+require './tracked-constants.php';
 
 $task_tool = new Pith\TaskTool\PithTaskTool();
 $task_tool->run();
