@@ -69,8 +69,25 @@ class PithTaskTool
     public function displayList()
     {
         $writer = $this->cli_writer;
+        $format = $this->cli_format;
 
-        $writer->writeLine('List');
+        $writer->writeLine('Task List:');
+
+        $workspaces = $this->getWorkspaces();
+        foreach ($workspaces as $workspace_index => $workspace){
+            $workspace_name = $workspace[1];
+            $workspace_namespace = $workspace[2];
+            $tasks = $this->getWorkspaceTasks($workspace_namespace);
+
+            $writer->writeLine('    ' . $format->fg_dark_yellow . $workspace_name . $format->reset . ' workspace:');
+            foreach($tasks as $task_index => $task){
+                $task_listing_type = $task[0];
+                $task_name = $task[1];
+                $task_description = $task[2];
+
+                $writer->writeLine('        ' . $task_listing_type . ' ' . $format->fg_bright_green . $task_name . $format->reset . ' - ' . $task_description);
+            }
+        }
     }
 
     public function displayUnknownParameters()
@@ -105,6 +122,13 @@ class PithTaskTool
         $workspaces = $workspaces_list->workspaces;
 
         return $workspaces;
+    }
+
+    public function getWorkspaceTasks($workspace_list_namespace){
+        $workspace_list = $this->container->get($workspace_list_namespace);
+        $tasks = $workspace_list->tasks;
+
+        return $tasks;
     }
 
     public function run()
