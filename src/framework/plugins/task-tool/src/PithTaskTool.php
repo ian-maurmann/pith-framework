@@ -44,11 +44,56 @@ class PithTaskTool
         $this->info          = $this->container->get('Pith\\Framework\\PithInfo');
     }
 
+
+
+    public function displayInfo()
+    {
+        $writer = $this->cli_writer;
+        $format = $this->cli_format;
+
+     // $writer->writeLine($format->bg_dark_black . $format->fg_bright_yellow);
+        $writer->writeLine('Pith Task Tool');
+        $writer->writeLine('    ' . 'Tool for running commands from the command line.');
+        $writer->writeLine('    ');
+        $writer->writeLine('    ' . '╭────────────────────────────────────────────────────────╮');
+        $writer->writeLine('    ' . '  ' . $this->info->getVersionSlug());
+        $writer->writeLine('    ' . '  ' .'Released under license: ' . $this->info->getLicenseName());
+        $writer->writeLine('    ' . '  ' .$this->info->getCopyrightNotice());
+        $writer->writeLine('    ' . '╰────────────────────────────────────────────────────────╯');
+        $writer->writeLine('    ');
+        $writer->writeLine('    ' . '- Thanks!');
+        $writer->writeLine('    ' . '- Ian M.');
+        $writer->writeLine($format->reset);
+    }
+
+    public function displayList()
+    {
+        $writer = $this->cli_writer;
+
+        $writer->writeLine('List');
+    }
+
+    public function displayUnknownParameters()
+    {
+        $writer = $this->cli_writer;
+
+        $writer->writeLine('Unknown Parameters');
+    }
+
+    public function displayVersion()
+    {
+        $writer = $this->cli_writer;
+
+        $writer->writeLine($this->info->getVersionPlusSemver());
+    }
+
     public function run()
     {
         global $argv;
         $file = $argv[0] ?? '';
         $positional_parameter_1 = $argv[1] ?? '';
+
+        $has_positional_parameters = $positional_parameter_1 !== '';
 
         // Short Options
         // ==============================================================
@@ -82,6 +127,7 @@ class PithTaskTool
         // Get Options
         $options = getopt($short_options, $long_options);
         $option_keys = array_keys($options);
+        $has_options = (bool) count($options);
 
         // List
         // ────
@@ -99,42 +145,15 @@ class PithTaskTool
             return;
         }
 
+        // Unknown Parameters
+        // ──────────────────
+        if($has_positional_parameters){
+            $this->displayUnknownParameters();
+            return;
+        }
+
         // Info
         // ────
         $this->displayInfo();
-    }
-
-    public function displayInfo()
-    {
-        $writer = $this->cli_writer;
-        $format = $this->cli_format;
-
-     // $writer->writeLine($format->bg_dark_black . $format->fg_bright_yellow);
-        $writer->writeLine('Pith Task Tool');
-        $writer->writeLine('    ' . 'Tool for running commands from the command line.');
-        $writer->writeLine('    ');
-        $writer->writeLine('    ' . '╭────────────────────────────────────────────────────────╮');
-        $writer->writeLine('    ' . '  ' . $this->info->getVersionSlug());
-        $writer->writeLine('    ' . '  ' .'Released under license: ' . $this->info->getLicenseName());
-        $writer->writeLine('    ' . '  ' .$this->info->getCopyrightNotice());
-        $writer->writeLine('    ' . '╰────────────────────────────────────────────────────────╯');
-        $writer->writeLine('    ');
-        $writer->writeLine('    ' . '- Thanks!');
-        $writer->writeLine('    ' . '- Ian M.');
-        $writer->writeLine($format->reset);
-    }
-
-    public function displayVersion()
-    {
-        $writer = $this->cli_writer;
-
-        $writer->writeLine($this->info->getVersionPlusSemver());
-    }
-
-    public function displayList()
-    {
-        $writer = $this->cli_writer;
-
-        $writer->writeLine('List');
     }
 }
