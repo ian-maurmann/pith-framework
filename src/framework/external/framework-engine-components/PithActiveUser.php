@@ -54,9 +54,9 @@ class PithActiveUser
     private string $requested_http_method;
     private string $requested_server_port;
     private string $requested_uri;
-    private string $session_id;
+    private string $session_id = '';
     private string $user_agent_string;
-    private int    $user_id;
+    private int    $user_id = 0;
 
     // Properties
     private bool $did_log_impression_on_first_access;
