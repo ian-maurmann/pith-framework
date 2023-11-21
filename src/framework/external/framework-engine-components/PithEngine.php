@@ -104,4 +104,29 @@ class PithEngine
         $this->dispatcher->dispatchRoute($content_route);
     }
 
+    /**
+     * @param  string $route_namespace
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    public function runRoute(string $route_namespace)
+    {
+        // Get route
+        $route = $this->router->getRouteFromRouteNamespace($route_namespace);
+
+        // Run route
+        $this->dispatcher->dispatchRoute($route);
+    }
+
+    /**
+     * @param  string $route_namespace
+     * @throws PithException
+     * @throws ReflectionException
+     */
+    public function runTaskRoute(string $route_namespace)
+    {
+        $this->runRoute($route_namespace);
+    }
+
+
 }
