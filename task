@@ -2,13 +2,15 @@
 <?php declare(strict_types=1);
 
 // Auto-Load
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 
 // Add env constants
-require './env.php';
+//require './env.php';
 
 // Add other constants
-require './tracked-constants.php';
+//require './tracked-constants.php';
+
+require './front-controller.php';
 
 $task_tool = new Pith\TaskTool\PithTaskTool();
 $task_tool->run();
