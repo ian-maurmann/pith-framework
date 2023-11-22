@@ -35,6 +35,7 @@ class PithConfig
      * @var string | null
      */
     public ?string $route_list_namespace;
+    public ?bool $should_echo_cli_output = true;
 
     /**
      * Holds route list object

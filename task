@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require './front-controller.php';
+
+$task_tool = new Pith\TaskTool\PithTaskTool();
+$task_tool->run();

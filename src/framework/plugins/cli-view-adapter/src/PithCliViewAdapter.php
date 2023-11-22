@@ -116,6 +116,8 @@ class PithCliViewAdapter
 
         $cli_output = implode("\r\n", $cli_writes);
 
-        echo $cli_output;
+        if($this->app->config->should_echo_cli_output){
+            echo $cli_output;
+        }
     }
 }
