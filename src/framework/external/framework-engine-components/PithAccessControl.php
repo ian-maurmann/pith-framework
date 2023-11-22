@@ -181,43 +181,60 @@ class PithAccessControl
         // Get app
         $app = $this->app_retriever->getApp();
 
+        $process_type = $app->process->process_type;
+
         // Check access
         $is_allowed = $this->isAllowedToAccess($given_access_level_name);
 
-        if($is_allowed){
-            // Log impression
-            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, true);
-        }
-        else{
-            // If not logged in:
-            // T*O*D*O - Throw exception - Handle it and then - Deny & show the login page. Done.
-            // If logged in:
-            // TODO - Throw exception - Handle it and then - Deny & show the access denied page
-
-            $is_logged_in = $app->active_user->isLoggedIn();
-            if($is_logged_in){
-                // TODO Send to access denied page. (Need to make an access denied page first)
+        if($process_type === 'task'){
+            if($is_allowed){
+                // TODO - Probably log the task was allowed here.
+                // TODO - Not the impression log, Create a Task Log to use here
             }
             else{
-                // Redirect to user login form
-                header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK, true, 302);
+                // TODO - Probably log the task was failed here.
+                throw new PithException(
+                    'Pith Framework Exception 4031: Workflow element access denied for task.',
+                    4031
+                );
+            }
+        }
+        else{
+            if($is_allowed){
+                // Log impression
+                $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, true);
+            }
+            else{
+                // If not logged in:
+                // T*O*D*O - Throw exception - Handle it and then - Deny & show the login page. Done.
+                // If logged in:
+                // TODO - Throw exception - Handle it and then - Deny & show the access denied page
+
+                $is_logged_in = $app->active_user->isLoggedIn();
+                if($is_logged_in){
+                    // TODO Send to access denied page. (Need to make an access denied page first)
+                }
+                else{
+                    // Redirect to user login form
+                    header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK, true, 302);
+                    exit;
+                }
+
+                /*
+                throw new PithException(
+                    'Pith Framework Exception 4007: Workflow element access denied.',
+                    4007
+                );
+                */
+
+                // Log impression
+                $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
+
+                // Set headers for 403
+                http_response_code(403);
+                echo 'Error 403';
                 exit;
             }
-
-            /*
-            throw new PithException(
-                'Pith Framework Exception 4007: Workflow element access denied.',
-                4007
-            );
-            */
-
-            // Log impression
-            $app->active_user->logImpressionOnFirstAccessOnly($given_access_level_name, false);
-
-            // Set headers for 403
-            http_response_code(403);
-            echo 'Error 403';
-            exit;
         }
     }
 

@@ -314,14 +314,22 @@ class PithTaskTool
                     if($is_task_name_a_match){
                         //$writer->writeLine('Found.....');
                         try{
+                            // Set process type
+                            $app->process->process_type = 'task';
+
+                            // Set the config to not re-echo the cli writes
                             $app->config->should_echo_cli_output = false;
+
+                            // Run
                             $app->engine->runTaskRoute($task_route_namespace);
                         }
                         catch (PithException $exception){
-                            //$writer->writeLine('Exception.....');
+                            $writer->writeLine($format->fg_bright_red . 'Pith Exception ' . $exception->getCode() . $format->reset);
+                            $writer->writeLine($format->fg_bright_red . 'Message: ' . $exception->getMessage() . $format->reset);
                         }
                         catch (Exception $exception){
-                            //$writer->writeLine('Exception.....');
+                            $writer->writeLine($format->fg_bright_red . 'Encountered an exception.' . $format->reset);
+                            $writer->writeLine($format->fg_bright_red . 'Exception ' . $exception->getCode() . ' - Message: ' . $exception->getMessage() . $format->reset);
                         }
                         break;
                     }
