@@ -316,6 +316,7 @@ class PithTaskTool
                         try{
                             // Set process type
                             $app->process->process_type = 'task';
+                            $app->process->boundary_type = 'task-tool';
 
                             // Set the config to not re-echo the cli writes
                             $app->config->should_echo_cli_output = false;

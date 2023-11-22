@@ -28,4 +28,5 @@ namespace Pith\Framework;
 class PithProcess
 {
     public string $process_type = 'unknown';
+    public string $boundary_type = 'unknown';
 }

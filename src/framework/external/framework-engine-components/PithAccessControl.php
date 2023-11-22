@@ -102,6 +102,11 @@ class PithAccessControl
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\CronIpAccessLevel');
             }
 
+            // 'task' --- Only the task tool from terminal, or else whitelisted IPs for running tasks
+            elseif ($access_level_string === 'task') {
+                $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\TaskAccessLevel');
+            }
+
             // 'perform-user-login' --- Attempt to login user
             elseif ($access_level_string === 'perform-user-login') {
                 $access_level = $this->dependency_injection->container->get('Pith\\Framework\\Internal\\PerformUserLoginAccessLevel');
