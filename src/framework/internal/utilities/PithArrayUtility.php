@@ -68,14 +68,4 @@ class PithArrayUtility
         $array_lower = array_map('strtolower', $given_array);
         return in_array($value_lower, $array_lower);
     }
-
-
-
-    /**
-     * @return string
-     */
-    public function whereAmI(): string
-    {
-        return 'Pith Array Utility';
-    }
 }
