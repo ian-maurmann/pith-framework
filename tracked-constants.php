@@ -27,6 +27,7 @@ const PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH = '/2222/2222/env-info';
 const PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH = '/ajax/user-system';
 
 const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
+const PITH_TASK_LOG_LOCATION = 'logs/task-log/';
 
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
 const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';

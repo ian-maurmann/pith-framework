@@ -22,6 +22,7 @@ namespace Pith\TaskTool;
 use DI\Container;
 use Exception;
 use Pith\Framework\Internal\PithArrayUtility;
+use Pith\Framework\Internal\PithTaskLogger;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithCliFormat;
 use Pith\Framework\PithCliWriter;
@@ -37,6 +38,7 @@ class PithTaskTool
     private PithCliWriter    $cli_writer;
     private Container        $container;
     private PithInfo         $info;
+    private PithTaskLogger   $task_logger;
 
     public function __construct()
     {
@@ -47,6 +49,7 @@ class PithTaskTool
         $this->cli_format    = $this->container->get('Pith\\Framework\\PithCliFormat');
         $this->cli_writer    = $this->container->get('Pith\\Framework\\PithCliWriter');
         $this->info          = $this->container->get('Pith\\Framework\\PithInfo');
+        $this->task_logger   = $this->container->get('Pith\\Framework\\Internal\\PithTaskLogger');
     }
 
     public function displayAboutTask($given_workspace_name, $given_task_name)
@@ -338,8 +341,10 @@ class PithTaskTool
                 break;
             }
         }
-
-        //$writer->writeLine('Ran.....');
+        
+        if(PITH_COMMAND_TASK_LOG_ENABLE){
+            $this->task_logger->logTask($given_workspace_name, $given_task_name);
+        }
     }
 
 }
