@@ -69,6 +69,18 @@ Get code coverage
 ```bash
 php pest --coverage
 ```
+### PhpStan
+
+
+Analyse
+```bash
+php stan analyse src
+````
+
+Analyse with level
+```bash
+php stan analyse --level 0 src
+````
 
 ----
 
