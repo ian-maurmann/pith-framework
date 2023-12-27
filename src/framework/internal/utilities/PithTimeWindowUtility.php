@@ -94,4 +94,26 @@ class PithTimeWindowUtility
 
         return $hour_datetime;
     }
+
+    public function get30MinuteWindowStartDatetime(DateTime $given_datetime): DateTime
+    {
+        // Gather the calendar info
+        $year_yyyy = $given_datetime->format('Y');
+        $month_mm  = $given_datetime->format('m');
+        $day_dd    = $given_datetime->format('d');
+        $hour_hh   = $given_datetime->format('H');
+        $minute_ii = $given_datetime->format('i');
+
+        // Find 30 minute window
+        $window_minute_ii = '00';
+        $given_minute_int = (int) $minute_ii;
+        if($given_minute_int >= 30){
+            $window_minute_ii = '30';
+        }
+
+        // Get datetime at start of 30 minute window
+        $window_datetime = DateTime::createFromFormat('Y-m-d H:i', $year_yyyy . '-' . $month_mm . '-' . $day_dd . ' ' . $hour_hh . ':' . $window_minute_ii);
+
+        return $window_datetime;
+    }
 }
