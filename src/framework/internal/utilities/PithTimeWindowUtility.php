@@ -64,4 +64,20 @@ class PithTimeWindowUtility
 
         return $month_datetime;
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getDayWindowStartDatetime(DateTime $given_datetime): DateTime
+    {
+        // Gather the calendar info
+        $year_yyyy = $given_datetime->format('Y');
+        $month_mm  = $given_datetime->format('m');
+        $day_dd    = $given_datetime->format('d');
+
+        // Get datetime at start of day
+        $day_datetime = new DateTime($year_yyyy . '-' . $month_mm . '-' . $day_dd);
+
+        return $day_datetime;
+    }
 }

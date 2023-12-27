@@ -3,9 +3,9 @@
 test('Time Window Utility :: getYearWindowStartDatetime( ) will be start of year.', function () {
     $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
 
-    $current_datetime = new DateTime('2023-12-26');
+    $given_datetime = new DateTime('2023-12-26');
 
-    $year_start_datetime = $time_window_utility->getYearWindowStartDatetime($current_datetime);
+    $year_start_datetime = $time_window_utility->getYearWindowStartDatetime($given_datetime);
 
     expect($year_start_datetime->format('Y-m-d'))->toBe(
         '2023-01-01'
@@ -15,11 +15,23 @@ test('Time Window Utility :: getYearWindowStartDatetime( ) will be start of year
 test('Time Window Utility :: getMonthWindowStartDatetime( ) will be start of month.', function () {
     $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
 
-    $current_datetime = new DateTime('2023-12-26');
+    $given_datetime = new DateTime('2023-12-26');
 
-    $year_start_datetime = $time_window_utility->getMonthWindowStartDatetime($current_datetime);
+    $month_start_datetime = $time_window_utility->getMonthWindowStartDatetime($given_datetime);
 
-    expect($year_start_datetime->format('Y-m-d'))->toBe(
+    expect($month_start_datetime->format('Y-m-d'))->toBe(
         '2023-12-01'
+    );
+});
+
+test('Time Window Utility :: getDayWindowStartDatetime( ) will be start of day.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:71:01');
+
+    $day_start_datetime = $time_window_utility->getDayWindowStartDatetime($given_datetime);
+
+    expect($day_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 00:00:00'
     );
 });
