@@ -108,3 +108,51 @@ test('Time Window Utility :: get20MinuteWindowStartDatetime( ) will be 40 in 3rd
         '2023-12-26 21:40:00'
     );
 });
+
+test('Time Window Utility :: get15MinuteWindowStartDatetime( ) will be 00 in 1st 15min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:09:01');
+
+    $window_start_datetime = $time_window_utility->get15MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:00:00'
+    );
+});
+
+test('Time Window Utility :: get15MinuteWindowStartDatetime( ) will be 15 in 2nd 15min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:29:01');
+
+    $window_start_datetime = $time_window_utility->get15MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:15:00'
+    );
+});
+
+test('Time Window Utility :: get15MinuteWindowStartDatetime( ) will be 30 in 3rd 15min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:39:01');
+
+    $window_start_datetime = $time_window_utility->get15MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:30:00'
+    );
+});
+
+test('Time Window Utility :: get15MinuteWindowStartDatetime( ) will be 45 in 4th 15min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:59:01');
+
+    $window_start_datetime = $time_window_utility->get15MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:45:00'
+    );
+});
