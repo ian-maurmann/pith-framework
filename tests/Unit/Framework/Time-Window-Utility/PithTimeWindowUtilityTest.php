@@ -27,11 +27,24 @@ test('Time Window Utility :: getMonthWindowStartDatetime( ) will be start of mon
 test('Time Window Utility :: getDayWindowStartDatetime( ) will be start of day.', function () {
     $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
 
-    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:71:01');
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:39:01');
 
     $day_start_datetime = $time_window_utility->getDayWindowStartDatetime($given_datetime);
 
     expect($day_start_datetime->format('Y-m-d H:i:s'))->toBe(
         '2023-12-26 00:00:00'
+    );
+});
+
+
+test('Time Window Utility :: getHourWindowStartDatetime( ) will be start of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:39:01');
+
+    $hour_start_datetime = $time_window_utility->getHourWindowStartDatetime($given_datetime);
+
+    expect($hour_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:00:00'
     );
 });

@@ -80,4 +80,18 @@ class PithTimeWindowUtility
 
         return $day_datetime;
     }
+
+    public function getHourWindowStartDatetime(DateTime $given_datetime): DateTime
+    {
+        // Gather the calendar info
+        $year_yyyy = $given_datetime->format('Y');
+        $month_mm  = $given_datetime->format('m');
+        $day_dd    = $given_datetime->format('d');
+        $hour_hh   = $given_datetime->format('H');
+
+        // Get datetime at start of hour
+        $hour_datetime = DateTime::createFromFormat('Y-m-d H', $year_yyyy . '-' . $month_mm . '-' . $day_dd . ' ' . $hour_hh);
+
+        return $hour_datetime;
+    }
 }
