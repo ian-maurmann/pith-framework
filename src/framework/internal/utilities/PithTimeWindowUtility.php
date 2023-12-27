@@ -154,7 +154,7 @@ class PithTimeWindowUtility
         $hour_hh   = $given_datetime->format('H');
         $minute_ii = $given_datetime->format('i');
 
-        // Find 20 minute window
+        // Find 15 minute window
         $window_minute_ii = '00';
         $given_minute_int = (int) $minute_ii;
         if($given_minute_int >= 45){
@@ -168,6 +168,38 @@ class PithTimeWindowUtility
         }
 
         // Get datetime at start of 15 minute window
+        $window_datetime = DateTime::createFromFormat('Y-m-d H:i', $year_yyyy . '-' . $month_mm . '-' . $day_dd . ' ' . $hour_hh . ':' . $window_minute_ii);
+
+        return $window_datetime;
+    }
+
+    /** @noinspection DuplicatedCode */
+    public function get12MinuteWindowStartDatetime(DateTime $given_datetime): DateTime
+    {
+        // Gather the calendar info
+        $year_yyyy = $given_datetime->format('Y');
+        $month_mm  = $given_datetime->format('m');
+        $day_dd    = $given_datetime->format('d');
+        $hour_hh   = $given_datetime->format('H');
+        $minute_ii = $given_datetime->format('i');
+
+        // Find 12 minute window
+        $window_minute_ii = '00';
+        $given_minute_int = (int) $minute_ii;
+        if($given_minute_int >= 48){
+            $window_minute_ii = '48';
+        }
+        elseif($given_minute_int >= 36){
+            $window_minute_ii = '36';
+        }
+        elseif($given_minute_int >= 24){
+            $window_minute_ii = '24';
+        }
+        elseif($given_minute_int >= 12){
+            $window_minute_ii = '12';
+        }
+
+        // Get datetime at start of 12 minute window
         $window_datetime = DateTime::createFromFormat('Y-m-d H:i', $year_yyyy . '-' . $month_mm . '-' . $day_dd . ' ' . $hour_hh . ':' . $window_minute_ii);
 
         return $window_datetime;
