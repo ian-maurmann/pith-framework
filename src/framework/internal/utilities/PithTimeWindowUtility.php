@@ -41,11 +41,27 @@ class PithTimeWindowUtility
      */
     public function getYearWindowStartDatetime(DateTime $given_datetime): DateTime
     {
-        // Gather the calendar info
-        $year_yyyy              = $given_datetime->format('Y');
-        $january_first_datetime = new DateTime('1 January ' . $year_yyyy);
+        // Get the year
+        $year_yyyy = $given_datetime->format('Y');
+
+        // Get the first day of the year
+        $january_first_datetime = new DateTime($year_yyyy . '-01-01');
 
         return $january_first_datetime;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function getMonthWindowStartDatetime(DateTime $given_datetime): DateTime
+    {
+        // Gather the calendar info
+        $year_yyyy = $given_datetime->format('Y');
+        $month_mm  = $given_datetime->format('m');
+
+        // Get the first day of the month
+        $month_datetime = new DateTime($year_yyyy . '-' . $month_mm . '-01');
+
+        return $month_datetime;
+    }
 }
