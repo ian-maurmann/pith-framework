@@ -54,9 +54,9 @@ test('Time Window Utility :: get30MinuteWindowStartDatetime( ) will be 00 in 1st
 
     $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:29:01');
 
-    $hour_start_datetime = $time_window_utility->get30MinuteWindowStartDatetime($given_datetime);
+    $window_start_datetime = $time_window_utility->get30MinuteWindowStartDatetime($given_datetime);
 
-    expect($hour_start_datetime->format('Y-m-d H:i:s'))->toBe(
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
         '2023-12-26 21:00:00'
     );
 });
@@ -66,9 +66,45 @@ test('Time Window Utility :: get30MinuteWindowStartDatetime( ) will be 30 in 2nd
 
     $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:39:01');
 
-    $hour_start_datetime = $time_window_utility->get30MinuteWindowStartDatetime($given_datetime);
+    $window_start_datetime = $time_window_utility->get30MinuteWindowStartDatetime($given_datetime);
 
-    expect($hour_start_datetime->format('Y-m-d H:i:s'))->toBe(
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
         '2023-12-26 21:30:00'
+    );
+});
+
+test('Time Window Utility :: get20MinuteWindowStartDatetime( ) will be 00 in 1st 20min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:09:01');
+
+    $window_start_datetime = $time_window_utility->get20MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:00:00'
+    );
+});
+
+test('Time Window Utility :: get20MinuteWindowStartDatetime( ) will be 20 in 2nd 20min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:29:01');
+
+    $window_start_datetime = $time_window_utility->get20MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:20:00'
+    );
+});
+
+test('Time Window Utility :: get20MinuteWindowStartDatetime( ) will be 40 in 3rd 20min window of hour.', function () {
+    $time_window_utility = new Pith\Framework\Internal\PithTimeWindowUtility();
+
+    $given_datetime = DateTime::createFromFormat('Y-m-d H:i:s', '2023-12-26 21:59:01');
+
+    $window_start_datetime = $time_window_utility->get20MinuteWindowStartDatetime($given_datetime);
+
+    expect($window_start_datetime->format('Y-m-d H:i:s'))->toBe(
+        '2023-12-26 21:40:00'
     );
 });
