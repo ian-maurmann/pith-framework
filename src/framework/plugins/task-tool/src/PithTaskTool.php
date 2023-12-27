@@ -341,7 +341,7 @@ class PithTaskTool
                 break;
             }
         }
-        
+
         if(PITH_COMMAND_TASK_LOG_ENABLE){
             $this->task_logger->logTask($given_workspace_name, $given_task_name);
         }
