@@ -91,4 +91,27 @@ class PithTaskLogger
         // Write to the log
         $bytes_written = file_put_contents($filename, $message . PHP_EOL , FILE_APPEND | LOCK_EX);
     }
+
+    public function logTaskOutput(string $task_cli_output)
+    {
+        // Get the app
+        $app = $this->app_retriever->getApp();
+
+        // Time
+        $time              = $app->clock->getLaunchMomentTimestamp();
+        $message_date      = date('Y-m-d H:i:s', $time);
+        $filename_date_day = date('Y-m-d', $time);
+
+        // Filename
+        $filename = PITH_TASK_OUTPUT_LOG_LOCATION.'task_output_'.$filename_date_day.'.log';
+
+        // Build the log message
+        $message = "$message_date\n";
+        $message .= "▶\n";
+        $message .= "$task_cli_output\n";
+        $message .= "◼\n";
+
+        // Write to the log
+        $bytes_written = file_put_contents($filename, $message . PHP_EOL , FILE_APPEND | LOCK_EX);
+    }
 }
