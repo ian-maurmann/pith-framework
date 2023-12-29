@@ -40,12 +40,8 @@ class TickTaskAction extends PithAction
     {
         // Get app
         $app = $this->app_retriever->getApp();
-
-        // Test the CLI Writer ---- CLI View Adapter show also remember this in the view
-        $app->cli_writer->writeLine('Hello, World!');
-        $app->cli_writer->writeLine('Jello!');
-        $app->cli_writer->writeLine('Jello!');
-        $app->cli_writer->writeLine('More jello!');
+        
+        $app->cli_writer->writeLine('Tick');
     }
 
 }
