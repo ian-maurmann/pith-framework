@@ -22,7 +22,10 @@ namespace Pith\Framework\SharedInfrastructure\Tasks;
 class TaskWorkspacesList
 {
     public array $workspaces = [
-        ['workspace', 'impression_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskWorkspace'],
-        ['workspace', 'tick_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TickTaskWorkspace'],
+        // Tick workspace
+        ['workspace', 'tick_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TickTaskWorkspace', null],
+
+        // Other workspaces
+        ['workspace', 'impression_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskWorkspace', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskOrchestrator'],
     ];
 }
