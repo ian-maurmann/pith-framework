@@ -26,6 +26,7 @@
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
+                "src/framework/components/extendable-bases/",
                 "src/framework/external/about/",
                 "src/framework/external/extendable-workflow-elements/",
                 "src/framework/external/framework-engine-components",
