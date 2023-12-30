@@ -78,11 +78,20 @@ class TickTaskAction extends PithAction
                 $number_of_tasks_skipped = count($skipped_task_names);
                 $did_skip_tasks          = $number_of_tasks_skipped > 0;
 
+                // Display skipped tasks
+                if($did_skip_tasks){
+                    foreach ($skipped_task_names as $skipped_task_name){
+                        $app->cli_writer->writeLine($format->fg_dark_yellow . '    - Skipped ' . $format->fg_bright_yellow . $skipped_task_name . $format->fg_dark_yellow . '.' . $format->reset);
+                    }
+                }
+
+                // Display task that was run
                 if($did_run_task){
                     $app->cli_writer->writeLine($format->fg_dark_yellow . '    - Ran ' . $format->fg_bright_green . $ran_task_name . $format->reset);
 
                     if($was_heavy){
                         $app->cli_writer->writeLine($format->fg_dark_yellow . '    - ' . $format->fg_bright_yellow . 'Heavy' . $format->fg_dark_yellow . '.' . $format->reset);
+                        $has_run_heavy = true;
                     }
 
                 }
@@ -90,11 +99,7 @@ class TickTaskAction extends PithAction
                     $app->cli_writer->writeLine($format->fg_dark_yellow . '    - ' . $format->fg_bright_yellow . 'No task ran' . $format->fg_dark_yellow . '.' . $format->reset);
                 }
 
-                if($did_skip_tasks){
-                    foreach ($skipped_task_names as $skipped_task_name){
-                        $app->cli_writer->writeLine($format->fg_dark_yellow . '    - Skipped ' . $format->fg_bright_yellow . $skipped_task_name . $format->fg_dark_yellow . '.' . $format->reset);
-                    }
-                }
+
 
             }
             else{
