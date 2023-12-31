@@ -82,10 +82,6 @@ class ImpressionLoggingTaskOrchestrator extends PithTaskOrchestrator
     protected function processTask(bool $skip_heavy, array &$orchestration_info, string $task_system_name, string $task_name, bool $is_heavy)
     {
         $touchstone_utility = $this->touchstone_utility;
-        // ------^------^------^------^------^------^------^------^
-        // Task
-        //$task_system_name = 'impression_system';
-        //$task_name = 'cleanup_impression_log_loading_queue';
 
         if($is_heavy && $skip_heavy){
             $orchestration_info['skipped_task_names'][] = $task_name;
@@ -98,7 +94,7 @@ class ImpressionLoggingTaskOrchestrator extends PithTaskOrchestrator
             $run = $touchstone_utility->touchOnceIn20MinuteWindow($touchstone_file);
 
             if($run){
-
+                // Build the command
                 $command_string = sprintf(PITH_TASK_SHELL_COMMAND_FORMAT, $task_system_name, $task_name);
 
                 // Run
@@ -112,7 +108,7 @@ class ImpressionLoggingTaskOrchestrator extends PithTaskOrchestrator
                 return true;
             }
         }
-        // ------^------^------^------^------^------^------^------^
+
         return false;
     }
 }
