@@ -71,12 +71,17 @@ class TickTaskAction extends PithAction
 
                 // Run Task Orchestrator
                 $orchestration_info      = $orchestrator->orchestrate($has_run_heavy);
+                $touchstones             = $orchestration_info['touchstones'];
                 $did_run_task            = $orchestration_info['did_run_task'];
                 $ran_task_name           = $orchestration_info['ran_task_name'];
                 $was_heavy               = $orchestration_info['is_heavy'];
                 $skipped_task_names      = $orchestration_info['skipped_task_names'];
                 $number_of_tasks_skipped = count($skipped_task_names);
                 $did_skip_tasks          = $number_of_tasks_skipped > 0;
+
+                foreach ($touchstones as $touchstone){
+                    $app->cli_writer->writeLine($format->fg_dark_yellow . '    - Looked at touchstone ' . $format->fg_dark_cyan . $touchstone . $format->fg_dark_yellow . '.' . $format->reset);
+                }
 
                 // Display skipped tasks
                 if($did_skip_tasks){
