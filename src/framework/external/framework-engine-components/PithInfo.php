@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2024 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -40,5 +40,29 @@ class PithInfo
     public function getVersionSlug(): string
     {
         return $this->about->framework_name . ' ' . $this->about->real_version . ' (semver ' . $this->about->semver_version . ') - ' . $this->about->release_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersionPlusSemver(): string
+    {
+        return $this->about->real_version . ' (sv ' . $this->about->semver_version . ')';
+    }
+
+    /**
+     * @return string
+     */
+    public function getCopyrightNotice(): string
+    {
+        return $this->about->copyright;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLicenseName(): string
+    {
+        return $this->about->license;
     }
 }

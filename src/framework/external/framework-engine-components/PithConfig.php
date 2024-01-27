@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2024 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -35,6 +35,7 @@ class PithConfig
      * @var string | null
      */
     public ?string $route_list_namespace;
+    public ?bool $should_echo_cli_output = true;
 
     /**
      * Holds route list object

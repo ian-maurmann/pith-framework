@@ -1,6 +1,6 @@
 <?php
 # ===================================================================
-# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2024 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,7 +9,6 @@
 # ===================================================================
 
 declare(strict_types=1);
-
 
 // Pith Command Tool,
 // using Conso ---> lotfio/conso
@@ -22,29 +21,25 @@ use Conso\Conso;
 use Conso\Input;
 use Conso\Output;
 use DI\Container;
+use Pith\Framework\PithInfo;
 use Pith\PithDotJson\PithDotJsonService;
 
 class PithCommandTool
 {
-    private $conso;
-
-    private $php_di_container;
-    private $pith_dot_json_service;
+    private Conso              $conso;
+    private Container          $container;
+    private PithInfo           $info;
+    private PithDotJsonService $pith_dot_json_service;
 
     function __construct()
     {
         // Forget what files exist / don't exist
         clearstatcache();
 
-        // Setup new PHP-DI Container
-        $php_di_container = new \DI\Container();
-
-        // Create objects
-        $pith_dot_json_service = $php_di_container->get('\\Pith\\PithDotJson\\PithDotJsonService');
-
         // Add objects to this
-        $this->php_di_container      = $php_di_container;
-        $this->pith_dot_json_service = $pith_dot_json_service;
+        $this->container             = new Container();
+        $this->pith_dot_json_service = $this->container->get('\\Pith\\PithDotJson\\PithDotJsonService');
+        $this->info                  = $this->container->get('Pith\\Framework\\PithInfo');
 
         // Set up defaults
         $this->pith_dot_json_service->setLocation('.');
@@ -75,9 +70,6 @@ class PithCommandTool
     }
 
 
-
-
-
     private function initialize()
     {
         $this->initializeMetadata();
@@ -86,16 +78,13 @@ class PithCommandTool
     }
 
 
-
-
     private function initializeMetadata(){
+        $version = $this->info->getVersionPlusSemver();
+
         $this->conso->setName('Pith Command Tool');
-        $this->conso->setVersion('0.0.0');
+        $this->conso->setVersion($version);
         $this->conso->setAuthor('Ian Maurmann');
     }
-
-
-
 
 
     private function initializeSignature()
@@ -114,9 +103,6 @@ class PithCommandTool
         
         $this->conso->setSignature($signature);
     }
-
-
-
 
 
     private function initializeCommands()
@@ -140,7 +126,6 @@ class PithCommandTool
             $output->writeLn('║ Pith Installer    ║' . "\n");
             $output->writeLn('║ (Not ready yet)   ║' . "\n");
             $output->writeLn('╚═══════════════════╝' . "\n");
-
 
             $run_yn = readline('Run the Installer? (Y/N): ');
             $run    = (strtolower($run_yn) === 'y') ? true : false ;
@@ -196,20 +181,14 @@ class PithCommandTool
                         else{
                             $output->writeLn("│ └ Failed to create pith.json file, Cannot install \n", 'red');
                         }
-
-
                     } else {
                         $output->writeLn("│└ No pith.json file, Cannot install \n", 'red');
 
                     }
                 }
-
                 $output->writeLn("┷ End install \n", 'yellow');
             }
-
         })->description("Install new app. (Not ready yet)");
-
-
 
         $this->conso->command("verify", function($input, $output){
 
@@ -217,9 +196,7 @@ class PithCommandTool
 
         })->description("Verify the app's installation. (Not ready yet)");
 
-
         $this->conso->command("assert", function($input, $output){
-
 
             if($input->subCommand() == 'pith_json_exists') {
                 // $output->writeLn("Cannot assert that pith.json exists \n", 'red');
@@ -236,9 +213,6 @@ class PithCommandTool
                 else{
                     $output->writeLn("pith.json does not exists \n", 'red');
                 }
-
-
-
             }
             elseif($input->subCommand() == 'pith_config_exists') {
                 $output->writeLn("Cannot assert that Config exists \n", 'red');
@@ -251,13 +225,5 @@ class PithCommandTool
             'pith_json_exists',
             'pith_config_exists'
             );
-
     }
-
-
-
-
-
-
-
 }
