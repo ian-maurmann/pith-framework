@@ -57,10 +57,15 @@ class PithArrayUtility
     }
 
     /**
-     * @return string
+     * @param array $given_array
+     * @param string $given_value
+     * @return bool
+     * @noinspection SpellCheckingInspection - Ignore "strtolower"
      */
-    public function whereAmI(): string
+    public function arrayHasValueInsensitive(array $given_array, string $given_value): bool
     {
-        return 'Pith Array Utility';
+        $value_lower = strtolower($given_value);
+        $array_lower = array_map('strtolower', $given_array);
+        return in_array($value_lower, $array_lower);
     }
 }

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace Pith\CliViewAdapter;
 
+use Pith\Framework\Internal\PithTaskLogger;
 use Pith\Framework\PithApp;
 
 /**
@@ -33,6 +34,7 @@ class PithCliViewAdapter
     // Objects
     public PithApp $app;
     public $view_runner;
+    public PithTaskLogger $task_logger;
 
     // Vars
     protected $full_path_to_phtml_view;
@@ -42,10 +44,13 @@ class PithCliViewAdapter
     protected $resources;
 
 
-    public function __construct()
+    public function __construct(PithTaskLogger $task_logger)
     {
-        // default
+        // Default
         $this->reset();
+
+        // Set objects
+        $this->task_logger = $task_logger;
     }
 
     public function reset()
@@ -109,13 +114,19 @@ class PithCliViewAdapter
 
     public function run()
     {
-        // Set content type header
-        header('Content-type: text/plain; charset=utf-8');
-
         $cli_writes = $this->app->cli_writer->getWrites();
 
         $cli_output = implode("\r\n", $cli_writes);
 
-        echo $cli_output;
+        if($this->app->config->should_echo_cli_output){
+            // Set content type header
+            header('Content-type: text/plain; charset=utf-8');
+
+            // Display CLI Output
+            echo $cli_output;
+        }
+        if(PITH_COMMAND_TASK_OUTPUT_LOG_ENABLE){
+            $this->task_logger->logTaskOutput($cli_output);
+        }
     }
 }

@@ -36,6 +36,7 @@ class PithApp
     public PithConfig         $config;
     public PithDispatcher     $dispatcher;
     public PithEngine         $engine;
+    public PithProcess        $process;
     public PithResponder      $responder;
     public PithRegistry       $registry;
     public PithRouter         $router;
@@ -65,6 +66,7 @@ class PithApp
         PithConfig         $config,
         PithDispatcher     $dispatcher,
         PithEngine         $engine,
+        PithProcess        $process,
         PithRegistry       $registry,
         PithResponder      $responder,
         PithRouter         $router,
@@ -80,6 +82,7 @@ class PithApp
         $this->config          = $config;
         $this->dispatcher      = $dispatcher;
         $this->engine          = $engine;
+        $this->process         = $process;
         $this->registry        = $registry;
         $this->responder       = $responder;
         $this->router          = $router;
