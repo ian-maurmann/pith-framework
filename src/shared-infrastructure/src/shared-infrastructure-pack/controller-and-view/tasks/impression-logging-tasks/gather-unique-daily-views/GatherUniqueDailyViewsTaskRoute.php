@@ -24,7 +24,7 @@ class GatherUniqueDailyViewsTaskRoute extends PithRoute
 {
     public string $route_type   = 'task';
     public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'cron-ip';
+    public string $access_level = 'task';
     public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\GatherUniqueDailyViewsTaskAction';
     public string $view_adapter = '\\Pith\\CliViewAdapter\\PithCliViewAdapter';
 }
