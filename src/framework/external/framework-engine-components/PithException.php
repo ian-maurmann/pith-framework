@@ -27,6 +27,7 @@
  *
  *     4xxx - Routing Exceptions Recoverable
  *     ---------------------------------
+ *     4000 - Recoverable Routing Exception  (Top-Level / Unspecified)
  *     4004 - FastRoute\Dispatcher::NOT_FOUND
  *     4005 - FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
  *     4006 - Route access denied.
@@ -59,6 +60,7 @@
  *
  *     5xxx - Server Exceptions Unrecoverable
  *     --------------------------------------
+ *     5000 - Unrecoverable Server Exception (Top-Level / Unspecified)
  *     5001 - Index Front Controller --> Container: NotFoundException.
  *     5002 - Index Front Controller --> Container: DependencyException.
  *     5003 - Router returned empty routing array.
@@ -74,6 +76,7 @@
  *
  *     6xxx - Database Exceptions Recoverable
  *     --------------------------------------
+ *     6000 - Recoverable Database Exception (Top-Level / Unspecified)
  *     6001 - Database Connection Problem. PDOException on connect.
  *     6002 - The database wrapper encountered a PDOException exception while running query
  *     6003 - The database wrapper encountered a PDOException exception while running prepared query.
@@ -88,7 +91,13 @@
  *
  *     7xxx - ?
  *     8xxx - ?
- *     9xxx - ?
+ *
+ *      9xxx - Task-Specific Exceptions
+ *     --------------------------------
+ *      9000 - Task-Specific Exception (Top-Level / Unspecified)
+ *      9001 - Touchstone file could not be created
+ *      9002 - Touchstone file mtime could not be updated
+ *
  *
  */
 

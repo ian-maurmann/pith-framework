@@ -1,6 +1,13 @@
 #!/usr/bin/env php
 <?php declare(strict_types=1);
 
+// Set folder
+chdir(__DIR__);
+
+// Error logging
+ini_set('log_errors', '1');
+ini_set('error_log', './php_errors.log');
+
 require './front-controller.php';
 
 $task_tool = new Pith\TaskTool\PithTaskTool();
