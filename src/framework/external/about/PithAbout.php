@@ -1,7 +1,7 @@
 <?php
 
 # ===================================================================
-# Copyright (c) 2008-2023 Ian K Maurmann. The Pith Framework is
+# Copyright (c) 2008-2024 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -29,10 +29,10 @@ namespace Pith\Framework;
 class PithAbout
 {
     public string $framework_name = 'Pith Framework';
-    public string $copyright      = 'Copyright (c) 2008-2023 Ian K Maurmann';
+    public string $copyright      = 'Copyright (c) 2008-2024 Ian K Maurmann';
     public string $license        = 'Mozilla Public License, v. 2.0';
     public string $release_status = 'Alpha';
-    public string $release_name   = 'Alpha 45';
-    public string $real_version   = '0.8.7.0';
-    public string $semver_version = '0.30.1';
+    public string $release_name   = 'Alpha 46';
+    public string $real_version   = '0.8.8.0';
+    public string $semver_version = '0.31.0';
 }
