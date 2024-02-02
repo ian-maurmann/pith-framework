@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20c8ecca383f51bd87baf1383771fc7c",
+    "content-hash": "703162a7056bd64fe5847563f8e39740",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1015,16 +1015,16 @@
         },
         {
             "name": "pith/workflow-elements",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ian-maurmann/pith-workflow-elements.git",
-                "reference": "892b3e49191a0e28fb3bc9e98154d2595d8b72b3"
+                "reference": "0996a17cc6ddae95398aa413ed1ea23db3ff0d46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/892b3e49191a0e28fb3bc9e98154d2595d8b72b3",
-                "reference": "892b3e49191a0e28fb3bc9e98154d2595d8b72b3",
+                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/0996a17cc6ddae95398aa413ed1ea23db3ff0d46",
+                "reference": "0996a17cc6ddae95398aa413ed1ea23db3ff0d46",
                 "shasum": ""
             },
             "require": {
@@ -1039,10 +1039,10 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Pith\\Framework\\Base\\WorkflowElements\\": [
+                    "Pith\\Workflow\\": [
                         "src/base-workflow-elements"
                     ],
-                    "Pith\\Framework\\Base\\FallbackWorkflowElements\\": [
+                    "Pith\\Workflow\\GracefulFallback\\": [
                         "src/fallback-workflow-elements"
                     ]
                 }
@@ -1060,9 +1060,9 @@
             "description": "Base Workflow Elements for Pith Framework",
             "support": {
                 "issues": "https://github.com/ian-maurmann/pith-workflow-elements/issues",
-                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.2.0"
+                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.3.0"
             },
-            "time": "2024-02-01T06:51:09+00:00"
+            "time": "2024-02-02T06:31:32+00:00"
         },
         {
             "name": "psr/cache",
