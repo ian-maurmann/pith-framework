@@ -1,0 +1,193 @@
+/* Panel Theme */
+
+html{
+    background: #555555;
+
+    overflow: auto;
+}
+
+/* =========================================================== */
+
+.card {
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+body[data-color-mode="dark"] .card {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.card-rim-bottom {
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+}
+body[data-color-mode="dark"] .card-rim-bottom {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+.card-rim-right {
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(209, 213, 219, 0.3);
+}
+body[data-color-mode="dark"] .card-rim-right {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================== */
+
+body{
+    background-color: #DDDDDD;
+    background-image: url("./background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    width: 100%;
+    min-height: 100%;
+
+    overflow: auto;
+
+    font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+body > header{
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3em;
+    width: 100%;
+
+    z-index: 100;
+}
+
+body[data-color-mode="dark"] > header{
+    background: #242828;
+    /*color: var(--ox-color-ibm1-cool-white-4);*/
+    color: #afb1b3;
+}
+
+.panel-header-rim{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1em;
+}
+
+.panel-header-bar-right{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+}
+
+body > header [data-section-item-type="header-icon"]{
+    color: #212121;
+    user-select: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+body[data-color-mode="dark"] > header [data-section-item-type="header-icon"]{
+    /* color: var(--ox-color-ibm1-cool-white-4); */
+    color: #afb1b3;
+}
+body > header [data-section-item-type="header-icon"]:hover{
+    color: var(--ox-color-tw-sky-400);
+}
+
+.plate{
+    position: relative;
+
+    margin-top: 9em;
+    margin-bottom: 8em;
+    margin-left: 3em;
+    margin-right: 3em;
+
+    z-index: 50;
+}
+
+
+.inner-plate{
+    background: #ffffff;
+
+    margin: 1em;
+
+    position: relative;
+
+    border-radius: 7px;
+
+    padding: 1em 2em 3em 2em;
+}
+body[data-color-mode="dark"] .inner-plate{
+    /*background: #3b3f41;*/
+    background: #242828;
+    color: #afb1b3;
+}
+
+.plate::before {
+    content: '';
+    position: absolute;
+
+    top: -1em;
+    bottom: -1em;
+
+    right: 0;
+    left: 0;
+
+    backdrop-filter: blur(5px) saturate(110%);
+    -webkit-backdrop-filter: blur(5px) saturate(110%);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+
+    border-radius: 14px;
+}
+body[data-color-mode="dark"] .plate::before {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.panel-header-bar-icon-left {
+    position: absolute;
+    top: 0;
+    left: 0.3em;
+    height: 100%;
+    width: 4em;
+    background-image: url(./pith-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Menu */
+body > aside{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12em;
+    height: 100%;
+    background: #FFFFFF;
+    z-index: 300;
+}
+body[data-color-mode="dark"] aside{
+    background: #242828;
+    color: #afb1b3;
+}
+
+/* Menu Glass Rim */
+.panel-aside-rim{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 1em;
+    height: 100%;
+}
+
+body > aside[data-panel-slideout-menu-state="slid-in"]{
+    display: none;
+}

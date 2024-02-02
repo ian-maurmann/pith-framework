@@ -1,40 +1,88 @@
 # Pith Framework
-Website: http://pith-framework.org/
 
-Another framework for PHP
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
 
-# :warning: **(Not ready yet)** :warning:
+[Website](https://pith-framework.org/) | [Release Notes](doc/release-notes.md)
 
-This is a rewrite of an old framework I was working on in 2009-2010. I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!
+---
+
+### :warning: **(Not ready yet)** :warning:
+
+---
+
+This framework is a work-in-progress proof-of-concept.
+
+If you're looking for a framework to use for your project, please check out:
+[Symfony](https://symfony.com/),
+[Laravel](https://laravel.com/),
+[Zend / Laminas](https://getlaminas.org/),
+[Slim](https://www.slimframework.com/),
+[Cake](https://cakephp.org/),
+or [CodeIgniter](https://codeigniter.com/) instead.
 
 
-Release status | sv | rv | Can I use?
--------------- | -- | -- | ----------
-Rewrite Pre-Alpha 4   | sv 0.5.0 | rv 0.6.1.0 | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | sv 0.4.0 | rv 0.6.0.3 | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | sv 0.3.0 | rv 0.6.0.2 | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | sv 0.2.0 | rv 0.6.0.1 | :warning: *Not yet*
-(2nd) Initial Rewrite | sv 0.1.0 | rv 0.6.0.0 | :warning: *Not yet*
+---
 
-See http://pith-framework.org/versions for more info.
+## Install
+
+- Open the terminal and navigate to the directory your project will be in.
+- Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
+- Require Pith Framework from Composer:
+
+```bash
+php composer.phar require pith/framework
+```
+
+
+**Nice to haves:**
+
+Add a symbolic link to composer.phar
+```bash
+ln -s ./composer.phar ./composer
+```
+
+
+Copy the Pith Command Tool into the directory
+```
+cp vendor/pith/framework/pith .
+```
+
+Copy the Migration runner into the directory
+```
+cp vendor/pith/framework/mig .
+```
+
+Make a symbolic link to Pest inside the directory
+```bash
+ln -s ./vendor/bin/pest ./pest
+```
+
+Make a symbolic link to PHPStan inside the directory
+```bash
+ln -s ./vendor/bin/phpstan ./phpstan
+
+ln -s ./vendor/bin/phpstan ./stan
+```
 
 
 
-# TODO:
+---
 
-- [x] <del>App Object</del> :wrench:
-- [x] <del>Container (Maybe use [PHP-DI](https://github.com/PHP-DI/PHP-DI)?)</del>
-- [x] <del>Logger (Use [Monolog](https://github.com/Seldaek/monolog))</del>
-- [x] <del>Config Object</del> :wrench:
-- [ ] Registry Object
-- [ ] Authenticator Object
-- [ ] Access Control Object
-- [x] Router Object :wrench:
-- [ ] Dispatcher Object
-- [ ] Modules :wrench:
-- [ ] Routes :wrench:
-- [ ] Access Levels
-- [ ] Injectors
-- [ ] Actions
-- [ ] Preparers
-- [ ] Views
+### :warning: **(Not ready yet)** :warning:
+
+---
+Workflow:
+
+![Pith workflow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-workflow-diagram.png?raw=true)
+
+.
+
+(Actual flow)
+
+![Pith Framework flow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-framework-flow-diagram.png?raw=true)
+
+
+
+
+---

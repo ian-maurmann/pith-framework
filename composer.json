@@ -1,27 +1,185 @@
 {
     "name": "pith/framework",
     "description": "Pith Framework - Another simple framework for PHP sites",
-    "require": {
-        "php": "^7.1",
-        "php-di/php-di": "^6",
-        "monolog/monolog": "^1.24"
-    },
-    "license": "MPL-2.0",
     "authors": [
         {
             "name": "Ian Maurmann",
             "role": "Developer"
         }
     ],
-    "require-dev": {
-        "phpunit/phpunit": "^7"
+    "license": "MPL-2.0",
+    "require": {
+        "php": "^8.2",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-readline": "*",
+        "doctrine/migrations": "^3.5",
+        "ikm/copyright-year-utility":"^0.1",
+        "latte/latte": "^3.0",
+        "lotfio/conso": "^2",
+        "monolog/monolog": "^3.2",
+        "nikic/fast-route": "^1.3",
+        "php-di/php-di": "^7.0",
+        "pith/base": "^0.2",
+        "pith/workflow-elements": "^0.3",
+        "symfony/http-foundation": "^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Pith\\Framework\\": ["src/external/objects/", "src/external/interfaces/", "src/external/traits/",  "src/external/extend/"],
-            "Pith\\Framework\\Internal\\": ["src/internal/objects/", "src/internal/interfaces/", "src/internal/traits/"],
-            "Pith\\ExampleModule\\": ["example/modules/example-module/", "example/modules/example-module/controllers/"],
-            "Pith\\ExampleConfig\\": ["example/config/"]
+            "Pith\\Framework\\": [
+                "src/framework/external/about/",
+                "src/framework/external/extendable-workflow-elements/",
+                "src/framework/external/framework-engine-components",
+                "src/framework/external/injectable-thin-wrappers/"
+            ],
+            "Pith\\Framework\\Internal\\": [
+                "src/framework/internal/helpers/",
+                "src/framework/internal/loggers/",
+                "src/framework/internal/tools/",
+                "src/framework/internal/traits/",
+                "src/framework/internal/utilities/",
+                "src/framework/internal/workflow-access-levels/",
+                "src/framework/internal/workflow-elements/"
+            ],
+            "Pith\\Framework\\Migration\\": [
+                "data/migration/"
+            ],
+            "Pith\\Framework\\Panel\\": [
+                "src/panel/"
+            ],
+            "Pith\\Framework\\Panel\\Pages\\": [
+                "src/panel/packs/panel-pages-pack/",
+                "src/panel/packs/panel-pages-pack/account-bar/",
+                "src/panel/packs/panel-pages-pack/home/",
+                "src/panel/packs/panel-pages-pack/lorem-ipsum/",
+                "src/panel/packs/panel-pages-pack/tasks/"
+            ],
+            "Pith\\Framework\\Panel\\Theme\\": [
+                "src/panel/packs/panel-theme-pack/",
+                "src/panel/packs/panel-theme-pack/main-layout/",
+                "src/panel/packs/panel-theme-pack/theme-resources/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/account-bar/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demo-nav-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demonstrate-access-levels/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/demonstrate-libraries-work/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/footer/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/home/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/latte/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/login/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/logout/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/create-new-user/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/endpoints/ajax-endpoints/user-system/is-username-available/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTasks\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/cleanup-impression-log-loading-queue/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/delete-loaded-impression-log/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/hello-world/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/gather-unique-daily-views/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/import-impression-log-to-database/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/lorem-ipsum",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/impression-logging-tasks/queue-impression-logs-for-import/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/tick/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\ImpressionSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/impression-system/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\Random\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/random/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\TestQuotes\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/test-quotes/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Model\\UserSystem\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/model/user-system/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/db-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/env-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/fixed-path-file-links/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/php-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/route-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/server-info/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/env-info-pages/sidebar/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/perform-user-login/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/shared-ui-pages/perform-user-logout/"
+            ],
+            "Pith\\Framework\\SharedInfrastructure\\ReusableInserts\\UserSystemReusableInserts\\": [
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/reusable-inserts/user-system/"
+            ],
+            "Pith\\Framework\\SharedThemePack\\": [
+                "src/shared-infrastructure/src/shared-theme-pack/",
+                "src/shared-infrastructure/src/shared-theme-pack/default-landing-theme/",
+                "src/shared-infrastructure/src/shared-theme-pack/env-info-theme/",
+                "src/shared-infrastructure/src/shared-theme-pack/green-and-white-theme/"
+            ],
+            "Pith\\Framework\\SharedUiResourcePack\\": [
+                "src/shared-infrastructure/src/shared-ui-resource-pack/",
+                "src/shared-infrastructure/src/shared-ui-resource-pack/resources/"
+            ],
+            "Pith\\Framework\\CommonFontsResourcePack\\": [
+                "src/shared-infrastructure/src/common-fonts-pack/"
+            ],
+            "Pith\\Framework\\CommonLibrariesResourcePack\\": [
+                "src/shared-infrastructure/src/common-libraries-pack/"
+            ],
+            "Pith\\PhtmlViewAdapter2\\": [
+                "src/framework/plugins/phtml-view-adapter-2/src/"
+            ],
+            "Pith\\LatteViewAdapter\\": [
+                "src/framework/plugins/latte-view-adapter/src/"
+            ],
+            "Pith\\JsonEndpointViewAdapter\\": [
+                "src/framework/plugins/json-endpoint-view-adapter/src/"
+            ],
+            "Pith\\CliViewAdapter\\": [
+                "src/framework/plugins/cli-view-adapter/src/"
+            ],
+            "Pith\\CommandTool\\": [
+                "src/framework/plugins/command-tool/src/"
+            ],
+            "Pith\\TaskTool\\": [
+                "src/framework/plugins/task-tool/src/"
+            ],
+            "Pith\\PithDotJson\\": [
+                "src/framework/plugins/pith-dot-json/src/"
+            ]
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.8",
+        "pestphp/pest-plugin-type-coverage": "^2.4",
+        "phpstan/phpstan": "^1.10"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
