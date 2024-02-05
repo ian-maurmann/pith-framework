@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Tasks;
 
-use Pith\Framework\PithRouteList;
+use Pith\Workflow\PithRouteList;
 
 /**
  * Class TasksRouteList
