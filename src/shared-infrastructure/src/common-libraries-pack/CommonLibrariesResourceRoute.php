@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\CommonLibrariesResourcePack;
 
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 
 /**
  * Class CommonLibrariesResourceRoute

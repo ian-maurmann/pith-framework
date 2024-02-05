@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Tasks\Tick;
 
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 
 /**
  * Class TickTaskRoute

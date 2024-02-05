@@ -27,10 +27,14 @@ declare(strict_types=1);
 namespace Pith\LatteViewAdapter;
 
 use Latte\Engine;
-use Pith\Framework\Internal\PithEscapeUtility;
+//use Pith\Framework\Internal\PithEscapeUtility;
+//use Pith\Framework\PithAppRetriever;
+//use Pith\Framework\PithException;
+//use Pith\Framework\PithRoute;
+use Pith\Framework\Base\PithException;
+use Pith\Framework\Base\Utilities\PithEscapeUtility;
 use Pith\Framework\PithAppRetriever;
-use Pith\Framework\PithException;
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 use ReflectionException;
 
 /**

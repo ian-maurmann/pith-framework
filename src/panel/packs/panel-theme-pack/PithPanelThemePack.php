@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Panel\Theme;
 
-use Pith\Framework\PithPack;
+use Pith\Workflow\PithPack;
 
 /**
  * Class PithPanelThemePack

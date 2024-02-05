@@ -26,7 +26,7 @@ namespace Pith\Framework\Internal;
 
 
 use Pith\Framework\PithException;
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 
 /**
  * Class PithDispatcherHelper

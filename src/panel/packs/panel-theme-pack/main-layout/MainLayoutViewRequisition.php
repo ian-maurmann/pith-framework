@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Panel\Theme;
 
-use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class MainLayoutViewRequisition
