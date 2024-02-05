@@ -14,7 +14,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedThemePack;
 
-use Pith\Framework\PithViewRequisition;
+//use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class GreenAndWhiteLayoutViewRequisition

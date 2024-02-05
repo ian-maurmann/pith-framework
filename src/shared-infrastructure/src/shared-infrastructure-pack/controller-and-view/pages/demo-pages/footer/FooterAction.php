@@ -15,8 +15,9 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure;
 
 use IKM\CopyrightYearUtility\CopyrightYearUtility;
-use Pith\Framework\PithAction;
+//use Pith\Framework\PithAction;
 use Pith\Framework\PithInfo;
+use Pith\Workflow\PithAction;
 
 /**
  * Class FooterAction
