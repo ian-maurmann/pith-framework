@@ -27,7 +27,7 @@ namespace Pith\Framework;
 
 
 use FastRoute;
-
+use Pith\Workflow\PithRoute;
 
 /**
  * Class PithRouter
