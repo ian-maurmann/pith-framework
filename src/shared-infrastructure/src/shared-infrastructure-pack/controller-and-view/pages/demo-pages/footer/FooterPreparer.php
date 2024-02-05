@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-//use Pith\Framework\PithPreparer;
+//use Pith\Workflow\PithPreparer;
 use Pith\Workflow\PithPreparer;
 
 /**
