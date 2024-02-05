@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Panel;
 
-use Pith\Framework\PithRouteList;
+use Pith\Workflow\PithRouteList;
 
 /**
  * Class PithPanelRouteList

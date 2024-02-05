@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class LoginViewRequisition

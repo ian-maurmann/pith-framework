@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-use Pith\Framework\PithPack;
+//use Pith\Workflow\PithPack;
+use Pith\Workflow\PithPack;
 
 /**
  * Class SharedInfrastructurePack
