@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Internal;
 
-use Pith\Framework\PithAccessLevel;
+use Pith\Workflow\PithAccessLevel;
 use Pith\Framework\PithAppRetriever;
 
 /**
