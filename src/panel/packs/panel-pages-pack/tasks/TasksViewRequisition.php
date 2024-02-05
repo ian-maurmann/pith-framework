@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Panel\Pages;
 
-use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class TasksViewRequisition
