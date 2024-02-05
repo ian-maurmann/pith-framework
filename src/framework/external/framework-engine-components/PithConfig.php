@@ -23,6 +23,7 @@ namespace Pith\Framework;
 
 use DI\DependencyException;
 use DI\NotFoundException;
+use Pith\Workflow\PithRouteList;
 
 /**
  * Class PithConfig
