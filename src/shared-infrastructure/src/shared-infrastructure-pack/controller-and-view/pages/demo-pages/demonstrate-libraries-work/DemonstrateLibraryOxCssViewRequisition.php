@@ -37,7 +37,7 @@ class DemonstrateLibraryOxCssViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('OxCSS stylesheet', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-page');
-        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addScript('jquery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
         $this->addScript('OxCSS script', '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-page');
     }
 }
