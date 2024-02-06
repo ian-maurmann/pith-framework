@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "703162a7056bd64fe5847563f8e39740",
+    "content-hash": "8c4f6f649781ffc6aceef7f861833287",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -858,6 +858,54 @@
                 }
             ],
             "time": "2023-11-02T10:04:50+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-jquery",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-jquery.git",
+                "reference": "da7d1bbb4c2f7774035cd6c44439e14ec542803f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-jquery/zipball/da7d1bbb4c2f7774035cd6c44439e14ec542803f",
+                "reference": "da7d1bbb4c2f7774035cd6c44439e14ec542803f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackJquery\\": [
+                        "src/jquery-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack jQuery for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-jquery/issues",
+                "source": "https://github.com/pith-front/pith-pack-jquery/tree/0.1.0"
+            },
+            "time": "2024-02-05T07:58:31+00:00"
         },
         {
             "name": "pith/base",

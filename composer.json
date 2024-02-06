@@ -23,13 +23,13 @@
         "php-di/php-di": "^7.0",
         "pith/base": "^0.2",
         "pith/workflow-elements": "^0.3",
-        "symfony/http-foundation": "^7.0"
+        "symfony/http-foundation": "^7.0",
+        "pith-front/pith-pack-jquery": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
                 "src/framework/external/about/",
-                "src/framework/external/extendable-workflow-elements/",
                 "src/framework/external/framework-engine-components",
                 "src/framework/external/injectable-thin-wrappers/"
             ],

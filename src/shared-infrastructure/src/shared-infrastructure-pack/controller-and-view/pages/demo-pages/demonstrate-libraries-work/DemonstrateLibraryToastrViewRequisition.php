@@ -37,7 +37,7 @@ class DemonstrateLibraryToastrViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('Toastr - CSS', '/resources/vendor/common-libraries/toastr-2.1.4/build/toastr.css', 'library-for-page');
-        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addScript('jquery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
         $this->addScript('Toastr - JavaScript', '/resources/vendor/common-libraries/toastr-2.1.4/build/toastr.min.js', 'library-for-page');
     }
 }
