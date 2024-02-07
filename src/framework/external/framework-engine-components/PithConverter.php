@@ -34,6 +34,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Workflow\PithConversion;
 
 /**
  * Class PithConverter

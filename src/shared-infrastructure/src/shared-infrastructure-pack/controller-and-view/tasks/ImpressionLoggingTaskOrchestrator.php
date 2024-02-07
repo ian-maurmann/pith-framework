@@ -22,7 +22,7 @@ namespace Pith\Framework\SharedInfrastructure\Tasks;
 
 use Pith\Framework\Internal\PithTimeWindowUtility;
 use Pith\Framework\Internal\PithTouchstoneUtility;
-use Pith\Framework\PithTaskOrchestrator;
+use Pith\Workflow\PithTaskOrchestrator;
 
 /**
  * Class PithTaskOrchestrator

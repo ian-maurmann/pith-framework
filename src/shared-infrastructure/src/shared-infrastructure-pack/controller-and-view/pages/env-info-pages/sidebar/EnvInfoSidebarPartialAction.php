@@ -15,7 +15,8 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Pages\EnvInfoPages;
 
-use Pith\Framework\PithAction;
+//use Pith\Framework\PithAction;
+use Pith\Workflow\PithAction;
 
 /**
  * Class EnvInfoSidebarPartialAction

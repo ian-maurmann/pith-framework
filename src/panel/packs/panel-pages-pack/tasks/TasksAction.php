@@ -17,7 +17,7 @@ namespace Pith\Framework\Panel\Pages;
 
 use DI\DependencyException;
 use DI\NotFoundException;
-use Pith\Framework\PithAction;
+use Pith\Workflow\PithAction;
 use Pith\Framework\PithDependencyInjection;
 
 /**

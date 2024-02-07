@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class NewUserViewRequisition
@@ -40,7 +40,7 @@ class NewUserViewRequisition extends PithViewRequisition
         $this->addStylesheet('Aero-Gel stylesheet', '/resources/vendor/common-libraries/aero-gel/aero-gel.css', 'library-for-page');
 
         // JS Libraries
-        $this->addScript(     'jQuery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addScript(     'jQuery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
         $this->addScript(     'OxCSS script','/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.js', 'library-for-page');
         $this->addScript('Swal2 NA script', '/resources/vendor/common-libraries/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
 

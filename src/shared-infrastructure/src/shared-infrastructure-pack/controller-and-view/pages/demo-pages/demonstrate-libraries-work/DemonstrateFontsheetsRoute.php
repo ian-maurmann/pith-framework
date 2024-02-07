@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 
 /**
  * Class DemonstrateFontsheetsRoute
