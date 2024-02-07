@@ -29,7 +29,7 @@ namespace Pith\PhtmlViewAdapter2;
 use Pith\Framework\Internal\PithEscapeUtility;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 use ReflectionException;
 
 /**

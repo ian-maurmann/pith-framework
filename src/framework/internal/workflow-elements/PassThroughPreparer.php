@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Internal;
 
-use Pith\Framework\PithPreparer;
+use Pith\Workflow\PithPreparer;
 
 /**
  * Class PassThroughPreparer

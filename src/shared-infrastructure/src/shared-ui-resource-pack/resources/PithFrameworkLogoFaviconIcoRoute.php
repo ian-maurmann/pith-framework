@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedUiResourcePack;
 
-use Pith\Framework\PithRoute;
+use Pith\Workflow\PithRoute;
 
 /**
  * Class PithFrameworkLogoFaviconIcoRoute

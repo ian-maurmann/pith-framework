@@ -21,6 +21,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework;
 
+use Pith\Workflow\PithRoute;
 use ReflectionException;
 
 

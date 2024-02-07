@@ -16,7 +16,7 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Tasks\ImpressionLoggingTasks;
 
 use Pith\Framework\Internal\PithUnitConversionUtility;
-use Pith\Framework\PithAction;
+use Pith\Workflow\PithAction;
 use Pith\Framework\PithAppRetriever;
 use Pith\Framework\PithException;
 use Pith\Framework\SharedInfrastructure\Model\ImpressionSystem\ImpressionService;

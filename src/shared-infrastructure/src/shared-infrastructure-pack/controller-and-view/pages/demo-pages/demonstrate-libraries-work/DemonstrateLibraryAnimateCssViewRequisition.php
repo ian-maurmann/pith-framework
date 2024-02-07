@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure;
 
-use Pith\Framework\PithViewRequisition;
+use Pith\Workflow\PithViewRequisition;
 
 /**
  * Class DemonstrateLibraryAnimateCssViewRequisition
@@ -37,6 +37,6 @@ class DemonstrateLibraryAnimateCssViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('Animate.css Stylesheet', '/resources/vendor/common-libraries/animate.css-4.1.1/animate.min.css', 'library-for-page');
-        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addScript('jquery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
     }
 }

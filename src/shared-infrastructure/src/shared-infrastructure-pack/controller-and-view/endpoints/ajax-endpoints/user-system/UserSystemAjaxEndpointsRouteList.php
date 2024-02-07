@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Endpoints\UserSystemAjaxEndpoints;
 
-use Pith\Framework\PithRouteList;
+use Pith\Workflow\PithRouteList;
 
 /**
  * Class UserSystemAjaxEndpointsRouteList
