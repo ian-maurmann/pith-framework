@@ -18,18 +18,12 @@
 
 /* Moved JetBrains Mono NL to it's own sheet */
 
-@font-face {
-    font-family: 'Liberation Mono';
-    src: url('/resources/vendor/common-fonts/vendor-fonts/liberation-fonts-2.1.5/LiberationMono-Regular.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Liberation Sans';
-    src: url('/resources/vendor/common-fonts/vendor-fonts/liberation-fonts-2.1.5/LiberationSans-Regular.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Liberation Serif';
-    src: url('/resources/vendor/common-fonts/vendor-fonts/liberation-fonts-2.1.5/LiberationSerif-Regular.ttf') format('truetype');
-}
+/* Removing Liberation Mono for now. */
+
+/* Removing Liberation Sans for now. */
+
+/* Removing Liberation Serif for now. */
+
 @font-face {
     font-family: 'Merriweather';
     src: url('/resources/vendor/common-fonts/vendor-fonts/merriweather-2.002/Merriweather-Regular.ttf') format('truetype');
