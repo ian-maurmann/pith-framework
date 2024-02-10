@@ -37,6 +37,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',     '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',     '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-libraries/{filepath:.+}', '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}', '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',   '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],
     ];
 }
