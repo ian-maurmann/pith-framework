@@ -24,10 +24,8 @@
 
 /* Removing Liberation Serif for now. */
 
-@font-face {
-    font-family: 'Merriweather';
-    src: url('/resources/vendor/common-fonts/vendor-fonts/merriweather-2.002/Merriweather-Regular.ttf') format('truetype');
-}
+/* Removing Merriweather for now. */
+
 @font-face {
     font-family: 'MesloLGL';
     src: url('/resources/vendor/common-fonts/vendor-fonts/meslo-lg-1.2.1/dist/MesloLGL-Regular.ttf') format('truetype');
