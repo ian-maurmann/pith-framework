@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01342c5b957afb9f5c2efec56f1b1aa1",
+    "content-hash": "8eb2eb0a232c98da1342a34a79acdb46",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -906,6 +906,54 @@
                 "source": "https://github.com/pith-front/pith-pack-aero-gel/tree/0.1.0"
             },
             "time": "2024-02-09T08:23:55+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-animate-css",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-animate-css.git",
+                "reference": "615b5c779e479422bc86e5a13c0ad4bbf8f441aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-animate-css/zipball/615b5c779e479422bc86e5a13c0ad4bbf8f441aa",
+                "reference": "615b5c779e479422bc86e5a13c0ad4bbf8f441aa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackAnimateCss\\": [
+                        "src/animate-css-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack Animate.css for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-animate-css/issues",
+                "source": "https://github.com/pith-front/pith-pack-animate-css/tree/0.1.0"
+            },
+            "time": "2024-02-10T06:23:17+00:00"
         },
         {
             "name": "pith-front/pith-pack-jquery",
