@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8eb2eb0a232c98da1342a34a79acdb46",
+    "content-hash": "f80365326c40ad7194ae679d737050f1",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -954,6 +954,54 @@
                 "source": "https://github.com/pith-front/pith-pack-animate-css/tree/0.1.0"
             },
             "time": "2024-02-10T06:23:17+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-fixie",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-fixie.git",
+                "reference": "1788f9e3c9b47ba41b37431b42823704ccf83fb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-fixie/zipball/1788f9e3c9b47ba41b37431b42823704ccf83fb0",
+                "reference": "1788f9e3c9b47ba41b37431b42823704ccf83fb0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackFixie\\": [
+                        "src/fixie-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack Fixie-Reset for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-fixie/issues",
+                "source": "https://github.com/pith-front/pith-pack-fixie/tree/0.1.0"
+            },
+            "time": "2024-02-12T05:19:39+00:00"
         },
         {
             "name": "pith-front/pith-pack-jquery",
