@@ -33,7 +33,7 @@ class DefaultLandingLayoutViewRequisition extends PithViewRequisition
         $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
         $this->addPreload(    'preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
 
-        $this->addStylesheet( 'Fixie Reset 4 Stylesheet',        '/resources/vendor/common-libraries/fixie-reset-4.0.2/fixie-reset.css', 'reset');
+        $this->addStylesheet( 'Fixie Reset 4 Stylesheet',        '/resources/vendor/library/fixie-reset/fixie-reset-4.1.0/fixie-reset.css', 'reset');
 
         $this->addStylesheet( 'OxCSS stylesheet',                '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-layout');
         $this->addScript(     'jQuery',                          '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-layout');
