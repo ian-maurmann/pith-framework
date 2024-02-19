@@ -28,7 +28,7 @@ class LoginViewRequisition extends PithViewRequisition
     public function runRequisition()
     {
         // Preload fonts
-        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
 
         // CSS Libraries
         $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
@@ -55,6 +55,6 @@ class LoginViewRequisition extends PithViewRequisition
         $this->addScript(     'Login script', '/resources/framework/shared-ui/user-system/login.js', 'application-for-page');
 
         // Font
-        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
     }
 }
