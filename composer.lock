@@ -1053,16 +1053,16 @@
         },
         {
             "name": "pith-front/pith-pack-md-icons",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pith-front/pith-pack-md-icons.git",
-                "reference": "067aeeb9636f014ae8b5f476a33c67fe1d1c94b2"
+                "reference": "027bf0bb034274cb2848b24d24938a9df6c6e815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pith-front/pith-pack-md-icons/zipball/067aeeb9636f014ae8b5f476a33c67fe1d1c94b2",
-                "reference": "067aeeb9636f014ae8b5f476a33c67fe1d1c94b2",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-md-icons/zipball/027bf0bb034274cb2848b24d24938a9df6c6e815",
+                "reference": "027bf0bb034274cb2848b24d24938a9df6c6e815",
                 "shasum": ""
             },
             "require": {
@@ -1095,9 +1095,9 @@
             "description": "Pack Material Icons for Pith",
             "support": {
                 "issues": "https://github.com/pith-front/pith-pack-md-icons/issues",
-                "source": "https://github.com/pith-front/pith-pack-md-icons/tree/0.1.0"
+                "source": "https://github.com/pith-front/pith-pack-md-icons/tree/0.1.1"
             },
-            "time": "2024-02-19T00:09:02+00:00"
+            "time": "2024-02-19T01:07:57+00:00"
         },
         {
             "name": "pith/base",
