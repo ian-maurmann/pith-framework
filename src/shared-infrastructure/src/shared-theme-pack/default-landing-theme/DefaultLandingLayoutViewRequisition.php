@@ -30,7 +30,7 @@ class DefaultLandingLayoutViewRequisition extends PithViewRequisition
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
 
         // Resources
-        $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
         $this->addPreload(    'preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
 
         $this->addStylesheet( 'Fixie Reset 4 Stylesheet',        '/resources/vendor/library/fixie-reset/fixie-reset-4.1.0/fixie-reset.css', 'reset');
@@ -43,7 +43,7 @@ class DefaultLandingLayoutViewRequisition extends PithViewRequisition
 
         $this->addStylesheet( 'Default Landing Stylesheet',      '/resources/framework/shared-ui/default-landing-theme/default-landing-theme.css', 'application-for-layout');
 
-        $this->addStylesheet( 'IBM Plex Sans font',              '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font',              '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
         $this->addStylesheet( 'JetBrains Mono NL font',          '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
     }
 }

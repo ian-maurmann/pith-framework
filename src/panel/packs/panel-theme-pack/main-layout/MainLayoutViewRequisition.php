@@ -34,7 +34,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
 
         // Preload fonts for layout
-        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
         $this->addPreload('preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
 
         // CSS Resets for layout
@@ -62,7 +62,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
         $this->addScript('Panel Top-Menu script', PITH_PANEL_PATH . '/resources/panel-top-menu.js', 'application-for-layout');
 
         // Font
-        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
         $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
     }
 }

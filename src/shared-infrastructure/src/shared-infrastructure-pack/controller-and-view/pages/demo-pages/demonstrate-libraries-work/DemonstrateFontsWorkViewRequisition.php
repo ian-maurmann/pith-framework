@@ -37,11 +37,11 @@ class DemonstrateFontsWorkViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addPreload('preload JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
-        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
 
         $this->addStylesheet('Demonstrate Common Fonts Stylesheet', '/resources/framework/shared-ui/demonstration/demonstrate-that-included-common-fonts-work.css', 'font-stylesheet');
         $this->addStylesheet('open-sans-v34 Font Set', '/resources/vendor/common-fonts/vendor-fonts/open-sans-woff2-v34/open-sans.css', 'font-stylesheet');
         $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
-        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
     }
 }

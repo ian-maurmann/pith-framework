@@ -32,7 +32,7 @@ class EnvInfoLayoutViewRequisition extends PithViewRequisition
         $this->addHeader('Ask for Accept-CH info', 'Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version, Sec-CH-UA-Model, Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Viewport-Width, Downlink, Sec-CH-Prefers-Color-Scheme');
 
         // Resources
-        $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addPreload(    'preload IBM Plex Sans font',      '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
         $this->addPreload(    'preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
 
         $this->addStylesheet( 'Fixie Reset 4 Stylesheet',        '/resources/vendor/library/fixie-reset/fixie-reset-4.1.0/fixie-reset.css', 'reset');
@@ -45,7 +45,7 @@ class EnvInfoLayoutViewRequisition extends PithViewRequisition
 
         $this->addStylesheet( 'Env Info Stylesheet',             '/resources/framework/shared-ui/env-info-theme/env-info-theme.css', 'application-for-layout');
 
-        $this->addStylesheet( 'IBM Plex Sans font',              '/resources/vendor/common-fonts/fontsheets/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font',              '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
         $this->addStylesheet( 'JetBrains Mono NL font',          '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
     }
 }
