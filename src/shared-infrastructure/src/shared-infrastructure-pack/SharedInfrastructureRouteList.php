@@ -42,5 +42,6 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/fixie-reset/{filepath:.+}', '\\PithFront\\PithPackFixie\\FixieResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',      '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',    '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/plex/{filepath:.+}',        '\\PithFront\\PithPackPlex\\PlexResourceRoute'],
     ];
 }
