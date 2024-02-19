@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aea5a42d9d072e01d547908662ff2bd8",
+    "content-hash": "0e485451a4fdb24e014af956a7ac0c84",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1098,6 +1098,54 @@
                 "source": "https://github.com/pith-front/pith-pack-md-icons/tree/0.1.1"
             },
             "time": "2024-02-19T01:07:57+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-plex",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-plex.git",
+                "reference": "14bd1e8b189db41ad110319a573e60b4145d933d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-plex/zipball/14bd1e8b189db41ad110319a573e60b4145d933d",
+                "reference": "14bd1e8b189db41ad110319a573e60b4145d933d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackPlex\\": [
+                        "src/plex-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack Plex fonts for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-plex/issues",
+                "source": "https://github.com/pith-front/pith-pack-plex/tree/0.1.0"
+            },
+            "time": "2024-02-19T05:31:15+00:00"
         },
         {
             "name": "pith/base",
