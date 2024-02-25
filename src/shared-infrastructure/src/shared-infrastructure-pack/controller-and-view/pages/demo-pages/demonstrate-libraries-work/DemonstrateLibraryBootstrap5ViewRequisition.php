@@ -39,7 +39,7 @@ class DemonstrateLibraryBootstrap5ViewRequisition extends PithViewRequisition
 
         // Resources
         $this->addStylesheet('Bootstrap 5 stylesheet', '/resources/vendor/common-libraries/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css', 'library-for-page');
-        $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/common-libraries/bootstrap-icons-font-1.10.5/font/bootstrap-icons.min.css', 'library-for-page');
+        $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/library/bootstrap/bootstrap-icons-1.10.5/bootstrap-icons.min.css', 'library-for-page');
         $this->addScript('Bootstrap 5 Bundle script', '/resources/vendor/common-libraries/bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js', 'library-for-page');
     }
 }
