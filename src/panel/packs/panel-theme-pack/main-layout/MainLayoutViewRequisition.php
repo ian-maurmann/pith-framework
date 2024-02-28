@@ -41,7 +41,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
         $this->addStylesheet('Fixie Reset 4 Stylesheet', '/resources/vendor/library/fixie-reset/fixie-reset-4.1.0/fixie-reset.css', 'reset');
 
         // CSS Libraries for layout
-        $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-layout');
+        $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/library/font-awesome/font-awesome-free-6.4.0-web/css/all.css', 'library-for-layout');
         $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/library/font-awesome/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-layout');
         $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/library/bootstrap/bootstrap-icons-1.10.5/bootstrap-icons.min.css', 'library-for-layout');
         $this->addStylesheet('OxCSS stylesheet',  '/resources/vendor/common-libraries/oxcss-0.1.4/dist/ox.css', 'library-for-layout');
