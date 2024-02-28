@@ -37,6 +37,6 @@ class DemonstrateLibraryFontAwesome4CompatibilityForkViewRequisition extends Pit
 
         // Resources
         $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/common-libraries/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
-        $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/common-libraries/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
+        $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/library/font-awesome/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
     }
 }
