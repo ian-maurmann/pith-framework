@@ -8,6 +8,7 @@
 
 Release status | Version | Semver |PHP Version | Date | Can I use?
 -------------- | ------- | ------ | ----------- | ---- |----------
+Alpha 48              | 0.8.8.2   | *sv 0.33.0* | 8.2+ | 2024-03-09 | Usable, but reworking the feature set
 Alpha 47              | 0.8.8.1   | *sv 0.32.0* | 8.2+ | 2024-02-06 | Usable, but still adding new features
 Alpha 46              | 0.8.8.0   | *sv 0.31.0* | 8.2+ | 2024-01-27 | Usable, but still adding new features
 Alpha 45              | 0.8.7.0   | *sv 0.30.1* | 8.2 | 2023-11-14 | Usable, but still adding new features
@@ -83,9 +84,13 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 
 ### Release Notes:
 
+**0.8.8.2 - Alpha 48** `(semver: 0.33.0)`
+- Moving the front-end libraries out of the repo, into separate packs that use workflow elements.
+
+
 **0.8.8.1 - Alpha 47** `(semver: 0.32.0)`
 - Moved workflow elements over to new codebase.
-- Starting to move front-end libraries out of repo, into separate packs that use the workflow elements.
+- Starting to move the front-end libraries out of repo, into separate packs that use the workflow elements.
 
 **0.8.8.0 - Alpha 46** `(semver: v0.31.0)`
 - Getting started with task orchestration.
