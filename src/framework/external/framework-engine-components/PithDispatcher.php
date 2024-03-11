@@ -315,7 +315,7 @@ class PithDispatcher
         $this->helper->setCachingHeaders($route);
 
         // Serve file
-        require $real_filepath;
+        readfile($real_filepath);
     }
 
     /**
@@ -368,7 +368,7 @@ class PithDispatcher
         $this->helper->setCachingHeaders($route);
 
         // Serve file
-        require $real_filepath;
+        readfile($real_filepath);
     }
 
 
