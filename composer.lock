@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fecc9d60cf48badf1b813c0f70d11ee7",
+    "content-hash": "dade7f1a47ed0c8fadb540214eda6d4c",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1098,6 +1098,54 @@
                 "source": "https://github.com/pith-front/pith-pack-fixie/tree/0.1.0"
             },
             "time": "2024-02-12T05:19:39+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-jb-mono-nl",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-jb-mono-nl.git",
+                "reference": "3cf66805274a2161e6001ee0cdbd2dd66c3f528c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-jb-mono-nl/zipball/3cf66805274a2161e6001ee0cdbd2dd66c3f528c",
+                "reference": "3cf66805274a2161e6001ee0cdbd2dd66c3f528c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackJbMonoNl\\": [
+                        "src/jb-mono-nl-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack the JetBrains Mono NL font for front end",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-jb-mono-nl/issues",
+                "source": "https://github.com/pith-front/pith-pack-jb-mono-nl/tree/0.1.0"
+            },
+            "time": "2024-03-10T04:09:24+00:00"
         },
         {
             "name": "pith-front/pith-pack-jquery",
