@@ -35,7 +35,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
 
         // Preload fonts for layout
         $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
-        $this->addPreload('preload JetBrains Mono NL font',  '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-preload', 'style');
+        $this->addPreload('preload JetBrains Mono NL font',  '/resources/vendor/library/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-preload', 'style');
 
         // CSS Resets for layout
         $this->addStylesheet('Fixie Reset 4 Stylesheet', '/resources/vendor/library/fixie-reset/fixie-reset-4.1.0/fixie-reset.css', 'reset');
@@ -63,6 +63,6 @@ class MainLayoutViewRequisition extends PithViewRequisition
 
         // Font
         $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
-        $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-fonts/fontsheets/jetbrains-mono-nl.css', 'font-stylesheet');
+        $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/library/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-stylesheet');
     }
 }
