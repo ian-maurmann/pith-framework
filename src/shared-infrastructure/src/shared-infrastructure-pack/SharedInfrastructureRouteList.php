@@ -46,6 +46,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/ibm-plex/{filepath:.+}',          '\\PithFront\\PithPackPlex\\PlexResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jetbrains-mono-nl/{filepath:.+}', '\\PithFront\\PithPackJbMonoNl\\JbMonoNlResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',            '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/jscrollpane/{filepath:.+}',       '\\PithFront\\PithPackJscrollpane\\JscrollpaneResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',          '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
     ];
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b053f2f83255e122c2f90bce55977845",
+    "content-hash": "42468d6206e382e592b9fea3ade7372c",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1242,6 +1242,54 @@
                 "source": "https://github.com/pith-front/pith-pack-jquery/tree/0.1.2"
             },
             "time": "2024-02-15T05:37:59+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-jscrollpane",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-jscrollpane.git",
+                "reference": "b5a949559a36c273fdc4c704646055d21f389e93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-jscrollpane/zipball/b5a949559a36c273fdc4c704646055d21f389e93",
+                "reference": "b5a949559a36c273fdc4c704646055d21f389e93",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackJscrollpane\\": [
+                        "src/jscrollpane-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack jScrollPane for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-jscrollpane/issues",
+                "source": "https://github.com/pith-front/pith-pack-jscrollpane/tree/0.1.0"
+            },
+            "time": "2024-03-17T06:04:12+00:00"
         },
         {
             "name": "pith-front/pith-pack-md-icons",
