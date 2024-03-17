@@ -48,5 +48,6 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',            '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jscrollpane/{filepath:.+}',       '\\PithFront\\PithPackJscrollpane\\JscrollpaneResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',          '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/src-fallback/{filepath:.+}',      '\\PithFront\\PithPackSrcFallback\\SrcFallbackResourceRoute'],
     ];
 }
