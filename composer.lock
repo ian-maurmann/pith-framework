@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42468d6206e382e592b9fea3ade7372c",
+    "content-hash": "070b1b80895f97bc7d771d01efc1d73e",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1386,6 +1386,54 @@
                 "source": "https://github.com/pith-front/pith-pack-plex/tree/0.1.0"
             },
             "time": "2024-02-19T05:31:15+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-src-fallback",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-src-fallback.git",
+                "reference": "e9f436a4cbca4daff5eb5ab0d8419306d305b651"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-src-fallback/zipball/e9f436a4cbca4daff5eb5ab0d8419306d305b651",
+                "reference": "e9f436a4cbca4daff5eb5ab0d8419306d305b651",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackSrcFallback\\": [
+                        "src/src-fallback-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack resource fallback libraries",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-src-fallback/issues",
+                "source": "https://github.com/pith-front/pith-pack-src-fallback/tree/0.1.0"
+            },
+            "time": "2024-03-17T22:06:06+00:00"
         },
         {
             "name": "pith/base",
