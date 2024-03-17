@@ -42,6 +42,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/bootstrap/{filepath:.+}',         '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/font-awesome/{filepath:.+}',      '\\PithFront\\PithPackFaIcons\\FaIconsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/fixie-reset/{filepath:.+}',       '\\PithFront\\PithPackFixie\\FixieResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/hoja/{filepath:.+}',              '\\PithFront\\PithPackHojaRing\\HojaRingResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/ibm-plex/{filepath:.+}',          '\\PithFront\\PithPackPlex\\PlexResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jetbrains-mono-nl/{filepath:.+}', '\\PithFront\\PithPackJbMonoNl\\JbMonoNlResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',            '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],

@@ -36,6 +36,6 @@ class DemonstrateLibraryHojaViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Hoja Double Ring stylesheet', '/resources/vendor/common-libraries/hoja-double-ring/hoja-double-ring.css', 'library-for-page');
+        $this->addStylesheet('Hoja Double Ring stylesheet', '/resources/vendor/library/hoja/hoja-double-ring/hoja-double-ring.css', 'library-for-page');
     }
 }

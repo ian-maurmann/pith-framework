@@ -36,6 +36,6 @@ class DemonstrateLibraryHojaAquamarineViewRequisition extends PithViewRequisitio
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Hoja Aquamarine stylesheet', '/resources/vendor/common-libraries/hoja-aquamarine/hoja-aquamarine.css', 'library-for-page');
+        $this->addStylesheet('Hoja Aquamarine stylesheet', '/resources/vendor/library/hoja/hoja-aquamarine/hoja-aquamarine.css', 'library-for-page');
     }
 }
