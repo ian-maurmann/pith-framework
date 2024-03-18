@@ -50,5 +50,6 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',          '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/oxcss/{filepath:.+}',             '\\PithFront\\PithPackOxcss\\OxcssResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/src-fallback/{filepath:.+}',      '\\PithFront\\PithPackSrcFallback\\SrcFallbackResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/sweetalert/{filepath:.+}',       '\\PithFront\\PithPackSwal\\SwalResourceRoute'],
     ];
 }

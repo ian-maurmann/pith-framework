@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "791d7d2caf0326cdaa02975f3d57dadd",
+    "content-hash": "16766330a4c1e2c189c850a4ac457bd8",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1482,6 +1482,54 @@
                 "source": "https://github.com/pith-front/pith-pack-src-fallback/tree/0.1.0"
             },
             "time": "2024-03-17T22:06:06+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-swal",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-swal.git",
+                "reference": "da83355f78af914f7ec901c6ce25f7b1488a1d2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-swal/zipball/da83355f78af914f7ec901c6ce25f7b1488a1d2b",
+                "reference": "da83355f78af914f7ec901c6ce25f7b1488a1d2b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackSwal\\": [
+                        "src/swal-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack SweetAlert for Pith front-end",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-swal/issues",
+                "source": "https://github.com/pith-front/pith-pack-swal/tree/0.1.0"
+            },
+            "time": "2024-03-18T06:11:44+00:00"
         },
         {
             "name": "pith/base",
