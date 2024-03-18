@@ -33,6 +33,7 @@
         "pith-front/pith-pack-jquery": "^0.1",
         "pith-front/pith-pack-jscrollpane": "^0.1",
         "pith-front/pith-pack-md-icons": "^0.1",
+        "pith-front/pith-pack-oxcss": "^0.1",
         "pith-front/pith-pack-plex": "^0.1",
         "pith-front/pith-pack-src-fallback": "^0.1",
         "symfony/http-foundation": "^7.0"
