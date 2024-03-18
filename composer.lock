@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "070b1b80895f97bc7d771d01efc1d73e",
+    "content-hash": "791d7d2caf0326cdaa02975f3d57dadd",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1338,6 +1338,54 @@
                 "source": "https://github.com/pith-front/pith-pack-md-icons/tree/0.1.1"
             },
             "time": "2024-02-19T01:07:57+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-oxcss",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-oxcss.git",
+                "reference": "bc2581d7c69b700be93fb46a93e1b0739cfc1181"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-oxcss/zipball/bc2581d7c69b700be93fb46a93e1b0739cfc1181",
+                "reference": "bc2581d7c69b700be93fb46a93e1b0739cfc1181",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackOxcss\\": [
+                        "src/oxcss-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack Oxcss for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-oxcss/issues",
+                "source": "https://github.com/pith-front/pith-pack-oxcss/tree/0.1.0"
+            },
+            "time": "2024-03-18T01:23:42+00:00"
         },
         {
             "name": "pith-front/pith-pack-plex",
