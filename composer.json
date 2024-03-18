@@ -36,6 +36,7 @@
         "pith-front/pith-pack-oxcss": "^0.1",
         "pith-front/pith-pack-plex": "^0.1",
         "pith-front/pith-pack-src-fallback": "^0.1",
+        "pith-front/pith-pack-swal": "^0.1",
         "symfony/http-foundation": "^7.0"
     },
     "autoload": {
