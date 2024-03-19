@@ -36,7 +36,6 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/favicon.ico',                                              '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',              '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/common-libraries/{filepath:.+}',          '\\Pith\\Framework\\CommonLibrariesResourcePack\\CommonLibrariesResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}',          '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/animate.css/{filepath:.+}',       '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/bootstrap/{filepath:.+}',         '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
@@ -50,6 +49,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',          '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/oxcss/{filepath:.+}',             '\\PithFront\\PithPackOxcss\\OxcssResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/src-fallback/{filepath:.+}',      '\\PithFront\\PithPackSrcFallback\\SrcFallbackResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/sweetalert/{filepath:.+}',       '\\PithFront\\PithPackSwal\\SwalResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/sweetalert/{filepath:.+}',        '\\PithFront\\PithPackSwal\\SwalResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/library/toastr/{filepath:.+}',            '\\PithFront\\PithPackToastr\\ToastrResourceRoute'],
     ];
 }
