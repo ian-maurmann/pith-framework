@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16766330a4c1e2c189c850a4ac457bd8",
+    "content-hash": "81f032b60b2dce61b0af5e8cf7058d73",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -457,16 +457,16 @@
         },
         {
             "name": "latte/latte",
-            "version": "v3.0.13",
+            "version": "v3.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "462444d669809528b6f6ce191b616d747c9b4bfc"
+                "reference": "bac98d068694ffc6bba1fff4903b5a9be4385af5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/462444d669809528b6f6ce191b616d747c9b4bfc",
-                "reference": "462444d669809528b6f6ce191b616d747c9b4bfc",
+                "url": "https://api.github.com/repos/nette/latte/zipball/bac98d068694ffc6bba1fff4903b5a9be4385af5",
+                "reference": "bac98d068694ffc6bba1fff4903b5a9be4385af5",
                 "shasum": ""
             },
             "require": {
@@ -536,9 +536,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v3.0.13"
+                "source": "https://github.com/nette/latte/tree/v3.0.14"
             },
-            "time": "2024-01-09T13:54:57+00:00"
+            "time": "2024-03-19T01:30:47+00:00"
         },
         {
             "name": "lotfio/conso",
@@ -1530,6 +1530,54 @@
                 "source": "https://github.com/pith-front/pith-pack-swal/tree/0.1.0"
             },
             "time": "2024-03-18T06:11:44+00:00"
+        },
+        {
+            "name": "pith-front/pith-pack-toastr",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pith-front/pith-pack-toastr.git",
+                "reference": "29249812da6554837bdae059da04ca8585b0b068"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pith-front/pith-pack-toastr/zipball/29249812da6554837bdae059da04ca8585b0b068",
+                "reference": "29249812da6554837bdae059da04ca8585b0b068",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PithFront\\PithPackToastr\\": [
+                        "src/toastr-resource-pack/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pack Toastr for the front-end for Pith",
+            "support": {
+                "issues": "https://github.com/pith-front/pith-pack-toastr/issues",
+                "source": "https://github.com/pith-front/pith-pack-toastr/tree/0.1.0"
+            },
+            "time": "2024-03-19T05:19:19+00:00"
         },
         {
             "name": "pith/base",
@@ -4071,16 +4119,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.62",
+            "version": "1.10.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9"
+                "reference": "ad12836d9ca227301f5fb9960979574ed8628339"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cd5c8a1660ed3540b211407c77abf4af193a6af9",
-                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ad12836d9ca227301f5fb9960979574ed8628339",
+                "reference": "ad12836d9ca227301f5fb9960979574ed8628339",
                 "shasum": ""
             },
             "require": {
@@ -4129,7 +4177,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-13T12:27:20+00:00"
+            "time": "2024-03-18T16:53:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
