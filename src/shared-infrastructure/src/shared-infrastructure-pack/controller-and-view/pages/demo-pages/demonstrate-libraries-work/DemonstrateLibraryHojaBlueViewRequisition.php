@@ -36,6 +36,6 @@ class DemonstrateLibraryHojaBlueViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Hoja Blue stylesheet', '/resources/vendor/common-libraries/hoja-blue/hoja-blue.css', 'library-for-page');
+        $this->addStylesheet('Hoja Blue stylesheet', '/resources/vendor/library/hoja/hoja-blue/hoja-blue.css', 'library-for-page');
     }
 }

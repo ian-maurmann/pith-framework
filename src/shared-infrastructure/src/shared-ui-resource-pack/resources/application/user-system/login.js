@@ -62,7 +62,8 @@ SharedUI.LoginForm.checkForFailedLogin = function(){
         // Display error pop-up
         Swal.fire({
             icon: 'error',
-            html: 'Login failed.<br><br>Please double-check your username and password.'
+            html: 'Login failed.<br><br>Please double-check your username and password.',
+            heightAuto: false
         });
     }
 }
@@ -130,19 +131,22 @@ SharedUI.LoginForm.handleOnSubmit = function(element, event){
     if(!has_username){
         Swal.fire({
             icon: 'error',
-            html: 'Username cannot be empty.'
+            html: 'Username cannot be empty.',
+            heightAuto: false
         });
     }
     else if(!has_password){
         Swal.fire({
             icon: 'error',
-            html: 'Password cannot be empty.'
+            html: 'Password cannot be empty.',
+            heightAuto: false
         });
     }
     else if(!is_password_valid){
         Swal.fire({
             icon: 'error',
-            html: 'Password is too short.'
+            html: 'Password is too short.',
+            heightAuto: false
         });
     }
     else{
