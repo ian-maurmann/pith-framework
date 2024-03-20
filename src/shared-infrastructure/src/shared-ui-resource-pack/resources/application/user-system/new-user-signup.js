@@ -717,31 +717,36 @@ SharedUI.NewUserSignupForm.handleOnSubmit = function(element, event){
     if(!is_username_field_valid){
         Swal.fire({
             icon: 'error',
-            html: 'The username needs be valid and available.'
+            html: 'The username needs be valid and available.',
+            heightAuto: false
         });
     }
     else if(!is_email_address_field_valid){
         Swal.fire({
             icon: 'error',
-            html: 'The email address needs to be formatted correctly.'
+            html: 'The email address needs to be formatted correctly.',
+            heightAuto: false
         });
     }
     else if(!is_birthday_field_valid){
         Swal.fire({
             icon: 'error',
-            html: 'Verify that birth date is in the correct format.'
+            html: 'Verify that birth date is in the correct format.',
+            heightAuto: false
         });
     }
     else if(!is_password_field_valid){
         Swal.fire({
             icon: 'error',
-            html: 'New password must be 10 characters or longer.'
+            html: 'New password must be 10 characters or longer.',
+            heightAuto: false
         });
     }
     else if(!is_confirm_password_field_valid){
         Swal.fire({
             icon: 'error',
-            html: 'The password and password confirmation must match!'
+            html: 'The password and password confirmation must match!',
+            heightAuto: false
         });
     }
     else{
@@ -856,7 +861,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
                     Swal.fire({
                         icon: 'success',
                         html: 'New account successfully created.',
-                        confirmButtonText: 'Continue'
+                        confirmButtonText: 'Continue',
+                        heightAuto: false
                     }).then(function(isConfirm) {
                         success_loading_form.submit();
                     });
@@ -867,7 +873,8 @@ SharedUI.NewUserSignupForm.requestUserCreation = function(){
                     section_content.animate({ opacity: 1.0},600, function(){
                         Swal.fire({
                             icon: 'error',
-                            html: 'Encountered a problem creating user.'
+                            html: 'Encountered a problem creating user.',
+                            heightAuto: false
                         });
                     });
                 }
