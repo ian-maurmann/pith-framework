@@ -21,9 +21,7 @@
         "mailgun/mailgun-php": "^4.2",
         "monolog/monolog": "^3.2",
         "nikic/fast-route": "^1.3",
-        "nyholm/psr7": "^1.8",
         "php-di/php-di": "^7.0",
-        "phpmailer/phpmailer": "^6.9",
         "pith/base": "^0.2",
         "pith/workflow-elements": "^0.3",
         "pith-front/pith-pack-aero-gel": "^0.1",
@@ -41,8 +39,8 @@
         "pith-front/pith-pack-src-fallback": "^0.1",
         "pith-front/pith-pack-swal": "^0.1",
         "pith-front/pith-pack-toastr": "^0.1",
-        "symfony/http-client": "^7.0",
-        "symfony/http-foundation": "^7.0"
+        "symfony/http-foundation": "^7.0",
+        "nyholm/psr7": "^1.8"
     },
     "autoload": {
         "psr-4": {
