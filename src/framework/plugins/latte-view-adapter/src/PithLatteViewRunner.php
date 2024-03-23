@@ -165,7 +165,7 @@ class PithLatteViewRunner
 
 
         // cache directory
-        $latte->setTempDirectory('./data/latte-cache');
+        $latte->setTempDirectory(PITH_LATTE_CACHE_PATH);
 
         // view params
         $params = (array) $this->variables;
