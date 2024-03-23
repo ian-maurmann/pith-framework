@@ -39,7 +39,10 @@
         "pith-front/pith-pack-src-fallback": "^0.1",
         "pith-front/pith-pack-swal": "^0.1",
         "pith-front/pith-pack-toastr": "^0.1",
-        "symfony/http-foundation": "^7.0"
+        "symfony/http-foundation": "^7.0",
+        "mailgun/mailgun-php": "^4.2",
+        "symfony/http-client": "^7.0",
+        "nyholm/psr7": "^1.8"
     },
     "autoload": {
         "psr-4": {
@@ -194,7 +197,8 @@
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     }
 }
