@@ -31,5 +31,6 @@ class DemoPagesRouteList extends PithRouteList
         ['route',       'GET', '/new-user',                          '\\Pith\\Framework\\SharedInfrastructure\\NewUserRoute'],
         ['route',       'GET', '/quotes',                            '\\Pith\\Framework\\SharedInfrastructure\\QuotesRoute'],
         ['route',       'GET', '/sign-out',                          '\\Pith\\Framework\\SharedInfrastructure\\LogoutRoute'],
+        ['route',       'GET', '/test-email',                        '\\Pith\\Framework\\SharedInfrastructure\\TestEmailRoute'],
     ];
 }
