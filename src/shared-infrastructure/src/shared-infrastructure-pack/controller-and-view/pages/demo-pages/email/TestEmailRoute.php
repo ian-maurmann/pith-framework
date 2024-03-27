@@ -20,11 +20,12 @@ use Pith\Workflow\PithRoute;
  */
 class TestEmailRoute extends PithRoute
 {
-    public string $route_type   = 'page';
-    public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
-    public string $access_level = 'dev-ip';
-    public string $view         = '[^route_folder]/test-email.latte';
-    public string $layout       = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLatteLayoutRoute';
+    public string $route_type       = 'page';
+    public string $pack             = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
+    public string $access_level     = 'dev-ip';
+    public string $view_requisition = '\\Pith\\Framework\\SharedInfrastructure\\TestEmailViewRequisition';
+    public string $view             = '[^route_folder]/test-email.latte';
+    public string $layout           = '\\Pith\\Framework\\SharedThemePack\\GreenAndWhiteLatteLayoutRoute';
 
     public string $page_title       = 'Test Email - ' . PITH_DEMO_PAGE_MAIN_TITLE;
     public string $meta_keywords    = 'Test email, demo, keyword, keywords';
