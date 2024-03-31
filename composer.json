@@ -9,11 +9,13 @@
     ],
     "license": "MPL-2.0",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-gd": "*",
         "ext-json": "*",
+        "ext-mbstring": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
+        "ext-tokenizer": "*",
         "doctrine/migrations": "^3.5",
         "ikm/copyright-year-utility":"^0.1",
         "latte/latte": "^3.0",
@@ -176,6 +178,9 @@
             ],
             "Pith\\CliViewAdapter\\": [
                 "src/framework/plugins/cli-view-adapter/src/"
+            ],
+            "Pith\\PhpmailerEmailAdapter\\": [
+                "src/framework/plugins/phpmailer-email-adapter/src/"
             ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
