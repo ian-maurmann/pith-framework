@@ -47,8 +47,8 @@ class SendTestEmailEndpointAction extends PithAction
         try {
             // Build the email
             $this->email_builder->reset();
-            $this->email_builder->setFrom('from@example.com', 'Test Sender');
-            $this->email_builder->addTo('recipient@example.com');
+            $this->email_builder->setFrom(PITH_EMAIL_SYSTEM_FROM_ADDRESS, PITH_EMAIL_SYSTEM_FROM_NAME);
+            $this->email_builder->addTo(PITH_EMAIL_TEST_TO_ADDRESS);
             $this->email_builder->setSubject('Test Email');
             $this->email_builder->setBody('This is a test email.');
             $this->email_builder->setIsHtml(false);
