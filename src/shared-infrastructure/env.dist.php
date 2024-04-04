@@ -25,3 +25,19 @@ const PITH_DEV_ACCESS_IP_ADDRESSES  = [];
 const PITH_CRON_ACCESS_IP_ADDRESSES = [];
 
 const PITH_IMPRESSION_LOG_ENABLE   = true;
+
+const PITH_COMMAND_TASK_LOG_ENABLE = true;
+const PITH_COMMAND_TASK_OUTPUT_LOG_ENABLE = true;
+const PITH_TASK_SHELL_COMMAND_FORMAT = '';
+
+const PITH_EMAIL_ADAPTER_NAMESPACE              = '';
+const PITH_EMAIL_SMTP_HOST                      = '';
+const PITH_EMAIL_ENABLE_SMTP_AUTHENTICATION     = true;
+const PITH_EMAIL_SMTP_USERNAME                  = '';
+const PITH_EMAIL_SMTP_PASSWORD                  = '';
+const PITH_EMAIL_ENABLE_IMPLICIT_TLS            = true;
+const PITH_EMAIL_SMTP_PORT                      = 465;
+const PITH_EMAIL_ENABLE_VERBOSE_DEBUGGING       = true;
+const PITH_EMAIL_TEST_TO_ADDRESS                = '';
+const PITH_EMAIL_SYSTEM_FROM_ADDRESS            = '';
+const PITH_EMAIL_SYSTEM_FROM_NAME               = '';
