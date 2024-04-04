@@ -1,6 +1,11 @@
 #!/usr/bin/env php
 <?php
 
+/**
+ * "Mig" Migrations Console
+ * ------------------------
+ */
+
 declare(strict_types=1);
 
 require_once __DIR__.'/vendor/autoload.php';
@@ -12,10 +17,11 @@ use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
 use Doctrine\Migrations\Tools\Console\Command;
 use Symfony\Component\Console\Application;
 
-// Include the Env Constants file
+// Include Constants
 require_once 'env.php';
+require_once 'tracked-constants.php';
 
-
+/** @noinspection PhpVariableNamingConventionInspection */
 $dbParams = [
     'dbname'   => PITH_DATABASE_MIGRATIONS_DATABASE_NAME,
     'user'     => PITH_APP_DATABASE_USER_USERNAME,
@@ -28,12 +34,14 @@ $connection = DriverManager::getConnection($dbParams);
 
 $config = new PhpFile('migrations.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
 
+/** @noinspection PhpVariableNamingConventionInspection */
 $dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConnection($connection));
 
+/** @noinspection PhpVariableNamingConventionInspection */
 $cli = new Application('Doctrine Migrations');
 $cli->setCatchExceptions(true);
 
-$cli->addCommands(array(
+$cli->addCommands([
     new Command\DumpSchemaCommand($dependencyFactory),
     new Command\ExecuteCommand($dependencyFactory),
     new Command\GenerateCommand($dependencyFactory),
@@ -44,6 +52,7 @@ $cli->addCommands(array(
     new Command\StatusCommand($dependencyFactory),
     new Command\SyncMetadataCommand($dependencyFactory),
     new Command\VersionCommand($dependencyFactory),
-));
+]);
 
+/** @noinspection PhpUnhandledExceptionInspection */
 $cli->run();
