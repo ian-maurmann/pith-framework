@@ -49,6 +49,10 @@ const PITH_APP_TASK_WORKSPACES_LIST = '\\Pith\\Framework\\SharedInfrastructure\\
 
 const PITH_LATTE_CACHE_PATH = './data/latte-cache';
 
+// Migration Paths,
+// The first namespace is the default when generating new migrations
+// The default can be overridden by specifying the namespace in the migration command
+// Example: php mig migrations:generate --namespace=Pith\\Framework\\TestMigration
 const PITH_MIGRATIONS_PATHS = [
     'Pith\\Framework\\TestMigration' => './data/test-migrations',
     'Pith\\Framework\\Migration'     => './data/migrations',
