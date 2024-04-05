@@ -18,9 +18,10 @@ namespace Pith\Framework\SharedInfrastructure\Tasks\Tick;
 
 use DI\DependencyException;
 use DI\NotFoundException;
+use Pith\Framework\Base\ThinWrappers\PithDependencyInjection;
 use Pith\Workflow\PithAction;
 use Pith\Framework\PithAppRetriever;
-use Pith\Framework\PithDependencyInjection;
+
 use Pith\Framework\PithException;
 
 /**
