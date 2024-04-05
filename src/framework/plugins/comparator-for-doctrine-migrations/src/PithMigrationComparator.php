@@ -18,11 +18,9 @@
  * - Post by Fezfez: https://github.com/doctrine/migrations/issues/1074#issuecomment-761580607
  *
  * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
- * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
- * @noinspection PhpMethodNamingConventionInspection   - Short method names are ok.
- * @noinspection PhpUnused                             - Will be used by workflow elements.
- * @noinspection PhpTooManyParametersInspection        - Methods with a large number of parameters are ok here.
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ * @noinspection SpellCheckingInspection               - Ignore spell checking here, GitHub usernames are ok.
  */
 
 declare(strict_types=1);
