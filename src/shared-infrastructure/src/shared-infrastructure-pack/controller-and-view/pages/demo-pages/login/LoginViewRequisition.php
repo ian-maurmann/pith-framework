@@ -46,12 +46,10 @@ class LoginViewRequisition extends PithViewRequisition
         $this->addScript('Swal2 NA script', '/resources/vendor/library/sweetalert/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
 
         // App CSS
-        // $this->addStylesheet( 'New User Signup stylesheet', '/resources/framework/shared-ui/user-system/new-user-signup.css', 'application-for-page');
         $this->addStylesheet( 'Login stylesheet', '/resources/framework/shared-ui/user-system/login.css', 'application-for-page');
 
         // App JS
         $this->addScript(     'Shared-UI Mask script', '/resources/framework/shared-ui/utilities/input-mask-utility.js', 'application-for-page');
-        // $this->addScript(     'New User Signup script', '/resources/framework/shared-ui/user-system/new-user-signup.js', 'application-for-page');
         $this->addScript(     'Login script', '/resources/framework/shared-ui/user-system/login.js', 'application-for-page');
 
         // Font

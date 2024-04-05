@@ -262,6 +262,18 @@ class PithDispatcher
      */
     public function dispatchResourceFromResourceFolder(PithRoute $route)
     {
+        // Enable caching
+        $timeToCache = 31536000; //3600 sec in hr * 24 hr * 365 day;
+        $timestamp = time();
+        $now_gmt = gmdate('D, d M Y H:i:s', $timestamp) . ' GMT';
+        $expires_gmt = gmdate('D, d M Y H:i:s', $timestamp + $timeToCache) . ' GMT';
+        header('Expires:'. $expires_gmt);
+        header('Cache-Control: public');
+        header('Cache-Control: max-age='.$timeToCache);
+        header('Last-Modified: 1407595380');
+        header('Content-type: text/css');
+        header('Pragma: cache');
+
         // ROUTE
         // Tap on the Route
         $route_info   = $this->tapRoute($route);
@@ -314,6 +326,11 @@ class PithDispatcher
         // Set caching headers
         $this->helper->setCachingHeaders($route);
 
+        // Set last modified
+        $file_m_time = filemtime($real_filepath);
+        $file_m_time_gmt = gmdate('D, d M Y H:i:s', $file_m_time) . ' GMT';
+        header('Last-Modified: ' . $file_m_time_gmt);
+
         // Serve file
         readfile($real_filepath);
     }
@@ -324,9 +341,22 @@ class PithDispatcher
      * @throws ReflectionException
      *
      * @noinspection PhpIncludeInspection
+     * @noinspection DuplicatedCode
      */
     public function dispatchResourceFileRoute(PithRoute $route)
     {
+        // Enable caching
+        $timeToCache = 31536000; //3600 sec in hr * 24 hr * 365 day;
+        $timestamp = time();
+        $now_gmt = gmdate('D, d M Y H:i:s', $timestamp) . ' GMT';
+        $expires_gmt = gmdate('D, d M Y H:i:s', $timestamp + $timeToCache) . ' GMT';
+        header('Expires:'. $expires_gmt);
+        header('Cache-Control: public');
+        header('Cache-Control: max-age='.$timeToCache);
+        header('Last-Modified: 1407595380');
+        header('Content-type: text/css');
+        header('Pragma: cache');
+
         // ROUTE
         // Tap on the Route
         $route_info   = $this->tapRoute($route);
@@ -366,6 +396,11 @@ class PithDispatcher
 
         // Set caching headers
         $this->helper->setCachingHeaders($route);
+
+        // Set last modified
+        $file_m_time = filemtime($real_filepath);
+        $file_m_time_gmt = gmdate('D, d M Y H:i:s', $file_m_time) . ' GMT';
+        header('Last-Modified: ' . $file_m_time_gmt);
 
         // Serve file
         readfile($real_filepath);
