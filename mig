@@ -11,11 +11,14 @@ declare(strict_types=1);
 require_once __DIR__.'/vendor/autoload.php';
 
 use Doctrine\DBAL\DriverManager;
-use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Configuration\Migration\PhpFile;
 use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
+use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Tools\Console\Command;
+use Doctrine\Migrations\Version\Comparator;
+use Pith\ComparatorForDoctrineMigrations\PithMigrationComparator;
 use Symfony\Component\Console\Application;
+
 
 // Include Constants
 require_once 'env.php';
@@ -36,6 +39,10 @@ $config = new PhpFile('migrations.php'); // Or use one of the Doctrine\Migration
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConnection($connection));
+
+// Define custom migration sorting
+// See: https://www.goetas.com/blog/multi-namespace-migrations-with-doctrinemigrations-30/
+$dependencyFactory->setService(Comparator::class, new PithMigrationComparator());
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $cli = new Application('Doctrine Migrations');
