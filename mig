@@ -4,6 +4,8 @@
 /**
  * "Mig" Migrations Console
  * ------------------------
+ *
+ * See: https://www.doctrine-project.org/projects/doctrine-migrations/en/3.7/reference/custom-integration.html
  */
 
 declare(strict_types=1);
