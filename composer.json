@@ -25,6 +25,7 @@
         "php-di/php-di": "^7.0",
         "phpmailer/phpmailer": "^6.9",
         "pith/base": "^0.2",
+        "pith/doctrine-migration-integration": "^0.1",
         "pith/workflow-elements": "^0.3",
         "pith-front/pith-pack-aero-gel": "^0.1",
         "pith-front/pith-pack-animate-css": "^0.1",
