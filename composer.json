@@ -183,9 +183,6 @@
             "Pith\\PhpmailerEmailAdapter\\": [
                 "src/framework/plugins/phpmailer-email-adapter/src/"
             ],
-            "Pith\\ComparatorForDoctrineMigrations\\": [
-                "src/framework/plugins/comparator-for-doctrine-migrations/src/"
-            ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
             ],
