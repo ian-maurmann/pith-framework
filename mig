@@ -18,7 +18,7 @@ use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Tools\Console\Command;
 use Doctrine\Migrations\Version\Comparator;
-use Pith\ComparatorForDoctrineMigrations\PithMigrationComparator;
+use Pith\PithDoctrineMigrationIntegration\SortByVersionComparator;
 use Symfony\Component\Console\Application;
 
 
@@ -44,7 +44,8 @@ $dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConn
 
 // Define custom migration sorting
 // See: https://www.goetas.com/blog/multi-namespace-migrations-with-doctrinemigrations-30/
-$dependencyFactory->setService(Comparator::class, new PithMigrationComparator());
+// See: https://github.com/doctrine/migrations/issues/1074#issuecomment-761580607
+$dependencyFactory->setService(Comparator::class, new SortByVersionComparator());
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $cli = new Application('Doctrine Migrations');
