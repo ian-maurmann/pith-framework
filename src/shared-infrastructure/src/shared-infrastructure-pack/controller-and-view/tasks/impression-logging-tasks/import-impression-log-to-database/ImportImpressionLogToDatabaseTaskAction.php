@@ -187,29 +187,30 @@ class ImportImpressionLogToDatabaseTaskAction extends PithAction
 
                     if ($line_length > 1) {
                         $impression_variables = explode(' ● ', $line);
-                        $impression_datetime = $impression_variables[0];
-                        $impression_http_method = $impression_variables[1];
-                        $impression_uri = $impression_variables[2];
-                        $impression_port = $impression_variables[3];
-                        $impression_access_level = $impression_variables[4];
-                        $impression_allowed_or_denied = $impression_variables[5];
-                        $impression_remote_ip_address = $impression_variables[6];
-                        $impression_session_id = $impression_variables[7];
-                        $impression_user_or_guest = $impression_variables[8];
-                        $impression_user_id_string = $impression_variables[9];
-                        $impression_user_agent_string = $impression_variables[10];
-                        $ch_ua = $impression_variables[11];
-                        $ch_ua_platform = $impression_variables[12];
-                        $ch_ua_platform_version = $impression_variables[13];
-                        $ch_ua_mobile = $impression_variables[14];
-                        $ch_ua_model = $impression_variables[15];
-                        $ch_ua_architecture = $impression_variables[16];
-                        $ch_ua_bitness = $impression_variables[17];
-                        $client_accept_language_string = $impression_variables[18];
-                        $referer_string = $impression_variables[19];
-                        $ch_downlink = $impression_variables[20];
-                        $ch_viewport_width = $impression_variables[21];
-                        $ch_prefers_color_scheme = $impression_variables[22];
+
+                        $impression_datetime           = $impression_variables[0]  ?? '';
+                        $impression_http_method        = $impression_variables[1]  ?? '';
+                        $impression_uri                = $impression_variables[2]  ?? '';
+                        $impression_port               = $impression_variables[3]  ?? '';
+                        $impression_access_level       = $impression_variables[4]  ?? '';
+                        $impression_allowed_or_denied  = $impression_variables[5]  ?? '';
+                        $impression_remote_ip_address  = $impression_variables[6]  ?? '';
+                        $impression_session_id         = $impression_variables[7]  ?? '';
+                        $impression_user_or_guest      = $impression_variables[8]  ?? '';
+                        $impression_user_id_string     = $impression_variables[9]  ?? '';
+                        $impression_user_agent_string  = $impression_variables[10] ?? '';
+                        $ch_ua                         = $impression_variables[11] ?? '';
+                        $ch_ua_platform                = $impression_variables[12] ?? '';
+                        $ch_ua_platform_version        = $impression_variables[13] ?? '';
+                        $ch_ua_mobile                  = $impression_variables[14] ?? '';
+                        $ch_ua_model                   = $impression_variables[15] ?? '';
+                        $ch_ua_architecture            = $impression_variables[16] ?? '';
+                        $ch_ua_bitness                 = $impression_variables[17] ?? '';
+                        $client_accept_language_string = $impression_variables[18] ?? '';
+                        $referer_string                = $impression_variables[19] ?? '';
+                        $ch_downlink                   = $impression_variables[20] ?? '';
+                        $ch_viewport_width             = $impression_variables[21] ?? '';
+                        $ch_prefers_color_scheme       = $impression_variables[22] ?? '';
 
                         $impression_port_as_int          = (int) $impression_port;
                         $was_allowed_01                  = $impression_allowed_or_denied === 'allowed' ? 1 : 0;
