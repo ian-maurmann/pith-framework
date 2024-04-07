@@ -29,6 +29,7 @@ const PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH = '/ajax/user-system';
 const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
 const PITH_TASK_LOG_LOCATION = 'logs/task-log/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-log/';
+const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
 const PITH_TOUCHSTONE_FOLDER_LOCATION = 'data/touchstones/';
 
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
