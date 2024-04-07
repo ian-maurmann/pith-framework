@@ -15,6 +15,9 @@
  * ------------------------
  *
  * @noinspection PhpUnnecessaryLocalVariableInspection - For Readability
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  */
 
 
@@ -34,6 +37,40 @@ class PithTimeWindowUtility
     public function __construct()
     {
         // Do nothing for now.
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getWindowStartDatetimeByTimeframeString(DateTime $given_datetime, string $timeframe_mode_string): DateTime
+    {
+        // Get the start datetime based on the timeframe mode
+        return match ($timeframe_mode_string) {
+            'window 10 minute' => $this->get10MinuteWindowStartDatetime($given_datetime),
+            'window 12 minute' => $this->get12MinuteWindowStartDatetime($given_datetime),
+            'window 15 minute' => $this->get15MinuteWindowStartDatetime($given_datetime),
+            'window 20 minute' => $this->get20MinuteWindowStartDatetime($given_datetime),
+            'window 30 minute' => $this->get30MinuteWindowStartDatetime($given_datetime),
+            'window 1 hour'    => $this->getHourWindowStartDatetime($given_datetime),
+            'window 1 day'     => $this->getDayWindowStartDatetime($given_datetime),
+            'window 1 month'   => $this->getMonthWindowStartDatetime($given_datetime),
+            'window 1 year'    => $this->getYearWindowStartDatetime($given_datetime),
+
+            default => false,
+        };
+    }
+
+    /**
+     * @param $time_ago_in_seconds
+     * @return DateTime
+     * @throws Exception
+     */
+    public function getDatetimeByTimeAgo($time_ago_in_seconds): DateTime
+    {
+        $time_ago = time() - $time_ago_in_seconds;
+        $time_ago_datetime = new DateTime('@' . $time_ago);
+
+        return $time_ago_datetime;
     }
 
     /**
@@ -238,5 +275,34 @@ class PithTimeWindowUtility
         $window_datetime = DateTime::createFromFormat('Y-m-d H:i', $year_yyyy . '-' . $month_mm . '-' . $day_dd . ' ' . $hour_hh . ':' . $window_minute_ii);
 
         return $window_datetime;
+    }
+
+    public function isCoolDownOver(int $current_timestamp, int $file_modified_timestamp, string $timeframe_mode_string): bool
+    {
+        $is_cool_down_over = false;
+        $time_elapsed = $current_timestamp - $file_modified_timestamp;
+
+        $cool_down_length = match ($timeframe_mode_string) {
+            'after 5 minute'   => 300,      //        300 seconds =   5 minutes
+            'after 10 minute'  => 600,      //        600 seconds =  10 minutes
+            'after 12 minute'  => 720,      //        720 seconds =  12 minutes
+            'after 15 minute'  => 900,      //        900 seconds =  15 minutes
+            'after 20 minute'  => 1200,     //      1,200 seconds =  20 minutes
+            'after 30 minute'  => 1800,     //      1,800 seconds =  30 minutes
+            'after 1 hour'     => 3600,     //      3,600 seconds =   1 hour
+            'after 4 hour'     => 14400,    //     14,400 seconds =   4 hours
+            'after 8 hour'     => 28800,    //     28,800 seconds =   8 hours
+            'after 12 hour'    => 43200,    //     43,200 seconds =  12 hours
+            'after 1 day'      => 86400,    //     86,400 seconds =   1 day
+            'after 30 day'     => 2592000,  //  2,592,000 seconds =  30 days
+            'after 365 day'    => 31536000, // 31,536,000 seconds = 365 days
+            default => false,
+        };
+
+        if($time_elapsed >= $cool_down_length){
+            $is_cool_down_over = true;
+        }
+
+        return $is_cool_down_over;
     }
 }

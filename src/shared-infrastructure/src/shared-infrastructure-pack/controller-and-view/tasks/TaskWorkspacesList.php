@@ -23,7 +23,7 @@ class TaskWorkspacesList
 {
     public array $workspaces = [
         // Tick workspace
-        ['workspace', 'tick_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TickTaskWorkspace', null],
+        ['workspace', 'tick_system', '\\Pith\\Tick\\TickTaskWorkspace', null],
 
         // Other workspaces
         ['workspace', 'impression_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskWorkspace', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskOrchestrator'],
