@@ -14,9 +14,10 @@ declare(strict_types=1);
 
 use Pith\Framework\PithException;
 
-// Error logging
-ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log');
+
+
+
+
 
 // Auto-Load
 require './vendor/autoload.php';
@@ -26,6 +27,16 @@ require './env.php';
 
 // Add other constants
 require './tracked-constants.php';
+
+
+
+// Error logging
+ini_set('log_errors', '1');
+$php_error_log_filename = './' . PITH_PHP_ERROR_LOG_LOCATION . 'php_errors_'. date('Y-m-d') .'.log';
+ini_set('error_log', $php_error_log_filename);
+
+// error_log('Hello, errors!');
+
 
 // Setup our Container
 $container = new DI\Container();
