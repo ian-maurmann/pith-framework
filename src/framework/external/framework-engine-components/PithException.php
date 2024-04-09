@@ -89,11 +89,20 @@
  *     6010: The database wrapper was unable to roll back a transaction.
  *
  *
- *     7xxx - ?
- *     8xxx - ?
+ *     7xxx - 3rd Party API Exceptions
+ *     -------------------------------
+ *     7000 - 3rd Party API Exception (Top-Level / Unspecified)
+ *
+ *     8xxx - Email & SMS  Exceptions
+ *     ------------------------------
+ *     8000 - Email Exception (Top-Level / Unspecified)
+ *     8001 - Email Adaptor --> Container: NotFoundException.
+ *     8002 - Email Adaptor --> Container: DependencyException.
+ *     8003 - Email could not be sent.
+ *     8004 - Email could not be sent by PHPMailer. PHPMailer Exception.
  *
  *      9xxx - Task-Specific Exceptions
- *     --------------------------------
+ *      -------------------------------
  *      9000 - Task-Specific Exception (Top-Level / Unspecified)
  *      9001 - Touchstone file could not be created
  *      9002 - Touchstone file mtime could not be updated

@@ -1,0 +1,1 @@
+The PHP error log files will go in this folder.

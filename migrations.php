@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+// Include Constants
+require_once 'env.php';
+require_once 'tracked-constants.php';
+
 return [
     'table_storage' => [
         'table_name' => 'doctrine_migration_versions',
@@ -10,9 +14,7 @@ return [
         'execution_time_column_name' => 'execution_time',
     ],
 
-    'migrations_paths' => [
-        'Pith\\Framework\\Migration' => './data/migrations',
-    ],
+    'migrations_paths' => PITH_MIGRATIONS_PATHS,
 
     'all_or_nothing' => true,
     'transactional' => true,

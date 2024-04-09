@@ -28,4 +28,18 @@ const PITH_IMPRESSION_LOG_ENABLE = true;
 const PITH_COMMAND_TASK_LOG_ENABLE = true;
 const PITH_COMMAND_TASK_OUTPUT_LOG_ENABLE = true;
 
+// For example, on Local Mac it would be:
+// '/usr/local/bin/php /Users/{YOUR USER HERE}/{PATH TO}/pith-framework/task run %s %s 1>> /dev/null 2>&1'
 const PITH_TASK_SHELL_COMMAND_FORMAT = '';
+
+const PITH_EMAIL_ADAPTER_NAMESPACE              = '';
+const PITH_EMAIL_SMTP_HOST                      = '';
+const PITH_EMAIL_ENABLE_SMTP_AUTHENTICATION     = true;
+const PITH_EMAIL_SMTP_USERNAME                  = '';
+const PITH_EMAIL_SMTP_PASSWORD                  = '';
+const PITH_EMAIL_ENABLE_IMPLICIT_TLS            = true;
+const PITH_EMAIL_SMTP_PORT                      = 465;
+const PITH_EMAIL_ENABLE_VERBOSE_DEBUGGING       = true;
+const PITH_EMAIL_TEST_TO_ADDRESS                = '';
+const PITH_EMAIL_SYSTEM_FROM_ADDRESS            = '';
+const PITH_EMAIL_SYSTEM_FROM_NAME               = '';

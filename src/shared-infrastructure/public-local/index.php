@@ -23,11 +23,7 @@ chdir('../../../'); // <---- 1) Switch to whatever folder you want to run the Ap
 
 // ========================================================================================
 
-// Error logging
-ini_set('log_errors', '1');
-ini_set('error_log', './php_errors.log'); // <---- 2) Add location of where you want the error log to be
 
-// ========================================================================================
 
 // Auto-Load
 require 'vendor/autoload.php'; // <---- 3) Enter the path to autoload.php, from the folder you're running the App from.
@@ -39,6 +35,20 @@ require './src/shared-infrastructure/env.php'; // <---- 4) Set the env constants
 
 // Add other constants
 require './src/shared-infrastructure/tracked-constants.php'; // <---- 5) Set the tracked constants filepath here
+
+// ========================================================================================
+
+// Error logging
+// ini_set('log_errors', '1');
+// ini_set('error_log', './php_errors.log'); // <---- 2) Add location of where you want the error log to be
+
+// Error logging
+ini_set('log_errors', '1');
+$php_error_log_filename = './' . PITH_PHP_ERROR_LOG_LOCATION . 'php_errors_'. date('Y-m-d') .'.log';
+ini_set('error_log', $php_error_log_filename);
+
+
+// error_log('Hello, page errors!');
 
 // ========================================================================================
 
