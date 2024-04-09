@@ -23,7 +23,7 @@ class TaskWorkspacesList
 {
     public array $workspaces = [
         // Tick workspace
-        ['workspace', 'tick_system', '\\Pith\\Tick\\TickTaskWorkspace', null],
+        ['workspace', 'tick', '\\Pith\\Tick\\TickTaskWorkspace', null],
 
         // Janitor workspace
         ['workspace', 'janitor', '\\Pith\\Janitor\\JanitorTaskWorkspace', '\\Pith\\Janitor\\JanitorTaskOrchestrator'],
