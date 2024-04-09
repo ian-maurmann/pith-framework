@@ -29,6 +29,6 @@ class TaskWorkspacesList
         ['workspace', 'janitor', '\\Pith\\Janitor\\JanitorTaskWorkspace', '\\Pith\\Janitor\\JanitorTaskOrchestrator'],
 
         // Other workspaces
-        ['workspace', 'impression_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskWorkspace', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskOrchestrator'],
+        //['workspace', 'impression_system', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskWorkspace', '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\ImpressionLoggingTaskOrchestrator'],
     ];
 }
