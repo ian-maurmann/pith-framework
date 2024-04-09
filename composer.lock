@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1397f4f81f49c738809e6b11987956d8",
+    "content-hash": "152aa445087feedabe92e916928c478f",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1758,6 +1758,60 @@
                 "source": "https://github.com/ian-maurmann/pith-doctrine-migration-integration/tree/0.1.0"
             },
             "time": "2024-04-06T05:00:41+00:00"
+        },
+        {
+            "name": "pith/janitor",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ian-maurmann/pith-janitor.git",
+                "reference": "bc3691560ffefc02a1fa28ed66d3dc907e56fa05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ian-maurmann/pith-janitor/zipball/bc3691560ffefc02a1fa28ed66d3dc907e56fa05",
+                "reference": "bc3691560ffefc02a1fa28ed66d3dc907e56fa05",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "ext-readline": "*",
+                "php": "^8.2",
+                "pith/base": "^0.2.0",
+                "pith/workflow-elements": "^0.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pith\\Janitor\\": [
+                        "src/janitor-pack/",
+                        "src/janitor-pack/janitor-task-system/",
+                        "src/janitor-pack/janitor-task-system/tasks/clear-old-impression-logs/",
+                        "src/janitor-pack/janitor-task-system/tasks/clear-old-php-error-logs/",
+                        "src/janitor-pack/janitor-task-system/tasks/clear-old-task-logs/",
+                        "src/janitor-pack/janitor-task-system/tasks/clear-old-task-output-logs/",
+                        "src/janitor-pack/services/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Janitor task system for Pith",
+            "support": {
+                "issues": "https://github.com/ian-maurmann/pith-janitor/issues",
+                "source": "https://github.com/ian-maurmann/pith-janitor/tree/0.1.2"
+            },
+            "time": "2024-04-09T06:31:19+00:00"
         },
         {
             "name": "pith/tick",
