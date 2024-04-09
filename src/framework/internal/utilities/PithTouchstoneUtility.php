@@ -15,6 +15,8 @@
  * -----------------------
  *
  * @noinspection PhpUnnecessaryLocalVariableInspection - For Readability
+ * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
+ * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  */
 
 
@@ -100,6 +102,59 @@ class PithTouchstoneUtility
         $current_time_window_timestamp = $current_time_window_datetime->getTimestamp();
 
         if($file_modified_time_window_timestamp < $current_time_window_timestamp){
+            $did_touch = touch($file_path);
+            if(!$did_touch){
+                throw new PithException(
+                    'Pith Framework Exception 9002: Touchstone file mtime could not be updated',
+                    9002
+                );
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @throws PithException
+     * @throws Exception
+     */
+    public function touchOnceInTimeFrame(string $file_path, string $timeframe_mode_string): bool
+    {
+        $is_time_to_touch = false;
+
+        // Create file if needed, throws exception if fails to create
+        $did_create_new = $this->createFileIfNotExists($file_path);
+        if($did_create_new){
+            return true;
+        }
+
+        // Get datetime modified
+        $file_modified_timestamp = filemtime($file_path);
+        $file_modified_datetime = new DateTime();
+        $file_modified_datetime->setTimestamp($file_modified_timestamp);
+
+        $is_cool_down = str_starts_with($timeframe_mode_string, 'after');
+        $is_window    = str_starts_with($timeframe_mode_string, 'window');
+
+        if($is_window){
+            // Get start of time window when file was modified
+            $file_modified_time_window_datetime = $this->time_window_utility->getWindowStartDatetimeByTimeframeString($file_modified_datetime, $timeframe_mode_string);
+            $file_modified_time_window_timestamp = $file_modified_time_window_datetime->getTimestamp();
+
+            // Get start of time window now
+            $datetime_now = new DateTime();
+            $current_time_window_datetime = $this->time_window_utility->getWindowStartDatetimeByTimeframeString($datetime_now, $timeframe_mode_string);
+            $current_time_window_timestamp = $current_time_window_datetime->getTimestamp();
+
+            $is_time_to_touch = $file_modified_time_window_timestamp < $current_time_window_timestamp;
+        }
+        elseif ($is_cool_down){
+            $current_timestamp = time();
+            $is_time_to_touch = $this->time_window_utility->isCoolDownOver($current_timestamp, $file_modified_timestamp, $timeframe_mode_string);
+        }
+
+        if($is_time_to_touch){
             $did_touch = touch($file_path);
             if(!$did_touch){
                 throw new PithException(

@@ -9,11 +9,13 @@
     ],
     "license": "MPL-2.0",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-gd": "*",
         "ext-json": "*",
+        "ext-mbstring": "*",
         "ext-pdo": "*",
         "ext-readline": "*",
+        "ext-tokenizer": "*",
         "doctrine/migrations": "^3.5",
         "ikm/copyright-year-utility":"^0.1",
         "latte/latte": "^3.0",
@@ -21,7 +23,11 @@
         "monolog/monolog": "^3.2",
         "nikic/fast-route": "^1.3",
         "php-di/php-di": "^7.0",
+        "phpmailer/phpmailer": "^6.9",
         "pith/base": "^0.2",
+        "pith/doctrine-migration-integration": "^0.1",
+        "pith/janitor": "^0.1",
+        "pith/tick": "^0.1",
         "pith/workflow-elements": "^0.3",
         "pith-front/pith-pack-aero-gel": "^0.1",
         "pith-front/pith-pack-animate-css": "^0.1",
@@ -90,6 +96,7 @@
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/quotes/",
+                "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/email/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\": [
@@ -175,6 +182,9 @@
             "Pith\\CliViewAdapter\\": [
                 "src/framework/plugins/cli-view-adapter/src/"
             ],
+            "Pith\\PhpmailerEmailAdapter\\": [
+                "src/framework/plugins/phpmailer-email-adapter/src/"
+            ],
             "Pith\\CommandTool\\": [
                 "src/framework/plugins/command-tool/src/"
             ],
@@ -193,7 +203,8 @@
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     }
 }

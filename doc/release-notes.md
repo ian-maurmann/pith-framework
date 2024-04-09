@@ -8,6 +8,7 @@
 
 Release status | Version | Semver |PHP Version | Date | Can I use?
 -------------- | ------- | ------ | ----------- | ---- |----------
+Alpha 50              | 0.8.9.0   | *sv 0.35.0* | PHP 8.3 | 2024-04-09 | Usable, but reworking the feature set
 Alpha 49              | 0.8.8.3   | *sv 0.34.0* | 8.2+ | 2024-03-19 | Usable, but reworking the feature set
 Alpha 48              | 0.8.8.2   | *sv 0.33.0* | 8.2+ | 2024-03-09 | Usable, but reworking the feature set
 Alpha 47              | 0.8.8.1   | *sv 0.32.0* | 8.2+ | 2024-02-06 | Usable, but still adding new features
@@ -85,6 +86,17 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 
 ### Release Notes:
 
+**0.8.9.0 - Alpha 50** `(semver: 0.35.0)`
+- Upgraded to PHP 8.3
+- Added fix for resource file caching.
+- Added new tracked constant for the Latte cache location, so it can be specified now.
+- Added an email builder object.
+- Updated the migration handling so that the migrations folders (multiple) can be specified in tracked constants now.
+- Made a new "comparator" for Doctrine Migrations, so that the migrations can be ordered by their version number, not by folder location.
+- Added "timeframes" for touchstones, that work like a cool-down timer for running tasks, vs the time-window for running tasks.
+- Moved the Tick task system into its own repo. (Pulled in  by Composer)
+- Created a "Janitor" task system that will live in its own repo, (pulled in  by Composer).
+
 **0.8.8.3 - Alpha 49** `(semver: 0.34.0)`
 - Moved the front-end libraries out of the repo, into separate packs.
 
@@ -145,6 +157,7 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 - Added database migrations for a test_quotes table, for testing.
 - Added more open source front-end libraries to the common-libraries folder.
 - Added more open source fonts to common-fonts folder.
+- Upgraded to PHP 8.2
 
 **0.8.5.0 - Alpha 40** `(semver: v0.26.0)`
 - Added "Shared Infrastructure" pages, with demo pages.
