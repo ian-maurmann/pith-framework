@@ -97,7 +97,7 @@
         transition-duration: 0.4s;
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]:hover{
-        color: var(--ox-color-ant-blue-7);
+        color: #096dd9; /* Ant Blue 7 */
     }
 
 
@@ -113,8 +113,7 @@
         margin-top: 1.5rem;
         margin-bottom: 2rem;
 
-        background-color: #0a53be;
-        background-color: var(--ox-color-ant-blue-8);
+        background-color: #0050b3; /* Ant Blue 8 */
         color: #ffffff;
 
         border-radius: 9px;
@@ -129,7 +128,7 @@
         text-align: center;
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="signup-submit-button-div"]:hover{
-        background-color: var(--ox-color-ant-blue-7);
+        background-color: #096dd9; /* Ant Blue 7 */
     }
 
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]{
@@ -137,7 +136,7 @@
         margin-top: 1ex;
         margin-bottom: 3ex;
 
-        background-color: var(--ox-color-ant-blue-8);
+        background-color: #0050b3; /* Ant Blue 8 */
         color: #ffffff;
 
         border-radius: 9px;
@@ -153,7 +152,7 @@
         font-size: 10pt;
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]:hover{
-        background-color: var(--ox-color-ant-blue-7);
+        background-color: #096dd9; /* Ant Blue 7 */
     }
 
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="peg"]{
@@ -166,15 +165,15 @@
         margin-top: 1ex;
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-checking-availability"]{
-        color: var(--ox-color-tw-slate-500);
+        color: #64748b; /* TW Slate 500 */
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-unavailable"],
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-incorrect-format"],
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-name-reserved"]{
-        color: var(--ox-color-tw-red-500);
+        color: #ef4444; /* TW Red 500 */
     }
     [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-available"]{
-        color: var(--ox-color-tw-green-500);
+        color: #22c55e; /* TW Green 500 */
     }
 
 
@@ -186,7 +185,7 @@
         display: inline-block;
         width: 11em;
         background-color: #ffffff;
-        border: 1px solid var(--ox-color-tw-stone-400);
+        border: 1px solid #a8a29e; /* TW Stone 400 */
         text-align: left;
         padding: 1ex 1em 1ex 1.5em;
     }
@@ -203,19 +202,17 @@
 
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="callout-allowed-chars-list"]{
         font-size: 8pt;
-        color: var(--ox-color-md-gray-600);
+        color: #757575; /* MD Gray 600 */
         word-wrap: break-word;
     }
 
     [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="field-callout-gutter"]{
         position: absolute;
-        background-color: var(--ox-color-tw-amber-300);
-        background-color: var(--ox-color-ant-blue-8);
+        background-color: #0050b3; /* Ant Blue 8 */
         top: 0px;
         left: 0px;
         height: 100%;
         width: 1em;
-        color: var(--ox-color-tw-stone-500);
         color: #ffffff;
 
         transition-property: all;
