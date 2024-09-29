@@ -107,7 +107,7 @@ class ImpressionLoggingTaskOrchestrator extends PithTaskOrchestrator
 
             if($run){
                 // Build the command
-                $command_string = sprintf(PITH_TASK_SHELL_COMMAND_FORMAT, $task_system_name, $task_name);
+                $command_string = sprintf(PITH_TASK_SHELL_COMMAND_FORMAT, $task_system_name, $task_name); // @phpstan-ignore-line
 
                 // Run
                 shell_exec($command_string);
