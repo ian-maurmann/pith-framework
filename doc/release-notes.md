@@ -8,6 +8,7 @@
 
 Release status | Version | Semver |PHP Version | Date | Can I use?
 -------------- | ------- | ------ | ----------- | ---- |----------
+Alpha 51              | 0.8.9.1   | *sv 0.35.1* | 8.3 | 2024-05-25 | Usable, but reworking the feature set
 Alpha 50              | 0.8.9.0   | *sv 0.35.0* | PHP 8.3 | 2024-04-09 | Usable, but reworking the feature set
 Alpha 49              | 0.8.8.3   | *sv 0.34.0* | 8.2+ | 2024-03-19 | Usable, but reworking the feature set
 Alpha 48              | 0.8.8.2   | *sv 0.33.0* | 8.2+ | 2024-03-09 | Usable, but reworking the feature set
@@ -85,6 +86,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.8.9.1 - Alpha 51** `(semver: 0.35.1)`
+- Upgraded dependencies.
+- Upgraded jQuery pack because the new jQuery 4.0.0 Beta is available.
 
 **0.8.9.0 - Alpha 50** `(semver: 0.35.0)`
 - Upgraded to PHP 8.3
