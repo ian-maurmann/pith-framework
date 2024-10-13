@@ -24,6 +24,9 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 
 ---
 
+![Pith Framework Logo](https://github.com/ian-maurmann/pith-framework/blob/master/doc/logo/logo/pith-framework-logo-2023-250p.png?raw=true)
+
+
 ## Install
 
 - Open the terminal and navigate to the directory your project will be in.
