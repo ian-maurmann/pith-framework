@@ -197,8 +197,8 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^2.8",
-        "pestphp/pest-plugin-type-coverage": "^2.4",
+        "pestphp/pest": "^3.2",
+        "pestphp/pest-plugin-type-coverage": "^3.0",
         "phpstan/phpstan": "^1.10"
     },
     "config": {
