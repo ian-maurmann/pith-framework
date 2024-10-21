@@ -31,8 +31,8 @@ class PithAbout
     public string $framework_name = 'Pith Framework';
     public string $copyright      = 'Copyright (c) 2008-2024 Ian K Maurmann';
     public string $license        = 'Mozilla Public License, v. 2.0';
-    public string $release_status = 'Alpha';
-    public string $release_name   = 'Alpha 52';
-    public string $real_version   = '0.8.9.2';
-    public string $semver_version = '0.35.2';
+    public string $release_status = 'Alpha / Beta';
+    public string $release_name   = 'FC';
+    public string $real_version   = '0.9.0.0';
+    public string $semver_version = '0.35.3';
 }
