@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f39e4ad85d4d7f604cd34111203f2307",
+    "content-hash": "038c7736f28f58f862716226bbb94a69",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -352,6 +352,50 @@
                 }
             ],
             "time": "2024-10-10T21:35:27+00:00"
+        },
+        {
+            "name": "ikm/cli",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ian-maurmann-2/ikm-cli.git",
+                "reference": "efed58c38650a841608c452c35426720fcae3fa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ian-maurmann-2/ikm-cli/zipball/efed58c38650a841608c452c35426720fcae3fa8",
+                "reference": "efed58c38650a841608c452c35426720fcae3fa8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-readline": "*",
+                "php": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IKM\\CLI\\": [
+                        "src/",
+                        "src/utilities"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Maurmann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CLI formatting tools",
+            "support": {
+                "issues": "https://github.com/ian-maurmann-2/ikm-cli/issues",
+                "source": "https://github.com/ian-maurmann-2/ikm-cli/tree/0.1.0"
+            },
+            "time": "2024-12-09T06:56:41+00:00"
         },
         {
             "name": "ikm/copyright-year-utility",
