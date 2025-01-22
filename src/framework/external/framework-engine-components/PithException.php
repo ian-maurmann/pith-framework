@@ -133,7 +133,7 @@ class PithException extends Exception
      * @param int            $code     [optional] The Exception code.
      * @param null|Throwable $previous [optional] The previous throwable used for the exception chaining.
      */
-    public function __construct($message, $code = 0, Throwable $previous = null) {
+    public function __construct($message, $code = 0, Throwable|null $previous = null) {
         // some code
 
         // make sure everything is assigned properly

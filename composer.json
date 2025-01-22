@@ -17,6 +17,7 @@
         "ext-readline": "*",
         "ext-tokenizer": "*",
         "doctrine/migrations": "^3.5",
+        "ikm/cli":"^0",
         "ikm/copyright-year-utility":"^0.1",
         "latte/latte": "^3.0",
         "lotfio/conso": "^2",
