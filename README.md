@@ -3,148 +3,89 @@
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pith/framework?logo=php&style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/ian-maurmann/pith-framework?style=for-the-badge)
 
-[Website](https://pith-framework.org/) | [TODO list](doc/todo-index.md) | [Stats](doc/stats.md)
+[Website](https://pith-framework.org/) | [Release Notes](doc/release-notes.md)
 
 ---
-
-
-# :warning: **(Not ready yet)** :warning:
-
-This is a rewrite of an old framework I was working on in 2008 to 2014. <del>I just stated the rewrite, so there isn't much here yet. This probably isn't what you're looking for right now, but check back later!</del>
-
-The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
-
-
-For right now you'll want to pick something full-featured instead:
-
-i.e: [Symfony](https://symfony.com/), [Laravel](https://laravel.com/), [Slim](https://www.slimframework.com/), [Cake](https://cakephp.org/) or [Zend](https://framework.zend.com/) / [Laminas](https://getlaminas.org/)
-
-Check back later at the end of Alpha though!
-
----
-
-# Install to your project (NOT READY YET):
-
-### :warning: **(Not ready yet)** :warning:
-
-- Open the terminal and navigate to the directory your project is in / will be in.
-- If Composer is not installed, Install Composer into the same directory, see links for [installing Composer normally](https://getcomposer.org/download/), or more options/info on Composer's [Getting Started](https://getcomposer.org/doc/00-intro.md) page.
-- If you do not have a composer.json file, create a new composer.json file in the same directory.
-- Add Pith to the required section of composer.json, i.e.
-
-```json
-{
-    "require": {
-        "pith/framework": "^0.13"
-    }
-}
-```
-
-- Run `$ php composer.phar install`
 
 ### :warning: **(Not ready yet)** :warning:
 
 ---
 
-# :warning: Install for testing:
+This framework is a work-in-progress proof-of-concept.
 
-### Install from the Repo:
+If you're looking for a framework to use for your project, please check out:
+[Symfony](https://symfony.com/),
+[Laravel](https://laravel.com/),
+[Zend / Laminas](https://getlaminas.org/),
+[Slim](https://www.slimframework.com/),
+[Cake](https://cakephp.org/),
+or [CodeIgniter](https://codeigniter.com/) instead.
 
-- Pull the Git repo into desired directory.
-- Install Composer into the same directory, see links for [installing Composer normally](https://getcomposer.org/download/), or more options/info on Composer's [Getting Started](https://getcomposer.org/doc/00-intro.md) page.
-- Run `$ php composer.phar install`.
 
-### Run:
-For the current test app:
+---
 
-- Open the terminal and navigate to the directory the project is downloaded to.
-- Navigate to example/public: i.e.
+![Pith Framework Logo](https://github.com/ian-maurmann/pith-framework/blob/master/doc/logo/logo/pith-framework-logo-2023-250p.png?raw=true)
+
+
+## Install
+
+- Open the terminal and navigate to the directory your project will be in.
+- Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
+- Require Pith Framework from Composer:
 
 ```bash
-$ cd example
-$ ls
-$ cd public
-$ ls
+php composer.phar require pith/framework
 ```
 
-- Run the test web app with the built-in PHP server: i.e. `$ php -S 127.0.0.1:8080`
-- Load `http://127.0.0.1:8080/` in your browser.
-- You can end the built-in PHP server by pressing `Control-C` on the keyboard.
 
-### Problems & solutions:
+**Nice to haves:**
 
-**Autoloading not found**
-- *Problem:* `Warning: require(vendor/autoload.php): failed to open stream: No such file or directory`
-- *What's happening:* Autoloading isn't there, Composer isn't installed correctly for the project.
-- *Fix:* Install or re-install composer to the directory, then run:  `$ php composer.phar install`
+Add a symbolic link to composer.phar
+```bash
+ln -s ./composer.phar ./composer
+```
 
 
----
+Copy the Pith Command Tool into the directory
+```
+cp vendor/pith/framework/pith .
+```
 
-## Releases
+Copy the Migration runner into the directory
+```
+cp vendor/pith/framework/mig .
+```
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ian-maurmann/pith-framework?include_prereleases&label=Latest%20Release%20%28semver%29&logo=git&style=for-the-badge)
-![GitHub commits since latest release (by date including pre-releases)](https://img.shields.io/github/commits-since/ian-maurmann/pith-framework/latest/indev?include_prereleases&logo=git&style=for-the-badge)
+Make a symbolic link to Pest inside the directory
+```bash
+ln -s ./vendor/bin/pest ./pest
+```
 
-Release status | Version | Semver | Can I use?
--------------- | ------- | ------ | ----------
-Alpha 27              | rv 0.7.1.1 | *sv 0.13.0* | Stable, but not production-ready
-Alpha 26              | rv 0.7.1.0 | *sv 0.12.0* | Stable, but not production-ready
-Alpha 25              | rv 0.7.0.2 | *sv 0.11.0* | Stable, but not production-ready
-Alpha 24              | rv 0.7.0.1 | *sv 0.10.0* | Stable, but not production-ready
-Alpha 23              | rv 0.7.0.0 | *sv 0.9.1*  | (MVP) Stable, but not production-ready
-Rewrite UF            | rv 0.6.5.0 | *sv 0.9.0*  | :warning: *Only use for testing and experimentation. Not for production*
-Rewrite Pre-Alpha 8   | rv 0.6.4.0 | *sv 0.8.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 7   | rv 0.6.3.0 | *sv 0.7.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 6   | rv 0.6.2.1 | *sv 0.6.1*  | :warning: *Not yet*
-Rewrite Pre-Alpha 5   | rv 0.6.2.0 | *sv 0.6.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 4   | rv 0.6.1.0 | *sv 0.5.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | rv 0.6.0.3 | *sv 0.4.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | rv 0.6.0.2 | *sv 0.3.0*  | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | rv 0.6.0.1 | *sv 0.2.0*  | :warning: *Not yet*
-(2nd) Initial Rewrite | rv 0.6.0.0 | *sv 0.1.0*  | :warning: *Not yet*
+Make a symbolic link to PHPStan inside the directory
+```bash
+ln -s ./vendor/bin/phpstan ./phpstan
 
-See https://pith-framework.org/versions for more info.
+ln -s ./vendor/bin/phpstan ./stan
+```
+
 
 
 ---
 
-### Release Notes:
-
-**0.7.1.1 - Alpha 27** (`semver: 0.13.0`)
-
-- Dependency Refactor.
-- General housekeeping / code-cleanups.
-
-**0.7.1.0 - Alpha 26** *(Semver: 0.12.0)*
-
-- Access Control.
-- Access Levels.
-- 'world' access level.
-- extendable Query object.
-
-
-**0.7.0.2 - Alpha 25** *(Semver: 0.11.0)*
-
-- Database Wrapper object using PDO.
-
-
-**0.7.0.1 - Alpha 24** *(Semver: 0.10.0)*
-
-- Getting started on the Database object.
-- Updated the copyright notices to include 2020.
-
-
-**0.7.0.0 - Alpha 23** *(Semver: 0.9.1)*
-
-
-This is a rewrite of an old framework I was working on in 2008 to 2014.
-
-The framework is basically at the "Minimum Viable Product" stage now. It works for very very bare-bones MCV (without users or access control right now), and does not have any useful features yet.
-
+### :warning: **(Not ready yet)** :warning:
 
 ---
+Workflow:
 
-Thanks for reading! -- Ian M.
+![Pith workflow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-workflow-diagram.png?raw=true)
+
+.
+
+(Actual flow)
+
+![Pith Framework flow diagram](https://github.com/ian-maurmann/pith-framework/blob/master/doc/images/pith-framework-flow-diagram.png?raw=true)
+
+
+
 
 ---

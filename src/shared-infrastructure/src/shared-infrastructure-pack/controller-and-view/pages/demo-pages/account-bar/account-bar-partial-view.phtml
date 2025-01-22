@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Demo Nav Links View
+ *
+ * @noinspection PhpUndefinedVariableInspection - Variables defined outside scope
+ */
+
+declare(strict_types=1);
+?>
+<?php if($is_logged_in): ?>
+    <div>
+        <?php echo $display_name; ?>
+        |
+        <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/sign-out?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
+    </div>
+<?php else: ?>
+    <div>
+        <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/new-user">New User</a>
+        |
+        <a href="<?php echo PITH_DEMO_PAGES_ROUTE_GROUP_PATH; ?>/login">Login</a>
+    </div>
+<?php endif; ?>

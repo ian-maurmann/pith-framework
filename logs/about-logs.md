@@ -1,0 +1,1 @@
+The log files will go in this folder.
