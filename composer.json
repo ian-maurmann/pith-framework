@@ -16,6 +16,7 @@
         "ext-pdo": "*",
         "ext-readline": "*",
         "ext-tokenizer": "*",
+        "amphp/amp": "^3.0",
         "doctrine/migrations": "^3.5",
         "ikm/cli":"^0",
         "ikm/copyright-year-utility":"^0.1",
