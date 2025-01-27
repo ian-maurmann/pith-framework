@@ -8,19 +8,28 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # ===================================================================
 
+
+/**
+ * Pith Asynchronizer
+ * ------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok here.
+ */
+
+
 declare(strict_types=1);
 
-
-// pith.json File Gateway
-// ----------------------
-
-namespace Pith\PithDotJson;
+namespace Pith\Framework;
 
 
-class PithDotJsonFileGateway
+/**
+ * Class PithAsynchronizer
+ * @package Pith\Framework
+ */
+class PithAsynchronizer
 {
-    function __construct()
+    public function __construct()
     {
-
+        // Do nothing for now
     }
 }
