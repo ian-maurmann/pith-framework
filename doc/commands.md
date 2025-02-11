@@ -177,3 +177,21 @@ This allows you to get the list of SSH hosts from config using:
 ```bash
 ssh-hosts
 ```
+
+To see a list of all available aliases on the system, execute the alias command, without any arguments, in the terminal:
+
+```bash
+alias
+```
+
+This should list `ssh-hosts`
+
+----
+
+2025 Edit: A bit-nicer looking list
+
+```bash
+# Aliases
+# List SSH hosts from SSH config
+alias ssh-hosts="echo \"\n─────── SSH Hosts ───────\"; ggrep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'; echo \"───── / SSH Hosts ───────\n\""
+```
