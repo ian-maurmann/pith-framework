@@ -16,6 +16,7 @@
         "ext-pdo": "*",
         "ext-readline": "*",
         "ext-tokenizer": "*",
+        "amphp/amp": "^3.0",
         "doctrine/migrations": "^3.5",
         "ikm/cli":"^0",
         "ikm/copyright-year-utility":"^0.1",
@@ -80,6 +81,10 @@
                 "src/panel/packs/panel-theme-pack/",
                 "src/panel/packs/panel-theme-pack/main-layout/",
                 "src/panel/packs/panel-theme-pack/theme-resources/"
+            ],
+            "Pith\\Framework\\Plugin\\CommandTool2\\": [
+                "src/framework/plugins/command-tool-2/src/cli/",
+                "src/framework/plugins/command-tool-2/src/utilities/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
