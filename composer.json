@@ -83,6 +83,9 @@
                 "src/panel/packs/panel-theme-pack/main-layout/",
                 "src/panel/packs/panel-theme-pack/theme-resources/"
             ],
+            "Pith\\Framework\\Plugin\\CommandTool\\": [
+                "src/plugins/command-tool/src/"
+            ],
             "Pith\\Framework\\Plugin\\CommandTool2\\": [
                 "src/plugins/command-tool-2/src/cli/",
                 "src/plugins/command-tool-2/src/utilities/"
@@ -191,9 +194,6 @@
             ],
             "Pith\\PhpmailerEmailAdapter\\": [
                 "src/framework/plugins/phpmailer-email-adapter/src/"
-            ],
-            "Pith\\CommandTool\\": [
-                "src/plugins/command-tool/src/"
             ],
             "Pith\\TaskTool\\": [
                 "src/framework/plugins/task-tool/src/"

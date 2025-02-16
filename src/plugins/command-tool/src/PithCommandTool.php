@@ -15,7 +15,7 @@ declare(strict_types=1);
 // See: https://github.com/lotfio/conso
 // -----------------------------------------
 
-namespace Pith\CommandTool;
+namespace Pith\Framework\Plugin\CommandTool;
 
 use Conso\Conso;
 use Conso\Input;
