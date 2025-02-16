@@ -193,7 +193,7 @@
                 "src/framework/plugins/phpmailer-email-adapter/src/"
             ],
             "Pith\\CommandTool\\": [
-                "src/framework/plugins/command-tool/src/"
+                "src/plugins/command-tool/src/"
             ],
             "Pith\\TaskTool\\": [
                 "src/framework/plugins/task-tool/src/"
