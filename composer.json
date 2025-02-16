@@ -84,8 +84,8 @@
                 "src/panel/packs/panel-theme-pack/theme-resources/"
             ],
             "Pith\\Framework\\Plugin\\CommandTool2\\": [
-                "src/framework/plugins/command-tool-2/src/cli/",
-                "src/framework/plugins/command-tool-2/src/utilities/"
+                "src/plugins/command-tool-2/src/cli/",
+                "src/plugins/command-tool-2/src/utilities/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
