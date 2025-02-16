@@ -51,6 +51,7 @@
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
+                "src/about/",
                 "src/framework/external/about/",
                 "src/framework/external/framework-engine-components",
                 "src/framework/external/injectable-thin-wrappers/"
