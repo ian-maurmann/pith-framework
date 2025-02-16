@@ -8,6 +8,7 @@
 
 Release status | Version | Semver |PHP Version | Date | Can I use?
 -------------- | ------- | ------ | ----------- | ---- |----------
+Alpha 53              | 0.9.0.2   | *sv 0.37.0* | 8.4 | 2025-02-14 | Has all the features that are needed, but some features are still being re-worked.
 FC 2                  | 0.9.0.1   | *sv 0.36.0* | PHP 8.4 | 2025-01-03 | Has all the features that are needed, but some features are still being re-worked.
 FC                    | 0.9.0.0   | *sv 0.35.3* | 8.3 | 2024-10-12 | Has all the features that are needed, but some features are still being re-worked.
 Alpha 52              | 0.8.9.2   | *sv 0.35.2* | 8.3 | 2024-09-28 | Usable, but reworking the feature set
@@ -89,6 +90,10 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 
 
 ### Release Notes:
+
+**0.9.0.2 - Alpha 53** `(semver: 0.37.0)`
+- Small updates. Getting started on new CLI tool.
+- Upgraded dependencies.
 
 **0.9.0.1 - FC 2** `(semver: 0.36.0)`
 - Upgraded to PHP 8.4.
