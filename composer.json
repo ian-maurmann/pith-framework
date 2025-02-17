@@ -184,7 +184,7 @@
                 "src/view-adapters/phtml-view-adapter-2/src/"
             ],
             "Pith\\LatteViewAdapter\\": [
-                "src/framework/plugins/latte-view-adapter/src/"
+                "src/view-adapters/latte-view-adapter/src/"
             ],
             "Pith\\JsonEndpointViewAdapter\\": [
                 "src/framework/plugins/json-endpoint-view-adapter/src/"
