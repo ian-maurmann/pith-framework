@@ -190,7 +190,7 @@
                 "src/view-adapters/json-endpoint-view-adapter/src/"
             ],
             "Pith\\CliViewAdapter\\": [
-                "src/framework/plugins/cli-view-adapter/src/"
+                "src/view-adapters/cli-view-adapter/src/"
             ],
             "Pith\\PhpmailerEmailAdapter\\": [
                 "src/framework/plugins/phpmailer-email-adapter/src/"
