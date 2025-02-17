@@ -181,7 +181,7 @@
                 "src/shared-infrastructure/src/common-libraries-pack/"
             ],
             "Pith\\PhtmlViewAdapter2\\": [
-                "src/framework/plugins/phtml-view-adapter-2/src/"
+                "src/view-adapters/phtml-view-adapter-2/src/"
             ],
             "Pith\\LatteViewAdapter\\": [
                 "src/framework/plugins/latte-view-adapter/src/"
