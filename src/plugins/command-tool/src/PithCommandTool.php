@@ -22,7 +22,7 @@ use Conso\Input;
 use Conso\Output;
 use DI\Container;
 use Pith\Framework\PithInfo;
-use Pith\PithDotJson\PithDotJsonService;
+use Pith\Framework\Plugin\PithDotJson\PithDotJsonService;
 
 class PithCommandTool
 {
@@ -38,7 +38,7 @@ class PithCommandTool
 
         // Add objects to this
         $this->container             = new Container();
-        $this->pith_dot_json_service = $this->container->get('\\Pith\\PithDotJson\\PithDotJsonService');
+        $this->pith_dot_json_service = $this->container->get('\\Pith\\Framework\\Plugin\\PithDotJson\\PithDotJsonService');
         $this->info                  = $this->container->get('Pith\\Framework\\PithInfo');
 
         // Set up defaults

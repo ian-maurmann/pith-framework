@@ -14,7 +14,7 @@ declare(strict_types=1);
 // pith.json Service
 // -----------------
 
-namespace Pith\PithDotJson;
+namespace Pith\Framework\Plugin\PithDotJson;
 
 
 class PithDotJsonService

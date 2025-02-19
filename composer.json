@@ -90,6 +90,9 @@
                 "src/plugins/command-tool-2/src/cli/",
                 "src/plugins/command-tool-2/src/utilities/"
             ],
+            "Pith\\Framework\\Plugin\\PithDotJson\\": [
+                "src/plugins/pith-dot-json/src/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
@@ -197,9 +200,6 @@
             ],
             "Pith\\TaskTool\\": [
                 "src/framework/plugins/task-tool/src/"
-            ],
-            "Pith\\PithDotJson\\": [
-                "src/framework/plugins/pith-dot-json/src/"
             ]
         }
     },
