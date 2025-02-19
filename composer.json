@@ -196,7 +196,7 @@
                 "src/view-adapters/cli-view-adapter/src/"
             ],
             "Pith\\PhpmailerEmailAdapter\\": [
-                "src/framework/plugins/phpmailer-email-adapter/src/"
+                "src/plugins/phpmailer-email-adapter/src/"
             ],
             "Pith\\TaskTool\\": [
                 "src/plugins/task-tool/src/"
