@@ -69,19 +69,19 @@
                 "data/migration/"
             ],
             "Pith\\Framework\\Panel\\": [
-                "src/panel/"
+                "src/plugins/panel-2/"
             ],
             "Pith\\Framework\\Panel\\Pages\\": [
-                "src/panel/packs/panel-pages-pack/",
-                "src/panel/packs/panel-pages-pack/account-bar/",
-                "src/panel/packs/panel-pages-pack/home/",
-                "src/panel/packs/panel-pages-pack/lorem-ipsum/",
-                "src/panel/packs/panel-pages-pack/tasks/"
+                "src/plugins/panel-2/packs/panel-pages-pack/",
+                "src/plugins/panel-2/packs/panel-pages-pack/account-bar/",
+                "src/plugins/panel-2/packs/panel-pages-pack/home/",
+                "src/plugins/panel-2/packs/panel-pages-pack/lorem-ipsum/",
+                "src/plugins/panel-2/packs/panel-pages-pack/tasks/"
             ],
             "Pith\\Framework\\Panel\\Theme\\": [
-                "src/panel/packs/panel-theme-pack/",
-                "src/panel/packs/panel-theme-pack/main-layout/",
-                "src/panel/packs/panel-theme-pack/theme-resources/"
+                "src/plugins/panel-2/packs/panel-theme-pack/",
+                "src/plugins/panel-2/packs/panel-theme-pack/main-layout/",
+                "src/plugins/panel-2/packs/panel-theme-pack/theme-resources/"
             ],
             "Pith\\Framework\\Plugin\\CommandTool\\": [
                 "src/plugins/command-tool/src/"
