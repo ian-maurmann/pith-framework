@@ -93,6 +93,9 @@
             "Pith\\Framework\\Plugin\\PithDotJson\\": [
                 "src/plugins/pith-dot-json/src/"
             ],
+            "Pith\\Framework\\Plugin\\GroupingUtility\\": [
+                "src/plugins/grouping-utility/src/"
+            ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/pages/default-landing/",
@@ -133,9 +136,6 @@
             "Pith\\Framework\\SharedInfrastructure\\Tasks\\Tick\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/",
                 "src/shared-infrastructure/src/shared-infrastructure-pack/controller-and-view/tasks/tick-tasks/tick/"
-            ],
-            "Pith\\Framework\\SharedInfrastructure\\Model\\Format\\": [
-                "src/shared-infrastructure/src/shared-infrastructure-pack/model/format/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\Model\\ImpressionSystem\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/model/impression-system/"
