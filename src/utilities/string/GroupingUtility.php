@@ -24,7 +24,7 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Plugin\GroupingUtility;
+namespace Pith\Framework\Utility;
 
 
 /**

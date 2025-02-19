@@ -93,8 +93,9 @@
             "Pith\\Framework\\Plugin\\PithDotJson\\": [
                 "src/plugins/pith-dot-json/src/"
             ],
-            "Pith\\Framework\\Plugin\\GroupingUtility\\": [
-                "src/plugins/grouping-utility/src/"
+            "Pith\\Framework\\Utility\\": [
+                "src/utilities/",
+                "src/utilities/string"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/shared-infrastructure/src/shared-infrastructure-pack/",

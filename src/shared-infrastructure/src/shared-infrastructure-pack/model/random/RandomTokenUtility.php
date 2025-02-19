@@ -29,7 +29,7 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Model\Random;
 
 use Exception;
-use Pith\Framework\Plugin\GroupingUtility\GroupingUtility;
+use Pith\Framework\Utility\GroupingUtility;
 
 /**
  * Class RandomTokenUtility
