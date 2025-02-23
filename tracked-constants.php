@@ -30,7 +30,7 @@ const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
 const PITH_TASK_LOG_LOCATION = 'logs/task-log/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-log/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
-const PITH_TOUCHSTONE_FOLDER_LOCATION = 'data/touchstones/';
+const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
 const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';
