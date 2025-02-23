@@ -1,4 +1,5 @@
 <?php
+
 # ===================================================================
 # Copyright (c) 2008-2025 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -18,6 +19,7 @@
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpIllegalPsrClassPathInspection      - Using PSR-4 not PSR-0.
+ * @noinspection PhpPropertyNamingConventionInspection - Properties with underscores are ok.
  */
 
 
@@ -27,7 +29,7 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Model\Random;
 
 use Exception;
-use Pith\Framework\SharedInfrastructure\Model\Format\GroupingUtility;
+use Pith\Framework\Utility\GroupingUtility;
 
 /**
  * Class RandomTokenUtility
@@ -49,8 +51,6 @@ class RandomTokenUtility
      */
     public function getRandomAntiCsrfToken(): string
     {
-        $token = '';
-
         $random_bytes = random_bytes(10);
         $random_hex   = bin2hex($random_bytes);
         $delimited    = $this->grouping_utility->hyphenDelimitGroupsOfFour($random_hex);

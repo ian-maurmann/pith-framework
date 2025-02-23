@@ -24,12 +24,11 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\SharedInfrastructure\Model\Format;
+namespace Pith\Framework\Utility;
 
 
 /**
  * Class GroupingUtility
- * @package Pith\Framework\SharedInfrastructure\Model\Random
  */
 class GroupingUtility
 {
