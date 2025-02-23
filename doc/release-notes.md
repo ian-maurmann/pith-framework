@@ -6,89 +6,88 @@
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ian-maurmann/pith-framework?include_prereleases&label=Latest%20Release%20%28semver%29&logo=git&style=for-the-badge)
 ![GitHub commits since latest release (by date including pre-releases)](https://img.shields.io/github/commits-since/ian-maurmann/pith-framework/latest/indev?include_prereleases&logo=git&style=for-the-badge)
 
-Release status | Version | Semver |PHP Version | Date | Can I use?
--------------- | ------- | ------ | ----------- | ---- |----------
-Alpha 54              | 0.9.0.3   | *sv 0.38.0* | 8.4 | 2025-02-22 | Has all the features that are needed, but some features are still being re-worked.
-Alpha 53              | 0.9.0.2   | *sv 0.37.0* | 8.4 | 2025-02-14 | Has all the features that are needed, but some features are still being re-worked.
-FC 2                  | 0.9.0.1   | *sv 0.36.0* | PHP 8.4 | 2025-01-03 | Has all the features that are needed, but some features are still being re-worked.
-FC                    | 0.9.0.0   | *sv 0.35.3* | 8.3 | 2024-10-12 | Has all the features that are needed, but some features are still being re-worked.
-Alpha 52              | 0.8.9.2   | *sv 0.35.2* | 8.3 | 2024-09-28 | Usable, but reworking the feature set
-Alpha 51              | 0.8.9.1   | *sv 0.35.1* | 8.3 | 2024-05-25 | Usable, but reworking the feature set
-Alpha 50              | 0.8.9.0   | *sv 0.35.0* | PHP 8.3 | 2024-04-09 | Usable, but reworking the feature set
-Alpha 49              | 0.8.8.3   | *sv 0.34.0* | 8.2+ | 2024-03-19 | Usable, but reworking the feature set
-Alpha 48              | 0.8.8.2   | *sv 0.33.0* | 8.2+ | 2024-03-09 | Usable, but reworking the feature set
-Alpha 47              | 0.8.8.1   | *sv 0.32.0* | 8.2+ | 2024-02-06 | Usable, but still adding new features
-Alpha 46              | 0.8.8.0   | *sv 0.31.0* | 8.2+ | 2024-01-27 | Usable, but still adding new features
-Alpha 45              | 0.8.7.0   | *sv 0.30.1* | 8.2 | 2023-11-14 | Usable, but still adding new features
-Alpha 44              | 0.8.6.2   | *sv 0.30.0* | 8.2 | 2023-08-10 | Usable, but still adding new features
-Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 8.2 | 2023-07-10 | Usable, but still adding new features
-Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 8.2 | 2023-06-30 | Usable, but still adding new features
-Alpha 41              | 0.8.5.1   | *sv 0.27.0* | PHP 8.2 | 2023-05-13 | Usable, but still adding new features
-Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 8.1+ | 2023-04-18 | Usable, but still adding new features
-Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 8.1+ | 2023-01-18 | Usable, but still adding new features
-Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 8.1+ | 2022-12-17 | Usable, but still adding new features
-Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 8.1+ | 2022-12-10 | Stable, limited features
-Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 8.1 | 2022-12-03 | Stable, limited features
-Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 8.1| 2022-11-22 | Stable, limited features
-Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 8.1 | 2022-11-01 | Stable, limited features
-Alpha 33              | 0.8.0.1   | *sv 0.19.0* | 8.1 | 2022-06-14 | Stable, limited features
-Alpha 32              | 0.8.0.0   | *sv 0.18.0* | PHP 8.1 | 2022-05-28 | Stable, limited features
-Alpha 31              | 0.7.5.0   | *sv 0.17.0* | 7.1+ | 2022-01-25 | Stable, but not production-ready
-Alpha 30              | 0.7.4.0   | *sv 0.16.0* | 7.1+ | 2021-02-16 | Stable, but not production-ready
-Alpha 29              | 0.7.3.0   | *sv 0.15.0* | 7.1+ | 2020-11-21 | Stable, but not production-ready
-Alpha 28              | 0.7.2.0   | *sv 0.14.0* | 7.1+ | 2020-07-28 | Stable, but not production-ready
-Alpha 27              | 0.7.1.1   | *sv 0.13.0* | 7.1+ | 2020-06-20 | Stable, but not production-ready
-Alpha 26              | 0.7.1.0   | *sv 0.12.0* | 7.1+ | 2020-03-10 | Stable, but not production-ready
-Alpha 25              | 0.7.0.2   | *sv 0.11.0* | 7.1+ | 2020-03-03 | Stable, but not production-ready
-Alpha 24              | 0.7.0.1   | *sv 0.10.0* | 7.1+ | 2020-02-25 | Stable, but not production-ready
-Alpha 23              | 0.7.0.0   | *sv 0.9.1*  | 7.1+ | 2020-01-28 | (MVP) Stable, but not production-ready
-Rewrite UF            | 0.6.5.0   | *sv 0.9.0*  | 7.1+ | 2019-11-20 | :warning: *Testing and experimentation.*
-Rewrite Pre-Alpha 8   | 0.6.4.0   | *sv 0.8.0*  | 7.1+ | 2019-11-05 | :warning: *Not yet*
-Rewrite Pre-Alpha 7   | 0.6.3.0   | *sv 0.7.0*  | 7.1+ | 2019-10-29 | :warning: *Not yet*
-Rewrite Pre-Alpha 6   | 0.6.2.1   | *sv 0.6.1*  | 7.1+ | 2019-09-24 | :warning: *Not yet*
-Rewrite Pre-Alpha 5   | 0.6.2.0   | *sv 0.6.0*  | 7.1+ | 2019-07-09 | :warning: *Not yet*
-Rewrite Pre-Alpha 4   | 0.6.1.0   | *sv 0.5.0*  | 7.1+ | 2019-05-27 | :warning: *Not yet*
-Rewrite Pre-Alpha 3   | 0.6.0.3   | *sv 0.4.0*  | 7.1+ | 2019-03-23 | :warning: *Not yet*
-Rewrite Pre-Alpha 2   | 0.6.0.2   | *sv 0.3.0*  | 7.1+ | 2018-11-20 | :warning: *Not yet*
-Rewrite Pre-Alpha 1   | 0.6.0.1   | *sv 0.2.0*  | 7.1+ | 2018-10-30 | :warning: *Not yet*
-(2nd) Initial Rewrite | 0.6.0.0   | *sv 0.1.0*  | PHP 7.1 | 2018-10-23 | :warning: *Not yet*
-Alpha 22              | 0.5.7.2   |             | 5.3+ | 2015-04-02 | (Old)
-Alpha 21              | 0.5.6.6   |             | 5.3+ | 2014-09-06 | (Old)
-Alpha 20              | 0.5.6.5   |             | 5.3+ | 2014-04-12 | (Old)
-Alpha 19              | 0.5.6.4   |             | 5.3+ | 2014-03-11 | (Old)
-Alpha 18              | 0.5.6.3   |             | 5.3+ | 2013-10-06 | (Old)
-Alpha 17              | 0.5.6.2   |             | 5.3+ | 2013-09-20 | (Old)
-Alpha 16              | 0.5.6.1   |             | 5.3+ | 2013-09-17 | (Old)
-Alpha 15              | 0.5.6.0   |             | 5.3+ | 2013-08-29 | (Old)
-Alpha 14              | 0.5.5.0   |             | 5.3+ | 2013-05-03 | (Old)
-Alpha 13              | 0.5.4.0   |             | 5.3+ | 2013-04-11 | (Old)
-Alpha 12              | 0.5.3.0   |             | 5.3+ | 2013-01-10 | (Old)
-Alpha 11              | 0.5.2.1   |             | 5.3+ | 2012-04-16 | (Old)
-Alpha 10              | 0.5.1.0   |             | 5.3+ | 2012-03-05 | (Old)
-Alpha 9               | 0.5.0.2   |             | 5.3 | 2012-02-22 | (Old)
-Alpha 8               | 0.5.0.1   |             | 5.3 | 2012-02-14 | (Old)
-Alpha 7               | 0.5.0.0   |             | 5.3 | 2012-02-13 | (Old)
-Alpha 6 (v2)          | 0.4.3.1v2 |             | 5.3 | 2012-02-07 | (Old)
-Alpha 6               | 0.4.3.1   |             | 5.3 | 2011-09-23 | (Old)
-Alpha 5               | 0.4.3.0   |             | 5.3 | 2011-08-01 | (Old)
-Alpha 4               | 0.4.2.0   |             | 5.3 | 2011-05-25 | (Old)
-Alpha 3               | 0.4.1.3   |             | 5.3 | 2011-03-24 | (Old)
-Alpha 2               | 0.4.1.2   |             | 5.3 | 2011-02-16 | (Old)
-Alpha 1 (v2)          | 0.4.1.1v2 |             | 5.3 | 2011-01-25 | (Old)
-Alpha 1               | 0.4.1.1   |             | 5.3 | 2011-01-17 | (Old)
-Initial Release       | 0.4.1.0   |             | 5.3 | 2010-12-29 | (Old)
-Second Pre-Alpha 2    | 0.4.0.2   |             | 5.3 | 2010-11-29 | (Old)
-Second Pre-Alpha 1    | 0.4.0.1   |             | 5.3 | 2010-06-17 | (Old)
-Initial Rewrite       | 0.4.0.0   |             | PHP 5.3 | 2010-06-08 | (Old)
-Pre-Alpha 7           | 0.3.0.7   |             | 5.1+ | 2010-02-02 | (Old)
-Pre-Alpha 6           | 0.3.0.6   |             | 5.1+ | 2009-11-02 | (Old)
-Pre-Alpha 5           | 0.3.0.3   |             | 5.1+ | 2009-07-06 | (Old)
-Pre-Alpha 4           | 0.3.0.2   |             | 5.1+ | 2009-06-18 | (Old)
-Pre-Alpha 3           | 0.3.0.0   |             | 5.1+ | 2009-06-08 | (Old)
-Pre-Alpha 2           | 0.2.1.0   |             | 5.1+ | 2009-04-27 | (Old)
-Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
-(Started)             |           |             | PHP 5.1 | 2008-11 | (Old)
-
+| Release status        | Version   | Semver      | PHP Version | Date       | Can I use?                                                                         |
+|-----------------------|-----------|-------------|-------------|------------|------------------------------------------------------------------------------------|
+| Alpha 54              | 0.9.0.3   | *sv 0.38.0* | 8.4         | 2025-02-22 | Has all the features that are needed, but some features are still being re-worked. |
+| Alpha 53              | 0.9.0.2   | *sv 0.37.0* | 8.4         | 2025-02-14 | Has all the features that are needed, but some features are still being re-worked. |
+| FC 2                  | 0.9.0.1   | *sv 0.36.0* | PHP 8.4     | 2025-01-03 | Has all the features that are needed, but some features are still being re-worked. |
+| FC                    | 0.9.0.0   | *sv 0.35.3* | 8.3         | 2024-10-12 | Has all the features that are needed, but some features are still being re-worked. |
+| Alpha 52              | 0.8.9.2   | *sv 0.35.2* | 8.3         | 2024-09-28 | Usable, but reworking the feature set                                              |
+| Alpha 51              | 0.8.9.1   | *sv 0.35.1* | 8.3         | 2024-05-25 | Usable, but reworking the feature set                                              |
+| Alpha 50              | 0.8.9.0   | *sv 0.35.0* | PHP 8.3     | 2024-04-09 | Usable, but reworking the feature set                                              |
+| Alpha 49              | 0.8.8.3   | *sv 0.34.0* | 8.2+        | 2024-03-19 | Usable, but reworking the feature set                                              |
+| Alpha 48              | 0.8.8.2   | *sv 0.33.0* | 8.2+        | 2024-03-09 | Usable, but reworking the feature set                                              |
+| Alpha 47              | 0.8.8.1   | *sv 0.32.0* | 8.2+        | 2024-02-06 | Usable, but still adding new features                                              |
+| Alpha 46              | 0.8.8.0   | *sv 0.31.0* | 8.2+        | 2024-01-27 | Usable, but still adding new features                                              |
+| Alpha 45              | 0.8.7.0   | *sv 0.30.1* | 8.2         | 2023-11-14 | Usable, but still adding new features                                              |
+| Alpha 44              | 0.8.6.2   | *sv 0.30.0* | 8.2         | 2023-08-10 | Usable, but still adding new features                                              |
+| Alpha 43              | 0.8.6.1   | *sv 0.29.0* | 8.2         | 2023-07-10 | Usable, but still adding new features                                              |
+| Alpha 42              | 0.8.6.0   | *sv 0.28.0* | 8.2         | 2023-06-30 | Usable, but still adding new features                                              |
+| Alpha 41              | 0.8.5.1   | *sv 0.27.0* | PHP 8.2     | 2023-05-13 | Usable, but still adding new features                                              |
+| Alpha 40              | 0.8.5.0   | *sv 0.26.0* | 8.1+        | 2023-04-18 | Usable, but still adding new features                                              |
+| Alpha 39              | 0.8.4.0   | *sv 0.25.0* | 8.1+        | 2023-01-18 | Usable, but still adding new features                                              |
+| Alpha 38              | 0.8.3.1   | *sv 0.24.0* | 8.1+        | 2022-12-17 | Usable, but still adding new features                                              |
+| Alpha 37              | 0.8.3.0   | *sv 0.23.0* | 8.1+        | 2022-12-10 | Stable, limited features                                                           |
+| Alpha 36              | 0.8.2.0   | *sv 0.22.0* | 8.1         | 2022-12-03 | Stable, limited features                                                           |
+| Alpha 35              | 0.8.1.1   | *sv 0.21.0* | 8.1         | 2022-11-22 | Stable, limited features                                                           |
+| Alpha 34              | 0.8.1.0   | *sv 0.20.0* | 8.1         | 2022-11-01 | Stable, limited features                                                           |
+| Alpha 33              | 0.8.0.1   | *sv 0.19.0* | 8.1         | 2022-06-14 | Stable, limited features                                                           |
+| Alpha 32              | 0.8.0.0   | *sv 0.18.0* | PHP 8.1     | 2022-05-28 | Stable, limited features                                                           |
+| Alpha 31              | 0.7.5.0   | *sv 0.17.0* | 7.1+        | 2022-01-25 | Stable, but not production-ready                                                   |
+| Alpha 30              | 0.7.4.0   | *sv 0.16.0* | 7.1+        | 2021-02-16 | Stable, but not production-ready                                                   |
+| Alpha 29              | 0.7.3.0   | *sv 0.15.0* | 7.1+        | 2020-11-21 | Stable, but not production-ready                                                   |
+| Alpha 28              | 0.7.2.0   | *sv 0.14.0* | 7.1+        | 2020-07-28 | Stable, but not production-ready                                                   |
+| Alpha 27              | 0.7.1.1   | *sv 0.13.0* | 7.1+        | 2020-06-20 | Stable, but not production-ready                                                   |
+| Alpha 26              | 0.7.1.0   | *sv 0.12.0* | 7.1+        | 2020-03-10 | Stable, but not production-ready                                                   |
+| Alpha 25              | 0.7.0.2   | *sv 0.11.0* | 7.1+        | 2020-03-03 | Stable, but not production-ready                                                   |
+| Alpha 24              | 0.7.0.1   | *sv 0.10.0* | 7.1+        | 2020-02-25 | Stable, but not production-ready                                                   |
+| Alpha 23              | 0.7.0.0   | *sv 0.9.1*  | 7.1+        | 2020-01-28 | (MVP) Stable, but not production-ready                                             |
+| Rewrite UF            | 0.6.5.0   | *sv 0.9.0*  | 7.1+        | 2019-11-20 | :warning: *Testing and experimentation.*                                           |
+| Rewrite Pre-Alpha 8   | 0.6.4.0   | *sv 0.8.0*  | 7.1+        | 2019-11-05 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 7   | 0.6.3.0   | *sv 0.7.0*  | 7.1+        | 2019-10-29 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 6   | 0.6.2.1   | *sv 0.6.1*  | 7.1+        | 2019-09-24 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 5   | 0.6.2.0   | *sv 0.6.0*  | 7.1+        | 2019-07-09 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 4   | 0.6.1.0   | *sv 0.5.0*  | 7.1+        | 2019-05-27 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 3   | 0.6.0.3   | *sv 0.4.0*  | 7.1+        | 2019-03-23 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 2   | 0.6.0.2   | *sv 0.3.0*  | 7.1+        | 2018-11-20 | :warning: *Not yet*                                                                |
+| Rewrite Pre-Alpha 1   | 0.6.0.1   | *sv 0.2.0*  | 7.1+        | 2018-10-30 | :warning: *Not yet*                                                                |
+| (2nd) Initial Rewrite | 0.6.0.0   | *sv 0.1.0*  | PHP 7.1     | 2018-10-23 | :warning: *Not yet*                                                                |
+| Alpha 22              | 0.5.7.2   |             | 5.3+        | 2015-04-02 | (Old)                                                                              |
+| Alpha 21              | 0.5.6.6   |             | 5.3+        | 2014-09-06 | (Old)                                                                              |
+| Alpha 20              | 0.5.6.5   |             | 5.3+        | 2014-04-12 | (Old)                                                                              |
+| Alpha 19              | 0.5.6.4   |             | 5.3+        | 2014-03-11 | (Old)                                                                              |
+| Alpha 18              | 0.5.6.3   |             | 5.3+        | 2013-10-06 | (Old)                                                                              |
+| Alpha 17              | 0.5.6.2   |             | 5.3+        | 2013-09-20 | (Old)                                                                              |
+| Alpha 16              | 0.5.6.1   |             | 5.3+        | 2013-09-17 | (Old)                                                                              |
+| Alpha 15              | 0.5.6.0   |             | 5.3+        | 2013-08-29 | (Old)                                                                              |
+| Alpha 14              | 0.5.5.0   |             | 5.3+        | 2013-05-03 | (Old)                                                                              |
+| Alpha 13              | 0.5.4.0   |             | 5.3+        | 2013-04-11 | (Old)                                                                              |
+| Alpha 12              | 0.5.3.0   |             | 5.3+        | 2013-01-10 | (Old)                                                                              |
+| Alpha 11              | 0.5.2.1   |             | 5.3+        | 2012-04-16 | (Old)                                                                              |
+| Alpha 10              | 0.5.1.0   |             | 5.3+        | 2012-03-05 | (Old)                                                                              |
+| Alpha 9               | 0.5.0.2   |             | 5.3         | 2012-02-22 | (Old)                                                                              |
+| Alpha 8               | 0.5.0.1   |             | 5.3         | 2012-02-14 | (Old)                                                                              |
+| Alpha 7               | 0.5.0.0   |             | 5.3         | 2012-02-13 | (Old)                                                                              |
+| Alpha 6 (v2)          | 0.4.3.1v2 |             | 5.3         | 2012-02-07 | (Old)                                                                              |
+| Alpha 6               | 0.4.3.1   |             | 5.3         | 2011-09-23 | (Old)                                                                              |
+| Alpha 5               | 0.4.3.0   |             | 5.3         | 2011-08-01 | (Old)                                                                              |
+| Alpha 4               | 0.4.2.0   |             | 5.3         | 2011-05-25 | (Old)                                                                              |
+| Alpha 3               | 0.4.1.3   |             | 5.3         | 2011-03-24 | (Old)                                                                              |
+| Alpha 2               | 0.4.1.2   |             | 5.3         | 2011-02-16 | (Old)                                                                              |
+| Alpha 1 (v2)          | 0.4.1.1v2 |             | 5.3         | 2011-01-25 | (Old)                                                                              |
+| Alpha 1               | 0.4.1.1   |             | 5.3         | 2011-01-17 | (Old)                                                                              |
+| Initial Release       | 0.4.1.0   |             | 5.3         | 2010-12-29 | (Old)                                                                              |
+| Second Pre-Alpha 2    | 0.4.0.2   |             | 5.3         | 2010-11-29 | (Old)                                                                              |
+| Second Pre-Alpha 1    | 0.4.0.1   |             | 5.3         | 2010-06-17 | (Old)                                                                              |
+| Initial Rewrite       | 0.4.0.0   |             | PHP 5.3     | 2010-06-08 | (Old)                                                                              |
+| Pre-Alpha 7           | 0.3.0.7   |             | 5.1+        | 2010-02-02 | (Old)                                                                              |
+| Pre-Alpha 6           | 0.3.0.6   |             | 5.1+        | 2009-11-02 | (Old)                                                                              |
+| Pre-Alpha 5           | 0.3.0.3   |             | 5.1+        | 2009-07-06 | (Old)                                                                              |
+| Pre-Alpha 4           | 0.3.0.2   |             | 5.1+        | 2009-06-18 | (Old)                                                                              |
+| Pre-Alpha 3           | 0.3.0.0   |             | 5.1+        | 2009-06-08 | (Old)                                                                              |
+| Pre-Alpha 2           | 0.2.1.0   |             | 5.1+        | 2009-04-27 | (Old)                                                                              |
+| Pre-Alpha 1           | 0.1.0.0   |             | 5.1+        | 2009-03-16 | (Old)                                                                              |
+| (Started)             |           |             | PHP 5.1     | 2008-11    | (Old)                                                                              |
 
 ### Release Notes:
 
@@ -161,7 +160,7 @@ Pre-Alpha 1           | 0.1.0.0   |             | 5.1+ | 2009-03-16 | (Old)
 **0.8.6.0 - Alpha 42** `(semver: v0.28.0)`
 - Now able to use Latte as a template engine for views, via the new Latte View Adaptor for making it work with Pith.
 - Added environment info pages to display server/setup info.
-- Added resource pre-loading.
+- Added resource preloading.
 - Added new folder to start putting font stylesheets for fonts; currently IBM Plex Sans and JetBrains Mono NL.
 - Was finally able to get the long-planned "route-spacing" to work; used FastRoute's route-groups with constants.
 - Added a new default landing page for the Shared Infrastructure pages.
