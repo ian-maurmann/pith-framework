@@ -3,5 +3,5 @@
 
 require 'vendor/autoload.php';
 
-$cli = new Pith\CommandTool\PithCommandTool();
+$cli = new Pith\Framework\Plugin\CommandTool\PithCommandTool();
 $cli->start();

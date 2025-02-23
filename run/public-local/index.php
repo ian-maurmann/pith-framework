@@ -12,6 +12,18 @@
 // Turn on strict types
 declare(strict_types=1);
 
+// Switch to App folder
+chdir('../../'); // <---- 1) Switch to whatever folder you want to run the App from.
+
+require 'front-controller.php'; // Run the App front controller
+
+// Get pith
+global $pith;
+
+// Start
+$pith->engine->start();
+
+/*
 
 use Pith\Framework\PithException;
 
@@ -108,4 +120,6 @@ if($pith) {
 }
 
 // ========================================================================================
+
+*/
 

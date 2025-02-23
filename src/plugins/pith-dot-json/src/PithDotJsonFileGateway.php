@@ -14,7 +14,7 @@ declare(strict_types=1);
 // pith.json File Gateway
 // ----------------------
 
-namespace Pith\PithDotJson;
+namespace Pith\Framework\Plugin\PithDotJson;
 
 
 class PithDotJsonFileGateway
