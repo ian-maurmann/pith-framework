@@ -66,7 +66,7 @@
                 "src/framework/internal/workflow-elements/"
             ],
             "Pith\\Framework\\Migration\\": [
-                "data/migration/"
+                "migrations/"
             ],
             "Pith\\Framework\\Panel\\": [
                 "src/plugins/panel-2/"
