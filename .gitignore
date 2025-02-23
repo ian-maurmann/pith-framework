@@ -45,8 +45,13 @@ php_errors.log
 
 # Ignore template cache
 # ---------------------
+# old:
 /data/latte-cache/*.php
 /data/latte-cache/*.php.lock
+
+# new:
+/cache/latte-cache/*.php
+/cache/latte-cache/*.php.lock
 
 # Ignore touchstone files
 # --------------------

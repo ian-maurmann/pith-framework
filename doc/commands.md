@@ -186,7 +186,6 @@ alias
 
 This should list `ssh-hosts`
 
-----
 
 2025 Edit: A bit-nicer looking list
 
@@ -194,4 +193,14 @@ This should list `ssh-hosts`
 # Aliases
 # List SSH hosts from SSH config
 alias ssh-hosts="echo \"\n─────── SSH Hosts ───────\"; ggrep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'; echo \"───── / SSH Hosts ───────\n\""
+```
+
+
+---
+
+### serve.php
+
+You can run serve.php from the PHP builtin server
+```bash
+php -S 127.0.0.1:8080 serve.php
 ```
