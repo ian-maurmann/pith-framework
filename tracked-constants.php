@@ -30,7 +30,6 @@ const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
 const PITH_TASK_LOG_LOCATION = 'logs/task-log/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-log/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
-const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
 const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';
@@ -48,7 +47,9 @@ const TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksR
 
 const PITH_APP_TASK_WORKSPACES_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TaskWorkspacesList';
 
+// Cache paths
 const PITH_LATTE_CACHE_PATH = './cache/latte-cache/';
+const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 
 // Migration Paths,
 // The first namespace is the default when generating new migrations
