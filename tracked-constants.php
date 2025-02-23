@@ -48,7 +48,7 @@ const TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksR
 
 const PITH_APP_TASK_WORKSPACES_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TaskWorkspacesList';
 
-const PITH_LATTE_CACHE_PATH = './data/latte-cache';
+const PITH_LATTE_CACHE_PATH = './cache/latte-cache/';
 
 // Migration Paths,
 // The first namespace is the default when generating new migrations
