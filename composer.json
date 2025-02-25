@@ -93,9 +93,15 @@
             "Pith\\Framework\\Plugin\\PithDotJson\\": [
                 "src/plugins/pith-dot-json/src/"
             ],
+            "Pith\\Framework\\Plugin\\LoginForm\\": [
+                "src/plugins/login-form/src/",
+                "src/plugins/login-form/src/login-form-pack/",
+                "src/plugins/login-form/src/login-form-pack/login-form",
+                "src/plugins/login-form/src/login-form-pack/login-form-resources"
+            ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
-                "src/utilities/string"
+                "src/utilities/string/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/",
@@ -109,6 +115,7 @@
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/home/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/latte/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/login/",
+                "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/login-2/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/logout/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
