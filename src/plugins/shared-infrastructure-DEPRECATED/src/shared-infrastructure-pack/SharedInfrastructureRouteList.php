@@ -35,6 +35,7 @@ class SharedInfrastructureRouteList extends PithRouteList
         ['route',       ['GET', 'POST'], '/error-405',                                                '\\Pith\\Framework\\SharedInfrastructure\\Error405Route'],
         ['route',       'GET',           '/favicon.ico',                                              '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       'GET',           '/resources/framework/plugin/login-form/{filepath:.+}',      '\\Pith\\Framework\\Plugin\\LoginForm\\PithLoginFormResourceRoute'],
+        ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}',    '\Pith\Framework\Plugin\SignUpForm\PithSignUpFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',              '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}',          '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],

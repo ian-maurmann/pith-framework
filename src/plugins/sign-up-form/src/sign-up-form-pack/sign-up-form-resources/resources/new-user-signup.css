@@ -1,0 +1,245 @@
+/*
+    New User Signup stylesheet
+    ==========================
+*/
+
+
+/*noinspection CssRedundantUnit*/
+@media all {
+    [data-section="shared-ui-new-user-signup-form"] {
+        display: block;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+        min-height: 500px;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="center-glide"]{
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="left-glide"]{
+        display: block;
+        text-align: left;
+        position: relative;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="right-glide"]{
+        display: block;
+        text-align: right;
+        position: relative;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="form"]{
+        display: inline-block;
+        text-align: center;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"]{
+        display: block;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-slide-down"]{
+        display: none;
+        opacity: 0;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] label{
+        display: block;
+        text-align: left;
+        margin-top: 1.5rem;
+        margin-bottom: 0rem;
+
+        user-select: none;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] input{
+        display: block;
+        width:   15rem;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+
+        font-family:'IBM Plex Sans',Frutiger,'Segoe UI','Frutiger Linotype','Dejavu Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-type="field-icon"]{
+        position: absolute;
+        padding-top: 0.5em;
+        left: 0.5em;
+        user-select: none;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-type="field-icon-right"]{
+        position: absolute;
+        padding-top: 0.5em;
+        right: 0.5em;
+        user-select: none;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-type="field-icon-after"]{
+        position: absolute;
+        padding-top: 0.5em;
+        right: -1.5em;
+        user-select: none;
+    }
+
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]{
+        user-select: none;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-role="password-eye"]:hover{
+        color: #096dd9; /* Ant Blue 7 */
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field"] [data-section-item-type="field-callout-roller"]{
+        position: absolute;
+        right: -2em;
+    }
+
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="signup-submit-button-div"]{
+        display: inline-block;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+
+        background-color: #0050b3; /* Ant Blue 8 */
+        color: #ffffff;
+
+        border-radius: 9px;
+        padding: 0.7em 3em;
+        width: 8rem;
+
+        cursor: pointer;
+        user-select: none;
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        text-align: center;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="signup-submit-button-div"]:hover{
+        background-color: #096dd9; /* Ant Blue 7 */
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]{
+        display: inline-block;
+        margin-top: 1ex;
+        margin-bottom: 3ex;
+
+        background-color: #0050b3; /* Ant Blue 8 */
+        color: #ffffff;
+
+        border-radius: 9px;
+        padding: 1ex 1em;
+        width: 8rem;
+
+        cursor: pointer;
+        user-select: none;
+        transition-property: all;
+        transition-duration: 0.4s;
+
+        text-align: center;
+        font-size: 10pt;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="check-username-availability-button-div"]:hover{
+        background-color: #096dd9; /* Ant Blue 7 */
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="peg"]{
+        position:absolute;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="username-availability-text"]{
+        font-size: 10pt;
+        margin-top: 1ex;
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-checking-availability"]{
+        color: #64748b; /* TW Slate 500 */
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-unavailable"],
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-incorrect-format"],
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-name-reserved"]{
+        color: #ef4444; /* TW Red 500 */
+    }
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="username-availability-text-username-available"]{
+        color: #22c55e; /* TW Green 500 */
+    }
+
+
+    /* ============================== */
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"]{
+        position: absolute;
+        display: inline-block;
+        width: 11em;
+        background-color: #ffffff;
+        border: 1px solid #a8a29e; /* TW Stone 400 */
+        text-align: left;
+        padding: 1ex 1em 1ex 1.5em;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="callout-content"]{
+        font-size: 9pt;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="callout-content"] ul {
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="callout-allowed-chars-list"]{
+        font-size: 8pt;
+        color: #757575; /* MD Gray 600 */
+        word-wrap: break-word;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="field-callout-gutter"]{
+        position: absolute;
+        background-color: #0050b3; /* Ant Blue 8 */
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 1em;
+        color: #ffffff;
+
+        transition-property: all;
+        transition-duration: 0.4s;
+    }
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item-type="field-callout"] [data-section-item-type="field-callout-gutter"] i{
+        position: relative;
+        top: 0.5em;
+    }
+
+
+    [data-section="shared-ui-new-user-signup-form"] [data-section-item="section-loading"]{
+
+    }
+
+    /* ============================================ */
+
+    [data-is-opaque="yes"]{
+        opacity: 1 !important;
+    }
+
+    [data-is-opaque="no"]{
+        opacity: 0 !important;
+    }
+
+    [data-show="no"]{
+        display: none !important;
+    }
+}

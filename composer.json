@@ -99,6 +99,12 @@
                 "src/plugins/login-form/src/login-form-pack/login-form",
                 "src/plugins/login-form/src/login-form-pack/login-form-resources"
             ],
+            "Pith\\Framework\\Plugin\\SignUpForm\\": [
+                "src/plugins/sign-up-form/src/",
+                "src/plugins/sign-up-form/src/sign-up-form-pack/",
+                "src/plugins/sign-up-form/src/sign-up-form-pack/new-user-sign-up-form",
+                "src/plugins/sign-up-form/src/sign-up-form-pack/sign-up-form-resources"
+            ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
                 "src/utilities/string/"
@@ -119,6 +125,7 @@
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/logout/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
+                "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user-2/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/quotes/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/email/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/error-pages/"
