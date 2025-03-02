@@ -101,10 +101,18 @@ If MariaDB isn't running yet, start it with:
 mysql.server start
 ```
 
+To look at the SQL mode:
+
+```
+mysql
+
+MariaDB [(none)]> SELECT @@sql_mode;
+```
+
 
 ----
 
-## SSH Setup
+# SSH Commands
 
 To connect to a remote webserver on the command line use SSH.
 
@@ -197,6 +205,8 @@ alias ssh-hosts="echo \"\n─────── SSH Hosts ───────\
 
 
 ---
+
+# Serve Commands
 
 ### serve.php
 
