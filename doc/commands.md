@@ -1,7 +1,7 @@
 # Quick Command List
 
 Get the PHP version
-```bash
+```
 php -v
 ```
 
@@ -10,27 +10,27 @@ php -v
 ### Composer
 
 Run composer
-```bash
+```
 php composer
 ```
 
 Show list of installed packages
-```bash
+```
 php composer show
 ```
 
 Show list of outdated packages you have installed
-```bash
+```
 php composer outdated
 ```
 
 Run Composer install - Installs the packages listed in composer.json
-```bash
+```
 php composer install
 ```
 
 Run Composer update - Updates packages listed in composer.json to new versions
-```bash
+```
 php composer update
 ```
 
@@ -38,20 +38,20 @@ php composer update
 ### Pith
 
 Run the Pith Command Tool (Doesn't do anything yrt)
-```bash
+```
 php pith
 ```
 
 ### Mig
 
 Run Doctrine Migrations
-```bash
+```
 php mig
 ```
 
 
 Show list of migrations
-```bash
+```
 php mig migrations:list
 ```
 
@@ -61,24 +61,24 @@ php mig migrations:list
 ### Pest
 
 Run unit tests
-```bash
+```
 php pest
 ```
 
 Get code coverage
-```bash
+```
 php pest --coverage
 ```
 ### PhpStan
 
 
 Analyse
-```bash
+```
 php stan analyse src
 ````
 
 Analyse with level
-```bash
+```
 php stan analyse --level 0 src
 ````
 
@@ -97,7 +97,7 @@ https://mariadb.com/kb/en/installing-mariadb-on-macos-using-homebrew/
 
 If MariaDB isn't running yet, start it with:
 
-```bash
+```
 mysql.server start
 ```
 
@@ -117,7 +117,7 @@ MariaDB [(none)]> SELECT @@sql_mode;
 To connect to a remote webserver on the command line use SSH.
 
 Example SSH using an SSH user login:
-```bash
+```
 ssh username@example.com
 ```
 
@@ -141,7 +141,7 @@ Host example-prod
 
 This allows you to log in like:
 
-```bash
+```
 ssh example-stage
 ```
 
@@ -153,7 +153,7 @@ Also, it can be helpful to have a custom command to list the SSH host profiles t
 A usable good example is this alias written by James Ridgway here: https://www.jamesridgway.co.uk/list-ssh-hosts-from-your-ssh-config/
 
 On Linux:
-```bash
+```
 # Aliases
 
 # List SSH hosts from SSH config
@@ -165,12 +165,12 @@ On Mac:
 On newer versions of Mac you'll get an error message about  `grep: invalid option -- P` with this. The workaround is to install the GNU version of `grep` from homebrew, which (as of 2024) installs as `ggrep`, leaving the Mac version of `grep` under the normal name. 
 
 
-```bash
+```
 brew install grep
 ```
 
 Add to the `~/.zshrc` file:
-```bash
+```
 # Aliases
 
 # List SSH hosts from SSH config
@@ -182,13 +182,13 @@ alias ssh-hosts="ggrep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'
 
 This allows you to get the list of SSH hosts from config using:
 
-```bash
+```
 ssh-hosts
 ```
 
 To see a list of all available aliases on the system, execute the alias command, without any arguments, in the terminal:
 
-```bash
+```
 alias
 ```
 
@@ -197,7 +197,7 @@ This should list `ssh-hosts`
 
 2025 Edit: A bit-nicer looking list
 
-```bash
+```
 # Aliases
 # List SSH hosts from SSH config
 alias ssh-hosts="echo \"\n─────── SSH Hosts ───────\"; ggrep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'; echo \"───── / SSH Hosts ───────\n\""
@@ -211,6 +211,6 @@ alias ssh-hosts="echo \"\n─────── SSH Hosts ───────\
 ### serve.php
 
 You can run serve.php from the PHP builtin server
-```bash
+```
 php -S 127.0.0.1:8080 serve.php
 ```
