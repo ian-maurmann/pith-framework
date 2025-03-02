@@ -214,3 +214,94 @@ You can run serve.php from the PHP builtin server
 ```
 php -S 127.0.0.1:8080 serve.php
 ```
+
+
+---
+
+# (Project setup Maybe)
+
+On a new sever instance, below the web root, create a folder for repositories:
+
+``` 
+mkdir repositories
+
+ls
+```
+
+In the repositories folder, create a project folder
+
+```
+ls
+
+cd repositories
+
+ls
+
+mkdir pith-project-test
+
+ls
+```
+
+Install composer in the new project's folder.
+
+Follow the direction at https://getcomposer.org/download/ - For example it should look something like:
+
+``` 
+ls
+
+cd pith-project-test
+
+ls
+
+php -v
+
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+ls
+
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+
+php composer-setup.php
+
+ls
+
+php -r "unlink('composer-setup.php');"
+
+ls
+```
+
+Add a symbolic link to composer.phar
+
+```
+ln -s ./composer.phar ./composer
+
+ls
+```
+
+Install pith framework
+
+``` 
+ls
+
+php -v
+
+php composer
+
+php composer require pith/framework
+```
+
+Copy the Pith Command Tool into the directory
+```
+cp vendor/pith/framework/pith .
+```
+
+Copy the Migration runner into the directory
+```
+cp vendor/pith/framework/mig .
+```
+
+(Add env.php)
+
+(Add tracked-constants.php)
+
+(Add front controller)
