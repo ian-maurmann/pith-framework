@@ -305,3 +305,10 @@ cp vendor/pith/framework/mig .
 (Add tracked-constants.php)
 
 (Add front controller)
+
+---
+
+For email:
+- Add SPF.
+- Add DKIM
+- Add PTR
