@@ -107,7 +107,7 @@
             ],
             "Pith\\Framework\\Plugin\\UserSystem3\\": [
                 "src/plugins/user-system-3/src/user-system-3-pack/",
-                "src/plugins/user-system-3/src/user-system-3-pack/model/user-system/"
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system/"
             ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack",
