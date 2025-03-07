@@ -25,257 +25,88 @@
 
 declare(strict_types=1);
 
+
 namespace Pith\Framework\Plugin\UserSystem3;
 
 use Exception;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
-use Pith\Framework\Utility\RandomCharUtility;
+use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
 
 /**
  * Class UserService
- * @package Pith\Framework\Plugin\UserSystem3
  */
 class UserService
 {
-    private AccessLevelGateway      $access_level_gateway;
-    private PithDatabaseWrapper     $database;
-    private LoginCredentialGateway  $login_credential_gateway;
-    private PasswordGateway         $password_gateway;
-    private PasswordUtility         $password_utility;
-    private RandomCharUtility       $random_char_utility;
-    private UserAccountInfoGateway  $user_account_info_gateway;
+    private AccessLevelGateway       $access_level_gateway;
+    private PithDatabaseWrapper      $database;
+    private LoginCredentialGateway   $login_credential_gateway;
+    private PasswordGateway          $password_gateway;
+    private PasswordUtility          $password_utility;
+    private RandomCharUtility        $random_char_utility;
+    private UserAccountInfoGateway   $user_account_info_gateway;
     private UserCreationQueueGateway $user_creation_queue_gateway;
-    private UserEmailAddressGateway $user_email_address_gateway;
-    private UserGateway             $user_gateway;
-    private UsernameGateway         $username_gateway;
-    private UsernameNormalizer      $username_normalizer;
+    private UserEmailAddressGateway  $user_email_address_gateway;
+    private UserGateway              $user_gateway;
+    private UsernameGateway          $username_gateway;
+    private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(
-        AccessLevelGateway $access_level_gateway,
-        PithDatabaseWrapper $database,
-        LoginCredentialGateway $login_credential_gateway,
-        PasswordGateway $password_gateway,
-        PasswordUtility $password_utility,
-        RandomCharUtility $random_char_utility,
-        UserAccountInfoGateway $user_account_info_gateway,
-        UserCreationQueueGateway $user_creation_queue_gateway,
-        UserEmailAddressGateway $user_email_address_gateway,
-        UserGateway $user_gateway,
-        UsernameGateway $username_gateway,
-        UsernameNormalizer $username_normalizer
-    ) {
-        $this->access_level_gateway       = $access_level_gateway;
-        $this->database                   = $database;
-        $this->login_credential_gateway   = $login_credential_gateway;
-        $this->password_gateway          = $password_gateway;
-        $this->password_utility          = $password_utility;
-        $this->random_char_utility       = $random_char_utility;
-        $this->user_account_info_gateway = $user_account_info_gateway;
+    public function __construct(AccessLevelGateway $access_level_gateway, PithDatabaseWrapper $database, LoginCredentialGateway $login_credential_gateway, PasswordGateway $password_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccountInfoGateway $user_account_info_gateway, UserCreationQueueGateway $user_creation_queue_gateway, UserEmailAddressGateway $user_email_address_gateway, UserGateway $user_gateway, UsernameGateway $username_gateway, UsernameNormalizer $username_normalizer)
+    {
+        // Set object dependencies:
+        $this->access_level_gateway        = $access_level_gateway;
+        $this->database                    = $database;
+        $this->login_credential_gateway    = $login_credential_gateway;
+        $this->password_gateway            = $password_gateway;
+        $this->password_utility            = $password_utility;
+        $this->random_char_utility         = $random_char_utility;
+        $this->user_account_info_gateway   = $user_account_info_gateway;
         $this->user_creation_queue_gateway = $user_creation_queue_gateway;
-        $this->user_email_address_gateway = $user_email_address_gateway;
-        $this->user_gateway              = $user_gateway;
-        $this->username_gateway          = $username_gateway;
-        $this->username_normalizer       = $username_normalizer;
+        $this->user_email_address_gateway  = $user_email_address_gateway;
+        $this->user_gateway                = $user_gateway;
+        $this->username_gateway            = $username_gateway;
+        $this->username_normalizer         = $username_normalizer;
     }
 
     /**
-     * @param string $username
-     * @param string $email_address
-     * @param string $date_of_birth
-     * @param string $password
-     * @return array
-     * @throws Exception
-     */
-    public function createNewUser(string $username, string $email_address, string $date_of_birth, string $password): array
-    {
-        // Default to failure
-        $success = false;
-        $user_id = 0;
-
-        // Get username info
-        $username_info = $this->username_normalizer->getNameInfo($username);
-        if (!$username_info['name_is_valid']) {
-            throw new Exception('Invalid username: ' . $username_info['error_message']);
-        }
-
-        // Get normalized username
-        $username_normalized = $username_info['normalized_name'];
-        $username_lower = $username_info['name_lower'];
-
-        // Check if username is available
-        $username_results = $this->username_gateway->findUsernameResults($username_normalized, $username_lower);
-        if (count($username_results) > 0) {
-            throw new Exception('Username is not available');
-        }
-
-        // Get password hash
-        $password_hash = $this->password_utility->getPasswordHash($password);
-
-        // Start transaction
-        $this->database->pdo->beginTransaction();
-
-        try {
-            // Queue the user for creation
-            $queue_id = $this->user_creation_queue_gateway->queueUserForCreation(
-                $username_normalized,
-                $username_lower,
-                $email_address,
-                $date_of_birth,
-                $password_hash
-            );
-
-            // Create check char
-            $check_char = $this->random_char_utility->getRandomChar();
-
-            // Create user
-            $user_id = $this->user_gateway->createUser($check_char, $username_lower, $email_address);
-
-            // Flag user was created
-            $this->user_creation_queue_gateway->flagUserWasCreated($queue_id, $user_id);
-
-            // Create username
-            $username_id = $this->username_gateway->createUsername($user_id, $username_normalized, $username_lower);
-
-            // Flag username was created
-            $this->user_creation_queue_gateway->flagUsernameWasCreated($queue_id, $username_id);
-
-            // Add email address
-            $email_address_id = $this->user_email_address_gateway->addUserEmailAddress($user_id, $email_address);
-
-            // Flag email address was added
-            $this->user_creation_queue_gateway->flagUserEmailAddressWasAdded($queue_id, $email_address_id);
-
-            // Create password
-            $password_id = $this->password_gateway->createPassword($user_id, $password_hash);
-
-            // Flag password was created
-            $this->user_creation_queue_gateway->flagPasswordWasCreated($queue_id, $password_id);
-
-            // Create login credential
-            $login_credential_id = $this->login_credential_gateway->createLoginCredentialWithUsernameAndPassword(
-                $user_id,
-                $username_id,
-                $password_id
-            );
-
-            // Flag login credential was created
-            $this->user_creation_queue_gateway->flagLoginCredentialWasCreated($queue_id, $login_credential_id);
-
-            // Create user account info
-            $this->user_account_info_gateway->createUserAccountInfo($user_id, $date_of_birth);
-
-            // Commit transaction
-            $this->database->pdo->commit();
-
-            // Set success
-            $success = true;
-
-        } catch (Exception $e) {
-            // Rollback transaction
-            $this->database->pdo->rollBack();
-            throw $e;
-        }
-
-        // Return result
-        return [
-            'success' => $success,
-            'user_id' => $user_id,
-        ];
-    }
-
-    /**
-     * @param string $username_or_email
-     * @param string $password
-     * @return array
-     * @throws PithException
-     */
-    public function attemptLogin(string $username_or_email, string $password): array
-    {
-        // Default to failure
-        $success = false;
-        $user_id = 0;
-
-        // Get username lower
-        $username_lower = $this->username_normalizer->getUsernameLower($username_or_email);
-
-        // Try to get user id by username
-        $user_id = $this->username_gateway->findUserIdByUsernameLower($username_lower);
-
-        // If found user by username
-        if ($user_id > 0) {
-            // Get newest login credential
-            $login_credential = $this->login_credential_gateway->getNewestLoginCredentialRowForUserByUserId($user_id);
-
-            // If found login credential
-            if (!empty($login_credential)) {
-                // Get password hash
-                $password_hash = $login_credential['password_hash'];
-
-                // Verify password
-                $password_verified = password_verify($password, $password_hash);
-
-                // If password verified
-                if ($password_verified) {
-                    $success = true;
-                }
-            }
-        }
-
-        // Return result
-        return [
-            'success' => $success,
-            'user_id' => $user_id,
-        ];
-    }
-
-    /**
-     * @param int $user_id
+     * @param $given_name
      * @return array
      */
-    public function getUserAccessLevels(int $user_id): array
+    public function getUsernameAvailability($given_name): array
     {
-        return $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
-    }
-
-    /**
-     * Get access levels above user
-     * 
-     * @param int $user_id
-     * @return array
-     */
-    public function getUserAccessLevelsAboveUser(int $user_id): array
-    {
-        return $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
-    }
-
-    /**
-     * @param string $given_name
-     * @return array
-     */
-    public function getUsernameAvailability(string $given_name): array
-    {
-        // Default to unavailable
         $is_available = false;
-        $name_info = $this->username_normalizer->getNameInfo($given_name);
+        $name_info    = $this->username_normalizer->getNameInfo($given_name);
+        $is_allowed   = $name_info['is_allowed'] === 'yes';
+        $fail_reason  = $name_info['fail_reason'];
 
-        if ($name_info['name_is_valid']) {
-            $name = $name_info['normalized_name'];
-            $name_lower = $name_info['name_lower'];
-
-            try {
-                $name_results = $this->username_gateway->findUsernameResults($name, $name_lower);
-                $is_available = count($name_results) === 0;
-            } catch (PithException $e) {
+        if($is_allowed){
+            $name             = $name_info['name_normalized'];
+            $name_lower       = $name_info['name_normalized_lower'];
+            try{
+                $name_results     = $this->username_gateway->findUsernameResults($name, $name_lower);
+                $has_name_results = count($name_results) > 0;
+                $fail_reason      = $has_name_results ? 'username-unavailable' : $fail_reason;
+                $is_available     = !$has_name_results;
+            } catch (PithException $pith_exception){
                 $is_available = false;
+                $fail_reason  = 'database-query-exception';
             }
+
         }
 
-        return [
-            'name_is_valid' => $name_info['name_is_valid'],
-            'error_message' => $name_info['error_message'],
-            'is_available' => $is_available,
+        // Build return
+        $r = [
+            'is_too_long'           => $name_info['is_too_long'],
+            'name_normalized'       => $name_info['name_normalized'],
+            'name_normalized_lower' => $name_info['name_normalized_lower'],
+            'is_reserved'           => $name_info['is_reserved'],
+            'problem_char_index'    => $name_info['problem_char_index'],
+            'is_allowed'            => $name_info['is_allowed'],
+            'is_available'          => $is_available ? 'yes' : 'no',
+            'fail_reason'           => $fail_reason,
         ];
+
+        return $r;
     }
 
     /**
@@ -284,112 +115,173 @@ class UserService
      */
     public function spotcheckNewUserEmailAddress(string $given_email_address): array
     {
-        $is_ok = true;
-        $error_message = '';
+        $is_ok       = true;
+        $fail_reason = '';
 
-        try {
-            if (empty($given_email_address)) {
-                throw new Exception('Email address is empty');
+        // Continue on success, Stop on failure
+        try{
+            if(empty($given_email_address)){
+                throw new Exception('email-address-is-empty');
             }
 
             $email_address_char_length = mb_strlen($given_email_address);
-            $at_sign_position = mb_strpos($given_email_address, '@');
+            $at_sign_position          = mb_strpos($given_email_address, '@');
 
-            if ($at_sign_position === false) {
-                throw new Exception('Email address does not have @ sign');
+            $has_at_sign = $at_sign_position !== false;
+            if(!$has_at_sign){
+                throw new Exception('email-address-does-not-have-at-sign');
             }
 
-            if ($at_sign_position === 0) {
-                throw new Exception('Email address does not have name part');
+            $is_at_sign_at_start = $at_sign_position === 0;
+            if($is_at_sign_at_start){
+                throw new Exception('email-address-does-not-have-name');
             }
 
-            if (!($email_address_char_length - 3 > $at_sign_position)) {
-                throw new Exception('Email address does not have domain part');
+            $is_at_sign_too_late = !(($email_address_char_length - 3) > $at_sign_position);
+            if($is_at_sign_too_late){
+                throw new Exception('email-address-does-not-have-domain');
             }
 
-            $domain = mb_substr($given_email_address, $at_sign_position + 1);
+            $domain             = mb_substr($given_email_address,$at_sign_position + 1);
             $domain_char_length = mb_strlen($domain);
-            $dot_position = mb_strpos($domain, '.');
+            $dot_position       = mb_strpos($domain, '.');
 
-            if ($dot_position === false) {
-                throw new Exception('Email address domain does not have dot');
+            $has_dot = $dot_position !== false;
+            if(!$has_dot){
+                throw new Exception('email-address-domain-does-not-have-dot');
             }
 
-            if ($dot_position === 0) {
-                throw new Exception('Email address has dot at start of domain');
+            $is_dot_at_start = $dot_position === 0;
+            if($is_dot_at_start){
+                throw new Exception('email-address-dot-is-at-start-of-domain');
             }
 
-            if (!($domain_char_length - 1 > $dot_position)) {
-                throw new Exception('Email address has dot at end of domain');
+            $is_at_first_dot_at_end = !(($domain_char_length - 1) > $dot_position);
+            if($is_at_first_dot_at_end){
+                throw new Exception('email-address-first-dot-in-domain-is-at-the-end');
             }
-        } catch (Exception $e) {
-            $is_ok = false;
-            $error_message = $e->getMessage();
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
         }
 
-        return [
-            'is_valid' => $is_ok,
-            'error_message' => $error_message,
+        // Build the response
+        $response = [
+            // 'email_address' => $given_email_address,
+            'is_allowed'    => $is_ok ? 'yes' : 'no',
+            'fail_reason'   => $fail_reason,
         ];
+
+        return $response;
     }
 
     /**
      * @param string $given_date_of_birth
      * @return array
+     * @noinspection PhpUnusedLocalVariableInspection - Ignore for readability.
      */
     public function spotcheckNewUserDateOfBirth(string $given_date_of_birth): array
     {
-        $is_ok = true;
-        $error_message = '';
+        $is_ok             = false;
+        $fail_reason       = '';
+        $year_yyyy         = '';
+        $month_mm          = '';
+        $day_dd            = '';
+        $current_year_yyyy = date('Y');
+        $current_year_int  = (int) $current_year_yyyy;
+        $year_19_ago_int   = $current_year_int - 19;
+        $yyyy_19_years_ago = (string) $year_19_ago_int;
 
-        try {
-            if (empty($given_date_of_birth)) {
-                throw new Exception('Date of birth is empty');
+        // Continue on success, Stop on failure
+        try{
+            // Check if empty
+            if(empty($given_date_of_birth)){
+                throw new Exception('date-of-birth-is-empty');
             }
 
-            if (strlen($given_date_of_birth) !== 10) {
-                throw new Exception('Date of birth is not in YYYY-MM-DD format');
+            // Check if long enough
+            $dob_string_length = strlen($given_date_of_birth);
+            $is_dob_string_10_chars = $dob_string_length === 10;
+            if(!$is_dob_string_10_chars){
+                throw new Exception('date-of-birth-is-not-the-correct-length');
             }
 
-            $year = (int) mb_substr($given_date_of_birth, 0, 4);
-            $month = (int) mb_substr($given_date_of_birth, 5, 2);
-            $day = (int) mb_substr($given_date_of_birth, 8, 2);
+            // Get year
+            $year_yyyy = mb_substr($given_date_of_birth,0, 4);
+            $year_int  = (int) $year_yyyy;
 
-            $current_year = (int) date('Y');
-            $min_year = 1900;
-            $max_year = $current_year - 19;
+            // Get month
+            $month_mm  = mb_substr($given_date_of_birth,5, 2);
+            $month_int = (int) $month_mm;
 
-            if ($year < $min_year) {
-                throw new Exception('Birth year is too old');
+            // Get day
+            $day_dd  = mb_substr($given_date_of_birth,8, 2);
+            $day_int = (int) $day_dd;
+
+            // Get delimiters
+            $delimiter_1 = mb_substr($given_date_of_birth,4, 1);
+            $delimiter_2 = mb_substr($given_date_of_birth,7, 1);
+
+            // Check year is old enough
+            $is_year_old_enough = $year_int <= $year_19_ago_int;
+            if(!$is_year_old_enough){
+                throw new Exception('date-of-birth-year-is-not-old-enough');
             }
 
-            if ($year > $max_year) {
-                throw new Exception('Must be at least 19 years old');
+            // Check year is new enough
+            $is_year_new_enough = $year_int >= 1900;
+            if(!$is_year_new_enough){
+                throw new Exception('date-of-birth-year-is-not-new-enough');
             }
 
-            if ($month < 1 || $month > 12) {
-                throw new Exception('Invalid birth month');
+            // Check month is high enough
+            $is_month_high_enough = $month_int > 0;
+            if(!$is_month_high_enough){
+                throw new Exception('date-of-birth-month-is-too-low');
             }
 
-            if ($day < 1 || $day > 31) {
-                throw new Exception('Invalid birth day');
+            // Check month is low enough
+            $is_month_low_enough = $month_int < 13;
+            if(!$is_month_low_enough){
+                throw new Exception('date-of-birth-month-is-too-high');
             }
 
-            // Additional validation for days in month
-            $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-            if ($day > $days_in_month) {
-                throw new Exception('Invalid day for the given month and year');
+            // Check day is high enough
+            $is_day_high_enough = $day_int > 0;
+            if(!$is_day_high_enough){
+                throw new Exception('date-of-birth-day-is-too-low');
             }
 
-        } catch (Exception $e) {
-            $is_ok = false;
-            $error_message = $e->getMessage();
+            // Check day is low enough
+            $is_day_low_enough = $day_int < 32;
+            if(!$is_day_low_enough){
+                throw new Exception('date-of-birth-day-is-too-high');
+            }
+
+            $is_delimited_right = $delimiter_1 === '-' && $delimiter_2 === '-';
+            if(!$is_delimited_right){
+                throw new Exception('date-of-birth-delimiters-are-not-dashes');
+            }
+
+            $is_ok = true;
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
         }
 
-        return [
-            'is_valid' => $is_ok,
-            'error_message' => $error_message,
+        // Build the response
+        $response = [
+            // 'date_of_birth'     => $given_date_of_birth,
+            // 'yyyy'              => $year_yyyy,
+            // 'mm'                => $month_mm,
+            // 'dd'                => $day_dd,
+            // 'current_year_yyyy' => $current_year_yyyy,
+            // 'yyyy_19_years_ago' => $yyyy_19_years_ago,
+            'is_allowed'        => $is_ok ? 'yes' : 'no',
+            'fail_reason'       => $fail_reason,
         ];
+
+        return $response;
     }
 
     /**
@@ -399,41 +291,49 @@ class UserService
      */
     public function spotcheckNewUserPassword(string $raw_password_string, string $confirm_raw_password_string): array
     {
-        $is_ok = true;
-        $error_message = '';
+        $is_ok       = false;
+        $fail_reason = '';
 
-        try {
-            if (empty($raw_password_string)) {
-                throw new Exception('Password is empty');
+        // Continue on success, Stop on failure
+        try{
+            // Check if empty
+            if(empty($raw_password_string)){
+                throw new Exception('password-is-empty');
+            }
+            if(empty($confirm_raw_password_string)){
+                throw new Exception('confirm-password-is-empty');
             }
 
-            if (empty($confirm_raw_password_string)) {
-                throw new Exception('Confirmation password is empty');
+            // Check that confirm matches
+            $is_match = $raw_password_string === $confirm_raw_password_string;
+            if(!$is_match){
+                throw new Exception('confirm-password-does-not-match-password');
             }
 
-            if ($raw_password_string !== $confirm_raw_password_string) {
-                throw new Exception('Passwords do not match');
+            // Check if password is 10 chars or longer
+            $password_length  = strlen($raw_password_string);
+            $is_10_chars_plus = $password_length > 9;
+            if(!$is_10_chars_plus){
+                throw new Exception('password-is-too-short');
             }
 
-            $password_length = mb_strlen($raw_password_string);
-            if ($password_length < 8) {
-                throw new Exception('Password must be at least 8 characters long');
-            }
-
-            if ($password_length > 72) {
-                throw new Exception('Password cannot be longer than 72 characters');
-            }
-
-        } catch (Exception $e) {
-            $is_ok = false;
-            $error_message = $e->getMessage();
+            $is_ok = true;
+        }catch (Exception $e) {
+            $is_ok       = false;
+            $fail_reason = $e->getMessage();
         }
 
-        return [
-            'is_valid' => $is_ok,
-            'error_message' => $error_message,
+        // Build the response
+        $response = [
+            // 'password'         => $raw_password_string,
+            // 'confirm_password' => $confirm_raw_password_string,
+            'is_ok'            => $is_ok ? 'yes' : 'no',
+            'fail_reason'      => $fail_reason,
         ];
+
+        return $response;
     }
+
 
     /**
      * @param string $username_unsafe
@@ -443,113 +343,328 @@ class UserService
      * @param string $confirm_new_password_unsafe
      * @return array
      */
-    public function spotcheckNewUserInfo(
-        string $username_unsafe,
-        string $email_address_unsafe,
-        string $date_of_birth_unsafe,
-        string $new_password_unsafe,
-        string $confirm_new_password_unsafe
-    ): array {
-        $is_ok = true;
-        $error_message = '';
-        $error_field = '';
+    public function spotcheckNewUserInfo(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    {
+        $is_username_available    = false;
+        $is_email_address_allowed = false;
+        $is_date_of_birth_allowed = false;
+        $is_password_ok           = false;
 
-        try {
-            // Check username
-            $username_availability = $this->getUsernameAvailability($username_unsafe);
-            if (!$username_availability['name_is_valid']) {
-                throw new Exception($username_availability['error_message'], 1);
-            }
-            if (!$username_availability['is_available']) {
-                throw new Exception('Username is not available', 1);
-            }
+        $username_availability_info       = [];
+        $email_address_acceptability_info = [];
+        $date_of_birth_acceptability_info = [];
+        $password_acceptability_info      = [];
 
-            // Check email
-            $email_check = $this->spotcheckNewUserEmailAddress($email_address_unsafe);
-            if (!$email_check['is_valid']) {
-                $error_field = 'email';
-                throw new Exception($email_check['error_message'], 2);
-            }
+        $continue    = true;
+        $fail_field  = '';
+        $fail_reason = '';
 
-            // Check date of birth
-            $dob_check = $this->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
-            if (!$dob_check['is_valid']) {
-                $error_field = 'date_of_birth';
-                throw new Exception($dob_check['error_message'], 3);
-            }
+        // Username
+        $username_availability_info = $this->getUsernameAvailability($username_unsafe);
+        $is_username_available      = $username_availability_info['is_available'] === 'yes';
+        if(!$is_username_available){
+            $continue    = false;
+            $fail_field  = 'username';
+            $fail_reason = $username_availability_info['fail_reason'];
+        }
 
-            // Check password
-            $password_check = $this->spotcheckNewUserPassword($new_password_unsafe, $confirm_new_password_unsafe);
-            if (!$password_check['is_valid']) {
-                $error_field = 'password';
-                throw new Exception($password_check['error_message'], 4);
-            }
-
-        } catch (Exception $e) {
-            $is_ok = false;
-            $error_message = $e->getMessage();
-            if (empty($error_field)) {
-                $error_field = 'username';
+        // Email address
+        if($continue){
+            $email_address_acceptability_info = $this->spotcheckNewUserEmailAddress($email_address_unsafe);
+            $is_email_address_allowed         = $email_address_acceptability_info['is_allowed'] === 'yes';
+            if(!$is_email_address_allowed){
+                $continue    = false;
+                $fail_field  = 'email';
+                $fail_reason = $email_address_acceptability_info['fail_reason'];
             }
         }
 
-        return [
-            'is_valid' => $is_ok,
-            'error_message' => $error_message,
-            'error_field' => $error_field,
+        // Date of birth
+        if($continue){
+            $date_of_birth_acceptability_info = $this->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
+            $is_date_of_birth_allowed         = $date_of_birth_acceptability_info['is_allowed'] === 'yes';
+            if(!$is_date_of_birth_allowed){
+                $continue    = false;
+                $fail_field  = 'birthday';
+                $fail_reason = $date_of_birth_acceptability_info['fail_reason'];
+            }
+        }
+
+        // Password
+        if($continue){
+            $password_acceptability_info = $this->spotcheckNewUserPassword($new_password_unsafe, $confirm_new_password_unsafe);
+            $is_password_ok              = $password_acceptability_info['is_ok'] === 'yes';
+            if(!$is_password_ok){
+                $continue    = false;
+                $fail_field  = 'password';
+                $fail_reason = $password_acceptability_info['fail_reason'];
+            }
+        }
+
+        $is_acceptable = $is_username_available && $is_email_address_allowed && $is_date_of_birth_allowed && $is_password_ok;
+
+
+        // Build the response
+        $response = [
+            'username_availability_info'       => $username_availability_info,
+            'email_address_acceptability_info' => $email_address_acceptability_info,
+            'date_of_birth_acceptability_info' => $date_of_birth_acceptability_info,
+            'password_acceptability_info'      => $password_acceptability_info,
+            'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
+            'fail_field'                       => $fail_field,
+            'fail_reason'                      => $fail_reason,
         ];
+
+        return $response;
     }
+
+    public function createUser(string $username_unsafe, string $email_address, string $date_of_birth, string $new_password, string $confirm_new_password): array
+    {
+        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address, $date_of_birth, $new_password, $confirm_new_password);
+        $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
+        $fail_field                       = $user_creation_acceptability_info['fail_field'];
+        $fail_reason                      = $user_creation_acceptability_info['fail_reason'];
+        $user_creation_info               = [];
+        $is_successful                    = false;
+
+        if($is_acceptable){
+
+            $username            = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
+            $username_lower      = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
+            $password_hash       = $this->password_utility->getPasswordHash($new_password);
+            $queue_id            = 0;
+            $user_check_char     = '';
+            $user_id             = 0;
+            $username_id         = 0;
+            $email_address_id    = 0;
+            $password_id         = 0;
+            $login_credential_id = 0;
+
+            // Continue on success, Stop on failure
+            try{
+                // Insert new row to the User Creation Queue
+                $queue_id     = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
+                $has_queue_id = $queue_id > 0;
+                if(!$has_queue_id){
+                    throw new Exception('No queue id from User Creation Queue');
+                }
+
+                // Begin transaction
+                $this->database->startTransaction();
+
+                // Insert new row to Users
+                $user_check_char = $this->random_char_utility->getRandomCheckCharVersion1();
+                $user_id         = $this->user_gateway->createUser($user_check_char, $username_lower, $email_address);
+                $has_user_id     = $user_id > 0;
+                if(!$has_user_id){
+                    throw new Exception('No user id returned when creating new User.');
+                }
+
+                // Tell the queue that the user was created
+                $did_flag = $this->user_creation_queue_gateway->flagUserWasCreated($queue_id,  $user_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the user was created.');
+                }
+
+                // Insert new row to Usernames
+                $username_id     = $this->username_gateway->createUsername($user_id, $username, $username_lower);
+                $has_username_id = $username_id > 0;
+                if(!$has_username_id){
+                    throw new Exception('No username id returned when creating new Username.');
+                }
+
+                // Tell the queue that the username was created
+                $did_flag = $this->user_creation_queue_gateway->flagUsernameWasCreated($queue_id, $username_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the username was added.');
+                }
+
+                // Insert new row to User Email Addresses
+                $email_address_id     = $this->user_email_address_gateway->addUserEmailAddress($user_id, $email_address);
+                $has_email_address_id = $email_address_id > 0;
+                if(!$has_email_address_id){
+                    throw new Exception('No email address id was returned when adding new User Email Address.');
+                }
+
+                // Tell the queue that the email address was added
+                $did_flag = $this->user_creation_queue_gateway->flagUserEmailAddressWasAdded($queue_id, $email_address_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the user email address was added.');
+                }
+
+                // Insert new row to User Passwords
+                $password_id     = $this->password_gateway->createPassword($user_id, $password_hash);
+                $has_password_id = $password_id > 0;
+                if(!$has_password_id){
+                    throw new Exception('No password id returned when creating a new Password for User.');
+                }
+
+                // Tell the queue that the password was created
+                $did_flag = $this->user_creation_queue_gateway->flagPasswordWasCreated($queue_id, $password_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the password was added.');
+                }
+
+
+                // Insert new row to User Login Credentials
+                $login_credential_id = $this->login_credential_gateway->createLoginCredentialWithUsernameAndPassword($user_id, $username_id, $password_id);
+                $has_login_credential_id = $login_credential_id > 0;
+                if(!$has_login_credential_id){
+                    throw new Exception('No login-credential id returned when creating new Login Credential for User.');
+                }
+
+                // Tell the queue that the login-credential was created
+                $did_flag = $this->user_creation_queue_gateway->flagLoginCredentialWasCreated($queue_id, $login_credential_id);
+                if(!$did_flag){
+                    throw new Exception('Failed to inform the queue that the login-credential was added.');
+                }
+
+                // Insert new row to User Account Info
+                $did_create_user_account_info = $this->user_account_info_gateway->createUserAccountInfo($user_id, $date_of_birth);
+                if(!$did_create_user_account_info){
+                    throw new Exception('Problem creating User Account Info.');
+                }
+
+
+                // Commit transaction
+                $this->database->commitTransaction();
+
+                // Flag as successful
+                $is_successful = true;
+            }catch (Exception $e) {
+                $fail_reason = $e->getMessage();
+            }
+
+            $user_creation_info = [
+                'username'               => $username,
+                'username_lower'         => $username_lower,
+                'user_creation_queue_id' => $queue_id,
+                'user_check_char'        => $user_check_char,
+                'user_id'                => $user_id,
+                'username_id'            => $username_id,
+                'email_address_id'       => $email_address_id,
+                'password_id'            => $password_id,
+                'login_credential_id'    => $login_credential_id,
+                'is_successful'          => $is_successful ? 'yes' : 'no',
+            ];
+        }
+
+        // Build the response
+        $response = [
+            'user_creation_acceptability_info' => $user_creation_acceptability_info,
+            'user_creation_info'               => $user_creation_info,
+            'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
+            'fail_field'                       => $fail_field,
+            'fail_reason'                      => $fail_reason,
+            'is_successful'                    => $is_successful ? 'yes' : 'no',
+        ];
+
+        return $response;
+    }
+
 
     /**
      * @param string $given_username
      * @param string $given_password
      * @return array
-     * @throws PithException
      */
     public function getLoginValidationWithUsernameAndPassword(string $given_username, string $given_password): array
     {
-        // Default to failure
-        $success = false;
-        $user_id = 0;
-        $error_message = '';
+        // Set defaults
+        $r                            = [];
+        $is_login_valid               = false;
+        $fail_reason                  = '';
+        $response_login_credential_id = 0;
+        $response_user_id             = 0;
+        $response_username            = '';
+        $response_username_lower      = '';
+        $response_datetime_first_used = '';
 
-        // Get username lower
-        $username_lower = $this->username_normalizer->getUsernameLower($given_username);
 
-        // Try to get user id by username
-        $user_id = $this->username_gateway->findUserIdByUsernameLower($username_lower);
 
-        // If found user by username
-        if ($user_id > 0) {
-            // Get newest login credential
-            $login_credential = $this->login_credential_gateway->getNewestLoginCredentialRowForUserByUserId($user_id);
+        try {
+            // Look at given password
+            $given_password_length         = mb_strlen($given_password);
+            $is_given_password_long_enough = $given_password_length > 9;
 
-            // If found login credential
-            if (!empty($login_credential)) {
-                // Get password hash
-                $password_hash = $login_credential['password_hash'];
-
-                // Verify password
-                $password_verified = password_verify($given_password, $password_hash);
-
-                // If password verified
-                if ($password_verified) {
-                    $success = true;
-                } else {
-                    $error_message = 'Invalid password';
-                }
-            } else {
-                $error_message = 'No login credentials found';
+            // Throw when the password is too short
+            if(!$is_given_password_long_enough){
+                throw new Exception('Bad password length.');
             }
-        } else {
-            $error_message = 'Username not found';
+
+            // Find user id
+            $username_lower = $this->username_normalizer->getUsernameLower($given_username);
+            $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
+            $has_user_id    = $user_id > 0;
+
+            // Throw when the user id isn't found
+            if(!$has_user_id){
+                throw new Exception('No user id found.');
+            }
+
+            // Find the login credentials
+            $user_login_credential     = $this->login_credential_gateway->getNewestLoginCredentialRowForUserByUserId($user_id);
+            $has_user_login_credential = count($user_login_credential) > 0;
+
+            // Throw when the login credentials aren't found
+            if(!$has_user_login_credential){
+                throw new Exception('No login credentials found.');
+            }
+
+            // Look at login credential info
+            $login_credential_id             = (int) $user_login_credential['login_credential_id'];
+            $login_credential_username       = (string) $user_login_credential['username'];
+            $login_credential_username_lower = (string) $user_login_credential['username_lower'];
+            $login_credential_password_hash  = (string) $user_login_credential['password_hash'];
+            $login_credential_first_used     = (string) $user_login_credential['datetime_first_used'];
+
+            // Throw when the username is not the user's current username
+            $are_usernames_a_match = $username_lower === $login_credential_username_lower;
+            if(!$are_usernames_a_match){
+                throw new Exception('Username does not match login credential username.');
+            }
+
+            // Check password
+            $is_password_a_match = password_verify($given_password, $login_credential_password_hash);
+
+            if(!$is_password_a_match){
+                throw new Exception('Wrong password.');
+            }
+
+            $response_login_credential_id = $login_credential_id;
+            $response_user_id             = $user_id;
+            $response_username            = $login_credential_username;
+            $response_username_lower      = $login_credential_username_lower;
+            $response_datetime_first_used = $login_credential_first_used;
+
+            $is_login_valid = true;
+        } catch (PithException | Exception $e) {
+            $is_login_valid = false;
+            $fail_reason    = $e->getMessage();
         }
 
-        // Return result
-        return [
-            'success' => $success,
-            'user_id' => $user_id,
-            'error_message' => $error_message,
+        $r = [
+            'is_login_valid_yn'   => $is_login_valid ? 'yes' : 'no',
+            'fail_reason'         => $fail_reason,
+            'login_credential_id' => $response_login_credential_id,
+            'user_id'             => $response_user_id,
+            'username'            => $response_username,
+            'username_lower'      => $response_username_lower,
+            'datetime_first_used' => $response_datetime_first_used,
+            'login_time'          => time(),
         ];
+
+        return $r;
     }
-} 
+
+    /**
+     * @param int $user_id
+     * @return array
+     */
+    public function getUserAccessLevelsAboveUser(int $user_id): array
+    {
+        $user_access_levels_above_user = $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
+
+        return $user_access_levels_above_user;
+    }
+}
