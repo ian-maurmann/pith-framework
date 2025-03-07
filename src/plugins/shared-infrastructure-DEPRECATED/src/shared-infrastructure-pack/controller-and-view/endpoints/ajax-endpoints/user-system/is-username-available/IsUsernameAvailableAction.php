@@ -16,7 +16,8 @@ declare(strict_types=1);
 namespace Pith\Framework\SharedInfrastructure\Endpoints\UserSystemAjaxEndpoints;
 
 use Pith\Workflow\PithAction;
-use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+//use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+use Pith\Framework\Plugin\UserSystem3\UserService;
 
 /**
  * Class IsUsernameAvailableAction
