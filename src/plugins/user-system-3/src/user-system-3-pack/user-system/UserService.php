@@ -31,7 +31,8 @@ namespace Pith\Framework\Plugin\UserSystem3;
 use Exception;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
-use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
+//use Pith\Framework\SharedInfrastructure\Model\Random\RandomCharUtility;
+use Pith\Framework\Utility\RandomCharUtility;
 
 /**
  * Class UserService
