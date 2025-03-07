@@ -116,6 +116,7 @@
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
+                "src/utilities/random/",
                 "src/utilities/string/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
