@@ -1,25 +1,22 @@
 <?php
 
 /**
- * Shared Infrastructure Route List
- * --------------------------------
+ * Example App Route-List
+ * ----------------------
  *
  * @noinspection PhpClassNamingConventionInspection - Long class names are ok.
  */
 
-
 declare(strict_types=1);
 
-
-namespace Pith\Framework\SharedInfrastructure;
+namespace Pith\Framework\Plugin\RoutingExample;
 
 use Pith\Workflow\PithRouteList;
 
 /**
- * Class SharedInfrastructureRouteList
- * @package Pith\Framework\SharedInfrastructure
+ * Class ExampleAppRouteList
  */
-class SharedInfrastructureRouteList extends PithRouteList
+class ExampleAppRouteList extends PithRouteList
 {
     public array $routes = [
         ['route-group', '',              PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                            '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
