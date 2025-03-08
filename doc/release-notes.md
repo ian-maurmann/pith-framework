@@ -8,6 +8,7 @@
 
 | Release status        | Version   | Semver      | PHP Version | Date       | Can I use?                                                                         |
 |-----------------------|-----------|-------------|-------------|------------|------------------------------------------------------------------------------------|
+| Alpha 55              | 0.9.0.4   | *sv 0.39.0* | 8.4         | 2025-03-08 | Has all the features that are needed, but some features are still being re-worked. |
 | Alpha 54              | 0.9.0.3   | *sv 0.38.0* | 8.4         | 2025-02-22 | Has all the features that are needed, but some features are still being re-worked. |
 | Alpha 53              | 0.9.0.2   | *sv 0.37.0* | 8.4         | 2025-02-14 | Has all the features that are needed, but some features are still being re-worked. |
 | FC 2                  | 0.9.0.1   | *sv 0.36.0* | PHP 8.4     | 2025-01-03 | Has all the features that are needed, but some features are still being re-worked. |
@@ -90,6 +91,9 @@
 | (Started)             |           |             | PHP 5.1     | 2008-11    | (Old)                                                                              |
 
 ### Release Notes:
+
+**0.9.0.4 - Alpha 55** `(semver: 0.39.0)`
+- Plugin updates.
 
 **0.9.0.3 - Alpha 54** `(semver: 0.38.0)`
 - Re-organized folder structure and namespaces.
