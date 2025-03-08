@@ -19,7 +19,7 @@ if(!defined('STDOUT')){
 
 // Define our Constants
 
-const PITH_APP_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructureRouteList';
+const PITH_APP_ROUTE_LIST = '\\Pith\\Framework\\Plugin\\RoutingExample\\ExampleAppRouteList';
 
 const PITH_DEMO_PAGE_MAIN_TITLE            = 'Demo Page - Pith Framework';
 const PITH_DEMO_PAGES_ROUTE_GROUP_PATH     = '/1111/1111/demo';
