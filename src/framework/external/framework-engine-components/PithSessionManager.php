@@ -23,7 +23,8 @@ namespace Pith\Framework;
 
 
 use Exception;
-use Pith\Framework\SharedInfrastructure\Model\Random\RandomTokenUtility;
+//use Pith\Framework\SharedInfrastructure\Model\Random\RandomTokenUtility;
+use Pith\Framework\Utility\RandomTokenUtility;
 
 /**
  * Class PithSessionManager

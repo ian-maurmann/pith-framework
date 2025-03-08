@@ -24,7 +24,8 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithImpressionLogger;
-use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+//use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+use Pith\Framework\Plugin\UserSystem3\UserService;
 
 /**
  * Class PithActiveUser

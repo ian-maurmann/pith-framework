@@ -96,17 +96,40 @@
             "Pith\\Framework\\Plugin\\LoginForm\\": [
                 "src/plugins/login-form/src/",
                 "src/plugins/login-form/src/login-form-pack/",
-                "src/plugins/login-form/src/login-form-pack/login-form",
-                "src/plugins/login-form/src/login-form-pack/login-form-resources"
+                "src/plugins/login-form/src/login-form-pack/login-form/",
+                "src/plugins/login-form/src/login-form-pack/login-form-resources/"
             ],
             "Pith\\Framework\\Plugin\\SignUpForm\\": [
                 "src/plugins/sign-up-form/src/",
                 "src/plugins/sign-up-form/src/sign-up-form-pack/",
-                "src/plugins/sign-up-form/src/sign-up-form-pack/new-user-sign-up-form",
-                "src/plugins/sign-up-form/src/sign-up-form-pack/sign-up-form-resources"
+                "src/plugins/sign-up-form/src/sign-up-form-pack/new-user-sign-up-form/",
+                "src/plugins/sign-up-form/src/sign-up-form-pack/sign-up-form-resources/"
+            ],
+            "Pith\\Framework\\Plugin\\UserSystem3\\": [
+                "src/plugins/user-system-3/src/user-system-3-pack/",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-endpoints/",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-endpoints/create-new-user",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-endpoints/is-username-available",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-models",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/gateways",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/services",
+                "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/utilities"
+            ],
+            "Pith\\Framework\\Plugin\\Session\\": [
+                "src/plugins/session/src/session-pack/",
+                "src/plugins/session/src/session-pack/perform-user-login/",
+                "src/plugins/session/src/session-pack/perform-user-logout/"
+            ],
+            "Pith\\Framework\\Plugin\\RoutingExample\\": [
+                "src/plugins/routing-example/src/"
+            ],
+            "Pith\\Framework\\Plugin\\ErrorPages\\": [
+                "src/plugins/error-pages/src/error-pages-pack/",
+                "src/plugins/error-pages/src/error-pages-pack/error-pages/"
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
+                "src/utilities/random/",
                 "src/utilities/string/"
             ],
             "Pith\\Framework\\SharedInfrastructure\\": [
