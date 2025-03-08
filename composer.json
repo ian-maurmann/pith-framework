@@ -116,12 +116,16 @@
                 "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/utilities"
             ],
             "Pith\\Framework\\Plugin\\Session\\": [
-                "src/plugins/session/src/session-pack",
+                "src/plugins/session/src/session-pack/",
                 "src/plugins/session/src/session-pack/perform-user-login/",
                 "src/plugins/session/src/session-pack/perform-user-logout/"
             ],
             "Pith\\Framework\\Plugin\\RoutingExample\\": [
                 "src/plugins/routing-example/src/"
+            ],
+            "Pith\\Framework\\Plugin\\ErrorPages\\": [
+                "src/plugins/error-pages/src/error-pages-pack/",
+                "src/plugins/error-pages/src/error-pages-pack/error-pages/"
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
