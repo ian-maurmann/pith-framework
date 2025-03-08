@@ -33,7 +33,7 @@ or [CodeIgniter](https://codeigniter.com/) instead.
 - Install Composer. Follow the instruction at [Download Composer](https://getcomposer.org/download/).
 - Require Pith Framework from Composer:
 
-```bash
+```
 php composer.phar require pith/framework
 ```
 
@@ -41,7 +41,7 @@ php composer.phar require pith/framework
 **Nice to haves:**
 
 Add a symbolic link to composer.phar
-```bash
+```
 ln -s ./composer.phar ./composer
 ```
 
@@ -57,12 +57,12 @@ cp vendor/pith/framework/mig .
 ```
 
 Make a symbolic link to Pest inside the directory
-```bash
+```
 ln -s ./vendor/bin/pest ./pest
 ```
 
 Make a symbolic link to PHPStan inside the directory
-```bash
+```
 ln -s ./vendor/bin/phpstan ./phpstan
 
 ln -s ./vendor/bin/phpstan ./stan

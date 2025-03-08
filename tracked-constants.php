@@ -19,16 +19,16 @@ if(!defined('STDOUT')){
 
 // Define our Constants
 
-const PITH_APP_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructureRouteList';
+const PITH_APP_ROUTE_LIST = '\\Pith\\Framework\\Plugin\\RoutingExample\\ExampleAppRouteList';
 
 const PITH_DEMO_PAGE_MAIN_TITLE            = 'Demo Page - Pith Framework';
 const PITH_DEMO_PAGES_ROUTE_GROUP_PATH     = '/1111/1111/demo';
 const PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH = '/2222/2222/env-info';
 const PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH = '/ajax/user-system';
 
-const PITH_IMPRESSION_LOG_LOCATION = 'logs/impressions-log/';
-const PITH_TASK_LOG_LOCATION = 'logs/task-log/';
-const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-log/';
+const PITH_IMPRESSION_LOG_LOCATION = 'logs/impression-logs/';
+const PITH_TASK_LOG_LOCATION = 'logs/task-logs/';
+const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-logs/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
 
 const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
