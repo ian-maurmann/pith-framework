@@ -74,12 +74,13 @@ final class ServerLogger {
      * send a log message to the STDOUT stream.
      *
      * @param array<int, mixed> $args
-     *
      * @return void
+     *
+     * @noinspection PhpSingleStatementWithBracesInspection - Ignore.
      */
     public static function log(...$args): void {
         foreach ($args as $arg) {
-            if (is_object($arg) || is_array($arg) || is_resource($arg)) {
+            if (is_object($arg) || is_array($arg) || is_resource($arg)) { // @phpstan-ignore-line
                 $output = print_r($arg, true);
             } else {
                 $output = (string) $arg;
@@ -119,13 +120,13 @@ if ($file_path && is_dir($file_path)){
 }
 if ($file_path && is_file($file_path)) {
     // 1. check that file is not outside of this directory for security
-    $is_in_folder = (strpos($file_path, __DIR__ . DIRECTORY_SEPARATOR) === 0);
+    $is_in_folder = str_starts_with($file_path, __DIR__ . DIRECTORY_SEPARATOR);
 
     // 2. check for circular reference to router
     $is_not_circular_reference = ($file_path != __DIR__ . DIRECTORY_SEPARATOR . '.serve.php');
 
     // 3. don't serve dotfiles
-    $is_not_dot_file = (substr(basename($file_path), 0, 1) != '.');
+    $is_not_dot_file = (!str_starts_with(basename($file_path), '.'));
 
     if ($is_in_folder && $is_not_circular_reference && $is_not_dot_file) {
         if (strtolower(substr($file_path, -4)) == '.php') {
