@@ -28,7 +28,8 @@ namespace Pith\Framework;
 
 
 use Exception;
-use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+//use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+use Pith\Framework\Plugin\UserSystem3\UserService;
 
 /**
  * Class PithAccessControl
