@@ -120,6 +120,9 @@
                 "src/plugins/session/src/session-pack/perform-user-login/",
                 "src/plugins/session/src/session-pack/perform-user-logout/"
             ],
+            "Pith\\Framework\\Plugin\\RoutingExample\\": [
+                "src/plugins/routing-example/src/"
+            ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
                 "src/utilities/random/",
