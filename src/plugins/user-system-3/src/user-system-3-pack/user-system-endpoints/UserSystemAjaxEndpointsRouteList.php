@@ -21,7 +21,7 @@ use Pith\Workflow\PithRouteList;
 class UserSystemAjaxEndpointsRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', ['GET', 'POST'], '/create-new-user',       '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\CreateNewUserRoute'],
-        ['route', ['GET', 'POST'], '/is-username-available', '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\IsUsernameAvailableRoute'],
+        ['route', ['GET', 'POST'], '/create-new-user',       '\\Pith\\Framework\\Plugin\\UserSystem3\\CreateNewUserRoute'],
+        ['route', ['GET', 'POST'], '/is-username-available', '\\Pith\\Framework\\Plugin\\UserSystem3\\IsUsernameAvailableRoute'],
     ];
 }

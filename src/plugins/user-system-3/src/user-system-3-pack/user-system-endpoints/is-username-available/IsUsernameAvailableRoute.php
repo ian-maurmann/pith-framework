@@ -21,8 +21,8 @@ use Pith\Workflow\PithRoute;
 class IsUsernameAvailableRoute extends PithRoute
 {
     public string $route_type   = 'endpoint';
-    public string $pack         = '\\Pith\\Framework\\SharedInfrastructure\\SharedInfrastructurePack';
+    public string $pack         = '\\Pith\\Framework\\Plugin\\UserSystem3\\UserSystemAjaxEndpointsRouteList';
     public string $access_level = 'world';
-    public string $action       = '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\IsUsernameAvailableAction';
+    public string $action       = '\\Pith\\Framework\\Plugin\\UserSystem3\\IsUsernameAvailableAction';
     public string $view_adapter = '\\Pith\\JsonEndpointViewAdapter\\PithJsonEndpointViewAdapter';
 }
