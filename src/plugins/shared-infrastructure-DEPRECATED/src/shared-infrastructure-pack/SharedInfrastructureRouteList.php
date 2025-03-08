@@ -24,7 +24,8 @@ class SharedInfrastructureRouteList extends PithRouteList
     public array $routes = [
         ['route-group', '',              PITH_DEMO_PAGES_ROUTE_GROUP_PATH,                            '\\Pith\\Framework\\SharedInfrastructure\\DemoPagesRouteList'],
         ['route-group', '',              PITH_ENV_INFO_PAGES_ROUTE_GROUP_PATH,                        '\\Pith\\Framework\\SharedInfrastructure\\Pages\\EnvInfoPages\\EnvInfoRouteList'],
-        ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,                        '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
+     // ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,                        '\\Pith\\Framework\\SharedInfrastructure\\Endpoints\\UserSystemAjaxEndpoints\\UserSystemAjaxEndpointsRouteList'],
+        ['route-group', '',              PITH_USER_SYSTEM_AJAX_ENDPOINTS_PATH,                        '\\Pith\\Framework\\Plugin\\UserSystem3\\UserSystemAjaxEndpointsRouteList'],
         ['route-group', '',              PITH_PANEL_PATH,                                             '\\Pith\\Framework\\Panel\\PithPanelRouteList'],
         ['route-group', '',              TASKS_URL_PATH,                                              '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksRouteList'],
         ['route',       'POST',          SHARED_UI_USER_LOGIN_FORM_ACTION_LINK,                       '\\Pith\\Framework\\SharedInfrastructure\\Pages\\SharedUiPages\\PerformUserLoginRoute'],
