@@ -46,6 +46,7 @@
         "pith-front/pith-pack-src-fallback": "^0.1",
         "pith-front/pith-pack-swal": "^0.1",
         "pith-front/pith-pack-toastr": "^0.1",
+        "robinvdvleuten/ulid": "^5.0",
         "symfony/http-foundation": "^7.0"
     },
     "autoload": {
