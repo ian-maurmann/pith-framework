@@ -55,8 +55,20 @@ Show list of migrations
 php mig migrations:list
 ```
 
+To run all migrations:
+``` 
+php mig migrations:migrate
+
+yes
+```
 
 
+To migrate down 1 migration:
+``` 
+php mig migrations:migrate prev
+
+yes
+```
 
 ### Pest
 
