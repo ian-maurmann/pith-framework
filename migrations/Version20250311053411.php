@@ -43,7 +43,7 @@ final class Version20250311053411 extends AbstractMigration
 
         $this->addSql('
             CREATE TABLE `users` (
-                `user_id` INT AUTO_INCREMENT UNIQUE NOT NULL, 
+                `user_id` BIGINT UNSIGNED AUTO_INCREMENT UNIQUE NOT NULL,
                 `user_ulid` CHAR(26) UNIQUE NOT NULL,
                 `check_char` CHAR(1) NOT NULL,
                 `username` VARCHAR(191) UNIQUE, 
