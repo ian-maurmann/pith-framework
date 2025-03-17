@@ -115,6 +115,16 @@
                 "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/services",
                 "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/utilities"
             ],
+            "Pith\\Framework\\Plugin\\UserSystem4\\": [
+                "src/plugins/user-system-4/src/user-system-4-pack/",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/create-new-user",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/is-username-available",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/gateways",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/services",
+                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/utilities"
+            ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack/",
                 "src/plugins/session/src/session-pack/perform-user-login/",
