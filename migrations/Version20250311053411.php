@@ -51,7 +51,10 @@ final class Version20250311053411 extends AbstractMigration
                 `primary_email_address` VARCHAR(191) UNIQUE,
                 `primary_email_address_is_validated` TINYINT(1) NOT NULL DEFAULT 0,
                 `password_hash` VARCHAR(191) NOT NULL,
+                `password_has_been_used` TINYINT(1) NOT NULL DEFAULT 0,
+                `user_is_validated` TINYINT(1) NOT NULL DEFAULT 0,
                 `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                `datetime_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY(`user_id`)
             )
             ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci
