@@ -17,6 +17,7 @@
  * @noinspection PhpVariableNamingConventionInspection - Short variable name are ok.
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PSR 4 not 0.
+ * @noinspection PhpTooManyParametersInspection        - Methods with a large number of parameters are ok.
  */
 
 
@@ -80,21 +81,23 @@ class UserGateway
 
 
     /**
+     * @param string $user_ulid
      * @param string $check_char
+     * @param string $username
      * @param string $username_lower
      * @param string $email_address
+     * @param string $password_hash
      * @return int
      * @throws Exception
-     * @throws PDOException
      */
-    public function createUser(string $check_char, string $username_lower, string $email_address): int
+    public function createUser(string $user_ulid, string $check_char, string $username, string $username_lower, string $email_address, string $password_hash): int
     {
         // Query
         $sql = '
             INSERT INTO `users` 
-                (check_char, created_with_username_lower, created_with_email_address) 
+                (`user_ulid`, `check_char`, `username`, `username_lower`, `primary_email_address`, `password_hash`) 
             VALUES 
-                (:check_char, :created_with_username_lower, :created_with_email_address) 
+                (:user_ulid,  :check_char,  :username,  :username_lower,  :primary_email_address,  :password_hash) 
             ';
 
         // Prepare
@@ -103,9 +106,12 @@ class UserGateway
         // Execute
         $statement->execute(
             [
-                ':check_char'                  => $check_char,
-                ':created_with_username_lower' => $username_lower,
-                ':created_with_email_address'  => $email_address,
+                ':user_ulid'             => $user_ulid,
+                ':check_char'            => $check_char,
+                ':username'              => $username,
+                ':username_lower'        => $username_lower,
+                ':primary_email_address' => $email_address,
+                ':password_hash'         => $password_hash,
             ]
         );
 

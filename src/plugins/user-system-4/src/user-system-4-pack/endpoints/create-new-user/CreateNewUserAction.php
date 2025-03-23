@@ -13,11 +13,9 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\Plugin\UserSystem3;
+namespace Pith\Framework\Plugin\UserSystem4;
 
 use Pith\Workflow\PithAction;
-//use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
-use Pith\Framework\Plugin\UserSystem3\UserService;
 
 /**
  * Class CreateNewUserAction
@@ -39,7 +37,7 @@ class CreateNewUserAction extends PithAction
         $new_password_unsafe         = $_REQUEST['new_password'] ?? '';
         $confirm_new_password_unsafe = $_REQUEST['confirm_new_password'] ?? '';
 
-        $user_creation_info = $this->user_service->createUser($username_unsafe, $email_address_unsafe, $date_of_birth_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
+        $user_creation_info = $this->user_service->createUser($username_unsafe, $email_address_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
         $is_successful      = $user_creation_info['is_successful'] === 'yes';
 
         // Build the response

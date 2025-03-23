@@ -32,6 +32,7 @@ use Exception;
 use Pith\Framework\PithDatabaseWrapper;
 use Pith\Framework\PithException;
 use Pith\Framework\Utility\RandomCharUtility;
+use Ulid\Ulid;
 
 /**
  * Class UserService
@@ -339,21 +340,20 @@ class UserService
     /**
      * @param string $username_unsafe
      * @param string $email_address_unsafe
-     * @param string $date_of_birth_unsafe
      * @param string $new_password_unsafe
      * @param string $confirm_new_password_unsafe
      * @return array
      */
-    public function spotcheckNewUserInfo(string $username_unsafe, string $email_address_unsafe, string $date_of_birth_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    public function spotcheckNewUserInfo(string $username_unsafe, string $email_address_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
     {
         $is_username_available    = false;
         $is_email_address_allowed = false;
-        $is_date_of_birth_allowed = false;
+        //$is_date_of_birth_allowed = false;
         $is_password_ok           = false;
 
         $username_availability_info       = [];
         $email_address_acceptability_info = [];
-        $date_of_birth_acceptability_info = [];
+        //$date_of_birth_acceptability_info = [];
         $password_acceptability_info      = [];
 
         $continue    = true;
@@ -381,15 +381,15 @@ class UserService
         }
 
         // Date of birth
-        if($continue){
-            $date_of_birth_acceptability_info = $this->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
-            $is_date_of_birth_allowed         = $date_of_birth_acceptability_info['is_allowed'] === 'yes';
-            if(!$is_date_of_birth_allowed){
-                $continue    = false;
-                $fail_field  = 'birthday';
-                $fail_reason = $date_of_birth_acceptability_info['fail_reason'];
-            }
-        }
+        //if($continue){
+            // $date_of_birth_acceptability_info = $this->spotcheckNewUserDateOfBirth($date_of_birth_unsafe);
+            // $is_date_of_birth_allowed         = $date_of_birth_acceptability_info['is_allowed'] === 'yes';
+            // if(!$is_date_of_birth_allowed){
+            //     $continue    = false;
+            //     $fail_field  = 'birthday';
+            //     $fail_reason = $date_of_birth_acceptability_info['fail_reason'];
+            // }
+        //}
 
         // Password
         if($continue){
@@ -402,14 +402,13 @@ class UserService
             }
         }
 
-        $is_acceptable = $is_username_available && $is_email_address_allowed && $is_date_of_birth_allowed && $is_password_ok;
-
+        $is_acceptable = $is_username_available && $is_email_address_allowed && $is_password_ok;
 
         // Build the response
         $response = [
             'username_availability_info'       => $username_availability_info,
             'email_address_acceptability_info' => $email_address_acceptability_info,
-            'date_of_birth_acceptability_info' => $date_of_birth_acceptability_info,
+            // 'date_of_birth_acceptability_info' => $date_of_birth_acceptability_info,
             'password_acceptability_info'      => $password_acceptability_info,
             'is_acceptable'                    => $is_acceptable ? 'yes' : 'no',
             'fail_field'                       => $fail_field,
@@ -419,9 +418,9 @@ class UserService
         return $response;
     }
 
-    public function createUser(string $username_unsafe, string $email_address, string $date_of_birth, string $new_password, string $confirm_new_password): array
+    public function createUser(string $username_unsafe, string $email_address, string $new_password, string $confirm_new_password): array
     {
-        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address, $date_of_birth, $new_password, $confirm_new_password);
+        $user_creation_acceptability_info = $this->spotcheckNewUserInfo($username_unsafe, $email_address, $new_password, $confirm_new_password);
         $is_acceptable                    = $user_creation_acceptability_info['is_acceptable'] === 'yes';
         $fail_field                       = $user_creation_acceptability_info['fail_field'];
         $fail_reason                      = $user_creation_acceptability_info['fail_reason'];
@@ -429,7 +428,6 @@ class UserService
         $is_successful                    = false;
 
         if($is_acceptable){
-
             $username            = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized'];
             $username_lower      = (string) $user_creation_acceptability_info['username_availability_info']['name_normalized_lower'];
             $password_hash       = $this->password_utility->getPasswordHash($new_password);
@@ -441,8 +439,11 @@ class UserService
             $password_id         = 0;
             $login_credential_id = 0;
 
+
+
             // Continue on success, Stop on failure
             try{
+                /*
                 // Insert new row to the User Creation Queue
                 $queue_id     = $this->user_creation_queue_gateway->queueUserForCreation($username,  $username_lower,  $email_address,  $date_of_birth,  $password_hash);
                 $has_queue_id = $queue_id > 0;
@@ -529,6 +530,27 @@ class UserService
 
                 // Commit transaction
                 $this->database->commitTransaction();
+                */
+
+
+
+                // Get check-char
+                $user_check_char  = $this->random_char_utility->getRandomCheckCharVersion1();
+
+                // Get ULID
+                $user_ulid_object = Ulid::generate();
+                $user_ulid        = (string) $user_ulid_object;
+                $has_user_ulid    = strlen($user_ulid) === 26;
+                if(!$has_user_ulid){
+                    throw new Exception('Generated User ULID is not valid, must be 26 characters');
+                }
+
+                // Insert new row to Users
+                $user_id         = $this->user_gateway->createUser($user_ulid, $user_check_char, $username, $username_lower, $email_address, $password_hash);
+                $has_user_id     = $user_id > 0;
+                if(!$has_user_id){
+                    throw new Exception('No user id returned when creating new User.');
+                }
 
                 // Flag as successful
                 $is_successful = true;
