@@ -138,6 +138,7 @@
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
+                "src/utilities/http/",
                 "src/utilities/random/",
                 "src/utilities/string/"
             ],
