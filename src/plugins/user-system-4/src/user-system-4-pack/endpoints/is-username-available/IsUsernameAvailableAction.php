@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Plugin\UserSystem4;
 
+use Pith\Framework\Utility\PithHeaderUtility;
 use Pith\Workflow\PithAction;
 use Pith\Framework\Plugin\UserSystem4\UserService;
 
@@ -24,10 +25,12 @@ use Pith\Framework\Plugin\UserSystem4\UserService;
 class IsUsernameAvailableAction extends PithAction
 {
     private UserService $user_service;
+    private PithHeaderUtility $header_utility;
 
-    public function __construct(UserService $user_service){
+    public function __construct(PithHeaderUtility $header_utility, UserService $user_service){
         // Set object dependencies
-        $this->user_service = $user_service;
+        $this->header_utility = $header_utility;
+        $this->user_service   = $user_service;
     }
 
     public function runAction()
@@ -35,6 +38,12 @@ class IsUsernameAvailableAction extends PithAction
         $username_unsafe            = $_REQUEST['username'] ?? '';
         $username_availability_info = $this->user_service->getUsernameAvailability($username_unsafe);
         $is_available               = $username_availability_info['is_available'] === 'yes';
+
+        // Set response code if needed
+        if(!$is_available){
+            //http_response_code(207); // 207 Multi-Status
+            $this->header_utility->httpStatusCode207MultiStatus();
+        }
 
         // Build the response
         $response = [
