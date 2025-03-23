@@ -117,13 +117,12 @@
             ],
             "Pith\\Framework\\Plugin\\UserSystem4\\": [
                 "src/plugins/user-system-4/src/user-system-4-pack/",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/create-new-user",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-endpoints/is-username-available",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/gateways",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/services",
-                "src/plugins/user-system-4/src/user-system-4-pack/user-system-models/utilities"
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/",
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/create-new-user",
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/is-username-available",
+                "src/plugins/user-system-4/src/user-system-4-pack/gateways",
+                "src/plugins/user-system-4/src/user-system-4-pack/services",
+                "src/plugins/user-system-4/src/user-system-4-pack/utilities"
             ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack/",
