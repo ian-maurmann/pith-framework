@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Plugin\UserSystem4;
 
+use Pith\Framework\Utility\PithHeaderUtility;
 use Pith\Workflow\PithAction;
 
 /**
@@ -23,22 +24,28 @@ use Pith\Workflow\PithAction;
 class CreateNewUserAction extends PithAction
 {
     private UserService $user_service;
+    private PithHeaderUtility $header_utility;
 
-    public function __construct(UserService $user_service){
+    public function __construct(UserService $user_service, PithHeaderUtility $header_utility){
         // Set object dependencies
         $this->user_service = $user_service;
+        $this->header_utility = $header_utility;
     }
 
     public function runAction()
     {
         $username_unsafe             = $_REQUEST['username'] ?? '';
         $email_address_unsafe        = $_REQUEST['email_address'] ?? '';
-        $date_of_birth_unsafe        = $_REQUEST['date_of_birth_yyyy_mm_dd'] ?? '';
         $new_password_unsafe         = $_REQUEST['new_password'] ?? '';
         $confirm_new_password_unsafe = $_REQUEST['confirm_new_password'] ?? '';
 
         $user_creation_info = $this->user_service->createUser($username_unsafe, $email_address_unsafe, $new_password_unsafe, $confirm_new_password_unsafe);
         $is_successful      = $user_creation_info['is_successful'] === 'yes';
+
+        // Set response code if needed
+        if(!$is_successful){
+            $this->header_utility->httpStatusCode207MultiStatus(); // 207 Multi-Status
+        }
 
         // Build the response
         $response = [

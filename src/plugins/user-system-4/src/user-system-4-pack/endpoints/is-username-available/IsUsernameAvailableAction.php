@@ -41,8 +41,7 @@ class IsUsernameAvailableAction extends PithAction
 
         // Set response code if needed
         if(!$is_available){
-            //http_response_code(207); // 207 Multi-Status
-            $this->header_utility->httpStatusCode207MultiStatus();
+            $this->header_utility->httpStatusCode207MultiStatus(); // 207 Multi-Status
         }
 
         // Build the response
