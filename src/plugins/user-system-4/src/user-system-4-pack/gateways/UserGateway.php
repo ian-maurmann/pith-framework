@@ -125,4 +125,66 @@ class UserGateway
         return (int) $inserted_id;
     }
 
+    /**
+     * @throws PithException
+     */
+    public function findUserIdByUsernameLower(string $username_lower): int
+    {
+        // Default to empty
+        $results = [];
+        $user_id = 0;
+
+        // Query
+        $sql = '
+            SELECT 
+                user_id
+            FROM 
+                users
+            WHERE 
+                username_lower = ?
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $username_lower);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $row     = $results[0];
+            $user_id = (int) $row['user_id'];
+        }
+
+        // Return user id as int if found, else return zero if not found
+        return $user_id;
+    }
+
+    public function findUserRowByUsernameLower(string $username_lower): ?array
+    {
+        // Default to null
+        $user_row = null;
+
+        // Query
+        $sql = '
+            SELECT 
+                *
+            FROM 
+                users
+            WHERE 
+                username_lower = ?
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $username_lower);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $user_row = $results[0];
+        }
+
+        // Return user id as int if found, else return zero if not found
+        return $user_row;
+    }
 }

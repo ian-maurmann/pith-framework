@@ -597,11 +597,9 @@ class UserService
         $r                            = [];
         $is_login_valid               = false;
         $fail_reason                  = '';
-        $response_login_credential_id = 0;
         $response_user_id             = 0;
         $response_username            = '';
         $response_username_lower      = '';
-        $response_datetime_first_used = '';
 
 
 
@@ -610,14 +608,16 @@ class UserService
             $given_password_length         = mb_strlen($given_password);
             $is_given_password_long_enough = $given_password_length > 9;
 
-            // Throw when the password is too short
+            // Throw when the password is too short (This is to prevent lucky-guess collision attack)
             if(!$is_given_password_long_enough){
                 throw new Exception('Bad password length.');
             }
 
+            /*
             // Find user id
             $username_lower = $this->username_normalizer->getUsernameLower($given_username);
-            $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
+         // $user_id        = $this->username_gateway->findUserIdByUsernameLower($username_lower);
+            $user_id        = $this->user_gateway->findUserIdByUsernameLower($username_lower);
             $has_user_id    = $user_id > 0;
 
             // Throw when the user id isn't found
@@ -646,21 +646,47 @@ class UserService
             if(!$are_usernames_a_match){
                 throw new Exception('Username does not match login credential username.');
             }
+            */
+
+            // Get username_lower
+            $given_username_lower = $this->username_normalizer->getUsernameLower($given_username);
+
+            // Get the user row
+            $user_row = $this->user_gateway->findUserRowByUsernameLower($given_username_lower);
+            $found_user_row = !empty($user_row) && is_array($user_row);
+            if(!$found_user_row){
+                throw new Exception('Unable to find the user.');
+            }
+
+            // Get the user id
+            $user_id = $user_row['user_id'];
+            $has_user_id = !empty($user_id) && $user_id > 0;
+            if(!$has_user_id){
+                // Throw when the user id isn't found
+                throw new Exception('No user id found.');
+            }
+
+            // Get the username
+            $username = $user_row['username'];
+            $username_lower = $user_row['username_lower'];
+
+            // Get the password hash
+            $user_row_password_hash = $user_row['password_hash'];
+            $has_user_row_password_hash = !empty($user_row_password_hash) && strlen($user_row_password_hash);
+            if(!$has_user_row_password_hash){
+                throw new Exception('Stored password does not look correct, Abort.');
+            }
 
             // Check password
-            $is_password_a_match = password_verify($given_password, $login_credential_password_hash);
-
+            $is_password_a_match = password_verify($given_password, $user_row_password_hash);
             if(!$is_password_a_match){
                 throw new Exception('Wrong password.');
             }
 
-            $response_login_credential_id = $login_credential_id;
-            $response_user_id             = $user_id;
-            $response_username            = $login_credential_username;
-            $response_username_lower      = $login_credential_username_lower;
-            $response_datetime_first_used = $login_credential_first_used;
-
-            $is_login_valid = true;
+            $response_user_id        = $user_id;
+            $response_username       = $username;
+            $response_username_lower = $username_lower;
+            $is_login_valid          = true;
         } catch (PithException | Exception $e) {
             $is_login_valid = false;
             $fail_reason    = $e->getMessage();
@@ -669,11 +695,9 @@ class UserService
         $r = [
             'is_login_valid_yn'   => $is_login_valid ? 'yes' : 'no',
             'fail_reason'         => $fail_reason,
-            'login_credential_id' => $response_login_credential_id,
             'user_id'             => $response_user_id,
             'username'            => $response_username,
             'username_lower'      => $response_username_lower,
-            'datetime_first_used' => $response_datetime_first_used,
             'login_time'          => time(),
         ];
 
@@ -686,7 +710,9 @@ class UserService
      */
     public function getUserAccessLevelsAboveUser(int $user_id): array
     {
-        $user_access_levels_above_user = $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
+        $user_access_levels_above_user = [];
+
+        //$user_access_levels_above_user = $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
 
         return $user_access_levels_above_user;
     }
