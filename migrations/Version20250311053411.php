@@ -27,7 +27,7 @@ final class Version20250311053411 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table `users`.';
+        return 'Create new table `pith_users`.';
     }
 
     public function up(Schema $schema): void
@@ -42,17 +42,16 @@ final class Version20250311053411 extends AbstractMigration
         //       and also systems with usernames and non-unique emails addresses.
 
         $this->addSql('
-            CREATE TABLE `users` (
+            CREATE TABLE `pith_users` (
                 `user_id` BIGINT UNSIGNED AUTO_INCREMENT UNIQUE NOT NULL,
                 `user_ulid` CHAR(26) UNIQUE NOT NULL,
                 `check_char` CHAR(1) NOT NULL,
                 `username` VARCHAR(191) UNIQUE, 
                 `username_lower` VARCHAR(191) UNIQUE, 
                 `primary_email_address` VARCHAR(191) UNIQUE,
-                `primary_email_address_is_validated` TINYINT(1) NOT NULL DEFAULT 0,
+                `is_primary_email_address_validated` TINYINT(1) NOT NULL DEFAULT 0,
                 `password_hash` VARCHAR(191) NOT NULL,
-                `password_has_been_used` TINYINT(1) NOT NULL DEFAULT 0,
-                `user_is_validated` TINYINT(1) NOT NULL DEFAULT 0,
+                `is_user_validated` TINYINT(1) NOT NULL DEFAULT 0,
                 `datetime_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `datetime_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY(`user_id`)
@@ -64,6 +63,6 @@ final class Version20250311053411 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE IF EXISTS `users`');
+        $this->addSql('DROP TABLE IF EXISTS `pith_users`');
     }
 }

@@ -60,7 +60,7 @@ class UserGateway
             SELECT 
                 * 
             FROM 
-                users
+                pith_users
             WHERE 
                 username = ?
                 OR 
@@ -94,7 +94,7 @@ class UserGateway
     {
         // Query
         $sql = '
-            INSERT INTO `users` 
+            INSERT INTO `pith_users` 
                 (`user_ulid`, `check_char`, `username`, `username_lower`, `primary_email_address`, `password_hash`) 
             VALUES 
                 (:user_ulid,  :check_char,  :username,  :username_lower,  :primary_email_address,  :password_hash) 
@@ -139,7 +139,7 @@ class UserGateway
             SELECT 
                 user_id
             FROM 
-                users
+                pith_users
             WHERE 
                 username_lower = ?
             LIMIT 1
@@ -169,7 +169,7 @@ class UserGateway
             SELECT 
                 *
             FROM 
-                users
+                pith_users
             WHERE 
                 username_lower = ?
             LIMIT 1
