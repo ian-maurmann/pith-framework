@@ -164,7 +164,10 @@ class PithReservedNameUtility
             'domainadministrator',    // Names that are reserved in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/ - "admin-ish usernames"
             'download',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'downloads',              // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'email',                  // (Names that I think might cause issues).
+            'emails',                 // (Names that I think might cause issues).
             'enquiry',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'enquiries',              // (Names that I think might cause issues).
             'errors',                 // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'events',                 // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'example',                // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
@@ -175,10 +178,13 @@ class PithReservedNameUtility
             'features',               // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'ftp',                    // Common protocol hostname, for FTP file transfer.
             'ftp',                    // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
+            'ftps',                   // (Names that I think might cause issues).
             'guest',                  // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'guests',                 // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'help',                   // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'helper',                 // (Names that I think might cause issues).
             'host',                   // (Names that I think might cause issues).
+            'hosts',                  // (Names that I think might cause issues).
             'hostmaster',             // Certificate authority validation email - Baseline Requirements, section 3.2.2.4 item 4.
             'hostmaster',             // RFC-2142: MAILBOX NAMES FOR COMMON SERVICES, ROLES AND FUNCTIONS.
             'http',                   // (Names that I think might cause issues).
@@ -197,7 +203,7 @@ class PithReservedNameUtility
             'js',                     // Commonly-used top paths in the list at https://zimbatm.github.io/hostnames-and-usernames-to-reserve/
             'keybase.txt',            // Sensitive filename, Keybase ownership-verification URL.
             'license',                // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
-            'local   ',              // (Names that I think might cause issues).
+            'local',                  // (Names that I think might cause issues).
             'localdomain',            // (Loop-back to self hostname).
             'localhost',              // (Loop-back to self hostname).
             'login',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
@@ -245,6 +251,9 @@ class PithReservedNameUtility
             'password-reset',         // (Names that I think might cause issues).
             'payment',                // (Names that I think might cause issues).
             'payments',               // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
+            'pith',                   // (Framework meta)
+            'pith-framework',         // (Framework meta)
+            'pith_user',              // (Framework meta)
             'plans',                  // (Other names that I see that Django-Registration reserves, which could be problems depending on URL/subdomain structure).
             'policy',                 // (Names that I think might cause issues).
             'pop',                    // Common protocol hostname, for POP email.
@@ -338,7 +347,17 @@ class PithReservedNameUtility
             'www22',                  // www alternate.
             'www23',                  // www alternate.
             'x',                      // (Names that I think might cause issues).
-            'xyz',                    // Bad www alternate.
+            'xyz',                    // www alternate.
+            'xyz0',                   // www alternate.
+            'xyz1',                   // www alternate.
+            'xyz2',                   // www alternate.
+            'xyz3',                   // www alternate.
+            'xyz4',                   // www alternate.
+            'xyz5',                   // www alternate.
+            'xyz6',                   // www alternate.
+            'xyz7',                   // www alternate.
+            'xyz8',                   // www alternate.
+            'xyz9',                   // www alternate.
         ];
 
         return $reserved_names;
