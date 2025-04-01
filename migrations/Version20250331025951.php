@@ -30,91 +30,25 @@ final class Version20250331025951 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (100, "none")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (101, "dev-ip")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (102, "cron-ip")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (103, "task")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (200, "world")
-            '
-        );
-
-
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (201, "perform-user-login")
-            '
-        );
-
-
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (300, "user")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (301, "perform-user-logout")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (302, "logout")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (400, "internal")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (500, "moderator")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (600, "dev")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (700, "admin")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_access_levels (access_level_id, access_level_name) VALUES (800, "webmaster")
-            '
+            "
+            INSERT INTO pith_access_levels 
+                (access_level_id, access_level_name) 
+            VALUES 
+                (100, 'none'),
+                (101, 'dev-ip'),
+                (102, 'cron-ip'),
+                (103, 'task'),
+                (200, 'world'),
+                (201, 'perform-user-login'),
+                (300, 'user'),
+                (301, 'perform-user-logout'),
+                (302, 'logout'),
+                (400, 'internal'),
+                (500, 'moderator'),
+                (600, 'dev'),
+                (700, 'admin'),
+                (800, 'webmaster')
+            "
         );
     }
 

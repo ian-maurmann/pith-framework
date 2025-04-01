@@ -30,27 +30,15 @@ final class Version20230510000814 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-            '
-            INSERT INTO pith_test_quotes (quote_id, quote) VALUES (1, "Hello, World!")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_test_quotes (quote_id, quote) VALUES (2, "What hath God wrought?")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_test_quotes (quote_id, quote) VALUES (3, "The quick brown fox jumps over the lazy dog.")
-            '
-        );
-
-        $this->addSql(
-            '
-            INSERT INTO pith_test_quotes (quote_id, quote) VALUES (4, "Garbage in, garbage out.")
-            '
+            "
+            INSERT INTO pith_test_quotes 
+                (quote_id, quote) 
+            VALUES 
+                (1, 'Hello, World!'),
+                (2, 'What hath God wrought?'),
+                (3, 'The quick brown fox jumps over the lazy dog.'),
+                (4, 'Garbage in, garbage out.')
+            "
         );
     }
 
