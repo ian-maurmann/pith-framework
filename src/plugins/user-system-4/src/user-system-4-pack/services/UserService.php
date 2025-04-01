@@ -48,11 +48,12 @@ class UserService
     // private UserAccountInfoGateway   $user_account_info_gateway;
     // private UserCreationQueueGateway $user_creation_queue_gateway;
     // private UserEmailAddressGateway  $user_email_address_gateway;
+    private UserAccessLevelGateway   $user_access_level_gateway;
     private UserGateway              $user_gateway;
     // private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccessLevelGateway $user_access_level_gateway, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
      // $this->access_level_gateway        = $access_level_gateway;
@@ -64,6 +65,7 @@ class UserService
      // $this->user_account_info_gateway   = $user_account_info_gateway;
      // $this->user_creation_queue_gateway = $user_creation_queue_gateway;
      // $this->user_email_address_gateway  = $user_email_address_gateway;
+        $this->user_access_level_gateway   = $user_access_level_gateway;
         $this->user_gateway                = $user_gateway;
      // $this->username_gateway            = $username_gateway;
         $this->username_normalizer         = $username_normalizer;
@@ -712,7 +714,8 @@ class UserService
     {
         $user_access_levels_above_user = [];
 
-        //$user_access_levels_above_user = $this->access_level_gateway->getUserAccessLevelsAboveUser($user_id);
+        // Get user access levels (Above user)
+        $user_access_levels_above_user = $this->user_access_level_gateway->getUserAccessLevels($user_id);
 
         return $user_access_levels_above_user;
     }
