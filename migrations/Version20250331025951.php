@@ -55,6 +55,5 @@ final class Version20250331025951 extends AbstractMigration
     public function down(Schema $schema): void
     {
         $this->addSql('DELETE FROM pith_access_levels WHERE access_level_id IN (100, 101, 102, 103, 200, 201, 300, 301, 302, 400, 500, 600, 700, 800)');
-
     }
 }
