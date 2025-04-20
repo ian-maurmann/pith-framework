@@ -30,7 +30,7 @@
         "pith/doctrine-migration-integration": "^0.1",
         "pith/janitor": "^0.1",
         "pith/tick": "^0.1",
-        "pith/workflow-elements": "^0.3",
+        "pith/workflow-elements": "^0.4",
         "pith-front/pith-pack-aero-gel": "^0.1",
         "pith-front/pith-pack-animate-css": "^0.1",
         "pith-front/pith-pack-bootstrap": "^0.1",
