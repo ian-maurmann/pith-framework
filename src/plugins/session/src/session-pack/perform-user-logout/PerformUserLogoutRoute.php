@@ -26,5 +26,5 @@ class PerformUserLogoutRoute extends PithRoute
     public string $view         = '[^route_folder]/perform-user-logout-view.phtml';
     public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
 
-    public string $page_title = '404 Not Found';
+    public string $page_title = 'Log out';
 }

@@ -30,7 +30,7 @@
         "pith/doctrine-migration-integration": "^0.1",
         "pith/janitor": "^0.1",
         "pith/tick": "^0.1",
-        "pith/workflow-elements": "^0.3",
+        "pith/workflow-elements": "^0.4",
         "pith-front/pith-pack-aero-gel": "^0.1",
         "pith-front/pith-pack-animate-css": "^0.1",
         "pith-front/pith-pack-bootstrap": "^0.1",
@@ -46,13 +46,13 @@
         "pith-front/pith-pack-src-fallback": "^0.1",
         "pith-front/pith-pack-swal": "^0.1",
         "pith-front/pith-pack-toastr": "^0.1",
+        "robinvdvleuten/ulid": "^5.0",
         "symfony/http-foundation": "^7.0"
     },
     "autoload": {
         "psr-4": {
             "Pith\\Framework\\": [
                 "src/about/",
-                "src/framework/external/about/",
                 "src/framework/external/framework-engine-components",
                 "src/framework/external/injectable-thin-wrappers/"
             ],
@@ -115,6 +115,15 @@
                 "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/services",
                 "src/plugins/user-system-3/src/user-system-3-pack/user-system-models/utilities"
             ],
+            "Pith\\Framework\\Plugin\\UserSystem4\\": [
+                "src/plugins/user-system-4/src/user-system-4-pack/",
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/",
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/create-new-user",
+                "src/plugins/user-system-4/src/user-system-4-pack/endpoints/is-username-available",
+                "src/plugins/user-system-4/src/user-system-4-pack/gateways",
+                "src/plugins/user-system-4/src/user-system-4-pack/services",
+                "src/plugins/user-system-4/src/user-system-4-pack/utilities"
+            ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack/",
                 "src/plugins/session/src/session-pack/perform-user-login/",
@@ -129,6 +138,7 @@
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
+                "src/utilities/http/",
                 "src/utilities/random/",
                 "src/utilities/string/"
             ],

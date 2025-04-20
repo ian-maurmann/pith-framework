@@ -80,7 +80,6 @@ class LogoutAccessLevel extends PithAccessLevel
             }
 
             // Add note
-            //$app->registry->access_level_note = $note;
             $app->registry->setRuntimeNoteOnce('logout-note', $note);
 
 
