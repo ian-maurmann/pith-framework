@@ -136,6 +136,9 @@
                 "src/plugins/error-pages/src/error-pages-pack/",
                 "src/plugins/error-pages/src/error-pages-pack/error-pages/"
             ],
+            "Pith\\Framework\\Plugin\\CommonLibraries\\": [
+                "src/plugins/common-libraries/src/common-libraries-pack"
+            ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
                 "src/utilities/http/",

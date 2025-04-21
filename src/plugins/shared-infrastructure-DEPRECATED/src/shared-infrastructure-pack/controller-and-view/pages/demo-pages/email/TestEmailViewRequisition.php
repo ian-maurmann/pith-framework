@@ -28,7 +28,7 @@ class TestEmailViewRequisition extends PithViewRequisition
     public function runRequisition()
     {
         // JS Libraries
-        $this->addScript(     'jQuery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addScript(     'jQuery', '/resources/vendor/common-libraries/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
 
         // App JS
         $this->addScript(     'Login script', '/resources/framework/shared-ui/email/test-email.js', 'application-for-page');
