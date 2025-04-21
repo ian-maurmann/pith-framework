@@ -40,7 +40,7 @@ class ExampleAppRouteList extends PithRouteList
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // Will change
         ['route-group', '',              '/resources/vendor/common-libraries',                        '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
      // ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}',          '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/animate.css/{filepath:.+}',       '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
+     // ['route',       'GET',           '/resources/vendor/library/animate.css/{filepath:.+}',       '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/bootstrap/{filepath:.+}',         '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/font-awesome/{filepath:.+}',      '\\PithFront\\PithPackFaIcons\\FaIconsResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/fixie-reset/{filepath:.+}',       '\\PithFront\\PithPackFixie\\FixieResourceRoute'],
