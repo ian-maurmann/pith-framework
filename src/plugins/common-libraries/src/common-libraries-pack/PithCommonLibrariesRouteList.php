@@ -23,5 +23,6 @@ class PithCommonLibrariesRouteList extends PithRouteList
     public array $routes = [
         ['route', 'GET', '/aero-gel/{filepath:.+}',    '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
         ['route', 'GET', '/animate.css/{filepath:.+}', '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
+        ['route', 'GET', '/bootstrap/{filepath:.+}',   '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
     ];
 }
