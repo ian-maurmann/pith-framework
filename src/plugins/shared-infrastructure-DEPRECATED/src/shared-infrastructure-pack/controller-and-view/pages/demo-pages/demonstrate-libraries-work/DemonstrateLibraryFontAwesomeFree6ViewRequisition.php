@@ -36,6 +36,6 @@ class DemonstrateLibraryFontAwesomeFree6ViewRequisition extends PithViewRequisit
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Font Awesome', '/resources/vendor/library/font-awesome/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
+        $this->addStylesheet('Font Awesome', '/resources/vendor/common-libraries/font-awesome/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
     }
 }
