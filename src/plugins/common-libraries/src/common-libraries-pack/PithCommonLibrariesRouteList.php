@@ -21,6 +21,7 @@ use Pith\Workflow\PithRouteList;
 class PithCommonLibrariesRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '/aero-gel/{filepath:.+}', '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
+        ['route', 'GET', '/aero-gel/{filepath:.+}',    '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
+        ['route', 'GET', '/animate.css/{filepath:.+}', '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
     ];
 }
