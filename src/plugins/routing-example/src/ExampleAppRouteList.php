@@ -37,7 +37,8 @@ class ExampleAppRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/plugin/login-form/{filepath:.+}',      '\\Pith\\Framework\\Plugin\\LoginForm\\PithLoginFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}',    '\Pith\Framework\Plugin\SignUpForm\PithSignUpFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',              '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'],
+        ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // Will change
+        ['route-group', '',              '/resources/vendor/common-libraries',                        '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
         ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}',          '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/animate.css/{filepath:.+}',       '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
         ['route',       'GET',           '/resources/vendor/library/bootstrap/{filepath:.+}',         '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
