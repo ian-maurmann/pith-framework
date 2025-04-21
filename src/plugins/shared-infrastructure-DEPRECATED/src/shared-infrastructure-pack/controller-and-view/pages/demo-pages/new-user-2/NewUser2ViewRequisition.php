@@ -31,7 +31,7 @@ class NewUser2ViewRequisition extends PithViewRequisition
         // CSS Libraries
         $this->addStylesheet('Font Awesome 6 free version', '/resources/vendor/library/font-awesome/font-awesome-free-6.4.0-web/css/all.css', 'library-for-page');
         $this->addStylesheet('Font Awesome 4 compatibility', '/resources/vendor/library/font-awesome/font-awesome-4.7.0-compatibility-fork/css/font-awesome-4-compatibility-fork.min.css', 'library-for-page');
-        $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/library/bootstrap/bootstrap-icons-1.10.5/bootstrap-icons.min.css', 'library-for-page');
+        $this->addStylesheet('Bootstrap Icons stylesheet', '/resources/vendor/common-libraries/bootstrap/bootstrap-icons-1.10.5/bootstrap-icons.min.css', 'library-for-page');
         // $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/library/oxcss/oxcss-0.1.4/dist/ox.css', 'library-for-page');
         $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/library/oxcss/oxcss-0.2.0/src/feature/color/ox-color-tw.css', 'library-for-page');
         $this->addStylesheet( 'OxCSS stylesheet',  '/resources/vendor/library/oxcss/oxcss-0.2.0/src/feature/color/ox-color-ant.css', 'library-for-page');
