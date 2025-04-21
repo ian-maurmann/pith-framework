@@ -39,20 +39,5 @@ class ExampleAppRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',              '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // Will change
         ['route-group', '',              '/resources/vendor/common-libraries',                        '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
-     // ['route',       'GET',           '/resources/vendor/library/aero-gel/{filepath:.+}',          '\\PithFront\\PithPackAeroGel\\AeroGelResourceRoute'],
-     // ['route',       'GET',           '/resources/vendor/library/animate.css/{filepath:.+}',       '\\PithFront\\PithPackAnimateCss\\AnimateCssResourceRoute'],
-     // ['route',       'GET',           '/resources/vendor/library/bootstrap/{filepath:.+}',         '\\PithFront\\PithPackBootstrap\\BootstrapResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/font-awesome/{filepath:.+}',      '\\PithFront\\PithPackFaIcons\\FaIconsResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/fixie-reset/{filepath:.+}',       '\\PithFront\\PithPackFixie\\FixieResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/hoja/{filepath:.+}',              '\\PithFront\\PithPackHojaRing\\HojaRingResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/ibm-plex/{filepath:.+}',          '\\PithFront\\PithPackPlex\\PlexResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/jetbrains-mono-nl/{filepath:.+}', '\\PithFront\\PithPackJbMonoNl\\JbMonoNlResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/jquery/{filepath:.+}',            '\\PithFront\\PithPackJquery\\JqueryResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/jscrollpane/{filepath:.+}',       '\\PithFront\\PithPackJscrollpane\\JscrollpaneResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/md-icons/{filepath:.+}',          '\\PithFront\\PithPackMdIcons\\MdIconsResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/oxcss/{filepath:.+}',             '\\PithFront\\PithPackOxcss\\OxcssResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/src-fallback/{filepath:.+}',      '\\PithFront\\PithPackSrcFallback\\SrcFallbackResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/sweetalert/{filepath:.+}',        '\\PithFront\\PithPackSwal\\SwalResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/library/toastr/{filepath:.+}',            '\\PithFront\\PithPackToastr\\ToastrResourceRoute'],
     ];
 }
