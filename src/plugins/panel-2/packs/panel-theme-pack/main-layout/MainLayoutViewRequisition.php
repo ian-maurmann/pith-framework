@@ -48,7 +48,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
         $this->addStylesheet('Swal2 NA stylesheet', '/resources/vendor/library/sweetalert/swal2-no-anthems-11.7.3/swal2-na.css', 'library-for-layout');
         $this->addStylesheet('Re-style Swal2', '/resources/vendor/library/sweetalert/swal2-custom-themes/swal2-aerogel-theme.css', 'library-for-layout');
         $this->addStylesheet('Hoja Aquamarine stylesheet', '/resources/vendor/library/hoja/hoja-aquamarine/hoja-aquamarine.css', 'library-for-layout');
-        $this->addStylesheet('Aero-Gel stylesheet', '/resources/vendor/library/aero-gel/aero-gel-1.0.0/aero-gel.css', 'library-for-layout');
+        $this->addStylesheet('Aero-Gel stylesheet', '/resources/vendor/common-libraries/aero-gel/aero-gel-1.0.0/aero-gel.css', 'library-for-layout');
 
         // JS Libraries for layout
         $this->addScript('jQuery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-layout');
