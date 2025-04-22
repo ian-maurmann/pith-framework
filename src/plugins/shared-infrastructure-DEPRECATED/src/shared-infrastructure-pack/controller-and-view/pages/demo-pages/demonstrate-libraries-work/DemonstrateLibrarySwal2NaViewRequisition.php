@@ -36,7 +36,7 @@ class DemonstrateLibrarySwal2NaViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Swal2 NA stylesheet', '/resources/vendor/library/sweetalert/swal2-no-anthems-11.7.3/swal2-na.css', 'library-for-page');
-        $this->addScript('Swal2 NA script', '/resources/vendor/library/sweetalert/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
+        $this->addStylesheet('Swal2 NA stylesheet', '/resources/vendor/common-libraries/sweetalert/swal2-no-anthems-11.7.3/swal2-na.css', 'library-for-page');
+        $this->addScript('Swal2 NA script', '/resources/vendor/common-libraries/sweetalert/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
     }
 }

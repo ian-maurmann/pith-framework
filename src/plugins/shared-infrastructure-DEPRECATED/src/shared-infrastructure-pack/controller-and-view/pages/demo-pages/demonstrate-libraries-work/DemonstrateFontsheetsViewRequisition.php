@@ -36,9 +36,9 @@ class DemonstrateFontsheetsViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addPreload('preload JetBrains Mono NL font', '/resources/vendor/library/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-preload', 'style');
-        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
-        $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/library/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-stylesheet');
-        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/library/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
+        $this->addPreload('preload JetBrains Mono NL font', '/resources/vendor/common-libraries/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-preload', 'style');
+        $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-libraries/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
+        $this->addStylesheet( 'JetBrains Mono NL font', '/resources/vendor/common-libraries/jetbrains-mono-nl/jetbrains-mono-2.304/jetbrains-mono-nl.css', 'font-stylesheet');
+        $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-libraries/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
     }
 }

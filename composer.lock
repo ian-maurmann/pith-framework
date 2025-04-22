@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11bf140451d1946e92a024f32d5350a9",
+    "content-hash": "f5b0c8a1c2c40d616be8611e45eb4067",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1994,16 +1994,16 @@
         },
         {
             "name": "pith/workflow-elements",
-            "version": "0.4.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ian-maurmann/pith-workflow-elements.git",
-                "reference": "0c2643a762cf3975defe882c0228646dbe3f61e7"
+                "reference": "fffb21dcd0974c2e8633d8cbfa1df7234a805cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/0c2643a762cf3975defe882c0228646dbe3f61e7",
-                "reference": "0c2643a762cf3975defe882c0228646dbe3f61e7",
+                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/fffb21dcd0974c2e8633d8cbfa1df7234a805cb4",
+                "reference": "fffb21dcd0974c2e8633d8cbfa1df7234a805cb4",
                 "shasum": ""
             },
             "require": {
@@ -2042,9 +2042,9 @@
             "description": "Base Workflow Elements for Pith Framework",
             "support": {
                 "issues": "https://github.com/ian-maurmann/pith-workflow-elements/issues",
-                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.4.0"
+                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.5.0"
             },
-            "time": "2025-02-14T05:14:18+00:00"
+            "time": "2025-04-22T03:59:30+00:00"
         },
         {
             "name": "psr/cache",
@@ -4259,26 +4259,26 @@
         },
         {
             "name": "pestphp/pest-plugin-type-coverage",
-            "version": "v3.5.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest-plugin-type-coverage.git",
-                "reference": "c02e893d47071b600f9e4133c277fe77917492fc"
+                "reference": "78d65c9c4f0a77e0aab5c0d70991bda20e7821d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest-plugin-type-coverage/zipball/c02e893d47071b600f9e4133c277fe77917492fc",
-                "reference": "c02e893d47071b600f9e4133c277fe77917492fc",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-type-coverage/zipball/78d65c9c4f0a77e0aab5c0d70991bda20e7821d9",
+                "reference": "78d65c9c4f0a77e0aab5c0d70991bda20e7821d9",
                 "shasum": ""
             },
             "require": {
                 "pestphp/pest-plugin": "^3.0.0",
                 "php": "^8.2",
-                "phpstan/phpstan": "^1.12.21|^2.1.11",
+                "phpstan/phpstan": "^1.12.21|^2.1.12",
                 "tomasvotruba/type-coverage": "^1.0.0|^2.0.2"
             },
             "require-dev": {
-                "pestphp/pest": "^3.0.0",
+                "pestphp/pest": "^3.8.2",
                 "pestphp/pest-dev-tools": "^3.4.0"
             },
             "type": "library",
@@ -4311,7 +4311,7 @@
                 "unit"
             ],
             "support": {
-                "source": "https://github.com/pestphp/pest-plugin-type-coverage/tree/v3.5.0"
+                "source": "https://github.com/pestphp/pest-plugin-type-coverage/tree/v3.5.1"
             },
             "funding": [
                 {
@@ -4321,13 +4321,9 @@
                 {
                     "url": "https://github.com/nunomaduro",
                     "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
                 }
             ],
-            "time": "2025-03-29T16:51:00+00:00"
+            "time": "2025-04-20T21:49:49+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -6307,23 +6303,23 @@
         },
         {
             "name": "ta-tikoma/phpunit-architecture-test",
-            "version": "0.8.4",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ta-tikoma/phpunit-architecture-test.git",
-                "reference": "89f0dea1cb0f0d5744d3ec1764a286af5e006636"
+                "reference": "cf6fb197b676ba716837c886baca842e4db29005"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ta-tikoma/phpunit-architecture-test/zipball/89f0dea1cb0f0d5744d3ec1764a286af5e006636",
-                "reference": "89f0dea1cb0f0d5744d3ec1764a286af5e006636",
+                "url": "https://api.github.com/repos/ta-tikoma/phpunit-architecture-test/zipball/cf6fb197b676ba716837c886baca842e4db29005",
+                "reference": "cf6fb197b676ba716837c886baca842e4db29005",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.18.0 || ^5.0.0",
                 "php": "^8.1.0",
                 "phpdocumentor/reflection-docblock": "^5.3.0",
-                "phpunit/phpunit": "^10.5.5  || ^11.0.0",
+                "phpunit/phpunit": "^10.5.5  || ^11.0.0 || ^12.0.0",
                 "symfony/finder": "^6.4.0 || ^7.0.0"
             },
             "require-dev": {
@@ -6360,9 +6356,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ta-tikoma/phpunit-architecture-test/issues",
-                "source": "https://github.com/ta-tikoma/phpunit-architecture-test/tree/0.8.4"
+                "source": "https://github.com/ta-tikoma/phpunit-architecture-test/tree/0.8.5"
             },
-            "time": "2024-01-05T14:10:56+00:00"
+            "time": "2025-04-20T20:23:40+00:00"
         },
         {
             "name": "theseer/tokenizer",

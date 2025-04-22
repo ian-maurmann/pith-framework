@@ -34,6 +34,7 @@ class DemoPagesDemonstrateFrontEndIntegrationRouteList extends PithRouteList
         ['route',       'GET', '/hoja-aquamarine',                   '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaAquamarineRoute'],
         ['route',       'GET', '/hoja-blue',                         '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryHojaBlueRoute'],
         ['route',       'GET', '/jscrollpane',                       '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryJscrollpaneRoute'],
+        ['route',       'GET', '/loading-from-cdn',                  '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLoadingFromCdnRoute'],
         ['route',       'GET', '/oxcss',                             '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryOxCssRoute'],
         ['route',       'GET', '/swal-2-na',                         '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibrarySwal2NaRoute'],
         ['route',       'GET', '/toastr',                            '\\Pith\\Framework\\SharedInfrastructure\\DemonstrateLibraryToastrRoute'],
