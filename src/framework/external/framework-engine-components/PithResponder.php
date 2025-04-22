@@ -1,4 +1,5 @@
 <?php
+
 # ===================================================================
 # Copyright (c) 2008-2025 Ian K Maurmann. The Pith Framework is
 # provided under the terms of the Mozilla Public License, v. 2.0
@@ -15,6 +16,7 @@
  * @noinspection PhpMethodNamingConventionInspection   - Long method names are ok.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.
  * @noinspection PhpPropertyNamingConventionInspection - Long property names are ok.
+ * @noinspection PhpTooManyParametersInspection        - Methods with large number of parameters are ok.
  */
 
 
@@ -134,6 +136,10 @@ class PithResponder
             $file_path           = $resource_file['filepath'];
             $file_role           = $resource_file['role'];
             $as                  = array_key_exists('as', $resource_file) ? $resource_file['as'] : '';
+            $is_cdn_resource     = array_key_exists('is_cdn', $resource_file) && $resource_file['is_cdn'] === true;
+            $fallback_filepath   = array_key_exists('fallback_filepath', $resource_file) ? $resource_file['fallback_filepath'] : '';
+            $integrity           = array_key_exists('integrity', $resource_file) ? $resource_file['integrity'] : '';
+            $crossorigin         = array_key_exists('crossorigin', $resource_file) ? $resource_file['crossorigin'] : '';
             $is_already_inserted = in_array($file_path, $this->resource_files_inserted);
             $is_role_to_insert   = $file_role === $role_to_insert;
             $is_to_be_added      = $is_role_to_insert && !$is_already_inserted;
@@ -148,14 +154,27 @@ class PithResponder
 
                     $is_first = false;
                 }
-                if($file_type === 'script'){
-                    $this->insertScript($file_path, $indent, $file_description);
+                if($is_cdn_resource){
+                    if($file_type === 'script'){
+                        $this->insertCdnScript($file_path, $integrity, $crossorigin, $fallback_filepath, $indent, $file_description);
+                    }
+                    elseif($file_type === 'stylesheet'){
+                        $this->insertCdnStylesheet($file_path, $integrity, $crossorigin, $fallback_filepath, $indent, $file_description);
+                    }
+                    elseif($file_type === 'preload'){
+                        $this->insertCdnPreload($file_path, $integrity, $crossorigin, $fallback_filepath, $indent, $as, $file_description);
+                    }
                 }
-                elseif($file_type === 'stylesheet'){
-                    $this->insertStylesheet($file_path, $indent, $file_description);
-                }
-                elseif($file_type === 'preload'){
-                    $this->insertPreload($file_path, $indent, $as, $file_description);
+                else{
+                    if($file_type === 'script'){
+                        $this->insertScript($file_path, $indent, $file_description);
+                    }
+                    elseif($file_type === 'stylesheet'){
+                        $this->insertStylesheet($file_path, $indent, $file_description);
+                    }
+                    elseif($file_type === 'preload'){
+                        $this->insertPreload($file_path, $indent, $as, $file_description);
+                    }
                 }
             }
         }
@@ -176,7 +195,7 @@ class PithResponder
      * @param string $file_path
      * @param int $indent
      */
-    private function insertScript(string $file_path, int $indent = 0, string $file_description = '')
+    private function insertScript(string $file_path, int $indent = 0, string $file_description = ''): void
     {
         $indent_string = $this->indent($indent);
         $tag           = '<script src="' . $file_path . '"></script> <!-- ' . $file_description . ' -->';
@@ -190,12 +209,54 @@ class PithResponder
 
     /**
      * @param string $file_path
+     * @param string $integrity
+     * @param string $crossorigin
+     * @param string $fallback_filepath
+     * @param int $indent
+     * @param string $file_description
+     * @return void
+     */
+    private function insertCdnScript(string $file_path, string $integrity, string $crossorigin, string $fallback_filepath, int $indent = 0, string $file_description = ''): void
+    {
+        $indent_string = $this->indent($indent);
+        $tag           = '<script src="'.$file_path.'" integrity="'.$integrity.'" crossorigin="'.$crossorigin.'" x-sri-fallback="'.$fallback_filepath.'"></script> <!-- ' . $file_description . ' -->';
+
+        // Insert script
+        echo $indent_string . $tag  . "\r\n";
+
+        // Add to list of files inserted
+        $this->resource_files_inserted[] = $file_path;
+    }
+
+    /**
+     * @param string $file_path
      * @param int $indent
      */
-    private function insertStylesheet(string $file_path, int $indent = 0, string $file_description = '')
+    private function insertStylesheet(string $file_path, int $indent = 0, string $file_description = ''): void
     {
         $indent_string = $this->indent($indent);
         $tag           = '<link rel="stylesheet" href="' . $file_path . '"> <!-- ' . $file_description . ' -->';
+
+        // Insert Stylesheet
+        echo $indent_string . $tag . "\r\n";
+
+        // Add to list of files inserted
+        $this->resource_files_inserted[] = $file_path;
+    }
+
+    /**
+     * @param string $file_path
+     * @param string $integrity
+     * @param string $crossorigin
+     * @param string $fallback_filepath
+     * @param int $indent
+     * @param string $file_description
+     * @return void
+     */
+    private function insertCdnStylesheet(string $file_path, string $integrity, string $crossorigin, string $fallback_filepath, int $indent = 0, string $file_description = ''): void
+    {
+        $indent_string = $this->indent($indent);
+        $tag           = '<link rel="stylesheet" href="'.$file_path.'" integrity="'.$integrity.'" crossorigin="'.$crossorigin.'" x-sri-fallback="'.$fallback_filepath.'"> <!-- ' . $file_description . ' -->';
 
         // Insert Stylesheet
         echo $indent_string . $tag . "\r\n";
@@ -209,10 +270,29 @@ class PithResponder
      * @param string $file_path
      * @param int $indent
      */
-    private function insertPreload(string $file_path, int $indent = 0, string $as = '', string $file_description = '')
+    private function insertPreload(string $file_path, int $indent = 0, string $as = '', string $file_description = ''): void
     {
         $indent_string = $this->indent($indent);
         $tag           = '<link rel="preload" href="' . $file_path . '" as="' . $as . '"> <!-- ' . $file_description . ' -->';
+
+        // Insert Stylesheet
+        echo $indent_string . $tag . "\r\n";
+    }
+
+    /**
+     * @param string $file_path
+     * @param string $integrity
+     * @param string $crossorigin
+     * @param string $fallback_filepath
+     * @param int $indent
+     * @param string $as
+     * @param string $file_description
+     * @return void
+     */
+    private function insertCdnPreload(string $file_path, string $integrity, string $crossorigin, string $fallback_filepath, int $indent = 0, string $as = '', string $file_description = ''): void
+    {
+        $indent_string = $this->indent($indent);
+        $tag           = '<link rel="preload" href="'.$file_path.'" integrity="'.$integrity.'" crossorigin="'.$crossorigin.'" as="'.$as.'" x-sri-fallback="'.$fallback_filepath.'"> <!-- ' . $file_description . ' -->';
 
         // Insert Stylesheet
         echo $indent_string . $tag . "\r\n";
@@ -276,4 +356,8 @@ class PithResponder
             echo '<!-- Robots -->' . "\r\n" . $indent_string . $tag;
         }
     }
+
+
+
+
 }
