@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11bf140451d1946e92a024f32d5350a9",
+    "content-hash": "f5b0c8a1c2c40d616be8611e45eb4067",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1994,16 +1994,16 @@
         },
         {
             "name": "pith/workflow-elements",
-            "version": "0.4.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ian-maurmann/pith-workflow-elements.git",
-                "reference": "0c2643a762cf3975defe882c0228646dbe3f61e7"
+                "reference": "fffb21dcd0974c2e8633d8cbfa1df7234a805cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/0c2643a762cf3975defe882c0228646dbe3f61e7",
-                "reference": "0c2643a762cf3975defe882c0228646dbe3f61e7",
+                "url": "https://api.github.com/repos/ian-maurmann/pith-workflow-elements/zipball/fffb21dcd0974c2e8633d8cbfa1df7234a805cb4",
+                "reference": "fffb21dcd0974c2e8633d8cbfa1df7234a805cb4",
                 "shasum": ""
             },
             "require": {
@@ -2042,9 +2042,9 @@
             "description": "Base Workflow Elements for Pith Framework",
             "support": {
                 "issues": "https://github.com/ian-maurmann/pith-workflow-elements/issues",
-                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.4.0"
+                "source": "https://github.com/ian-maurmann/pith-workflow-elements/tree/0.5.0"
             },
-            "time": "2025-02-14T05:14:18+00:00"
+            "time": "2025-04-22T03:59:30+00:00"
         },
         {
             "name": "psr/cache",
