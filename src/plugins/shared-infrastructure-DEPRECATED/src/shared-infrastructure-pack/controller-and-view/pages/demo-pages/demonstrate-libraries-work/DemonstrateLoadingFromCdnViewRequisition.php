@@ -39,6 +39,9 @@ class DemonstrateLoadingFromCdnViewRequisition extends PithViewRequisition
         // Animate.css Stylesheet
         // $this->addStylesheet('Animate.css Stylesheet', '/resources/vendor/common-libraries/animate.css/animate.css-4.1.1/animate.min.css', 'library-for-page');
 
+        $this->addScript('Mutation Observer', '/resources/vendor/common-libraries/src-fallback/mutation-observer/dist/mutationobserver.min.js', 'library-for-page');
+        $this->addScript('SRI Fallback', '/resources/vendor/common-libraries/src-fallback/sri-fallback/sri-fallback.js', 'library-for-page');
+
         $this->addCdnPreload('Pre-load Animate.css Stylesheet', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==', 'anonymous', '/resources/vendor/common-libraries/animate.css/animate.css-4.1.1/animate.min.css', 'library-for-page', 'style');
         $this->addCdnStylesheet('Animate.css Stylesheet', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==', 'anonymous', '/resources/vendor/common-libraries/animate.css/animate.css-4.1.1/animate.min.css', 'library-for-page');
 
