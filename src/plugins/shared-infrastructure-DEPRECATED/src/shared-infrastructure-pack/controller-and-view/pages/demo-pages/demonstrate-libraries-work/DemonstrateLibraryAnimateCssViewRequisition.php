@@ -36,7 +36,7 @@ class DemonstrateLibraryAnimateCssViewRequisition extends PithViewRequisition
         //     6 - application-for-partial
 
         // Resources
-        $this->addStylesheet('Animate.css Stylesheet', '/resources/vendor/library/animate.css/animate.css-4.1.1/animate.min.css', 'library-for-page');
-        $this->addScript('jquery', '/resources/vendor/library/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
+        $this->addStylesheet('Animate.css Stylesheet', '/resources/vendor/common-libraries/animate.css/animate.css-4.1.1/animate.min.css', 'library-for-page');
+        $this->addScript('jquery', '/resources/vendor/common-libraries/jquery/jquery-3.6.4/jquery-3.6.4.min.js', 'library-for-page');
     }
 }
