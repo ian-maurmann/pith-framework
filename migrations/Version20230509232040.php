@@ -18,21 +18,19 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Migration
  */
 final class Version20230509232040 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create new table `test_quotes`.';
+        return 'Create new table `pith_test_quotes`.';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-
         $this->addSql('
-            CREATE TABLE test_quotes (
+            CREATE TABLE pith_test_quotes (
                 quote_id INT AUTO_INCREMENT NOT NULL, 
                 quote VARCHAR(191) DEFAULT NULL, 
                 PRIMARY KEY(quote_id)
@@ -44,8 +42,6 @@ final class Version20230509232040 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
-        $this->addSql('DROP TABLE test_quotes');
+        $this->addSql('DROP TABLE pith_test_quotes');
     }
 }
