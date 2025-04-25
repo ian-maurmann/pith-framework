@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+$cli = new Pith\Framework\Plugin\CommandTool\PithCommandTool();
+$cli->start();

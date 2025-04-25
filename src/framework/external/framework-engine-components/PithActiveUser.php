@@ -24,7 +24,9 @@ declare(strict_types=1);
 namespace Pith\Framework;
 
 use Pith\Framework\Internal\PithImpressionLogger;
-use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+//use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
+//use Pith\Framework\Plugin\UserSystem3\UserService;
+use Pith\Framework\Plugin\UserSystem4\UserService;
 
 /**
  * Class PithActiveUser
@@ -199,17 +201,15 @@ class PithActiveUser
      * @noinspection PhpUnhandledExceptionInspection
      * @noinspection PhpUnusedLocalVariableInspection
      */
-    public function attemptToLogInWithUsernameAndPassword(string $given_username, string $given_password)
+    public function attemptToLogInWithUsernameAndPassword(string $given_username, string $given_password): void
     {
         // Get login info
         $login_validation_info = $this->user_service->getLoginValidationWithUsernameAndPassword($given_username, $given_password);
         $is_login_valid        = $login_validation_info['is_login_valid_yn'] === 'yes';
         $login_failure_reason  = (string) $login_validation_info['fail_reason'];
-        $login_credential_id   = (int) $login_validation_info['login_credential_id'];
         $user_id               = (int) $login_validation_info['user_id'];
         $username              = (string) $login_validation_info['username'];
         $username_lower        = (string) $login_validation_info['username_lower'];
-        $datetime_first_used   = (string) $login_validation_info['datetime_first_used'];
         $login_time            = (int) $login_validation_info['login_time'];
 
         if($is_login_valid){

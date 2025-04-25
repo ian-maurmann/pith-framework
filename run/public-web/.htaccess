@@ -1,0 +1,27 @@
+# Hide folders
+Options -Indexes
+
+# Turn on the Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS
+#==========================================================
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#==========================================================
+
+# Force password access only
+#=========================================================
+#AuthUserFile /chroot/home/your-user-here/configuration/.htpasswd
+#AuthType Basic
+#AuthName "Restricted webpage"
+#Require valid-user
+#=========================================================
+
+# Rewrite non-existent files to index
+#====================================
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ index.php [NC,L]
+#====================================

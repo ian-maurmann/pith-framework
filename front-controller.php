@@ -15,8 +15,12 @@ declare(strict_types=1);
 use Pith\Framework\PithException;
 
 
-
-
+// For Debugging - Show all errors if need to debug before config
+// ==============================================
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+// ==============================================
 
 
 // Auto-Load
@@ -29,17 +33,20 @@ require './env.php';
 require './tracked-constants.php';
 
 
-
 // Error logging
 ini_set('log_errors', '1');
 $php_error_log_filename = './' . PITH_PHP_ERROR_LOG_LOCATION . 'php_errors_'. date('Y-m-d') .'.log';
 ini_set('error_log', $php_error_log_filename);
 
-// error_log('Hello, errors!');
 
+// For Debugging - Make sure errors are being logged
+// ============================
+// error_log('Hello, errors!');
+// ============================
 
 // Setup our Container
 $container = new DI\Container();
+
 
 // Load the Pith Dependency Injection Wrapper
 $dependency_injection_wrapper = null;
