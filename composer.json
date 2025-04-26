@@ -88,6 +88,9 @@
             ],
             "Pith\\Framework\\Plugin\\CommandTool2\\": [
                 "src/plugins/command-tool-2/src/cli/",
+                "src/plugins/command-tool-2/src/commands/",
+                "src/plugins/command-tool-2/src/displays/",
+                "src/plugins/command-tool-2/src/services/",
                 "src/plugins/command-tool-2/src/utilities/"
             ],
             "Pith\\Framework\\Plugin\\PithDotJson\\": [
