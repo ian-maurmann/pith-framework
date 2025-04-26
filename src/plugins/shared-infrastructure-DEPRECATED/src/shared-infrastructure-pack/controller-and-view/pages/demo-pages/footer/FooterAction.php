@@ -38,7 +38,7 @@ class FooterAction extends PithAction
     public function runAction()
     {
         // Variables
-        $version_text    = $this->pith_info->getVersionSlug();
+        $version_text    = $this->pith_info->getVersionText();
         $copyright_years = $this->copyright_year_utility->getYearsByFirstYear('2008');
 
         // Push to Preparer
