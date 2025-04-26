@@ -119,6 +119,9 @@ class PithCommandTool2
 
     public function displayInfo() {
         $this->writer->writeLine('Pith Command Tool 2');
+
+        $indexCommand = new IndexCommand();
+        $indexCommand->run();
     }
 
     public function displayVersion()
@@ -139,4 +142,5 @@ class PithCommandTool2
     {
         $this->writer->writeLine('bar');
     }
+
 }
