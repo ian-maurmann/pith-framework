@@ -37,6 +37,7 @@ class IndexCommand
         $blue  = $format->fg_bright_blue;
         $teal  = $format->fg_dark_cyan;
 
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}app{$reset}     <---- View/update the Pith application here.");
         $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}bar{$reset}     <---- Just a test, command should fail.");
         $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}foo{$reset}     <---- Just a test, command should work.");
         $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}version{$reset} <---- See the current version info.");
