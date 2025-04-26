@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Plugin\CommandTool2;
 
+use DI\Container;
 use Exception;
 use IKM\CLI\CommandLineFormatter;
 use IKM\CLI\CommandLineWriter;
+use Pith\Framework\PithAppRetriever;
 
 /**
  * Class PithCommandTool2
@@ -23,13 +25,17 @@ use IKM\CLI\CommandLineWriter;
  */
 class PithCommandTool2
 {
-    private ArrayUtility         $array_utility;
+    private PithAppRetriever $app_retriever;
+    private ArrayUtility $array_utility;
     private CommandLineFormatter $formatter;
-    private string               $version_number;
-    private CommandLineWriter    $writer;
+    private CommandLineWriter $writer;
+    private Container $container;
+    private string $version_number;
 
     public function __construct()
     {
+        $this->container     = new Container();
+        $this->app_retriever = $this->container->get('Pith\\Framework\\PithAppRetriever');
         // Set object dependencies
         $this->array_utility = new ArrayUtility();
 
@@ -127,6 +133,12 @@ class PithCommandTool2
     public function displayVersion()
     {
         $this->writer->writeLine($this->version_number);
+
+        $app = $this->app_retriever->getApp();
+        $version_text = $app->info->getVersionText();
+
+        $this->writer->writeLine($version_text);
+
     }
 
     public function displayUnknownParameters()
