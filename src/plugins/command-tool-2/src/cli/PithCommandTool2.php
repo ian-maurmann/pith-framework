@@ -103,6 +103,14 @@ class PithCommandTool2
             return;
         }
 
+        // App
+        // ───
+        $has_list_flag = $positional_parameter_1 === 'app';
+        if($has_list_flag){
+            $this->displayApp();
+            return;
+        }
+
         // Version
         // ───────
         $has_version_flag = $this->array_utility->arrayHasValueInsensitive($option_keys,'v') || $this->array_utility->arrayHasValueInsensitive($option_keys,'version') || $positional_parameter_1 === 'version' || $positional_parameter_1 === 'Version';
@@ -151,6 +159,11 @@ class PithCommandTool2
     public function displayFoo()
     {
         $this->writer->writeLine('bar');
+    }
+
+    public function displayApp(): void
+    {
+        $this->writer->writeLine('app');
     }
 
 }
