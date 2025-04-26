@@ -126,19 +126,17 @@ class PithCommandTool2
     public function displayInfo() {
         $this->writer->writeLine('Pith Command Tool 2');
 
-        $indexCommand = new IndexCommand();
+        //$indexCommand = new IndexCommand();
+        $indexCommand = $this->container->get('Pith\\Framework\\Plugin\\CommandTool2\\IndexCommand');
+
         $indexCommand->run();
     }
 
     public function displayVersion()
     {
-        $this->writer->writeLine($this->version_number);
-
         $app = $this->app_retriever->getApp();
         $version_text = $app->info->getVersionText();
-
         $this->writer->writeLine($version_text);
-
     }
 
     public function displayUnknownParameters()
