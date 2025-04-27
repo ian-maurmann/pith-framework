@@ -37,13 +37,52 @@ elseif($has_composer_autoload){
     $normal_cli_text = "\033[0m";
     $red_cli_text = "\033[91m";
     $yellow_cli_text = "\033[93m";
-    $message = 'No front-controller detected yet.';
-    $output = $yellow_cli_text . $message . $normal_cli_text;
+    $green_cli_text = "\033[92m";
 
-    fwrite(STDOUT, $output . "\n");
+    $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No front-controller detected yet.' . $normal_cli_text . "\n";
+
+    fwrite(STDOUT, $output);
 
     //$pith_command_tool = new Pith\Framework\Plugin\CommandTool2\PithCommandTool2();
     //$pith_command_tool->run();
+
+    // Check for env.php
+    $has_env_dot_php = false;
+    if(@include './env.php'){
+        $has_env_dot_php = true;
+    }
+
+    // Emit message after checking for env.php
+    if($has_env_dot_php){
+        $output = $green_cli_text . '✔ env.php detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No env.php detected yet.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+    // Check for tracked-constants.php
+    $has_tracked_constants = false;
+    if(@include './tracked-constants.php'){
+        $has_tracked_constants = true;
+    }
+
+    // Emit message after checking for tracked-constants.php
+    if($has_tracked_constants){
+        $output = $green_cli_text . '✔ tracked-constants.php detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No tracked-constants.php detected yet.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+
+
+
+    // Set up the Container
+    $container = new DI\Container();
 }
 else{
     $normal_cli_text = "\033[0m";
