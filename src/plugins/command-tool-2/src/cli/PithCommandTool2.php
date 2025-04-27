@@ -30,7 +30,6 @@ class PithCommandTool2
     private CommandLineFormatter $formatter;
     private CommandLineWriter $writer;
     private Container $container;
-    private string $version_number;
 
     public function __construct()
     {
@@ -43,8 +42,6 @@ class PithCommandTool2
         $this->writer    = new CommandLineWriter();
         $this->formatter = new CommandLineFormatter();
 
-        // Set Info
-        $this->version_number = 'Pith Command Tool 2 v0.0.0 (WIP)';
     }
 
     /**
