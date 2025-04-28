@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpVariableNamingConventionInspection */
+<?php
 
 /**
  * Pith Command Tool 2
