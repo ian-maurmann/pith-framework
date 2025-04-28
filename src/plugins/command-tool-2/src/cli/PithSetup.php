@@ -32,6 +32,7 @@ class PithSetup
         $output = "\n" . 'Setting up new Pith Framework project.'. "\n";
         fwrite(STDOUT, $output);
 
+        // Cache
         $this->existFolder('./cache');
         $this->existFolder('./cache/latte-cache');
         $this->existMdFile('./cache/latte-cache/latte-cache.md', 'Latte will put the Latte cache files in this folder.');
@@ -41,6 +42,17 @@ class PithSetup
         $this->existMdFile('./cache/touchstones/impression-system/about-impression-touchstone-folder.md', 'The impression system will put empty files in this folder.');
         $this->existFolder('./cache/touchstones/janitor');
         $this->existMdFile('./cache/touchstones/janitor/about-janitor-touchstone-folder.md', 'The Janitor system will put empty files in this folder.');
+
+        // Logs
+        $this->existFolder('./logs');
+        $this->existFolder('./logs/impression-logs');
+        $this->existMdFile('./logs/impression-logs/about-impression-logs.md', 'The impression logs will go here.');
+        $this->existFolder('./logs/php-error-logs');
+        $this->existMdFile('./logs/php-error-logs/about-php-error-logs.md', 'The PHP error log files will go in this folder.');
+        $this->existFolder('./logs/task-logs');
+        $this->existMdFile('./logs/task-logs/about-task-logs.md', 'The task logs will go in this folder.');
+        $this->existFolder('./logs/task-output-logs');
+        $this->existMdFile('./logs/task-output-logs/about-task-output-logs.md', 'The task output logs will go in this folder.');
     }
 
     public function existFolder(string $folder_path){
