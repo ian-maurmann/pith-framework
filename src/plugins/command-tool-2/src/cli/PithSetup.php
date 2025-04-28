@@ -53,6 +53,11 @@ class PithSetup
         $this->existMdFile('./logs/task-logs/about-task-logs.md', 'The task logs will go in this folder.');
         $this->existFolder('./logs/task-output-logs');
         $this->existMdFile('./logs/task-output-logs/about-task-output-logs.md', 'The task output logs will go in this folder.');
+
+        // Migrations
+        $this->existFolder('./migrations');
+        $this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
+
     }
 
     public function existFolder(string $folder_path){
