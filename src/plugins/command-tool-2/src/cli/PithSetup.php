@@ -58,6 +58,16 @@ class PithSetup
         $this->existFolder('./migrations');
         $this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
 
+        // Run
+        $this->existFolder('./run');
+        $this->existFolder('./run/public-local');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
+        $this->existFolder('./run/public-web');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
     }
 
     public function existFolder(string $folder_path){
@@ -77,7 +87,7 @@ class PithSetup
             $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $folder_path . ' folder does not exist.' . $format->reset . "\n";
             fwrite(STDOUT, $output);
 
-            $output = $format->fg_bright_yellow . '        ✹ ' . $format->reset . 'Making the ' . $folder_path . ' folder.' . "\n";
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Making the ' . $folder_path . ' folder.' . "\n";
             fwrite(STDOUT, $output);
 
             mkdir($folder_path);
@@ -86,7 +96,7 @@ class PithSetup
             $has_folder = file_exists($folder_path) && is_dir($folder_path);
 
             if($has_folder){
-                $output = $format->fg_bright_green . '        ✔ Created the '. $folder_path .' folder.' . $format->reset . "\n";
+                $output = $format->fg_bright_green . '        ✹ Created the '. $folder_path .' folder.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
             else{
@@ -117,7 +127,7 @@ class PithSetup
             fwrite(STDOUT, $output);
 
             // Display that we will create the file
-            $output = $format->fg_bright_yellow . '        ✹ ' . $format->reset . 'Writing the ' . $file_path . ' file.' . "\n";
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Writing the ' . $file_path . ' file.' . "\n";
             fwrite(STDOUT, $output);
 
             // Write new file
@@ -129,11 +139,48 @@ class PithSetup
             $has_file = file_exists($file_path);
 
             if($has_file){
-                $output = $format->fg_bright_green . '        ✔ Created the '. $file_path .' file.' . $format->reset . "\n";
+                $output = $format->fg_bright_green . '        ✹ Created the '. $file_path .' file.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
             else{
                 $output = $format->fg_bright_red . '        ✘ Failed to create the '. $file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    public function copyFileIfNotExists(string $vendor_file_path, string $destination_file_path){
+        $format = new CommandLineFormatter();
+
+        $output = '    - Add file ' . $destination_file_path . ' if it does not already exist.' . "\n";
+        fwrite(STDOUT, $output);
+
+        // Get if the file exists
+        $has_file = file_exists($destination_file_path);
+
+        if($has_file){
+            // Display file exists
+            $output = $format->fg_bright_green . '        ✔ The '. $destination_file_path .' file already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            // Display file does not exist
+            $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $destination_file_path . ' file does not exist.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+
+            // Display that we will create the file
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Getting the ' . $destination_file_path . ' file from the vendor/ folder.' . "\n";
+            fwrite(STDOUT, $output);
+
+            // Add the new file
+            $did_copy = @copy($vendor_file_path, $destination_file_path);
+
+            if($did_copy){
+                $output = $format->fg_bright_green . '        ✹ Added the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+            else{
+                $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_file_path .' file.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
         }
