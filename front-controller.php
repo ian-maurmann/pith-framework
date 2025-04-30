@@ -44,6 +44,11 @@ ini_set('error_log', $php_error_log_filename);
 // error_log('Hello, errors!');
 // ============================
 
+// Set STDOUT if not already set
+if(!defined('STDOUT')){
+    define('STDOUT', fopen('php://stdout', 'wb'));
+}
+
 // Setup our Container
 $container = new DI\Container();
 

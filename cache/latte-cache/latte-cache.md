@@ -1,0 +1,1 @@
+Latte will put the Latte cache files in this folder.
