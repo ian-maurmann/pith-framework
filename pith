@@ -7,8 +7,154 @@ chdir(__DIR__);
 // Error logging
 ini_set('log_errors', '1');
 ini_set('error_log', './php_errors.log');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
-require './front-controller.php';
+// Set STDOUT if not already set
+if(!defined('STDOUT')){
+    define('STDOUT', fopen('php://stdout', 'wb'));
+}
 
-$task_tool = new Pith\Framework\Plugin\CommandTool2\PithCommandTool2();
-$task_tool->run();
+$has_front_controller = false;
+$has_composer_autoload = false;
+
+if(@include './front-controller.php'){
+    $has_front_controller = true;
+}
+
+if(!$has_front_controller){
+    if(@include './vendor/autoload.php'){
+        $has_composer_autoload = true;
+    }
+}
+
+if($has_front_controller){
+    $pith_command_tool = new Pith\Framework\Plugin\CommandTool2\PithCommandTool2();
+    $pith_command_tool->run();
+}
+elseif($has_composer_autoload){
+    $normal_cli_text = "\033[0m";
+    $red_cli_text = "\033[91m";
+    $yellow_cli_text = "\033[93m";
+    $green_cli_text = "\033[92m";
+
+    $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No front-controller detected yet.' . $normal_cli_text . "\n";
+
+    fwrite(STDOUT, $output);
+
+    //$pith_command_tool = new Pith\Framework\Plugin\CommandTool2\PithCommandTool2();
+    //$pith_command_tool->run();
+
+    // Check for env.php
+    $has_env_dot_php = false;
+    if(@include './env.php'){
+        $has_env_dot_php = true;
+    }
+
+    // Emit message after checking for env.php
+    if($has_env_dot_php){
+        $output = $green_cli_text . '✔ env.php detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No env.php detected yet.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+    // Check for tracked-constants.php
+    $has_tracked_constants = false;
+    if(@include './tracked-constants.php'){
+        $has_tracked_constants = true;
+    }
+
+    // Emit message after checking for tracked-constants.php
+    if($has_tracked_constants){
+        $output = $green_cli_text . '✔ tracked-constants.php detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No tracked-constants.php detected yet.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+    // Check for pith.json
+    $has_pith_dot_json = file_exists('./pith.json');
+    if($has_pith_dot_json){
+        $pith_dot_json_content = file_get_contents('./pith.json');
+        $has_pith_dot_json_content = $pith_dot_json_content !== false && is_string($pith_dot_json_content) && strlen($pith_dot_json_content) > 0;
+    }
+
+    // Emit message after checking for pith.json
+    if($has_pith_dot_json){
+        $output = $green_cli_text . '✔ pith.json detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'No pith.json detected.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+    /*
+    if(!$has_pith_dot_json){
+        fwrite(STDOUT, "\n");
+        $output = 'Do you want to create a pith.json file? (yes/no): ';
+
+        do{
+            $input = readline($output);
+        } while(empty($input));
+    }
+    */
+
+    $is_project_root_writable = is_writable('./');
+
+    // Emit message after checking if the project root is writable
+    if($is_project_root_writable){
+        $output = $green_cli_text . '✔ The project root folder is writable.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+    else{
+        $output = $red_cli_text . '✘ ' . $yellow_cli_text . 'The project root folder is not writable.' . $normal_cli_text . "\n";
+        fwrite(STDOUT, $output);
+    }
+
+    $setup_new_pith_project = false;
+    if($is_project_root_writable){
+        fwrite(STDOUT, "\n");
+        $output = 'Do you want to create a new Pith project? (yes/no): ';
+
+        do{
+            $input = readline($output);
+        } while(empty($input));
+    }
+    $setup_new_pith_project = $input === 'yes';
+
+    if($setup_new_pith_project){
+        $pith_setup = new Pith\Framework\Plugin\CommandTool2\PithSetup();
+        $pith_setup->run();
+    }
+
+    // Set up the Container
+    $container = new DI\Container();
+}
+else{
+    $normal_cli_text = "\033[0m";
+    $red_cli_text = "\033[91m";
+    $blue_cli_text = "\033[94m";
+    $black_cli_bg   = "\033[40m";
+    $white_cli_text = "\033[97m";
+
+    $message = $red_cli_text . "Encountered a Problem. Autoload is not working yet.\n\n"
+        . "WHAT TO DO NEXT:\n"
+        . "---> Check if you are in the correct folder:\n"
+        . $normal_cli_text . '        Maybe we just aren\'t inside the project directory?' . "\n"
+        . $red_cli_text . "---> If composer.phar does not exist in this folder, install Composer:\n"
+        . $normal_cli_text . '        Follow the directions at ' . $blue_cli_text . 'https://getcomposer.org/download/' . $normal_cli_text . "\n"
+        . $red_cli_text . "---> If composer.phar exists, try running Composer install:\n"
+        . $normal_cli_text . '        Run: ' . $black_cli_bg . $white_cli_text . 'php composer.phar install' . $normal_cli_text . "\n"
+        . $red_cli_text . "---> See what Composer has installed:\n"
+        . $normal_cli_text . '        Run: ' . $black_cli_bg . $white_cli_text . 'php composer.phar show' . $normal_cli_text . "\n"
+    ;
+
+    fwrite(STDOUT, $message);
+}

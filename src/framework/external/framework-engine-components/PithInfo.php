@@ -37,7 +37,7 @@ class PithInfo
     /**
      * @return string
      */
-    public function getVersionSlug(): string
+    public function getVersionText(): string
     {
         return $this->about->framework_name . ' ' . $this->about->real_version . ' (semver ' . $this->about->semver_version . ') - ' . $this->about->release_name;
     }

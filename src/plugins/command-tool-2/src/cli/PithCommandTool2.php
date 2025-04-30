@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpVariableNamingConventionInspection */
+<?php
 
 /**
  * Pith Command Tool 2
@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Pith\Framework\Plugin\CommandTool2;
 
+use DI\Container;
 use Exception;
 use IKM\CLI\CommandLineFormatter;
 use IKM\CLI\CommandLineWriter;
+use Pith\Framework\PithAppRetriever;
 
 /**
  * Class PithCommandTool2
@@ -23,13 +25,16 @@ use IKM\CLI\CommandLineWriter;
  */
 class PithCommandTool2
 {
-    private ArrayUtility         $array_utility;
+    private PithAppRetriever $app_retriever;
+    private ArrayUtility $array_utility;
     private CommandLineFormatter $formatter;
-    private string               $version_number;
-    private CommandLineWriter    $writer;
+    private CommandLineWriter $writer;
+    private Container $container;
 
     public function __construct()
     {
+        $this->container     = new Container();
+        $this->app_retriever = $this->container->get('Pith\\Framework\\PithAppRetriever');
         // Set object dependencies
         $this->array_utility = new ArrayUtility();
 
@@ -37,8 +42,6 @@ class PithCommandTool2
         $this->writer    = new CommandLineWriter();
         $this->formatter = new CommandLineFormatter();
 
-        // Set Info
-        $this->version_number = 'Pith Command Tool 2 v0.0.0 (WIP)';
     }
 
     /**
@@ -97,6 +100,14 @@ class PithCommandTool2
             return;
         }
 
+        // App
+        // ───
+        $has_list_flag = $positional_parameter_1 === 'app';
+        if($has_list_flag){
+            $this->displayApp();
+            return;
+        }
+
         // Version
         // ───────
         $has_version_flag = $this->array_utility->arrayHasValueInsensitive($option_keys,'v') || $this->array_utility->arrayHasValueInsensitive($option_keys,'version') || $positional_parameter_1 === 'version' || $positional_parameter_1 === 'Version';
@@ -119,11 +130,18 @@ class PithCommandTool2
 
     public function displayInfo() {
         $this->writer->writeLine('Pith Command Tool 2');
+
+        //$indexCommand = new IndexCommand();
+        $indexCommand = $this->container->get('Pith\\Framework\\Plugin\\CommandTool2\\IndexCommand');
+
+        $indexCommand->run();
     }
 
     public function displayVersion()
     {
-        $this->writer->writeLine($this->version_number);
+        $app = $this->app_retriever->getApp();
+        $version_text = $app->info->getVersionText();
+        $this->writer->writeLine($version_text);
     }
 
     public function displayUnknownParameters()
@@ -139,4 +157,10 @@ class PithCommandTool2
     {
         $this->writer->writeLine('bar');
     }
+
+    public function displayApp(): void
+    {
+        $this->writer->writeLine('app');
+    }
+
 }
