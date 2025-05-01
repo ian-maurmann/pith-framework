@@ -74,6 +74,9 @@ class PithSetup
         // Src
         $this->existFolder('./src');
 
+        // Env
+        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
+        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.php');
     }
 
     public function existFolder(string $folder_path){
