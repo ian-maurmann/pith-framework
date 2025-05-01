@@ -83,6 +83,15 @@ class PithSetup
 
         // Front Controller
         $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
+
+        // Migrations tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
+
+        // Pith command tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
+
+        // Task tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
     }
 
     public function existFolder(string $folder_path){
