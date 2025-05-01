@@ -133,9 +133,6 @@ elseif($has_composer_autoload){
         $pith_setup = new Pith\Framework\Plugin\CommandTool2\PithSetup();
         $pith_setup->run();
     }
-
-    // Set up the Container
-    $container = new DI\Container();
 }
 else{
     $normal_cli_text = "\033[0m";

@@ -37,7 +37,7 @@ $dbParams = [
 
 $connection = DriverManager::getConnection($dbParams);
 
-$config = new PhpFile('migrations.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
+$config = new PhpFile('migration-config.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConnection($connection));
