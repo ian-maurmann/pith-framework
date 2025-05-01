@@ -61,6 +61,8 @@ class PithSetup
         // Run
         $this->existFolder('./run');
         $this->existFolder('./run/public-local');
+        
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/about-how-to-run-on-local.md', './run/public-local/about-how-to-run-on-local.md');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
@@ -68,6 +70,10 @@ class PithSetup
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
+
+        // Src
+        $this->existFolder('./src');
+
     }
 
     public function existFolder(string $folder_path){
