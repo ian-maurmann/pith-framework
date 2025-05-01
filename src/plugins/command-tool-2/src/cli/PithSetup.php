@@ -86,6 +86,7 @@ class PithSetup
 
         // Migrations tool
         $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
+        $this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
 
         // Pith command tool
         $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
