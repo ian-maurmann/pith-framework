@@ -1,8 +1,8 @@
 <?php
 
 /**
- * .serve.php
- * ----------
+ * serve.php
+ * ─────────
  *
  * Provides routing for the PHP Built-in web server
  * https://www.php.net/manual/en/features.commandline.webserver.php
@@ -12,7 +12,7 @@
  * Answer by Caleb in 2016
  *
  * To run:
- * $ php -S 127.0.0.1:8081 .serve.php
+ * $ php -S 127.0.0.1:8081 serve.php
  *
  * @noinspection PhpIncludeInspection                  - Using include( ) is ok here.
  * @noinspection PhpVariableNamingConventionInspection - Long variable names are ok.

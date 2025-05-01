@@ -61,13 +61,38 @@ class PithSetup
         // Run
         $this->existFolder('./run');
         $this->existFolder('./run/public-local');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/about-how-to-run-on-local.md', './run/public-local/about-how-to-run-on-local.md');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
         $this->existFolder('./run/public-web');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/about-how-to-run-on-web-host.md', './run/public-web/about-how-to-run-on-web-host.md');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
+
+        // Src
+        $this->existFolder('./src');
+
+        // Git
+        $this->copyFileIfNotExists('./vendor/pith/framework/.gitignore', './.gitignore');
+
+        // Env
+        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
+        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.php');
+
+        // Front Controller
+        $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
+
+        // Migrations tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
+        $this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
+
+        // Pith command tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
+
+        // Task tool
+        $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
     }
 
     public function existFolder(string $folder_path){
