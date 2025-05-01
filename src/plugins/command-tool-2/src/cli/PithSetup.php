@@ -61,13 +61,13 @@ class PithSetup
         // Run
         $this->existFolder('./run');
         $this->existFolder('./run/public-local');
-        
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/about-how-to-run-on-local.md', './run/public-local/about-how-to-run-on-local.md');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
         $this->existFolder('./run/public-web');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
+        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/about-how-to-run-on-web-host.md', './run/public-web/about-how-to-run-on-web-host.md');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
         $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
 
