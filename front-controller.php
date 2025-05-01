@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Index Front Controller
+ * Front Controller
  *
  * @noinspection DuplicatedCode                        - Front controller shares code with other example front controllers, ignore.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
