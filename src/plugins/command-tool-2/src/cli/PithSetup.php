@@ -65,6 +65,14 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add a main title for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the title-case name of your project with spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'My Awesome Project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
         $project_main_title = '';
         if($is_ready){
             fwrite(STDOUT, "\n");
@@ -77,11 +85,34 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add a main keywords for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is lower-case, seperated by commas.' . "\n";
+        fwrite(STDOUT, $output);
+        $output = '████ Ideally only use 3 to 5 keywords' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my awesome project, myawesomeproject, awesome, project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_main_keywords = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Main Keywords: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_main_keywords = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         fwrite(STDOUT, 'Summary:' . "\n\n");
 
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
