@@ -63,12 +63,25 @@ class PithSetup
 
         fwrite(STDOUT, $format->reset . "\n");
 
-        fwrite(STDOUT, "\n" . '──────────────────────────────────────────' . "\n");
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $project_main_title = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Main Title: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_main_title = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
         fwrite(STDOUT, 'Summary:' . "\n\n");
 
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
