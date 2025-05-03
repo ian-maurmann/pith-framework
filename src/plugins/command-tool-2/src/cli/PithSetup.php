@@ -33,6 +33,8 @@ class PithSetup
 
         $is_ready = true;
 
+        fwrite(STDOUT, "\n" . '──────────────────────────────────────────' . "\n");
+
         // VendorNamespace\ProjectNamespace
 
         fwrite(STDOUT, "\n");
@@ -57,7 +59,16 @@ class PithSetup
             } while(empty($input));
         }
         $project_full_namespace = $input;
+        $migration_namespace = $project_full_namespace . '\\Migration';
+
         fwrite(STDOUT, $format->reset . "\n");
+
+        fwrite(STDOUT, "\n" . '──────────────────────────────────────────' . "\n");
+
+        fwrite(STDOUT, 'Summary:' . "\n\n");
+
+        fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
+        fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
