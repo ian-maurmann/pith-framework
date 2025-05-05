@@ -55,6 +55,6 @@ const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 // The first namespace is the default when generating new migrations
 // The default can be overridden by specifying the namespace in the migration command
 // Example: php mig migrations:generate --namespace=Pith\\Framework\\TestMigration
-const PITH_MIGRATIONS_PATHS = [
+const PITH_APP_MIGRATION_PATHS = [
     'Pith\\Framework\\Migration' => './migrations',
 ];

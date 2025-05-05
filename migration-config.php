@@ -14,7 +14,7 @@ return [
         'execution_time_column_name' => 'execution_time',
     ],
 
-    'migrations_paths' => PITH_MIGRATIONS_PATHS,
+    'migrations_paths' => PITH_APP_MIGRATION_PATHS,
 
     'all_or_nothing' => true,
     'transactional' => true,
