@@ -85,6 +85,50 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add a name to use for this project in JS.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the PascalCase name of your project,' . "\n"
+            . '████ with the first letter of each word capitalized, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyAwesomeProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_script = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in JS: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_script = $input;
+
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a name to use for this project in CSS.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the kebab-case name of your project,' . "\n"
+            . '████ lowercase, with hyphens between words, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my-awesome-project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_style = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in CSS: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_style = $input;
+
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         $output = 'Add a main keywords for this project.' . "\n"
             . "\n"
             . '████ The normal format to use is lower-case, seperated by commas.' . "\n";
@@ -112,6 +156,8 @@ class PithSetup
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
 
         // Ask to run set up
