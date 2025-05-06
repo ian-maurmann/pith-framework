@@ -151,6 +151,69 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add an already-created MariaDB database for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database name.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_database_name' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_name = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database name: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_name = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created database user for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database user.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_user' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_username = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database user: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_username = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created database user password for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database user password.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyPasswordHere!' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = "\n" . $format->bg_bright_yellow . $format->fg_dark_black . ' Warning: This will be stored in text inside the env file. ' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_password = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database user password: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_password = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         fwrite(STDOUT, 'Summary:' . "\n\n");
 
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
@@ -159,6 +222,9 @@ class PithSetup
         fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Password: ' . $format->fg_bright_cyan . $project_database_password . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
