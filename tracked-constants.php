@@ -31,12 +31,12 @@ const PITH_TASK_LOG_LOCATION = 'logs/task-logs/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-logs/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
 
-const PITH_APP_DEFAULT_LOGIN_FORM_ACTION_URL_PATH       = '/shared-ui/perform-login';
-const PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH              = '/1111/1111/demo/login';
-const SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK    = '/1111/1111/demo';
-const SHARED_UI_USER_PERFORM_LOGOUT_LINK                = '/shared-ui/perform-logout';
-const SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK   = '/1111/1111/demo?logged-out=yes';
-const SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK   = '/1111/1111/demo?logged-out=no';
+const PITH_APP_DEFAULT_LOGIN_FORM_ACTION_URL_PATH = '/shared-ui/perform-login';
+const PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH = '/1111/1111/demo/login';
+const PITH_APP_DEFAULT_USER_LOGIN_SUCCESS_LANDING_PAGE_URL_PATH = '/1111/1111/demo';
+const SHARED_UI_USER_PERFORM_LOGOUT_LINK = '/shared-ui/perform-logout';
+const SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK = '/1111/1111/demo?logged-out=yes';
+const SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK = '/1111/1111/demo?logged-out=no';
 const SHARED_UI_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH;
 
 const PITH_PANEL_PATH = '/3333/3333/panel';
