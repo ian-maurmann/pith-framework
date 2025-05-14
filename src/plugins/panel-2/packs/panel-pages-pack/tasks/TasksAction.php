@@ -46,7 +46,7 @@ class TasksAction extends PithAction
 
         // Push to Preparer
         $this->prepare->PITH_PANEL_PATH = PITH_PANEL_PATH;
-        $this->prepare->TASKS_URL_PATH  = TASKS_URL_PATH;
+        $this->prepare->PITH_APP_TASKS_URL_PATH  = PITH_APP_TASKS_URL_PATH;
         $this->prepare->task_routes     = $task_routes;
     }
 }
