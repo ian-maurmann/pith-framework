@@ -41,12 +41,12 @@ class TasksAction extends PithAction
     public function runAction()
     {
         // Variables
-        $tasks_route_list = $this->dependency_injection->container->get(TASKS_ROUTE_LIST);
+        $tasks_route_list = $this->dependency_injection->container->get(PITH_APP_TASKS_ROUTE_LIST);
         $task_routes      = $tasks_route_list->routes ?? [];
 
         // Push to Preparer
         $this->prepare->PITH_PANEL_PATH = PITH_PANEL_PATH;
-        $this->prepare->TASKS_URL_PATH  = TASKS_URL_PATH;
+        $this->prepare->PITH_APP_TASKS_URL_PATH  = PITH_APP_TASKS_URL_PATH;
         $this->prepare->task_routes     = $task_routes;
     }
 }
