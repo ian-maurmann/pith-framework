@@ -457,7 +457,7 @@ class PithSetup
             $did_get_template_content = $template_content !== false;
 
             if($did_get_template_content){
-                $output = $format->fg_bright_green . '        ✔ Retrieved content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                $output = $format->fg_bright_green . '        ✔ Retrieved template.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
 
                 // Add the new file
