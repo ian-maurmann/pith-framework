@@ -280,7 +280,7 @@ class PithActiveUser
         }
         else{
             // Redirect to user successful logout landing
-            header('Location: ' . SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
+            header('Location: ' . PITH_APP_DEFAULT_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
             exit;
         }
     }
