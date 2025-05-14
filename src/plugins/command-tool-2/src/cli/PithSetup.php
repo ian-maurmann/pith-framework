@@ -289,7 +289,11 @@ class PithSetup
 
             // Env
             $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
-            $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.php');
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.php', './env.php', [
+                '%[^DATABASE_NAME]%'          => $project_database_name,
+                '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
+                '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
+            ]);
 
             // Front Controller
             $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
@@ -303,6 +307,9 @@ class PithSetup
 
             // Task tool
             $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
+            
+            // Tracked Constants
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', []);
         }
     }
 
@@ -417,6 +424,75 @@ class PithSetup
             }
             else{
                 $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    public function createFromTemplateFileIfNotExists(string $vendor_template_file_path, string $destination_file_path, array $replacements){
+        $format = new CommandLineFormatter();
+
+        $output = '    - Add file ' . $destination_file_path . ' if it does not already exist.' . "\n";
+        fwrite(STDOUT, $output);
+
+        // Get if the file exists
+        $has_file = file_exists($destination_file_path);
+
+        if($has_file){
+            // Display file exists
+            $output = $format->fg_bright_green . '        ✔ The '. $destination_file_path .' file already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            // Display file does not exist
+            $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $destination_file_path . ' file does not exist.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+
+            // Display that we will create the file
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Getting the ' . $destination_file_path . ' file from the vendor/ folder.' . "\n";
+            fwrite(STDOUT, $output);
+
+            // Get content
+            $template_content = file_get_contents($vendor_template_file_path);
+            $did_get_template_content = $template_content !== false;
+
+            if($did_get_template_content){
+                $output = $format->fg_bright_green . '        ✔ Retrieved content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+
+                // Add the new file
+                $did_copy = @copy($vendor_template_file_path, $destination_file_path);
+
+                if($did_copy){
+                    $output = $format->fg_bright_green . '        ✹ Added the '. $destination_file_path .' file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+
+                    $content = $template_content;
+                    foreach ($replacements as $replacement_key => $replacement_value) {
+                        $content = str_replace($replacement_key, $replacement_value, $content);
+                    }
+
+                    // Write to file
+                    $content_bytes_total = strlen($content);
+                    $content_bytes_written = file_put_contents($destination_file_path, $content);
+                    $did_write_full_content = $content_bytes_written === $content_bytes_total;
+
+                    if($did_write_full_content){
+                        $output = $format->fg_bright_green . '        ✔ Wrote values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        fwrite(STDOUT, $output);
+                    }
+                    else {
+                        $output = $format->fg_bright_red . '        ✘ Failed write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        fwrite(STDOUT, $output);
+                    }
+                }
+                else{
+                    $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_file_path .' file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+            }
+            else{
+                $output = $format->fg_bright_red . '        ✘ Failed to read content from the '. $destination_file_path .' file.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
         }
