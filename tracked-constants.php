@@ -31,7 +31,7 @@ const PITH_TASK_LOG_LOCATION = 'logs/task-logs/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-logs/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
 
-const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
+const PITH_APP_DEFAULT_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
 const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';
 const SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK    = '/1111/1111/demo';
 const SHARED_UI_USER_PERFORM_LOGOUT_LINK                = '/shared-ui/perform-logout';
