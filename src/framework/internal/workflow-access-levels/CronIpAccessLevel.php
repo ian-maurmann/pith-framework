@@ -51,7 +51,7 @@ class CronIpAccessLevel extends PithAccessLevel
         $app = $this->app_retriever->getApp();
 
         // Get array of allowed IPs
-        $allowed_ips = PITH_CRON_ACCESS_IP_ADDRESSES;
+        $allowed_ips = PITH_APP_CRON_ACCESS_IP_ADDRESSES;
 
         // Get the user/guest's IP
         $user_or_guest_ip = $app->active_user->getRemoteIpAddress();

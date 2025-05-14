@@ -29,70 +29,288 @@ class PithSetup
 
     public function run()
     {
-        $output = "\n" . 'Setting up new Pith Framework project.'. "\n";
+        $format = new CommandLineFormatter();
+
+        $is_ready = true;
+
+        fwrite(STDOUT, "\n" . '──────────────────────────────────────────' . "\n");
+
+        // VendorNamespace\ProjectNamespace
+
+        fwrite(STDOUT, "\n");
+        $output = 'Add a namespace to use for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use: ' . $format->bg_dark_black . $format->fg_dark_yellow . $format->italic . '{vendor namespace here} ' . $format->reset . $format->bg_dark_black . $format->fg_bright_yellow . '\\' . $format->fg_dark_yellow . $format->italic . ' {project namespace here}' . $format->reset . "\n";
         fwrite(STDOUT, $output);
 
-        // Cache
-        $this->existFolder('./cache');
-        $this->existFolder('./cache/latte-cache');
-        $this->existMdFile('./cache/latte-cache/latte-cache.md', 'Latte will put the Latte cache files in this folder.');
-        $this->existFolder('./cache/touchstones');
-        $this->existMdFile('./cache/touchstones/about-touchstone-folder.md', 'The Touchstone Utility will put empty files in this folder.');
-        $this->existFolder('./cache/touchstones/impression-system');
-        $this->existMdFile('./cache/touchstones/impression-system/about-impression-touchstone-folder.md', 'The impression system will put empty files in this folder.');
-        $this->existFolder('./cache/touchstones/janitor');
-        $this->existMdFile('./cache/touchstones/janitor/about-janitor-touchstone-folder.md', 'The Janitor system will put empty files in this folder.');
+        $output = '████ Example 1: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'ExampleCompanyStudios\\OurAwesomeWebProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
 
-        // Logs
-        $this->existFolder('./logs');
-        $this->existFolder('./logs/impression-logs');
-        $this->existMdFile('./logs/impression-logs/about-impression-logs.md', 'The impression logs will go here.');
-        $this->existFolder('./logs/php-error-logs');
-        $this->existMdFile('./logs/php-error-logs/about-php-error-logs.md', 'The PHP error log files will go in this folder.');
-        $this->existFolder('./logs/task-logs');
-        $this->existMdFile('./logs/task-logs/about-task-logs.md', 'The task logs will go in this folder.');
-        $this->existFolder('./logs/task-output-logs');
-        $this->existMdFile('./logs/task-output-logs/about-task-output-logs.md', 'The task output logs will go in this folder.');
+        $output = '████ Example 2: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'JohnDoe\\MyCoolProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
 
-        // Migrations
-        $this->existFolder('./migrations');
-        $this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
 
-        // Run
-        $this->existFolder('./run');
-        $this->existFolder('./run/public-local');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/about-how-to-run-on-local.md', './run/public-local/about-how-to-run-on-local.md');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
-        $this->existFolder('./run/public-web');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/about-how-to-run-on-web-host.md', './run/public-web/about-how-to-run-on-web-host.md');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
-        $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
+        $project_full_namespace = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Namespace: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_full_namespace = $input;
+        $migration_namespace = $project_full_namespace . '\\Migration';
 
-        // Src
-        $this->existFolder('./src');
+        fwrite(STDOUT, $format->reset . "\n");
 
-        // Git
-        $this->copyFileIfNotExists('./vendor/pith/framework/.gitignore', './.gitignore');
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
-        // Env
-        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
-        $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.php');
+        $output = 'Add a main title for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the title-case name of your project with spaces.' . "\n";
+        fwrite(STDOUT, $output);
 
-        // Front Controller
-        $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'My Awesome Project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
 
-        // Migrations tool
-        $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
-        $this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
+        $project_main_title = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Main Title: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_main_title = $input;
 
-        // Pith command tool
-        $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
-        // Task tool
-        $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
+        $output = 'Add a name to use for this project in JS.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the PascalCase name of your project,' . "\n"
+            . '████ with the first letter of each word capitalized, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyAwesomeProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_script = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in JS: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_script = $input;
+
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a name to use for this project in CSS.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the kebab-case name of your project,' . "\n"
+            . '████ lowercase, with hyphens between words, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my-awesome-project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_style = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in CSS: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_style = $input;
+
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a main keywords for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is lower-case, seperated by commas.' . "\n";
+        fwrite(STDOUT, $output);
+        $output = '████ Ideally only use 3 to 5 keywords' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my awesome project, myawesomeproject, awesome, project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_main_keywords = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Main Keywords: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_main_keywords = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created MariaDB database for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database name.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_database_name' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_name = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database name: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_name = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created database user for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database user.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_user' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_username = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database user: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_username = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created database user password for the web app to use.' . "\n"
+            . "\n"
+            . '████ MariaDB database user password.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyPasswordHere!' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = "\n" . $format->bg_bright_yellow . $format->fg_dark_black . ' Warning: This will be stored in text inside the env file. ' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_password = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'MariaDB database user password: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_password = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        fwrite(STDOUT, 'Summary:' . "\n\n");
+
+        fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
+        fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Password: ' . $format->fg_bright_cyan . $project_database_password . $format->reset . "\n");
+
+        // Ask to run set up
+        $setup_new_pith_project = false;
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = 'Create Pith project? (yes/no): ';
+
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $setup_new_pith_project = $input === 'yes';
+
+        if($setup_new_pith_project) {
+            $output = "\n" . 'Setting up new Pith Framework project.'. "\n";
+            fwrite(STDOUT, $output);
+
+            // Cache
+            $this->existFolder('./cache');
+            $this->existFolder('./cache/latte-cache');
+            $this->existMdFile('./cache/latte-cache/latte-cache.md', 'Latte will put the Latte cache files in this folder.');
+            $this->existFolder('./cache/touchstones');
+            $this->existMdFile('./cache/touchstones/about-touchstone-folder.md', 'The Touchstone Utility will put empty files in this folder.');
+            $this->existFolder('./cache/touchstones/impression-system');
+            $this->existMdFile('./cache/touchstones/impression-system/about-impression-touchstone-folder.md', 'The impression system will put empty files in this folder.');
+            $this->existFolder('./cache/touchstones/janitor');
+            $this->existMdFile('./cache/touchstones/janitor/about-janitor-touchstone-folder.md', 'The Janitor system will put empty files in this folder.');
+
+            // Logs
+            $this->existFolder('./logs');
+            $this->existFolder('./logs/impression-logs');
+            $this->existMdFile('./logs/impression-logs/about-impression-logs.md', 'The impression logs will go here.');
+            $this->existFolder('./logs/php-error-logs');
+            $this->existMdFile('./logs/php-error-logs/about-php-error-logs.md', 'The PHP error log files will go in this folder.');
+            $this->existFolder('./logs/task-logs');
+            $this->existMdFile('./logs/task-logs/about-task-logs.md', 'The task logs will go in this folder.');
+            $this->existFolder('./logs/task-output-logs');
+            $this->existMdFile('./logs/task-output-logs/about-task-output-logs.md', 'The task output logs will go in this folder.');
+
+            // Migrations
+            $this->existFolder('./migrations');
+            $this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
+
+            // Run
+            $this->existFolder('./run');
+            $this->existFolder('./run/public-local');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/about-how-to-run-on-local.md', './run/public-local/about-how-to-run-on-local.md');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/favicon.png', './run/public-local/favicon.png');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/index.php', './run/public-local/index.php');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-local/serve.php', './run/public-local/serve.php');
+            $this->existFolder('./run/public-web');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/.htaccess', './run/public-web/.htaccess');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/about-how-to-run-on-web-host.md', './run/public-web/about-how-to-run-on-web-host.md');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/favicon.png', './run/public-web/favicon.png');
+            $this->copyFileIfNotExists('./vendor/pith/framework/run/public-web/index.php', './run/public-web/index.php');
+
+            // Src
+            $this->existFolder('./src');
+
+            // Git
+            $this->copyFileIfNotExists('./vendor/pith/framework/.gitignore', './.gitignore');
+
+            // Env
+            $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.php', './env.php', [
+                '%[^DATABASE_NAME]%'          => $project_database_name,
+                '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
+                '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
+            ]);
+
+            // Front Controller
+            $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
+
+            // Migrations tool
+            $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
+            $this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
+
+            // Pith command tool
+            $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
+
+            // Task tool
+            $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
+            
+            // Tracked Constants
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', []);
+        }
     }
 
     public function existFolder(string $folder_path){
@@ -206,6 +424,75 @@ class PithSetup
             }
             else{
                 $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    public function createFromTemplateFileIfNotExists(string $vendor_template_file_path, string $destination_file_path, array $replacements){
+        $format = new CommandLineFormatter();
+
+        $output = '    - Add file ' . $destination_file_path . ' if it does not already exist.' . "\n";
+        fwrite(STDOUT, $output);
+
+        // Get if the file exists
+        $has_file = file_exists($destination_file_path);
+
+        if($has_file){
+            // Display file exists
+            $output = $format->fg_bright_green . '        ✔ The '. $destination_file_path .' file already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            // Display file does not exist
+            $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $destination_file_path . ' file does not exist.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+
+            // Display that we will create the file
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Getting the ' . $destination_file_path . ' file from the vendor/ folder.' . "\n";
+            fwrite(STDOUT, $output);
+
+            // Get content
+            $template_content = file_get_contents($vendor_template_file_path);
+            $did_get_template_content = $template_content !== false;
+
+            if($did_get_template_content){
+                $output = $format->fg_bright_green . '        ✔ Retrieved content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+
+                // Add the new file
+                $did_copy = @copy($vendor_template_file_path, $destination_file_path);
+
+                if($did_copy){
+                    $output = $format->fg_bright_green . '        ✹ Added the '. $destination_file_path .' file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+
+                    $content = $template_content;
+                    foreach ($replacements as $replacement_key => $replacement_value) {
+                        $content = str_replace($replacement_key, $replacement_value, $content);
+                    }
+
+                    // Write to file
+                    $content_bytes_total = strlen($content);
+                    $content_bytes_written = file_put_contents($destination_file_path, $content);
+                    $did_write_full_content = $content_bytes_written === $content_bytes_total;
+
+                    if($did_write_full_content){
+                        $output = $format->fg_bright_green . '        ✔ Wrote values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        fwrite(STDOUT, $output);
+                    }
+                    else {
+                        $output = $format->fg_bright_red . '        ✘ Failed write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        fwrite(STDOUT, $output);
+                    }
+                }
+                else{
+                    $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_file_path .' file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+            }
+            else{
+                $output = $format->fg_bright_red . '        ✘ Failed to read content from the '. $destination_file_path .' file.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
         }

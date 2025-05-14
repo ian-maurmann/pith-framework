@@ -220,12 +220,12 @@ class PithActiveUser
             $app->session_manager->buildUserSession($user_id, $username, $username_lower, $login_time);
 
             // Redirect to user successful login landing
-            header('Location: ' . SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            header('Location: ' . PITH_APP_DEFAULT_USER_LOGIN_SUCCESS_LANDING_PAGE_URL_PATH, true, 302);
             exit;
         }
         else{
             // Redirect to user failed login form
-            header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK . '?login-failed', true, 302);
+            header('Location: ' . PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH . '?login-failed', true, 302);
             exit;
         }
     }
@@ -275,12 +275,12 @@ class PithActiveUser
         
         if($did_log_out){
             // Redirect to user successful logout landing
-            header('Location: ' . SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
+            header('Location: ' . PITH_APP_DEFAULT_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK, true, 302);
             exit;
         }
         else{
             // Redirect to user successful logout landing
-            header('Location: ' . SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
+            header('Location: ' . PITH_APP_DEFAULT_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK, true, 302);
             exit;
         }
     }

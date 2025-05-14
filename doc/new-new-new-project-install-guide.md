@@ -1,4 +1,4 @@
-# New project guide:
+# New project guide (WIP):
 
 ## Part 0: System Reqs
 
@@ -71,16 +71,34 @@ php composer
 php composer require pith/framework
 ```
 
+- To see a list of everything that Composer installed, run:
 
+```
+php composer show
+```
 
-Copy the Pith Command Tool into the directory
+- Copy the Pith Command Tool into the directory
 ```
 cp vendor/pith/framework/pith .
 ```
 
-Copy the Doctrine Migrations runner into the directory
+- Copy the Doctrine Migrations runner into the directory
 ```
 cp vendor/pith/framework/mig .
 ```
 
+- Look at the files in the project:
 
+```
+ls 
+
+ls -la
+```
+
+- The files should now include `composer`, `composer.json`, `composer.lock`, `composer.phar`, `mig`, `pith`, and the `vendor/` folder.
+
+- Run pith, it will ask for a first-time setup:
+
+```
+php pith
+```
