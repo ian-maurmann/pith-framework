@@ -41,7 +41,7 @@ class TasksAction extends PithAction
     public function runAction()
     {
         // Variables
-        $tasks_route_list = $this->dependency_injection->container->get(TASKS_ROUTE_LIST);
+        $tasks_route_list = $this->dependency_injection->container->get(PITH_APP_TASKS_ROUTE_LIST);
         $task_routes      = $tasks_route_list->routes ?? [];
 
         // Push to Preparer
