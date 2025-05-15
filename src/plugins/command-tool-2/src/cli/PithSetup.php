@@ -310,8 +310,8 @@ class PithSetup
             
             // Tracked Constants
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', [
-                '%[^PROJECT_NAMESPACE]%'           => $project_full_namespace,
-                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $migration_namespace,
+                '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
+                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $this->convertBackslashesToDoubleBackslashes($migration_namespace),
                 '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
                 '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
                 '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
@@ -503,5 +503,14 @@ class PithSetup
                 fwrite(STDOUT, $output);
             }
         }
+    }
+
+    /**
+     * @param string $given_string
+     * @return string
+     */
+    public function convertBackslashesToDoubleBackslashes(string $given_string): string
+    {
+        return str_replace('\\', '\\\\', $given_string);
     }
 }
