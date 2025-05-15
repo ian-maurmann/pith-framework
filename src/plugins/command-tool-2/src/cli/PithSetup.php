@@ -309,7 +309,14 @@ class PithSetup
             $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
             
             // Tracked Constants
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', []);
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', [
+                '%[^PROJECT_NAMESPACE]%'           => $project_full_namespace,
+                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $migration_namespace,
+                '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
+                '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
+                '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
+            ]);
         }
     }
 
