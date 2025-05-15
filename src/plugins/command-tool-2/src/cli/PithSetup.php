@@ -552,7 +552,7 @@ class PithSetup
             ];
 
             // Re-encode
-            $composer_dot_json_new_json = json_encode($composer_dot_json_array, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT  );
+            $composer_dot_json_new_json = json_encode($composer_dot_json_array, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
             $did_encode_composer_dot_json_new_json = $composer_dot_json_new_json != false && strlen($composer_dot_json_new_json) > 0;
 
             if ($did_encode_composer_dot_json_new_json) {
