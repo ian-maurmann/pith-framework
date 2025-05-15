@@ -518,6 +518,20 @@ class PithSetup
         return str_replace('\\', '\\\\', $given_string);
     }
 
+    public function singleBackslashAndEndWithBackslash(string $given_string): string
+    {
+        // Turn double-backslashes into single-backslashes
+        $converted_string = str_replace('\\\\', '\\', $given_string);
+
+        // End with backslash
+        if (!str_ends_with($converted_string, '\\')) {
+            $converted_string .= '\\';
+        }
+
+        // Return string with single-backslashes, ending with a backslash
+        return $converted_string;
+    }
+
     public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace)
     {
         $format = new CommandLineFormatter();
@@ -542,12 +556,12 @@ class PithSetup
             $composer_dot_json_array['autoload']['psr-4'] = [];
 
             // Add project namespace
-            $composer_dot_json_array['autoload']['psr-4'][$this->convertBackslashesToDoubleBackslashes($project_full_namespace)] = [
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
                 'src/',
             ];
 
             // Add migrations namespace
-            $composer_dot_json_array['autoload']['psr-4'][$this->convertBackslashesToDoubleBackslashes($migration_namespace)] = [
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($migration_namespace)] = [
                 'migrations/',
             ];
 
