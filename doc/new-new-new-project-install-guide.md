@@ -102,3 +102,34 @@ ls -la
 ```
 php pith
 ```
+
+
+- Run Composer install
+
+```
+php composer install
+```
+
+- Next run Composer update
+
+```
+php composer update
+```
+
+- To run locally, go to the `run` folder, and then the `public-local` folder
+```
+ls
+
+cd run
+
+ls
+
+cd public-local
+```
+
+Run `serve.php` from the PHP built-in server
+```
+php -S 127.0.0.1:8081 serve.php
+```
+
+Now open your web browser to http://127.0.0.1:8081 , and it should be up and running.
