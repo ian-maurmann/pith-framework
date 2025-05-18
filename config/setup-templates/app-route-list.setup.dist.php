@@ -30,7 +30,7 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route',       ['GET', 'POST'], '/error-405',                                                '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
         ['route',       'GET',           '/favicon.ico',                                              '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       'GET',           '/resources/framework/plugin/login-form/{filepath:.+}',      '\\Pith\\Framework\\Plugin\\LoginForm\\PithLoginFormResourceRoute'],
-        ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}',    '\\Pith\Framework\\Plugin\\SignUpForm\\PithSignUpFormResourceRoute'],
+        ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}',    '\\Pith\\Framework\\Plugin\\SignUpForm\\PithSignUpFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',              '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',              '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // Will change
         ['route-group', '',              '/resources/vendor/common-libraries',                        '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
