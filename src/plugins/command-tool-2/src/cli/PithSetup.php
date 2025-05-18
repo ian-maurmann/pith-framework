@@ -346,7 +346,7 @@ class PithSetup
             $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace);
 
             // Tracked Constants
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.php', './src/' . $project_full_namespace .'AppRouteList.php', [
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.php', './src/' . $project_name_in_php .'AppRouteList.php', [
                 '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
                 '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
                 '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
