@@ -147,6 +147,28 @@ class PithSetup
         }
         $project_name_in_style = $input;
 
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a hyphenated name to use for this project in file folders.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the kebab-case name of your project,' . "\n"
+            . '████ lowercase, with hyphens between words, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my-awesome-project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_hyphenated = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Hyphenated Project Name to use in file folders: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_hyphenated = $input;
+        $project_app_pack_name = $project_name_hyphenated . '-pack';
+
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
@@ -243,6 +265,8 @@ class PithSetup
         fwrite(STDOUT, 'Project Name in PHP: ' . $format->fg_bright_cyan . $project_name_in_php . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
+        fwrite(STDOUT, 'Hyphenated Project Name: ' . $format->fg_bright_cyan . $project_name_hyphenated . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Name: ' . $format->fg_bright_cyan . $project_app_pack_name . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
@@ -338,20 +362,24 @@ class PithSetup
                 '%[^PROJECT_MAIN_TITLE_IN_PHP]%'   => $project_name_in_php,
                 '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
                 '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
+                '%[^PROJECT_NAME_HYPHENATED]%'     => $project_name_hyphenated,
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
                 '%[^APP_ROUTE_LIST]%'              => $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace) . '\\\\' . $project_name_in_php . 'AppRouteList',
             ]);
 
             // composer.json
-            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace);
+            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name);
 
-            // Tracked Constants
+            // App Route List
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.txt', './src/' . $project_name_in_php .'AppRouteList.php', [
                 '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
                 '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
                 '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
                 '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
             ]);
+
+            // Pack
+            $this->existFolder('./src/' . $project_app_pack_name);
 
         }
     }
@@ -579,7 +607,7 @@ class PithSetup
         return $converted_string;
     }
 
-    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace)
+    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name)
     {
         $format = new CommandLineFormatter();
 
@@ -605,6 +633,7 @@ class PithSetup
             // Add project namespace
             $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
                 'src/',
+                'src/' . $project_app_pack_name,
             ];
 
             // Add migrations namespace

@@ -66,5 +66,6 @@ const PITH_PROJECT_MAIN_TITLE = '';
 const PITH_PROJECT_MAIN_TITLE_IN_PHP = '';
 const PITH_PROJECT_MAIN_TITLE_IN_JS = '';
 const PITH_PROJECT_MAIN_TITLE_IN_CSS = '';
+const PROJECT_NAME_HYPHENATED = '';
 const PITH_PROJECT_META_KEYWORDS = '';
 // ==========================================================
