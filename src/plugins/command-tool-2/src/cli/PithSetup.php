@@ -339,6 +339,7 @@ class PithSetup
                 '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
                 '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
+                '%[^APP_ROUTE_LIST]%'              => $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace) . '\\\\' . $project_name_in_php . 'AppRouteList',
             ]);
 
             // composer.json
@@ -557,6 +558,21 @@ class PithSetup
         // End with backslash
         if (!str_ends_with($converted_string, '\\')) {
             $converted_string .= '\\';
+        }
+
+        // Return string with single-backslashes, ending with a backslash
+        return $converted_string;
+    }
+
+    public function doubleBackslashAndStartsWithDoubleBackslash(string $given_string): string
+    {
+        // Turn single-backslashes into double-backslashes
+        //$converted_string = str_replace('\\', '\\\\', $given_string);
+        $converted_string = preg_replace('/\\\\/','\\\\\\\\',$given_string);
+
+        // Start with double-backslash
+        if (!str_starts_with($converted_string, '\\\\')) {
+            $converted_string = '\\\\' . $converted_string;
         }
 
         // Return string with single-backslashes, ending with a backslash

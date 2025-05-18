@@ -33,7 +33,7 @@ const PITH_PROJECT_META_KEYWORDS = '%[^PROJECT_META_KEYWORDS]%';
 
 // Route List:
 // ==========================================================================
-const PITH_APP_ROUTE_LIST = '\\Pith\\Framework\\Plugin\\RoutingExample\\ExampleAppRouteList';
+const PITH_APP_ROUTE_LIST = '%[^APP_ROUTE_LIST]%';
 // ==========================================================================
 
 // Demo Pages
