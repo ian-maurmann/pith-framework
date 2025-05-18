@@ -85,6 +85,27 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add a name to use for this project in PHP Class Naming.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the PascalCase name of your project,' . "\n"
+            . '████ with the first letter of each word capitalized, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyAwesomeProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_php = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in PHP: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_php = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         $output = 'Add a name to use for this project in JS.' . "\n"
             . "\n"
             . '████ The normal format to use is the PascalCase name of your project,' . "\n"
@@ -219,6 +240,7 @@ class PithSetup
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in PHP: ' . $format->fg_bright_cyan . $project_name_in_php . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
@@ -313,6 +335,7 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
                 '%[^PROJECT_MIGRATION_NAMESPACE]%' => $this->convertBackslashesToDoubleBackslashes($migration_namespace),
                 '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'   => $project_name_in_php,
                 '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
                 '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
@@ -320,6 +343,14 @@ class PithSetup
 
             // composer.json
             $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace);
+
+            // Tracked Constants
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.php', './src/AppRouteList.php', [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
+            ]);
 
         }
     }
@@ -589,5 +620,19 @@ class PithSetup
                 fwrite(STDOUT, $output);
             }
         }
+    }
+
+    /**
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability
+     */
+    public function charToStringLength(string $given_char, string $given_string): string
+    {
+        // Get the given sting length
+        $length_to_use = mb_strlen($given_string);
+
+        $output_string = str_repeat($given_char, $length_to_use);
+
+        // Return the output string
+        return $output_string;
     }
 }
