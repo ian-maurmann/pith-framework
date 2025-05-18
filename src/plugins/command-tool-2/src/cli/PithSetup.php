@@ -311,7 +311,7 @@ class PithSetup
 
             // Env
             $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.php', './env.php', [
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.txt', './env.php', [
                 '%[^DATABASE_NAME]%'          => $project_database_name,
                 '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
                 '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
@@ -331,7 +331,7 @@ class PithSetup
             $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
             
             // Tracked Constants
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', [
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.txt', './tracked-constants.php', [
                 '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
                 '%[^PROJECT_MIGRATION_NAMESPACE]%' => $this->convertBackslashesToDoubleBackslashes($migration_namespace),
                 '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
@@ -346,7 +346,7 @@ class PithSetup
             $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace);
 
             // Tracked Constants
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.php', './src/' . $project_name_in_php .'AppRouteList.php', [
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.txt', './src/' . $project_name_in_php .'AppRouteList.php', [
                 '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
                 '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
                 '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
