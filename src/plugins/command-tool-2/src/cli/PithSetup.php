@@ -310,13 +310,17 @@ class PithSetup
             
             // Tracked Constants
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', [
-                '%[^PROJECT_NAMESPACE]%'           => $project_full_namespace,
-                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $migration_namespace,
+                '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
+                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $this->convertBackslashesToDoubleBackslashes($migration_namespace),
                 '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
                 '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
                 '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
             ]);
+
+            // composer.json
+            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace);
+
         }
     }
 
@@ -489,7 +493,7 @@ class PithSetup
                         fwrite(STDOUT, $output);
                     }
                     else {
-                        $output = $format->fg_bright_red . '        ✘ Failed write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        $output = $format->fg_bright_red . '        ✘ Failed to write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
                         fwrite(STDOUT, $output);
                     }
                 }
@@ -500,6 +504,88 @@ class PithSetup
             }
             else{
                 $output = $format->fg_bright_red . '        ✘ Failed to read content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    /**
+     * @param string $given_string
+     * @return string
+     */
+    public function convertBackslashesToDoubleBackslashes(string $given_string): string
+    {
+        return str_replace('\\', '\\\\', $given_string);
+    }
+
+    public function singleBackslashAndEndWithBackslash(string $given_string): string
+    {
+        // Turn double-backslashes into single-backslashes
+        $converted_string = str_replace('\\\\', '\\', $given_string);
+
+        // End with backslash
+        if (!str_ends_with($converted_string, '\\')) {
+            $converted_string .= '\\';
+        }
+
+        // Return string with single-backslashes, ending with a backslash
+        return $converted_string;
+    }
+
+    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace)
+    {
+        $format = new CommandLineFormatter();
+
+        $output = '    - Looking at composer.json.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $composer_dot_json_array = json_decode(file_get_contents('./composer.json'), true);
+
+        $had_composer_autoload_already_set_up = null;
+        if( isset($composer_dot_json_array['autoload']) ) {
+            $had_composer_autoload_already_set_up = true;
+
+            $output = $format->fg_bright_yellow . '        ✔ The autoloading already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            $had_composer_autoload_already_set_up = false;
+
+            // Add autoload & psr-4
+            $composer_dot_json_array['autoload'] = [];
+            $composer_dot_json_array['autoload']['psr-4'] = [];
+
+            // Add project namespace
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
+                'src/',
+            ];
+
+            // Add migrations namespace
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($migration_namespace)] = [
+                'migrations/',
+            ];
+
+            // Re-encode
+            $composer_dot_json_new_json = json_encode($composer_dot_json_array, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            $did_encode_composer_dot_json_new_json = $composer_dot_json_new_json != false && strlen($composer_dot_json_new_json) > 0;
+
+            if ($did_encode_composer_dot_json_new_json) {
+                // Write to file
+                $content_bytes_total = strlen($composer_dot_json_new_json);
+                $content_bytes_written = file_put_contents('./composer.json', $composer_dot_json_new_json);
+                $did_write_full_content = $content_bytes_written === $content_bytes_total;
+
+                if ($did_write_full_content) {
+                    $output = $format->fg_bright_green . '        ✔ Added namespaces into the composer.json file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+                else {
+                    $output = $format->fg_bright_red . '        ✘ Failed to write namespaces into the composer.json file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+            }
+            else {
+                $output = $format->fg_bright_red . '        ✘ Failed to encode update for composer.json file.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
         }
