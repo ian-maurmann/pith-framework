@@ -167,7 +167,7 @@ class PithSetup
             } while(empty($input));
         }
         $project_name_hyphenated = $input;
-        $project_app_pack_name = $project_name_hyphenated . '-pack';
+        $project_app_pack_folder_name = $project_name_hyphenated . '-pack';
 
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
@@ -266,7 +266,7 @@ class PithSetup
         fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Hyphenated Project Name: ' . $format->fg_bright_cyan . $project_name_hyphenated . $format->reset . "\n");
-        fwrite(STDOUT, 'Pack Name: ' . $format->fg_bright_cyan . $project_app_pack_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_folder_name . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
@@ -368,7 +368,7 @@ class PithSetup
             ]);
 
             // composer.json
-            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name);
+            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_folder_name);
 
             // App Route List
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.txt', './src/' . $project_name_in_php .'AppRouteList.php', [
@@ -378,8 +378,18 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
             ]);
 
+            // Pack folder
+            $this->existFolder('./src/' . $project_app_pack_folder_name);
+
             // Pack
-            $this->existFolder('./src/' . $project_app_pack_name);
+            $template = './vendor/pith/framework/config/setup-templates/app-pack.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/'. $project_name_in_php . 'Pack.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+            ]);
 
         }
     }

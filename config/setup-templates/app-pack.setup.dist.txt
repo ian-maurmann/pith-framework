@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * %[^PROJECT_MAIN_TITLE]% Pack
+ * %[^PROJECT_MAIN_TITLE_UNDERLINE]%─────
+ *
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
+ */
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithPack;
+
+/**
+ * Class %[^PROJECT_MAIN_TITLE_IN_PHP]%Pack
+ */
+class %[^PROJECT_MAIN_TITLE_IN_PHP]%Pack extends PithPack
+{
+    public string $access_level = 'world';
+}
