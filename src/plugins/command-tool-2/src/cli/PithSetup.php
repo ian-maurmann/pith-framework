@@ -103,6 +103,9 @@ class PithSetup
             } while(empty($input));
         }
         $project_name_in_php = $input;
+        $pack_name = $project_main_title . 'Pack';
+        $project_namespace_string = $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace);
+        $pack_namespace_string = $project_namespace_string . '\\\\' . $pack_name;
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
@@ -267,6 +270,9 @@ class PithSetup
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Hyphenated Project Name: ' . $format->fg_bright_cyan . $project_name_hyphenated . $format->reset . "\n");
         fwrite(STDOUT, 'Pack Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_folder_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Class Name: ' . $format->fg_bright_cyan . $pack_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Namespace String: ' . $format->fg_bright_cyan . $project_namespace_string . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Namespace String: ' . $format->fg_bright_cyan . $pack_namespace_string . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
@@ -376,13 +382,14 @@ class PithSetup
                 '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
                 '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
                 '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+                '%[^PROJECT_NAMESPACE_STRING]%'     => $project_namespace_string,
             ]);
 
             // Pack folder
             $this->existFolder('./src/' . $project_app_pack_folder_name);
 
             // Pack
-            $template = './vendor/pith/framework/config/setup-templates/app-pack.setup.dist.txt';
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/app-pack.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/'. $project_name_in_php . 'Pack.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
@@ -391,6 +398,39 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
             ]);
 
+            // Add sub-folders to the Pack folder
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/services');
+
+            // Add services
+            // TODO
+
+            // Add resources
+            // TODO
+
+            // Add features:
+
+            // Add layouts
+            // TODO
+
+            // Add lorem ipsum feature
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-page');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-no-layout');
+
+            // Lorem ipsum no layout rout
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/LoremIpsumNoLayoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/LoremIpsumNoLayoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // Lorem ipsum view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/lorem-ipsum-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
         }
     }
 
