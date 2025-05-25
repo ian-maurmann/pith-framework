@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * %[^PROJECT_MAIN_TITLE]% App Resource Route
+ * %[^PROJECT_MAIN_TITLE_UNDERLINE]%-------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ * @noinspection PhpUnused                             - Ignore that the class is unused.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppResourceRoute
+ */
+class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppResourceRoute extends PithRoute
+{
+    public string $pack            = '%[^PACK_NAMESPACE_STRING]%';
+    public string $route_type      = 'resource-folder';
+    public string $access_level    = 'world';
+    public string $resource_folder = '[^route_folder]/resource/';
+    public string $cache_level     = 'Cache-Control: public, max-age=31536000, immutable, stale-while-revalidate=604800, stale-if-error=1209600';
+}

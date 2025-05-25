@@ -171,7 +171,7 @@ class PithSetup
         }
         $project_name_hyphenated = $input;
         $project_app_pack_folder_name = $project_name_hyphenated . '-pack';
-
+        $project_app_pack_front_end_folder_name = $project_name_hyphenated . '-front-end';
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
@@ -270,6 +270,7 @@ class PithSetup
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
         fwrite(STDOUT, 'Hyphenated Project Name: ' . $format->fg_bright_cyan . $project_name_hyphenated . $format->reset . "\n");
         fwrite(STDOUT, 'Pack Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_folder_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Front End Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_front_end_folder_name . $format->reset . "\n");
         fwrite(STDOUT, 'Pack Class Name: ' . $format->fg_bright_cyan . $pack_name . $format->reset . "\n");
         fwrite(STDOUT, 'Project Namespace String: ' . $format->fg_bright_cyan . $project_namespace_string . $format->reset . "\n");
         fwrite(STDOUT, 'Pack Namespace String: ' . $format->fg_bright_cyan . $pack_namespace_string . $format->reset . "\n");
@@ -407,7 +408,21 @@ class PithSetup
             // TODO
 
             // Add resources
-            // TODO
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name);
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout');
+
+            // Add app resource route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-resources/AppResourceRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/' . $project_app_pack_front_end_folder_name . '/' . $project_name_in_php . 'AppResourceRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('-', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'        => $pack_namespace_string,
+            ]);
 
             // Add features:
 
