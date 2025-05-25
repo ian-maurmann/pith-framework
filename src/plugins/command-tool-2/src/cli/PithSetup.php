@@ -103,7 +103,7 @@ class PithSetup
             } while(empty($input));
         }
         $project_name_in_php = $input;
-        $pack_name = $project_main_title . 'Pack';
+        $pack_name = $project_name_in_php . 'Pack';
         $project_namespace_string = $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace);
         $pack_namespace_string = $project_namespace_string . '\\\\' . $pack_name;
 
