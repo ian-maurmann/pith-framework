@@ -684,6 +684,12 @@ class PithSetup
             $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
                 'src/',
                 'src/' . $project_app_pack_name,
+                'src/' . $project_app_pack_name . '/features',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
+                'src/' . $project_app_pack_name . '/resources',
+                'src/' . $project_app_pack_name . '/services',
             ];
 
             // Add migrations namespace
