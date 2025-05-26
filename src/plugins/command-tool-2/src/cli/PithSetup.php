@@ -435,7 +435,29 @@ class PithSetup
             // Add features:
 
             // Add layouts
-            // TODO
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/main-layout');
+
+            // Main layout view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-view.latte.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/main-layout-view.latte';
+            $this->createFromTemplateFileIfNotExists($template, $destination, []);
+
+            // Main layout view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutViewRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Main layout route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
 
             // Add lorem ipsum feature
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum');
@@ -711,6 +733,8 @@ class PithSetup
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
+                'src/' . $project_app_pack_name . '/features/main-layout/',
+                'src/' . $project_app_pack_name . '/features/main-layout/main-layout/',
                 'src/' . $project_app_pack_name . '/resources/',
                 'src/' . $project_app_pack_name . '/resources/' . $project_app_pack_front_end_folder_name,
                 'src/' . $project_app_pack_name . '/services/',
