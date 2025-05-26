@@ -407,11 +407,9 @@ class PithSetup
             // Add services
             // TODO
 
-            // Add resources
+            // Add resource folder
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name);
-            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource');
-            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features');
-            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout');
+
 
             // Add app resource route
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-resources/AppResourceRoute.setup.dist.txt';
@@ -423,6 +421,11 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%'        => $pack_namespace_string,
             ]);
+
+            // Add resources
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout');
 
             // Add features:
 
