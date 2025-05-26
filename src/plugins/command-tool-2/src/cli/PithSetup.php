@@ -375,7 +375,7 @@ class PithSetup
             ]);
 
             // composer.json
-            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_folder_name);
+            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_folder_name, $project_app_pack_front_end_folder_name);
 
             // App Route List
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.txt', './src/' . $project_name_in_php .'AppRouteList.php', [
@@ -672,7 +672,7 @@ class PithSetup
         return $converted_string;
     }
 
-    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name)
+    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name, $project_app_pack_front_end_folder_name)
     {
         $format = new CommandLineFormatter();
 
@@ -699,12 +699,13 @@ class PithSetup
             $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
                 'src/',
                 'src/' . $project_app_pack_name,
-                'src/' . $project_app_pack_name . '/features',
+                'src/' . $project_app_pack_name . '/features/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
-                'src/' . $project_app_pack_name . '/resources',
-                'src/' . $project_app_pack_name . '/services',
+                'src/' . $project_app_pack_name . '/resources/',
+                'src/' . $project_app_pack_name . '/resources/' . $project_app_pack_front_end_folder_name,
+                'src/' . $project_app_pack_name . '/services/',
             ];
 
             // Add migrations namespace
