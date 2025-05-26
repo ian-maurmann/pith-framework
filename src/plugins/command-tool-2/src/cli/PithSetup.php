@@ -427,6 +427,11 @@ class PithSetup
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout');
 
+            // Add main layout stylesheet
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-stylesheet.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout/'. $project_name_in_style .'-main-layout.css';
+            $this->copyFileIfNotExists($template, $destination);
+
             // Add features:
 
             // Add layouts
