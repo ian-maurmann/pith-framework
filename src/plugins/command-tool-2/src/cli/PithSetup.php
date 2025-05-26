@@ -464,7 +464,7 @@ class PithSetup
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-page');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-no-layout');
 
-            // Lorem ipsum no layout rout
+            // Lorem ipsum no layout route
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/LoremIpsumNoLayoutRoute.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/LoremIpsumNoLayoutRoute.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
@@ -475,6 +475,20 @@ class PithSetup
             // Lorem ipsum view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/lorem-ipsum-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Lorem ipsum route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/LoremIpsumRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/LoremIpsumRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Lorem ipsum view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/lorem-ipsum-view.latte';
             $this->copyFileIfNotExists($template, $destination);
         }
     }

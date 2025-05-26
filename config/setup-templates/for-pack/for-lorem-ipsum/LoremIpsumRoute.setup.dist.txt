@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Lorem Ipsum route
+ * -----------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok, Ignore.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PRS-4 not PSR-0.
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class LoremIpsumRoute
+ */
+class LoremIpsumRoute extends PithRoute
+{
+    public string $route_type   = 'page';
+    public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level = 'world';
+    public string $view         = '[^route_folder]/lorem-ipsum-view.latte';
+    public string $layout       = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
+
+    public string $page_title       = 'Lorem Ipsum - ' . PITH_APP_MAIN_TITLE;
+    public string $meta_keywords    = 'lorem, ipsum, ' . PITH_APP_META_KEYWORDS;
+    public string $meta_description = 'Lorem Ipsum. ' . PITH_APP_META_DESCRIPTION;
+    public string $meta_robots      = 'index, follow';
+}

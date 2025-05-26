@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Lorem Ipsum No Layout Route
+ * Lorem Ipsum No Layout route
  * ---------------------------
  *
  * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok, Ignore.
