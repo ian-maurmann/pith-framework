@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Account Bar partial route
+ * -------------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok here.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class AccountBarPartialRoute
+ */
+class AccountBarPartialRoute extends PithRoute
+{
+    public string $route_type   = 'partial';
+    public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level = 'world';
+    public string $action       = '%[^PROJECT_NAMESPACE_STRING]%\\AccountBarPartialAction';
+    public string $view         = '[^route_folder]/account-bar-partial-view.phtml';
+    public string $view_adapter = '\\Pith\\PhtmlViewAdapter2\\PithPhtmlViewAdapter2';
+}

@@ -436,6 +436,7 @@ class PithSetup
 
             // Add layouts
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/account-bar');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/main-layout');
 
             // Main layout view
@@ -453,6 +454,27 @@ class PithSetup
             // Main layout route
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutRoute.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Account bar view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/account-bar-partial-view.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/account-bar-partial-view.phtml';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Account bar action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/AccountBarPartialAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/AccountBarPartialAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Account bar route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/AccountBarPartialRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/AccountBarPartialRoute.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
@@ -490,6 +512,8 @@ class PithSetup
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/lorem-ipsum-view.latte';
             $this->copyFileIfNotExists($template, $destination);
+
+
         }
     }
 
