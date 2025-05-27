@@ -110,12 +110,6 @@ php pith
 php composer install
 ```
 
-- Next run Composer update
-
-```
-php composer update
-```
-
 - To run locally, go to the `run` folder, and then the `public-local` folder
 ```
 ls
