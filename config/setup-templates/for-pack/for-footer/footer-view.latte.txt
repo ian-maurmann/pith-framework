@@ -1,0 +1,4 @@
+
+{PITH_PROJECT_MAIN_TITLE} {PITH_APP_VERSION_NUMBER} Copyright (c) {$copyright_years} {PITH_PROJECT_MAIN_TITLE}
+
+

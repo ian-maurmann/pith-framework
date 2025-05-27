@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Footer Route
+ * ------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ */
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class FooterRoute
+ */
+class FooterRoute extends PithRoute
+{
+    public string $route_type   = 'partial';
+    public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level = 'world';
+    public string $action       = '%[^PROJECT_NAMESPACE_STRING]%\\FooterAction';
+    public string $view         = '[^route_folder]/footer-view.latte';
+}

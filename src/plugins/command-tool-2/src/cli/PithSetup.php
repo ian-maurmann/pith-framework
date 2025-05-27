@@ -372,6 +372,7 @@ class PithSetup
                 '%[^PROJECT_NAME_HYPHENATED]%'     => $project_name_hyphenated,
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
                 '%[^APP_ROUTE_LIST]%'              => $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace) . '\\\\' . $project_name_in_php . 'AppRouteList',
+                '%[^COPYRIGHT_NOTICE_START_YEAR]%' => date('Y'),
             ]);
 
             // composer.json
@@ -437,7 +438,9 @@ class PithSetup
             // Add layouts
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/account-bar');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/footer');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/main-layout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/nav-links');
 
             // Main layout view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-view.latte.setup.dist.txt';
@@ -494,6 +497,27 @@ class PithSetup
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // Footer view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/footer-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/footer-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Footer action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/FooterAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/FooterAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Footer route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/FooterRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/FooterRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
             ]);
 
             // Add lorem ipsum feature
