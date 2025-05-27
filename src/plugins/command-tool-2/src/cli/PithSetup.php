@@ -442,7 +442,9 @@ class PithSetup
             // Main layout view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-view.latte.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/main-layout-view.latte';
-            $this->createFromTemplateFileIfNotExists($template, $destination, []);
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
 
             // Main layout view requisition
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutViewRequisition.setup.dist.txt';
@@ -479,6 +481,19 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
                 '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Nav links view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-nav-links/nav-links-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/nav-links/nav-links-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Nav links route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-nav-links/NavLinksRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/nav-links/NavLinksRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
             ]);
 
             // Add lorem ipsum feature
