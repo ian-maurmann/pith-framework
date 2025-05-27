@@ -28,11 +28,11 @@
                 <a href="/"><img src="resources/theme/logo.png"></a>
 
                 <div data-layout-area-item="banner-account-links">
-                    {insertPartial('Pith\\DemoApp\\DemoAppPagesPack\\AccountBarPartialRoute')}
+                    {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\AccountBarPartialRoute')}
                 </div>
 
                 <div data-layout-area-item="banner-nav-links">
-                    {insertPartial('Pith\\DemoApp\\DemoAppPagesPack\\NavLinksRoute')}
+                    {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\NavLinksRoute')}
                 </div>
 
             </div>
@@ -49,7 +49,7 @@
                 <div data-layout-area-item="bottom-stripe-4"></div>
                 <div data-layout-area-item="bottom-stripe-5"></div>
 
-                {insertPartial('Pith\\Framework\\SharedInfrastructure\\FooterRoute')}
+                {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\FooterRoute')}
             </div>
         </div>
     </body>
