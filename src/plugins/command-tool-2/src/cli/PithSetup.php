@@ -453,7 +453,8 @@ class PithSetup
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutViewRequisition.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutViewRequisition.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
-                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+                '%[^PROJECT_NAMESPACE]%'       => $project_full_namespace,
+                '%[^PROJECT_NAME_HYPHENATED]%' => $project_name_hyphenated,
             ]);
 
             // Main layout route

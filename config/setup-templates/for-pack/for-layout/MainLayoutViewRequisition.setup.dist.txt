@@ -50,7 +50,7 @@ class MainLayoutViewRequisition extends PithViewRequisition
         $this->addScript('Swal2 NA script', '/resources/vendor/common-libraries/sweetalert/swal2-no-anthems-11.7.3/swal2-na.all.js', 'library-for-page');
 
         // App CSS for layout
-        $this->addStylesheet('Demo App Stylesheet', '/resources/theme/demo-app.css', 'application-for-layout');
+        $this->addStylesheet('Demo App Stylesheet', '/resources/app/features/main-layout/%[^PROJECT_NAME_HYPHENATED]%-main-layout.css', 'application-for-layout');
 
         // Font
         $this->addStylesheet( 'IBM Plex Sans font', '/resources/vendor/common-libraries/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-stylesheet');
