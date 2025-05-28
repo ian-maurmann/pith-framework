@@ -25,7 +25,7 @@
     <body data-theme="pith-demo-app" data-color-mode="light">
         <div id="layout-plate">
             <div id="layout-plate-banner">
-                <a href="/"><img src="resources/theme/logo.png"></a>
+                <a href="/"><img src="resources/app/feature/logo/example-logo.png"></a>
 
                 <div data-layout-area-item="banner-account-links">
                     {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\AccountBarPartialRoute')}
