@@ -558,6 +558,85 @@ class PithSetup
             $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/lorem-ipsum-view.latte';
             $this->copyFileIfNotExists($template, $destination);
 
+            // Add page features
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/home');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/page-2');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/page-3');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-1');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-2');
+
+            // Home view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/home-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/home/home-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Page 2 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-2/page-2-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-2/page-2-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Page 3 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-3/page-3-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-3/page-3-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // User Page 1 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-1/user-page-1-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-1/user-page-1-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // User Page 2 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-2/user-page-2-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-2/user-page-2-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Home route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/HomeRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/home/HomeRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Page 2 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-2/Page2Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-2/Page2Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Page 3 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-3/Page3Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-3/Page3Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // User Page 1 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-1/UserPage1Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-1/UserPage1Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // User Page 2 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-2/UserPage2Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-2/UserPage2Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+
+
 
         }
     }
@@ -813,6 +892,7 @@ class PithSetup
                 'src/',
                 'src/' . $project_app_pack_name,
                 'src/' . $project_app_pack_name . '/features/',
+                'src/' . $project_app_pack_name . '/features/home/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
@@ -821,6 +901,10 @@ class PithSetup
                 'src/' . $project_app_pack_name . '/features/main-layout/footer/',
                 'src/' . $project_app_pack_name . '/features/main-layout/main-layout/',
                 'src/' . $project_app_pack_name . '/features/main-layout/nav-links/',
+                'src/' . $project_app_pack_name . '/features/page-2/',
+                'src/' . $project_app_pack_name . '/features/page-3/',
+                'src/' . $project_app_pack_name . '/features/user-page-1/',
+                'src/' . $project_app_pack_name . '/features/user-page-2/',
                 'src/' . $project_app_pack_name . '/resources/',
                 'src/' . $project_app_pack_name . '/resources/' . $project_app_pack_front_end_folder_name,
                 'src/' . $project_app_pack_name . '/services/',
