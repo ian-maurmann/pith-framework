@@ -701,6 +701,36 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
             ]);
 
+            // Add folders for fixed path files
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/favicons');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/favicons/favicons');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/robots');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/sitemaps');
+
+            // Add favicons - Green
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-green';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-green';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Add favicons - Yellow
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-yellow';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-yellow';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Add favicons - Pith Logo
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-pith-logo';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-pith-logo';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Favicon Dot Ico route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/FaviconDotIcoRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/FaviconDotIcoRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
         }
     }
 
@@ -1019,5 +1049,78 @@ class PithSetup
 
         // Return the output string
         return $output_string;
+    }
+
+    /**
+     * Based on:
+     * https://stackoverflow.com/questions/2050859/copy-entire-contents-of-a-directory-to-another-using-php
+     * Answer by Gonzo
+     *
+     * @param $src
+     * @param $dst
+     * @return bool|mixed
+     */
+    function recurseCopyDir($src, $dst) {
+
+        $dir = opendir($src);
+        $result = ($dir === false ? false : true);
+
+        if ($result !== false) {
+            $result = @mkdir($dst);
+
+            if ($result === true) {
+                while(false !== ( $file = readdir($dir)) ) {
+                    if (( $file != '.' ) && ( $file != '..' ) && $result) {
+                        if ( is_dir($src . '/' . $file) ) {
+                            $result = $this->recurseCopyDir($src . '/' . $file,$dst . '/' . $file);
+                        }
+                        else {
+                            $result = copy($src . '/' . $file,$dst . '/' . $file);
+                        }
+                    }
+                }
+            }
+            closedir($dir);
+        }
+
+        return $result;
+    }
+
+    public function copyFolderIfNotExists(string $vendor_folder_path, string $destination_folder_path): void
+    {
+        $format = new CommandLineFormatter();
+
+        $output = '    - Add folder ' . $destination_folder_path . ' if it does not already exist.' . "\n";
+        fwrite(STDOUT, $output);
+
+        // Get if the dir exists
+        $does_folder_exist = file_exists($destination_folder_path);
+
+        if($does_folder_exist){
+            // Display dir exists
+            $output = $format->fg_bright_green . '        ✔ The '. $destination_folder_path .' folder already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            // Display dir does not exist
+            $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $destination_folder_path . ' folder does not exist.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+
+            // Display that we will create the dir
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Getting the ' . $destination_folder_path . ' folder from the vendor/ folder.' . "\n";
+            fwrite(STDOUT, $output);
+
+            // Add the new folder
+            $did_copy = $this->recurseCopyDir($vendor_folder_path, $destination_folder_path);
+
+            if($did_copy){
+                $output = $format->fg_bright_green . '        ✹ Added the '. $destination_folder_path .' folder.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+            else{
+                $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_folder_path .' folder.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
     }
 }
