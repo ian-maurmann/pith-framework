@@ -923,6 +923,7 @@ class PithSetup
                 'src/' . $project_app_pack_name . '/features/main-layout/footer/',
                 'src/' . $project_app_pack_name . '/features/main-layout/main-layout/',
                 'src/' . $project_app_pack_name . '/features/main-layout/nav-links/',
+                'src/' . $project_app_pack_name . '/features/new-user-sign-up/',
                 'src/' . $project_app_pack_name . '/features/page-2/',
                 'src/' . $project_app_pack_name . '/features/page-3/',
                 'src/' . $project_app_pack_name . '/features/user-page-1/',
