@@ -565,6 +565,7 @@ class PithSetup
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-1');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-2');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/new-user-sign-up');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/logout');
 
             // Home view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/home-view.latte.txt';
@@ -594,6 +595,11 @@ class PithSetup
             // New User Sign Up view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/new-user-sign-up-view.latte.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/new-user-sign-up-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Logout view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/logout-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/logout-view.latte';
             $this->copyFileIfNotExists($template, $destination);
 
             // Home route
@@ -648,6 +654,22 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
                 '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Logout route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/LogoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/LogoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Logout action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/LogoutAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/LogoutAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
             ]);
 
             // New User Sign Up view requisition
@@ -915,6 +937,7 @@ class PithSetup
                 'src/' . $project_app_pack_name,
                 'src/' . $project_app_pack_name . '/features/',
                 'src/' . $project_app_pack_name . '/features/home/',
+                'src/' . $project_app_pack_name . '/features/logout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
