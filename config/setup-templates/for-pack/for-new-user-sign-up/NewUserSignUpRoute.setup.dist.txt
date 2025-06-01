@@ -24,7 +24,7 @@ class NewUserSignUpRoute extends PithRoute
     public string $pack             = '%[^PACK_NAMESPACE_STRING]%';
     public string $access_level     = 'world';
     public string $view_requisition = '%[^PROJECT_NAMESPACE_STRING]%\\NewUserSignUpViewRequisition';
-    public string $view             = '[^route_folder]/new-user-2-view.latte';
+    public string $view             = '[^route_folder]/new-user-sign-up-view.latte';
     public string $layout           = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
 
     public string $page_title       = 'Sign Up - ' . PITH_APP_MAIN_TITLE;

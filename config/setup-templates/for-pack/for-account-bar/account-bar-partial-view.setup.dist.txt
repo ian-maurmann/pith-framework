@@ -18,8 +18,8 @@ declare(strict_types=1);
     </div>
 <?php else: ?>
     <div>
-        <a href="/new-user-sign-up">New User</a>
+        <a href="/sign-up">New User</a>
         |
-        <a href="/login">Login</a>
+        <a href="/log in">Login</a>
     </div>
 <?php endif; ?>
