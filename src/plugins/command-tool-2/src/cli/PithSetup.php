@@ -690,8 +690,8 @@ class PithSetup
             ]);
 
             // Login view requisition
-            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginRequisition.setup.dist.txt';
-            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginRequisition.php';
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginViewRequisition.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
             ]);
