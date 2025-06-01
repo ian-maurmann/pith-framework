@@ -564,6 +564,7 @@ class PithSetup
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/page-3');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-1');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-2');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/new-user-sign-up');
 
             // Home view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/home-view.latte.txt';
@@ -588,6 +589,11 @@ class PithSetup
             // User Page 2 view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-2/user-page-2-view.latte.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-2/user-page-2-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // New User Sign Up view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/new-user-sign-up-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/new-user-sign-up-view.latte';
             $this->copyFileIfNotExists($template, $destination);
 
             // Home route
@@ -633,6 +639,22 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
                 '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // New User Sign Up route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/NewUserSignUpRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/NewUserSignUpRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // New User Sign Up view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/NewUserSignUpViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/NewUserSignUpViewRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
             ]);
 
 
