@@ -28,6 +28,10 @@ class MainLayoutViewRequisition extends PithViewRequisition
         // Headers
         $this->addHeader('Use UTF-8 Encoding', 'Content-Type: text/html; charset=utf-8');
 
+        // Source fallback scripts
+        $this->addScript('Mutation Observer', '/resources/vendor/common-libraries/src-fallback/mutation-observer/dist/mutationobserver.min.js', 'src-fallback');
+        $this->addScript('SRI Fallback', '/resources/vendor/common-libraries/src-fallback/sri-fallback/sri-fallback.js', 'src-fallback');
+
         // Preload fonts for layout
         $this->addPreload('preload IBM Plex Sans font', '/resources/vendor/common-libraries/ibm-plex/plex-2023/ibm-plex-sans/ibm-plex-sans.css', 'font-preload', 'style');
 
