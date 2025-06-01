@@ -27,8 +27,8 @@ class HomeRoute extends PithRoute
     public string $view         = '[^route_folder]/home-view.latte';
     public string $layout       = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
 
-    public string $page_title       = 'Home - ' . PITH_APP_MAIN_TITLE;
-    public string $meta_keywords    = 'Home, ' . PITH_APP_META_KEYWORDS;
-    public string $meta_description = 'Home. ' . PITH_APP_META_DESCRIPTION;
+    public string $page_title       = PITH_APP_MAIN_TITLE;
+    public string $meta_keywords    = PITH_APP_META_KEYWORDS;
+    public string $meta_description = PITH_APP_META_DESCRIPTION;
     public string $meta_robots      = 'index, follow';
 }
