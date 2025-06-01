@@ -1003,6 +1003,10 @@ class PithSetup
                 'src/' . $project_app_pack_name . '/features/user-page-2/',
                 'src/' . $project_app_pack_name . '/resources/',
                 'src/' . $project_app_pack_name . '/resources/' . $project_app_pack_front_end_folder_name,
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/favicons',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/robots',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/sitemaps',
                 'src/' . $project_app_pack_name . '/services/',
             ];
 
