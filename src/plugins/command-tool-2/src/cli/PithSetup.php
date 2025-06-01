@@ -603,6 +603,11 @@ class PithSetup
             $destination = './src/' . $project_app_pack_folder_name .'/features/logout/logout-view.latte';
             $this->copyFileIfNotExists($template, $destination);
 
+            // Login view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/login-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/login-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
             // Home route
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/HomeRoute.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/home/HomeRoute.php';
