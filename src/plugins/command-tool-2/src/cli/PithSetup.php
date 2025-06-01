@@ -566,6 +566,7 @@ class PithSetup
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-2');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/new-user-sign-up');
             $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/logout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/login');
 
             // Home view
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/home-view.latte.txt';
@@ -665,6 +666,15 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
             ]);
 
+            // Login route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
             // Logout action
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/LogoutAction.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/features/logout/LogoutAction.php';
@@ -679,8 +689,12 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
             ]);
 
-
-
+            // Login view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
 
         }
     }
@@ -937,6 +951,7 @@ class PithSetup
                 'src/' . $project_app_pack_name,
                 'src/' . $project_app_pack_name . '/features/',
                 'src/' . $project_app_pack_name . '/features/home/',
+                'src/' . $project_app_pack_name . '/features/login/',
                 'src/' . $project_app_pack_name . '/features/logout/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
                 'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',

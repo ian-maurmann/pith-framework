@@ -20,6 +20,6 @@ declare(strict_types=1);
     <div>
         <a href="/sign-up">New User</a>
         |
-        <a href="/log in">Login</a>
+        <a href="/login">Login</a>
     </div>
 <?php endif; ?>

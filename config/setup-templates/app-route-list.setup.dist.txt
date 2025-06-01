@@ -30,6 +30,8 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route',       ['GET', 'POST'], '/error-405',                                             '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
         ['route',       'GET',           '/favicon.ico',                                           '\\Pith\\Framework\\SharedUiResourcePack\\PithFrameworkLogoFaviconIcoRoute'],
         ['route',       ['GET', 'POST'], '/home',                                                  '%[^PROJECT_NAMESPACE_STRING]%\\HomeRoute'],
+        ['route',       ['GET', 'POST'], '/login',                                                 '%[^PROJECT_NAMESPACE_STRING]%\\LoginRoute'],
+        ['route',       ['GET', 'POST'], '/logout',                                                '%[^PROJECT_NAMESPACE_STRING]%\\LogoutRoute'],
         ['route',       ['GET', 'POST'], '/lorem-ipsum',                                           '%[^PROJECT_NAMESPACE_STRING]%\\LoremIpsumRoute'],
         ['route',       ['GET', 'POST'], '/lorem-ipsum-no-layout',                                 '%[^PROJECT_NAMESPACE_STRING]%\\LoremIpsumNoLayoutRoute'],
         ['route',       ['GET', 'POST'], '/page-2',                                                '%[^PROJECT_NAMESPACE_STRING]%\\Page2Route'],
@@ -38,7 +40,7 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/plugin/login-form/{filepath:.+}',   '\\Pith\\Framework\\Plugin\\LoginForm\\PithLoginFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}', '\\Pith\\Framework\\Plugin\\SignUpForm\\PithSignUpFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',           '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
-        ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',           '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // Will change
+        ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',           '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // DEPRECATED, will change
         ['route-group', '',              '/resources/vendor/common-libraries',                     '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
         ['route',       ['GET', 'POST'], '/sign-up',                                               '%[^PROJECT_NAMESPACE_STRING]%\\NewUserSignUpRoute'],
         ['route',       ['GET', 'POST'], '/user-page-1',                                           '%[^PROJECT_NAMESPACE_STRING]%\\UserPage1Route'],
