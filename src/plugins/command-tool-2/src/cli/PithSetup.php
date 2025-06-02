@@ -737,7 +737,7 @@ class PithSetup
             $this->copyFileIfNotExists($template, $destination);
 
             // Sitemap Dot Xml route
-            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemaps/SitemapDotXmlRoute.setup.dist.txt';
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/SitemapDotXmlRoute.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/SitemapDotXmlRoute.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
