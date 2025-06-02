@@ -65,6 +65,27 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add the domain for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the URL that the production version of the website will be on.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'example.com' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_domain = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Domain: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_domain = $input;
+        $project_domain_url = 'https://' . $project_domain;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         $output = 'Add a main title for this project.' . "\n"
             . "\n"
             . '████ The normal format to use is the title-case name of your project with spaces.' . "\n";
@@ -278,6 +299,8 @@ class PithSetup
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
         fwrite(STDOUT, 'Database Password: ' . $format->fg_bright_cyan . $project_database_password . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Domain: ' . $format->fg_bright_cyan . $project_domain . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Domain URL: ' . $format->fg_bright_cyan . $project_domain_url . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
@@ -346,6 +369,8 @@ class PithSetup
                 '%[^DATABASE_NAME]%'          => $project_database_name,
                 '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
                 '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
+                '%[^PROJECT_DOMAIN]%'         => $project_domain,
+                '%[^PROJECT_DOMAIN_URL]%'     => $project_domain_url,
             ]);
 
             // Front Controller
@@ -373,6 +398,8 @@ class PithSetup
                 '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
                 '%[^APP_ROUTE_LIST]%'              => $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace) . '\\\\' . $project_name_in_php . 'AppRouteList',
                 '%[^COPYRIGHT_NOTICE_START_YEAR]%' => date('Y'),
+                '%[^PROJECT_DOMAIN]%'              => $project_domain,
+                '%[^PROJECT_DOMAIN_URL]%'          => $project_domain_url,
             ]);
 
             // composer.json
@@ -730,15 +757,32 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
             ]);
-
+            
             // sitemap.xml
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/sitemap.xml.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/sitemap.xml';
-            $this->copyFileIfNotExists($template, $destination);
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_DOMAIN_URL]%' => $project_domain_url,
+            ]);
 
             // Sitemap Dot Xml route
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/SitemapDotXmlRoute.setup.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/SitemapDotXmlRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // robots.txt
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-robots-dot-txt/robots.txt.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/robots/robots.txt';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_DOMAIN_URL]%' => $project_domain_url,
+            ]);
+
+            // Robots Dot Txt route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-robots-dot-txt/RobotsDotTxtRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/robots/RobotsDotTxtRoute.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,

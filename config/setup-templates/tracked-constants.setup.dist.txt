@@ -35,6 +35,8 @@ const PITH_APP_META_KEYWORDS = '%[^PROJECT_META_KEYWORDS]%';
 const PITH_APP_META_DESCRIPTION = '%[^PROJECT_MAIN_TITLE]%';
 const PITH_APP_COPYRIGHT_NOTICE_START_YEAR = '%[^COPYRIGHT_NOTICE_START_YEAR]%';
 const PITH_APP_VERSION_NUMBER = '0.0.0';
+
+const PITH_APP_PRODUCTION_DOMAIN = '%[^PROJECT_DOMAIN]%';
 // ==========================================================================
 
 
