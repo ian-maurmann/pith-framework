@@ -41,6 +41,7 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',           '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
         ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',           '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // DEPRECATED, will change
         ['route-group', '',              '/resources/vendor/common-libraries',                     '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
+        ['route',       ['GET', 'POST'], '/robots.txt',                                            '%[^PROJECT_NAMESPACE_STRING]%\\RobotsDotTxtRoute'],
         ['route',       ['GET', 'POST'], '/sign-out',                                              '%[^PROJECT_NAMESPACE_STRING]%\\LogoutRoute'],
         ['route',       ['GET', 'POST'], '/sign-up',                                               '%[^PROJECT_NAMESPACE_STRING]%\\NewUserSignUpRoute'],
         ['route',       ['GET', 'POST'], '/sitemap.xml',                                           '%[^PROJECT_NAMESPACE_STRING]%\\SitemapDotXmlRoute'],

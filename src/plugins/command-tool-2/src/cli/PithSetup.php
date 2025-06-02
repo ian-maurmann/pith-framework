@@ -757,7 +757,7 @@ class PithSetup
                 '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
                 '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
             ]);
-            
+
             // sitemap.xml
             $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/sitemap.xml.dist.txt';
             $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/sitemap.xml';
