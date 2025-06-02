@@ -43,6 +43,7 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route-group', '',              '/resources/vendor/common-libraries',                     '\\Pith\\Framework\\Plugin\\CommonLibraries\\PithCommonLibrariesRouteList'],
         ['route',       ['GET', 'POST'], '/sign-out',                                              '%[^PROJECT_NAMESPACE_STRING]%\\LogoutRoute'],
         ['route',       ['GET', 'POST'], '/sign-up',                                               '%[^PROJECT_NAMESPACE_STRING]%\\NewUserSignUpRoute'],
+        ['route',       ['GET', 'POST'], '/sitemap.xml',                                           '%[^PROJECT_NAMESPACE_STRING]%\\SitemapDotXmlRoute'],
         ['route',       ['GET', 'POST'], '/user-page-1',                                           '%[^PROJECT_NAMESPACE_STRING]%\\UserPage1Route'],
         ['route',       ['GET', 'POST'], '/user-page-2',                                           '%[^PROJECT_NAMESPACE_STRING]%\\UserPage2Route'],
     ];
