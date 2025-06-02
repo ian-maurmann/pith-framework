@@ -23,7 +23,7 @@ class UserPage1Route extends PithRoute
 {
     public string $route_type   = 'page';
     public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
-    public string $access_level = 'world';
+    public string $access_level = 'user';
     public string $view         = '[^route_folder]/user-page-1-view.latte';
     public string $layout       = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
 
