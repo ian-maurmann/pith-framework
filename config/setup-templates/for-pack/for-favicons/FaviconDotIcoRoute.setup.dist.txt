@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Resource Route for favicon.ico
+ * ------------------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class FaviconDotIcoRoute
+ */
+class FaviconDotIcoRoute extends PithRoute
+{
+    public string $route_type    = 'resource-file';
+    public string $pack          = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level  = 'world';
+    public string $resource_path = '[^route_folder]/favicons/' . PITH_APP_FAVICON_PATH_FLAG . '/favicon.ico';
+    public string $cache_level   = 'Cache-Control: public, max-age=31536000, immutable, stale-while-revalidate=604800, stale-if-error=1209600';
+}

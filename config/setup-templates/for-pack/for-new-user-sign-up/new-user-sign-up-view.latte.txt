@@ -1,0 +1,6 @@
+
+<center>
+    <b>Sign up as new user:</b>
+</center>
+
+{insertPartial('Pith\\Framework\\Plugin\\SignUpForm\\NewUserSignupFormPartialRoute')}

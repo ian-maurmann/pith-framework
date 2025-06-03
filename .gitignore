@@ -21,11 +21,6 @@ composer.phar
 vendor/
 
 
-# Ignore dev-test folder
-# ----------------------
-dev-test/
-
-
 # Ignore sensitive info
 # ---------------------
 .env
@@ -45,17 +40,14 @@ php_errors.log
 
 # Ignore template cache
 # ---------------------
-# old:
-/data/latte-cache/*.php
-/data/latte-cache/*.php.lock
-
-# new:
 /cache/latte-cache/*.php
 /cache/latte-cache/*.php.lock
+
 
 # Ignore touchstone files
 # --------------------
 *.touchstone.txt
+
 
 
 # Ignore symlinks
@@ -64,3 +56,6 @@ php_errors.log
 /pest
 /phpstan
 /stan
+
+
+

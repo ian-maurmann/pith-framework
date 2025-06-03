@@ -118,7 +118,7 @@ class PithTaskTool
         $writer->writeLine('    ' . 'Tool for running commands from the command line.');
         $writer->writeLine('    ');
         $writer->writeLine('    ' . '╭────────────────────────────────────────────────────────╮');
-        $writer->writeLine('    ' . '  ' . $this->info->getVersionSlug());
+        $writer->writeLine('    ' . '  ' . $this->info->getVersionText());
         $writer->writeLine('    ' . '  ' .'Released under license: ' . $this->info->getLicenseName());
         $writer->writeLine('    ' . '  ' .$this->info->getCopyrightNotice());
         $writer->writeLine('    ' . '╰────────────────────────────────────────────────────────╯');

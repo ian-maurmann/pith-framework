@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * New User Sign-Up Route
+ * ----------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class NewUserSignUpRoute
+ */
+class NewUserSignUpRoute extends PithRoute
+{
+    public string $route_type       = 'page';
+    public string $pack             = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level     = 'world';
+    public string $view_requisition = '%[^PROJECT_NAMESPACE_STRING]%\\NewUserSignUpViewRequisition';
+    public string $view             = '[^route_folder]/new-user-sign-up-view.latte';
+    public string $layout           = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
+
+    public string $page_title       = 'Sign Up - ' . PITH_APP_MAIN_TITLE;
+    public string $meta_keywords    = PITH_APP_META_KEYWORDS;
+    public string $meta_description = PITH_APP_META_DESCRIPTION;
+    public string $meta_robots      = 'index, follow';
+}

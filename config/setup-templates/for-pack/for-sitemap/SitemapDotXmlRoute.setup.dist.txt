@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Resource Route for sitemap.xml
+ * ------------------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpClassNamingConventionInspection    - Long class name is ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class SitemapDotXmlRoute
+ */
+class SitemapDotXmlRoute extends PithRoute
+{
+    public string $route_type    = 'resource-file';
+    public string $pack          = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level  = 'world';
+    public string $resource_path = '[^route_folder]/sitemap.xml';
+    public string $cache_level   = 'Cache-Control: public, max-age=86400, immutable, stale-while-revalidate=86400, stale-if-error=1209600';
+}

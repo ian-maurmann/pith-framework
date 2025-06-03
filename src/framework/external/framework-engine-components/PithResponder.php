@@ -108,16 +108,17 @@ class PithResponder
 
         $resource_files = $this->resource_files;
 
-        $this->insertResourceFilesByRole('Font Preloads',                     $resource_files, 'font-preload',            $indent);
-        $this->insertResourceFilesByRole('CSS Reset',                         $resource_files, 'reset',                   $indent);
-        $this->insertResourceFilesByRole('Preloads',                          $resource_files, 'preload',                 $indent);
-        $this->insertResourceFilesByRole('Library Resources for Layout',      $resource_files, 'library-for-layout',      $indent);
-        $this->insertResourceFilesByRole('Library Resources for Page',        $resource_files, 'library-for-page',        $indent);
-        $this->insertResourceFilesByRole('Library Resources for Partial',     $resource_files, 'library-for-partial',     $indent);
-        $this->insertResourceFilesByRole('Application Resources for Layout',  $resource_files, 'application-for-layout',  $indent);
-        $this->insertResourceFilesByRole('Application Resources for Page',    $resource_files, 'application-for-page',    $indent);
-        $this->insertResourceFilesByRole('Application Resources for Partial', $resource_files, 'application-for-partial', $indent);
-        $this->insertResourceFilesByRole('Fontsheets',                        $resource_files, 'font-stylesheet',         $indent);
+        $this->insertResourceFilesByRole('Handle when resources fail to load', $resource_files, 'src-fallback',            $indent);
+        $this->insertResourceFilesByRole('Font Preloads',                      $resource_files, 'font-preload',            $indent);
+        $this->insertResourceFilesByRole('CSS Reset',                          $resource_files, 'reset',                   $indent);
+        $this->insertResourceFilesByRole('Preloads',                           $resource_files, 'preload',                 $indent);
+        $this->insertResourceFilesByRole('Library Resources for Layout',       $resource_files, 'library-for-layout',      $indent);
+        $this->insertResourceFilesByRole('Library Resources for Page',         $resource_files, 'library-for-page',        $indent);
+        $this->insertResourceFilesByRole('Library Resources for Partial',      $resource_files, 'library-for-partial',     $indent);
+        $this->insertResourceFilesByRole('Application Resources for Layout',   $resource_files, 'application-for-layout',  $indent);
+        $this->insertResourceFilesByRole('Application Resources for Page',     $resource_files, 'application-for-page',    $indent);
+        $this->insertResourceFilesByRole('Application Resources for Partial',  $resource_files, 'application-for-partial', $indent);
+        $this->insertResourceFilesByRole('Fontsheets',                         $resource_files, 'font-stylesheet',         $indent);
     }
 
     /**
