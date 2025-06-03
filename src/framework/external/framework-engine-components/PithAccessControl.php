@@ -222,7 +222,7 @@ class PithAccessControl
                 }
                 else{
                     // Redirect to user login form
-                    header('Location: ' . SHARED_UI_USER_LOGIN_FORM_PAGE_LINK, true, 302);
+                    header('Location: ' . PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH, true, 302);
                     exit;
                 }
 

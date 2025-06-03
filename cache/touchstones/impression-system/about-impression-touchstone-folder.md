@@ -1,0 +1,1 @@
+The impression system will put empty files in this folder.

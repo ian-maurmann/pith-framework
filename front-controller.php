@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Index Front Controller
+ * Front Controller
  *
  * @noinspection DuplicatedCode                        - Front controller shares code with other example front controllers, ignore.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
@@ -43,6 +43,11 @@ ini_set('error_log', $php_error_log_filename);
 // ============================
 // error_log('Hello, errors!');
 // ============================
+
+// Set STDOUT if not already set
+if(!defined('STDOUT')){
+    define('STDOUT', fopen('php://stdout', 'wb'));
+}
 
 // Setup our Container
 $container = new DI\Container();

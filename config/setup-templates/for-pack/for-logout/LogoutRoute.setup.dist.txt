@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Logout Route
+ * ------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Ignore.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PRS-4 not PSR-0.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class LogoutRoute
+ */
+class LogoutRoute extends PithRoute
+{
+    public string $route_type       = 'page';
+    public string $pack             = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level     = 'logout';
+    public string $action           = '%[^PROJECT_NAMESPACE_STRING]%\\LogoutAction';
+    public string $view             = '[^route_folder]/logout-view.latte';
+    public string $layout           = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
+
+    public string $page_title       = 'Sign Out - ' . PITH_APP_MAIN_TITLE;
+    public string $meta_keywords    = PITH_APP_META_KEYWORDS;
+    public string $meta_description = PITH_APP_META_DESCRIPTION;
+    public string $meta_robots      = 'noindex, follow'; // Tell search engines not to index the logout page
+}

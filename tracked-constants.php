@@ -31,18 +31,17 @@ const PITH_TASK_LOG_LOCATION = 'logs/task-logs/';
 const PITH_TASK_OUTPUT_LOG_LOCATION = 'logs/task-output-logs/';
 const PITH_PHP_ERROR_LOG_LOCATION = 'logs/php-error-logs/';
 
-const SHARED_UI_USER_LOGIN_FORM_ACTION_LINK             = '/shared-ui/perform-login';
-const SHARED_UI_USER_LOGIN_FORM_PAGE_LINK               = '/1111/1111/demo/login';
-const SHARED_UI_USER_LOGIN_SUCCESS_LANDING_PAGE_LINK    = '/1111/1111/demo';
-const SHARED_UI_USER_PERFORM_LOGOUT_LINK                = '/shared-ui/perform-logout';
-const SHARED_UI_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK   = '/1111/1111/demo?logged-out=yes';
-const SHARED_UI_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK   = '/1111/1111/demo?logged-out=no';
-const SHARED_UI_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = SHARED_UI_USER_LOGIN_FORM_PAGE_LINK;
+const PITH_APP_DEFAULT_LOGIN_FORM_ACTION_URL_PATH = '/shared-ui/perform-login';
+const PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH = '/1111/1111/demo/login';
+const PITH_APP_DEFAULT_USER_LOGIN_SUCCESS_LANDING_PAGE_URL_PATH = '/1111/1111/demo';
+const PITH_APP_DEFAULT_USER_LOGOUT_SUCCESS_LANDING_PAGE_LINK = '/1111/1111/demo?logged-out=yes';
+const PITH_APP_DEFAULT_USER_LOGOUT_FAILURE_LANDING_PAGE_LINK = '/1111/1111/demo?logged-out=no';
+const PITH_APP_DEFAULT_USER_CREATION_ON_SUCCESS_GOTO_PAGE_LINK = PITH_APP_DEFAULT_LOGIN_PAGE_URL_PATH;
 
 const PITH_PANEL_PATH = '/3333/3333/panel';
 
-const TASKS_URL_PATH   = '/shared-infrastructure/run/task';
-const TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksRouteList';
+const PITH_APP_TASKS_URL_PATH   = '/shared-infrastructure/run/task';
+const PITH_APP_TASKS_ROUTE_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TasksRouteList';
 
 
 const PITH_APP_TASK_WORKSPACES_LIST = '\\Pith\\Framework\\SharedInfrastructure\\Tasks\\TaskWorkspacesList';
@@ -55,6 +54,28 @@ const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 // The first namespace is the default when generating new migrations
 // The default can be overridden by specifying the namespace in the migration command
 // Example: php mig migrations:generate --namespace=Pith\\Framework\\TestMigration
-const PITH_MIGRATIONS_PATHS = [
+const PITH_APP_MIGRATION_PATHS = [
     'Pith\\Framework\\Migration' => './migrations',
 ];
+
+// Will be needed in projects
+// ==========================================================
+const PITH_PROJECT_NAMESPACE = '';
+const PITH_PROJECT_MIGRATION_NAMESPACE = '';
+const PITH_PROJECT_MAIN_TITLE = '';
+const PITH_PROJECT_MAIN_TITLE_IN_PHP = '';
+const PITH_PROJECT_MAIN_TITLE_IN_JS = '';
+const PITH_PROJECT_MAIN_TITLE_IN_CSS = '';
+const PROJECT_NAME_HYPHENATED = '';
+const PITH_PROJECT_META_KEYWORDS = '';
+
+
+const PITH_APP_MAIN_TITLE = '';
+const PITH_APP_META_KEYWORDS = '';
+const PITH_APP_META_DESCRIPTION = '';
+const PITH_APP_COPYRIGHT_NOTICE_START_YEAR = '';
+const PITH_APP_VERSION_NUMBER = '';
+
+
+const PITH_APP_PRODUCTION_DOMAIN = '';
+// ==========================================================

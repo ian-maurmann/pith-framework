@@ -1,0 +1,24 @@
+
+<p>
+    {if $logout_note === 'logout-successful'}
+        <h3>Signed out.</h3>
+
+        Successful logged out.
+    {elseif $logout_note === 'logout-failed'}
+        <h3>Unable to sign out.</h3>
+
+        Failed to log out. Please refresh and sign out again.
+    {elseif $logout_note === 'logout-failed-no-token'}
+        <h3>Unable to sign out.</h3>
+
+        Missing security token. Please refresh and sign out again.
+    {elseif $logout_note === 'logout-failed-not-logged-in'}
+        <h3>Already signed out.</h3>
+
+        Unable to log out because you are already signed out.
+    {else}
+        <h3>Unable to sign out.</h3>
+
+        Encountered a problem while logging out. Please refresh and sign out again.
+    {/if}
+</p>

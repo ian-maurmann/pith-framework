@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * User Page 2 route
+ * -----------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok, Ignore.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PRS-4 not PSR-0.
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class UserPage2Route
+ */
+class UserPage2Route extends PithRoute
+{
+    public string $route_type   = 'page';
+    public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level = 'user';
+    public string $view         = '[^route_folder]/user-page-2-view.latte';
+    public string $layout       = '%[^PROJECT_NAMESPACE_STRING]%\\MainLayoutRoute';
+
+    public string $page_title       = 'User Page 2 - ' . PITH_APP_MAIN_TITLE;
+    public string $meta_keywords    = 'User Page 2, ' . PITH_APP_META_KEYWORDS;
+    public string $meta_description = 'User Page 2. ' . PITH_APP_META_DESCRIPTION;
+    public string $meta_robots      = 'index, follow';
+}

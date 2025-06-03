@@ -1,0 +1,1 @@
+The Janitor system will put empty files in this folder.

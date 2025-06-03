@@ -1,0 +1,18 @@
+#=========================================
+# robots.txt
+# ----------
+#
+# Reference:
+# https://www.robotstxt.org/robotstxt.html
+#=========================================
+
+
+User-agent: *
+Disallow:
+
+
+# ---------- Space above ----------
+
+Sitemap: %[^PROJECT_DOMAIN_URL]%/sitemap.xml
+
+# ---------- Space below ----------

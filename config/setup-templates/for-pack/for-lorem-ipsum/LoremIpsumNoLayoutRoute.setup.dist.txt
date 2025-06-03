@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Lorem Ipsum No Layout route
+ * ---------------------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok, Ignore.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Ignore, using PRS-4 not PSR-0.
+ * @noinspection PhpClassNamingConventionInspection    - Long class names are ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class LoremIpsumNoLayoutRoute
+ */
+class LoremIpsumNoLayoutRoute extends PithRoute
+{
+    public string $route_type       = 'page';
+    public string $pack             = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level     = 'world';
+    public string $view             = '[^route_folder]/lorem-ipsum-view.latte';
+}
