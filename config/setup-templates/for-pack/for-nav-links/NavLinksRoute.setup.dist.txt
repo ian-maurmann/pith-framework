@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Nav Links route
+ * ---------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Short property names are ok.
+ * @noinspection PhpIllegalPsrClassPathInspection      - Using PSR-4 not PSR-0.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use Pith\Workflow\PithRoute;
+
+/**
+ * Class NavLinksRoute
+ */
+class NavLinksRoute extends PithRoute
+{
+    public string $route_type   = 'partial';
+    public string $pack         = '%[^PACK_NAMESPACE_STRING]%';
+    public string $access_level = 'world';
+    public string $view         = '[^route_folder]/nav-links-view.latte';
+}

@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Footer Action
+ * -------------
+ *
+ * @noinspection PhpPropertyNamingConventionInspection - Property names with underscores are ok.
+ * @noinspection PhpMissingParentCallCommonInspection  - Action parent methods exist as fallback.
+ * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
+ */
+
+
+declare(strict_types=1);
+
+namespace %[^PROJECT_NAMESPACE]%;
+
+use IKM\CopyrightYearUtility\CopyrightYearUtility;
+use Pith\Workflow\PithAction;
+
+/**
+ * Class FooterAction
+ */
+class FooterAction extends PithAction
+{
+    private CopyrightYearUtility $copyright_year_utility;
+
+    public function __construct(CopyrightYearUtility $copyright_year_utility)
+    {
+        // Add Objects
+        $this->copyright_year_utility = $copyright_year_utility;
+    }
+
+    public function runAction()
+    {
+        // Variables
+        $copyright_years = $this->copyright_year_utility->getYearsByFirstYear(PITH_APP_COPYRIGHT_NOTICE_START_YEAR);
+
+        // Push to view
+        $this->prepare->copyright_years = $copyright_years;
+    }
+}

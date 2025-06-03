@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Format -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!-- Title -->
+        <title>{insertPageTitle()}</title>
+
+        <!-- Viewport -->
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized"  content="width">
+        <meta name="viewport"         content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Page Description -->
+        <meta name="description" content="{insertMetaDescription()}">
+
+        <!-- Page Keywords -->
+        <meta name="keywords" content="{insertMetaKeywords()}">
+
+        {insertMetaRobots(2)}
+        {insertResourceFiles(2)}
+    </head>
+    <body data-theme="pith-demo-app" data-color-mode="light">
+        <div id="layout-plate">
+            <div id="layout-plate-banner">
+                <a href="/"><img src="resources/app/features/logo/example-logo.png"></a>
+
+                <div data-layout-area-item="banner-account-links">
+                    {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\AccountBarPartialRoute')}
+                </div>
+
+                <div data-layout-area-item="banner-nav-links">
+                    {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\NavLinksRoute')}
+                </div>
+
+            </div>
+            <div id="layout-plate-middle">
+                <div id="content">
+                    {insertPage()}
+                </div>
+            </div>
+            <div id="layout-plate-footer">
+                <div data-layout-area-item="bottom-stripe-0"></div>
+                <div data-layout-area-item="bottom-stripe-1"></div>
+                <div data-layout-area-item="bottom-stripe-2"></div>
+                <div data-layout-area-item="bottom-stripe-3"></div>
+                <div data-layout-area-item="bottom-stripe-4"></div>
+                <div data-layout-area-item="bottom-stripe-5"></div>
+
+                {insertPartial('%[^PROJECT_NAMESPACE_STRING]%\\FooterRoute')}
+            </div>
+        </div>
+    </body>
+</html>

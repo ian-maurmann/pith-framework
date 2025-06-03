@@ -94,7 +94,7 @@ SharedUI.NewUserSignupForm.isValidEmailAddress = function(given_email_address){
 SharedUI.NewUserSignupForm.isValidBirthday = function(given_date_string){
     let self               = SharedUI.NewUserSignupForm;
     let is_valid           = false;
-    let input_mask_utility = SharedUI.InputMaskUtility;
+    let input_mask_utility = SharedUI.InputMaskUtilityForSignUp;
     let date_number_chars  = input_mask_utility.filterToAllowedChars(given_date_string, '0123456789');
     let is_date_filled     = date_number_chars.length === 8;
     let is_too_new         = false;

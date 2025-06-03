@@ -57,3 +57,25 @@ const PITH_TOUCHSTONE_FOLDER_LOCATION = 'cache/touchstones/';
 const PITH_APP_MIGRATION_PATHS = [
     'Pith\\Framework\\Migration' => './migrations',
 ];
+
+// Will be needed in projects
+// ==========================================================
+const PITH_PROJECT_NAMESPACE = '';
+const PITH_PROJECT_MIGRATION_NAMESPACE = '';
+const PITH_PROJECT_MAIN_TITLE = '';
+const PITH_PROJECT_MAIN_TITLE_IN_PHP = '';
+const PITH_PROJECT_MAIN_TITLE_IN_JS = '';
+const PITH_PROJECT_MAIN_TITLE_IN_CSS = '';
+const PROJECT_NAME_HYPHENATED = '';
+const PITH_PROJECT_META_KEYWORDS = '';
+
+
+const PITH_APP_MAIN_TITLE = '';
+const PITH_APP_META_KEYWORDS = '';
+const PITH_APP_META_DESCRIPTION = '';
+const PITH_APP_COPYRIGHT_NOTICE_START_YEAR = '';
+const PITH_APP_VERSION_NUMBER = '';
+
+
+const PITH_APP_PRODUCTION_DOMAIN = '';
+// ==========================================================

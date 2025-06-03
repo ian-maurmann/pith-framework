@@ -65,6 +65,27 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
+        $output = 'Add the domain for this project.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the URL that the production version of the website will be on.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'example.com' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_domain = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Domain: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_domain = $input;
+        $project_domain_url = 'https://' . $project_domain;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
         $output = 'Add a main title for this project.' . "\n"
             . "\n"
             . '████ The normal format to use is the title-case name of your project with spaces.' . "\n";
@@ -82,6 +103,30 @@ class PithSetup
             } while(empty($input));
         }
         $project_main_title = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a name to use for this project in PHP Class Naming.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the PascalCase name of your project,' . "\n"
+            . '████ with the first letter of each word capitalized, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyAwesomeProject' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_in_php = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Project Name to use in PHP: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_in_php = $input;
+        $pack_name = $project_name_in_php . 'Pack';
+        $project_namespace_string = $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace);
+        $pack_namespace_string = $project_namespace_string . '\\\\' . $pack_name;
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
@@ -126,6 +171,28 @@ class PithSetup
         }
         $project_name_in_style = $input;
 
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add a hyphenated name to use for this project in file folders.' . "\n"
+            . "\n"
+            . '████ The normal format to use is the kebab-case name of your project,' . "\n"
+            . '████ lowercase, with hyphens between words, no spaces.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my-awesome-project' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_name_hyphenated = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'Hyphenated Project Name to use in file folders: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_name_hyphenated = $input;
+        $project_app_pack_folder_name = $project_name_hyphenated . '-pack';
+        $project_app_pack_front_end_folder_name = $project_name_hyphenated . '-front-end';
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
@@ -219,12 +286,21 @@ class PithSetup
         fwrite(STDOUT, 'Project Namespace: ' . $format->fg_bright_cyan . $project_full_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Migration Namespace: ' . $format->fg_bright_cyan . $migration_namespace . $format->reset . "\n");
         fwrite(STDOUT, 'Project Title: ' . $format->fg_bright_cyan . $project_main_title . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Name in PHP: ' . $format->fg_bright_cyan . $project_name_in_php . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in JS: ' . $format->fg_bright_cyan . $project_name_in_script . $format->reset . "\n");
         fwrite(STDOUT, 'Project Name in CSS: ' . $format->fg_bright_cyan . $project_name_in_style . $format->reset . "\n");
+        fwrite(STDOUT, 'Hyphenated Project Name: ' . $format->fg_bright_cyan . $project_name_hyphenated . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_folder_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Front End Folder Name: ' . $format->fg_bright_cyan . $project_app_pack_front_end_folder_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Class Name: ' . $format->fg_bright_cyan . $pack_name . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Namespace String: ' . $format->fg_bright_cyan . $project_namespace_string . $format->reset . "\n");
+        fwrite(STDOUT, 'Pack Namespace String: ' . $format->fg_bright_cyan . $pack_namespace_string . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
         fwrite(STDOUT, 'Database Password: ' . $format->fg_bright_cyan . $project_database_password . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Domain: ' . $format->fg_bright_cyan . $project_domain . $format->reset . "\n");
+        fwrite(STDOUT, 'Project Domain URL: ' . $format->fg_bright_cyan . $project_domain_url . $format->reset . "\n");
 
         // Ask to run set up
         $setup_new_pith_project = false;
@@ -289,10 +365,12 @@ class PithSetup
 
             // Env
             $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.php', './env.php', [
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.txt', './env.php', [
                 '%[^DATABASE_NAME]%'          => $project_database_name,
                 '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
                 '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
+                '%[^PROJECT_DOMAIN]%'         => $project_domain,
+                '%[^PROJECT_DOMAIN_URL]%'     => $project_domain_url,
             ]);
 
             // Front Controller
@@ -309,7 +387,414 @@ class PithSetup
             $this->copyFileIfNotExists('./vendor/pith/framework/task', './task');
             
             // Tracked Constants
-            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.php', './tracked-constants.php', []);
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/tracked-constants.setup.dist.txt', './tracked-constants.php', [
+                '%[^PROJECT_NAMESPACE]%'           => $this->convertBackslashesToDoubleBackslashes($project_full_namespace),
+                '%[^PROJECT_MIGRATION_NAMESPACE]%' => $this->convertBackslashesToDoubleBackslashes($migration_namespace),
+                '%[^PROJECT_MAIN_TITLE]%'          => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'   => $project_name_in_php,
+                '%[^PROJECT_MAIN_TITLE_IN_JS]%'    => $project_name_in_script,
+                '%[^PROJECT_MAIN_TITLE_IN_CSS]%'   => $project_name_in_style,
+                '%[^PROJECT_NAME_HYPHENATED]%'     => $project_name_hyphenated,
+                '%[^PROJECT_META_KEYWORDS]%'       => $project_main_keywords,
+                '%[^APP_ROUTE_LIST]%'              => $this->doubleBackslashAndStartsWithDoubleBackslash($project_full_namespace) . '\\\\' . $project_name_in_php . 'AppRouteList',
+                '%[^COPYRIGHT_NOTICE_START_YEAR]%' => date('Y'),
+                '%[^PROJECT_DOMAIN]%'              => $project_domain,
+                '%[^PROJECT_DOMAIN_URL]%'          => $project_domain_url,
+            ]);
+
+            // composer.json
+            $this->addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_folder_name, $project_app_pack_front_end_folder_name);
+
+            // App Route List
+            $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/app-route-list.setup.dist.txt', './src/' . $project_name_in_php .'AppRouteList.php', [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+                '%[^PROJECT_NAMESPACE_STRING]%'     => $project_namespace_string,
+            ]);
+
+            // Pack folder
+            $this->existFolder('./src/' . $project_app_pack_folder_name);
+
+            // Pack
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/app-pack.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/'. $project_name_in_php . 'Pack.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('─', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+            ]);
+
+            // Add sub-folders to the Pack folder
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/services');
+
+            // Add services
+            // TODO
+
+            // Add resource folder
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name);
+
+
+            // Add app resource route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-resources/AppResourceRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/' . $project_app_pack_front_end_folder_name . '/' . $project_name_in_php . 'AppResourceRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_MAIN_TITLE]%'           => $project_main_title,
+                '%[^PROJECT_MAIN_TITLE_UNDERLINE]%' => $this->charToStringLength('-', $project_main_title),
+                '%[^PROJECT_MAIN_TITLE_IN_PHP]%'    => $project_name_in_php,
+                '%[^PROJECT_NAMESPACE]%'            => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'        => $pack_namespace_string,
+            ]);
+
+            // Add resources
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/logo');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout');
+
+            // Add main layout stylesheet
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-stylesheet.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/main-layout/'. $project_name_in_style .'-main-layout.css';
+            $this->copyFileIfNotExists($template, $destination);
+
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-images/example-logo.png';
+            $destination = './src/' . $project_app_pack_folder_name . '/resources/' . $project_app_pack_front_end_folder_name . '/resource/features/logo/example-logo.png';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Add features:
+
+            // Add layouts
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/account-bar');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/footer');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/main-layout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/main-layout/nav-links');
+
+            // Main layout view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/main-layout-view.latte.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/main-layout-view.latte';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Main layout view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutViewRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'       => $project_full_namespace,
+                '%[^PROJECT_NAME_HYPHENATED]%' => $project_name_hyphenated,
+            ]);
+
+            // Main layout route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-layout/MainLayoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/main-layout/MainLayoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Account bar view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/account-bar-partial-view.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/account-bar-partial-view.phtml';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Account bar action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/AccountBarPartialAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/AccountBarPartialAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Account bar route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-account-bar/AccountBarPartialRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/account-bar/AccountBarPartialRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Nav links view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-nav-links/nav-links-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/nav-links/nav-links-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Nav links route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-nav-links/NavLinksRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/nav-links/NavLinksRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // Footer view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/footer-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/footer-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Footer action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/FooterAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/FooterAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Footer route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-footer/FooterRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/main-layout/footer/FooterRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Add lorem ipsum feature
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-page');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/lorem-ipsum/lorem-ipsum-no-layout');
+
+            // Lorem ipsum no layout route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/LoremIpsumNoLayoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/LoremIpsumNoLayoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // Lorem ipsum view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-no-layout/lorem-ipsum-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Lorem ipsum route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/LoremIpsumRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/LoremIpsumRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Lorem ipsum view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-lorem-ipsum/lorem-ipsum-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/lorem-ipsum/lorem-ipsum-page/lorem-ipsum-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Add page features
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/home');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/page-2');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/page-3');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-1');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/user-page-2');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/new-user-sign-up');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/logout');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/features/login');
+
+            // Home view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/home-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/home/home-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Page 2 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-2/page-2-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-2/page-2-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Page 3 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-3/page-3-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-3/page-3-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // User Page 1 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-1/user-page-1-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-1/user-page-1-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // User Page 2 view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-2/user-page-2-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-2/user-page-2-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // New User Sign Up view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/new-user-sign-up-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/new-user-sign-up-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Logout view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/logout-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/logout-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Login view
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/login-view.latte.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/login-view.latte';
+            $this->copyFileIfNotExists($template, $destination);
+
+            // Home route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-home-page/HomeRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/home/HomeRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Page 2 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-2/Page2Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-2/Page2Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Page 3 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-page-3/Page3Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/page-3/Page3Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // User Page 1 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-1/UserPage1Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-1/UserPage1Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // User Page 2 route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-user-page-2/UserPage2Route.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/user-page-2/UserPage2Route.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // New User Sign Up route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/NewUserSignUpRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/NewUserSignUpRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Logout route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/LogoutRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/LogoutRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Login route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'        => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%'    => $pack_namespace_string,
+                '%[^PROJECT_NAMESPACE_STRING]%' => $project_namespace_string,
+            ]);
+
+            // Logout action
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-logout/LogoutAction.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/logout/LogoutAction.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // New User Sign Up view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-new-user-sign-up/NewUserSignUpViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/new-user-sign-up/NewUserSignUpViewRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Login view requisition
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-login/LoginViewRequisition.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/features/login/LoginViewRequisition.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%' => $project_full_namespace,
+            ]);
+
+            // Add folders for fixed path files
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/favicons');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/favicons/favicons');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/robots');
+            $this->existFolder('./src/' . $project_app_pack_folder_name . '/resources/fixed-path-files/sitemaps');
+
+            // Add favicons - Green
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-green';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-green';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Add favicons - Yellow
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-yellow';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-yellow';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Add favicons - Pith Logo
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/favicons/favicons-pith-logo';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/favicons/favicons-pith-logo';
+            $this->copyFolderIfNotExists($template, $destination);
+
+            // Favicon Dot Ico route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-favicons/FaviconDotIcoRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/favicons/FaviconDotIcoRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // sitemap.xml
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/sitemap.xml.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/sitemap.xml';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_DOMAIN_URL]%' => $project_domain_url,
+            ]);
+
+            // Sitemap Dot Xml route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-sitemap/SitemapDotXmlRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/sitemaps/SitemapDotXmlRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // robots.txt
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-robots-dot-txt/robots.txt.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/robots/robots.txt';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_DOMAIN_URL]%' => $project_domain_url,
+            ]);
+
+            // Robots Dot Txt route
+            $template = './vendor/pith/framework/config/setup-templates/for-pack/for-robots-dot-txt/RobotsDotTxtRoute.setup.dist.txt';
+            $destination = './src/' . $project_app_pack_folder_name .'/resources/fixed-path-files/robots/RobotsDotTxtRoute.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^PROJECT_NAMESPACE]%'     => $project_full_namespace,
+                '%[^PACK_NAMESPACE_STRING]%' => $pack_namespace_string,
+            ]);
+
+            // Add a migration
+            $template = './vendor/pith/framework/config/setup-templates/for-migrations/Version20250602020427.setup.dist.txt';
+            $destination = './migrations/Version20250602020427.php';
+            $this->createFromTemplateFileIfNotExists($template, $destination, [
+                '%[^MIGRATION_NAMESPACE]%' => $migration_namespace,
+            ]);
+
         }
     }
 
@@ -457,7 +942,7 @@ class PithSetup
             $did_get_template_content = $template_content !== false;
 
             if($did_get_template_content){
-                $output = $format->fg_bright_green . '        ✔ Retrieved content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                $output = $format->fg_bright_green . '        ✔ Retrieved template.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
 
                 // Add the new file
@@ -482,7 +967,7 @@ class PithSetup
                         fwrite(STDOUT, $output);
                     }
                     else {
-                        $output = $format->fg_bright_red . '        ✘ Failed write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
+                        $output = $format->fg_bright_red . '        ✘ Failed to write values into the '. $destination_file_path .' file.' . $format->reset . "\n";
                         fwrite(STDOUT, $output);
                     }
                 }
@@ -493,6 +978,215 @@ class PithSetup
             }
             else{
                 $output = $format->fg_bright_red . '        ✘ Failed to read content from the '. $destination_file_path .' file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    /**
+     * @param string $given_string
+     * @return string
+     */
+    public function convertBackslashesToDoubleBackslashes(string $given_string): string
+    {
+        return str_replace('\\', '\\\\', $given_string);
+    }
+
+    public function singleBackslashAndEndWithBackslash(string $given_string): string
+    {
+        // Turn double-backslashes into single-backslashes
+        $converted_string = str_replace('\\\\', '\\', $given_string);
+
+        // End with backslash
+        if (!str_ends_with($converted_string, '\\')) {
+            $converted_string .= '\\';
+        }
+
+        // Return string with single-backslashes, ending with a backslash
+        return $converted_string;
+    }
+
+    public function doubleBackslashAndStartsWithDoubleBackslash(string $given_string): string
+    {
+        // Turn single-backslashes into double-backslashes
+        //$converted_string = str_replace('\\', '\\\\', $given_string);
+        $converted_string = preg_replace('/\\\\/','\\\\\\\\',$given_string);
+
+        // Start with double-backslash
+        if (!str_starts_with($converted_string, '\\\\')) {
+            $converted_string = '\\\\' . $converted_string;
+        }
+
+        // Return string with single-backslashes, ending with a backslash
+        return $converted_string;
+    }
+
+    public function addProjectNamespacesToComposerDotJson($project_full_namespace, $migration_namespace, $project_app_pack_name, $project_app_pack_front_end_folder_name)
+    {
+        $format = new CommandLineFormatter();
+
+        $output = '    - Looking at composer.json.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $composer_dot_json_array = json_decode(file_get_contents('./composer.json'), true);
+
+        $had_composer_autoload_already_set_up = null;
+        if( isset($composer_dot_json_array['autoload']) ) {
+            $had_composer_autoload_already_set_up = true;
+
+            $output = $format->fg_bright_yellow . '        ✔ The autoloading already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            $had_composer_autoload_already_set_up = false;
+
+            // Add autoload & psr-4
+            $composer_dot_json_array['autoload'] = [];
+            $composer_dot_json_array['autoload']['psr-4'] = [];
+
+            // Add project namespace
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($project_full_namespace)] = [
+                'src/',
+                'src/' . $project_app_pack_name,
+                'src/' . $project_app_pack_name . '/features/',
+                'src/' . $project_app_pack_name . '/features/home/',
+                'src/' . $project_app_pack_name . '/features/login/',
+                'src/' . $project_app_pack_name . '/features/logout/',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-no-layout/',
+                'src/' . $project_app_pack_name . '/features/lorem-ipsum/lorem-ipsum-page/',
+                'src/' . $project_app_pack_name . '/features/main-layout/',
+                'src/' . $project_app_pack_name . '/features/main-layout/account-bar/',
+                'src/' . $project_app_pack_name . '/features/main-layout/footer/',
+                'src/' . $project_app_pack_name . '/features/main-layout/main-layout/',
+                'src/' . $project_app_pack_name . '/features/main-layout/nav-links/',
+                'src/' . $project_app_pack_name . '/features/new-user-sign-up/',
+                'src/' . $project_app_pack_name . '/features/page-2/',
+                'src/' . $project_app_pack_name . '/features/page-3/',
+                'src/' . $project_app_pack_name . '/features/user-page-1/',
+                'src/' . $project_app_pack_name . '/features/user-page-2/',
+                'src/' . $project_app_pack_name . '/resources/',
+                'src/' . $project_app_pack_name . '/resources/' . $project_app_pack_front_end_folder_name,
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/favicons',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/robots',
+                'src/' . $project_app_pack_name . '/resources/fixed-path-files/sitemaps',
+                'src/' . $project_app_pack_name . '/services/',
+            ];
+
+            // Add migrations namespace
+            $composer_dot_json_array['autoload']['psr-4'][$this->singleBackslashAndEndWithBackslash($migration_namespace)] = [
+                'migrations/',
+            ];
+
+            // Re-encode
+            $composer_dot_json_new_json = json_encode($composer_dot_json_array, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            $did_encode_composer_dot_json_new_json = $composer_dot_json_new_json != false && strlen($composer_dot_json_new_json) > 0;
+
+            if ($did_encode_composer_dot_json_new_json) {
+                // Write to file
+                $content_bytes_total = strlen($composer_dot_json_new_json);
+                $content_bytes_written = file_put_contents('./composer.json', $composer_dot_json_new_json);
+                $did_write_full_content = $content_bytes_written === $content_bytes_total;
+
+                if ($did_write_full_content) {
+                    $output = $format->fg_bright_green . '        ✔ Added namespaces into the composer.json file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+                else {
+                    $output = $format->fg_bright_red . '        ✘ Failed to write namespaces into the composer.json file.' . $format->reset . "\n";
+                    fwrite(STDOUT, $output);
+                }
+            }
+            else {
+                $output = $format->fg_bright_red . '        ✘ Failed to encode update for composer.json file.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+        }
+    }
+
+    /**
+     * @noinspection PhpUnnecessaryLocalVariableInspection - For readability
+     */
+    public function charToStringLength(string $given_char, string $given_string): string
+    {
+        // Get the given sting length
+        $length_to_use = mb_strlen($given_string);
+
+        $output_string = str_repeat($given_char, $length_to_use);
+
+        // Return the output string
+        return $output_string;
+    }
+
+    /**
+     * Based on:
+     * https://stackoverflow.com/questions/2050859/copy-entire-contents-of-a-directory-to-another-using-php
+     * Answer by Gonzo
+     *
+     * @param $src
+     * @param $dst
+     * @return bool|mixed
+     */
+    function recurseCopyDir($src, $dst) {
+
+        $dir = opendir($src);
+        $result = ($dir === false ? false : true);
+
+        if ($result !== false) {
+            $result = @mkdir($dst);
+
+            if ($result === true) {
+                while(false !== ( $file = readdir($dir)) ) {
+                    if (( $file != '.' ) && ( $file != '..' ) && $result) {
+                        if ( is_dir($src . '/' . $file) ) {
+                            $result = $this->recurseCopyDir($src . '/' . $file,$dst . '/' . $file);
+                        }
+                        else {
+                            $result = copy($src . '/' . $file,$dst . '/' . $file);
+                        }
+                    }
+                }
+            }
+            closedir($dir);
+        }
+
+        return $result;
+    }
+
+    public function copyFolderIfNotExists(string $vendor_folder_path, string $destination_folder_path): void
+    {
+        $format = new CommandLineFormatter();
+
+        $output = '    - Add folder ' . $destination_folder_path . ' if it does not already exist.' . "\n";
+        fwrite(STDOUT, $output);
+
+        // Get if the dir exists
+        $does_folder_exist = file_exists($destination_folder_path);
+
+        if($does_folder_exist){
+            // Display dir exists
+            $output = $format->fg_bright_green . '        ✔ The '. $destination_folder_path .' folder already exists.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
+        else{
+            // Display dir does not exist
+            $output = $format->fg_bright_red . '        ✘ ' . $format->fg_bright_yellow . 'The ' . $destination_folder_path . ' folder does not exist.' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+
+            // Display that we will create the dir
+            $output = $format->fg_bright_yellow . '        ▭ ' . $format->reset . 'Getting the ' . $destination_folder_path . ' folder from the vendor/ folder.' . "\n";
+            fwrite(STDOUT, $output);
+
+            // Add the new folder
+            $did_copy = $this->recurseCopyDir($vendor_folder_path, $destination_folder_path);
+
+            if($did_copy){
+                $output = $format->fg_bright_green . '        ✹ Added the '. $destination_folder_path .' folder.' . $format->reset . "\n";
+                fwrite(STDOUT, $output);
+            }
+            else{
+                $output = $format->fg_bright_red . '        ✘ Failed to add the '. $destination_folder_path .' folder.' . $format->reset . "\n";
                 fwrite(STDOUT, $output);
             }
         }

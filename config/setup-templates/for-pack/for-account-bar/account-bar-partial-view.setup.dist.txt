@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Account Bar view
+ *
+ * @var bool $is_logged_in
+ * @var string $display_name
+ * @var string $anti_csrf_token
+ */
+
+declare(strict_types=1);
+?>
+
+<?php if($is_logged_in): ?>
+    <div>
+        <?php echo $display_name; ?>
+        |
+        <a href="/sign-out?token=<?php echo $anti_csrf_token; ?>">Sign Out</a>
+    </div>
+<?php else: ?>
+    <div>
+        <a href="/sign-up">New User</a>
+        |
+        <a href="/login">Login</a>
+    </div>
+<?php endif; ?>
