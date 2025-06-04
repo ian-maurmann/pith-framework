@@ -1,4 +1,9 @@
-# New project guide (WIP):
+
+
+![Pith Framework Logo](https://github.com/ian-maurmann/pith-framework/blob/master/doc/logo/logo/pith-framework-logo-2023-250p.png?raw=true)
+
+
+# New project guide:
 
 ## Part 0: System Reqs
 
@@ -37,7 +42,7 @@ Links for installing PHP
 - Installing PHP on Ubuntu: https://documentation.ubuntu.com/server/how-to/web-services/install-php/index.html
 - Installing PHP on AlmaLinux: https://cloudspinx.com/how-to-install-php-on-rocky-linux-almalinux/
 - PHP on Homebrew for MacOS https://formulae.brew.sh/formula/php
-## Install Composer
+## Part 4: Install Composer
 
 - Open the terminal and navigate to the folder for your project.
 - Double check again that PHP is available and working:
@@ -63,7 +68,7 @@ php composer
 
 
 
-## Install Pith
+## Part 5: Install Pith
 
 - Install Pith Framework to your project using Composer:
 
@@ -104,11 +109,34 @@ php pith
 ```
 
 
-- Run Composer install
+## Part 6: Run Composer again, now that there's new folders
 
 ```
 php composer install
 ```
+
+
+## Part 7: Run Migrations
+
+Run Doctrine Migrations
+```
+php mig
+```
+
+
+Show list of migrations
+```
+php mig migrations:list
+```
+
+To run all migrations:
+``` 
+php mig migrations:migrate
+
+yes
+```
+
+## Part 8: Run Website
 
 - To run locally, go to the `run` folder, and then the `public-local` folder
 ```
