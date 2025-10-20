@@ -142,6 +142,9 @@
             "Pith\\Framework\\Plugin\\CommonLibraries\\": [
                 "src/plugins/common-libraries/src/common-libraries-pack"
             ],
+            "Pith\\Framework\\Plugin\\TestDrive\\": [
+                "src/plugins/test-drive/src/test-drive-objects/"
+            ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
                 "src/utilities/http/",

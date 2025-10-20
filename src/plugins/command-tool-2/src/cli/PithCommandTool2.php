@@ -14,10 +14,13 @@ declare(strict_types=1);
 namespace Pith\Framework\Plugin\CommandTool2;
 
 use DI\Container;
+use DI\DependencyException;
+use DI\NotFoundException;
 use Exception;
 use IKM\CLI\CommandLineFormatter;
 use IKM\CLI\CommandLineWriter;
 use Pith\Framework\PithAppRetriever;
+use Throwable;
 
 /**
  * Class PithCommandTool2
@@ -108,6 +111,14 @@ class PithCommandTool2
             return;
         }
 
+        // Test
+        // ────
+        $has_list_flag = $positional_parameter_1 === 'test-drive';
+        if($has_list_flag){
+            $this->displayTestDrive($positional_parameter_2, $positional_parameter_3);
+            return;
+        }
+
         // Version
         // ───────
         $has_version_flag = $this->array_utility->arrayHasValueInsensitive($option_keys,'v') || $this->array_utility->arrayHasValueInsensitive($option_keys,'version') || $positional_parameter_1 === 'version' || $positional_parameter_1 === 'Version';
@@ -161,6 +172,29 @@ class PithCommandTool2
     public function displayApp(): void
     {
         $this->writer->writeLine('app');
+    }
+
+    /**
+     * @param string $positional_parameter_2
+     * @param string $positional_parameter_3
+     *
+     * @return void
+     */
+    public function displayTestDrive(string $positional_parameter_2, string $positional_parameter_3): void
+    {
+        // Get formatter
+        $format = $this->formatter;
+
+        try {
+            // Get the test driver
+            $test_driver = $this->container->get('Pith\\Framework\\Plugin\\CommandTool2\\PithTestDriverConsole');
+
+            // Run the test drive
+            $test_driver->testDrive($positional_parameter_2, $positional_parameter_3);
+        } catch (Throwable $exception) {
+            $output = $format->fg_bright_red . 'An exception happened. Exception Code: "'. $exception->getCode() . '" Exception Message: "' . $exception->getMessage() .'"' . $format->reset . "\n";
+            fwrite(STDOUT, $output);
+        }
     }
 
 }
