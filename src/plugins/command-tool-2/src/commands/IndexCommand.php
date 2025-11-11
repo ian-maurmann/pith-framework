@@ -51,13 +51,14 @@ class IndexCommand
         $gray  = $format->fg_bright_black;
 
         $writer->writeLine("{$gray}──────────────────────────────────────────────────────────────────{$reset}");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}-v{$reset}        <---- See the current version info.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}--version{$reset} <---- See the current version info.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}--Version{$reset} <---- See the current version info.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}app{$reset}       <---- View/update the Pith application here.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}bar{$reset}       <---- Just a test, command should fail.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}foo{$reset}       <---- Just a test, command should work.");
-        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}version{$reset}   <---- See the current version info.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}-v{$reset}         <---- See the current version info.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}--version{$reset}  <---- See the current version info.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}--Version{$reset}  <---- See the current version info.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}app{$reset}        <---- View/update the Pith application here.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}bar{$reset}        <---- Just a test, command should fail.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}foo{$reset}        <---- Just a test, command should work.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}test-drive{$reset} <---- Just a test, command should work.");
+        $writer->writeLine(" - {$teal}php pith {$reset}{$cyan}version{$reset}    <---- See the current version info.");
         $writer->writeLine("{$gray}──────────────────────────────────────────────────────────────────{$reset}");
         $writer->br();
     }
