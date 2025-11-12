@@ -4,6 +4,7 @@
  * PostgreSQL Wrapper Test-Driver
  * ------------------------------
  *
+ * @noinspection PhpClassNamingConventionInspection - Long class name is ok.
  * @noinspection PhpVariableNamingConventionInspection - Short variable names are ok.
  * @noinspection PhpMethodNamingConventionInspection - Long method names are ok.
  */
@@ -51,11 +52,9 @@ class PostgresWrapperTestDriver
     {
         if($test_name === 'get-status'){
             $this->runGetStatus();
-            //$this->runGetFramework();
         }
         elseif($test_name === 'try-connect-get-status'){
             $this->runTryConnectGetStatus();
-            //$this->runGetFramework();
         }
         else{
             // Get CLI tools
@@ -69,27 +68,6 @@ class PostgresWrapperTestDriver
             // Output problem to CLI
             $writer->writeLine("{$red}Unknown test name. Cannot test-drive this.{$reset}");
         }
-    }
-
-    /**
-     * @throws PithException
-     */
-    public function runGetFramework(): void
-    {
-        // Get the App
-        //$app_retriever = new PithAppRetriever();
-        //$app = $app_retriever->getApp();
-
-        // Get CLI writer
-        $writer = $this->writer;
-
-        // Get the About object
-        $about = new PithAbout();
-
-        $framework = $about->framework_name;
-
-        // Output to CLI
-        $writer->writeLine($framework);
     }
 
     /**
