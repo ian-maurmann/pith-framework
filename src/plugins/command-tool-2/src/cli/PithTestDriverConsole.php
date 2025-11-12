@@ -17,6 +17,7 @@ use IKM\CLI\CommandLineFormatter;
 use IKM\CLI\CommandLineWriter;
 use Pith\Framework\PithException;
 use Pith\Framework\Plugin\TestDrive\AboutTestDriver;
+use Pith\Framework\Plugin\TestDrive\PostgresWrapperTestDriver;
 
 /**
  * Class PithTestDriverConsole
@@ -69,12 +70,19 @@ class PithTestDriverConsole
             $writer->writeLine('Pick a Feature to Test:');
             $writer->writeLine("{$gray}──────────────────────────────────────────────────────────────────{$reset}");
             $writer->writeLine(" - {$teal}php pith test-drive {$reset}{$cyan}about{$reset} <---- Test-drive the About object.");
+            $writer->writeLine(" - {$teal}php pith test-drive {$reset}{$cyan}pg{$reset}    <---- Test-drive the Postgres wrapper.");
             $writer->writeLine("{$gray}──────────────────────────────────────────────────────────────────{$reset}");
             $writer->br();
         }
         elseif($is_feature_test_list_mode){
             if($feature_name === 'about'){
                 $test_driver = new AboutTestDriver();
+                $test_list = $test_driver->getTestList();
+
+                $this->displayFeatureTestDriveList($feature_name, $test_list);
+            }
+            if($feature_name === 'pg'){
+                $test_driver = new PostgresWrapperTestDriver();
                 $test_list = $test_driver->getTestList();
 
                 $this->displayFeatureTestDriveList($feature_name, $test_list);
@@ -86,6 +94,10 @@ class PithTestDriverConsole
         elseif ($is_run_test_mode){
             if($feature_name === 'about'){
                 $test_driver = new AboutTestDriver();
+                $test_driver->runTest($test_name);
+            }
+            elseif($feature_name === 'pg'){
+                $test_driver = new PostgresWrapperTestDriver();
                 $test_driver->runTest($test_name);
             }
             else{

@@ -37,6 +37,9 @@ class PithApp
     public PithDispatcher     $dispatcher;
     public PithEngine         $engine;
     public PithInfo           $info;
+
+    public PithPostgresWrapper $pg;
+
     public PithProcess        $process;
     public PithResponder      $responder;
     public PithRegistry       $registry;
@@ -54,6 +57,7 @@ class PithApp
      * @param PithDispatcher $dispatcher
      * @param PithEngine $engine
      * @param PithInfo $info
+     * @param PithPostgresWrapper $pg
      * @param PithProcess $process
      * @param PithRegistry $registry
      * @param PithResponder $responder
@@ -61,20 +65,21 @@ class PithApp
      * @param PithSessionManager $session_manager
      */
     public function __construct(
-        PithAccessControl  $access_control,
-        PithActiveUser     $active_user,
-        PithCliFormat      $cli_format,
-        PithCliWriter      $cli_writer,
-        PithClock          $clock,
-        PithConfig         $config,
-        PithDispatcher     $dispatcher,
-        PithEngine         $engine,
-        PithInfo           $info,
-        PithProcess        $process,
-        PithRegistry       $registry,
-        PithResponder      $responder,
-        PithRouter         $router,
-        PithSessionManager $session_manager
+        PithAccessControl   $access_control,
+        PithActiveUser      $active_user,
+        PithCliFormat       $cli_format,
+        PithCliWriter       $cli_writer,
+        PithClock           $clock,
+        PithConfig          $config,
+        PithDispatcher      $dispatcher,
+        PithEngine          $engine,
+        PithInfo            $info,
+        PithPostgresWrapper $pg,
+        PithProcess         $process,
+        PithRegistry        $registry,
+        PithResponder       $responder,
+        PithRouter          $router,
+        PithSessionManager  $session_manager
     )
     {
         // Set object dependencies
@@ -87,6 +92,7 @@ class PithApp
         $this->dispatcher      = $dispatcher;
         $this->engine          = $engine;
         $this->info            = $info;
+        $this->pg              = $pg;
         $this->process         = $process;
         $this->registry        = $registry;
         $this->responder       = $responder;
