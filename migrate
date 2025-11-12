@@ -28,16 +28,16 @@ require_once 'tracked-constants.php';
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $dbParams = [
-    'dbname'   => PITH_DATABASE_MIGRATIONS_DATABASE_NAME,
-    'user'     => PITH_APP_DATABASE_USER_USERNAME,
-    'password' => PITH_APP_DATABASE_USER_PASSWORD,
-    'host'     => PITH_DATABASE_MIGRATIONS_DATABASE_HOST,
-    'driver'   => PITH_DATABASE_MIGRATIONS_DATABASE_DRIVER,
+    'dbname'   => PITH_POSTGRES_MIGRATIONS_DATABASE_NAME,
+    'user'     => PITH_POSTGRES_MIGRATIONS_DATABASE_USERNAME,
+    'password' => PITH_POSTGRES_MIGRATIONS_DATABASE_PASSWORD,
+    'host'     => PITH_POSTGRES_MIGRATIONS_DATABASE_HOST,
+    'driver'   => PITH_POSTGRES_MIGRATIONS_DATABASE_DRIVER,
 ];
 
 $connection = DriverManager::getConnection($dbParams);
 
-$config = new PhpFile('migration-config.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
+$config = new PhpFile('migration-config-postgres.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConnection($connection));
