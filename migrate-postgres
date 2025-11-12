@@ -28,12 +28,12 @@ require_once 'tracked-constants.php';
 
 /** @noinspection PhpVariableNamingConventionInspection */
 $dbParams = [
-    'dbname'   => PITH_POSTGRES_MIGRATIONS_DATABASE_NAME,
-    'user'     => PITH_POSTGRES_MIGRATIONS_DATABASE_USERNAME,
-    'password' => PITH_POSTGRES_MIGRATIONS_DATABASE_PASSWORD,
-    'host'     => PITH_POSTGRES_MIGRATIONS_DATABASE_HOST,
-    'port'     => PITH_POSTGRES_MIGRATIONS_DATABASE_PORT,
-    'driver'   => PITH_POSTGRES_MIGRATIONS_DATABASE_DRIVER,
+    'dbname'   => PITH_POSTGRES_DATABASE_NAME,
+    'user'     => PITH_POSTGRES_USERNAME,
+    'password' => PITH_POSTGRES_PASSWORD,
+    'host'     => PITH_POSTGRES_HOST,
+    'port'     => PITH_POSTGRES_PORT,
+    'driver'   => PITH_POSTGRES_DRIVER,
 ];
 
 $connection = DriverManager::getConnection($dbParams);
