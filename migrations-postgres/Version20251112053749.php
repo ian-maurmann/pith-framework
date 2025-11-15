@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Migration to add test_quotes table
+ * ----------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection - Long class name for migration is ok.
+ * @noinspection PhpMethodNamingConventionInspection - Short method names are ok.
+ * @noinspection PhpUnused - Used by database migration tool
+ * @noinspection PhpMissingParentCallCommonInspection - Meant to not call parent, for this use-case.
+ */
+
 declare(strict_types=1);
 
 namespace Pith\Framework\Migration;
@@ -8,7 +18,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Migration
  */
 final class Version20251112053749 extends AbstractMigration
 {
@@ -19,7 +29,7 @@ final class Version20251112053749 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
+        // This is the up() migration
         
         $this->addSql('
             CREATE TABLE pith_test_quotes (
@@ -31,7 +41,7 @@ final class Version20251112053749 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
+        // This is the down() migration
 
         $this->addSql('DROP TABLE pith_test_quotes');
     }

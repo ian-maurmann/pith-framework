@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Migration to populate test quotes table
+ * ---------------------------------------
+ *
+ * @noinspection PhpClassNamingConventionInspection - Long class name for migration is ok.
+ * @noinspection PhpMethodNamingConventionInspection - Short method names are ok.
+ * @noinspection PhpUnused - Used by database migration tool
+ * @noinspection PhpMissingParentCallCommonInspection - Meant to not call parent, for this use-case.
+ */
+
 declare(strict_types=1);
 
 namespace Pith\Framework\Migration;
@@ -8,7 +18,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Migration
  */
 final class Version20251113043335 extends AbstractMigration
 {
