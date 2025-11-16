@@ -40,6 +40,6 @@ final class Version20251115210907 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE pith_access_roles');
+        $this->addSql('DROP TABLE pith_roles');
     }
 }
