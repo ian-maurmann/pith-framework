@@ -24,7 +24,7 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Plugin\UserSystem4;
+namespace Pith\Framework\Plugin\UserSystem5;
 
 use Exception;
 use PDOException;
