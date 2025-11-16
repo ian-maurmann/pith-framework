@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Migration to create access levels table
- * ---------------------------------------
+ * Migration to create roles table
+ * -------------------------------
  *
  * @noinspection PhpUnused - Migration, used by migration tool.
  * @noinspection PhpClassNamingConventionInspection - Long class name is ok.
