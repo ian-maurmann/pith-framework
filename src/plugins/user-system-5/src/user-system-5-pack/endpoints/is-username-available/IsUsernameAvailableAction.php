@@ -13,11 +13,11 @@
 
 declare(strict_types=1);
 
-namespace Pith\Framework\Plugin\UserSystem4;
+namespace Pith\Framework\Plugin\UserSystem5;
 
 use Pith\Framework\Utility\PithHeaderUtility;
 use Pith\Workflow\PithAction;
-use Pith\Framework\Plugin\UserSystem4\UserService;
+use Pith\Framework\Plugin\UserSystem5\UserService;
 
 /**
  * Class IsUsernameAvailableAction
