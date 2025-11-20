@@ -90,14 +90,14 @@ class UserGateway
      * @return int
      * @throws Exception
      */
-    public function createUser(string $user_uuid7, string $postfix_chars, string $username, string $username_lower, string $email_address, string $password_hash): int
+    public function createUser(string $postfix_chars, string $username, string $username_lower, string $email_address, string $password_hash): int
     {
         // Query
         $sql = '
             INSERT INTO pith_users 
-                (user_uuid7, postfix_chars, username, username_lower, primary_email_address, password_hash) 
+                (postfix_chars, username, username_lower, primary_email_address, password_hash) 
             VALUES 
-                (:user_uuid7,  :postfix_chars,  :username,  :username_lower,  :primary_email_address,  :password_hash) 
+                (:postfix_chars,  :username,  :username_lower,  :primary_email_address,  :password_hash) 
             ';
 
         // Prepare
@@ -106,7 +106,6 @@ class UserGateway
         // Execute
         $statement->execute(
             [
-                ':user_uuid7'            => $user_uuid7,
                 ':postfix_chars'         => $postfix_chars,
                 ':username'              => $username,
                 ':username_lower'        => $username_lower,

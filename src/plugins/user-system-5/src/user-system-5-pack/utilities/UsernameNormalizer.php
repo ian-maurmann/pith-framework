@@ -222,7 +222,7 @@ class UsernameNormalizer
      // elseif ( $given_char === 'ü'){ return ['ue', 'u'];} // Spanish, French, German, Hungarian
         elseif ( $given_char === 'ű'){ return ['u'];} // Hungarian
         elseif ( $given_char === 'û'){ return ['u'];} // French
-        
+
         return [];
     }
 

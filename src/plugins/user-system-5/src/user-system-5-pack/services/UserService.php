@@ -26,10 +26,10 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Plugin\UserSystem4;
+namespace Pith\Framework\Plugin\UserSystem5;
 
 use Exception;
-use Pith\Framework\PithDatabaseWrapper;
+use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 use Pith\Framework\Utility\RandomCharUtility;
 use Ulid\Ulid;
@@ -40,7 +40,7 @@ use Ulid\Ulid;
 class UserService
 {
     // private AccessLevelGateway       $access_level_gateway;
-    private PithDatabaseWrapper      $database;
+    private PithPostgresWrapper      $database;
     // private LoginCredentialGateway   $login_credential_gateway;
     // private PasswordGateway          $password_gateway;
     private PasswordUtility          $password_utility;
@@ -53,7 +53,7 @@ class UserService
     // private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithDatabaseWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccessLevelGateway $user_access_level_gateway, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithPostgresWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccessLevelGateway $user_access_level_gateway, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
      // $this->access_level_gateway        = $access_level_gateway;
@@ -540,15 +540,15 @@ class UserService
                 $user_check_char  = $this->random_char_utility->getRandomCheckCharVersion1();
 
                 // Get ULID
-                $user_ulid_object = Ulid::generate();
-                $user_ulid        = (string) $user_ulid_object;
-                $has_user_ulid    = strlen($user_ulid) === 26;
-                if(!$has_user_ulid){
-                    throw new Exception('Generated User ULID is not valid, must be 26 characters');
-                }
+                //$user_ulid_object = Ulid::generate();
+                //$user_ulid        = (string) $user_ulid_object;
+                //$has_user_ulid    = strlen($user_ulid) === 26;
+                //if(!$has_user_ulid){
+                //    throw new Exception('Generated User ULID is not valid, must be 26 characters');
+                //}
 
                 // Insert new row to Users
-                $user_id         = $this->user_gateway->createUser($user_ulid, $user_check_char, $username, $username_lower, $email_address, $password_hash);
+                $user_id         = $this->user_gateway->createUser($user_check_char, $username, $username_lower, $email_address, $password_hash);
                 $has_user_id     = $user_id > 0;
                 if(!$has_user_id){
                     throw new Exception('No user id returned when creating new User.');
