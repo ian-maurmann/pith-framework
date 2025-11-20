@@ -24,11 +24,11 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Plugin\UserSystem4;
+namespace Pith\Framework\Plugin\UserSystem5;
 
 use Exception;
 use PDOException;
-use Pith\Framework\PithDatabaseWrapper;
+use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 
 /**
@@ -36,9 +36,9 @@ use Pith\Framework\PithException;
  */
 class UserAccessLevelGateway
 {
-    private PithDatabaseWrapper $database;
+    private PithPostgresWrapper $database;
 
-    public function __construct(PithDatabaseWrapper $database)
+    public function __construct(PithPostgresWrapper $database)
     {
         $this->database = $database;
     }
