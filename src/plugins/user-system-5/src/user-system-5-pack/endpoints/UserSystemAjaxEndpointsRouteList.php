@@ -11,7 +11,7 @@
 declare(strict_types=1);
 
 
-namespace Pith\Framework\Plugin\UserSystem4;
+namespace Pith\Framework\Plugin\UserSystem5;
 
 use Pith\Workflow\PithRouteList;
 
@@ -21,7 +21,7 @@ use Pith\Workflow\PithRouteList;
 class UserSystemAjaxEndpointsRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', ['GET', 'POST'], '/create-new-user',       '\\Pith\\Framework\\Plugin\\UserSystem4\\CreateNewUserRoute'],
-        ['route', ['GET', 'POST'], '/is-username-available', '\\Pith\\Framework\\Plugin\\UserSystem4\\IsUsernameAvailableRoute'],
+        ['route', ['GET', 'POST'], '/create-new-user',       '\\Pith\\Framework\\Plugin\\UserSystem5\\CreateNewUserRoute'],
+        ['route', ['GET', 'POST'], '/is-username-available', '\\Pith\\Framework\\Plugin\\UserSystem5\\IsUsernameAvailableRoute'],
     ];
 }
