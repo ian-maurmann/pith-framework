@@ -127,14 +127,14 @@
                 "src/plugins/user-system-4/src/user-system-4-pack/services",
                 "src/plugins/user-system-4/src/user-system-4-pack/utilities"
             ],
-            "Pith\\Framework\\Plugin\\UserSystem4\\": [
+            "Pith\\Framework\\Plugin\\UserSystem5\\": [
                 "src/plugins/user-system-5/src/user-system-5-pack/",
                 "src/plugins/user-system-5/src/user-system-5-pack/endpoints/",
-                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/create-new-user",
-                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/is-username-available",
-                "src/plugins/user-system-5/src/user-system-5-pack/gateways",
-                "src/plugins/user-system-5/src/user-system-5-pack/services",
-                "src/plugins/user-system-5/src/user-system-5-pack/utilities"
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/create-new-user/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/is-username-available/",
+                "src/plugins/user-system-5/src/user-system-5-pack/gateways/",
+                "src/plugins/user-system-5/src/user-system-5-pack/services/",
+                "src/plugins/user-system-5/src/user-system-5-pack/utilities/"
             ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack/",
