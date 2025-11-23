@@ -11,7 +11,9 @@ This guide assumes that:
 - The Webserver is a Linux Webserver. (Pith needs a Unix/BSD/Linux style of architecture, so using something like Windows Server will require extra work not covered here and need Docker or a VM, but Pith Frameworks is targeted to Linux as its main OS.)
 - The Webserver is using Apache. (Nginx will need a little bit of extra work not covered here)
 - The Webserver has PHP 8.4.2 or newer installed.
-- The Webserver has MariaDB 11.3.2 or newer installed. (MySQL will work with other steps not covered here, but Pith Framework is targeted to MariaDB as its main database.)
+- <del>The Webserver has MariaDB 11.3.2 or newer installed. (MySQL will work with other steps not covered here, but Pith Framework is targeted to MariaDB as its main database.)<del>
+- The Webserver can access a PostgreSQL database, using PostgreSQL 18 or newer. 
+- The Webserver preferably has PgBouncer 1.24.0 or newer installed, (Other connection pooling options can work well too, depending on your specific use-case)
 
 ## Part 1: Create a new Git Repo
 
@@ -87,11 +89,18 @@ php composer show
 cp vendor/pith/framework/pith .
 ```
 
+<del>
 - Copy the Doctrine Migrations runner into the directory
+
 ```
 cp vendor/pith/framework/mig .
 ```
+</del>
 
+- Copy the Doctrine Migrations runner for PostgreSQL into the directory
+```
+cp vendor/pith/framework/migrate-postgres .
+```
 - Look at the files in the project:
 
 ```
@@ -100,7 +109,7 @@ ls
 ls -la
 ```
 
-- The files should now include `composer`, `composer.json`, `composer.lock`, `composer.phar`, `mig`, `pith`, and the `vendor/` folder.
+- The files should now include `composer`, `composer.json`, `composer.lock`, `composer.phar`, <del>`mig`</del>, `migrate-postgres`, `pith`, and the `vendor/` folder.
 
 - Run pith, it will ask for a first-time setup:
 
@@ -115,6 +124,7 @@ php pith
 php composer install
 ```
 
+<del>
 
 ## Part 7: Run Migrations
 
@@ -135,6 +145,29 @@ php mig migrations:migrate
 
 yes
 ```
+
+</del>
+
+## Part 7: Run Migrations for PostgreSQL
+
+Run the tool for the Doctrine Migrations for PostgreSQL
+```
+php migrate-postgres
+```
+
+
+Show list of migrations
+```
+php migrate-postgres migrations:list
+```
+
+To run all migrations:
+``` 
+php migrate-postgres migrations:migrate
+
+yes
+```
+
 
 ## Part 8: Run Website
 
