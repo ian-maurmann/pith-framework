@@ -425,6 +425,8 @@ class PithSetup
             // Env
             $this->copyFileIfNotExists('./vendor/pith/framework/env.dist.php', './env.dist.php');
             $this->createFromTemplateFileIfNotExists('./vendor/pith/framework/config/setup-templates/env.setup.dist.txt', './env.php', [
+                '%[^DATABASE_HOST]%'          => $project_database_host,
+                '%[^DATABASE_PORT]%'          => $project_database_port,
                 '%[^DATABASE_NAME]%'          => $project_database_name,
                 '%[^DATABASE_USER_USERNAME]%' => $project_database_username,
                 '%[^DATABASE_USER_PASSWORD]%' => $project_database_password,
