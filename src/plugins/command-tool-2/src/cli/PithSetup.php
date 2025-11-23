@@ -218,9 +218,62 @@ class PithSetup
 
         fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
 
-        $output = 'Add an already-created MariaDB database for the web app to use.' . "\n"
+        $output = 'Add an already-created PostgreSQL database for the web app to use.' . "\n"
             . "\n"
-            . '████ MariaDB database name.' . "\n";
+            . '████ PostgreSQL database host.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 1: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'dbaas-db-0000000-do-user-00000000-0.m.db.ondigitalocean.com' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 2: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'localhost' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 3: ' . $format->bg_dark_black . $format->fg_bright_yellow . '.' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 4: ' . $format->bg_dark_black . $format->fg_bright_yellow . '127.0.0.1' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_host = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'PostgreSQL database host (Without port): ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_host = $input;
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created PostgreSQL database for the web app to use.' . "\n"
+            . "\n"
+            . '████ PostgreSQL database port number.' . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 1: ' . $format->bg_dark_black . $format->fg_bright_yellow . '5432' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $output = '████ Example 2: ' . $format->bg_dark_black . $format->fg_bright_yellow . '5433' . $format->reset . "\n";
+        fwrite(STDOUT, $output);
+
+        $project_database_port = '';
+        if($is_ready){
+            fwrite(STDOUT, "\n");
+            $output = $format->reset . 'PostgreSQL database port number: ';
+            do{
+                $input = readline($output);
+            } while(empty($input));
+        }
+        $project_database_port = $input;
+
+
+        fwrite(STDOUT, '──────────────────────────────────────────' . "\n");
+
+        $output = 'Add an already-created PostgreSQL database for the web app to use.' . "\n"
+            . "\n"
+            . '████ PostgreSQL database name.' . "\n";
         fwrite(STDOUT, $output);
 
         $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_database_name' . $format->reset . "\n";
@@ -229,7 +282,7 @@ class PithSetup
         $project_database_name = '';
         if($is_ready){
             fwrite(STDOUT, "\n");
-            $output = $format->reset . 'MariaDB database name: ';
+            $output = $format->reset . 'PostgreSQL database name: ';
             do{
                 $input = readline($output);
             } while(empty($input));
@@ -240,7 +293,7 @@ class PithSetup
 
         $output = 'Add an already-created database user for the web app to use.' . "\n"
             . "\n"
-            . '████ MariaDB database user.' . "\n";
+            . '████ PostgreSQL database user.' . "\n";
         fwrite(STDOUT, $output);
 
         $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'my_user' . $format->reset . "\n";
@@ -249,7 +302,7 @@ class PithSetup
         $project_database_username = '';
         if($is_ready){
             fwrite(STDOUT, "\n");
-            $output = $format->reset . 'MariaDB database user: ';
+            $output = $format->reset . 'PostgreSQL database user name: ';
             do{
                 $input = readline($output);
             } while(empty($input));
@@ -260,7 +313,7 @@ class PithSetup
 
         $output = 'Add an already-created database user password for the web app to use.' . "\n"
             . "\n"
-            . '████ MariaDB database user password.' . "\n";
+            . '████ PostgreSQL database user password.' . "\n";
         fwrite(STDOUT, $output);
 
         $output = '████ Example: ' . $format->bg_dark_black . $format->fg_bright_yellow . 'MyPasswordHere!' . $format->reset . "\n";
@@ -272,7 +325,7 @@ class PithSetup
         $project_database_password = '';
         if($is_ready){
             fwrite(STDOUT, "\n");
-            $output = $format->reset . 'MariaDB database user password: ';
+            $output = $format->reset . 'PostgreSQL database user password: ';
             do{
                 $input = readline($output);
             } while(empty($input));
@@ -296,6 +349,8 @@ class PithSetup
         fwrite(STDOUT, 'Project Namespace String: ' . $format->fg_bright_cyan . $project_namespace_string . $format->reset . "\n");
         fwrite(STDOUT, 'Pack Namespace String: ' . $format->fg_bright_cyan . $pack_namespace_string . $format->reset . "\n");
         fwrite(STDOUT, 'Project Keywords: ' . $format->fg_bright_cyan . $project_main_keywords . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Host: ' . $format->fg_bright_cyan . $project_database_host . $format->reset . "\n");
+        fwrite(STDOUT, 'Database Port: ' . $format->fg_bright_cyan . $project_database_port . $format->reset . "\n");
         fwrite(STDOUT, 'Database Name: ' . $format->fg_bright_cyan . $project_database_name . $format->reset . "\n");
         fwrite(STDOUT, 'Database Username: ' . $format->fg_bright_cyan . $project_database_username . $format->reset . "\n");
         fwrite(STDOUT, 'Database Password: ' . $format->fg_bright_cyan . $project_database_password . $format->reset . "\n");
