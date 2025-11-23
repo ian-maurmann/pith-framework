@@ -396,8 +396,12 @@ class PithSetup
             $this->existMdFile('./logs/task-output-logs/about-task-output-logs.md', 'The task output logs will go in this folder.');
 
             // Migrations
-            $this->existFolder('./migrations');
-            $this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
+            //$this->existFolder('./migrations');
+            //$this->existMdFile('./migrations/about-migrations.md', 'Migrations will go here.');
+
+            // PostgreSQL Migrations
+            $this->existFolder('./migrations-postgres');
+            $this->existMdFile('./migrations-postgres/about-migrations.md', 'Migrations will go here.');
 
             // Run
             $this->existFolder('./run');
