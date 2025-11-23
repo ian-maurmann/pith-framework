@@ -70,6 +70,13 @@ php mig migrations:migrate prev
 yes
 ```
 
+To migrate up 1 migration:
+``` 
+php mig migrations:migrate next
+
+yes
+```
+
 ### Pest
 
 Run unit tests

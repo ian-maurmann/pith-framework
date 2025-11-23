@@ -1,0 +1,69 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * "Mig" Migrations Console
+ * ------------------------
+ *
+ * See: https://www.doctrine-project.org/projects/doctrine-migrations/en/3.7/reference/custom-integration.html
+ */
+
+declare(strict_types=1);
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Doctrine\DBAL\DriverManager;
+use Doctrine\Migrations\Configuration\Migration\PhpFile;
+use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
+use Doctrine\Migrations\DependencyFactory;
+use Doctrine\Migrations\Tools\Console\Command;
+use Doctrine\Migrations\Version\Comparator;
+use Pith\PithDoctrineMigrationIntegration\SortByVersionComparator;
+use Symfony\Component\Console\Application;
+
+
+// Include Constants
+require_once 'env.php';
+require_once 'tracked-constants.php';
+
+/** @noinspection PhpVariableNamingConventionInspection */
+$dbParams = [
+    'dbname'   => PITH_POSTGRES_DATABASE_NAME,
+    'user'     => PITH_POSTGRES_USERNAME,
+    'password' => PITH_POSTGRES_PASSWORD,
+    'host'     => PITH_POSTGRES_HOST,
+    'port'     => PITH_POSTGRES_PORT,
+    'driver'   => PITH_POSTGRES_DRIVER,
+];
+
+$connection = DriverManager::getConnection($dbParams);
+
+$config = new PhpFile('migration-config-postgres.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
+
+/** @noinspection PhpVariableNamingConventionInspection */
+$dependencyFactory = DependencyFactory::fromConnection($config, new ExistingConnection($connection));
+
+// Define custom migration sorting
+// See: https://www.goetas.com/blog/multi-namespace-migrations-with-doctrinemigrations-30/
+// See: https://github.com/doctrine/migrations/issues/1074#issuecomment-761580607
+$dependencyFactory->setService(Comparator::class, new SortByVersionComparator());
+
+/** @noinspection PhpVariableNamingConventionInspection */
+$cli = new Application('Doctrine Migrations');
+$cli->setCatchExceptions(true);
+
+$cli->addCommands([
+    new Command\DumpSchemaCommand($dependencyFactory),
+    new Command\ExecuteCommand($dependencyFactory),
+    new Command\GenerateCommand($dependencyFactory),
+    new Command\LatestCommand($dependencyFactory),
+    new Command\ListCommand($dependencyFactory),
+    new Command\MigrateCommand($dependencyFactory),
+    new Command\RollupCommand($dependencyFactory),
+    new Command\StatusCommand($dependencyFactory),
+    new Command\SyncMetadataCommand($dependencyFactory),
+    new Command\VersionCommand($dependencyFactory),
+]);
+
+/** @noinspection PhpUnhandledExceptionInspection */
+$cli->run();
