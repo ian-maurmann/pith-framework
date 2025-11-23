@@ -438,8 +438,12 @@ class PithSetup
             $this->copyFileIfNotExists('./vendor/pith/framework/front-controller.php', './front-controller.php');
 
             // Migrations tool
-            $this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
-            $this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
+            //$this->copyFileIfNotExists('./vendor/pith/framework/mig', './mig');
+            //$this->copyFileIfNotExists('./vendor/pith/framework/migration-config.php', './migration-config.php');
+
+            // Migrations tool for PostgreSQL
+            $this->copyFileIfNotExists('./vendor/pith/framework/migrate-postgres', './migrate-postgres');
+            $this->copyFileIfNotExists('./vendor/pith/framework/migration-config-postgres.php', './migration-config-postgres.php');
 
             // Pith command tool
             $this->copyFileIfNotExists('./vendor/pith/framework/pith', './pith');
