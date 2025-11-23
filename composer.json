@@ -127,6 +127,15 @@
                 "src/plugins/user-system-4/src/user-system-4-pack/services",
                 "src/plugins/user-system-4/src/user-system-4-pack/utilities"
             ],
+            "Pith\\Framework\\Plugin\\UserSystem5\\": [
+                "src/plugins/user-system-5/src/user-system-5-pack/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/create-new-user/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/is-username-available/",
+                "src/plugins/user-system-5/src/user-system-5-pack/gateways/",
+                "src/plugins/user-system-5/src/user-system-5-pack/services/",
+                "src/plugins/user-system-5/src/user-system-5-pack/utilities/"
+            ],
             "Pith\\Framework\\Plugin\\Session\\": [
                 "src/plugins/session/src/session-pack/",
                 "src/plugins/session/src/session-pack/perform-user-login/",
@@ -141,6 +150,9 @@
             ],
             "Pith\\Framework\\Plugin\\CommonLibraries\\": [
                 "src/plugins/common-libraries/src/common-libraries-pack"
+            ],
+            "Pith\\Framework\\Plugin\\TestDrive\\": [
+                "src/plugins/test-drive/src/test-drive-objects/"
             ],
             "Pith\\Framework\\Utility\\": [
                 "src/utilities/",
@@ -258,8 +270,8 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^3.2",
-        "pestphp/pest-plugin-type-coverage": "^3.0",
+        "pestphp/pest": "^4",
+        "pestphp/pest-plugin-type-coverage": "^4",
         "phpstan/phpstan": "^2"
     },
     "config": {
