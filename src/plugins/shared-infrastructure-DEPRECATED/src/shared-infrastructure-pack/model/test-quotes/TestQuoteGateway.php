@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 namespace Pith\Framework\SharedInfrastructure\Model\TestQuotes;
 
-use Pith\Framework\PithDatabaseWrapper;
+use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 
 /**
@@ -32,9 +32,9 @@ use Pith\Framework\PithException;
  */
 class TestQuoteGateway
 {
-    private PithDatabaseWrapper $database;
+    private PithPostgresWrapper $database;
 
-    public function __construct(PithDatabaseWrapper $database)
+    public function __construct(PithPostgresWrapper $database)
     {
         $this->database = $database;
     }
