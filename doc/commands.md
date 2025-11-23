@@ -34,6 +34,7 @@ Run Composer update - Updates packages listed in composer.json to new versions
 php composer update
 ```
 
+----
 
 ### Pith
 
@@ -41,6 +42,10 @@ Run the Pith Command Tool (Doesn't do anything yrt)
 ```
 php pith
 ```
+
+----
+
+<del>
 
 ### Mig
 
@@ -76,6 +81,46 @@ php mig migrations:migrate next
 
 yes
 ```
+</del>
+
+----
+
+### Migrate-Postgres
+
+Run Doctrine Migrations for PostgreSQL
+```
+php migrate-postgres
+```
+
+
+Show list of migrations
+```
+php migrate-postgres migrations:list
+```
+
+To run all migrations:
+``` 
+php migrate-postgres migrations:migrate
+
+yes
+```
+
+
+To migrate down 1 migration:
+``` 
+php migrate-postgres migrations:migrate prev
+
+yes
+```
+
+To migrate up 1 migration:
+``` 
+php migrate-postgres migrations:migrate next
+
+yes
+```
+
+----
 
 ### Pest
 
