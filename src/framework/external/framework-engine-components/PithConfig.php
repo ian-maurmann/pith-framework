@@ -46,7 +46,7 @@ class PithConfig
 
     private PithDependencyInjection $dependency_injection;
 
-    public function __construct(PithDependencyInjection $dependency_injection, PithDatabaseWrapper $database)
+    public function __construct(PithDependencyInjection $dependency_injection)
     {
         // Set object dependencies
         $this->dependency_injection = $dependency_injection;
