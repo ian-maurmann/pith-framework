@@ -17,7 +17,6 @@ namespace Pith\Framework\Plugin\UserSystem4;
 
 use Pith\Framework\Utility\PithHeaderUtility;
 use Pith\Workflow\PithAction;
-use Pith\Framework\Plugin\UserSystem4\UserService;
 
 /**
  * Class IsUsernameAvailableAction

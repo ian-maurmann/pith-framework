@@ -26,7 +26,7 @@ namespace Pith\Framework;
 use Pith\Framework\Internal\PithImpressionLogger;
 //use Pith\Framework\SharedInfrastructure\Model\UserSystem\UserService;
 //use Pith\Framework\Plugin\UserSystem3\UserService;
-use Pith\Framework\Plugin\UserSystem4\UserService;
+use Pith\Framework\Plugin\UserSystem5\UserService;
 
 /**
  * Class PithActiveUser
