@@ -32,7 +32,7 @@ class PithAbout
     public string $copyright      = 'Copyright (c) 2008-2025 Ian K Maurmann';
     public string $license        = 'Mozilla Public License, v. 2.0';
     public string $release_status = 'Alpha';
-    public string $release_name   = 'Alpha 58';
-    public string $real_version   = '0.9.2.0';
-    public string $semver_version = '0.42.0';
+    public string $release_name   = 'Alpha 58 part 2';
+    public string $real_version   = '0.9.2.1';
+    public string $semver_version = '0.43.0';
 }
