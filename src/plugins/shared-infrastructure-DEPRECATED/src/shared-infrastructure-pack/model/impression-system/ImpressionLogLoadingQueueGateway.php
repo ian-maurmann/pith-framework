@@ -30,7 +30,7 @@ namespace Pith\Framework\SharedInfrastructure\Model\ImpressionSystem;
 use Exception;
 use PDO;
 use PDOException;
-use Pith\Framework\PithDatabaseWrapper;
+use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 
 /**
@@ -39,9 +39,9 @@ use Pith\Framework\PithException;
  */
 class ImpressionLogLoadingQueueGateway
 {
-    private PithDatabaseWrapper $database;
+    private PithPostgresWrapper $database;
 
-    public function __construct(PithDatabaseWrapper $database)
+    public function __construct(PithPostgresWrapper $database)
     {
         $this->database = $database;
     }
@@ -61,7 +61,7 @@ class ImpressionLogLoadingQueueGateway
             SELECT
                 *
             FROM
-                `impression_log_loading_queue` AS q 
+                impression_log_loading_queue AS q 
             WHERE
                 q.log_file_name = :log_file_name
             LIMIT 1
@@ -106,7 +106,7 @@ class ImpressionLogLoadingQueueGateway
 
         // Query
         $sql = '
-            INSERT INTO `impression_log_loading_queue`
+            INSERT INTO impression_log_loading_queue
             (
                 log_file_name, 
                 datetime_added_to_queue
@@ -156,7 +156,7 @@ class ImpressionLogLoadingQueueGateway
             SELECT
                 *
             FROM
-                `impression_log_loading_queue` AS q 
+                impression_log_loading_queue AS q 
             ORDER BY q.in_queue_id ASC
             LIMIT 1
             ';
@@ -195,7 +195,7 @@ class ImpressionLogLoadingQueueGateway
 
         // Query
         $sql = '
-            UPDATE `impression_log_loading_queue`
+            UPDATE impression_log_loading_queue
             SET datetime_file_not_found = NOW() 
             WHERE in_queue_id = :in_queue_id
             ';
@@ -234,7 +234,7 @@ class ImpressionLogLoadingQueueGateway
 
         // Query
         $sql = '
-            UPDATE `impression_log_loading_queue`
+            UPDATE impression_log_loading_queue
             SET datetime_start_loading = NOW() 
             WHERE in_queue_id = :in_queue_id
             ';
@@ -273,7 +273,7 @@ class ImpressionLogLoadingQueueGateway
 
         // Query
         $sql = '
-            UPDATE `impression_log_loading_queue`
+            UPDATE impression_log_loading_queue
             SET datetime_done_loading = NOW() 
             WHERE in_queue_id = :in_queue_id
             ';
@@ -313,7 +313,7 @@ class ImpressionLogLoadingQueueGateway
 
         // Query
         $sql = '
-            UPDATE `impression_log_loading_queue`
+            UPDATE impression_log_loading_queue
             SET datetime_file_deleted_after_import = NOW() 
             WHERE in_queue_id = :in_queue_id
             ';
@@ -355,7 +355,7 @@ class ImpressionLogLoadingQueueGateway
             SELECT
                 *
             FROM
-                `impression_log_loading_queue` AS q 
+                impression_log_loading_queue AS q 
             WHERE
                 q.datetime_done_loading IS NOT NULL
                 AND
@@ -404,7 +404,7 @@ class ImpressionLogLoadingQueueGateway
             SELECT
                 *
             FROM
-                `impression_log_loading_queue` AS q 
+                impression_log_loading_queue AS q 
             WHERE
                 q.datetime_file_not_found IS NULL
                 AND
@@ -451,7 +451,7 @@ class ImpressionLogLoadingQueueGateway
         // Query
         $sql = '
             DELETE FROM 
-                `impression_log_loading_queue`
+                impression_log_loading_queue
             WHERE
                 datetime_file_deleted_after_import IS NOT NULL
                 OR

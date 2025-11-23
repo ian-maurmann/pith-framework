@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250602020427 extends AbstractMigration
+final class Version20251122020427 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,8 +26,8 @@ final class Version20250602020427 extends AbstractMigration
             INSERT INTO pith_test_quotes 
                 (quote_id, quote) 
             VALUES 
-                (5, 'Foo'),
-                (6, 'Bar')
+                (7, 'Foo'),
+                (8, 'Bar')
             "
         );
 
