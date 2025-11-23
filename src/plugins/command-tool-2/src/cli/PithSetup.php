@@ -854,8 +854,8 @@ class PithSetup
             ]);
 
             // Add a migration
-            $template = './vendor/pith/framework/config/setup-templates/for-migrations/Version20250602020427.setup.dist.txt';
-            $destination = './migrations-postgres/Version20250602020427.php';
+            $template = './vendor/pith/framework/config/setup-templates/for-migrations/Version20251122020427.setup.dist.txt';
+            $destination = './migrations-postgres/Version20251122020427.php';
             $this->createFromTemplateFileIfNotExists($template, $destination, [
                 '%[^MIGRATION_NAMESPACE]%' => $migration_namespace,
             ]);
