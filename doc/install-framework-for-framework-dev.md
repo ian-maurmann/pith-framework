@@ -31,9 +31,17 @@ Copy the Pith Command Tool into the directory
 cp vendor/pith/framework/pith .
 ```
 
+<del>
 Copy the Migration runner into the directory
+
 ```
 cp vendor/pith/framework/mig .
+```
+</del>
+
+Copy the Migration runner for PostgreSQL into the directory
+```
+cp vendor/pith/framework/migrate-postgres .
 ```
 
 Make a symbolic link to Pest inside the directory

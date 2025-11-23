@@ -58,6 +58,10 @@ const PITH_APP_MIGRATION_PATHS = [
     'Pith\\Framework\\Migration' => './migrations',
 ];
 
+const PITH_APP_POSTGRES_MIGRATION_PATHS = [
+    'Pith\\Framework\\Migration' => './migrations-postgres',
+];
+
 // Will be needed in projects
 // ==========================================================
 const PITH_PROJECT_NAMESPACE = '';

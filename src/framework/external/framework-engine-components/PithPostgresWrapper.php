@@ -79,10 +79,10 @@ class PithPostgresWrapper
     }
 
 
-    public function primeDatabase()
+    public function primeDatabase(): void
     {
-        $this->setDsn(PITH_APP_POSTGRES_DSN);
-        $this->setDbUserAndPassword(PITH_APP_POSTGRES_USER_USERNAME, PITH_APP_POSTGRES_USER_PASSWORD);
+        $this->setDsn(PITH_POSTGRES_DSN);
+        $this->setDbUserAndPassword(PITH_POSTGRES_USERNAME, PITH_POSTGRES_PASSWORD);
     }
 
 
