@@ -29,7 +29,7 @@ namespace Pith\Framework\SharedInfrastructure\Model\ImpressionSystem;
 use Exception;
 use PDO;
 use PDOException;
-use Pith\Framework\PithDatabaseWrapper;
+use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 
 /**
@@ -38,9 +38,9 @@ use Pith\Framework\PithException;
  */
 class UniqueDailyViewGateway
 {
-    private PithDatabaseWrapper $database;
+    private PithPostgresWrapper $database;
 
-    public function __construct(PithDatabaseWrapper $database)
+    public function __construct(PithPostgresWrapper $database)
     {
         $this->database = $database;
     }
@@ -86,7 +86,7 @@ class UniqueDailyViewGateway
 
         // Query
         $sql = '
-            INSERT INTO `impressions`
+            INSERT INTO impressions
             (
                 time, 
                 date_as_string,
@@ -207,7 +207,7 @@ class UniqueDailyViewGateway
 
         // Query
         $sql = '
-            INSERT INTO `unique_daily_views`
+            INSERT INTO unique_daily_views
             (
                 date_as_string,
                 ip, 
