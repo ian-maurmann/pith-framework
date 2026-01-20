@@ -14,6 +14,8 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-pdo": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-pgsql": "*",
         "ext-readline": "*",
         "ext-tokenizer": "*",
         "amphp/amp": "^3.0",
