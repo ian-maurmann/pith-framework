@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.5",
         "ext-gd": "*",
+        "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-pdo": "*",
