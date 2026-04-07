@@ -19,6 +19,11 @@ Show list of installed packages
 php composer show
 ```
 
+Show list of current PHP extensions and system libraries
+```
+php composer show --platform
+```
+
 Show list of outdated packages you have installed
 ```
 php composer outdated
