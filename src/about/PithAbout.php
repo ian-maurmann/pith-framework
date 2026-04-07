@@ -29,7 +29,7 @@ namespace Pith\Framework;
 class PithAbout
 {
     public string $framework_name = 'Pith Framework';
-    public string $copyright      = 'Copyright (c) 2008-2025 Ian K Maurmann';
+    public string $copyright      = 'Copyright (c) 2008-2026 Ian K Maurmann';
     public string $license        = 'Mozilla Public License, v. 2.0';
     public string $release_status = 'Alpha';
     public string $release_name   = 'Alpha 58 part 2';
