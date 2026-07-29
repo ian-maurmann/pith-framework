@@ -32,15 +32,18 @@ Every entry is a 4-element array:
 ## Defining a Route List
 
 ```php
-namespace Pith\Framework\Panel;
+namespace FooOrganization\FooProject;
 
 use Pith\Workflow\PithRouteList;
 
-class PithPanelRouteList extends PithRouteList
+class FooRouteList extends PithRouteList
 {
     public array $routes = [
-        ['route', 'GET', '',       '\\Pith\\Framework\\Panel\\Pages\\HomeRoute'],
-        ['route', 'GET', '/tasks', '\\Pith\\Framework\\Panel\\Pages\\TasksRoute'],
+        ['route', 'GET',           '/',           '\\FooOrganization\\FooProject\\HomeRoute'],
+        ['route', 'GET',           '/about',      '\\FooOrganization\\FooProject\\AboutRoute'],
+        ['route', 'GET',           '/contact-us', '\\FooOrganization\\FooProject\\ContactUsRoute'],
+        ['route', ['GET', 'POST'], '/error-404',  '\\Pith\\Framework\\Plugin\\ErrorPages\\Error404Route'],
+        ['route', ['GET', 'POST'], '/error-405',  '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
     ];
 }
 ```
@@ -53,23 +56,21 @@ Use path constants for shared prefixes so route-spacing stays consistent across 
 2. The front controller sets `$pith->config->route_list_namespace = PITH_APP_ROUTE_LIST`.
 3. On `engine->start()`, `$config->load()` resolves that class via DI into `$config->route_list`.
 
-New projects can generate an `*AppRouteList` from `config/setup-templates/app-route-list.setup.dist.txt`.
-
 ## Composition
 
 The top-level list usually mixes leaf routes and nested groups. Example pattern from `ExampleAppRouteList`:
 
 ```php
 public array $routes = [
-    ['route-group', '', PITH_PANEL_PATH, '\\Pith\\Framework\\Panel\\PithPanelRouteList'],
-    ['route', ['GET', 'POST'], '/',          '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
-    ['route', ['GET', 'POST'], '/error-404', '\\Pith\\Framework\\Plugin\\ErrorPages\\Error404Route'],
-    ['route', ['GET', 'POST'], '/error-405', '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
+    ['route-group', '',              PITH_PANEL_PATH, '\\Pith\\Framework\\Panel\\PithPanelRouteList'],
+    ['route',       ['GET', 'POST'], '/',             '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
+    ['route',       ['GET', 'POST'], '/error-404',    '\\Pith\\Framework\\Plugin\\ErrorPages\\Error404Route'],
+    ['route',       ['GET', 'POST'], '/error-405',    '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
     // ...
 ];
 ```
 
-Groups can nest further. A panel path like `PITH_PANEL_PATH` + `/tasks` becomes `/3333/3333/panel/tasks`.
+Groups can nest further. If `PITH_PANEL_PATH` is `/xxxxx/yyyyy/panel/`, a panel path like `PITH_PANEL_PATH` + `/users` becomes `/xxxxx/yyyyy/panel/users`.
 
 ## How matching works
 
