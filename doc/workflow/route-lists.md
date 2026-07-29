@@ -15,7 +15,7 @@ class PithRouteList
 }
 ```
 
-## Route entry formats
+## Route-List item format
 
 Every entry is a 4-element array:
 
@@ -24,9 +24,9 @@ Every entry is a 4-element array:
 | Leaf route | `['route', METHOD, path, '\\Namespace\\SomeRoute']` |
 | Route group | `['route-group', '', path_prefix, '\\Namespace\\SomeRouteList']` |
 
-- **METHOD** — a string (`'GET'`) or array (`['GET', 'POST']`) passed to FastRoute.
+- **route type** — Either `'route'` or `'route-group'`
+- **METHOD** — For leaf routes, either a string (like `'GET'`) or array (like `['GET', 'POST']`) passed to FastRoute, for route groups this is unused, always `''` an empty string in practice.
 - **path** — FastRoute path relative to the current group (`''` = group root). Supports placeholders such as `{filepath:.+}`.
-- **route-group `[1]`** — unused; always `''` in practice.
 - Handlers are always FQCNs of `PithRoute` (or nested `PithRouteList`) classes, not callables.
 
 ## Defining a Route List
