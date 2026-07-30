@@ -8,21 +8,24 @@ A Route is a workflow configuration class. It extends `Pith\Workflow\PithRoute` 
 
 `PithRoute` holds public config properties and loaders (`getAction`, `getPack`, `getPreparer`, and so on). Defaults cover the optional pieces:
 
-| Property | Role | Default |
-|----------|------|---------|
-| `$route_type` | How the dispatcher handles the Route | required |
-| `$pack` | Pack FQCN (feature folder) | required |
-| `$access_level` | Named access level or access-level FQCN | required |
-| `$action` | Action FQCN | `EmptyAction` |
-| `$preparer` | Preparer FQCN | `PassThroughPreparer` |
-| `$view` | View path expression | `''` |
-| `$view_adapter` | View adapter FQCN | Latte adapter |
-| `$view_requisition` | View requisition FQCN | `EmptyViewRequisition` |
-| `$layout` | Layout Route FQCN | `''` (none) |
-| `$resource_folder` | Folder for `resource-folder` routes | `''` |
-| `$resource_path` | File for `resource-file` routes | `''` |
+| Property | Role                                             | Default |
+|----------|--------------------------------------------------|--------|
+| `$route_type` | How the dispatcher handles the Route             | required |
+| `$pack` | Pack FQCN (feature folder)                       | required |
+| `$access_level` | Named access level or access-level FQCN          | required |
+| `$action` | Action FQCN                                      | `EmptyAction` |
+| `$preparer` | Preparer FQCN                                    | `PassThroughPreparer` |
+| `$view` | View path expression                             | `''` |
+| `$view_adapter` | View adapter FQCN                                | Latte adapter |
+| `$view_requisition` | View requisition FQCN                            | `EmptyViewRequisition` |
+| `$layout` | Layout Route FQCN                                | `''` (none) |
+| `$resource_folder` | Folder for `resource-folder` routes              | `''` |
+| `$resource_path` | File for `resource-file` routes                  | `''` |
 | `$cache_level` | Named cache level or full `Cache-Control:` header | `''` |
-| `$page_title`, `$meta_*` | Page metadata (used when a page has a layout) | robots default `index, follow` |
+| `$page_title` | Page title for `<title>`                         | `''` |
+| `$meta_keywords` | Keywords for `<meta name="keywords">`            | `''` |
+| `$meta_description` | Description for `<meta name="description">`      | `''` |
+| `$meta_robots` | Value for `<meta name="robots">`                 | `'index, follow'` |
 
 ## Route types
 
