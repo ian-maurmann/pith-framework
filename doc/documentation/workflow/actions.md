@@ -133,6 +133,7 @@ With the default `PassThroughPreparer`, prepare properties become view variables
 |-------|------|
 | `PithAction` | Base class for route application logic |
 | `PithRoute` | Declares `$action` FQCN; loads the Action |
+| [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | [Route Lists](route-lists.md) | Maps URLs to Route classes |
 | `PithPreparer` | Consumes `$prepare` and builds `$view` |
 | `EmptyAction` | Default no-op Action |

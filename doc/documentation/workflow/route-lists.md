@@ -117,6 +117,7 @@ class HomeRoute extends PithRoute
 |-------|------|
 | `PithRouteList` | Declares `$routes` |
 | `PithRoute` | Matched workflow config |
+| [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | [Actions](actions.md) (`PithAction`) | Route application logic; runs after access, before Preparer |
 | `PithConfig` | Holds and loads the app route list |
 | `PithRouter` | Expands lists into FastRoute and matches |

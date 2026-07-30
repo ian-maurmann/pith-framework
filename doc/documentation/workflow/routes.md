@@ -194,7 +194,7 @@ Routes can also run without a URL rematch:
 | `PithRoute` | Workflow config for a matched (or programmatically run) request |
 | [Route Lists](route-lists.md) (`PithRouteList`) | Maps URLs to Route FQCNs |
 | [Actions](actions.md) (`PithAction`) | Application logic; runs after access, before Preparer |
-| `PithPack` | Feature pack; supplies pack folder |
+| [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | `PithPreparer` | Shapes `$prepare` → `$view` |
 | `PithViewRequisition` | Headers and front-end resources |
 | `PithRouter` | Matches URL → Route |
