@@ -183,7 +183,7 @@ CDN tags include `integrity`, `crossorigin`, and `x-sri-fallback` pointing at th
 
 ## Emitting resources in the view
 
-Resources are registered on the Responder after the View Requisition runs. They are not auto-printed for layouts and pages—the layout (or page) view must call the insert helper:
+Resources are registered on the Responder after the View Requisition runs. They are not auto-printed for layouts and pages—the layout view (or page view if there is no layout) must call the insert helper:
 
 ```latte
 {insertResourceFiles(2)}
@@ -209,7 +209,7 @@ Put shared libraries and shell assets on the layout requisition (`*-for-layout`)
 - Override `runRequisition()`; leave `provisionViewRequisition()` alone unless you have a specific reason.
 - Use `'layout-view-requisition'` on layout requisitions; `'view-requisition'` elsewhere.
 - Choose roles deliberately so insert order stays correct when layout and page merge.
-- Prefer local `/resources/...` paths; use CDN helpers when you need SRI + fallback.
+- Prefer local `/resources/...` paths; use CDN helpers on remote paths if you need SRI + fallback.
 - Use double-backslash FQCNs in PHP strings (`'\\Pith\\...'`).
 - Keep View Requisitions PSR-4 autoloadable; wiring them on the Route is registration.
 - Omit `$view_requisition` when you need no headers or front-end files (`EmptyViewRequisition`).
