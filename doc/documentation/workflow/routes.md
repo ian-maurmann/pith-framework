@@ -161,7 +161,7 @@ Example: `'[^route_folder]/home-view.latte'` resolves next to the Route PHP file
 
 ## Access control
 
-`$access_level` is a named level (such as `'world'`, `'user'`, `'internal'`, `'task'`) or an access-level FQCN. Access is checked early in `dispatch` and again in the normal workflow taps. Denied access redirects or returns 403—there is no separate middleware stack.
+`$access_level` is a named level (such as `'world'`, `'user'`, `'internal'`, `'task'`) or an access-level FQCN. Access is checked early in `dispatch` and again in the normal workflow taps. Denied access redirects or returns 403—there is no separate middleware stack. See [Access Levels](access-levels.md).
 
 ## How a request runs
 
@@ -194,6 +194,7 @@ Routes can also run without a URL rematch:
 | `PithRoute` | Workflow config for a matched (or programmatically run) request |
 | [Route Lists](route-lists.md) (`PithRouteList`) | Maps URLs to Route FQCNs |
 | [Actions](actions.md) (`PithAction`) | Application logic; runs after access, before Preparer |
+| [Access Levels](access-levels.md) | Route `$access_level` gate; checked by Access Control |
 | [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | `PithPreparer` | Shapes `$prepare` → `$view` |
 | [View Adapters](view-adapters.md) | Render backends selected by `$view_adapter` |

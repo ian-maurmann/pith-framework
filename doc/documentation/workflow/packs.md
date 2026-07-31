@@ -45,7 +45,7 @@ Optional properties seen on Pack subclasses:
 
 | Property | Used by the engine? | Notes |
 |----------|---------------------|-------|
-| `$access_level` | No (at Pack load) | Inherited from `PithWorkflowElement`; access is checked on the **Route** |
+| `$access_level` | No (at Pack load) | Inherited from `PithWorkflowElement`; access is checked on the **Route**—see [Access Levels](access-levels.md) |
 | `$pack_type` | No | Conventional marker on front-end resource packs (for example `'resource-pack'`) |
 
 ## Folder layout
@@ -144,7 +144,7 @@ Mount the resource Route from a [Route List](route-lists.md) (for example under 
 - Place the Pack class at the root of the feature tree it owns.
 - Always set Route `$pack` to the Pack FQCN.
 - Prefer `[^route_folder]` for views and resources next to the Route; use `[^pack_folder]` for pack-root-relative paths.
-- Secure access on the **Route** `$access_level`, not the Pack.
+- Secure access on the **Route** `$access_level`, not the Pack—see [Access Levels](access-levels.md).
 - Use double-backslash FQCNs in PHP strings (`'\\Pith\\...'`).
 - Keep Packs PSR-4 autoloadable; wiring them on Routes is enough—no separate registrar.
 
@@ -154,6 +154,7 @@ Mount the resource Route from a [Route List](route-lists.md) (for example under 
 |-------|------|
 | `PithPack` | Feature pack; supplies pack folder |
 | [Routes](routes.md) (`PithRoute`) | Declares `$pack` FQCN; loads the Pack |
+| [Access Levels](access-levels.md) | Route gate; Pack `$access_level` is not enforced at Pack load |
 | [Route Lists](route-lists.md) | Maps URLs to Route FQCNs (not Packs) |
 | [Actions](actions.md) (`PithAction`) | Application logic; lives in the same feature tree |
 | `PithExpressionUtility` | Substitutes `[^pack_folder]` / `[^route_folder]` |
