@@ -83,7 +83,7 @@ A normal (non-resource) Route runs this pipeline:
 5. **Preparer** — shapes `$prepare` into `$view` variables
 6. **View Requisition** — headers and front-end resources
 7. **Responder** — register resources (partials may insert immediately)
-8. **View** — resolve the view path expression; view adapter renders
+8. **View** — resolve the view path expression; [View Adapter](view-adapters.md) renders
 
 Omit `$action` / `$preparer` / `$view_requisition` to get the graceful fallbacks (`EmptyAction`, `PassThroughPreparer`, `EmptyViewRequisition`).
 
@@ -196,6 +196,7 @@ Routes can also run without a URL rematch:
 | [Actions](actions.md) (`PithAction`) | Application logic; runs after access, before Preparer |
 | [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | `PithPreparer` | Shapes `$prepare` → `$view` |
+| [View Adapters](view-adapters.md) | Render backends selected by `$view_adapter` |
 | `PithViewRequisition` | Headers and front-end resources |
 | `PithRouter` | Matches URL → Route |
 | `PithEngine` / `PithDispatcher` | Start request and run the Route pipeline |
