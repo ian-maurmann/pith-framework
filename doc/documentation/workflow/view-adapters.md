@@ -142,7 +142,7 @@ Latte and PHTML adapters clone their runners inside `run()` so shared DI instanc
 | [Routes](routes.md) (`PithRoute`) | Declares `$view` and `$view_adapter`; loads the adapter |
 | [Actions](actions.md) (`PithAction`) | Fills `$prepare` (for example `response` for JSON) |
 | [Packs](packs.md) (`PithPack`) | Supplies pack folder for path expressions |
-| `PithPreparer` | Shapes `$prepare` → `$view` variables |
+| [Preparers](preparers.md) (`PithPreparer`) | Shapes `$prepare` → `$view` variables |
 | `PithDispatcher::tapView` | Provisions the adapter and calls `run()` |
 | `PithRoute::getViewAdapter` | Resolves `$view_adapter` via PHP-DI |
 

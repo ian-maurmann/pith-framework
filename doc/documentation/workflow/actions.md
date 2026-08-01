@@ -1,8 +1,8 @@
 # Actions
 
-Actions hold a route’s application logic—loading data, handling the request, and running side effects. An Action is a PHP class that extends `Pith\Workflow\PithAction`. The dispatcher runs it after access control and before the Preparer.
+Actions hold a route’s application logic—loading data, handling the request, and running side effects. An Action is a PHP class that extends `Pith\Workflow\PithAction`. The dispatcher runs it after access control and before the [Preparer](preparers.md).
 
-Inside `runAction()`, push values onto `$this->prepare`. Those values are handed to the Preparer, which shapes them for the view.
+Inside `runAction()`, push values onto `$this->prepare`. Those values are handed to the [Preparer](preparers.md), which shapes them for the view.
 
 ## Base type
 
@@ -97,7 +97,7 @@ Actions run for `page`, `error-page`, `layout`, `partial`, `endpoint`, `task`, a
 
 ## Action and Preparer
 
-Keep business logic and side effects in the Action. Use the Preparer to cast, escape, and shape data for the view.
+Keep business logic and side effects in the Action. Use the [Preparer](preparers.md) to cast, escape, and shape data for the view.
 
 Action:
 
@@ -135,9 +135,9 @@ With the default `PassThroughPreparer`, prepare properties become view variables
 | `PithRoute` | Declares `$action` FQCN; loads the Action |
 | [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
 | [Route Lists](route-lists.md) | Maps URLs to Route classes |
-| `PithPreparer` | Consumes `$prepare` and builds `$view` |
+| [Preparers](preparers.md) (`PithPreparer`) | Consumes `$prepare` and builds `$view` |
 | `EmptyAction` | Default no-op Action |
-| `PassThroughPreparer` | Default Preparer; copies prepare → view |
+| [Preparers](preparers.md) (`PassThroughPreparer`) | Default Preparer; copies prepare → view |
 | `PithDispatcher` | Runs `tapAccess` → `tapAction` → `tapPreparer` → view |
 
 ## Important source files

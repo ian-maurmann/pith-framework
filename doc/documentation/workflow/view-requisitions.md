@@ -1,8 +1,8 @@
 # View Requisitions
 
-A View Requisition declares the HTTP headers and front-end resources a Route needs—scripts, stylesheets, and preloads. It extends `Pith\Workflow\PithViewRequisition`. The dispatcher runs it after the Preparer and before the Responder and [View Adapter](view-adapters.md).
+A View Requisition declares the HTTP headers and front-end resources a Route needs—scripts, stylesheets, and preloads. It extends `Pith\Workflow\PithViewRequisition`. The dispatcher runs it after the [Preparer](preparers.md) and before the Responder and [View Adapter](view-adapters.md).
 
-Application data stays in the [Action](actions.md) / Preparer. The View Requisition’s job is what goes in `<head>` (and related tags): charset headers, CSS, JS, and preload hints.
+Application data stays in the [Action](actions.md) / [Preparer](preparers.md). The View Requisition’s job is what goes in `<head>` (and related tags): charset headers, CSS, JS, and preload hints.
 
 ## Base type
 

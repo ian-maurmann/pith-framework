@@ -196,7 +196,7 @@ Routes can also run without a URL rematch:
 | [Actions](actions.md) (`PithAction`) | Application logic; runs after access, before Preparer |
 | [Access Levels](access-levels.md) | Route `$access_level` gate; checked by Access Control |
 | [Packs](packs.md) (`PithPack`) | Feature pack; supplies pack folder |
-| `PithPreparer` | Shapes `$prepare` → `$view` |
+| [Preparers](preparers.md) (`PithPreparer`) | Shapes `$prepare` → `$view` |
 | [View Adapters](view-adapters.md) | Render backends selected by `$view_adapter` |
 | `PithViewRequisition` | Headers and front-end resources |
 | `PithRouter` | Matches URL → Route |

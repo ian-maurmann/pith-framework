@@ -62,7 +62,7 @@ Example: `'[^route_folder]/tasks-view.latte'` resolves to a file beside `TasksRo
 
 ## Push data into the view
 
-The [Action](actions.md) pushes values onto `$this->prepare`. The Preparer shapes those into `$view` variables for the adapter.
+The [Action](actions.md) pushes values onto `$this->prepare`. The [Preparer](preparers.md) shapes those into `$view` variables for the adapter.
 
 With the default `PassThroughPreparer`, prepare properties become view variables as-is:
 
@@ -80,7 +80,7 @@ $this->prepare->task_routes     = $task_routes;
 {/foreach}
 ```
 
-Use a custom Preparer when you need to cast, escape, or reshape data before render. Keep business logic in the Action; keep escaping and presentation shaping in the Preparer.
+Use a custom [Preparer](preparers.md) when you need to cast, escape, or reshape data before render. Keep business logic in the Action; keep escaping and presentation shaping in the Preparer.
 
 - Latte templates receive variables as `$name`, dynamically escaping them based on context.
 - PHTML adapters `extract()` the variables from the Preparer into local scope. Insert helpers are available as methods on `$this`.
@@ -153,7 +153,7 @@ Details and examples are in [View Adapters](view-adapters.md).
 |-------|------|
 | [Routes](routes.md) (`PithRoute`) | Declares `$view`, `$view_adapter`, `$view_requisition`, `$layout` |
 | [Actions](actions.md) (`PithAction`) | Fills `$prepare` for the Preparer / view |
-| `PithPreparer` / `PassThroughPreparer` | Shapes `$prepare` → `$view` variables |
+| [Preparers](preparers.md) (`PithPreparer` / `PassThroughPreparer`) | Shapes `$prepare` → `$view` variables |
 | [View Adapters](view-adapters.md) | Render backends selected by `$view_adapter` |
 | [View Requisitions](view-requisitions.md) | Headers and front-end resources |
 | `PithResponder` | Stores resources; emits tags via insert helpers |
