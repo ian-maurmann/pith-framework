@@ -4,7 +4,7 @@ The Route–Action–View (RAV) workflow pipeline is how a request moves from UR
 
 “RAV” names the main layers—Route, Action, and View. Pack, Access, Preparer, View Requisition, and View Adapter are the supporting taps on the same pipeline. There is no combined framework class named “RouteActionView.” The name describes the layering convention: configuration and plain PHP classes built by PHP-DI.
 
-Domain work under an Action (Services, Gateways, Utilities) is a separate stack. See the [Action–Service–Gateway workflow](action-service-gateway-workflow.md).
+Domain work under an Action (Services, Gateways, Utilities) is a separate stack. See the [Action–Service–Gateway workflow](action-service-gateway-workflow.md). For how RAV and ASG join—philosophy, wiring, and benefits—see the [combined RAV–ASG workflow](rav-asg-workflow.md).
 
 ## Role in the stack
 

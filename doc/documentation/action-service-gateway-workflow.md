@@ -4,7 +4,7 @@ The Action–Service–Gateway (ASG) workflow pipeline is how domain work runs u
 
 Services, Gateways, Utilities, and [Repositories](workflow/repositories.md) are **not** workflow elements. They sit below Actions, outside the Route → Pack → Access → Action → Preparer → View pipeline. [Routes](workflow/routes.md) wire Actions; they never touch Services or Gateways. Actions inject Services; Services inject Gateways and Utilities.
 
-There is no combined framework class named “ActionServiceGateway.” The name describes the layering convention: plain PHP classes built by PHP-DI.
+There is no combined framework class named “ActionServiceGateway.” The name describes the layering convention: plain PHP classes built by PHP-DI. For how ASG joins the [Route–Action–View](route-action-view-workflow.md) pipeline—philosophy, wiring, and benefits—see the [combined RAV–ASG workflow](rav-asg-workflow.md).
 
 ## Role in the stack
 
