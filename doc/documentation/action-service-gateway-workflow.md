@@ -1,6 +1,6 @@
 # Action–Service–Gateway workflow
 
-The Action–Service–Gateway stack is how domain work runs under an [Action](workflow/actions.md). An Action takes the request, calls a [Service](workflow/services.md) for business logic, and the Service talks to [Table Gateways](workflow/table-gateways.md) (and [Utilities](workflow/utilities.md)) for data access and helpers. Results flow back into `$this->prepare` for the Preparer and View.
+The Action–Service–Gateway (ASG) workflow pipeline is how domain work runs under an [Action](workflow/actions.md). An Action takes the request, calls a [Service](workflow/services.md) for business logic, and the Service talks to [Table Gateways](workflow/table-gateways.md) (and [Utilities](workflow/utilities.md)) for data access and helpers. Results flow back into `$this->prepare` for the Preparer and View.
 
 Services, Gateways, Utilities, and [Repositories](workflow/repositories.md) are **not** workflow elements. They sit below Actions, outside the Route → Pack → Access → Action → Preparer → View pipeline. [Routes](workflow/routes.md) wire Actions; they never touch Services or Gateways. Actions inject Services; Services inject Gateways and Utilities.
 
