@@ -212,9 +212,10 @@ A Pack does not register Gateways. PSR-4 + constructor type-hints are enough.
 | Piece | Role |
 |-------|------|
 | Gateway (`*Gateway`) | SQL / table access |
-| Service (`*Service`) | Business logic; calls Gateways |
+| Service (`*Service`) | Business logic; calls Gateways and Utilities |
+| [Utilities](utilities.md) (`*Utility`) | Transforms / validation / helpers; no SQL |
 | [Actions](actions.md) (`PithAction`) | Injects Services; fills `$prepare` |
-| [Packs](packs.md) (`PithPack`) | Feature tree that often contains `gateways/` and `services/` |
+| [Packs](packs.md) (`PithPack`) | Feature tree that often contains `gateways/`, `services/`, and `utilities/` |
 | `PithPostgresWrapper` | Current Postgres PDO wrapper |
 | `PithDatabaseWrapper` | Legacy MariaDB/MySQL wrapper |
 | `PithDatabaseWrapperHelper` | Arg flattening and query helpers |

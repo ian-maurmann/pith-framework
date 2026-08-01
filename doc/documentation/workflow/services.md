@@ -1,6 +1,6 @@
 # Services
 
-A Service is a business-logic class. It receives method calls from an [Action](actions.md), talks to [Table Gateways](table-gateways.md) (and utilities), and returns data or structured results back to that Action.
+A Service is a business-logic class. It receives method calls from an [Action](actions.md), talks to [Table Gateways](table-gateways.md) (and [Utilities](utilities.md)), and returns data or structured results back to that Action.
 
 Services are **not** workflow elements. They sit below Actions, outside the Route → Pack → Access → Action → Preparer → View pipeline. Actions inject Services; Services inject Gateways.
 
@@ -210,10 +210,11 @@ Services are usually called from Actions, but other framework pieces can inject 
 
 | Piece | Role |
 |-------|------|
-| Service (`*Service`) | Business logic; calls Gateways |
+| Service (`*Service`) | Business logic; calls Gateways and Utilities |
 | [Table Gateways](table-gateways.md) (`*Gateway`) | SQL / table access |
+| [Utilities](utilities.md) (`*Utility`) | Transforms / validation / helpers; no SQL |
 | [Actions](actions.md) (`PithAction`) | Injects Services; fills `$prepare` |
-| [Packs](packs.md) (`PithPack`) | Feature tree that often contains `services/` and `gateways/` |
+| [Packs](packs.md) (`PithPack`) | Feature tree that often contains `services/`, `gateways/`, and `utilities/` |
 | [Preparers](preparers.md) (`PithPreparer`) | Shapes `$prepare` → `$view` after the Action |
 | [Routes](routes.md) | Wire Action FQCNs; never touch Services or Gateways |
 | `PithPostgresWrapper` | Current Postgres PDO wrapper (transactions from Services) |
