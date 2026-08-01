@@ -1,8 +1,8 @@
 # Views
 
-A View is the render end of a Route’s workflow: a template path (`$view`), variables shaped by Action → Preparer, a [View Adapter](view-adapters.md) that produces the response, and often a [View Requisition](view-requisitions.md) for headers and front-end assets.
+A View is the render end of a Route’s workflow: a view path (`$view`), variables shaped by Action → Preparer, a [View Adapter](view-adapters.md) that produces the response, and often a [View Requisition](view-requisitions.md) for headers and front-end assets.
 
-There is no `PithView` class or separate View registry. The [Route](routes.md) declares `$view` (and usually `$view_adapter` / `$view_requisition`). PHP-DI builds the adapter and requisition; `PithDispatcher` resolves the path and runs the adapter.
+There is no `PithView` class or separate View registry. The [Route](routes.md) declares `$view` (with the `$view_requisition` and `$view_adapter` if needed). PHP-DI builds the adapter and requisition; `PithDispatcher` resolves the path and runs the adapter.
 
 ## Where they fit
 
@@ -10,13 +10,13 @@ A normal (non-resource) Route runs:
 
 **Action → Preparer → View Requisition → Responder → View Adapter**
 
-| Piece | Role |
-|-------|------|
-| `$view` | Path expression to a template (`.latte` / `.phtml`), or unused for JSON/CLI |
-| `$view_adapter` | Duck-typed render backend (Latte by default) |
-| `$view_requisition` | HTTP headers and CSS/JS/preloads |
-| Preparer `$view` object | Variables passed into the template |
-| Template file | Markup that uses those variables and insert helpers |
+| Piece                   | Role                                                                         |
+|-------------------------|------------------------------------------------------------------------------|
+| `$view`                 | Path expression to a view file (`.latte` / `.phtml`), or unused for JSON/CLI |
+| `$view_adapter`         | Duck-typed render backend (Latte by default)                                 |
+| `$view_requisition`     | HTTP headers and CSS/JS/preloads                                             |
+| Preparer `$view` object | Variables passed into the view                                               |
+| View file               | Markup file or view file that uses those variables and insert helpers        |
 
 Static `resource-folder` / `resource-file` Routes skip Action → Preparer → View entirely.
 
@@ -49,7 +49,7 @@ class MainLayoutRoute extends PithRoute
 }
 ```
 
-Override `$view_adapter` for `.phtml` templates, JSON endpoints, and CLI tasks. See [View Adapters](view-adapters.md).
+Override `$view_adapter` for `.phtml` views, JSON endpoints, and CLI tasks. See [View Adapters](view-adapters.md).
 
 ## Path expressions
 
@@ -58,9 +58,9 @@ Override `$view_adapter` for `.phtml` templates, JSON endpoints, and CLI tasks. 
 - `[^route_folder]` — directory of the Route class file
 - `[^pack_folder]` — directory of the Pack class file
 
-Example: `'[^route_folder]/tasks-view.latte'` resolves to a file beside `TasksRoute.php`. Prefer `[^route_folder]` when the template lives with the Route.
+Example: `'[^route_folder]/tasks-view.latte'` resolves to a file beside `TasksRoute.php`. Prefer `[^route_folder]` when the view file lives in the same folder as the Route's file.
 
-## Data into the template
+## Push data into the view
 
 The [Action](actions.md) pushes values onto `$this->prepare`. The Preparer shapes those into `$view` variables for the adapter.
 
@@ -82,7 +82,8 @@ $this->prepare->task_routes     = $task_routes;
 
 Use a custom Preparer when you need to cast, escape, or reshape data before render. Keep business logic in the Action; keep escaping and presentation shaping in the Preparer.
 
-Latte templates receive variables as `$name`. PHTML adapters `extract()` the view object into local scope and expose insert helpers as methods on `$this`.
+- Latte templates receive variables as `$name`, dynamically escaping them based on context.
+- PHTML adapters `extract()` the variables from the Preparer into local scope. Insert helpers are available as methods on `$this`.
 
 ## How it runs
 
@@ -95,11 +96,11 @@ After Action, Preparer, View Requisition, and Responder:
 5. For a layout with a content page, it also calls `setIsLayout(true)` and `setContentRoute($page_route)`.
 6. `run()` renders or emits the response.
 
-Views run for `page`, `error-page`, `layout`, `partial`, `endpoint`, `task`, and `job` Routes. Partials invoked via `$engine->runPartial(...)` still run Action → Preparer → View.
+Views run for `page`, `error-page`, `layout`, `partial`. And `endpoint`, `task`, and `job` Routes can also use some of the logic from views. Partials invoked via `$engine->runPartial(...)` still run Action → Preparer → View.
 
 ## Layouts and partials
 
-**Pages with a layout:** if `$route_type` is `page` or `error-page` and `$layout` is set, the dispatcher runs the **layout** Route and passes the page as `$secondary_route`. The layout Action → Preparer → View run first. The page Action and page view run later, when the layout template inserts page content—for example `{insertPage()}` in Latte.
+**Pages with a layout:** if `$route_type` is `page` or `error-page` and `$layout` is set, the dispatcher runs the **layout** Route and passes the page as `$secondary_route`. The layout Action → Preparer → View run first. The page Action and page view run later, when the layout View inserts page content—for example `{insertPage()}` in Latte.
 
 A typical layout shell:
 
@@ -127,22 +128,22 @@ Resources from the [View Requisition](view-requisitions.md) are registered on `P
 
 **Partials:** a `partial` Route runs the same Action → Preparer → View path without a layout wrap. Insert one from a view with `{insertPartial('...PartialRoute')}`, or run it with `$engine->runPartial(...)`.
 
-## Non-template Views
+## JSON and CLI use View Adapter without view files
 
 JSON endpoints and CLI tasks still go through a View Adapter, but they ignore `$view`:
 
 - **JSON** — Action sets `$this->prepare->response`; the JSON adapter encodes it.
-- **CLI** — output comes from `$app->cli_writer`, not a template file.
+- **CLI** — output comes from `$app->cli_writer`, not a view file.
 
 Details and examples are in [View Adapters](view-adapters.md).
 
 ## Conventions
 
-- Name templates `*-view.latte` (or `*-view.phtml`) and keep them beside the Route.
+- Name views `*-view.latte` (or `*-view.phtml`) and keep them beside the Route.
 - Prefer Latte for new HTML Routes; omit `$view_adapter` when the default is correct.
 - Always set `$view_adapter` for `.phtml`, JSON, and CLI Routes.
 - Use path expressions (`[^route_folder]`, `[^pack_folder]`) for `$view`.
-- Push data from the Action via `$this->prepare->…`; use a custom Preparer only when you need to shape or escape for the template.
+- Push data from the Action via `$this->prepare->…`; use a custom Preparer only when you need to shape or escape for the view.
 - Use double-backslash FQCNs in PHP strings (`'\\Pith\\...'`).
 - Do not expect a View on `resource-folder` / `resource-file` Routes.
 
