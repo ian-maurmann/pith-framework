@@ -38,9 +38,6 @@ SharedUI.LoginForm.listen = function(){
     // Submit login form
     Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.login-form >>> submit"]', 'click', self.handleOnSubmit);
 
-    // On click forgot password link
-    Ox.Event.delegate('[data-shared-ui-click-event="shared-ui.login-form >>> forgot-password"]', 'click', self.handleOnClickForgotPassword);
-
 }
 
 // Check for failed login
@@ -152,10 +149,6 @@ SharedUI.LoginForm.handleOnSubmit = function(element, event){
     else{
         form.submit();
     }
-}
-
-SharedUI.LoginForm.handleOnClickForgotPassword = function(element, event){
-    alert('forgot password');
 }
 
 // Run Construct on page load
