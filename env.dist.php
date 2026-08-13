@@ -14,6 +14,9 @@ declare(strict_types=1);
 
 // Define our Constants
 
+// URL
+const PITH_APP_BASE_URL = ''; // Base URL for site, without hyphen at the end
+
 
 // Database
 const PITH_APP_DATABASE_DSN           = '';

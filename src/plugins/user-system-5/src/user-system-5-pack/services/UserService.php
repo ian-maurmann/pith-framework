@@ -764,7 +764,12 @@ class UserService
 
                         $this->password_reset_token_gateway->createToken($user_id, $token_hash, $expires_at);
 
-                        $reset_link = PITH_APP_DEFAULT_RESET_PASSWORD_PAGE_URL_PATH . '?token=' . urlencode($raw_token);
+                        $reset_link = PITH_APP_BASE_URL . PITH_APP_DEFAULT_RESET_PASSWORD_PAGE_URL_PATH . '?token=' . urlencode($raw_token);
+
+                        // Debug
+                        //=========================================
+                        //error_log('Reset Link = ' . $reset_link);
+                        //=========================================
 
                         // Send email
                         $this->email_builder->reset();
