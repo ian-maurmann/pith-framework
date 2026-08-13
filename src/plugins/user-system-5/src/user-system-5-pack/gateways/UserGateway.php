@@ -186,4 +186,56 @@ class UserGateway
         // Return user id as int if found, else return zero if not found
         return $user_row;
     }
+
+
+    /**
+     * @param string $email_address
+     * @return array|null
+     * @throws PithException
+     */
+    public function findUserRowByPrimaryEmailAddress(string $email_address): ?array
+    {
+        // Default to null
+        $user_row = null;
+
+        // Query
+        $sql = '
+            SELECT 
+                *
+            FROM 
+                pith_users
+            WHERE 
+                primary_email_address = ?
+            LIMIT 1
+            ';
+
+        // Execute
+        $results = $this->database->query($sql, $email_address);
+
+        // Check for results
+        $has_results = is_array($results) && (count($results) > 0);
+        if($has_results){
+            $user_row = $results[0];
+        }
+
+        return $user_row;
+    }
+
+
+    /**
+     * @param int $user_id
+     * @param string $password_hash
+     * @return void
+     * @throws PithException
+     */
+    public function updatePasswordHash(int $user_id, string $password_hash): void
+    {
+        $sql = '
+            UPDATE pith_users
+            SET password_hash = ?
+            WHERE user_id = ?
+            ';
+
+        $this->database->query($sql, $password_hash, $user_id);
+    }
 }

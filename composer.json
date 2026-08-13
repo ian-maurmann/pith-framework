@@ -105,6 +105,13 @@
                 "src/plugins/login-form/src/login-form-pack/login-form/",
                 "src/plugins/login-form/src/login-form-pack/login-form-resources/"
             ],
+            "Pith\\Framework\\Plugin\\ForgotPassword\\": [
+                "src/plugins/forgot-password/src/",
+                "src/plugins/forgot-password/src/forgot-password-pack/",
+                "src/plugins/forgot-password/src/forgot-password-pack/forgot-password-form/",
+                "src/plugins/forgot-password/src/forgot-password-pack/reset-password-form/",
+                "src/plugins/forgot-password/src/forgot-password-pack/forgot-password-resources/"
+            ],
             "Pith\\Framework\\Plugin\\SignUpForm\\": [
                 "src/plugins/sign-up-form/src/",
                 "src/plugins/sign-up-form/src/sign-up-form-pack/",
@@ -135,6 +142,8 @@
                 "src/plugins/user-system-5/src/user-system-5-pack/endpoints/",
                 "src/plugins/user-system-5/src/user-system-5-pack/endpoints/create-new-user/",
                 "src/plugins/user-system-5/src/user-system-5-pack/endpoints/is-username-available/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/request-password-reset/",
+                "src/plugins/user-system-5/src/user-system-5-pack/endpoints/reset-password/",
                 "src/plugins/user-system-5/src/user-system-5-pack/gateways/",
                 "src/plugins/user-system-5/src/user-system-5-pack/services/",
                 "src/plugins/user-system-5/src/user-system-5-pack/utilities/"
@@ -176,6 +185,8 @@
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/latte/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/login/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/login-2/",
+                "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/forgot-password/",
+                "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/reset-password/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/logout/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/lorem-ipsum/",
                 "src/plugins/shared-infrastructure-DEPRECATED/src/shared-infrastructure-pack/controller-and-view/pages/demo-pages/new-user/",
