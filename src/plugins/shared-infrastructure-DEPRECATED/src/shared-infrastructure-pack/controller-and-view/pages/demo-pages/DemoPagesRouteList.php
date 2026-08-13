@@ -28,6 +28,8 @@ class DemoPagesRouteList extends PithRouteList
         ['route',       'GET',  '/latte',                             '\\Pith\\Framework\\SharedInfrastructure\\LatteRoute'],
         ['route',       'GET',  '/login',                             '\\Pith\\Framework\\SharedInfrastructure\\LoginRoute'],
         ['route',       'GET',  '/login-2',                           '\\Pith\\Framework\\SharedInfrastructure\\Login2Route'],
+        ['route',       'GET',  '/forgot-password',                   '\\Pith\\Framework\\SharedInfrastructure\\ForgotPasswordRoute'],
+        ['route',       'GET',  '/reset-password',                    '\\Pith\\Framework\\SharedInfrastructure\\ResetPasswordRoute'],
         ['route',       'GET',  '/lorem-ipsum',                       '\\Pith\\Framework\\SharedInfrastructure\\LoremIpsumRoute'],
         ['route',       'GET',  '/new-user',                          '\\Pith\\Framework\\SharedInfrastructure\\NewUserRoute'],
         ['route',       'GET',  '/new-user-2',                        '\\Pith\\Framework\\SharedInfrastructure\\NewUser2Route'],

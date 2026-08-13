@@ -30,6 +30,8 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
         ['route',       ['GET', 'POST'], '/error-405',                                             '\\Pith\\Framework\\Plugin\\ErrorPages\\Error405Route'],
         ['route',       'GET',           '/favicon.ico',                                           '%[^PROJECT_NAMESPACE_STRING]%\\FaviconDotIcoRoute'],
         ['route',       ['GET', 'POST'], '/login',                                                 '%[^PROJECT_NAMESPACE_STRING]%\\LoginRoute'],
+        ['route',       ['GET', 'POST'], '/forgot-password',                                       '%[^PROJECT_NAMESPACE_STRING]%\\ForgotPasswordRoute'],
+        ['route',       ['GET', 'POST'], '/reset-password',                                        '%[^PROJECT_NAMESPACE_STRING]%\\ResetPasswordRoute'],
         ['route',       ['GET', 'POST'], '/lorem-ipsum',                                           '%[^PROJECT_NAMESPACE_STRING]%\\LoremIpsumRoute'],
         ['route',       ['GET', 'POST'], '/lorem-ipsum-no-layout',                                 '%[^PROJECT_NAMESPACE_STRING]%\\LoremIpsumNoLayoutRoute'],
         ['route',       ['GET', 'POST'], '/page-2',                                                '%[^PROJECT_NAMESPACE_STRING]%\\Page2Route'],
@@ -37,6 +39,7 @@ class %[^PROJECT_MAIN_TITLE_IN_PHP]%AppRouteList extends PithRouteList
      // ['route',       ['GET', 'POST'], '/pith-framework-landing',                                '\\Pith\\Framework\\SharedInfrastructure\\DefaultLandingRoute'],
         ['route',       'GET',           '/resources/app/{filepath:.+}',                           '%[^PROJECT_NAMESPACE_STRING]%\\%[^PROJECT_MAIN_TITLE_IN_PHP]%AppResourceRoute'],
         ['route',       'GET',           '/resources/framework/plugin/login-form/{filepath:.+}',   '\\Pith\\Framework\\Plugin\\LoginForm\\PithLoginFormResourceRoute'],
+        ['route',       'GET',           '/resources/framework/plugin/forgot-password/{filepath:.+}', '\\Pith\\Framework\\Plugin\\ForgotPassword\\PithForgotPasswordResourceRoute'],
         ['route',       'GET',           '/resources/framework/plugin/sign-up-form/{filepath:.+}', '\\Pith\\Framework\\Plugin\\SignUpForm\\PithSignUpFormResourceRoute'],
         ['route',       'GET',           '/resources/framework/shared-ui/{filepath:.+}',           '\\Pith\\Framework\\SharedUiResourcePack\\SharedUiApplicationResourceRoute'],
      // ['route',       'GET',           '/resources/vendor/common-fonts/{filepath:.+}',           '\\Pith\\Framework\\CommonFontsResourcePack\\CommonFontsResourceRoute'], // DEPRECATED, will change

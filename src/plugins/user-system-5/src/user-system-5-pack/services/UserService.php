@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Pith\Framework\Plugin\UserSystem5;
 
 use Exception;
+use Pith\Framework\PithEmailBuilder;
 use Pith\Framework\PithPostgresWrapper;
 use Pith\Framework\PithException;
 use Pith\Framework\Utility\RandomCharUtility;
@@ -41,8 +42,10 @@ class UserService
 {
     // private AccessLevelGateway       $access_level_gateway;
     private PithPostgresWrapper      $database;
+    private PithEmailBuilder         $email_builder;
     // private LoginCredentialGateway   $login_credential_gateway;
     // private PasswordGateway          $password_gateway;
+    private PasswordResetTokenGateway $password_reset_token_gateway;
     private PasswordUtility          $password_utility;
     private RandomCharUtility        $random_char_utility;
     // private UserAccountInfoGateway   $user_account_info_gateway;
@@ -53,13 +56,15 @@ class UserService
     // private UsernameGateway          $username_gateway;
     private UsernameNormalizer       $username_normalizer;
 
-    public function __construct(PithPostgresWrapper $database, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccessLevelGateway $user_access_level_gateway, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
+    public function __construct(PithPostgresWrapper $database, PithEmailBuilder $email_builder, PasswordResetTokenGateway $password_reset_token_gateway, PasswordUtility $password_utility, RandomCharUtility $random_char_utility, UserAccessLevelGateway $user_access_level_gateway, UserGateway $user_gateway, UsernameNormalizer $username_normalizer)
     {
         // Set object dependencies:
      // $this->access_level_gateway        = $access_level_gateway;
         $this->database                    = $database;
+        $this->email_builder               = $email_builder;
      // $this->login_credential_gateway    = $login_credential_gateway;
      // $this->password_gateway            = $password_gateway;
+        $this->password_reset_token_gateway = $password_reset_token_gateway;
         $this->password_utility            = $password_utility;
         $this->random_char_utility         = $random_char_utility;
      // $this->user_account_info_gateway   = $user_account_info_gateway;
@@ -718,6 +723,134 @@ class UserService
         $user_access_levels_above_user = $this->user_access_level_gateway->getUserAccessLevels($user_id);
 
         return $user_access_levels_above_user;
+    }
+
+
+    /**
+     * Request a password reset email.
+     * Always returns generic success to avoid email enumeration.
+     *
+     * @param string $email_address_unsafe
+     * @return array
+     */
+    public function requestPasswordReset(string $email_address_unsafe): array
+    {
+        $is_successful = true;
+        $fail_reason   = '';
+        $email_sent    = false;
+
+        try {
+            $email_address = trim($email_address_unsafe);
+
+            // Light shape check only; still return success if invalid (anti-enumeration)
+            $email_acceptability = $this->spotcheckNewUserEmailAddress($email_address);
+            $is_email_ok         = ($email_acceptability['is_allowed'] ?? 'no') === 'yes';
+
+            if ($is_email_ok) {
+                $user_row = $this->user_gateway->findUserRowByPrimaryEmailAddress($email_address);
+                $has_user = !empty($user_row) && is_array($user_row);
+
+                if ($has_user) {
+                    $user_id = (int) ($user_row['user_id'] ?? 0);
+
+                    if ($user_id > 0) {
+                        // Invalidate prior unused tokens for this user
+                        $this->password_reset_token_gateway->invalidateUnusedTokensForUser($user_id);
+
+                        // Create raw token + store hash
+                        $raw_token   = bin2hex(random_bytes(32));
+                        $token_hash  = hash('sha256', $raw_token);
+                        $expires_at  = (new \DateTimeImmutable('+1 hour'))->format('Y-m-d H:i:sP');
+
+                        $this->password_reset_token_gateway->createToken($user_id, $token_hash, $expires_at);
+
+                        $reset_link = PITH_APP_DEFAULT_RESET_PASSWORD_PAGE_URL_PATH . '?token=' . urlencode($raw_token);
+
+                        // Send email
+                        $this->email_builder->reset();
+                        $this->email_builder->setFrom(PITH_EMAIL_SYSTEM_FROM_ADDRESS, PITH_EMAIL_SYSTEM_FROM_NAME);
+                        $this->email_builder->addTo($email_address);
+                        $this->email_builder->setSubject('Password Reset');
+                        $this->email_builder->setBody(
+                            "A password reset was requested for your account.\n\n"
+                            . "Use this link to reset your password (expires in 1 hour):\n"
+                            . $reset_link . "\n\n"
+                            . "If you did not request this, you can ignore this email.\n"
+                        );
+                        $this->email_builder->setIsHtml(false);
+                        $this->email_builder->send();
+
+                        $email_sent = true;
+                    }
+                }
+            }
+        } catch (PithException | Exception $e) {
+            // Still report generic success to the client; log fail reason internally via response data if needed
+            $fail_reason = $e->getMessage();
+            // Keep is_successful true for anti-enumeration on the public action_status
+        }
+
+        return [
+            'is_successful' => $is_successful ? 'yes' : 'no',
+            'fail_reason'   => $fail_reason,
+            'email_sent'    => $email_sent ? 'yes' : 'no',
+        ];
+    }
+
+
+    /**
+     * Reset password using a one-time token from email.
+     *
+     * @param string $token_unsafe
+     * @param string $new_password_unsafe
+     * @param string $confirm_new_password_unsafe
+     * @return array
+     */
+    public function resetPasswordWithToken(string $token_unsafe, string $new_password_unsafe, string $confirm_new_password_unsafe): array
+    {
+        $is_successful = false;
+        $fail_reason   = '';
+
+        try {
+            $token = trim($token_unsafe);
+
+            if ($token === '') {
+                throw new Exception('token-is-empty');
+            }
+
+            $password_check = $this->spotcheckNewUserPassword($new_password_unsafe, $confirm_new_password_unsafe);
+            $is_password_ok = ($password_check['is_ok'] ?? 'no') === 'yes';
+            if (!$is_password_ok) {
+                throw new Exception($password_check['fail_reason'] ?: 'password-not-acceptable');
+            }
+
+            $token_hash = hash('sha256', $token);
+            $token_row  = $this->password_reset_token_gateway->findValidTokenRowByHash($token_hash);
+            $has_token  = !empty($token_row) && is_array($token_row);
+            if (!$has_token) {
+                throw new Exception('token-invalid-or-expired');
+            }
+
+            $token_id = (int) ($token_row['token_id'] ?? 0);
+            $user_id  = (int) ($token_row['user_id'] ?? 0);
+            if ($token_id < 1 || $user_id < 1) {
+                throw new Exception('token-invalid-or-expired');
+            }
+
+            $password_hash = $this->password_utility->getPasswordHash($new_password_unsafe);
+            $this->user_gateway->updatePasswordHash($user_id, $password_hash);
+            $this->password_reset_token_gateway->markTokenUsed($token_id);
+
+            $is_successful = true;
+        } catch (PithException | Exception $e) {
+            $is_successful = false;
+            $fail_reason   = $e->getMessage();
+        }
+
+        return [
+            'is_successful' => $is_successful ? 'yes' : 'no',
+            'fail_reason'   => $fail_reason,
+        ];
     }
 
 }
