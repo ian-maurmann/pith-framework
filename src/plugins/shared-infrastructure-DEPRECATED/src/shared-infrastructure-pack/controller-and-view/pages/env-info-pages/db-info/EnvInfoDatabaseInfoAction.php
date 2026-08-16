@@ -35,14 +35,10 @@ class EnvInfoDatabaseInfoAction extends PithAction
 
     public function runAction()
     {
-        // Variables
+        // Get test quotes
         $quote_results              = $this->test_quote_service->getQuotes();
-        $dsn                        = PITH_APP_DATABASE_DSN;
-        $migrations_database_name   = PITH_DATABASE_MIGRATIONS_DATABASE_NAME;
-        $migrations_database_host   = PITH_DATABASE_MIGRATIONS_DATABASE_HOST;
-        $migrations_database_driver = PITH_DATABASE_MIGRATIONS_DATABASE_DRIVER;
 
-        // Get Variables using new database
+        // Get Variables using the new database
         $postgres_host          = PITH_POSTGRES_HOST;
         $postgres_port          = PITH_POSTGRES_PORT;
         $postgres_database_name = PITH_POSTGRES_DATABASE_NAME;
@@ -53,10 +49,6 @@ class EnvInfoDatabaseInfoAction extends PithAction
 
         // Push to Preparer
         $this->prepare->quote_results              = $quote_results;
-        $this->prepare->dsn                        = $dsn;
-        $this->prepare->migrations_database_name   = $migrations_database_name;
-        $this->prepare->migrations_database_host   = $migrations_database_host;
-        $this->prepare->migrations_database_driver = $migrations_database_driver;
         $this->prepare->postgres_host              = $postgres_host;
         $this->prepare->postgres_port              = $postgres_port;
         $this->prepare->postgres_database_name     = $postgres_database_name;
