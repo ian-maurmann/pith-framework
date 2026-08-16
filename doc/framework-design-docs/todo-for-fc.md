@@ -17,4 +17,7 @@
 > - [ ] Add new command / work order / Job / Worker system.
 >
 > Also:
-> - [ ] Add Forgot Password system that emails user with link to reset password.
+> - [x] Add Forgot Password system that emails user with link to reset password.
+> - [ ] ...And now add a better Forgot Password system
+> - [x] Remove old database database migrations.
+> - [ ] Remove systems on the old database.
