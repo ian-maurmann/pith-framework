@@ -8,6 +8,7 @@
 
 | Release status        | Version   | Semver      | PHP Version | Database      | Date           | License | Can I use?                                                                         |
 |-----------------------|-----------|-------------|-------------|---------------|----------------|---------|------------------------------------------------------------------------------------|
+| Alpha 61              | 0.9.3.2   | *sv 0.46.0* | 8.5         | PostgreSQL 18 | 2026-08-15     | MPL 2   | Has all the features that are needed, but some features are still being re-worked. |
 | Alpha 60              | 0.9.3.1   | *sv 0.45.0* | 8.5         | PostgreSQL 18 | 2026-08-01     | MPL 2   | Has all the features that are needed, but some features are still being re-worked. |
 | Alpha 59              | 0.9.3.0   | *sv 0.44.0* | 8.5         | PostgreSQL 18 | 2026-04-06     | MPL 2   | Has all the features that are needed, but some features are still being re-worked. |
 | Alpha 58 part 2       | 0.9.2.1   | *sv 0.43.0* | 8.4+        | PostgreSQL 18 | 2025-11-22 (B) | MPL 2   | Has all the features that are needed, but some features are still being re-worked. |
@@ -97,6 +98,10 @@
 | (Started)             |           |             | PHP 5.1     |               | 2008-11        |         | (Old)                                                                              |
 
 ### Release Notes:
+
+**0.9.3.2 - Alpha 61** `(semver: 0.46.0)`
+- Added new plugin for Forgot-Password / Password-Reset.
+- Remove database migrations for old database.
 
 **0.9.3.1 - Alpha 60** `(semver: 0.45.0)`
 - Just tiny changes.
