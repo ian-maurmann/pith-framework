@@ -47,9 +47,9 @@ class EnvInfoDatabaseInfoAction extends PithAction
         $postgres_port          = PITH_POSTGRES_PORT;
         $postgres_database_name = PITH_POSTGRES_DATABASE_NAME;
         $postgres_username      = PITH_POSTGRES_USERNAME;
-        $postgres_password      = PITH_POSTGRES_PASSWORD;
+     // $postgres_password      = PITH_POSTGRES_PASSWORD;
         $postgres_driver        = PITH_POSTGRES_DRIVER;
-        $postgres_dsn           = PITH_POSTGRES_DSN;
+     // $postgres_dsn           = PITH_POSTGRES_DSN;
 
         // Push to Preparer
         $this->prepare->quote_results              = $quote_results;
@@ -61,8 +61,8 @@ class EnvInfoDatabaseInfoAction extends PithAction
         $this->prepare->postgres_port              = $postgres_port;
         $this->prepare->postgres_database_name     = $postgres_database_name;
         $this->prepare->postgres_username          = $postgres_username;
-        $this->prepare->postgres_password          = $postgres_password;
+     // $this->prepare->postgres_password          = $postgres_password;
         $this->prepare->postgres_driver            = $postgres_driver;
-        $this->prepare->postgres_dsn               = $postgres_dsn;
+     // $this->prepare->postgres_dsn               = $postgres_dsn;
     }
 }
