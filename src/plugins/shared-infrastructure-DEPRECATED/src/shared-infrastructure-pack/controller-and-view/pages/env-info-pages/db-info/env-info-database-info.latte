@@ -3,20 +3,24 @@ Connection Info:
 <table data-table-style="route-list-info">
     <tbody>
     <tr>
-        <th>DSN</th>
-        <td>{$dsn}</td>
+        <th>Postgres Host</th>
+        <td>{$postgres_host}</td>
     </tr>
     <tr>
-        <th>Migrations DB Name</th>
-        <td>{$migrations_database_name}</td>
+        <th>Postgres Port</th>
+        <td>{$postgres_port}</td>
     </tr>
     <tr>
-        <th>Migrations DB Host</th>
-        <td>{$migrations_database_host}</td>
+        <th>Postgres Database Name</th>
+        <td>{$postgres_database_name}</td>
     </tr>
     <tr>
-        <th>Migrations DB Driver</th>
-        <td>{$migrations_database_driver}</td>
+        <th>Postgres Username</th>
+        <td>{$postgres_username}</td>
+    </tr>
+    <tr>
+        <th>Postgres Driver</th>
+        <td>{$postgres_driver}</td>
     </tr>
     </tbody>
 </table>
@@ -46,3 +50,4 @@ Try to fetch the test quotes:<br/>
     {/foreach}
     </tbody>
 </table>
+<br/>
